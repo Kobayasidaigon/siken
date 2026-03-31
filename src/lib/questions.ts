@@ -2,6 +2,7 @@ import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
 import { remark } from "remark";
+import remarkGfm from "remark-gfm";
 import html from "remark-html";
 import { QuestionData } from "./types";
 
@@ -22,7 +23,7 @@ export async function getQuestion(slug: string): Promise<QuestionData | null> {
   const fileContent = fs.readFileSync(filePath, "utf-8");
   const { data, content } = matter(fileContent);
 
-  const processed = await remark().use(html, { sanitize: false }).process(content);
+  const processed = await remark().use(remarkGfm).use(html, { sanitize: false }).process(content);
 
   return {
     slug,

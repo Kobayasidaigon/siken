@@ -1,0 +1,10 @@
+Q41: 貸金業法 / 帳簿の備付け・保存 / difficulty C
+Q42: 貸金業法 / 帳簿の備付け・保存 / difficulty C
+Q43: 貸金業法 / 帳簿の備付け・保存 / difficulty A
+Q44: 貸金業法 / 帳簿の備付け・保存 / difficulty B
+Q45: 貸金業法 / 業務運営に関する規制 / difficulty A
+Q46: 貸金業法 / 業務運営に関する規制 / difficulty B
+Q47: 貸金業法 / 業務運営に関する規制 / difficulty B
+Q48: 貸金業法 / 業務運営に関する規制 / difficulty B
+Q49: 貸金業法 / 業務運営に関する規制 / difficulty C
+Q50: 貸金業法 / 業務運営に関する規制 / difficulty C

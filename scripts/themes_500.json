@@ -1,0 +1,3530 @@
+[
+  {
+    "number": 1,
+    "field": "貸金業法",
+    "theme": "貸金業の登録制度",
+    "difficulty": "A",
+    "slug": "0-001"
+  },
+  {
+    "number": 2,
+    "field": "貸金業法",
+    "theme": "貸金業の登録制度",
+    "difficulty": "B",
+    "slug": "0-002"
+  },
+  {
+    "number": 3,
+    "field": "貸金業法",
+    "theme": "貸金業の登録制度",
+    "difficulty": "B",
+    "slug": "0-003"
+  },
+  {
+    "number": 4,
+    "field": "貸金業法",
+    "theme": "貸金業の登録制度",
+    "difficulty": "B",
+    "slug": "0-004"
+  },
+  {
+    "number": 5,
+    "field": "貸金業法",
+    "theme": "貸金業の登録制度",
+    "difficulty": "C",
+    "slug": "0-005"
+  },
+  {
+    "number": 6,
+    "field": "貸金業法",
+    "theme": "貸金業の登録制度",
+    "difficulty": "C",
+    "slug": "0-006"
+  },
+  {
+    "number": 7,
+    "field": "貸金業法",
+    "theme": "貸金業の登録制度",
+    "difficulty": "A",
+    "slug": "0-007"
+  },
+  {
+    "number": 8,
+    "field": "貸金業法",
+    "theme": "貸金業の登録制度",
+    "difficulty": "B",
+    "slug": "0-008"
+  },
+  {
+    "number": 9,
+    "field": "貸金業法",
+    "theme": "登録の拒否事由",
+    "difficulty": "A",
+    "slug": "0-009"
+  },
+  {
+    "number": 10,
+    "field": "貸金業法",
+    "theme": "登録の拒否事由",
+    "difficulty": "B",
+    "slug": "0-010"
+  },
+  {
+    "number": 11,
+    "field": "貸金業法",
+    "theme": "登録の拒否事由",
+    "difficulty": "B",
+    "slug": "0-011"
+  },
+  {
+    "number": 12,
+    "field": "貸金業法",
+    "theme": "登録の拒否事由",
+    "difficulty": "B",
+    "slug": "0-012"
+  },
+  {
+    "number": 13,
+    "field": "貸金業法",
+    "theme": "登録の拒否事由",
+    "difficulty": "C",
+    "slug": "0-013"
+  },
+  {
+    "number": 14,
+    "field": "貸金業法",
+    "theme": "登録の拒否事由",
+    "difficulty": "C",
+    "slug": "0-014"
+  },
+  {
+    "number": 15,
+    "field": "貸金業法",
+    "theme": "登録の拒否事由",
+    "difficulty": "A",
+    "slug": "0-015"
+  },
+  {
+    "number": 16,
+    "field": "貸金業法",
+    "theme": "登録の拒否事由",
+    "difficulty": "B",
+    "slug": "0-016"
+  },
+  {
+    "number": 17,
+    "field": "貸金業法",
+    "theme": "貸金業務取扱主任者の設置義務",
+    "difficulty": "A",
+    "slug": "0-017"
+  },
+  {
+    "number": 18,
+    "field": "貸金業法",
+    "theme": "貸金業務取扱主任者の設置義務",
+    "difficulty": "B",
+    "slug": "0-018"
+  },
+  {
+    "number": 19,
+    "field": "貸金業法",
+    "theme": "貸金業務取扱主任者の設置義務",
+    "difficulty": "B",
+    "slug": "0-019"
+  },
+  {
+    "number": 20,
+    "field": "貸金業法",
+    "theme": "貸金業務取扱主任者の設置義務",
+    "difficulty": "B",
+    "slug": "0-020"
+  },
+  {
+    "number": 21,
+    "field": "貸金業法",
+    "theme": "貸金業務取扱主任者の設置義務",
+    "difficulty": "C",
+    "slug": "0-021"
+  },
+  {
+    "number": 22,
+    "field": "貸金業法",
+    "theme": "貸金業務取扱主任者の設置義務",
+    "difficulty": "C",
+    "slug": "0-022"
+  },
+  {
+    "number": 23,
+    "field": "貸金業法",
+    "theme": "貸金業務取扱主任者の設置義務",
+    "difficulty": "A",
+    "slug": "0-023"
+  },
+  {
+    "number": 24,
+    "field": "貸金業法",
+    "theme": "貸金業務取扱主任者の設置義務",
+    "difficulty": "B",
+    "slug": "0-024"
+  },
+  {
+    "number": 25,
+    "field": "貸金業法",
+    "theme": "貸金業務取扱主任者の登録",
+    "difficulty": "A",
+    "slug": "0-025"
+  },
+  {
+    "number": 26,
+    "field": "貸金業法",
+    "theme": "貸金業務取扱主任者の登録",
+    "difficulty": "B",
+    "slug": "0-026"
+  },
+  {
+    "number": 27,
+    "field": "貸金業法",
+    "theme": "貸金業務取扱主任者の登録",
+    "difficulty": "B",
+    "slug": "0-027"
+  },
+  {
+    "number": 28,
+    "field": "貸金業法",
+    "theme": "貸金業務取扱主任者の登録",
+    "difficulty": "B",
+    "slug": "0-028"
+  },
+  {
+    "number": 29,
+    "field": "貸金業法",
+    "theme": "貸金業務取扱主任者の登録",
+    "difficulty": "C",
+    "slug": "0-029"
+  },
+  {
+    "number": 30,
+    "field": "貸金業法",
+    "theme": "貸金業務取扱主任者の登録",
+    "difficulty": "C",
+    "slug": "0-030"
+  },
+  {
+    "number": 31,
+    "field": "貸金業法",
+    "theme": "営業所の届出・変更届",
+    "difficulty": "A",
+    "slug": "0-031"
+  },
+  {
+    "number": 32,
+    "field": "貸金業法",
+    "theme": "営業所の届出・変更届",
+    "difficulty": "B",
+    "slug": "0-032"
+  },
+  {
+    "number": 33,
+    "field": "貸金業法",
+    "theme": "営業所の届出・変更届",
+    "difficulty": "B",
+    "slug": "0-033"
+  },
+  {
+    "number": 34,
+    "field": "貸金業法",
+    "theme": "営業所の届出・変更届",
+    "difficulty": "B",
+    "slug": "0-034"
+  },
+  {
+    "number": 35,
+    "field": "貸金業法",
+    "theme": "営業所の届出・変更届",
+    "difficulty": "C",
+    "slug": "0-035"
+  },
+  {
+    "number": 36,
+    "field": "貸金業法",
+    "theme": "営業所の届出・変更届",
+    "difficulty": "C",
+    "slug": "0-036"
+  },
+  {
+    "number": 37,
+    "field": "貸金業法",
+    "theme": "帳簿の備付け・保存",
+    "difficulty": "A",
+    "slug": "0-037"
+  },
+  {
+    "number": 38,
+    "field": "貸金業法",
+    "theme": "帳簿の備付け・保存",
+    "difficulty": "B",
+    "slug": "0-038"
+  },
+  {
+    "number": 39,
+    "field": "貸金業法",
+    "theme": "帳簿の備付け・保存",
+    "difficulty": "B",
+    "slug": "0-039"
+  },
+  {
+    "number": 40,
+    "field": "貸金業法",
+    "theme": "帳簿の備付け・保存",
+    "difficulty": "B",
+    "slug": "0-040"
+  },
+  {
+    "number": 41,
+    "field": "貸金業法",
+    "theme": "帳簿の備付け・保存",
+    "difficulty": "C",
+    "slug": "0-041"
+  },
+  {
+    "number": 42,
+    "field": "貸金業法",
+    "theme": "帳簿の備付け・保存",
+    "difficulty": "C",
+    "slug": "0-042"
+  },
+  {
+    "number": 43,
+    "field": "貸金業法",
+    "theme": "帳簿の備付け・保存",
+    "difficulty": "A",
+    "slug": "0-043"
+  },
+  {
+    "number": 44,
+    "field": "貸金業法",
+    "theme": "帳簿の備付け・保存",
+    "difficulty": "B",
+    "slug": "0-044"
+  },
+  {
+    "number": 45,
+    "field": "貸金業法",
+    "theme": "業務運営に関する規制",
+    "difficulty": "A",
+    "slug": "0-045"
+  },
+  {
+    "number": 46,
+    "field": "貸金業法",
+    "theme": "業務運営に関する規制",
+    "difficulty": "B",
+    "slug": "0-046"
+  },
+  {
+    "number": 47,
+    "field": "貸金業法",
+    "theme": "業務運営に関する規制",
+    "difficulty": "B",
+    "slug": "0-047"
+  },
+  {
+    "number": 48,
+    "field": "貸金業法",
+    "theme": "業務運営に関する規制",
+    "difficulty": "B",
+    "slug": "0-048"
+  },
+  {
+    "number": 49,
+    "field": "貸金業法",
+    "theme": "業務運営に関する規制",
+    "difficulty": "C",
+    "slug": "0-049"
+  },
+  {
+    "number": 50,
+    "field": "貸金業法",
+    "theme": "業務運営に関する規制",
+    "difficulty": "C",
+    "slug": "0-050"
+  },
+  {
+    "number": 51,
+    "field": "貸金業法",
+    "theme": "貸付条件の広告規制",
+    "difficulty": "A",
+    "slug": "0-051"
+  },
+  {
+    "number": 52,
+    "field": "貸金業法",
+    "theme": "貸付条件の広告規制",
+    "difficulty": "B",
+    "slug": "0-052"
+  },
+  {
+    "number": 53,
+    "field": "貸金業法",
+    "theme": "貸付条件の広告規制",
+    "difficulty": "B",
+    "slug": "0-053"
+  },
+  {
+    "number": 54,
+    "field": "貸金業法",
+    "theme": "貸付条件の広告規制",
+    "difficulty": "B",
+    "slug": "0-054"
+  },
+  {
+    "number": 55,
+    "field": "貸金業法",
+    "theme": "貸付条件の広告規制",
+    "difficulty": "C",
+    "slug": "0-055"
+  },
+  {
+    "number": 56,
+    "field": "貸金業法",
+    "theme": "貸付条件の広告規制",
+    "difficulty": "C",
+    "slug": "0-056"
+  },
+  {
+    "number": 57,
+    "field": "貸金業法",
+    "theme": "貸付条件の広告規制",
+    "difficulty": "A",
+    "slug": "0-057"
+  },
+  {
+    "number": 58,
+    "field": "貸金業法",
+    "theme": "貸付条件の広告規制",
+    "difficulty": "B",
+    "slug": "0-058"
+  },
+  {
+    "number": 59,
+    "field": "貸金業法",
+    "theme": "誇大広告の禁止",
+    "difficulty": "A",
+    "slug": "0-059"
+  },
+  {
+    "number": 60,
+    "field": "貸金業法",
+    "theme": "誇大広告の禁止",
+    "difficulty": "B",
+    "slug": "0-060"
+  },
+  {
+    "number": 61,
+    "field": "貸金業法",
+    "theme": "誇大広告の禁止",
+    "difficulty": "B",
+    "slug": "0-061"
+  },
+  {
+    "number": 62,
+    "field": "貸金業法",
+    "theme": "誇大広告の禁止",
+    "difficulty": "B",
+    "slug": "0-062"
+  },
+  {
+    "number": 63,
+    "field": "貸金業法",
+    "theme": "誇大広告の禁止",
+    "difficulty": "C",
+    "slug": "0-063"
+  },
+  {
+    "number": 64,
+    "field": "貸金業法",
+    "theme": "誇大広告の禁止",
+    "difficulty": "C",
+    "slug": "0-064"
+  },
+  {
+    "number": 65,
+    "field": "貸金業法",
+    "theme": "書面の交付義務（契約前）",
+    "difficulty": "A",
+    "slug": "0-065"
+  },
+  {
+    "number": 66,
+    "field": "貸金業法",
+    "theme": "書面の交付義務（契約前）",
+    "difficulty": "B",
+    "slug": "0-066"
+  },
+  {
+    "number": 67,
+    "field": "貸金業法",
+    "theme": "書面の交付義務（契約前）",
+    "difficulty": "B",
+    "slug": "0-067"
+  },
+  {
+    "number": 68,
+    "field": "貸金業法",
+    "theme": "書面の交付義務（契約前）",
+    "difficulty": "B",
+    "slug": "0-068"
+  },
+  {
+    "number": 69,
+    "field": "貸金業法",
+    "theme": "書面の交付義務（契約前）",
+    "difficulty": "C",
+    "slug": "0-069"
+  },
+  {
+    "number": 70,
+    "field": "貸金業法",
+    "theme": "書面の交付義務（契約前）",
+    "difficulty": "C",
+    "slug": "0-070"
+  },
+  {
+    "number": 71,
+    "field": "貸金業法",
+    "theme": "書面の交付義務（契約前）",
+    "difficulty": "A",
+    "slug": "0-071"
+  },
+  {
+    "number": 72,
+    "field": "貸金業法",
+    "theme": "書面の交付義務（契約前）",
+    "difficulty": "B",
+    "slug": "0-072"
+  },
+  {
+    "number": 73,
+    "field": "貸金業法",
+    "theme": "書面の交付義務（契約時）",
+    "difficulty": "A",
+    "slug": "0-073"
+  },
+  {
+    "number": 74,
+    "field": "貸金業法",
+    "theme": "書面の交付義務（契約時）",
+    "difficulty": "B",
+    "slug": "0-074"
+  },
+  {
+    "number": 75,
+    "field": "貸金業法",
+    "theme": "書面の交付義務（契約時）",
+    "difficulty": "B",
+    "slug": "0-075"
+  },
+  {
+    "number": 76,
+    "field": "貸金業法",
+    "theme": "書面の交付義務（契約時）",
+    "difficulty": "B",
+    "slug": "0-076"
+  },
+  {
+    "number": 77,
+    "field": "貸金業法",
+    "theme": "書面の交付義務（契約時）",
+    "difficulty": "C",
+    "slug": "0-077"
+  },
+  {
+    "number": 78,
+    "field": "貸金業法",
+    "theme": "書面の交付義務（契約時）",
+    "difficulty": "C",
+    "slug": "0-078"
+  },
+  {
+    "number": 79,
+    "field": "貸金業法",
+    "theme": "書面の交付義務（契約時）",
+    "difficulty": "A",
+    "slug": "0-079"
+  },
+  {
+    "number": 80,
+    "field": "貸金業法",
+    "theme": "書面の交付義務（契約時）",
+    "difficulty": "B",
+    "slug": "0-080"
+  },
+  {
+    "number": 81,
+    "field": "貸金業法",
+    "theme": "受取証書の交付",
+    "difficulty": "A",
+    "slug": "0-081"
+  },
+  {
+    "number": 82,
+    "field": "貸金業法",
+    "theme": "受取証書の交付",
+    "difficulty": "B",
+    "slug": "0-082"
+  },
+  {
+    "number": 83,
+    "field": "貸金業法",
+    "theme": "受取証書の交付",
+    "difficulty": "B",
+    "slug": "0-083"
+  },
+  {
+    "number": 84,
+    "field": "貸金業法",
+    "theme": "受取証書の交付",
+    "difficulty": "B",
+    "slug": "0-084"
+  },
+  {
+    "number": 85,
+    "field": "貸金業法",
+    "theme": "受取証書の交付",
+    "difficulty": "C",
+    "slug": "0-085"
+  },
+  {
+    "number": 86,
+    "field": "貸金業法",
+    "theme": "受取証書の交付",
+    "difficulty": "C",
+    "slug": "0-086"
+  },
+  {
+    "number": 87,
+    "field": "貸金業法",
+    "theme": "取立て行為の規制",
+    "difficulty": "A",
+    "slug": "0-087"
+  },
+  {
+    "number": 88,
+    "field": "貸金業法",
+    "theme": "取立て行為の規制",
+    "difficulty": "B",
+    "slug": "0-088"
+  },
+  {
+    "number": 89,
+    "field": "貸金業法",
+    "theme": "取立て行為の規制",
+    "difficulty": "B",
+    "slug": "0-089"
+  },
+  {
+    "number": 90,
+    "field": "貸金業法",
+    "theme": "取立て行為の規制",
+    "difficulty": "B",
+    "slug": "0-090"
+  },
+  {
+    "number": 91,
+    "field": "貸金業法",
+    "theme": "取立て行為の規制",
+    "difficulty": "C",
+    "slug": "0-091"
+  },
+  {
+    "number": 92,
+    "field": "貸金業法",
+    "theme": "取立て行為の規制",
+    "difficulty": "C",
+    "slug": "0-092"
+  },
+  {
+    "number": 93,
+    "field": "貸金業法",
+    "theme": "取立て行為の規制",
+    "difficulty": "A",
+    "slug": "0-093"
+  },
+  {
+    "number": 94,
+    "field": "貸金業法",
+    "theme": "取立て行為の規制",
+    "difficulty": "B",
+    "slug": "0-094"
+  },
+  {
+    "number": 95,
+    "field": "貸金業法",
+    "theme": "取立て行為の規制",
+    "difficulty": "B",
+    "slug": "0-095"
+  },
+  {
+    "number": 96,
+    "field": "貸金業法",
+    "theme": "取立て行為の規制",
+    "difficulty": "B",
+    "slug": "0-096"
+  },
+  {
+    "number": 97,
+    "field": "貸金業法",
+    "theme": "債権譲渡等の規制",
+    "difficulty": "A",
+    "slug": "0-097"
+  },
+  {
+    "number": 98,
+    "field": "貸金業法",
+    "theme": "債権譲渡等の規制",
+    "difficulty": "B",
+    "slug": "0-098"
+  },
+  {
+    "number": 99,
+    "field": "貸金業法",
+    "theme": "債権譲渡等の規制",
+    "difficulty": "B",
+    "slug": "0-099"
+  },
+  {
+    "number": 100,
+    "field": "貸金業法",
+    "theme": "債権譲渡等の規制",
+    "difficulty": "B",
+    "slug": "0-100"
+  },
+  {
+    "number": 101,
+    "field": "貸金業法",
+    "theme": "債権譲渡等の規制",
+    "difficulty": "C",
+    "slug": "0-101"
+  },
+  {
+    "number": 102,
+    "field": "貸金業法",
+    "theme": "債権譲渡等の規制",
+    "difficulty": "C",
+    "slug": "0-102"
+  },
+  {
+    "number": 103,
+    "field": "貸金業法",
+    "theme": "総量規制（過剰貸付けの防止）",
+    "difficulty": "A",
+    "slug": "0-103"
+  },
+  {
+    "number": 104,
+    "field": "貸金業法",
+    "theme": "総量規制（過剰貸付けの防止）",
+    "difficulty": "B",
+    "slug": "0-104"
+  },
+  {
+    "number": 105,
+    "field": "貸金業法",
+    "theme": "総量規制（過剰貸付けの防止）",
+    "difficulty": "B",
+    "slug": "0-105"
+  },
+  {
+    "number": 106,
+    "field": "貸金業法",
+    "theme": "総量規制（過剰貸付けの防止）",
+    "difficulty": "B",
+    "slug": "0-106"
+  },
+  {
+    "number": 107,
+    "field": "貸金業法",
+    "theme": "総量規制（過剰貸付けの防止）",
+    "difficulty": "C",
+    "slug": "0-107"
+  },
+  {
+    "number": 108,
+    "field": "貸金業法",
+    "theme": "総量規制（過剰貸付けの防止）",
+    "difficulty": "C",
+    "slug": "0-108"
+  },
+  {
+    "number": 109,
+    "field": "貸金業法",
+    "theme": "総量規制（過剰貸付けの防止）",
+    "difficulty": "A",
+    "slug": "0-109"
+  },
+  {
+    "number": 110,
+    "field": "貸金業法",
+    "theme": "総量規制（過剰貸付けの防止）",
+    "difficulty": "B",
+    "slug": "0-110"
+  },
+  {
+    "number": 111,
+    "field": "貸金業法",
+    "theme": "総量規制（過剰貸付けの防止）",
+    "difficulty": "B",
+    "slug": "0-111"
+  },
+  {
+    "number": 112,
+    "field": "貸金業法",
+    "theme": "総量規制（過剰貸付けの防止）",
+    "difficulty": "B",
+    "slug": "0-112"
+  },
+  {
+    "number": 113,
+    "field": "貸金業法",
+    "theme": "個人信用情報の取扱い",
+    "difficulty": "A",
+    "slug": "0-113"
+  },
+  {
+    "number": 114,
+    "field": "貸金業法",
+    "theme": "個人信用情報の取扱い",
+    "difficulty": "B",
+    "slug": "0-114"
+  },
+  {
+    "number": 115,
+    "field": "貸金業法",
+    "theme": "個人信用情報の取扱い",
+    "difficulty": "B",
+    "slug": "0-115"
+  },
+  {
+    "number": 116,
+    "field": "貸金業法",
+    "theme": "個人信用情報の取扱い",
+    "difficulty": "B",
+    "slug": "0-116"
+  },
+  {
+    "number": 117,
+    "field": "貸金業法",
+    "theme": "個人信用情報の取扱い",
+    "difficulty": "C",
+    "slug": "0-117"
+  },
+  {
+    "number": 118,
+    "field": "貸金業法",
+    "theme": "個人信用情報の取扱い",
+    "difficulty": "C",
+    "slug": "0-118"
+  },
+  {
+    "number": 119,
+    "field": "貸金業法",
+    "theme": "個人信用情報の取扱い",
+    "difficulty": "A",
+    "slug": "0-119"
+  },
+  {
+    "number": 120,
+    "field": "貸金業法",
+    "theme": "個人信用情報の取扱い",
+    "difficulty": "B",
+    "slug": "0-120"
+  },
+  {
+    "number": 121,
+    "field": "貸金業法",
+    "theme": "指定信用情報機関制度",
+    "difficulty": "A",
+    "slug": "0-121"
+  },
+  {
+    "number": 122,
+    "field": "貸金業法",
+    "theme": "指定信用情報機関制度",
+    "difficulty": "B",
+    "slug": "0-122"
+  },
+  {
+    "number": 123,
+    "field": "貸金業法",
+    "theme": "指定信用情報機関制度",
+    "difficulty": "B",
+    "slug": "0-123"
+  },
+  {
+    "number": 124,
+    "field": "貸金業法",
+    "theme": "指定信用情報機関制度",
+    "difficulty": "B",
+    "slug": "0-124"
+  },
+  {
+    "number": 125,
+    "field": "貸金業法",
+    "theme": "指定信用情報機関制度",
+    "difficulty": "C",
+    "slug": "0-125"
+  },
+  {
+    "number": 126,
+    "field": "貸金業法",
+    "theme": "指定信用情報機関制度",
+    "difficulty": "C",
+    "slug": "0-126"
+  },
+  {
+    "number": 127,
+    "field": "貸金業法",
+    "theme": "返済能力の調査",
+    "difficulty": "A",
+    "slug": "0-127"
+  },
+  {
+    "number": 128,
+    "field": "貸金業法",
+    "theme": "返済能力の調査",
+    "difficulty": "B",
+    "slug": "0-128"
+  },
+  {
+    "number": 129,
+    "field": "貸金業法",
+    "theme": "返済能力の調査",
+    "difficulty": "B",
+    "slug": "0-129"
+  },
+  {
+    "number": 130,
+    "field": "貸金業法",
+    "theme": "返済能力の調査",
+    "difficulty": "B",
+    "slug": "0-130"
+  },
+  {
+    "number": 131,
+    "field": "貸金業法",
+    "theme": "返済能力の調査",
+    "difficulty": "C",
+    "slug": "0-131"
+  },
+  {
+    "number": 132,
+    "field": "貸金業法",
+    "theme": "返済能力の調査",
+    "difficulty": "C",
+    "slug": "0-132"
+  },
+  {
+    "number": 133,
+    "field": "貸金業法",
+    "theme": "返済能力の調査",
+    "difficulty": "A",
+    "slug": "0-133"
+  },
+  {
+    "number": 134,
+    "field": "貸金業法",
+    "theme": "返済能力の調査",
+    "difficulty": "B",
+    "slug": "0-134"
+  },
+  {
+    "number": 135,
+    "field": "貸金業法",
+    "theme": "基準額超過極度方式基本契約",
+    "difficulty": "A",
+    "slug": "0-135"
+  },
+  {
+    "number": 136,
+    "field": "貸金業法",
+    "theme": "基準額超過極度方式基本契約",
+    "difficulty": "B",
+    "slug": "0-136"
+  },
+  {
+    "number": 137,
+    "field": "貸金業法",
+    "theme": "基準額超過極度方式基本契約",
+    "difficulty": "B",
+    "slug": "0-137"
+  },
+  {
+    "number": 138,
+    "field": "貸金業法",
+    "theme": "基準額超過極度方式基本契約",
+    "difficulty": "B",
+    "slug": "0-138"
+  },
+  {
+    "number": 139,
+    "field": "貸金業法",
+    "theme": "基準額超過極度方式基本契約",
+    "difficulty": "C",
+    "slug": "0-139"
+  },
+  {
+    "number": 140,
+    "field": "貸金業法",
+    "theme": "基準額超過極度方式基本契約",
+    "difficulty": "C",
+    "slug": "0-140"
+  },
+  {
+    "number": 141,
+    "field": "貸金業法",
+    "theme": "貸金業協会",
+    "difficulty": "A",
+    "slug": "0-141"
+  },
+  {
+    "number": 142,
+    "field": "貸金業法",
+    "theme": "貸金業協会",
+    "difficulty": "B",
+    "slug": "0-142"
+  },
+  {
+    "number": 143,
+    "field": "貸金業法",
+    "theme": "貸金業協会",
+    "difficulty": "B",
+    "slug": "0-143"
+  },
+  {
+    "number": 144,
+    "field": "貸金業法",
+    "theme": "貸金業協会",
+    "difficulty": "B",
+    "slug": "0-144"
+  },
+  {
+    "number": 145,
+    "field": "貸金業法",
+    "theme": "貸金業協会",
+    "difficulty": "C",
+    "slug": "0-145"
+  },
+  {
+    "number": 146,
+    "field": "貸金業法",
+    "theme": "貸金業協会",
+    "difficulty": "C",
+    "slug": "0-146"
+  },
+  {
+    "number": 147,
+    "field": "貸金業法",
+    "theme": "監督・行政処分",
+    "difficulty": "A",
+    "slug": "0-147"
+  },
+  {
+    "number": 148,
+    "field": "貸金業法",
+    "theme": "監督・行政処分",
+    "difficulty": "B",
+    "slug": "0-148"
+  },
+  {
+    "number": 149,
+    "field": "貸金業法",
+    "theme": "監督・行政処分",
+    "difficulty": "B",
+    "slug": "0-149"
+  },
+  {
+    "number": 150,
+    "field": "貸金業法",
+    "theme": "監督・行政処分",
+    "difficulty": "B",
+    "slug": "0-150"
+  },
+  {
+    "number": 151,
+    "field": "貸金業法",
+    "theme": "監督・行政処分",
+    "difficulty": "C",
+    "slug": "0-151"
+  },
+  {
+    "number": 152,
+    "field": "貸金業法",
+    "theme": "監督・行政処分",
+    "difficulty": "C",
+    "slug": "0-152"
+  },
+  {
+    "number": 153,
+    "field": "貸金業法",
+    "theme": "監督・行政処分",
+    "difficulty": "A",
+    "slug": "0-153"
+  },
+  {
+    "number": 154,
+    "field": "貸金業法",
+    "theme": "監督・行政処分",
+    "difficulty": "B",
+    "slug": "0-154"
+  },
+  {
+    "number": 155,
+    "field": "貸金業法",
+    "theme": "罰則",
+    "difficulty": "A",
+    "slug": "0-155"
+  },
+  {
+    "number": 156,
+    "field": "貸金業法",
+    "theme": "罰則",
+    "difficulty": "B",
+    "slug": "0-156"
+  },
+  {
+    "number": 157,
+    "field": "貸金業法",
+    "theme": "罰則",
+    "difficulty": "B",
+    "slug": "0-157"
+  },
+  {
+    "number": 158,
+    "field": "貸金業法",
+    "theme": "罰則",
+    "difficulty": "B",
+    "slug": "0-158"
+  },
+  {
+    "number": 159,
+    "field": "貸金業法",
+    "theme": "罰則",
+    "difficulty": "C",
+    "slug": "0-159"
+  },
+  {
+    "number": 160,
+    "field": "貸金業法",
+    "theme": "罰則",
+    "difficulty": "C",
+    "slug": "0-160"
+  },
+  {
+    "number": 161,
+    "field": "貸金業法",
+    "theme": "貸金業法の目的・定義",
+    "difficulty": "A",
+    "slug": "0-161"
+  },
+  {
+    "number": 162,
+    "field": "貸金業法",
+    "theme": "貸金業法の目的・定義",
+    "difficulty": "B",
+    "slug": "0-162"
+  },
+  {
+    "number": 163,
+    "field": "貸金業法",
+    "theme": "貸金業法の目的・定義",
+    "difficulty": "B",
+    "slug": "0-163"
+  },
+  {
+    "number": 164,
+    "field": "貸金業法",
+    "theme": "貸金業法の目的・定義",
+    "difficulty": "B",
+    "slug": "0-164"
+  },
+  {
+    "number": 165,
+    "field": "貸金業法",
+    "theme": "貸金業法の目的・定義",
+    "difficulty": "C",
+    "slug": "0-165"
+  },
+  {
+    "number": 166,
+    "field": "貸金業法",
+    "theme": "貸金業法の目的・定義",
+    "difficulty": "C",
+    "slug": "0-166"
+  },
+  {
+    "number": 167,
+    "field": "貸金業法",
+    "theme": "みなし貸金業者",
+    "difficulty": "A",
+    "slug": "0-167"
+  },
+  {
+    "number": 168,
+    "field": "貸金業法",
+    "theme": "みなし貸金業者",
+    "difficulty": "B",
+    "slug": "0-168"
+  },
+  {
+    "number": 169,
+    "field": "貸金業法",
+    "theme": "みなし貸金業者",
+    "difficulty": "B",
+    "slug": "0-169"
+  },
+  {
+    "number": 170,
+    "field": "貸金業法",
+    "theme": "みなし貸金業者",
+    "difficulty": "B",
+    "slug": "0-170"
+  },
+  {
+    "number": 171,
+    "field": "貸金業法",
+    "theme": "生命保険契約の締結の制限",
+    "difficulty": "A",
+    "slug": "0-171"
+  },
+  {
+    "number": 172,
+    "field": "貸金業法",
+    "theme": "生命保険契約の締結の制限",
+    "difficulty": "B",
+    "slug": "0-172"
+  },
+  {
+    "number": 173,
+    "field": "貸金業法",
+    "theme": "生命保険契約の締結の制限",
+    "difficulty": "B",
+    "slug": "0-173"
+  },
+  {
+    "number": 174,
+    "field": "貸金業法",
+    "theme": "生命保険契約の締結の制限",
+    "difficulty": "B",
+    "slug": "0-174"
+  },
+  {
+    "number": 175,
+    "field": "貸金業法",
+    "theme": "公正証書作成の制限",
+    "difficulty": "A",
+    "slug": "0-175"
+  },
+  {
+    "number": 176,
+    "field": "貸金業法",
+    "theme": "公正証書作成の制限",
+    "difficulty": "B",
+    "slug": "0-176"
+  },
+  {
+    "number": 177,
+    "field": "貸金業法",
+    "theme": "公正証書作成の制限",
+    "difficulty": "B",
+    "slug": "0-177"
+  },
+  {
+    "number": 178,
+    "field": "貸金業法",
+    "theme": "公正証書作成の制限",
+    "difficulty": "B",
+    "slug": "0-178"
+  },
+  {
+    "number": 179,
+    "field": "貸金業法",
+    "theme": "白紙委任状の取得制限",
+    "difficulty": "A",
+    "slug": "0-179"
+  },
+  {
+    "number": 180,
+    "field": "貸金業法",
+    "theme": "白紙委任状の取得制限",
+    "difficulty": "B",
+    "slug": "0-180"
+  },
+  {
+    "number": 181,
+    "field": "貸金業法",
+    "theme": "白紙委任状の取得制限",
+    "difficulty": "B",
+    "slug": "0-181"
+  },
+  {
+    "number": 182,
+    "field": "貸金業法",
+    "theme": "白紙委任状の取得制限",
+    "difficulty": "B",
+    "slug": "0-182"
+  },
+  {
+    "number": 183,
+    "field": "貸金業法",
+    "theme": "名義貸しの禁止",
+    "difficulty": "A",
+    "slug": "0-183"
+  },
+  {
+    "number": 184,
+    "field": "貸金業法",
+    "theme": "名義貸しの禁止",
+    "difficulty": "B",
+    "slug": "0-184"
+  },
+  {
+    "number": 185,
+    "field": "貸金業法",
+    "theme": "名義貸しの禁止",
+    "difficulty": "B",
+    "slug": "0-185"
+  },
+  {
+    "number": 186,
+    "field": "貸金業法",
+    "theme": "名義貸しの禁止",
+    "difficulty": "B",
+    "slug": "0-186"
+  },
+  {
+    "number": 187,
+    "field": "貸金業法",
+    "theme": "証明書の携帯",
+    "difficulty": "A",
+    "slug": "0-187"
+  },
+  {
+    "number": 188,
+    "field": "貸金業法",
+    "theme": "証明書の携帯",
+    "difficulty": "B",
+    "slug": "0-188"
+  },
+  {
+    "number": 189,
+    "field": "貸金業法",
+    "theme": "証明書の携帯",
+    "difficulty": "B",
+    "slug": "0-189"
+  },
+  {
+    "number": 190,
+    "field": "貸金業法",
+    "theme": "証明書の携帯",
+    "difficulty": "B",
+    "slug": "0-190"
+  },
+  {
+    "number": 191,
+    "field": "貸金業法",
+    "theme": "標識の掲示",
+    "difficulty": "A",
+    "slug": "0-191"
+  },
+  {
+    "number": 192,
+    "field": "貸金業法",
+    "theme": "標識の掲示",
+    "difficulty": "B",
+    "slug": "0-192"
+  },
+  {
+    "number": 193,
+    "field": "貸金業法",
+    "theme": "標識の掲示",
+    "difficulty": "B",
+    "slug": "0-193"
+  },
+  {
+    "number": 194,
+    "field": "貸金業法",
+    "theme": "標識の掲示",
+    "difficulty": "B",
+    "slug": "0-194"
+  },
+  {
+    "number": 195,
+    "field": "貸金業法",
+    "theme": "廃業等の届出",
+    "difficulty": "A",
+    "slug": "0-195"
+  },
+  {
+    "number": 196,
+    "field": "貸金業法",
+    "theme": "廃業等の届出",
+    "difficulty": "B",
+    "slug": "0-196"
+  },
+  {
+    "number": 197,
+    "field": "貸金業法",
+    "theme": "廃業等の届出",
+    "difficulty": "B",
+    "slug": "0-197"
+  },
+  {
+    "number": 198,
+    "field": "貸金業法",
+    "theme": "廃業等の届出",
+    "difficulty": "B",
+    "slug": "0-198"
+  },
+  {
+    "number": 199,
+    "field": "貸金業法",
+    "theme": "廃業等の届出",
+    "difficulty": "C",
+    "slug": "0-199"
+  },
+  {
+    "number": 200,
+    "field": "貸金業法",
+    "theme": "廃業等の届出",
+    "difficulty": "C",
+    "slug": "0-200"
+  },
+  {
+    "number": 201,
+    "field": "貸金業法",
+    "theme": "貸金業者の禁止行為",
+    "difficulty": "A",
+    "slug": "0-201"
+  },
+  {
+    "number": 202,
+    "field": "貸金業法",
+    "theme": "貸金業者の禁止行為",
+    "difficulty": "B",
+    "slug": "0-202"
+  },
+  {
+    "number": 203,
+    "field": "貸金業法",
+    "theme": "貸金業者の禁止行為",
+    "difficulty": "B",
+    "slug": "0-203"
+  },
+  {
+    "number": 204,
+    "field": "貸金業法",
+    "theme": "貸金業者の禁止行為",
+    "difficulty": "B",
+    "slug": "0-204"
+  },
+  {
+    "number": 205,
+    "field": "貸金業法",
+    "theme": "貸金業者の禁止行為",
+    "difficulty": "C",
+    "slug": "0-205"
+  },
+  {
+    "number": 206,
+    "field": "貸金業法",
+    "theme": "貸金業者の禁止行為",
+    "difficulty": "C",
+    "slug": "0-206"
+  },
+  {
+    "number": 207,
+    "field": "貸金業法",
+    "theme": "貸金業者の禁止行為",
+    "difficulty": "A",
+    "slug": "0-207"
+  },
+  {
+    "number": 208,
+    "field": "貸金業法",
+    "theme": "貸金業者の禁止行為",
+    "difficulty": "B",
+    "slug": "0-208"
+  },
+  {
+    "number": 209,
+    "field": "貸金業法",
+    "theme": "利用者の利益の保護",
+    "difficulty": "A",
+    "slug": "0-209"
+  },
+  {
+    "number": 210,
+    "field": "貸金業法",
+    "theme": "利用者の利益の保護",
+    "difficulty": "B",
+    "slug": "0-210"
+  },
+  {
+    "number": 211,
+    "field": "貸金業法",
+    "theme": "利用者の利益の保護",
+    "difficulty": "B",
+    "slug": "0-211"
+  },
+  {
+    "number": 212,
+    "field": "貸金業法",
+    "theme": "利用者の利益の保護",
+    "difficulty": "B",
+    "slug": "0-212"
+  },
+  {
+    "number": 213,
+    "field": "貸金業法",
+    "theme": "利用者の利益の保護",
+    "difficulty": "C",
+    "slug": "0-213"
+  },
+  {
+    "number": 214,
+    "field": "貸金業法",
+    "theme": "利用者の利益の保護",
+    "difficulty": "C",
+    "slug": "0-214"
+  },
+  {
+    "number": 215,
+    "field": "利息制限法・出資法",
+    "theme": "利息の上限金利",
+    "difficulty": "A",
+    "slug": "0-215"
+  },
+  {
+    "number": 216,
+    "field": "利息制限法・出資法",
+    "theme": "利息の上限金利",
+    "difficulty": "B",
+    "slug": "0-216"
+  },
+  {
+    "number": 217,
+    "field": "利息制限法・出資法",
+    "theme": "利息の上限金利",
+    "difficulty": "B",
+    "slug": "0-217"
+  },
+  {
+    "number": 218,
+    "field": "利息制限法・出資法",
+    "theme": "利息の上限金利",
+    "difficulty": "B",
+    "slug": "0-218"
+  },
+  {
+    "number": 219,
+    "field": "利息制限法・出資法",
+    "theme": "利息の上限金利",
+    "difficulty": "C",
+    "slug": "0-219"
+  },
+  {
+    "number": 220,
+    "field": "利息制限法・出資法",
+    "theme": "利息の上限金利",
+    "difficulty": "C",
+    "slug": "0-220"
+  },
+  {
+    "number": 221,
+    "field": "利息制限法・出資法",
+    "theme": "利息の上限金利",
+    "difficulty": "A",
+    "slug": "0-221"
+  },
+  {
+    "number": 222,
+    "field": "利息制限法・出資法",
+    "theme": "利息の上限金利",
+    "difficulty": "B",
+    "slug": "0-222"
+  },
+  {
+    "number": 223,
+    "field": "利息制限法・出資法",
+    "theme": "みなし利息",
+    "difficulty": "A",
+    "slug": "0-223"
+  },
+  {
+    "number": 224,
+    "field": "利息制限法・出資法",
+    "theme": "みなし利息",
+    "difficulty": "B",
+    "slug": "0-224"
+  },
+  {
+    "number": 225,
+    "field": "利息制限法・出資法",
+    "theme": "みなし利息",
+    "difficulty": "B",
+    "slug": "0-225"
+  },
+  {
+    "number": 226,
+    "field": "利息制限法・出資法",
+    "theme": "みなし利息",
+    "difficulty": "B",
+    "slug": "0-226"
+  },
+  {
+    "number": 227,
+    "field": "利息制限法・出資法",
+    "theme": "みなし利息",
+    "difficulty": "C",
+    "slug": "0-227"
+  },
+  {
+    "number": 228,
+    "field": "利息制限法・出資法",
+    "theme": "みなし利息",
+    "difficulty": "C",
+    "slug": "0-228"
+  },
+  {
+    "number": 229,
+    "field": "利息制限法・出資法",
+    "theme": "みなし利息",
+    "difficulty": "A",
+    "slug": "0-229"
+  },
+  {
+    "number": 230,
+    "field": "利息制限法・出資法",
+    "theme": "みなし利息",
+    "difficulty": "B",
+    "slug": "0-230"
+  },
+  {
+    "number": 231,
+    "field": "利息制限法・出資法",
+    "theme": "遅延損害金の上限",
+    "difficulty": "A",
+    "slug": "0-231"
+  },
+  {
+    "number": 232,
+    "field": "利息制限法・出資法",
+    "theme": "遅延損害金の上限",
+    "difficulty": "B",
+    "slug": "0-232"
+  },
+  {
+    "number": 233,
+    "field": "利息制限法・出資法",
+    "theme": "遅延損害金の上限",
+    "difficulty": "B",
+    "slug": "0-233"
+  },
+  {
+    "number": 234,
+    "field": "利息制限法・出資法",
+    "theme": "遅延損害金の上限",
+    "difficulty": "B",
+    "slug": "0-234"
+  },
+  {
+    "number": 235,
+    "field": "利息制限法・出資法",
+    "theme": "遅延損害金の上限",
+    "difficulty": "C",
+    "slug": "0-235"
+  },
+  {
+    "number": 236,
+    "field": "利息制限法・出資法",
+    "theme": "遅延損害金の上限",
+    "difficulty": "C",
+    "slug": "0-236"
+  },
+  {
+    "number": 237,
+    "field": "利息制限法・出資法",
+    "theme": "営業的金銭消費貸借の特則",
+    "difficulty": "A",
+    "slug": "0-237"
+  },
+  {
+    "number": 238,
+    "field": "利息制限法・出資法",
+    "theme": "営業的金銭消費貸借の特則",
+    "difficulty": "B",
+    "slug": "0-238"
+  },
+  {
+    "number": 239,
+    "field": "利息制限法・出資法",
+    "theme": "営業的金銭消費貸借の特則",
+    "difficulty": "B",
+    "slug": "0-239"
+  },
+  {
+    "number": 240,
+    "field": "利息制限法・出資法",
+    "theme": "営業的金銭消費貸借の特則",
+    "difficulty": "B",
+    "slug": "0-240"
+  },
+  {
+    "number": 241,
+    "field": "利息制限法・出資法",
+    "theme": "営業的金銭消費貸借の特則",
+    "difficulty": "C",
+    "slug": "0-241"
+  },
+  {
+    "number": 242,
+    "field": "利息制限法・出資法",
+    "theme": "営業的金銭消費貸借の特則",
+    "difficulty": "C",
+    "slug": "0-242"
+  },
+  {
+    "number": 243,
+    "field": "利息制限法・出資法",
+    "theme": "出資法の規制",
+    "difficulty": "A",
+    "slug": "0-243"
+  },
+  {
+    "number": 244,
+    "field": "利息制限法・出資法",
+    "theme": "出資法の規制",
+    "difficulty": "B",
+    "slug": "0-244"
+  },
+  {
+    "number": 245,
+    "field": "利息制限法・出資法",
+    "theme": "出資法の規制",
+    "difficulty": "B",
+    "slug": "0-245"
+  },
+  {
+    "number": 246,
+    "field": "利息制限法・出資法",
+    "theme": "出資法の規制",
+    "difficulty": "B",
+    "slug": "0-246"
+  },
+  {
+    "number": 247,
+    "field": "利息制限法・出資法",
+    "theme": "出資法の規制",
+    "difficulty": "C",
+    "slug": "0-247"
+  },
+  {
+    "number": 248,
+    "field": "利息制限法・出資法",
+    "theme": "出資法の規制",
+    "difficulty": "C",
+    "slug": "0-248"
+  },
+  {
+    "number": 249,
+    "field": "利息制限法・出資法",
+    "theme": "出資法の規制",
+    "difficulty": "A",
+    "slug": "0-249"
+  },
+  {
+    "number": 250,
+    "field": "利息制限法・出資法",
+    "theme": "出資法の規制",
+    "difficulty": "B",
+    "slug": "0-250"
+  },
+  {
+    "number": 251,
+    "field": "利息制限法・出資法",
+    "theme": "グレーゾーン金利",
+    "difficulty": "A",
+    "slug": "0-251"
+  },
+  {
+    "number": 252,
+    "field": "利息制限法・出資法",
+    "theme": "グレーゾーン金利",
+    "difficulty": "B",
+    "slug": "0-252"
+  },
+  {
+    "number": 253,
+    "field": "利息制限法・出資法",
+    "theme": "グレーゾーン金利",
+    "difficulty": "B",
+    "slug": "0-253"
+  },
+  {
+    "number": 254,
+    "field": "利息制限法・出資法",
+    "theme": "グレーゾーン金利",
+    "difficulty": "B",
+    "slug": "0-254"
+  },
+  {
+    "number": 255,
+    "field": "利息制限法・出資法",
+    "theme": "グレーゾーン金利",
+    "difficulty": "C",
+    "slug": "0-255"
+  },
+  {
+    "number": 256,
+    "field": "利息制限法・出資法",
+    "theme": "グレーゾーン金利",
+    "difficulty": "C",
+    "slug": "0-256"
+  },
+  {
+    "number": 257,
+    "field": "利息制限法・出資法",
+    "theme": "利息計算の方法",
+    "difficulty": "A",
+    "slug": "0-257"
+  },
+  {
+    "number": 258,
+    "field": "利息制限法・出資法",
+    "theme": "利息計算の方法",
+    "difficulty": "B",
+    "slug": "0-258"
+  },
+  {
+    "number": 259,
+    "field": "利息制限法・出資法",
+    "theme": "利息計算の方法",
+    "difficulty": "B",
+    "slug": "0-259"
+  },
+  {
+    "number": 260,
+    "field": "利息制限法・出資法",
+    "theme": "利息計算の方法",
+    "difficulty": "B",
+    "slug": "0-260"
+  },
+  {
+    "number": 261,
+    "field": "利息制限法・出資法",
+    "theme": "利息計算の方法",
+    "difficulty": "C",
+    "slug": "0-261"
+  },
+  {
+    "number": 262,
+    "field": "利息制限法・出資法",
+    "theme": "利息計算の方法",
+    "difficulty": "C",
+    "slug": "0-262"
+  },
+  {
+    "number": 263,
+    "field": "利息制限法・出資法",
+    "theme": "利息計算の方法",
+    "difficulty": "A",
+    "slug": "0-263"
+  },
+  {
+    "number": 264,
+    "field": "利息制限法・出資法",
+    "theme": "利息計算の方法",
+    "difficulty": "B",
+    "slug": "0-264"
+  },
+  {
+    "number": 265,
+    "field": "利息制限法・出資法",
+    "theme": "天引き利息",
+    "difficulty": "A",
+    "slug": "0-265"
+  },
+  {
+    "number": 266,
+    "field": "利息制限法・出資法",
+    "theme": "天引き利息",
+    "difficulty": "B",
+    "slug": "0-266"
+  },
+  {
+    "number": 267,
+    "field": "利息制限法・出資法",
+    "theme": "天引き利息",
+    "difficulty": "B",
+    "slug": "0-267"
+  },
+  {
+    "number": 268,
+    "field": "利息制限法・出資法",
+    "theme": "天引き利息",
+    "difficulty": "B",
+    "slug": "0-268"
+  },
+  {
+    "number": 269,
+    "field": "利息制限法・出資法",
+    "theme": "天引き利息",
+    "difficulty": "C",
+    "slug": "0-269"
+  },
+  {
+    "number": 270,
+    "field": "利息制限法・出資法",
+    "theme": "天引き利息",
+    "difficulty": "C",
+    "slug": "0-270"
+  },
+  {
+    "number": 271,
+    "field": "利息制限法・出資法",
+    "theme": "賠償額の予定の制限",
+    "difficulty": "A",
+    "slug": "0-271"
+  },
+  {
+    "number": 272,
+    "field": "利息制限法・出資法",
+    "theme": "賠償額の予定の制限",
+    "difficulty": "B",
+    "slug": "0-272"
+  },
+  {
+    "number": 273,
+    "field": "利息制限法・出資法",
+    "theme": "賠償額の予定の制限",
+    "difficulty": "B",
+    "slug": "0-273"
+  },
+  {
+    "number": 274,
+    "field": "利息制限法・出資法",
+    "theme": "賠償額の予定の制限",
+    "difficulty": "B",
+    "slug": "0-274"
+  },
+  {
+    "number": 275,
+    "field": "利息制限法・出資法",
+    "theme": "賠償額の予定の制限",
+    "difficulty": "C",
+    "slug": "0-275"
+  },
+  {
+    "number": 276,
+    "field": "利息制限法・出資法",
+    "theme": "賠償額の予定の制限",
+    "difficulty": "C",
+    "slug": "0-276"
+  },
+  {
+    "number": 277,
+    "field": "利息制限法・出資法",
+    "theme": "元本額の区分と利率",
+    "difficulty": "A",
+    "slug": "0-277"
+  },
+  {
+    "number": 278,
+    "field": "利息制限法・出資法",
+    "theme": "元本額の区分と利率",
+    "difficulty": "B",
+    "slug": "0-278"
+  },
+  {
+    "number": 279,
+    "field": "利息制限法・出資法",
+    "theme": "元本額の区分と利率",
+    "difficulty": "B",
+    "slug": "0-279"
+  },
+  {
+    "number": 280,
+    "field": "利息制限法・出資法",
+    "theme": "元本額の区分と利率",
+    "difficulty": "B",
+    "slug": "0-280"
+  },
+  {
+    "number": 281,
+    "field": "利息制限法・出資法",
+    "theme": "元本額の区分と利率",
+    "difficulty": "C",
+    "slug": "0-281"
+  },
+  {
+    "number": 282,
+    "field": "利息制限法・出資法",
+    "theme": "元本額の区分と利率",
+    "difficulty": "C",
+    "slug": "0-282"
+  },
+  {
+    "number": 283,
+    "field": "利息制限法・出資法",
+    "theme": "元本額の区分と利率",
+    "difficulty": "A",
+    "slug": "0-283"
+  },
+  {
+    "number": 284,
+    "field": "利息制限法・出資法",
+    "theme": "元本額の区分と利率",
+    "difficulty": "B",
+    "slug": "0-284"
+  },
+  {
+    "number": 285,
+    "field": "利息制限法・出資法",
+    "theme": "利息制限法の適用範囲",
+    "difficulty": "A",
+    "slug": "0-285"
+  },
+  {
+    "number": 286,
+    "field": "利息制限法・出資法",
+    "theme": "利息制限法の適用範囲",
+    "difficulty": "B",
+    "slug": "0-286"
+  },
+  {
+    "number": 287,
+    "field": "利息制限法・出資法",
+    "theme": "利息制限法の適用範囲",
+    "difficulty": "B",
+    "slug": "0-287"
+  },
+  {
+    "number": 288,
+    "field": "利息制限法・出資法",
+    "theme": "利息制限法の適用範囲",
+    "difficulty": "B",
+    "slug": "0-288"
+  },
+  {
+    "number": 289,
+    "field": "利息制限法・出資法",
+    "theme": "保証料の制限",
+    "difficulty": "A",
+    "slug": "0-289"
+  },
+  {
+    "number": 290,
+    "field": "利息制限法・出資法",
+    "theme": "保証料の制限",
+    "difficulty": "B",
+    "slug": "0-290"
+  },
+  {
+    "number": 291,
+    "field": "利息制限法・出資法",
+    "theme": "保証料の制限",
+    "difficulty": "B",
+    "slug": "0-291"
+  },
+  {
+    "number": 292,
+    "field": "利息制限法・出資法",
+    "theme": "保証料の制限",
+    "difficulty": "B",
+    "slug": "0-292"
+  },
+  {
+    "number": 293,
+    "field": "利息制限法・出資法",
+    "theme": "保証料の制限",
+    "difficulty": "C",
+    "slug": "0-293"
+  },
+  {
+    "number": 294,
+    "field": "利息制限法・出資法",
+    "theme": "保証料の制限",
+    "difficulty": "C",
+    "slug": "0-294"
+  },
+  {
+    "number": 295,
+    "field": "利息制限法・出資法",
+    "theme": "利息制限法と出資法の関係",
+    "difficulty": "A",
+    "slug": "0-295"
+  },
+  {
+    "number": 296,
+    "field": "利息制限法・出資法",
+    "theme": "利息制限法と出資法の関係",
+    "difficulty": "B",
+    "slug": "0-296"
+  },
+  {
+    "number": 297,
+    "field": "利息制限法・出資法",
+    "theme": "利息制限法と出資法の関係",
+    "difficulty": "B",
+    "slug": "0-297"
+  },
+  {
+    "number": 298,
+    "field": "利息制限法・出資法",
+    "theme": "利息制限法と出資法の関係",
+    "difficulty": "B",
+    "slug": "0-298"
+  },
+  {
+    "number": 299,
+    "field": "利息制限法・出資法",
+    "theme": "利息制限法と出資法の関係",
+    "difficulty": "C",
+    "slug": "0-299"
+  },
+  {
+    "number": 300,
+    "field": "利息制限法・出資法",
+    "theme": "利息制限法と出資法の関係",
+    "difficulty": "C",
+    "slug": "0-300"
+  },
+  {
+    "number": 301,
+    "field": "利息制限法・出資法",
+    "theme": "金銭消費貸借契約と利息",
+    "difficulty": "A",
+    "slug": "0-301"
+  },
+  {
+    "number": 302,
+    "field": "利息制限法・出資法",
+    "theme": "金銭消費貸借契約と利息",
+    "difficulty": "B",
+    "slug": "0-302"
+  },
+  {
+    "number": 303,
+    "field": "利息制限法・出資法",
+    "theme": "金銭消費貸借契約と利息",
+    "difficulty": "B",
+    "slug": "0-303"
+  },
+  {
+    "number": 304,
+    "field": "利息制限法・出資法",
+    "theme": "金銭消費貸借契約と利息",
+    "difficulty": "B",
+    "slug": "0-304"
+  },
+  {
+    "number": 305,
+    "field": "利息制限法・出資法",
+    "theme": "金銭消費貸借契約と利息",
+    "difficulty": "C",
+    "slug": "0-305"
+  },
+  {
+    "number": 306,
+    "field": "利息制限法・出資法",
+    "theme": "金銭消費貸借契約と利息",
+    "difficulty": "C",
+    "slug": "0-306"
+  },
+  {
+    "number": 307,
+    "field": "民法・民事訴訟法",
+    "theme": "契約の成立と効力",
+    "difficulty": "A",
+    "slug": "0-307"
+  },
+  {
+    "number": 308,
+    "field": "民法・民事訴訟法",
+    "theme": "契約の成立と効力",
+    "difficulty": "B",
+    "slug": "0-308"
+  },
+  {
+    "number": 309,
+    "field": "民法・民事訴訟法",
+    "theme": "契約の成立と効力",
+    "difficulty": "B",
+    "slug": "0-309"
+  },
+  {
+    "number": 310,
+    "field": "民法・民事訴訟法",
+    "theme": "契約の成立と効力",
+    "difficulty": "B",
+    "slug": "0-310"
+  },
+  {
+    "number": 311,
+    "field": "民法・民事訴訟法",
+    "theme": "契約の成立と効力",
+    "difficulty": "C",
+    "slug": "0-311"
+  },
+  {
+    "number": 312,
+    "field": "民法・民事訴訟法",
+    "theme": "契約の成立と効力",
+    "difficulty": "C",
+    "slug": "0-312"
+  },
+  {
+    "number": 313,
+    "field": "民法・民事訴訟法",
+    "theme": "意思表示（錯誤・詐欺・強迫）",
+    "difficulty": "A",
+    "slug": "0-313"
+  },
+  {
+    "number": 314,
+    "field": "民法・民事訴訟法",
+    "theme": "意思表示（錯誤・詐欺・強迫）",
+    "difficulty": "B",
+    "slug": "0-314"
+  },
+  {
+    "number": 315,
+    "field": "民法・民事訴訟法",
+    "theme": "意思表示（錯誤・詐欺・強迫）",
+    "difficulty": "B",
+    "slug": "0-315"
+  },
+  {
+    "number": 316,
+    "field": "民法・民事訴訟法",
+    "theme": "意思表示（錯誤・詐欺・強迫）",
+    "difficulty": "B",
+    "slug": "0-316"
+  },
+  {
+    "number": 317,
+    "field": "民法・民事訴訟法",
+    "theme": "意思表示（錯誤・詐欺・強迫）",
+    "difficulty": "C",
+    "slug": "0-317"
+  },
+  {
+    "number": 318,
+    "field": "民法・民事訴訟法",
+    "theme": "意思表示（錯誤・詐欺・強迫）",
+    "difficulty": "C",
+    "slug": "0-318"
+  },
+  {
+    "number": 319,
+    "field": "民法・民事訴訟法",
+    "theme": "意思表示（錯誤・詐欺・強迫）",
+    "difficulty": "A",
+    "slug": "0-319"
+  },
+  {
+    "number": 320,
+    "field": "民法・民事訴訟法",
+    "theme": "意思表示（錯誤・詐欺・強迫）",
+    "difficulty": "B",
+    "slug": "0-320"
+  },
+  {
+    "number": 321,
+    "field": "民法・民事訴訟法",
+    "theme": "代理",
+    "difficulty": "A",
+    "slug": "0-321"
+  },
+  {
+    "number": 322,
+    "field": "民法・民事訴訟法",
+    "theme": "代理",
+    "difficulty": "B",
+    "slug": "0-322"
+  },
+  {
+    "number": 323,
+    "field": "民法・民事訴訟法",
+    "theme": "代理",
+    "difficulty": "B",
+    "slug": "0-323"
+  },
+  {
+    "number": 324,
+    "field": "民法・民事訴訟法",
+    "theme": "代理",
+    "difficulty": "B",
+    "slug": "0-324"
+  },
+  {
+    "number": 325,
+    "field": "民法・民事訴訟法",
+    "theme": "代理",
+    "difficulty": "C",
+    "slug": "0-325"
+  },
+  {
+    "number": 326,
+    "field": "民法・民事訴訟法",
+    "theme": "代理",
+    "difficulty": "C",
+    "slug": "0-326"
+  },
+  {
+    "number": 327,
+    "field": "民法・民事訴訟法",
+    "theme": "代理",
+    "difficulty": "A",
+    "slug": "0-327"
+  },
+  {
+    "number": 328,
+    "field": "民法・民事訴訟法",
+    "theme": "代理",
+    "difficulty": "B",
+    "slug": "0-328"
+  },
+  {
+    "number": 329,
+    "field": "民法・民事訴訟法",
+    "theme": "消滅時効",
+    "difficulty": "A",
+    "slug": "0-329"
+  },
+  {
+    "number": 330,
+    "field": "民法・民事訴訟法",
+    "theme": "消滅時効",
+    "difficulty": "B",
+    "slug": "0-330"
+  },
+  {
+    "number": 331,
+    "field": "民法・民事訴訟法",
+    "theme": "消滅時効",
+    "difficulty": "B",
+    "slug": "0-331"
+  },
+  {
+    "number": 332,
+    "field": "民法・民事訴訟法",
+    "theme": "消滅時効",
+    "difficulty": "B",
+    "slug": "0-332"
+  },
+  {
+    "number": 333,
+    "field": "民法・民事訴訟法",
+    "theme": "消滅時効",
+    "difficulty": "C",
+    "slug": "0-333"
+  },
+  {
+    "number": 334,
+    "field": "民法・民事訴訟法",
+    "theme": "消滅時効",
+    "difficulty": "C",
+    "slug": "0-334"
+  },
+  {
+    "number": 335,
+    "field": "民法・民事訴訟法",
+    "theme": "消滅時効",
+    "difficulty": "A",
+    "slug": "0-335"
+  },
+  {
+    "number": 336,
+    "field": "民法・民事訴訟法",
+    "theme": "消滅時効",
+    "difficulty": "B",
+    "slug": "0-336"
+  },
+  {
+    "number": 337,
+    "field": "民法・民事訴訟法",
+    "theme": "保証契約",
+    "difficulty": "A",
+    "slug": "0-337"
+  },
+  {
+    "number": 338,
+    "field": "民法・民事訴訟法",
+    "theme": "保証契約",
+    "difficulty": "B",
+    "slug": "0-338"
+  },
+  {
+    "number": 339,
+    "field": "民法・民事訴訟法",
+    "theme": "保証契約",
+    "difficulty": "B",
+    "slug": "0-339"
+  },
+  {
+    "number": 340,
+    "field": "民法・民事訴訟法",
+    "theme": "保証契約",
+    "difficulty": "B",
+    "slug": "0-340"
+  },
+  {
+    "number": 341,
+    "field": "民法・民事訴訟法",
+    "theme": "保証契約",
+    "difficulty": "C",
+    "slug": "0-341"
+  },
+  {
+    "number": 342,
+    "field": "民法・民事訴訟法",
+    "theme": "保証契約",
+    "difficulty": "C",
+    "slug": "0-342"
+  },
+  {
+    "number": 343,
+    "field": "民法・民事訴訟法",
+    "theme": "保証契約",
+    "difficulty": "A",
+    "slug": "0-343"
+  },
+  {
+    "number": 344,
+    "field": "民法・民事訴訟法",
+    "theme": "保証契約",
+    "difficulty": "B",
+    "slug": "0-344"
+  },
+  {
+    "number": 345,
+    "field": "民法・民事訴訟法",
+    "theme": "連帯保証",
+    "difficulty": "A",
+    "slug": "0-345"
+  },
+  {
+    "number": 346,
+    "field": "民法・民事訴訟法",
+    "theme": "連帯保証",
+    "difficulty": "B",
+    "slug": "0-346"
+  },
+  {
+    "number": 347,
+    "field": "民法・民事訴訟法",
+    "theme": "連帯保証",
+    "difficulty": "B",
+    "slug": "0-347"
+  },
+  {
+    "number": 348,
+    "field": "民法・民事訴訟法",
+    "theme": "連帯保証",
+    "difficulty": "B",
+    "slug": "0-348"
+  },
+  {
+    "number": 349,
+    "field": "民法・民事訴訟法",
+    "theme": "連帯保証",
+    "difficulty": "C",
+    "slug": "0-349"
+  },
+  {
+    "number": 350,
+    "field": "民法・民事訴訟法",
+    "theme": "連帯保証",
+    "difficulty": "C",
+    "slug": "0-350"
+  },
+  {
+    "number": 351,
+    "field": "民法・民事訴訟法",
+    "theme": "連帯債務",
+    "difficulty": "A",
+    "slug": "0-351"
+  },
+  {
+    "number": 352,
+    "field": "民法・民事訴訟法",
+    "theme": "連帯債務",
+    "difficulty": "B",
+    "slug": "0-352"
+  },
+  {
+    "number": 353,
+    "field": "民法・民事訴訟法",
+    "theme": "連帯債務",
+    "difficulty": "B",
+    "slug": "0-353"
+  },
+  {
+    "number": 354,
+    "field": "民法・民事訴訟法",
+    "theme": "連帯債務",
+    "difficulty": "B",
+    "slug": "0-354"
+  },
+  {
+    "number": 355,
+    "field": "民法・民事訴訟法",
+    "theme": "連帯債務",
+    "difficulty": "C",
+    "slug": "0-355"
+  },
+  {
+    "number": 356,
+    "field": "民法・民事訴訟法",
+    "theme": "連帯債務",
+    "difficulty": "C",
+    "slug": "0-356"
+  },
+  {
+    "number": 357,
+    "field": "民法・民事訴訟法",
+    "theme": "債権譲渡",
+    "difficulty": "A",
+    "slug": "0-357"
+  },
+  {
+    "number": 358,
+    "field": "民法・民事訴訟法",
+    "theme": "債権譲渡",
+    "difficulty": "B",
+    "slug": "0-358"
+  },
+  {
+    "number": 359,
+    "field": "民法・民事訴訟法",
+    "theme": "債権譲渡",
+    "difficulty": "B",
+    "slug": "0-359"
+  },
+  {
+    "number": 360,
+    "field": "民法・民事訴訟法",
+    "theme": "債権譲渡",
+    "difficulty": "B",
+    "slug": "0-360"
+  },
+  {
+    "number": 361,
+    "field": "民法・民事訴訟法",
+    "theme": "債権譲渡",
+    "difficulty": "C",
+    "slug": "0-361"
+  },
+  {
+    "number": 362,
+    "field": "民法・民事訴訟法",
+    "theme": "債権譲渡",
+    "difficulty": "C",
+    "slug": "0-362"
+  },
+  {
+    "number": 363,
+    "field": "民法・民事訴訟法",
+    "theme": "相殺",
+    "difficulty": "A",
+    "slug": "0-363"
+  },
+  {
+    "number": 364,
+    "field": "民法・民事訴訟法",
+    "theme": "相殺",
+    "difficulty": "B",
+    "slug": "0-364"
+  },
+  {
+    "number": 365,
+    "field": "民法・民事訴訟法",
+    "theme": "相殺",
+    "difficulty": "B",
+    "slug": "0-365"
+  },
+  {
+    "number": 366,
+    "field": "民法・民事訴訟法",
+    "theme": "相殺",
+    "difficulty": "B",
+    "slug": "0-366"
+  },
+  {
+    "number": 367,
+    "field": "民法・民事訴訟法",
+    "theme": "相殺",
+    "difficulty": "C",
+    "slug": "0-367"
+  },
+  {
+    "number": 368,
+    "field": "民法・民事訴訟法",
+    "theme": "相殺",
+    "difficulty": "C",
+    "slug": "0-368"
+  },
+  {
+    "number": 369,
+    "field": "民法・民事訴訟法",
+    "theme": "弁済・弁済の提供",
+    "difficulty": "A",
+    "slug": "0-369"
+  },
+  {
+    "number": 370,
+    "field": "民法・民事訴訟法",
+    "theme": "弁済・弁済の提供",
+    "difficulty": "B",
+    "slug": "0-370"
+  },
+  {
+    "number": 371,
+    "field": "民法・民事訴訟法",
+    "theme": "弁済・弁済の提供",
+    "difficulty": "B",
+    "slug": "0-371"
+  },
+  {
+    "number": 372,
+    "field": "民法・民事訴訟法",
+    "theme": "弁済・弁済の提供",
+    "difficulty": "B",
+    "slug": "0-372"
+  },
+  {
+    "number": 373,
+    "field": "民法・民事訴訟法",
+    "theme": "弁済・弁済の提供",
+    "difficulty": "C",
+    "slug": "0-373"
+  },
+  {
+    "number": 374,
+    "field": "民法・民事訴訟法",
+    "theme": "弁済・弁済の提供",
+    "difficulty": "C",
+    "slug": "0-374"
+  },
+  {
+    "number": 375,
+    "field": "民法・民事訴訟法",
+    "theme": "不法行為",
+    "difficulty": "A",
+    "slug": "0-375"
+  },
+  {
+    "number": 376,
+    "field": "民法・民事訴訟法",
+    "theme": "不法行為",
+    "difficulty": "B",
+    "slug": "0-376"
+  },
+  {
+    "number": 377,
+    "field": "民法・民事訴訟法",
+    "theme": "不法行為",
+    "difficulty": "B",
+    "slug": "0-377"
+  },
+  {
+    "number": 378,
+    "field": "民法・民事訴訟法",
+    "theme": "不法行為",
+    "difficulty": "B",
+    "slug": "0-378"
+  },
+  {
+    "number": 379,
+    "field": "民法・民事訴訟法",
+    "theme": "不法行為",
+    "difficulty": "C",
+    "slug": "0-379"
+  },
+  {
+    "number": 380,
+    "field": "民法・民事訴訟法",
+    "theme": "不法行為",
+    "difficulty": "C",
+    "slug": "0-380"
+  },
+  {
+    "number": 381,
+    "field": "民法・民事訴訟法",
+    "theme": "抵当権",
+    "difficulty": "A",
+    "slug": "0-381"
+  },
+  {
+    "number": 382,
+    "field": "民法・民事訴訟法",
+    "theme": "抵当権",
+    "difficulty": "B",
+    "slug": "0-382"
+  },
+  {
+    "number": 383,
+    "field": "民法・民事訴訟法",
+    "theme": "抵当権",
+    "difficulty": "B",
+    "slug": "0-383"
+  },
+  {
+    "number": 384,
+    "field": "民法・民事訴訟法",
+    "theme": "抵当権",
+    "difficulty": "B",
+    "slug": "0-384"
+  },
+  {
+    "number": 385,
+    "field": "民法・民事訴訟法",
+    "theme": "抵当権",
+    "difficulty": "C",
+    "slug": "0-385"
+  },
+  {
+    "number": 386,
+    "field": "民法・民事訴訟法",
+    "theme": "抵当権",
+    "difficulty": "C",
+    "slug": "0-386"
+  },
+  {
+    "number": 387,
+    "field": "民法・民事訴訟法",
+    "theme": "質権",
+    "difficulty": "A",
+    "slug": "0-387"
+  },
+  {
+    "number": 388,
+    "field": "民法・民事訴訟法",
+    "theme": "質権",
+    "difficulty": "B",
+    "slug": "0-388"
+  },
+  {
+    "number": 389,
+    "field": "民法・民事訴訟法",
+    "theme": "質権",
+    "difficulty": "B",
+    "slug": "0-389"
+  },
+  {
+    "number": 390,
+    "field": "民法・民事訴訟法",
+    "theme": "質権",
+    "difficulty": "B",
+    "slug": "0-390"
+  },
+  {
+    "number": 391,
+    "field": "民法・民事訴訟法",
+    "theme": "相続",
+    "difficulty": "A",
+    "slug": "0-391"
+  },
+  {
+    "number": 392,
+    "field": "民法・民事訴訟法",
+    "theme": "相続",
+    "difficulty": "B",
+    "slug": "0-392"
+  },
+  {
+    "number": 393,
+    "field": "民法・民事訴訟法",
+    "theme": "相続",
+    "difficulty": "B",
+    "slug": "0-393"
+  },
+  {
+    "number": 394,
+    "field": "民法・民事訴訟法",
+    "theme": "相続",
+    "difficulty": "B",
+    "slug": "0-394"
+  },
+  {
+    "number": 395,
+    "field": "民法・民事訴訟法",
+    "theme": "相続",
+    "difficulty": "C",
+    "slug": "0-395"
+  },
+  {
+    "number": 396,
+    "field": "民法・民事訴訟法",
+    "theme": "相続",
+    "difficulty": "C",
+    "slug": "0-396"
+  },
+  {
+    "number": 397,
+    "field": "民法・民事訴訟法",
+    "theme": "制限行為能力者",
+    "difficulty": "A",
+    "slug": "0-397"
+  },
+  {
+    "number": 398,
+    "field": "民法・民事訴訟法",
+    "theme": "制限行為能力者",
+    "difficulty": "B",
+    "slug": "0-398"
+  },
+  {
+    "number": 399,
+    "field": "民法・民事訴訟法",
+    "theme": "制限行為能力者",
+    "difficulty": "B",
+    "slug": "0-399"
+  },
+  {
+    "number": 400,
+    "field": "民法・民事訴訟法",
+    "theme": "制限行為能力者",
+    "difficulty": "B",
+    "slug": "0-400"
+  },
+  {
+    "number": 401,
+    "field": "民法・民事訴訟法",
+    "theme": "制限行為能力者",
+    "difficulty": "C",
+    "slug": "0-401"
+  },
+  {
+    "number": 402,
+    "field": "民法・民事訴訟法",
+    "theme": "制限行為能力者",
+    "difficulty": "C",
+    "slug": "0-402"
+  },
+  {
+    "number": 403,
+    "field": "民法・民事訴訟法",
+    "theme": "民事訴訟の基礎",
+    "difficulty": "A",
+    "slug": "0-403"
+  },
+  {
+    "number": 404,
+    "field": "民法・民事訴訟法",
+    "theme": "民事訴訟の基礎",
+    "difficulty": "B",
+    "slug": "0-404"
+  },
+  {
+    "number": 405,
+    "field": "民法・民事訴訟法",
+    "theme": "民事訴訟の基礎",
+    "difficulty": "B",
+    "slug": "0-405"
+  },
+  {
+    "number": 406,
+    "field": "民法・民事訴訟法",
+    "theme": "民事訴訟の基礎",
+    "difficulty": "B",
+    "slug": "0-406"
+  },
+  {
+    "number": 407,
+    "field": "民法・民事訴訟法",
+    "theme": "強制執行",
+    "difficulty": "A",
+    "slug": "0-407"
+  },
+  {
+    "number": 408,
+    "field": "民法・民事訴訟法",
+    "theme": "強制執行",
+    "difficulty": "B",
+    "slug": "0-408"
+  },
+  {
+    "number": 409,
+    "field": "民法・民事訴訟法",
+    "theme": "強制執行",
+    "difficulty": "B",
+    "slug": "0-409"
+  },
+  {
+    "number": 410,
+    "field": "民法・民事訴訟法",
+    "theme": "強制執行",
+    "difficulty": "B",
+    "slug": "0-410"
+  },
+  {
+    "number": 411,
+    "field": "民法・民事訴訟法",
+    "theme": "民事調停・民事再生",
+    "difficulty": "A",
+    "slug": "0-411"
+  },
+  {
+    "number": 412,
+    "field": "民法・民事訴訟法",
+    "theme": "民事調停・民事再生",
+    "difficulty": "B",
+    "slug": "0-412"
+  },
+  {
+    "number": 413,
+    "field": "民法・民事訴訟法",
+    "theme": "民事調停・民事再生",
+    "difficulty": "B",
+    "slug": "0-413"
+  },
+  {
+    "number": 414,
+    "field": "民法・民事訴訟法",
+    "theme": "民事調停・民事再生",
+    "difficulty": "B",
+    "slug": "0-414"
+  },
+  {
+    "number": 415,
+    "field": "民法・民事訴訟法",
+    "theme": "破産法の基礎",
+    "difficulty": "A",
+    "slug": "0-415"
+  },
+  {
+    "number": 416,
+    "field": "民法・民事訴訟法",
+    "theme": "破産法の基礎",
+    "difficulty": "B",
+    "slug": "0-416"
+  },
+  {
+    "number": 417,
+    "field": "民法・民事訴訟法",
+    "theme": "破産法の基礎",
+    "difficulty": "B",
+    "slug": "0-417"
+  },
+  {
+    "number": 418,
+    "field": "民法・民事訴訟法",
+    "theme": "破産法の基礎",
+    "difficulty": "B",
+    "slug": "0-418"
+  },
+  {
+    "number": 419,
+    "field": "民法・民事訴訟法",
+    "theme": "破産法の基礎",
+    "difficulty": "C",
+    "slug": "0-419"
+  },
+  {
+    "number": 420,
+    "field": "民法・民事訴訟法",
+    "theme": "破産法の基礎",
+    "difficulty": "C",
+    "slug": "0-420"
+  },
+  {
+    "number": 421,
+    "field": "資金需要者等の保護",
+    "theme": "個人情報保護法（総論）",
+    "difficulty": "A",
+    "slug": "0-421"
+  },
+  {
+    "number": 422,
+    "field": "資金需要者等の保護",
+    "theme": "個人情報保護法（総論）",
+    "difficulty": "B",
+    "slug": "0-422"
+  },
+  {
+    "number": 423,
+    "field": "資金需要者等の保護",
+    "theme": "個人情報保護法（総論）",
+    "difficulty": "B",
+    "slug": "0-423"
+  },
+  {
+    "number": 424,
+    "field": "資金需要者等の保護",
+    "theme": "個人情報保護法（総論）",
+    "difficulty": "B",
+    "slug": "0-424"
+  },
+  {
+    "number": 425,
+    "field": "資金需要者等の保護",
+    "theme": "個人情報保護法（総論）",
+    "difficulty": "C",
+    "slug": "0-425"
+  },
+  {
+    "number": 426,
+    "field": "資金需要者等の保護",
+    "theme": "個人情報保護法（総論）",
+    "difficulty": "C",
+    "slug": "0-426"
+  },
+  {
+    "number": 427,
+    "field": "資金需要者等の保護",
+    "theme": "個人情報の取得・利用",
+    "difficulty": "A",
+    "slug": "0-427"
+  },
+  {
+    "number": 428,
+    "field": "資金需要者等の保護",
+    "theme": "個人情報の取得・利用",
+    "difficulty": "B",
+    "slug": "0-428"
+  },
+  {
+    "number": 429,
+    "field": "資金需要者等の保護",
+    "theme": "個人情報の取得・利用",
+    "difficulty": "B",
+    "slug": "0-429"
+  },
+  {
+    "number": 430,
+    "field": "資金需要者等の保護",
+    "theme": "個人情報の取得・利用",
+    "difficulty": "B",
+    "slug": "0-430"
+  },
+  {
+    "number": 431,
+    "field": "資金需要者等の保護",
+    "theme": "個人情報の取得・利用",
+    "difficulty": "C",
+    "slug": "0-431"
+  },
+  {
+    "number": 432,
+    "field": "資金需要者等の保護",
+    "theme": "個人情報の取得・利用",
+    "difficulty": "C",
+    "slug": "0-432"
+  },
+  {
+    "number": 433,
+    "field": "資金需要者等の保護",
+    "theme": "個人データの管理・安全管理措置",
+    "difficulty": "A",
+    "slug": "0-433"
+  },
+  {
+    "number": 434,
+    "field": "資金需要者等の保護",
+    "theme": "個人データの管理・安全管理措置",
+    "difficulty": "B",
+    "slug": "0-434"
+  },
+  {
+    "number": 435,
+    "field": "資金需要者等の保護",
+    "theme": "個人データの管理・安全管理措置",
+    "difficulty": "B",
+    "slug": "0-435"
+  },
+  {
+    "number": 436,
+    "field": "資金需要者等の保護",
+    "theme": "個人データの管理・安全管理措置",
+    "difficulty": "B",
+    "slug": "0-436"
+  },
+  {
+    "number": 437,
+    "field": "資金需要者等の保護",
+    "theme": "個人データの管理・安全管理措置",
+    "difficulty": "C",
+    "slug": "0-437"
+  },
+  {
+    "number": 438,
+    "field": "資金需要者等の保護",
+    "theme": "個人データの管理・安全管理措置",
+    "difficulty": "C",
+    "slug": "0-438"
+  },
+  {
+    "number": 439,
+    "field": "資金需要者等の保護",
+    "theme": "個人データの第三者提供",
+    "difficulty": "A",
+    "slug": "0-439"
+  },
+  {
+    "number": 440,
+    "field": "資金需要者等の保護",
+    "theme": "個人データの第三者提供",
+    "difficulty": "B",
+    "slug": "0-440"
+  },
+  {
+    "number": 441,
+    "field": "資金需要者等の保護",
+    "theme": "個人データの第三者提供",
+    "difficulty": "B",
+    "slug": "0-441"
+  },
+  {
+    "number": 442,
+    "field": "資金需要者等の保護",
+    "theme": "個人データの第三者提供",
+    "difficulty": "B",
+    "slug": "0-442"
+  },
+  {
+    "number": 443,
+    "field": "資金需要者等の保護",
+    "theme": "個人データの第三者提供",
+    "difficulty": "C",
+    "slug": "0-443"
+  },
+  {
+    "number": 444,
+    "field": "資金需要者等の保護",
+    "theme": "個人データの第三者提供",
+    "difficulty": "C",
+    "slug": "0-444"
+  },
+  {
+    "number": 445,
+    "field": "資金需要者等の保護",
+    "theme": "個人データの第三者提供",
+    "difficulty": "A",
+    "slug": "0-445"
+  },
+  {
+    "number": 446,
+    "field": "資金需要者等の保護",
+    "theme": "個人データの第三者提供",
+    "difficulty": "B",
+    "slug": "0-446"
+  },
+  {
+    "number": 447,
+    "field": "資金需要者等の保護",
+    "theme": "本人からの開示請求",
+    "difficulty": "A",
+    "slug": "0-447"
+  },
+  {
+    "number": 448,
+    "field": "資金需要者等の保護",
+    "theme": "本人からの開示請求",
+    "difficulty": "B",
+    "slug": "0-448"
+  },
+  {
+    "number": 449,
+    "field": "資金需要者等の保護",
+    "theme": "本人からの開示請求",
+    "difficulty": "B",
+    "slug": "0-449"
+  },
+  {
+    "number": 450,
+    "field": "資金需要者等の保護",
+    "theme": "本人からの開示請求",
+    "difficulty": "B",
+    "slug": "0-450"
+  },
+  {
+    "number": 451,
+    "field": "資金需要者等の保護",
+    "theme": "本人からの開示請求",
+    "difficulty": "C",
+    "slug": "0-451"
+  },
+  {
+    "number": 452,
+    "field": "資金需要者等の保護",
+    "theme": "本人からの開示請求",
+    "difficulty": "C",
+    "slug": "0-452"
+  },
+  {
+    "number": 453,
+    "field": "資金需要者等の保護",
+    "theme": "消費者契約法（取消し）",
+    "difficulty": "A",
+    "slug": "0-453"
+  },
+  {
+    "number": 454,
+    "field": "資金需要者等の保護",
+    "theme": "消費者契約法（取消し）",
+    "difficulty": "B",
+    "slug": "0-454"
+  },
+  {
+    "number": 455,
+    "field": "資金需要者等の保護",
+    "theme": "消費者契約法（取消し）",
+    "difficulty": "B",
+    "slug": "0-455"
+  },
+  {
+    "number": 456,
+    "field": "資金需要者等の保護",
+    "theme": "消費者契約法（取消し）",
+    "difficulty": "B",
+    "slug": "0-456"
+  },
+  {
+    "number": 457,
+    "field": "資金需要者等の保護",
+    "theme": "消費者契約法（取消し）",
+    "difficulty": "C",
+    "slug": "0-457"
+  },
+  {
+    "number": 458,
+    "field": "資金需要者等の保護",
+    "theme": "消費者契約法（取消し）",
+    "difficulty": "C",
+    "slug": "0-458"
+  },
+  {
+    "number": 459,
+    "field": "資金需要者等の保護",
+    "theme": "消費者契約法（取消し）",
+    "difficulty": "A",
+    "slug": "0-459"
+  },
+  {
+    "number": 460,
+    "field": "資金需要者等の保護",
+    "theme": "消費者契約法（取消し）",
+    "difficulty": "B",
+    "slug": "0-460"
+  },
+  {
+    "number": 461,
+    "field": "資金需要者等の保護",
+    "theme": "消費者契約法（無効条項）",
+    "difficulty": "A",
+    "slug": "0-461"
+  },
+  {
+    "number": 462,
+    "field": "資金需要者等の保護",
+    "theme": "消費者契約法（無効条項）",
+    "difficulty": "B",
+    "slug": "0-462"
+  },
+  {
+    "number": 463,
+    "field": "資金需要者等の保護",
+    "theme": "消費者契約法（無効条項）",
+    "difficulty": "B",
+    "slug": "0-463"
+  },
+  {
+    "number": 464,
+    "field": "資金需要者等の保護",
+    "theme": "消費者契約法（無効条項）",
+    "difficulty": "B",
+    "slug": "0-464"
+  },
+  {
+    "number": 465,
+    "field": "資金需要者等の保護",
+    "theme": "消費者契約法（無効条項）",
+    "difficulty": "C",
+    "slug": "0-465"
+  },
+  {
+    "number": 466,
+    "field": "資金需要者等の保護",
+    "theme": "消費者契約法（無効条項）",
+    "difficulty": "C",
+    "slug": "0-466"
+  },
+  {
+    "number": 467,
+    "field": "資金需要者等の保護",
+    "theme": "不当景品類及び不当表示防止法",
+    "difficulty": "A",
+    "slug": "0-467"
+  },
+  {
+    "number": 468,
+    "field": "資金需要者等の保護",
+    "theme": "不当景品類及び不当表示防止法",
+    "difficulty": "B",
+    "slug": "0-468"
+  },
+  {
+    "number": 469,
+    "field": "資金需要者等の保護",
+    "theme": "不当景品類及び不当表示防止法",
+    "difficulty": "B",
+    "slug": "0-469"
+  },
+  {
+    "number": 470,
+    "field": "資金需要者等の保護",
+    "theme": "不当景品類及び不当表示防止法",
+    "difficulty": "B",
+    "slug": "0-470"
+  },
+  {
+    "number": 471,
+    "field": "資金需要者等の保護",
+    "theme": "不当景品類及び不当表示防止法",
+    "difficulty": "C",
+    "slug": "0-471"
+  },
+  {
+    "number": 472,
+    "field": "資金需要者等の保護",
+    "theme": "不当景品類及び不当表示防止法",
+    "difficulty": "C",
+    "slug": "0-472"
+  },
+  {
+    "number": 473,
+    "field": "資金需要者等の保護",
+    "theme": "犯罪収益移転防止法",
+    "difficulty": "A",
+    "slug": "0-473"
+  },
+  {
+    "number": 474,
+    "field": "資金需要者等の保護",
+    "theme": "犯罪収益移転防止法",
+    "difficulty": "B",
+    "slug": "0-474"
+  },
+  {
+    "number": 475,
+    "field": "資金需要者等の保護",
+    "theme": "犯罪収益移転防止法",
+    "difficulty": "B",
+    "slug": "0-475"
+  },
+  {
+    "number": 476,
+    "field": "資金需要者等の保護",
+    "theme": "犯罪収益移転防止法",
+    "difficulty": "B",
+    "slug": "0-476"
+  },
+  {
+    "number": 477,
+    "field": "資金需要者等の保護",
+    "theme": "犯罪収益移転防止法",
+    "difficulty": "C",
+    "slug": "0-477"
+  },
+  {
+    "number": 478,
+    "field": "資金需要者等の保護",
+    "theme": "犯罪収益移転防止法",
+    "difficulty": "C",
+    "slug": "0-478"
+  },
+  {
+    "number": 479,
+    "field": "資金需要者等の保護",
+    "theme": "金融ADR制度",
+    "difficulty": "A",
+    "slug": "0-479"
+  },
+  {
+    "number": 480,
+    "field": "資金需要者等の保護",
+    "theme": "金融ADR制度",
+    "difficulty": "B",
+    "slug": "0-480"
+  },
+  {
+    "number": 481,
+    "field": "資金需要者等の保護",
+    "theme": "金融ADR制度",
+    "difficulty": "B",
+    "slug": "0-481"
+  },
+  {
+    "number": 482,
+    "field": "資金需要者等の保護",
+    "theme": "金融ADR制度",
+    "difficulty": "B",
+    "slug": "0-482"
+  },
+  {
+    "number": 483,
+    "field": "資金需要者等の保護",
+    "theme": "消費者基本法",
+    "difficulty": "A",
+    "slug": "0-483"
+  },
+  {
+    "number": 484,
+    "field": "資金需要者等の保護",
+    "theme": "消費者基本法",
+    "difficulty": "B",
+    "slug": "0-484"
+  },
+  {
+    "number": 485,
+    "field": "資金需要者等の保護",
+    "theme": "消費者基本法",
+    "difficulty": "B",
+    "slug": "0-485"
+  },
+  {
+    "number": 486,
+    "field": "資金需要者等の保護",
+    "theme": "消費者基本法",
+    "difficulty": "B",
+    "slug": "0-486"
+  },
+  {
+    "number": 487,
+    "field": "資金需要者等の保護",
+    "theme": "金融商品取引法の基礎",
+    "difficulty": "A",
+    "slug": "0-487"
+  },
+  {
+    "number": 488,
+    "field": "資金需要者等の保護",
+    "theme": "金融商品取引法の基礎",
+    "difficulty": "B",
+    "slug": "0-488"
+  },
+  {
+    "number": 489,
+    "field": "資金需要者等の保護",
+    "theme": "金融商品取引法の基礎",
+    "difficulty": "B",
+    "slug": "0-489"
+  },
+  {
+    "number": 490,
+    "field": "資金需要者等の保護",
+    "theme": "金融商品取引法の基礎",
+    "difficulty": "B",
+    "slug": "0-490"
+  },
+  {
+    "number": 491,
+    "field": "資金需要者等の保護",
+    "theme": "金融商品取引法の基礎",
+    "difficulty": "C",
+    "slug": "0-491"
+  },
+  {
+    "number": 492,
+    "field": "資金需要者等の保護",
+    "theme": "金融商品取引法の基礎",
+    "difficulty": "C",
+    "slug": "0-492"
+  },
+  {
+    "number": 493,
+    "field": "資金需要者等の保護",
+    "theme": "景品表示法の具体例",
+    "difficulty": "A",
+    "slug": "0-493"
+  },
+  {
+    "number": 494,
+    "field": "資金需要者等の保護",
+    "theme": "景品表示法の具体例",
+    "difficulty": "B",
+    "slug": "0-494"
+  },
+  {
+    "number": 495,
+    "field": "資金需要者等の保護",
+    "theme": "景品表示法の具体例",
+    "difficulty": "B",
+    "slug": "0-495"
+  },
+  {
+    "number": 496,
+    "field": "資金需要者等の保護",
+    "theme": "景品表示法の具体例",
+    "difficulty": "B",
+    "slug": "0-496"
+  },
+  {
+    "number": 497,
+    "field": "資金需要者等の保護",
+    "theme": "景品表示法の具体例",
+    "difficulty": "C",
+    "slug": "0-497"
+  },
+  {
+    "number": 498,
+    "field": "資金需要者等の保護",
+    "theme": "景品表示法の具体例",
+    "difficulty": "C",
+    "slug": "0-498"
+  },
+  {
+    "number": 499,
+    "field": "資金需要者等の保護",
+    "theme": "多重債務者対策",
+    "difficulty": "A",
+    "slug": "0-499"
+  },
+  {
+    "number": 500,
+    "field": "資金需要者等の保護",
+    "theme": "多重債務者対策",
+    "difficulty": "B",
+    "slug": "0-500"
+  },
+  {
+    "number": 501,
+    "field": "資金需要者等の保護",
+    "theme": "多重債務者対策",
+    "difficulty": "B",
+    "slug": "0-501"
+  },
+  {
+    "number": 502,
+    "field": "資金需要者等の保護",
+    "theme": "多重債務者対策",
+    "difficulty": "B",
+    "slug": "0-502"
+  },
+  {
+    "number": 503,
+    "field": "資金需要者等の保護",
+    "theme": "多重債務者対策",
+    "difficulty": "C",
+    "slug": "0-503"
+  },
+  {
+    "number": 504,
+    "field": "資金需要者等の保護",
+    "theme": "多重債務者対策",
+    "difficulty": "C",
+    "slug": "0-504"
+  }
+]

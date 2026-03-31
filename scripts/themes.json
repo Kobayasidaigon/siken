@@ -1,0 +1,90 @@
+{
+  "fields": [
+    {
+      "name": "貸金業法",
+      "slug": "kashikingyouhou",
+      "themes": [
+        { "theme": "貸金業の登録制度", "count": 3, "difficulty": ["A", "B", "C"] },
+        { "theme": "登録の拒否事由", "count": 3, "difficulty": ["B", "B", "C"] },
+        { "theme": "貸金業務取扱主任者の設置義務", "count": 3, "difficulty": ["A", "B", "B"] },
+        { "theme": "貸金業務取扱主任者の登録", "count": 2, "difficulty": ["B", "C"] },
+        { "theme": "営業所の届出・変更届", "count": 2, "difficulty": ["B", "B"] },
+        { "theme": "帳簿の備付け・保存", "count": 3, "difficulty": ["A", "B", "C"] },
+        { "theme": "業務運営に関する規制", "count": 2, "difficulty": ["B", "B"] },
+        { "theme": "貸付条件の広告規制", "count": 3, "difficulty": ["B", "B", "C"] },
+        { "theme": "書面の交付義務（契約前）", "count": 3, "difficulty": ["A", "B", "C"] },
+        { "theme": "書面の交付義務（契約時）", "count": 3, "difficulty": ["B", "B", "C"] },
+        { "theme": "受取証書の交付", "count": 2, "difficulty": ["B", "C"] },
+        { "theme": "取立て行為の規制", "count": 3, "difficulty": ["A", "B", "C"] },
+        { "theme": "債権譲渡等の規制", "count": 2, "difficulty": ["B", "C"] },
+        { "theme": "総量規制（過剰貸付けの防止）", "count": 3, "difficulty": ["A", "B", "C"] },
+        { "theme": "個人信用情報の取扱い", "count": 3, "difficulty": ["B", "B", "C"] },
+        { "theme": "指定信用情報機関制度", "count": 2, "difficulty": ["B", "C"] },
+        { "theme": "貸金業協会", "count": 2, "difficulty": ["B", "B"] },
+        { "theme": "監督・行政処分", "count": 3, "difficulty": ["B", "B", "C"] },
+        { "theme": "罰則", "count": 2, "difficulty": ["B", "C"] },
+        { "theme": "非営利特例・特定非営利金融法人", "count": 2, "difficulty": ["C", "C"] },
+        { "theme": "貸金業法の目的・定義", "count": 2, "difficulty": ["A", "B"] },
+        { "theme": "みなし貸金業者", "count": 2, "difficulty": ["B", "C"] },
+        { "theme": "生命保険契約の締結の制限", "count": 2, "difficulty": ["B", "C"] },
+        { "theme": "公正証書作成の制限", "count": 2, "difficulty": ["B", "C"] },
+        { "theme": "白紙委任状の取得制限", "count": 2, "difficulty": ["B", "C"] }
+      ]
+    },
+    {
+      "name": "利息制限法・出資法",
+      "slug": "risoku",
+      "themes": [
+        { "theme": "利息の上限金利", "count": 3, "difficulty": ["A", "B", "C"] },
+        { "theme": "みなし利息", "count": 3, "difficulty": ["B", "B", "C"] },
+        { "theme": "遅延損害金の上限", "count": 2, "difficulty": ["B", "C"] },
+        { "theme": "営業的金銭消費貸借の特則", "count": 2, "difficulty": ["B", "C"] },
+        { "theme": "出資法の規制", "count": 3, "difficulty": ["A", "B", "C"] },
+        { "theme": "グレーゾーン金利", "count": 2, "difficulty": ["B", "B"] },
+        { "theme": "利息計算の方法", "count": 3, "difficulty": ["A", "B", "C"] },
+        { "theme": "天引き利息", "count": 2, "difficulty": ["B", "C"] },
+        { "theme": "賠償額の予定の制限", "count": 2, "difficulty": ["B", "C"] },
+        { "theme": "元本額の区分と利率", "count": 3, "difficulty": ["A", "B", "B"] }
+      ]
+    },
+    {
+      "name": "民法・民事訴訟法",
+      "slug": "minpou",
+      "themes": [
+        { "theme": "契約の成立と効力", "count": 3, "difficulty": ["B", "B", "C"] },
+        { "theme": "意思表示（錯誤・詐欺・強迫）", "count": 3, "difficulty": ["B", "B", "C"] },
+        { "theme": "代理", "count": 3, "difficulty": ["B", "C", "C"] },
+        { "theme": "消滅時効", "count": 3, "difficulty": ["A", "B", "C"] },
+        { "theme": "保証契約", "count": 3, "difficulty": ["A", "B", "C"] },
+        { "theme": "連帯保証", "count": 2, "difficulty": ["B", "C"] },
+        { "theme": "債権譲渡", "count": 2, "difficulty": ["B", "C"] },
+        { "theme": "相殺", "count": 2, "difficulty": ["B", "C"] },
+        { "theme": "弁済・弁済の提供", "count": 2, "difficulty": ["B", "C"] },
+        { "theme": "不法行為", "count": 2, "difficulty": ["B", "B"] },
+        { "theme": "抵当権", "count": 2, "difficulty": ["B", "C"] },
+        { "theme": "質権", "count": 2, "difficulty": ["B", "C"] },
+        { "theme": "相続", "count": 2, "difficulty": ["B", "C"] },
+        { "theme": "民事訴訟の基礎", "count": 2, "difficulty": ["B", "C"] },
+        { "theme": "強制執行", "count": 2, "difficulty": ["B", "C"] },
+        { "theme": "民事調停・民事再生", "count": 2, "difficulty": ["B", "C"] },
+        { "theme": "破産法の基礎", "count": 2, "difficulty": ["B", "C"] }
+      ]
+    },
+    {
+      "name": "資金需要者等の保護",
+      "slug": "hogo",
+      "themes": [
+        { "theme": "個人情報保護法（総論）", "count": 3, "difficulty": ["B", "B", "C"] },
+        { "theme": "個人情報の取得・利用", "count": 2, "difficulty": ["B", "C"] },
+        { "theme": "個人データの管理・安全管理措置", "count": 2, "difficulty": ["B", "C"] },
+        { "theme": "個人データの第三者提供", "count": 3, "difficulty": ["B", "B", "C"] },
+        { "theme": "本人からの開示請求", "count": 2, "difficulty": ["B", "C"] },
+        { "theme": "消費者契約法（取消し）", "count": 3, "difficulty": ["A", "B", "C"] },
+        { "theme": "消費者契約法（無効条項）", "count": 2, "difficulty": ["B", "C"] },
+        { "theme": "不当景品類及び不当表示防止法", "count": 2, "difficulty": ["B", "C"] },
+        { "theme": "犯罪収益移転防止法", "count": 2, "difficulty": ["B", "C"] },
+        { "theme": "金融ADR制度", "count": 2, "difficulty": ["B", "C"] }
+      ]
+    }
+  ]
+}

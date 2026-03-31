@@ -1,0 +1,114 @@
+import { getAllQuestionSlugs, getQuestion } from "@/lib/questions";
+import { notFound } from "next/navigation";
+import type { Metadata } from "next";
+
+export async function generateStaticParams() {
+  return getAllQuestionSlugs().map((slug) => ({ slug }));
+}
+
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params;
+  const q = await getQuestion(slug);
+  if (!q) return {};
+  return {
+    title: q.title,
+    description: q.description,
+  };
+}
+
+export default async function QuestionPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const q = await getQuestion(slug);
+  if (!q) notFound();
+
+  const difficultyLabel = { A: "易しい", B: "標準", C: "難しい" }[q.difficulty];
+  const difficultyColor = { A: "bg-green-100 text-green-700", B: "bg-amber-100 text-amber-700", C: "bg-red-100 text-red-700" }[q.difficulty];
+
+  return (
+    <article className="pb-16">
+      {/* Breadcrumb */}
+      <nav className="breadcrumb text-xs text-slate-400 mb-4 flex flex-wrap gap-1">
+        <a href="/">ホーム</a><span>/</span>
+        <a href={`/exam/${q.examNumber}/`}>第{q.examNumber}回</a><span>/</span>
+        <span className="text-slate-600">問{q.questionNumber}</span>
+      </nav>
+
+      {/* Title */}
+      <h1 className="text-xl sm:text-2xl font-bold text-slate-900 mb-3 leading-tight">
+        {q.title}
+      </h1>
+
+      {/* Meta tags */}
+      <div className="flex flex-wrap gap-2 mb-6">
+        <span className="text-xs bg-blue-100 text-blue-700 px-2 py-1 rounded-full font-medium">
+          第{q.examNumber}回（{q.year}）
+        </span>
+        <span className="text-xs bg-slate-100 text-slate-600 px-2 py-1 rounded-full font-medium">
+          {q.field}
+        </span>
+        <span className={`text-xs px-2 py-1 rounded-full font-medium ${difficultyColor}`}>
+          難易度{q.difficulty}（{difficultyLabel}）
+        </span>
+      </div>
+
+      {/* Question Box */}
+      <section className="card p-5 mb-6 border-l-4 border-blue-500">
+        <h2 className="text-sm font-bold text-blue-800 mb-3">問題文</h2>
+        <p className="text-sm text-slate-700 leading-relaxed whitespace-pre-wrap mb-4">
+          {q.questionText}
+        </p>
+        {q.choices.length > 0 && (
+          <ol className="space-y-2">
+            {q.choices.map((choice, i) => (
+              <li
+                key={i}
+                className={`text-sm px-3 py-2 rounded-lg ${
+                  i + 1 === q.correctAnswer
+                    ? "bg-green-50 border border-green-300 text-green-800 font-medium"
+                    : "bg-slate-50 text-slate-600"
+                }`}
+              >
+                <span className="font-bold mr-2">{i + 1}.</span>
+                {choice}
+                {i + 1 === q.correctAnswer && (
+                  <span className="ml-2 text-xs bg-green-600 text-white px-1.5 py-0.5 rounded">正解</span>
+                )}
+              </li>
+            ))}
+          </ol>
+        )}
+      </section>
+
+      {/* Answer Box */}
+      <section className="answer-correct mb-6">
+        <p className="text-sm font-bold text-green-800">
+          正解: {q.correctAnswer}
+        </p>
+      </section>
+
+      {/* Explanation */}
+      <section className="prose max-w-none" dangerouslySetInnerHTML={{ __html: q.content }} />
+
+      {/* Navigation */}
+      <nav className="mt-8 flex justify-between items-center pt-4 border-t border-slate-200">
+        {q.questionNumber > 1 && (
+          <a
+            href={`/q/${q.examNumber}-${String(q.questionNumber - 1).padStart(2, "0")}/`}
+            className="text-sm text-blue-600 no-underline hover:underline"
+          >
+            ← 問{q.questionNumber - 1}
+          </a>
+        )}
+        <a href={`/exam/${q.examNumber}/`} className="text-sm text-slate-500 no-underline hover:underline">
+          第{q.examNumber}回 一覧に戻る
+        </a>
+        <a
+          href={`/q/${q.examNumber}-${String(q.questionNumber + 1).padStart(2, "0")}/`}
+          className="text-sm text-blue-600 no-underline hover:underline"
+        >
+          問{q.questionNumber + 1} →
+        </a>
+      </nav>
+    </article>
+  );
+}

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "お問い合わせ",
-  description: "貸金業務取扱主任者 過去問解説サイトへのお問い合わせ。",
+  description: "貸金業務取扱主任者 試験対策サイトへのお問い合わせ。",
 };
 
 export default function ContactPage() {

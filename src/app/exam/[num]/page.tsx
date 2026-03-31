@@ -9,7 +9,7 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: { params: Promise<{ num: string }> }): Promise<Metadata> {
   const { num } = await params;
-  const title = num === "0" ? "オリジナル練習問題 一覧" : `第${num}回 過去問一覧`;
+  const title = num === "0" ? "オリジナル練習問題 一覧" : `第${num}回 問題一覧`;
   return {
     title,
     description: `貸金業務取扱主任者試験 ${title}。問題ごとに詳しい解説付き。`,

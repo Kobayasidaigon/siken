@@ -3,15 +3,15 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: {
-    default: "貸金業務取扱主任者 過去問解説サイト",
-    template: "%s｜貸金業務取扱主任者 過去問解説",
+    default: "貸金業務取扱主任者 試験対策サイト",
+    template: "%s｜貸金業務取扱主任者 試験対策",
   },
-  description: "貸金業務取扱主任者試験の過去問を全問解説。年度別・分野別に整理し、合格に必要な知識をわかりやすく解説します。",
+  description: "貸金業務取扱主任者試験のオリジナル練習問題504問を詳細解説。分野別に整理し、合格に必要な知識をわかりやすく解説します。",
   metadataBase: new URL("https://kashikin-kakomon.com"),
   openGraph: {
     type: "website",
     locale: "ja_JP",
-    siteName: "貸金業務取扱主任者 過去問解説サイト",
+    siteName: "貸金業務取扱主任者 試験対策サイト",
   },
 };
 
@@ -23,7 +23,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <header className="bg-white border-b border-slate-200 sticky top-0 z-50">
           <div className="max-w-4xl mx-auto px-4 h-14 flex items-center justify-between">
             <a href="/" className="text-base font-bold text-blue-800 no-underline hover:text-blue-600 transition-colors">
-              貸金業務取扱主任者<span className="text-slate-400 font-normal text-sm ml-1">過去問解説</span>
+              貸金業務取扱主任者<span className="text-slate-400 font-normal text-sm ml-1">試験対策</span>
             </a>
             <nav className="hidden sm:flex gap-4 text-sm">
               <a href="/exam/" className="text-slate-600 hover:text-blue-700 no-underline">問題一覧</a>
@@ -76,7 +76,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               </div>
             </div>
             <div className="border-t border-slate-700 pt-4 text-xs text-center">
-              <p>&copy; {new Date().getFullYear()} 貸金業務取扱主任者 過去問解説サイト</p>
+              <p>&copy; {new Date().getFullYear()} 貸金業務取扱主任者 試験対策サイト</p>
               <p className="mt-1">※ 当サイトの情報は学習目的で提供しています。正確な情報は公式サイトをご確認ください。</p>
             </div>
           </div>

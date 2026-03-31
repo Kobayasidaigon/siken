@@ -12,11 +12,11 @@ export default async function Home() {
       {/* Hero */}
       <section className="text-center py-8">
         <h1 className="text-2xl sm:text-3xl font-bold text-blue-900 mb-3">
-          貸金業務取扱主任者<br className="sm:hidden" />過去問解説
+          貸金業務取扱主任者<br className="sm:hidden" />試験対策
         </h1>
         <p className="text-slate-500 text-sm max-w-md mx-auto">
-          全{totalQuestions > 0 ? totalQuestions : "950"}問の過去問をわかりやすく解説。
-          年度別・分野別に整理し、合格に必要な知識を効率的に学べます。
+          全{totalQuestions > 0 ? totalQuestions : "504"}問のオリジナル練習問題を詳細解説。
+          分野別に整理し、合格に必要な知識を効率的に学べます。
         </p>
       </section>
 
@@ -94,10 +94,10 @@ export default async function Home() {
       <section className="card p-6">
         <h2 className="text-base font-bold text-slate-800 mb-2">このサイトについて</h2>
         <p className="text-sm text-slate-600 leading-relaxed">
-          当サイトは、貸金業務取扱主任者試験の過去問を全問掲載し、
+          当サイトは、貸金業務取扱主任者試験対策のオリジナル練習問題を掲載し、
           1問ずつ丁寧に解説しています。
-          出典は日本貸金業協会の公式発表に基づいており、
-          正確な情報提供を心がけています。
+          正確な法律知識に基づいた問題と解説で、
+          合格に必要な知識を効率的に身につけられます。
           すべてのコンテンツは無料でご利用いただけます。
         </p>
         <a href="/about/" className="text-sm text-blue-600 mt-2 inline-block no-underline hover:underline">

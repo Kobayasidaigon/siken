@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "運営者情報・サイトについて",
-  description: "貸金業務取扱主任者 過去問解説サイトの運営者情報とサイトの方針について。",
+  description: "貸金業務取扱主任者 試験対策サイトの運営者情報とサイトの方針について。",
 };
 
 export default function AboutPage() {
@@ -13,11 +13,11 @@ export default function AboutPage() {
       <h2>このサイトについて</h2>
       <p>
         当サイトは、貸金業務取扱主任者試験の合格を目指す受験生のために、
-        過去問の解説を無料で提供しています。
+        オリジナル練習問題と詳細な解説を無料で提供しています。
       </p>
       <p>
-        第1回から最新回までの全過去問を、1問ずつ丁寧に解説しています。
-        年度別・分野別に整理しているので、自分のペースで効率的に学習できます。
+        全504問のオリジナル問題を、1問ずつ丁寧に解説しています。
+        分野別・難易度別に整理しているので、自分のペースで効率的に学習できます。
       </p>
 
       <h2>運営者</h2>
@@ -30,7 +30,7 @@ export default function AboutPage() {
 
       <h2>サイトの方針</h2>
       <ul>
-        <li><strong>正確性</strong>：出典は日本貸金業協会の公式発表に基づいています</li>
+        <li><strong>正確性</strong>：最新の法令に基づいた正確な問題と解説を提供しています</li>
         <li><strong>わかりやすさ</strong>：専門用語は噛み砕いて説明します</li>
         <li><strong>無料</strong>：すべてのコンテンツは無料でご利用いただけます</li>
         <li><strong>継続的な更新</strong>：最新の試験情報を随時反映します</li>

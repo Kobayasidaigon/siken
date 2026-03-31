@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "プライバシーポリシー",
-  description: "貸金業務取扱主任者 過去問解説サイトのプライバシーポリシー。",
+  description: "貸金業務取扱主任者 試験対策サイトのプライバシーポリシー。",
 };
 
 export default function PrivacyPage() {

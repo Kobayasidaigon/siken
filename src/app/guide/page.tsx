@@ -48,10 +48,10 @@ export default function GuidePage() {
         この段階では暗記する必要はありません。「こんな分野があるのか」程度の理解でOKです。
       </p>
 
-      <h3>Step 2：過去問を解く（3〜6週間）</h3>
+      <h3>Step 2：練習問題を解く（3〜6週間）</h3>
       <p>
-        当サイトの過去問を年度別に解いていきましょう。
-        最新の3〜5回分を優先的に取り組むのがおすすめです。
+        当サイトの練習問題を分野別に解いていきましょう。
+        まずは出題数の多い貸金業法から取り組むのがおすすめです。
         間違えた問題はチェックして、解説をしっかり読みましょう。
       </p>
 
@@ -73,17 +73,17 @@ export default function GuidePage() {
         1日1〜2時間の学習で、<strong>2〜4か月</strong>の期間が必要です。
       </p>
 
-      <h2>過去問の重要性</h2>
+      <h2>練習問題の重要性</h2>
       <p>
-        貸金業務取扱主任者試験は、過去問からの類似出題が非常に多い試験です。
-        過去問をしっかり理解することが、合格への最短ルートです。
+        貸金業務取扱主任者試験は、繰り返し出題されるテーマが多い試験です。
+        練習問題をしっかり理解することが、合格への最短ルートです。
       </p>
 
       <div className="not-prose card p-6 bg-blue-50 border border-blue-200 text-center mt-8">
-        <p className="text-base font-bold text-blue-900 mb-2">過去問を解き始める</p>
-        <p className="text-sm text-slate-600 mb-4">最新の第19回から始めるのがおすすめです</p>
-        <a href="/exam/19/" className="inline-block bg-blue-700 text-white px-6 py-2.5 rounded-lg text-sm font-medium no-underline hover:bg-blue-600">
-          第19回の過去問を見る
+        <p className="text-base font-bold text-blue-900 mb-2">練習問題を解き始める</p>
+        <p className="text-sm text-slate-600 mb-4">全504問のオリジナル練習問題に挑戦しましょう</p>
+        <a href="/exam/0/" className="inline-block bg-blue-700 text-white px-6 py-2.5 rounded-lg text-sm font-medium no-underline hover:bg-blue-600">
+          オリジナル問題を見る
         </a>
       </div>
     </div>

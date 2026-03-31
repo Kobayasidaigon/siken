@@ -4,8 +4,8 @@ import type { Metadata } from "next";
 
 export async function generateStaticParams() {
   const exams = getExamNumbers();
-  const nums = exams.length > 0 ? exams : Array.from({ length: 19 }, (_, i) => i + 1);
-  return nums.map((n) => ({ num: String(n) }));
+  const allNums = new Set([...exams, ...Array.from({ length: 19 }, (_, i) => i + 1)]);
+  return [...allNums].map((n) => ({ num: String(n) }));
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ num: string }> }): Promise<Metadata> {

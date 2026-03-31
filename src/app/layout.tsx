@@ -7,7 +7,7 @@ export const metadata: Metadata = {
     template: "%s｜貸金業務取扱主任者 試験対策",
   },
   description: "貸金業務取扱主任者試験のオリジナル練習問題504問を詳細解説。分野別に整理し、合格に必要な知識をわかりやすく解説します。",
-  metadataBase: new URL("https://kashikin-kakomon.com"),
+  metadataBase: new URL("https://siken-ten.vercel.app"),
   openGraph: {
     type: "website",
     locale: "ja_JP",

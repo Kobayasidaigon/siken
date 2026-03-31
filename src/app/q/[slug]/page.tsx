@@ -25,8 +25,35 @@ export default async function QuestionPage({ params }: { params: Promise<{ slug:
   const difficultyLabel = { A: "易しい", B: "標準", C: "難しい" }[q.difficulty];
   const difficultyColor = { A: "bg-green-100 text-green-700", B: "bg-amber-100 text-amber-700", C: "bg-red-100 text-red-700" }[q.difficulty];
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Quiz",
+    name: q.title,
+    about: {
+      "@type": "Thing",
+      name: "貸金業務取扱主任者試験",
+    },
+    educationalLevel: q.difficulty === "A" ? "beginner" : q.difficulty === "B" ? "intermediate" : "advanced",
+    hasPart: [{
+      "@type": "Question",
+      name: q.questionText,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: q.choices[q.correctAnswer - 1],
+      },
+      suggestedAnswer: q.choices.filter((_, i) => i !== q.correctAnswer - 1).map((c) => ({
+        "@type": "Answer",
+        text: c,
+      })),
+    }],
+  };
+
   return (
     <article className="pb-16">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       {/* Breadcrumb */}
       <nav className="breadcrumb text-xs text-slate-400 mb-4 flex flex-wrap gap-1">
         <a href="/">ホーム</a><span>/</span>

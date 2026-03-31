@@ -10,16 +10,17 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: { params: Promise<{ num: string }> }): Promise<Metadata> {
   const { num } = await params;
+  const title = num === "0" ? "オリジナル練習問題 一覧" : `第${num}回 過去問一覧`;
   return {
-    title: `第${num}回 過去問一覧`,
-    description: `貸金業務取扱主任者試験 第${num}回の過去問を全問解説。問題ごとに詳しい解説付き。`,
+    title,
+    description: `貸金業務取扱主任者試験 ${title}。問題ごとに詳しい解説付き。`,
   };
 }
 
 export default async function ExamPage({ params }: { params: Promise<{ num: string }> }) {
   const { num } = await params;
   const examNumber = parseInt(num);
-  if (isNaN(examNumber) || examNumber < 1 || examNumber > 19) notFound();
+  if (isNaN(examNumber) || examNumber < 0 || examNumber > 19) notFound();
 
   const questions = await getQuestionsByExam(examNumber);
 
@@ -32,7 +33,7 @@ export default async function ExamPage({ params }: { params: Promise<{ num: stri
       </nav>
 
       <h1 className="text-xl sm:text-2xl font-bold text-slate-900 mb-2">
-        第{examNumber}回 貸金業務取扱主任者試験
+        {examNumber === 0 ? "オリジナル練習問題" : `第${examNumber}回 貸金業務取扱主任者試験`}
       </h1>
       <p className="text-sm text-slate-500 mb-6">全問の解説一覧</p>
 

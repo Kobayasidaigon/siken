@@ -42,7 +42,7 @@ export default async function Home() {
           年度別で解く
         </h2>
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
-          {(examNumbers.length > 0 ? examNumbers : Array.from({ length: 19 }, (_, i) => 19 - i)).map((n) => (
+          {(examNumbers.length > 0 ? examNumbers.filter(n => n > 0) : Array.from({ length: 19 }, (_, i) => 19 - i)).map((n) => (
             <a key={n} href={`/exam/${n}/`} className="card p-4 hover:shadow-md transition-shadow no-underline group">
               <p className="text-sm font-bold text-blue-800 group-hover:text-blue-600">第{n}回</p>
               <p className="text-xs text-slate-400 mt-0.5">

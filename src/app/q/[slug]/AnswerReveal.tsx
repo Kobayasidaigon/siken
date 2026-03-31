@@ -39,15 +39,15 @@ export default function AnswerReveal({
             <li
               key={i}
               onClick={() => !revealed && setSelected(num)}
-              className={`text-sm px-3 py-2.5 rounded-lg transition-colors ${style}`}
+              className={`text-sm px-3 py-2.5 rounded-lg transition-colors flex items-start gap-2 ${style}`}
             >
-              <span className="font-bold mr-2">{num}.</span>
-              {choice}
+              <span className="font-bold shrink-0">{num}.</span>
+              <span className="flex-1">{choice}</span>
               {revealed && isCorrect && (
-                <span className="ml-2 text-xs bg-green-600 text-white px-1.5 py-0.5 rounded">正解</span>
+                <span className="shrink-0 text-xs bg-green-600 text-white px-1.5 py-0.5 rounded whitespace-nowrap">正解</span>
               )}
               {revealed && isSelected && !isCorrect && (
-                <span className="ml-2 text-xs bg-red-500 text-white px-1.5 py-0.5 rounded">不正解</span>
+                <span className="shrink-0 text-xs bg-red-500 text-white px-1.5 py-0.5 rounded whitespace-nowrap">不正解</span>
               )}
             </li>
           );

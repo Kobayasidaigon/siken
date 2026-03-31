@@ -30,7 +30,7 @@ export default async function QuestionPage({ params }: { params: Promise<{ slug:
       {/* Breadcrumb */}
       <nav className="breadcrumb text-xs text-slate-400 mb-4 flex flex-wrap gap-1">
         <a href="/">ホーム</a><span>/</span>
-        <a href={`/exam/${q.examNumber}/`}>第{q.examNumber}回</a><span>/</span>
+        <a href={`/field/`}>分野別</a><span>/</span>
         <span className="text-slate-600">問{q.questionNumber}</span>
       </nav>
 
@@ -42,7 +42,7 @@ export default async function QuestionPage({ params }: { params: Promise<{ slug:
       {/* Meta tags */}
       <div className="flex flex-wrap gap-2 mb-6">
         <span className="text-xs bg-blue-100 text-blue-700 px-2 py-1 rounded-full font-medium">
-          第{q.examNumber}回（{q.year}）
+          {q.year}
         </span>
         <span className="text-xs bg-slate-100 text-slate-600 px-2 py-1 rounded-full font-medium">
           {q.field}
@@ -71,17 +71,17 @@ export default async function QuestionPage({ params }: { params: Promise<{ slug:
       <nav className="mt-8 flex justify-between items-center pt-4 border-t border-slate-200">
         {q.questionNumber > 1 && (
           <a
-            href={`/q/${q.examNumber}-${String(q.questionNumber - 1).padStart(2, "0")}/`}
+            href={`/q/${q.examNumber}-${String(q.questionNumber - 1).padStart(3, "0")}/`}
             className="text-sm text-blue-600 no-underline hover:underline"
           >
             ← 問{q.questionNumber - 1}
           </a>
         )}
         <a href={`/exam/${q.examNumber}/`} className="text-sm text-slate-500 no-underline hover:underline">
-          第{q.examNumber}回 一覧に戻る
+          問題一覧に戻る
         </a>
         <a
-          href={`/q/${q.examNumber}-${String(q.questionNumber + 1).padStart(2, "0")}/`}
+          href={`/q/${q.examNumber}-${String(q.questionNumber + 1).padStart(3, "0")}/`}
           className="text-sm text-blue-600 no-underline hover:underline"
         >
           問{q.questionNumber + 1} →

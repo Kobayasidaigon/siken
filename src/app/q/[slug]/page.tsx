@@ -1,6 +1,7 @@
 import { getAllQuestionSlugs, getQuestion } from "@/lib/questions";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
+import AnswerReveal from "./AnswerReveal";
 
 export async function generateStaticParams() {
   return getAllQuestionSlugs().map((slug) => ({ slug }));
@@ -57,37 +58,14 @@ export default async function QuestionPage({ params }: { params: Promise<{ slug:
         <p className="text-sm text-slate-700 leading-relaxed whitespace-pre-wrap mb-4">
           {q.questionText}
         </p>
-        {q.choices.length > 0 && (
-          <ol className="space-y-2">
-            {q.choices.map((choice, i) => (
-              <li
-                key={i}
-                className={`text-sm px-3 py-2 rounded-lg ${
-                  i + 1 === q.correctAnswer
-                    ? "bg-green-50 border border-green-300 text-green-800 font-medium"
-                    : "bg-slate-50 text-slate-600"
-                }`}
-              >
-                <span className="font-bold mr-2">{i + 1}.</span>
-                {choice}
-                {i + 1 === q.correctAnswer && (
-                  <span className="ml-2 text-xs bg-green-600 text-white px-1.5 py-0.5 rounded">正解</span>
-                )}
-              </li>
-            ))}
-          </ol>
-        )}
       </section>
 
-      {/* Answer Box */}
-      <section className="answer-correct mb-6">
-        <p className="text-sm font-bold text-green-800">
-          正解: {q.correctAnswer}
-        </p>
-      </section>
-
-      {/* Explanation */}
-      <section className="prose max-w-none" dangerouslySetInnerHTML={{ __html: q.content }} />
+      {/* Interactive Answer Section */}
+      <AnswerReveal
+        choices={q.choices}
+        correctAnswer={q.correctAnswer}
+        explanationHtml={q.content}
+      />
 
       {/* Navigation */}
       <nav className="mt-8 flex justify-between items-center pt-4 border-t border-slate-200">

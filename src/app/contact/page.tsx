@@ -17,7 +17,7 @@ export default function ContactPage() {
       <div className="card p-6 not-prose">
         <p className="text-sm text-slate-600 mb-2">メールアドレス</p>
         <p className="text-base font-bold text-blue-700">
-          （ここにメールアドレスを設定してください）
+          dawuzhangguchuan131@gmail.com
         </p>
       </div>
 

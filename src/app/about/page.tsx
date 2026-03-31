@@ -23,7 +23,7 @@ export default function AboutPage() {
       <h2>運営者</h2>
       <table>
         <tbody>
-          <tr><th>運営者</th><td>（あなたの名前・ペンネーム）</td></tr>
+          <tr><th>運営者</th><td>熊太郎</td></tr>
           <tr><th>連絡先</th><td><a href="/contact/">お問い合わせフォーム</a>をご利用ください</td></tr>
         </tbody>
       </table>

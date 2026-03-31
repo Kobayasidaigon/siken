@@ -35,22 +35,24 @@ export default async function Home() {
         ))}
       </section>
 
-      {/* Exam List */}
+      {/* Original Questions */}
       <section>
         <h2 className="text-lg font-bold text-slate-800 mb-3 flex items-center gap-2">
           <span className="w-1 h-5 bg-blue-600 rounded-full"></span>
-          年度別で解く
+          オリジナル問題を解く
         </h2>
-        <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
-          {(examNumbers.length > 0 ? examNumbers.filter(n => n > 0) : Array.from({ length: 19 }, (_, i) => 19 - i)).map((n) => (
-            <a key={n} href={`/exam/${n}/`} className="card p-4 hover:shadow-md transition-shadow no-underline group">
-              <p className="text-sm font-bold text-blue-800 group-hover:text-blue-600">第{n}回</p>
-              <p className="text-xs text-slate-400 mt-0.5">
-                {n >= 15 ? `令和${n - 13}年度` : n >= 7 ? `平成${n + 18}年度` : `平成${n + 18}年度`}
-              </p>
-            </a>
-          ))}
-        </div>
+        <a href="/exam/0/" className="card p-5 hover:shadow-md transition-shadow no-underline group block">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-base font-bold text-blue-800 group-hover:text-blue-600">オリジナル練習問題</p>
+              <p className="text-xs text-slate-400 mt-1">全{totalQuestions}問｜貸金業法・利息制限法・民法・資金需要者保護の4分野を網羅</p>
+              <p className="text-xs text-slate-400 mt-0.5">難易度A（基礎）〜C（応用）をバランスよく収録</p>
+            </div>
+            <svg className="w-5 h-5 text-slate-300 flex-shrink-0 ml-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            </svg>
+          </div>
+        </a>
       </section>
 
       {/* Field List */}

@@ -26,7 +26,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               貸金業務取扱主任者<span className="text-slate-400 font-normal text-sm ml-1">過去問解説</span>
             </a>
             <nav className="hidden sm:flex gap-4 text-sm">
-              <a href="/exam/" className="text-slate-600 hover:text-blue-700 no-underline">年度別</a>
+              <a href="/exam/" className="text-slate-600 hover:text-blue-700 no-underline">問題一覧</a>
               <a href="/field/" className="text-slate-600 hover:text-blue-700 no-underline">分野別</a>
               <a href="/guide/" className="text-slate-600 hover:text-blue-700 no-underline">学習法</a>
               <a href="/about/" className="text-slate-600 hover:text-blue-700 no-underline">サイト概要</a>
@@ -44,11 +44,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <div className="max-w-4xl mx-auto px-4 py-8">
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 text-sm mb-6">
               <div>
-                <h4 className="text-white font-bold mb-2 text-xs">年度別</h4>
+                <h4 className="text-white font-bold mb-2 text-xs">問題</h4>
                 <ul className="space-y-1">
-                  {[19, 18, 17, 16, 15].map((n) => (
-                    <li key={n}><a href={`/exam/${n}/`} className="hover:text-white no-underline">第{n}回</a></li>
-                  ))}
+                  <li><a href="/exam/0/" className="hover:text-white no-underline">オリジナル問題</a></li>
+                  <li><a href="/exam/" className="hover:text-white no-underline">問題一覧</a></li>
                 </ul>
               </div>
               <div>
@@ -92,7 +91,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             </a>
             <a href="/exam/" className="flex flex-col items-center text-slate-500 hover:text-blue-700 no-underline">
               <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
-              年度別
+              問題
             </a>
             <a href="/field/" className="flex flex-col items-center text-slate-500 hover:text-blue-700 no-underline">
               <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" /></svg>

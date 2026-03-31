@@ -1,27 +1,29 @@
+import { getAllQuestions } from "@/lib/questions";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "年度別 過去問一覧",
-  description: "貸金業務取扱主任者試験の過去問を年度別に一覧表示。第1回から第19回まで全問掲載。",
+  title: "問題一覧",
+  description: "貸金業務取扱主任者試験のオリジナル練習問題一覧。全504問を分野・難易度別に掲載。",
 };
 
-export default function ExamIndexPage() {
-  const exams = Array.from({ length: 19 }, (_, i) => 19 - i);
+export default async function ExamIndexPage() {
+  const questions = await getAllQuestions();
 
   return (
     <div className="pb-16">
-      <h1 className="text-xl sm:text-2xl font-bold text-slate-900 mb-6">年度別 過去問一覧</h1>
-      <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
-        {exams.map((n) => (
-          <a key={n} href={`/exam/${n}/`} className="card p-5 hover:shadow-md transition-shadow no-underline group text-center">
-            <p className="text-lg font-bold text-blue-800 group-hover:text-blue-600">第{n}回</p>
-            <p className="text-xs text-slate-400 mt-1">
-              {n >= 15 ? `令和${n - 13}年度` : `平成${n + 18}年度`}
-            </p>
-            <p className="text-xs text-slate-300 mt-1">50問</p>
-          </a>
-        ))}
-      </div>
+      <h1 className="text-xl sm:text-2xl font-bold text-slate-900 mb-6">問題一覧</h1>
+      <a href="/exam/0/" className="card p-6 hover:shadow-md transition-shadow no-underline group block mb-6">
+        <div className="flex items-center justify-between">
+          <div>
+            <p className="text-lg font-bold text-blue-800 group-hover:text-blue-600">オリジナル練習問題</p>
+            <p className="text-sm text-slate-500 mt-1">全{questions.length}問</p>
+            <p className="text-xs text-slate-400 mt-1">貸金業法・利息制限法・出資法・民法・資金需要者保護の全分野を網羅</p>
+          </div>
+          <svg className="w-5 h-5 text-slate-300 flex-shrink-0 ml-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+          </svg>
+        </div>
+      </a>
     </div>
   );
 }

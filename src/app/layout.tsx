@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   },
   description: "貸金業務取扱主任者試験のオリジナル練習問題504問を詳細解説。分野別に整理し、合格に必要な知識をわかりやすく解説します。",
   metadataBase: new URL("https://siken-ten.vercel.app"),
+  verification: {
+    google: "HXloSepdau6D0k5wewOdIRWFdBLpUWgQvy2x4sqY6_0",
+  },
   openGraph: {
     type: "website",
     locale: "ja_JP",

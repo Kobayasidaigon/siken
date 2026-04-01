@@ -63,17 +63,14 @@ export default async function Home() {
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           {[
-            { name: "貸金業法", slug: "kashikingyouhou", desc: "試験の中心。出題数が最も多い分野", icon: "📜" },
-            { name: "利息制限法・出資法", slug: "risoku", desc: "利率・みなし利息・グレーゾーン金利", icon: "💰" },
-            { name: "民法・民事訴訟法", slug: "minpou", desc: "契約・保証・時効・強制執行", icon: "⚖️" },
-            { name: "資金需要者等の保護", slug: "hogo", desc: "個人情報保護・消費者契約法", icon: "🛡️" },
+            { name: "貸金業法", slug: "kashikingyouhou", desc: "試験の中心。出題数が最も多い分野" },
+            { name: "利息制限法・出資法", slug: "risoku", desc: "利率・みなし利息・グレーゾーン金利" },
+            { name: "民法・民事訴訟法", slug: "minpou", desc: "契約・保証・時効・強制執行" },
+            { name: "資金需要者等の保護", slug: "hogo", desc: "個人情報保護・消費者契約法" },
           ].map((field) => (
-            <a key={field.slug} href={`/field/${field.slug}/`} className="card p-4 hover:shadow-md transition-shadow no-underline group flex gap-3 items-start">
-              <span className="text-2xl">{field.icon}</span>
-              <div>
-                <p className="text-sm font-bold text-slate-800 group-hover:text-blue-600">{field.name}</p>
-                <p className="text-xs text-slate-400 mt-0.5">{field.desc}</p>
-              </div>
+            <a key={field.slug} href={`/field/${field.slug}/`} className="card p-4 hover:shadow-md transition-shadow no-underline group">
+              <p className="text-sm font-bold text-slate-800 group-hover:text-blue-600">{field.name}</p>
+              <p className="text-xs text-slate-400 mt-0.5">{field.desc}</p>
             </a>
           ))}
         </div>

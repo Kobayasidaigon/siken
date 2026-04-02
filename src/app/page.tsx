@@ -1,7 +1,9 @@
 import { getAllQuestions } from "@/lib/questions";
+import { getAllColumns } from "@/lib/columns";
 
 export default async function Home() {
   const questions = await getAllQuestions();
+  const columns = await getAllColumns();
   const totalQuestions = questions.length;
 
   return (
@@ -43,6 +45,25 @@ export default async function Home() {
           ))}
         </div>
       </section>
+
+      {/* Columns */}
+      {columns.length > 0 && (
+        <section className="border-t border-slate-200 pt-8">
+          <h2 className="text-base font-bold text-slate-800 mb-4">コラム</h2>
+          <div className="space-y-3">
+            {columns.slice(0, 4).map((col) => (
+              <a key={col.slug} href={`/column/${col.slug}/`} className="block text-sm text-slate-700 no-underline hover:text-blue-600">
+                {col.title}
+              </a>
+            ))}
+          </div>
+          {columns.length > 4 && (
+            <a href="/column/" className="text-sm text-blue-700 font-medium no-underline hover:underline mt-3 inline-block">
+              コラム一覧を見る →
+            </a>
+          )}
+        </section>
+      )}
 
       {/* Guide link */}
       <section className="border-t border-slate-200 pt-8">

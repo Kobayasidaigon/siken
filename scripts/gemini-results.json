@@ -1,0 +1,319 @@
+{
+  "total": 504,
+  "matched": 452,
+  "mismatches": [
+    {
+      "question": 2,
+      "gemini_answer": 3,
+      "correct_answer": 2,
+      "text": "貸金業の登録の申請及び届出に関する次の記述のうち、その内容が適切でないものを1つ選びなさい。"
+    },
+    {
+      "question": 3,
+      "gemini_answer": 2,
+      "correct_answer": 3,
+      "text": "貸金業の登録の更新及び登録換えに関する次のa〜dの記述のうち、その内容が適切なものの個数を1つ選びな"
+    },
+    {
+      "question": 4,
+      "gemini_answer": 4,
+      "correct_answer": 3,
+      "text": "貸金業法第6条に規定する登録拒否事由に関する次の記述のうち、その内容が適切なものを1つ選びなさい。"
+    },
+    {
+      "question": 6,
+      "gemini_answer": 4,
+      "correct_answer": 2,
+      "text": "貸金業の登録の拒否事由に関する次の記述のうち、その内容が適切なものを1つ選びなさい。"
+    },
+    {
+      "question": 11,
+      "gemini_answer": 4,
+      "correct_answer": 2,
+      "text": "貸金業の登録の拒否事由に関する次の記述のうち、その内容が適切なものを1つ選びなさい。"
+    },
+    {
+      "question": 14,
+      "gemini_answer": 2,
+      "correct_answer": 3,
+      "text": "貸金業の登録取消しと欠格期間に関する次のア〜エの記述のうち、その内容が適切なものの個数を1つ選びなさ"
+    },
+    {
+      "question": 77,
+      "gemini_answer": 3,
+      "correct_answer": 4,
+      "text": "貸金業法に規定する契約締結時の書面の記載事項に変更が生じた場合の対応に関する次の記述のうち、その内容"
+    },
+    {
+      "question": 93,
+      "gemini_answer": 1,
+      "correct_answer": 2,
+      "text": "貸金業法第21条第1項第1号に規定する取立て行為の時間帯の制限に関する次の記述のうち、その内容が適切"
+    },
+    {
+      "question": 101,
+      "gemini_answer": 2,
+      "correct_answer": 4,
+      "text": "貸金業者が行う債権譲渡等の規制に関する次の記述のうち、その内容が適切なものを1つ選びなさい。"
+    },
+    {
+      "question": 106,
+      "gemini_answer": 3,
+      "correct_answer": 2,
+      "text": "貸金業法における個人顧客の年収等を証する書面（収入を明らかにする書面）の提出に関する次の記述のうち、"
+    },
+    {
+      "question": 112,
+      "gemini_answer": 1,
+      "correct_answer": 4,
+      "text": "貸金業法における総量規制の例外としての借換え（いわゆるおまとめローン）に関する次の記述のうち、その内"
+    },
+    {
+      "question": 121,
+      "gemini_answer": 2,
+      "correct_answer": 1,
+      "text": "指定信用情報機関に関する次の記述のうち、その内容が適切なものを1つ選びなさい。"
+    },
+    {
+      "question": 129,
+      "gemini_answer": 3,
+      "correct_answer": 2,
+      "text": "貸金業者Aが個人顧客Xに対して新たな貸付けを行う場合の年収証明書の確認義務に関する次の記述のうち、そ"
+    },
+    {
+      "question": 135,
+      "gemini_answer": 2,
+      "correct_answer": 3,
+      "text": "貸金業法における「基準額超過極度方式基本契約」に関する次の記述のうち、その内容が適切なものを1つ選び"
+    },
+    {
+      "question": 143,
+      "gemini_answer": 4,
+      "correct_answer": 2,
+      "text": "貸金業協会の協会員と非協会員に関する次の記述のうち、その内容が適切なものを1つ選びなさい。"
+    },
+    {
+      "question": 173,
+      "gemini_answer": 1,
+      "correct_answer": 2,
+      "text": "貸金業法における生命保険契約の締結の制限に関する次の記述のうち、その内容が適切でないものを1つ選びな"
+    },
+    {
+      "question": 179,
+      "gemini_answer": 1,
+      "correct_answer": 2,
+      "text": "貸金業法における白紙委任状の取得制限に関する次の記述のうち、その内容が適切なものを1つ選びなさい。"
+    },
+    {
+      "question": 201,
+      "gemini_answer": 1,
+      "correct_answer": 2,
+      "text": "貸金業法第12条の6に規定する貸金業者の禁止行為に関する次の記述のうち、その内容が適切なものを1つ選"
+    },
+    {
+      "question": 217,
+      "gemini_answer": 2,
+      "correct_answer": 3,
+      "text": "出資の受入れ、預り金及び金利等の取締りに関する法律（出資法）における上限金利に関する次の記述のうち、"
+    },
+    {
+      "question": 221,
+      "gemini_answer": 1,
+      "correct_answer": 3,
+      "text": "利息制限法における利息の上限金利に関する次の記述のうち、その内容が適切なものを1つ選びなさい。"
+    },
+    {
+      "question": 232,
+      "gemini_answer": 3,
+      "correct_answer": 4,
+      "text": "遅延損害金の上限に関する次の記述のうち、その内容が適切でないものを1つ選びなさい。"
+    },
+    {
+      "question": 236,
+      "gemini_answer": 3,
+      "correct_answer": 4,
+      "text": "遅延損害金と出資法に関する次の記述のうち、その内容が適切でないものを1つ選びなさい。"
+    },
+    {
+      "question": 242,
+      "gemini_answer": 1,
+      "correct_answer": 3,
+      "text": "貸金業者Aが個人Bに対して元本80万円を年17％で貸し付け、保証業者CがBから保証料を受け取る場合に"
+    },
+    {
+      "question": 260,
+      "gemini_answer": 4,
+      "correct_answer": 3,
+      "text": "実質年率に関する次の記述のうち、その内容が適切でないものを1つ選びなさい。"
+    },
+    {
+      "question": 261,
+      "gemini_answer": 2,
+      "correct_answer": 3,
+      "text": "利息の計算方法に関する次の記述のうち、その内容が適切なものを1つ選びなさい。"
+    },
+    {
+      "question": 263,
+      "gemini_answer": 1,
+      "correct_answer": 3,
+      "text": "利息の表示方法に関する次の記述のうち、その内容が適切なものを1つ選びなさい。"
+    },
+    {
+      "question": 274,
+      "gemini_answer": 2,
+      "correct_answer": 1,
+      "text": "営業的金銭消費貸借における賠償額の予定に関する次の記述のうち、その内容が適切なものを1つ選びなさい。"
+    },
+    {
+      "question": 275,
+      "gemini_answer": 3,
+      "correct_answer": 2,
+      "text": "利息制限法における賠償額の予定の制限に関する次の記述のうち、その内容が適切なものを1つ選びなさい。"
+    },
+    {
+      "question": 276,
+      "gemini_answer": 1,
+      "correct_answer": 3,
+      "text": "出資法における賠償額の予定に関する次の記述のうち、その内容が適切なものを1つ選びなさい。"
+    },
+    {
+      "question": 281,
+      "gemini_answer": 1,
+      "correct_answer": 2,
+      "text": "利息制限法における元本額の計算に関する次の記述のうち、その内容が適切なものを1つ選びなさい。"
+    },
+    {
+      "question": 283,
+      "gemini_answer": 4,
+      "correct_answer": 1,
+      "text": "営業的金銭消費貸借における利息の制限に関する次の記述のうち、その内容が適切なものを1つ選びなさい。"
+    },
+    {
+      "question": 291,
+      "gemini_answer": 4,
+      "correct_answer": 3,
+      "text": "利息制限法における保証料の制限に関する次の記述のうち、その内容が適切でないものを1つ選びなさい。"
+    },
+    {
+      "question": 298,
+      "gemini_answer": 1,
+      "correct_answer": 2,
+      "text": "出資法の罰則に関する次の記述のうち、その内容が適切なものを1つ選びなさい。"
+    },
+    {
+      "question": 299,
+      "gemini_answer": 2,
+      "correct_answer": 1,
+      "text": "出資法における利率の表示に関する次の記述のうち、その内容が適切なものを1つ選びなさい。"
+    },
+    {
+      "question": 300,
+      "gemini_answer": 2,
+      "correct_answer": 4,
+      "text": "利息制限法と出資法の関係に関する次の記述のうち、その内容が適切でないものを1つ選びなさい。"
+    },
+    {
+      "question": 303,
+      "gemini_answer": 3,
+      "correct_answer": 4,
+      "text": "利息制限法における遅延損害金に関する次の記述のうち、その内容が適切なものを1つ選びなさい。"
+    },
+    {
+      "question": 320,
+      "gemini_answer": 1,
+      "correct_answer": 3,
+      "text": "民法における取消権の行使期間に関する次の記述のうち、その内容が適切なものを1つ選びなさい。"
+    },
+    {
+      "question": 327,
+      "gemini_answer": 2,
+      "correct_answer": 4,
+      "text": "民法における代理権の消滅に関する次の記述のうち、その内容が適切でないものを1つ選びなさい。"
+    },
+    {
+      "question": 330,
+      "gemini_answer": 4,
+      "correct_answer": 2,
+      "text": "消滅時効の完成猶予及び更新に関する次の記述のうち、民法の規定に照らして適切でないものを1つ選びなさい"
+    },
+    {
+      "question": 334,
+      "gemini_answer": 3,
+      "correct_answer": 4,
+      "text": "消滅時効の効果及び援用に関する次の記述のうち、民法の規定及び判例に照らして適切でないものを1つ選びな"
+    },
+    {
+      "question": 341,
+      "gemini_answer": 3,
+      "correct_answer": 4,
+      "text": "事業用融資に係る保証契約における公証人の関与に関する次の記述のうち、民法の規定として適切でないものを"
+    },
+    {
+      "question": 347,
+      "gemini_answer": 1,
+      "correct_answer": 4,
+      "text": "連帯保証人に生じた事由が主債務者に影響するかどうかに関する次の記述のうち、民法の規定として適切なもの"
+    },
+    {
+      "question": 349,
+      "gemini_answer": 2,
+      "correct_answer": 4,
+      "text": "貸金業者Aが主債務者Bに対して1,000万円を貸し付け、C及びDが連帯保証人となっている。この場合、"
+    },
+    {
+      "question": 367,
+      "gemini_answer": 4,
+      "correct_answer": 3,
+      "text": "AがBに対して200万円の貸金債権（甲債権）を有し、BがAに対して150万円の売買代金債権（乙債権）"
+    },
+    {
+      "question": 374,
+      "gemini_answer": 1,
+      "correct_answer": 3,
+      "text": "弁済の提供の方法及び効果に関する次の記述のうち、民法の規定及び判例に照らし、最も適切なものはどれか。"
+    },
+    {
+      "question": 377,
+      "gemini_answer": 1,
+      "correct_answer": 4,
+      "text": "工作物責任（民法第717条）に関する次の記述のうち、正しいものはどれか。"
+    },
+    {
+      "question": 383,
+      "gemini_answer": 2,
+      "correct_answer": 4,
+      "text": "法定地上権（民法第388条）に関する次の記述のうち、誤っているものはどれか。"
+    },
+    {
+      "question": 387,
+      "gemini_answer": 2,
+      "correct_answer": 4,
+      "text": "質権の基本的な性質に関する次の記述のうち、民法の規定に照らし、正しいものはどれか。"
+    },
+    {
+      "question": 394,
+      "gemini_answer": 2,
+      "correct_answer": 4,
+      "text": "代襲相続に関する次の記述のうち、民法の規定に照らし、誤っているものはどれか。"
+    },
+    {
+      "question": 399,
+      "gemini_answer": 3,
+      "correct_answer": 4,
+      "text": "被保佐人に関する次の記述のうち、民法の規定に照らし、誤っているものはどれか。"
+    },
+    {
+      "question": 446,
+      "gemini_answer": 4,
+      "correct_answer": 1,
+      "text": "個人情報保護法における個人データの第三者提供に際しての同意取得及び利用目的に関する次の記述のうち、そ"
+    },
+    {
+      "question": 460,
+      "gemini_answer": 4,
+      "correct_answer": 2,
+      "text": "消費者契約法における過量契約の取消しに関する次の記述のうち、その内容が適切でないものを1つ選びなさい"
+    }
+  ],
+  "errors": []
+}

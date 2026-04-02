@@ -3,6 +3,7 @@ const path = require("path");
 
 const BASE_URL = "https://siken-ten.vercel.app";
 const questionsDir = path.join(__dirname, "../src/content/questions");
+const columnsDir = path.join(__dirname, "../src/content/columns");
 const outputPath = path.join(__dirname, "../public/sitemap.xml");
 
 const today = new Date().toISOString().split("T")[0];
@@ -31,7 +32,22 @@ const questionPages = slugs.map(slug => ({
   freq: "monthly",
 }));
 
-const allPages = [...staticPages, ...questionPages];
+const columnSlugs = fs.existsSync(columnsDir)
+  ? fs.readdirSync(columnsDir).filter(f => f.endsWith(".md")).map(f => f.replace(/\.md$/, ""))
+  : [];
+
+const columnPages = columnSlugs.map(slug => ({
+  url: `/column/${slug}/`,
+  priority: "0.7",
+  freq: "monthly",
+}));
+
+const allPages = [
+  ...staticPages,
+  { url: "/column/", priority: "0.8", freq: "weekly" },
+  ...columnPages,
+  ...questionPages,
+];
 
 const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">

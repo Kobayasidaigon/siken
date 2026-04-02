@@ -29,3 +29,12 @@ export interface FieldInfo {
   description: string;
   questionCount: number;
 }
+
+export interface ColumnData {
+  slug: string;
+  title: string;
+  description: string;
+  publishedAt: string;
+  updatedAt: string;
+  content: string;       // rendered HTML
+}

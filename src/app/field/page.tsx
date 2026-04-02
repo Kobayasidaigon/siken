@@ -26,12 +26,12 @@ export default async function FieldIndexPage() {
       <h1 className="text-xl sm:text-2xl font-bold text-slate-900 mb-6">分野別 練習問題一覧</h1>
       <div className="space-y-4">
         {fields.map((f, i) => (
-          <a key={f.slug} href={`/field/${f.slug}/`} className="card p-5 hover:shadow-md transition-shadow no-underline group">
-            <div className="flex items-center justify-between">
+          <a key={f.slug} href={`/field/${f.slug}/`} className="card p-5 hover:shadow-md transition-shadow no-underline group block">
+            <div className="flex items-center justify-between mb-1">
               <p className="text-base font-bold text-slate-800 group-hover:text-blue-600">{f.name}</p>
-              <span className="text-xs text-blue-700 bg-blue-50 px-2 py-1 rounded font-bold">{counts[i]}問</span>
+              <span className="text-xs text-blue-700 bg-blue-50 px-2 py-1 rounded font-bold shrink-0 ml-2">{counts[i]}問</span>
             </div>
-            <p className="text-sm text-slate-500 mt-1 leading-relaxed">{f.desc}</p>
+            <p className="text-sm text-slate-500 leading-relaxed">{f.desc}</p>
           </a>
         ))}
       </div>

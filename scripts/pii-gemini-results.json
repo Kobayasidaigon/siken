@@ -1,0 +1,72 @@
+{
+  "total": 300,
+  "matched": 287,
+  "mismatches": [
+    {
+      "question": 24,
+      "gemini": 1,
+      "correct": 2
+    },
+    {
+      "question": 49,
+      "gemini": 3,
+      "correct": 1
+    },
+    {
+      "question": 57,
+      "gemini": 2,
+      "correct": 3
+    },
+    {
+      "question": 83,
+      "gemini": 3,
+      "correct": 2
+    },
+    {
+      "question": 84,
+      "gemini": 4,
+      "correct": 3
+    },
+    {
+      "question": 85,
+      "gemini": 4,
+      "correct": 2
+    },
+    {
+      "question": 86,
+      "gemini": 3,
+      "correct": 4
+    },
+    {
+      "question": 137,
+      "gemini": 4,
+      "correct": 1
+    },
+    {
+      "question": 147,
+      "gemini": 1,
+      "correct": 3
+    },
+    {
+      "question": 148,
+      "gemini": 1,
+      "correct": 3
+    },
+    {
+      "question": 149,
+      "gemini": 2,
+      "correct": 3
+    },
+    {
+      "question": 155,
+      "gemini": 3,
+      "correct": 2
+    },
+    {
+      "question": 157,
+      "gemini": 1,
+      "correct": 3
+    }
+  ],
+  "errors": []
+}

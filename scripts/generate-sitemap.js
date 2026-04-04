@@ -3,6 +3,7 @@ const path = require("path");
 
 const BASE_URL = "https://siken-ten.vercel.app";
 const questionsDir = path.join(__dirname, "../src/content/questions");
+const piiDir = path.join(__dirname, "../src/content/pii");
 const columnsDir = path.join(__dirname, "../src/content/columns");
 const outputPath = path.join(__dirname, "../public/sitemap.xml");
 
@@ -10,32 +11,50 @@ const today = new Date().toISOString().split("T")[0];
 
 const staticPages = [
   { url: "/", priority: "1.0", freq: "weekly" },
+  // 貸金業務取扱主任者
+  { url: "/kashikin/", priority: "0.9", freq: "weekly" },
   { url: "/exam/0/", priority: "0.9", freq: "weekly" },
-  { url: "/field/", priority: "0.9", freq: "weekly" },
+  { url: "/field/", priority: "0.8", freq: "weekly" },
   { url: "/field/kashikingyouhou/", priority: "0.8", freq: "monthly" },
   { url: "/field/risoku/", priority: "0.8", freq: "monthly" },
   { url: "/field/minpou/", priority: "0.8", freq: "monthly" },
   { url: "/field/hogo/", priority: "0.8", freq: "monthly" },
+  // 個人情報保護士
+  { url: "/pii/", priority: "0.9", freq: "weekly" },
+  { url: "/pii/field/hogo-law/", priority: "0.8", freq: "monthly" },
+  { url: "/pii/field/mynumber/", priority: "0.8", freq: "monthly" },
+  { url: "/pii/field/security/", priority: "0.8", freq: "monthly" },
+  // その他
   { url: "/guide/", priority: "0.6", freq: "monthly" },
   { url: "/about/", priority: "0.3", freq: "yearly" },
   { url: "/privacy/", priority: "0.2", freq: "yearly" },
   { url: "/contact/", priority: "0.2", freq: "yearly" },
 ];
 
-const slugs = fs.readdirSync(questionsDir)
+// 貸金問題
+const questionSlugs = fs.readdirSync(questionsDir)
   .filter(f => f.endsWith(".md"))
   .map(f => f.replace(/\.md$/, ""));
-
-const questionPages = slugs.map(slug => ({
+const questionPages = questionSlugs.map(slug => ({
   url: `/q/${slug}/`,
   priority: "0.7",
   freq: "monthly",
 }));
 
+// 個人情報保護士問題
+const piiSlugs = fs.existsSync(piiDir)
+  ? fs.readdirSync(piiDir).filter(f => f.endsWith(".md")).map(f => f.replace(/\.md$/, ""))
+  : [];
+const piiPages = piiSlugs.map(slug => ({
+  url: `/pii/q/${slug}/`,
+  priority: "0.7",
+  freq: "monthly",
+}));
+
+// コラム
 const columnSlugs = fs.existsSync(columnsDir)
   ? fs.readdirSync(columnsDir).filter(f => f.endsWith(".md")).map(f => f.replace(/\.md$/, ""))
   : [];
-
 const columnPages = columnSlugs.map(slug => ({
   url: `/column/${slug}/`,
   priority: "0.7",
@@ -47,6 +66,7 @@ const allPages = [
   { url: "/column/", priority: "0.8", freq: "weekly" },
   ...columnPages,
   ...questionPages,
+  ...piiPages,
 ];
 
 const xml = `<?xml version="1.0" encoding="UTF-8"?>

@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   description: "資格試験のオリジナル練習問題を無料で提供。貸金業務取扱主任者・個人情報保護士など、ニッチ資格の試験対策に。",
   metadataBase: new URL("https://shikakumon.com"),
   verification: {
-    google: "HXloSepdau6D0k5wewOdIRWFdBLpUWgQvy2x4sqY6_0",
+    google: "dnyK_8fRmK5hV625XjQD10ccjXMiXHXp_8RdH-jq2zw",
   },
   twitter: {
     card: "summary_large_image",

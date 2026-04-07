@@ -1,7 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 
-const BASE_URL = "https://siken-ten.vercel.app";
+const BASE_URL = "https://shikakumon.com";
 const questionsDir = path.join(__dirname, "../src/content/questions");
 const piiDir = path.join(__dirname, "../src/content/pii");
 const columnsDir = path.join(__dirname, "../src/content/columns");

@@ -4,11 +4,14 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: {
-    default: "シカクモン｜資格試験の練習問題サイト",
-    template: "%s｜シカクモン",
+    default: "シカクモン｜資格試験のオリジナル練習問題を無料で提供",
+    template: "%s｜シカクモン - 資格試験の練習問題",
   },
-  description: "資格試験のオリジナル練習問題を無料で提供。貸金業務取扱主任者・個人情報保護士など、ニッチ資格の試験対策に。",
+  description: "シカクモンは資格試験のオリジナル練習問題を無料で提供するサイトです。貸金業務取扱主任者（504問）・個人情報保護士（300問）など、市販の問題集が少ないニッチ資格の試験対策に。全問に根拠法令を含む詳細解説付き。",
   metadataBase: new URL("https://shikakumon.com"),
+  alternates: {
+    canonical: "https://shikakumon.com",
+  },
   verification: {
     google: "dnyK_8fRmK5hV625XjQD10ccjXMiXHXp_8RdH-jq2zw",
   },

@@ -2,7 +2,7 @@ import { getAllColumns } from "@/lib/columns";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "コラム一覧",
+  title: "コラム一覧｜資格試験の勉強法・合格率・試験日程",
   description: "貸金業務取扱主任者試験に関するコラム。合格率・勉強法・試験日程・おすすめテキストなどの情報。",
 };
 

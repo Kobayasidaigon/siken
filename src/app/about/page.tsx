@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "運営者情報・サイトについて",
-  description: "貸金業務取扱主任者 試験対策サイトの運営者情報とサイトの方針について。",
+  title: "運営者情報｜シカクモンについて",
+  description: "シカクモンの運営者情報とサイトの方針。貸金業務取扱主任者・個人情報保護士の練習問題を無料で提供しています。",
 };
 
 export default function AboutPage() {

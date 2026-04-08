@@ -22,6 +22,9 @@ export const metadata: Metadata = {
     type: "website",
     locale: "ja_JP",
     siteName: "シカクモン",
+    title: "シカクモン｜資格試験のオリジナル練習問題を無料で提供",
+    description: "シカクモンは資格試験のオリジナル練習問題を無料で提供するサイトです。貸金業務取扱主任者（504問）・個人情報保護士（300問）など、ニッチ資格の試験対策に。",
+    url: "https://shikakumon.com",
   },
 };
 

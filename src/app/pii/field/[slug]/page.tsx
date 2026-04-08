@@ -19,7 +19,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   if (!field) return { title: "Not Found" };
   return {
     title: `個人情報保護士｜${field.name} 練習問題`,
-    description: `個人情報保護士試験対策。${field.name}分野のオリジナル練習問題と詳細解説。`,
+    description: `個人情報保護士試験対策。${field.name}分野のオリジナル練習問題と詳細解説。各問に根拠法令を含む解説付きで効率的に学習できます。`,
   };
 }
 

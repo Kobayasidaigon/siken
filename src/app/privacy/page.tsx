@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "プライバシーポリシー",
-  description: "貸金業務取扱主任者 試験対策サイトのプライバシーポリシー。",
+  title: "プライバシーポリシー｜シカクモン",
+  description: "シカクモンのプライバシーポリシー。個人情報の取得・利用目的、Google Analytics、広告配信について記載しています。",
 };
 
 export default function PrivacyPage() {

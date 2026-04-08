@@ -3,7 +3,7 @@ import { getAllColumns } from "@/lib/columns";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "貸金業務取扱主任者 試験対策",
+  title: "貸金業務取扱主任者 試験対策｜オリジナル504問を無料で",
   description: "貸金業務取扱主任者試験のオリジナル練習問題504問を詳細解説。分野別に整理し、合格に必要な知識をわかりやすく解説。",
 };
 

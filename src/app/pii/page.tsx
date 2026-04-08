@@ -2,7 +2,7 @@ import { getAllPiiQuestions, getPiiQuestionsByField } from "@/lib/pii-questions"
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "個人情報保護士 試験対策",
+  title: "個人情報保護士 試験対策｜オリジナル300問を無料で",
   description: "個人情報保護士認定試験のオリジナル練習問題300問を詳細解説。個人情報保護法・マイナンバー法・情報セキュリティを網羅。",
 };
 

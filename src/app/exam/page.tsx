@@ -2,8 +2,8 @@ import { getAllQuestions } from "@/lib/questions";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "問題一覧",
-  description: "貸金業務取扱主任者試験のオリジナル練習問題一覧。全504問を分野・難易度別に掲載。",
+  title: "貸金業務取扱主任者 練習問題一覧｜全504問",
+  description: "貸金業務取扱主任者試験のオリジナル練習問題一覧。全504問を分野・難易度別に掲載。1問ごとに根拠条文を含む解説付きで効率的に学習できます。",
 };
 
 export default async function ExamIndexPage() {

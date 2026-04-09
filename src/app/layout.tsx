@@ -39,8 +39,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               シカクモン
             </a>
             <nav className="hidden sm:flex gap-4 text-sm">
-              <a href="/kashikin/" className="text-slate-600 hover:text-blue-700 no-underline">貸金業務取扱主任者</a>
-              <a href="/pii/" className="text-slate-600 hover:text-blue-700 no-underline">個人情報保護士</a>
+              <a href="/kashikin/" className="text-slate-600 hover:text-blue-700 no-underline">貸金</a>
+              <a href="/pii/" className="text-slate-600 hover:text-blue-700 no-underline">個情保</a>
+              <a href="/chizai/" className="text-slate-600 hover:text-blue-700 no-underline">知財3級</a>
               <a href="/column/" className="text-slate-600 hover:text-blue-700 no-underline">コラム</a>
               <a href="/about/" className="text-slate-600 hover:text-blue-700 no-underline">サイト概要</a>
             </nav>
@@ -61,6 +62,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 <ul className="space-y-1">
                   <li><a href="/kashikin/" className="hover:text-white no-underline">貸金業務取扱主任者</a></li>
                   <li><a href="/pii/" className="hover:text-white no-underline">個人情報保護士</a></li>
+                  <li><a href="/chizai/" className="hover:text-white no-underline">知財管理技能検定3級</a></li>
                 </ul>
               </div>
               <div>

@@ -1,0 +1,69 @@
+import fs from "fs";
+import path from "path";
+import matter from "gray-matter";
+import { remark } from "remark";
+import remarkGfm from "remark-gfm";
+import html from "remark-html";
+
+const CHIZAI_DIR = path.join(process.cwd(), "src/content/chizai");
+
+export interface ChizaiQuestionData {
+  slug: string;
+  questionNumber: number;
+  title: string;
+  description: string;
+  field: string;
+  questionText: string;
+  choices: string[];
+  correctAnswer: number;
+  difficulty: "A" | "B" | "C";
+  content: string;
+}
+
+export function getAllChizaiSlugs(): string[] {
+  if (!fs.existsSync(CHIZAI_DIR)) return [];
+  return fs
+    .readdirSync(CHIZAI_DIR)
+    .filter((f) => f.endsWith(".md"))
+    .map((f) => f.replace(/\.md$/, ""));
+}
+
+export async function getChizaiQuestion(slug: string): Promise<ChizaiQuestionData | null> {
+  const filePath = path.join(CHIZAI_DIR, `${slug}.md`);
+  if (!fs.existsSync(filePath)) return null;
+
+  const fileContent = fs.readFileSync(filePath, "utf-8");
+  const { data, content } = matter(fileContent);
+
+  const processed = await remark().use(remarkGfm).use(html, { sanitize: false }).process(content);
+
+  return {
+    slug,
+    questionNumber: data.questionNumber || 0,
+    title: data.title || "",
+    description: data.description || "",
+    field: data.field || "",
+    questionText: data.questionText || "",
+    choices: data.choices || [],
+    correctAnswer: data.correctAnswer || 0,
+    difficulty: data.difficulty || "B",
+    content: processed.toString(),
+  };
+}
+
+export async function getAllChizaiQuestions(): Promise<ChizaiQuestionData[]> {
+  const slugs = getAllChizaiSlugs();
+  const questions = await Promise.all(slugs.map(getChizaiQuestion));
+  return questions
+    .filter((q): q is ChizaiQuestionData => q !== null)
+    .sort((a, b) => a.questionNumber - b.questionNumber);
+}
+
+export async function getChizaiQuestionsByField(field: string): Promise<ChizaiQuestionData[]> {
+  const all = await getAllChizaiQuestions();
+  return all.filter((q) => q.field === field);
+}
+
+export function getChizaiFields(): string[] {
+  return ["特許法", "著作権法", "意匠法", "商標法", "不正競争防止法", "関連法規", "実用新案法・種苗法", "国際条約", "知財実務"];
+}

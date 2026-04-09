@@ -4,6 +4,7 @@ const path = require("path");
 const BASE_URL = "https://shikakumon.com";
 const questionsDir = path.join(__dirname, "../src/content/questions");
 const piiDir = path.join(__dirname, "../src/content/pii");
+const chizaiDir = path.join(__dirname, "../src/content/chizai");
 const columnsDir = path.join(__dirname, "../src/content/columns");
 const outputPath = path.join(__dirname, "../public/sitemap.xml");
 
@@ -24,6 +25,17 @@ const staticPages = [
   { url: "/pii/field/hogo-law/", priority: "0.8", freq: "monthly" },
   { url: "/pii/field/mynumber/", priority: "0.8", freq: "monthly" },
   { url: "/pii/field/security/", priority: "0.8", freq: "monthly" },
+  // 知的財産管理技能検定3級
+  { url: "/chizai/", priority: "0.9", freq: "weekly" },
+  { url: "/chizai/field/patent/", priority: "0.8", freq: "monthly" },
+  { url: "/chizai/field/copyright/", priority: "0.8", freq: "monthly" },
+  { url: "/chizai/field/design/", priority: "0.8", freq: "monthly" },
+  { url: "/chizai/field/trademark/", priority: "0.8", freq: "monthly" },
+  { url: "/chizai/field/unfair/", priority: "0.8", freq: "monthly" },
+  { url: "/chizai/field/related/", priority: "0.8", freq: "monthly" },
+  { url: "/chizai/field/utility/", priority: "0.8", freq: "monthly" },
+  { url: "/chizai/field/treaty/", priority: "0.8", freq: "monthly" },
+  { url: "/chizai/field/practice/", priority: "0.8", freq: "monthly" },
   // その他
   { url: "/guide/", priority: "0.6", freq: "monthly" },
   { url: "/about/", priority: "0.3", freq: "yearly" },
@@ -51,6 +63,16 @@ const piiPages = piiSlugs.map(slug => ({
   freq: "monthly",
 }));
 
+// 知的財産管理技能検定問題
+const chizaiSlugs = fs.existsSync(chizaiDir)
+  ? fs.readdirSync(chizaiDir).filter(f => f.endsWith(".md")).map(f => f.replace(/\.md$/, ""))
+  : [];
+const chizaiPages = chizaiSlugs.map(slug => ({
+  url: `/chizai/q/${slug}/`,
+  priority: "0.7",
+  freq: "monthly",
+}));
+
 // コラム
 const columnSlugs = fs.existsSync(columnsDir)
   ? fs.readdirSync(columnsDir).filter(f => f.endsWith(".md")).map(f => f.replace(/\.md$/, ""))
@@ -67,6 +89,7 @@ const allPages = [
   ...columnPages,
   ...questionPages,
   ...piiPages,
+  ...chizaiPages,
 ];
 
 const xml = `<?xml version="1.0" encoding="UTF-8"?>

@@ -17,7 +17,7 @@ export default async function ExamIndexPage() {
           <div>
             <p className="text-lg font-bold text-blue-800 group-hover:text-blue-600">オリジナル練習問題</p>
             <p className="text-sm text-slate-500 mt-1">全{questions.length}問</p>
-            <p className="text-xs text-slate-400 mt-1">貸金業法・利息制限法・出資法・民法・資金需要者保護の全分野を網羅</p>
+            <p className="text-xs text-slate-400 mt-1">貸金業法・利息制限法・出資法・民法・資金需要者保護の4分野から</p>
           </div>
           <svg className="w-5 h-5 text-slate-300 flex-shrink-0 ml-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />

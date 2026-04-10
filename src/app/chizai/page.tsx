@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "知的財産管理技能検定3級 試験対策｜オリジナル200問を無料で",
-  description: "知的財産管理技能検定3級のオリジナル練習問題200問を詳細解説。特許法・著作権法・意匠法・商標法・不正競争防止法・国際条約を網羅。",
+  description: "知的財産管理技能検定3級のオリジナル練習問題200問を詳細解説。特許法・著作権法・意匠法・商標法・不正競争防止法・国際条約などを収録。",
 };
 
 const fields = [
@@ -28,40 +28,107 @@ export default async function ChizaiPage() {
     })
   );
 
+  // 試験日カウントダウン（2026年7月12日）
+  const examDate = new Date("2026-07-12");
+  const today = new Date();
+  const daysLeft = Math.max(0, Math.floor((examDate.getTime() - today.getTime()) / (1000 * 60 * 60 * 24)));
+
   return (
-    <div className="space-y-10 pb-16">
-      <section className="py-6">
-        <nav className="text-xs text-slate-400 mb-4"><a href="/">ホーム</a> / <span className="text-slate-600">知的財産管理技能検定3級</span></nav>
-        <h1 className="text-2xl font-bold text-slate-900 mb-3">知的財産管理技能検定3級 試験対策</h1>
-        <p className="text-slate-500 text-sm leading-relaxed max-w-lg">
-          全{allQuestions.length}問のオリジナル練習問題を収録。
-          特許法・著作権法・意匠法・商標法・不正競争防止法・国際条約を網羅しています。
+    <div className="theme-chizai pb-16">
+      {/* Hero */}
+      <section
+        className="-mx-4 px-4 py-10 sm:py-14 border-y mb-10"
+        style={{ background: "var(--c-chizai-soft)", borderColor: "var(--c-border)" }}
+      >
+        <nav className="text-xs text-[color:var(--c-text-sub)] mb-4">
+          <a href="/" className="no-underline hover:underline">ホーム</a> / <span>知的財産管理技能検定3級</span>
+        </nav>
+        <h1 className="text-2xl sm:text-3xl font-bold mb-3 font-serif leading-tight" style={{ color: "var(--c-chizai-ink)" }}>
+          知的財産管理技能検定 3級
+        </h1>
+        <div className="w-16 h-1 mb-4" style={{ background: "var(--c-chizai)" }}></div>
+        <p className="text-sm sm:text-base leading-relaxed max-w-lg" style={{ color: "var(--c-chizai-ink)" }}>
+          特許・著作権・商標…　9つの分野を横断する{allQuestions.length}問。
+          知財の実務で最初に目指す国家資格です。
         </p>
-        <p className="text-xs text-slate-400 mt-2">次回試験: 2026年7月12日（日）</p>
-        <div className="mt-4">
-          <a href="/chizai/q/chizai-001/" className="text-sm text-blue-700 font-medium no-underline hover:underline">問題を解き始める →</a>
+        <div className="mt-6">
+          <a href="/chizai/q/chizai-001/" className="btn-accent">問題を解き始める →</a>
         </div>
       </section>
 
-      <section>
-        <h2 className="text-base font-bold text-slate-800 mb-4">分野から選ぶ</h2>
-        <div className="space-y-3">
+      {/* カウントダウン */}
+      {daysLeft > 0 && (
+        <section className="mb-10 card p-5 flex items-center justify-between">
+          <div>
+            <p className="text-xs text-[color:var(--c-text-sub)] mb-1">次回試験まで</p>
+            <p className="text-lg font-bold font-serif" style={{ color: "var(--c-chizai)" }}>あと {daysLeft} 日</p>
+          </div>
+          <p className="text-sm text-[color:var(--c-text-sub)]">2026年7月12日（日）</p>
+        </section>
+      )}
+
+      {/* 分野 - タグクラウド風 */}
+      <section className="mb-12">
+        <h2 className="text-lg font-bold text-[color:var(--c-ink)] mb-5 font-serif">分野から選ぶ</h2>
+        <div className="flex flex-wrap gap-3">
           {fields.map((f, i) => (
-            <a key={f.slug} href={`/chizai/field/${f.slug}/`} className="card p-4 hover:shadow-md transition-shadow no-underline group flex items-center justify-between block">
-              <p className="text-sm font-medium text-slate-800 group-hover:text-blue-600">{f.name}</p>
-              <span className="text-xs text-slate-400">{fieldCounts[i]}問</span>
+            <a
+              key={f.slug}
+              href={`/chizai/field/${f.slug}/`}
+              className="no-underline group"
+            >
+              <span
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium border transition-all group-hover:shadow-sm"
+                style={{
+                  background: "var(--c-surface)",
+                  color: "var(--c-chizai-ink)",
+                  borderColor: "var(--c-chizai-soft)",
+                }}
+              >
+                {f.name}
+                <span
+                  className="text-xs px-1.5 py-0.5 rounded-full"
+                  style={{ background: "var(--c-chizai-soft)", color: "var(--c-chizai-ink)" }}
+                >
+                  {fieldCounts[i]}
+                </span>
+              </span>
             </a>
           ))}
         </div>
       </section>
 
-      <section className="border-t border-slate-200 pt-8">
-        <h2 className="text-base font-bold text-slate-800 mb-3">試験の概要</h2>
-        <div className="text-sm text-slate-600 space-y-1">
-          <p>試験形式: 学科30問（3肢択一・45分）+ 実技30問（3肢択一・45分）</p>
-          <p>合格基準: 学科・実技ともに70%以上</p>
-          <p>受験料: 学科6,100円 + 実技6,100円（税込）</p>
-          <p>実施機関: 知的財産教育協会</p>
+      {/* 学科 vs 実技 */}
+      <section className="mb-12">
+        <h2 className="text-base font-bold text-[color:var(--c-ink)] mb-4 font-serif">学科試験と実技試験</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div className="card p-5">
+            <p className="text-sm font-bold text-[color:var(--c-ink)] mb-2 font-serif">学科試験</p>
+            <p className="text-xs text-[color:var(--c-text-sub)] leading-relaxed">
+              30問・45分・3肢択一。条文や制度の知識を問う基礎問題です。合格基準は70%以上。
+            </p>
+          </div>
+          <div className="card p-5">
+            <p className="text-sm font-bold text-[color:var(--c-ink)] mb-2 font-serif">実技試験</p>
+            <p className="text-xs text-[color:var(--c-text-sub)] leading-relaxed">
+              30問・45分・3肢択一。事例問題を読んで適切な対応を選ぶ、実務寄りの問題です。
+            </p>
+          </div>
+        </div>
+        <p className="text-xs text-[color:var(--c-text-sub)] mt-3">
+          学科と実技はそれぞれ独立しています。両方に合格すると3級の資格が認定されます。
+        </p>
+      </section>
+
+      {/* 試験概要 */}
+      <section className="mb-12">
+        <h2 className="text-base font-bold text-[color:var(--c-ink)] mb-4 font-serif">試験の概要</h2>
+        <div className="card p-5 text-sm text-[color:var(--c-text-sub)] space-y-2">
+          <p><span className="font-bold text-[color:var(--c-ink)]">試験日</span>　年3回（3月・7月・11月）</p>
+          <p><span className="font-bold text-[color:var(--c-ink)]">試験形式</span>　学科30問 + 実技30問（各45分・3肢択一）</p>
+          <p><span className="font-bold text-[color:var(--c-ink)]">合格基準</span>　学科・実技ともに70%以上</p>
+          <p><span className="font-bold text-[color:var(--c-ink)]">受験料</span>　学科6,100円 + 実技6,100円</p>
+          <p><span className="font-bold text-[color:var(--c-ink)]">実施機関</span>　知的財産教育協会</p>
         </div>
       </section>
     </div>

@@ -61,7 +61,21 @@ export async function getAllChizaiQuestions(): Promise<ChizaiQuestionData[]> {
 
 export async function getChizaiQuestionsByField(field: string): Promise<ChizaiQuestionData[]> {
   const all = await getAllChizaiQuestions();
-  return all.filter((q) => q.field === field);
+  return all
+    .filter((q) => q.field === field)
+    .sort((a, b) => a.questionNumber - b.questionNumber);
+}
+
+/**
+ * 指定slugの問題が、同じ分野内で何番目の問題かを返す（1始まり）。
+ */
+export async function getChizaiFieldIndex(slug: string): Promise<{ index: number; total: number; field: string } | null> {
+  const q = await getChizaiQuestion(slug);
+  if (!q || !q.field) return null;
+  const fieldQuestions = await getChizaiQuestionsByField(q.field);
+  const index = fieldQuestions.findIndex((x) => x.slug === slug);
+  if (index === -1) return null;
+  return { index: index + 1, total: fieldQuestions.length, field: q.field };
 }
 
 export function getChizaiFields(): string[] {

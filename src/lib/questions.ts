@@ -56,7 +56,22 @@ export async function getQuestionsByExam(examNumber: number): Promise<QuestionDa
 
 export async function getQuestionsByField(field: string): Promise<QuestionData[]> {
   const all = await getAllQuestions();
-  return all.filter((q) => q.field === field);
+  return all
+    .filter((q) => q.field === field)
+    .sort((a, b) => a.questionNumber - b.questionNumber);
+}
+
+/**
+ * 指定slugの問題が、同じ分野内で何番目の問題かを返す（1始まり）。
+ * 該当なしの場合は null。
+ */
+export async function getFieldIndex(slug: string): Promise<{ index: number; total: number; field: string } | null> {
+  const q = await getQuestion(slug);
+  if (!q || !q.field) return null;
+  const fieldQuestions = await getQuestionsByField(q.field);
+  const index = fieldQuestions.findIndex((x) => x.slug === slug);
+  if (index === -1) return null;
+  return { index: index + 1, total: fieldQuestions.length, field: q.field };
 }
 
 export function getExamNumbers(): number[] {

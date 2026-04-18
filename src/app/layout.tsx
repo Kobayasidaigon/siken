@@ -23,6 +23,9 @@ export const metadata: Metadata = {
     template: "%s｜シカクモン - 資格試験の練習問題",
   },
   description: "シカクモンは資格試験のオリジナル練習問題を無料で提供するサイトです。貸金業務取扱主任者（504問）・個人情報保護士（300問）・知的財産管理技能検定3級（200問）など、市販の問題集が少ないニッチ資格の試験対策に。全問に根拠法令を含む詳細解説付き。",
+  icons: {
+    icon: "/favicon.svg",
+  },
   metadataBase: new URL("https://shikakumon.com"),
   alternates: {
     canonical: "https://shikakumon.com",

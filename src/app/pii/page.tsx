@@ -1,5 +1,6 @@
 import { getAllPiiQuestions, getPiiQuestionsByField } from "@/lib/pii-questions";
 import type { Metadata } from "next";
+import PiiCourseAd from "@/components/PiiCourseAd";
 
 export const metadata: Metadata = {
   title: "個人情報保護士 試験対策｜オリジナル300問を無料で",
@@ -120,6 +121,8 @@ export default async function PiiPage() {
           <p><span className="font-bold text-[color:var(--c-ink)]">受験料</span>　11,000円（税込）</p>
         </div>
       </section>
+
+      <PiiCourseAd />
     </div>
   );
 }

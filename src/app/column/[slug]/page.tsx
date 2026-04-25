@@ -1,6 +1,7 @@
 import { getAllColumnSlugs, getColumn } from "@/lib/columns";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
+import PiiCourseAd from "@/components/PiiCourseAd";
 
 export async function generateStaticParams() {
   return getAllColumnSlugs().map((slug) => ({ slug }));
@@ -20,6 +21,9 @@ export default async function ColumnPage({ params }: { params: Promise<{ slug: s
   const { slug } = await params;
   const col = await getColumn(slug);
   if (!col) notFound();
+
+  // PII関連コラム記事に個人情報保護士講座広告を表示
+  const isPiiArticle = slug.startsWith("pii-");
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -61,11 +65,22 @@ export default async function ColumnPage({ params }: { params: Promise<{ slug: s
 
       <section className="prose max-w-none" dangerouslySetInnerHTML={{ __html: col.content }} />
 
+      {isPiiArticle && <PiiCourseAd />}
+
       <div className="mt-10 pt-6 border-t border-slate-200">
         <p className="text-sm font-medium text-slate-700 mb-3">練習問題に挑戦する</p>
         <div className="flex flex-wrap gap-3">
-          <a href="/exam/0/" className="text-sm text-blue-700 no-underline hover:underline">全504問を見る →</a>
-          <a href="/field/" className="text-sm text-slate-500 no-underline hover:underline">分野別に選ぶ →</a>
+          {isPiiArticle ? (
+            <>
+              <a href="/pii/q/pii-001/" className="text-sm text-blue-700 no-underline hover:underline">個情保 全300問を見る →</a>
+              <a href="/pii/" className="text-sm text-slate-500 no-underline hover:underline">分野別に選ぶ →</a>
+            </>
+          ) : (
+            <>
+              <a href="/exam/0/" className="text-sm text-blue-700 no-underline hover:underline">全504問を見る →</a>
+              <a href="/field/" className="text-sm text-slate-500 no-underline hover:underline">分野別に選ぶ →</a>
+            </>
+          )}
         </div>
       </div>
 

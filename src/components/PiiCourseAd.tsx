@@ -7,8 +7,8 @@ export default function PiiCourseAd() {
     <aside className="my-10 p-5 rounded-lg border border-[color:var(--c-border)] bg-[color:var(--c-bg-alt)]">
       <p className="text-xs text-[color:var(--c-text-sub)] mb-3">独学に不安があれば</p>
       <p className="text-sm text-[color:var(--c-text)] leading-relaxed mb-4">
-        個人情報保護士試験を実施している全日本情報学習振興協会では、
-        公式の認定講座「SMART合格講座」を提供しています。
+        個人情報保護士試験を実施している全日本情報学習振興協会では、公式の認定講座「SMART合格講座」を提供しています。
+        <br />
         試験範囲を体系的に学びたい方は検討してみてください。
       </p>
       <div className="flex justify-center">

@@ -73,7 +73,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         </main>
 
         {/* Footer */}
-        <footer className="bg-[color:var(--c-bg-alt)] border-t border-[color:var(--c-border)] mt-16">
+        <footer className="bg-[color:var(--c-bg-alt)] border-t border-[color:var(--c-border)] mt-8">
           <div className="max-w-4xl mx-auto px-4 py-10">
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-8 text-sm mb-8">
               <div>

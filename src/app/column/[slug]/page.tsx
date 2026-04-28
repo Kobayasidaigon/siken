@@ -40,7 +40,7 @@ export default async function ColumnPage({ params }: { params: Promise<{ slug: s
   };
 
   return (
-    <article className="pb-16">
+    <article className="pb-4">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

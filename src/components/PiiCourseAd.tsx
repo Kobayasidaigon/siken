@@ -1,15 +1,25 @@
 /**
  * 個人情報保護士 公式講座（全日本情報学習振興協会）の広告
  * 配置: PII関連コラム記事の本文末尾、PIIトップページ
+ *
+ * 各ページの文脈に合わせた訴求文を props で渡せる。
+ * 渡されない場合はデフォルトの汎用文を表示。
  */
-export default function PiiCourseAd() {
+
+interface Props {
+  headline?: string;
+  body?: string;
+}
+
+export default function PiiCourseAd({ headline, body }: Props = {}) {
+  const finalHeadline = headline ?? "独学に不安があれば";
+  const finalBody = body ?? "個人情報保護士試験を実施している全日本情報学習振興協会では、公式の認定講座「SMART合格講座」を提供しています。試験範囲を体系的に学びたい方は検討してみてください。";
+
   return (
     <aside className="my-10 p-5 rounded-lg border border-[color:var(--c-border)] bg-[color:var(--c-bg-alt)]">
-      <p className="text-xs text-[color:var(--c-text-sub)] mb-3">独学に不安があれば</p>
+      <p className="text-xs text-[color:var(--c-text-sub)] mb-3">{finalHeadline}</p>
       <p className="text-sm text-[color:var(--c-text)] leading-relaxed mb-4">
-        個人情報保護士試験を実施している全日本情報学習振興協会では、公式の認定講座「SMART合格講座」を提供しています。
-        <br />
-        試験範囲を体系的に学びたい方は検討してみてください。
+        {finalBody}
       </p>
       <div className="flex justify-center">
         <a

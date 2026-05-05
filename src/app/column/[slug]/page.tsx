@@ -2,6 +2,7 @@ import { getAllColumnSlugs, getColumn } from "@/lib/columns";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import PiiCourseAd from "@/components/PiiCourseAd";
+import { getPiiAdContent } from "@/lib/pii-ad-content";
 
 export async function generateStaticParams() {
   return getAllColumnSlugs().map((slug) => ({ slug }));
@@ -24,6 +25,7 @@ export default async function ColumnPage({ params }: { params: Promise<{ slug: s
 
   // PII関連コラム記事に個人情報保護士講座広告を表示
   const isPiiArticle = slug.startsWith("pii-");
+  const piiAdContent = isPiiArticle ? getPiiAdContent(slug) : undefined;
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -65,7 +67,12 @@ export default async function ColumnPage({ params }: { params: Promise<{ slug: s
 
       <section className="prose max-w-none" dangerouslySetInnerHTML={{ __html: col.content }} />
 
-      {isPiiArticle && <PiiCourseAd />}
+      {isPiiArticle && (
+        <PiiCourseAd
+          headline={piiAdContent?.headline}
+          body={piiAdContent?.body}
+        />
+      )}
 
       <div className="mt-10 pt-6 border-t border-slate-200">
         <p className="text-sm font-medium text-slate-700 mb-3">練習問題に挑戦する</p>

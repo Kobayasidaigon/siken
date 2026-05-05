@@ -1,6 +1,7 @@
 import { getAllPiiQuestions, getPiiQuestionsByField } from "@/lib/pii-questions";
 import type { Metadata } from "next";
 import PiiCourseAd from "@/components/PiiCourseAd";
+import { PII_TOP_AD } from "@/lib/pii-ad-content";
 
 export const metadata: Metadata = {
   title: "個人情報保護士 試験対策｜オリジナル300問を無料で",
@@ -122,7 +123,7 @@ export default async function PiiPage() {
         </div>
       </section>
 
-      <PiiCourseAd />
+      <PiiCourseAd headline={PII_TOP_AD.headline} body={PII_TOP_AD.body} />
     </div>
   );
 }

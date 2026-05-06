@@ -5,6 +5,8 @@ import PiiCourseAd from "@/components/PiiCourseAd";
 import { getPiiAdContent } from "@/lib/pii-ad-content";
 import MynumberCourseAd from "@/components/MynumberCourseAd";
 import { getMynumberAdContent } from "@/lib/mynumber-ad-content";
+import JitsumuCourseAd from "@/components/JitsumuCourseAd";
+import { getJitsumuAdContent } from "@/lib/jitsumu-ad-content";
 
 export async function generateStaticParams() {
   return getAllColumnSlugs().map((slug) => ({ slug }));
@@ -32,6 +34,10 @@ export default async function ColumnPage({ params }: { params: Promise<{ slug: s
   // マイナンバー関連コラム記事にマイナンバー実務検定講座広告を表示
   const isMynumberArticle = slug.startsWith("mynumber-");
   const mynumberAdContent = isMynumberArticle ? getMynumberAdContent(slug) : undefined;
+
+  // 個人情報保護実務検定関連コラムに個情保実務検定講座広告を表示
+  const isJitsumuArticle = slug.startsWith("jitsumu-");
+  const jitsumuAdContent = isJitsumuArticle ? getJitsumuAdContent(slug) : undefined;
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -87,6 +93,13 @@ export default async function ColumnPage({ params }: { params: Promise<{ slug: s
         />
       )}
 
+      {isJitsumuArticle && (
+        <JitsumuCourseAd
+          headline={jitsumuAdContent?.headline}
+          body={jitsumuAdContent?.body}
+        />
+      )}
+
       <div className="mt-10 pt-6 border-t border-slate-200">
         <p className="text-sm font-medium text-slate-700 mb-3">練習問題に挑戦する</p>
         <div className="flex flex-wrap gap-3">
@@ -99,6 +112,11 @@ export default async function ColumnPage({ params }: { params: Promise<{ slug: s
             <>
               <a href="/mynumber/q/mynumber-001/" className="text-sm text-blue-700 no-underline hover:underline">マイナンバー 全200問を見る →</a>
               <a href="/mynumber/" className="text-sm text-slate-500 no-underline hover:underline">分野別に選ぶ →</a>
+            </>
+          ) : isJitsumuArticle ? (
+            <>
+              <a href="/jitsumu/q/jitsumu-001/" className="text-sm text-blue-700 no-underline hover:underline">個情保実務 全200問を見る →</a>
+              <a href="/jitsumu/" className="text-sm text-slate-500 no-underline hover:underline">分野別に選ぶ →</a>
             </>
           ) : (
             <>

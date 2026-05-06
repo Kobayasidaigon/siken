@@ -36,6 +36,15 @@ export default function Home() {
       themeVar: "var(--c-pii)",
       softVar: "var(--c-pii-soft)",
     },
+    {
+      name: "個人情報保護実務検定3級",
+      slug: "jitsumu",
+      count: 200,
+      desc: "個人情報保護法の実務的運用を問う民間資格。コンプライアンス担当者・人事総務向け。改正法対応の実務知識を習得できます。",
+      date: "年複数回実施",
+      themeVar: "var(--c-pii)",
+      softVar: "var(--c-pii-soft)",
+    },
   ];
 
   const jsonLd = {

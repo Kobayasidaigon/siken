@@ -6,6 +6,7 @@ const questionsDir = path.join(__dirname, "../src/content/questions");
 const piiDir = path.join(__dirname, "../src/content/pii");
 const chizaiDir = path.join(__dirname, "../src/content/chizai");
 const mynumberDir = path.join(__dirname, "../src/content/mynumber");
+const jitsumuDir = path.join(__dirname, "../src/content/jitsumu");
 const columnsDir = path.join(__dirname, "../src/content/columns");
 const outputPath = path.join(__dirname, "../public/sitemap.xml");
 
@@ -44,6 +45,13 @@ const staticPages = [
   { url: "/mynumber/field/protection/", priority: "0.8", freq: "monthly" },
   { url: "/mynumber/field/business/", priority: "0.8", freq: "monthly" },
   { url: "/mynumber/field/practice/", priority: "0.8", freq: "monthly" },
+  // 個人情報保護実務検定3級
+  { url: "/jitsumu/", priority: "0.9", freq: "weekly" },
+  { url: "/jitsumu/field/basic/", priority: "0.8", freq: "monthly" },
+  { url: "/jitsumu/field/acquisition/", priority: "0.8", freq: "monthly" },
+  { url: "/jitsumu/field/security/", priority: "0.8", freq: "monthly" },
+  { url: "/jitsumu/field/rights/", priority: "0.8", freq: "monthly" },
+  { url: "/jitsumu/field/practice/", priority: "0.8", freq: "monthly" },
   // その他
   { url: "/guide/", priority: "0.6", freq: "monthly" },
   { url: "/about/", priority: "0.3", freq: "yearly" },
@@ -91,6 +99,16 @@ const mynumberPages = mynumberSlugs.map(slug => ({
   freq: "monthly",
 }));
 
+// 個人情報保護実務検定問題
+const jitsumuSlugs = fs.existsSync(jitsumuDir)
+  ? fs.readdirSync(jitsumuDir).filter(f => f.endsWith(".md")).map(f => f.replace(/\.md$/, ""))
+  : [];
+const jitsumuPages = jitsumuSlugs.map(slug => ({
+  url: `/jitsumu/q/${slug}/`,
+  priority: "0.7",
+  freq: "monthly",
+}));
+
 // コラム
 const columnSlugs = fs.existsSync(columnsDir)
   ? fs.readdirSync(columnsDir).filter(f => f.endsWith(".md")).map(f => f.replace(/\.md$/, ""))
@@ -109,6 +127,7 @@ const allPages = [
   ...piiPages,
   ...chizaiPages,
   ...mynumberPages,
+  ...jitsumuPages,
 ];
 
 const xml = `<?xml version="1.0" encoding="UTF-8"?>

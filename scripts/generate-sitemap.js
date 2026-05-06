@@ -5,6 +5,7 @@ const BASE_URL = "https://shikakumon.com";
 const questionsDir = path.join(__dirname, "../src/content/questions");
 const piiDir = path.join(__dirname, "../src/content/pii");
 const chizaiDir = path.join(__dirname, "../src/content/chizai");
+const mynumberDir = path.join(__dirname, "../src/content/mynumber");
 const columnsDir = path.join(__dirname, "../src/content/columns");
 const outputPath = path.join(__dirname, "../public/sitemap.xml");
 
@@ -36,6 +37,13 @@ const staticPages = [
   { url: "/chizai/field/utility/", priority: "0.8", freq: "monthly" },
   { url: "/chizai/field/treaty/", priority: "0.8", freq: "monthly" },
   { url: "/chizai/field/practice/", priority: "0.8", freq: "monthly" },
+  // マイナンバー実務検定3級
+  { url: "/mynumber/", priority: "0.9", freq: "weekly" },
+  { url: "/mynumber/field/outline/", priority: "0.8", freq: "monthly" },
+  { url: "/mynumber/field/card/", priority: "0.8", freq: "monthly" },
+  { url: "/mynumber/field/protection/", priority: "0.8", freq: "monthly" },
+  { url: "/mynumber/field/business/", priority: "0.8", freq: "monthly" },
+  { url: "/mynumber/field/practice/", priority: "0.8", freq: "monthly" },
   // その他
   { url: "/guide/", priority: "0.6", freq: "monthly" },
   { url: "/about/", priority: "0.3", freq: "yearly" },
@@ -73,6 +81,16 @@ const chizaiPages = chizaiSlugs.map(slug => ({
   freq: "monthly",
 }));
 
+// マイナンバー実務検定問題
+const mynumberSlugs = fs.existsSync(mynumberDir)
+  ? fs.readdirSync(mynumberDir).filter(f => f.endsWith(".md")).map(f => f.replace(/\.md$/, ""))
+  : [];
+const mynumberPages = mynumberSlugs.map(slug => ({
+  url: `/mynumber/q/${slug}/`,
+  priority: "0.7",
+  freq: "monthly",
+}));
+
 // コラム
 const columnSlugs = fs.existsSync(columnsDir)
   ? fs.readdirSync(columnsDir).filter(f => f.endsWith(".md")).map(f => f.replace(/\.md$/, ""))
@@ -90,6 +108,7 @@ const allPages = [
   ...questionPages,
   ...piiPages,
   ...chizaiPages,
+  ...mynumberPages,
 ];
 
 const xml = `<?xml version="1.0" encoding="UTF-8"?>

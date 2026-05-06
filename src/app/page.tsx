@@ -27,6 +27,15 @@ export default function Home() {
       themeVar: "var(--c-chizai)",
       softVar: "var(--c-chizai-soft)",
     },
+    {
+      name: "マイナンバー実務検定3級",
+      slug: "mynumber",
+      count: 200,
+      desc: "番号法・個人番号カード・特定個人情報保護を扱う民間資格。実務でマイナンバーを取り扱う方の基礎知識として。",
+      date: "年複数回実施",
+      themeVar: "var(--c-pii)",
+      softVar: "var(--c-pii-soft)",
+    },
   ];
 
   const jsonLd = {

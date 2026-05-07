@@ -64,7 +64,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <a href="/jitsumu/" className="text-[color:var(--c-text-sub)] hover:text-[color:var(--c-pii)] no-underline transition-colors">個情保実務</a>
               <a href="/bijihou/" className="text-[color:var(--c-text-sub)] hover:text-[color:var(--c-kashikin)] no-underline transition-colors">ビジ法</a>
               <a href="/column/" className="text-[color:var(--c-text-sub)] hover:text-[color:var(--c-ink)] no-underline transition-colors">コラム</a>
-              <a href="https://shikakumon-studio.vercel.app/studio/create" className="text-[color:var(--c-text-sub)] hover:text-[#4f46e5] no-underline transition-colors font-medium">Studio</a>
               <a href="/about/" className="text-[color:var(--c-text-sub)] hover:text-[color:var(--c-ink)] no-underline transition-colors">このサイトについて</a>
             </nav>
           </div>
@@ -100,7 +99,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <div>
                 <h4 className="text-[color:var(--c-ink)] font-bold mb-3 text-xs font-serif">サイト情報</h4>
                 <ul className="space-y-2">
-                  <li><a href="https://shikakumon-studio.vercel.app/studio/create" className="text-[#4f46e5] hover:text-[#4338ca] no-underline font-medium">シカクモン Studio</a></li>
                   <li><a href="/about/" className="text-[color:var(--c-text-sub)] hover:text-[color:var(--c-ink)] no-underline">このサイトについて</a></li>
                   <li><a href="/privacy/" className="text-[color:var(--c-text-sub)] hover:text-[color:var(--c-ink)] no-underline">プライバシー</a></li>
                   <li><a href="/contact/" className="text-[color:var(--c-text-sub)] hover:text-[color:var(--c-ink)] no-underline">お問い合わせ</a></li>

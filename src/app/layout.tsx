@@ -62,6 +62,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <a href="/chizai/" className="text-[color:var(--c-text-sub)] hover:text-[color:var(--c-chizai)] no-underline transition-colors">知財3級</a>
               <a href="/mynumber/" className="text-[color:var(--c-text-sub)] hover:text-[color:var(--c-pii)] no-underline transition-colors">マイナンバー</a>
               <a href="/jitsumu/" className="text-[color:var(--c-text-sub)] hover:text-[color:var(--c-pii)] no-underline transition-colors">個情保実務</a>
+              <a href="/bijihou/" className="text-[color:var(--c-text-sub)] hover:text-[color:var(--c-kashikin)] no-underline transition-colors">ビジ法</a>
               <a href="/column/" className="text-[color:var(--c-text-sub)] hover:text-[color:var(--c-ink)] no-underline transition-colors">コラム</a>
               <a href="https://shikakumon-studio.vercel.app/studio/create" className="text-[color:var(--c-text-sub)] hover:text-[#4f46e5] no-underline transition-colors font-medium">Studio</a>
               <a href="/about/" className="text-[color:var(--c-text-sub)] hover:text-[color:var(--c-ink)] no-underline transition-colors">このサイトについて</a>
@@ -86,6 +87,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                   <li><a href="/chizai/" className="text-[color:var(--c-text-sub)] hover:text-[color:var(--c-chizai)] no-underline">知財管理技能検定3級</a></li>
                   <li><a href="/mynumber/" className="text-[color:var(--c-text-sub)] hover:text-[color:var(--c-pii)] no-underline">マイナンバー実務検定3級</a></li>
                   <li><a href="/jitsumu/" className="text-[color:var(--c-text-sub)] hover:text-[color:var(--c-pii)] no-underline">個人情報保護実務検定3級</a></li>
+                  <li><a href="/bijihou/" className="text-[color:var(--c-text-sub)] hover:text-[color:var(--c-kashikin)] no-underline">ビジネス実務法務検定3級</a></li>
                 </ul>
               </div>
               <div>

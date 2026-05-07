@@ -45,6 +45,15 @@ export default function Home() {
       themeVar: "var(--c-pii)",
       softVar: "var(--c-pii-soft)",
     },
+    {
+      name: "ビジネス実務法務検定3級",
+      slug: "bijihou",
+      count: 200,
+      desc: "民法・商法・会社法・関連法規（独禁法・消費者法・知財）を扱う検定試験。ビジネス現場の法的リスクを把握するための公的資格。",
+      date: "年2回（6〜7月、10〜11月）",
+      themeVar: "var(--c-kashikin)",
+      softVar: "var(--c-kashikin-soft)",
+    },
   ];
 
   const jsonLd = {

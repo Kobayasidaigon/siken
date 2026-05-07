@@ -7,6 +7,7 @@ const piiDir = path.join(__dirname, "../src/content/pii");
 const chizaiDir = path.join(__dirname, "../src/content/chizai");
 const mynumberDir = path.join(__dirname, "../src/content/mynumber");
 const jitsumuDir = path.join(__dirname, "../src/content/jitsumu");
+const bijihouDir = path.join(__dirname, "../src/content/bijihou");
 const columnsDir = path.join(__dirname, "../src/content/columns");
 const outputPath = path.join(__dirname, "../public/sitemap.xml");
 
@@ -52,6 +53,13 @@ const staticPages = [
   { url: "/jitsumu/field/security/", priority: "0.8", freq: "monthly" },
   { url: "/jitsumu/field/rights/", priority: "0.8", freq: "monthly" },
   { url: "/jitsumu/field/practice/", priority: "0.8", freq: "monthly" },
+  // ビジネス実務法務検定3級
+  { url: "/bijihou/", priority: "0.9", freq: "weekly" },
+  { url: "/bijihou/field/kiso/", priority: "0.8", freq: "monthly" },
+  { url: "/bijihou/field/minpou-saiken/", priority: "0.8", freq: "monthly" },
+  { url: "/bijihou/field/minpou-bukken/", priority: "0.8", freq: "monthly" },
+  { url: "/bijihou/field/kaisya/", priority: "0.8", freq: "monthly" },
+  { url: "/bijihou/field/kanren/", priority: "0.8", freq: "monthly" },
   // その他
   { url: "/guide/", priority: "0.6", freq: "monthly" },
   { url: "/about/", priority: "0.3", freq: "yearly" },
@@ -109,6 +117,16 @@ const jitsumuPages = jitsumuSlugs.map(slug => ({
   freq: "monthly",
 }));
 
+// ビジネス実務法務検定問題
+const bijihouSlugs = fs.existsSync(bijihouDir)
+  ? fs.readdirSync(bijihouDir).filter(f => f.endsWith(".md")).map(f => f.replace(/\.md$/, ""))
+  : [];
+const bijihouPages = bijihouSlugs.map(slug => ({
+  url: `/bijihou/q/${slug}/`,
+  priority: "0.7",
+  freq: "monthly",
+}));
+
 // コラム
 const columnSlugs = fs.existsSync(columnsDir)
   ? fs.readdirSync(columnsDir).filter(f => f.endsWith(".md")).map(f => f.replace(/\.md$/, ""))
@@ -128,6 +146,7 @@ const allPages = [
   ...chizaiPages,
   ...mynumberPages,
   ...jitsumuPages,
+  ...bijihouPages,
 ];
 
 const xml = `<?xml version="1.0" encoding="UTF-8"?>

@@ -5,6 +5,8 @@ import PiiCourseAd from "@/components/PiiCourseAd";
 import { getPiiAdContent } from "@/lib/pii-ad-content";
 import MynumberCourseAd from "@/components/MynumberCourseAd";
 import { getMynumberAdContent } from "@/lib/mynumber-ad-content";
+import BijihouCourseAd from "@/components/BijihouCourseAd";
+import { getBijihouAdContent } from "@/lib/bijihou-ad-content";
 import JitsumuCourseAd from "@/components/JitsumuCourseAd";
 import { getJitsumuAdContent } from "@/lib/jitsumu-ad-content";
 
@@ -38,6 +40,10 @@ export default async function ColumnPage({ params }: { params: Promise<{ slug: s
   // 個人情報保護実務検定関連コラムに個情保実務検定講座広告を表示
   const isJitsumuArticle = slug.startsWith("jitsumu-");
   const jitsumuAdContent = isJitsumuArticle ? getJitsumuAdContent(slug) : undefined;
+
+  // ビジネス実務法務検定関連コラムにビジネス実務法務検定講座広告を表示
+  const isBijihouArticle = slug.startsWith("bijihou-");
+  const bijihouAdContent = isBijihouArticle ? getBijihouAdContent(slug) : undefined;
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -100,6 +106,13 @@ export default async function ColumnPage({ params }: { params: Promise<{ slug: s
         />
       )}
 
+      {isBijihouArticle && (
+        <BijihouCourseAd
+          headline={bijihouAdContent?.headline}
+          body={bijihouAdContent?.body}
+        />
+      )}
+
       <div className="mt-10 pt-6 border-t border-slate-200">
         <p className="text-sm font-medium text-slate-700 mb-3">練習問題に挑戦する</p>
         <div className="flex flex-wrap gap-3">
@@ -117,6 +130,11 @@ export default async function ColumnPage({ params }: { params: Promise<{ slug: s
             <>
               <a href="/jitsumu/q/jitsumu-001/" className="text-sm text-blue-700 no-underline hover:underline">個情保実務 全200問を見る →</a>
               <a href="/jitsumu/" className="text-sm text-slate-500 no-underline hover:underline">分野別に選ぶ →</a>
+            </>
+          ) : isBijihouArticle ? (
+            <>
+              <a href="/bijihou/q/bijihou-001/" className="text-sm text-blue-700 no-underline hover:underline">ビジ法 全200問を見る →</a>
+              <a href="/bijihou/" className="text-sm text-slate-500 no-underline hover:underline">分野別に選ぶ →</a>
             </>
           ) : (
             <>

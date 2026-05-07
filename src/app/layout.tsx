@@ -52,19 +52,50 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body style={{ fontFamily: "var(--font-sans), 'Noto Sans JP', 'Hiragino Sans', sans-serif" }}>
         {/* Header */}
         <header className="bg-[color:var(--c-surface)] border-b border-[color:var(--c-border)] sticky top-0 z-50">
-          <div className="max-w-4xl mx-auto px-4 h-14 flex items-center justify-between">
-            <a href="/" className="text-lg font-bold text-[color:var(--c-ink)] no-underline font-serif">
-              シカクモン
+          <div className="max-w-4xl mx-auto px-4 h-16 flex items-center justify-between">
+            <a href="/" className="no-underline group flex items-baseline gap-2">
+              <span className="text-xl font-bold text-[color:var(--c-ink)] font-serif tracking-wide group-hover:text-[color:var(--c-kashikin)] transition-colors">シカクモン</span>
+              <span className="hidden sm:inline text-xs text-[color:var(--c-text-sub)] font-medium">資格試験の練習問題</span>
             </a>
-            <nav className="hidden sm:flex gap-5 text-sm">
-              <a href="/kashikin/" className="text-[color:var(--c-text-sub)] hover:text-[color:var(--c-kashikin)] no-underline transition-colors">貸金</a>
-              <a href="/pii/" className="text-[color:var(--c-text-sub)] hover:text-[color:var(--c-pii)] no-underline transition-colors">個情保</a>
-              <a href="/chizai/" className="text-[color:var(--c-text-sub)] hover:text-[color:var(--c-chizai)] no-underline transition-colors">知財3級</a>
-              <a href="/mynumber/" className="text-[color:var(--c-text-sub)] hover:text-[color:var(--c-pii)] no-underline transition-colors">マイナンバー</a>
-              <a href="/jitsumu/" className="text-[color:var(--c-text-sub)] hover:text-[color:var(--c-pii)] no-underline transition-colors">個情保実務</a>
-              <a href="/bijihou/" className="text-[color:var(--c-text-sub)] hover:text-[color:var(--c-kashikin)] no-underline transition-colors">ビジ法</a>
+            <nav className="hidden sm:flex gap-7 text-sm items-center">
+              <div className="relative group">
+                <button type="button" className="flex items-center gap-1 text-[color:var(--c-text-sub)] hover:text-[color:var(--c-ink)] transition-colors py-2 cursor-pointer">
+                  資格
+                  <svg className="w-3 h-3 transition-transform group-hover:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                  </svg>
+                </button>
+                <div className="absolute right-0 top-full pt-2 hidden group-hover:block">
+                  <div className="bg-[color:var(--c-surface)] border border-[color:var(--c-border)] rounded-lg shadow-lg py-2 min-w-[220px]">
+                    <a href="/kashikin/" className="flex items-center px-4 py-2 text-[color:var(--c-text)] hover:bg-[color:var(--c-bg-alt)] hover:text-[color:var(--c-kashikin)] no-underline transition-colors">
+                      <span className="w-1 h-4 mr-3 rounded-full" style={{ background: "var(--c-kashikin)" }}></span>
+                      貸金業務取扱主任者
+                    </a>
+                    <a href="/pii/" className="flex items-center px-4 py-2 text-[color:var(--c-text)] hover:bg-[color:var(--c-bg-alt)] hover:text-[color:var(--c-pii)] no-underline transition-colors">
+                      <span className="w-1 h-4 mr-3 rounded-full" style={{ background: "var(--c-pii)" }}></span>
+                      個人情報保護士
+                    </a>
+                    <a href="/chizai/" className="flex items-center px-4 py-2 text-[color:var(--c-text)] hover:bg-[color:var(--c-bg-alt)] hover:text-[color:var(--c-chizai)] no-underline transition-colors">
+                      <span className="w-1 h-4 mr-3 rounded-full" style={{ background: "var(--c-chizai)" }}></span>
+                      知的財産管理技能検定3級
+                    </a>
+                    <a href="/mynumber/" className="flex items-center px-4 py-2 text-[color:var(--c-text)] hover:bg-[color:var(--c-bg-alt)] hover:text-[color:var(--c-pii)] no-underline transition-colors">
+                      <span className="w-1 h-4 mr-3 rounded-full" style={{ background: "var(--c-pii)" }}></span>
+                      マイナンバー実務検定3級
+                    </a>
+                    <a href="/jitsumu/" className="flex items-center px-4 py-2 text-[color:var(--c-text)] hover:bg-[color:var(--c-bg-alt)] hover:text-[color:var(--c-pii)] no-underline transition-colors">
+                      <span className="w-1 h-4 mr-3 rounded-full" style={{ background: "var(--c-pii)" }}></span>
+                      個人情報保護実務検定3級
+                    </a>
+                    <a href="/bijihou/" className="flex items-center px-4 py-2 text-[color:var(--c-text)] hover:bg-[color:var(--c-bg-alt)] hover:text-[color:var(--c-kashikin)] no-underline transition-colors">
+                      <span className="w-1 h-4 mr-3 rounded-full" style={{ background: "var(--c-kashikin)" }}></span>
+                      ビジネス実務法務検定3級
+                    </a>
+                  </div>
+                </div>
+              </div>
               <a href="/column/" className="text-[color:var(--c-text-sub)] hover:text-[color:var(--c-ink)] no-underline transition-colors">コラム</a>
-              <a href="/about/" className="text-[color:var(--c-text-sub)] hover:text-[color:var(--c-ink)] no-underline transition-colors">このサイトについて</a>
+              <a href="/about/" className="text-[color:var(--c-text-sub)] hover:text-[color:var(--c-ink)] no-underline transition-colors">サイトについて</a>
             </nav>
           </div>
         </header>

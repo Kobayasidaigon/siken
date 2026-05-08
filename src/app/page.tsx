@@ -4,6 +4,7 @@ export default function Home() {
       name: "貸金業務取扱主任者",
       slug: "kashikin",
       count: 504,
+      fieldCount: 4,
       desc: "貸金業法・利息制限法・民法・資金需要者保護の4分野。貸金業者の営業所に設置義務がある国家資格です。",
       date: "2026年11月（年1回）",
       themeVar: "var(--c-kashikin)",
@@ -13,6 +14,7 @@ export default function Home() {
       name: "個人情報保護士",
       slug: "pii",
       count: 300,
+      fieldCount: 3,
       desc: "個人情報保護法・マイナンバー法・情報セキュリティの3分野。企業のコンプライアンス実務者向けの認定資格。",
       date: "2026年6月21日 / 9月27日",
       themeVar: "var(--c-pii)",
@@ -22,6 +24,7 @@ export default function Home() {
       name: "知的財産管理技能検定3級",
       slug: "chizai",
       count: 200,
+      fieldCount: 9,
       desc: "特許法・著作権法・商標法など9分野を横断する国家資格。知財の実務で最初に目指す級です。",
       date: "2026年7月12日",
       themeVar: "var(--c-chizai)",
@@ -31,6 +34,7 @@ export default function Home() {
       name: "マイナンバー実務検定3級",
       slug: "mynumber",
       count: 200,
+      fieldCount: 5,
       desc: "番号法・個人番号カード・特定個人情報保護を扱う民間資格。実務でマイナンバーを取り扱う方の基礎知識として。",
       date: "年複数回実施",
       themeVar: "var(--c-pii)",
@@ -40,6 +44,7 @@ export default function Home() {
       name: "個人情報保護実務検定3級",
       slug: "jitsumu",
       count: 200,
+      fieldCount: 5,
       desc: "個人情報保護法の実務的運用を問う民間資格。コンプライアンス担当者・人事総務向け。改正法対応の実務知識を習得できます。",
       date: "年複数回実施",
       themeVar: "var(--c-pii)",
@@ -49,6 +54,7 @@ export default function Home() {
       name: "ビジネス実務法務検定3級",
       slug: "bijihou",
       count: 200,
+      fieldCount: 5,
       desc: "民法・商法・会社法・関連法規（独禁法・消費者法・知財）を扱う検定試験。ビジネス現場の法的リスクを把握するための公的資格。",
       date: "年2回（6〜7月、10〜11月）",
       themeVar: "var(--c-kashikin)",
@@ -78,6 +84,8 @@ export default function Home() {
   };
 
   const totalCount = exams.reduce((sum, e) => sum + e.count, 0);
+  const totalFieldCount = exams.reduce((sum, e) => sum + e.fieldCount, 0);
+  const examCount = exams.length;
   const updateDate = new Date().toLocaleDateString("ja-JP", { year: "numeric", month: "long" });
 
   return (
@@ -111,11 +119,11 @@ export default function Home() {
             <p className="text-xs text-[color:var(--c-text-sub)] mt-1">問題数</p>
           </div>
           <div>
-            <p className="text-2xl font-bold text-[color:var(--c-ink)] font-serif">16</p>
+            <p className="text-2xl font-bold text-[color:var(--c-ink)] font-serif">{totalFieldCount}</p>
             <p className="text-xs text-[color:var(--c-text-sub)] mt-1">分野</p>
           </div>
           <div>
-            <p className="text-2xl font-bold text-[color:var(--c-ink)] font-serif">3</p>
+            <p className="text-2xl font-bold text-[color:var(--c-ink)] font-serif">{examCount}</p>
             <p className="text-xs text-[color:var(--c-text-sub)] mt-1">対応資格</p>
           </div>
           <div>

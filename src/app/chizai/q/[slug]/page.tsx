@@ -2,6 +2,7 @@ import { getAllChizaiSlugs, getChizaiQuestion, getChizaiQuestionsByField } from 
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import AnswerReveal from "@/app/q/[slug]/AnswerReveal";
+import BookmarkButton from "@/app/q/[slug]/BookmarkButton";
 import { pageMetadata } from "@/lib/page-metadata";
 
 const fieldSlugMap: Record<string, string> = {
@@ -75,7 +76,7 @@ export default async function ChizaiQuestionPage({ params }: { params: Promise<{
       <h1 className="text-xl sm:text-2xl font-bold text-[color:var(--c-ink)] mb-3 leading-tight font-serif">{q.title}</h1>
       <div className="w-12 h-1 mb-4" style={{ background: "var(--c-chizai)" }}></div>
 
-      <div className="flex flex-wrap gap-2 mb-6">
+      <div className="flex flex-wrap gap-2 mb-6 items-center">
         <span
           className="text-xs px-2 py-1 rounded-full font-medium"
           style={{ background: "var(--c-chizai-soft)", color: "var(--c-chizai-ink)" }}
@@ -83,6 +84,7 @@ export default async function ChizaiQuestionPage({ params }: { params: Promise<{
           {q.field} 問{fieldIndex}/{fieldTotal}
         </span>
         <span className={`text-xs px-2 py-1 rounded-full font-medium ${difficultyColor}`}>難易度{q.difficulty}（{difficultyLabel}）</span>
+        <BookmarkButton exam="chizai" questionSlug={slug} />
       </div>
 
       <section className="card p-5 mb-6" style={{ borderLeft: "4px solid var(--c-chizai)" }}>
@@ -90,7 +92,7 @@ export default async function ChizaiQuestionPage({ params }: { params: Promise<{
         <p className="text-sm text-[color:var(--c-text)] leading-relaxed whitespace-pre-wrap">{q.questionText}</p>
       </section>
 
-      <AnswerReveal choices={q.choices} correctAnswer={q.correctAnswer} explanationHtml={q.content} />
+      <AnswerReveal choices={q.choices} correctAnswer={q.correctAnswer} explanationHtml={q.content} exam="chizai" questionSlug={slug} />
 
       <nav className="mt-8 flex justify-between items-center pt-4 border-t border-[color:var(--c-border)]">
         {prevQ ? (

@@ -62,6 +62,7 @@ const staticPages = [
   { url: "/bijihou/field/kanren/", priority: "0.8", freq: "monthly" },
   // その他
   { url: "/guide/", priority: "0.6", freq: "monthly" },
+  { url: "/study/", priority: "0.5", freq: "monthly" },
   { url: "/about/", priority: "0.3", freq: "yearly" },
   { url: "/privacy/", priority: "0.2", freq: "yearly" },
   { url: "/contact/", priority: "0.2", freq: "yearly" },

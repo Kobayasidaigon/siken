@@ -1,17 +1,28 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { recordResult, type ExamSlug } from "@/lib/study-progress";
 
 export default function AnswerReveal({
   choices,
   correctAnswer,
   explanationHtml,
+  exam,
+  questionSlug,
 }: {
   choices: string[];
   correctAnswer: number;
   explanationHtml: string;
+  exam?: ExamSlug;
+  questionSlug?: string;
 }) {
   const [revealed, setRevealed] = useState(false);
   const [selected, setSelected] = useState<number | null>(null);
+
+  useEffect(() => {
+    if (revealed && selected !== null && exam && questionSlug) {
+      recordResult(exam, questionSlug, selected === correctAnswer);
+    }
+  }, [revealed, selected, correctAnswer, exam, questionSlug]);
 
   return (
     <>
@@ -72,6 +83,11 @@ export default function AnswerReveal({
               <p className={`text-base font-bold ${selected === correctAnswer ? "text-green-700" : "text-red-700"}`}>
                 {selected === correctAnswer ? "正解!" : `不正解 — 正解は ${correctAnswer} です`}
               </p>
+              {exam && questionSlug && (
+                <p className="text-xs text-[color:var(--c-text-sub)] mt-2">
+                  この問題は「学習履歴」に自動記録されます（<a href="/study/" className="underline">履歴を見る</a>）
+                </p>
+              )}
             </div>
           )}
 

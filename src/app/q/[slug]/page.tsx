@@ -2,6 +2,7 @@ import { getAllQuestionSlugs, getQuestion, getQuestionsByField } from "@/lib/que
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import AnswerReveal from "./AnswerReveal";
+import BookmarkButton from "./BookmarkButton";
 import { pageMetadata } from "@/lib/page-metadata";
 
 const fieldSlugMap: Record<string, string> = {
@@ -84,7 +85,7 @@ export default async function QuestionPage({ params }: { params: Promise<{ slug:
       </h1>
       <div className="w-12 h-1 mb-4" style={{ background: "var(--c-kashikin)" }}></div>
 
-      <div className="flex flex-wrap gap-2 mb-6">
+      <div className="flex flex-wrap gap-2 mb-6 items-center">
         <span
           className="text-xs px-2 py-1 rounded-full font-medium"
           style={{ background: "var(--c-kashikin-soft)", color: "var(--c-kashikin-ink)" }}
@@ -94,6 +95,7 @@ export default async function QuestionPage({ params }: { params: Promise<{ slug:
         <span className={`text-xs px-2 py-1 rounded-full font-medium ${difficultyColor}`}>
           難易度{q.difficulty}（{difficultyLabel}）
         </span>
+        <BookmarkButton exam="kashikin" questionSlug={slug} />
       </div>
 
       <section className="card p-5 mb-6" style={{ borderLeft: "4px solid var(--c-kashikin)" }}>
@@ -107,6 +109,8 @@ export default async function QuestionPage({ params }: { params: Promise<{ slug:
         choices={q.choices}
         correctAnswer={q.correctAnswer}
         explanationHtml={q.content}
+        exam="kashikin"
+        questionSlug={slug}
       />
 
       <nav className="mt-8 flex justify-between items-center pt-4 border-t border-[color:var(--c-border)]">

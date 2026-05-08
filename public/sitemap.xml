@@ -247,6 +247,12 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://shikakumon.com/study/</loc>
+    <lastmod>2026-05-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>https://shikakumon.com/about/</loc>
     <lastmod>2026-05-08</lastmod>
     <changefreq>yearly</changefreq>
@@ -391,6 +397,12 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://shikakumon.com/column/jitsumu-class-comparison/</loc>
+    <lastmod>2026-05-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://shikakumon.com/column/jitsumu-goukakuritsu/</loc>
     <lastmod>2026-05-08</lastmod>
     <changefreq>monthly</changefreq>
@@ -463,6 +475,12 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://shikakumon.com/column/mynumber-class-comparison/</loc>
+    <lastmod>2026-05-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://shikakumon.com/column/mynumber-goukakuritsu/</loc>
     <lastmod>2026-05-08</lastmod>
     <changefreq>monthly</changefreq>
@@ -524,6 +542,12 @@
   </url>
   <url>
     <loc>https://shikakumon.com/column/pii-itpassport-hikaku/</loc>
+    <lastmod>2026-05-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://shikakumon.com/column/pii-jitsumu-katsuyou/</loc>
     <lastmod>2026-05-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>

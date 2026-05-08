@@ -2,6 +2,7 @@ import { getAllJitsumuSlugs, getJitsumuQuestion, getJitsumuQuestionsByField } fr
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import AnswerReveal from "@/app/q/[slug]/AnswerReveal";
+import BookmarkButton from "@/app/q/[slug]/BookmarkButton";
 import { pageMetadata } from "@/lib/page-metadata";
 
 const fieldSlugMap: Record<string, string> = {
@@ -71,11 +72,12 @@ export default async function JitsumuQuestionPage({ params }: { params: Promise<
       <h1 className="text-xl sm:text-2xl font-bold text-[color:var(--c-ink)] mb-3 leading-tight font-serif">{q.title}</h1>
       <div className="w-12 h-1 mb-4" style={{ background: "var(--c-pii)" }}></div>
 
-      <div className="flex flex-wrap gap-2 mb-6">
+      <div className="flex flex-wrap gap-2 mb-6 items-center">
         <span className="text-xs px-2 py-1 rounded-full font-medium" style={{ background: "var(--c-pii-soft)", color: "var(--c-pii-ink)" }}>
           {q.field} 問{fieldIndex}/{fieldTotal}
         </span>
         <span className={`text-xs px-2 py-1 rounded-full font-medium ${difficultyColor}`}>難易度{q.difficulty}（{difficultyLabel}）</span>
+        <BookmarkButton exam="jitsumu" questionSlug={slug} />
       </div>
 
       <section className="card p-5 mb-6" style={{ borderLeft: "4px solid var(--c-pii)" }}>
@@ -83,7 +85,7 @@ export default async function JitsumuQuestionPage({ params }: { params: Promise<
         <p className="text-sm text-[color:var(--c-text)] leading-relaxed whitespace-pre-wrap">{q.questionText}</p>
       </section>
 
-      <AnswerReveal choices={q.choices} correctAnswer={q.correctAnswer} explanationHtml={q.content} />
+      <AnswerReveal choices={q.choices} correctAnswer={q.correctAnswer} explanationHtml={q.content} exam="jitsumu" questionSlug={slug} />
 
       <nav className="mt-8 flex justify-between items-center pt-4 border-t border-[color:var(--c-border)]">
         {prevQ ? (<a href={`/jitsumu/q/${prevQ.slug}/`} className="text-sm text-[color:var(--c-text-sub)] no-underline hover:text-[color:var(--c-pii)]">← 問{idx}</a>) : <span />}

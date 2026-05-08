@@ -2,6 +2,7 @@ import { getMynumberQuestionsByField } from "@/lib/mynumber-questions";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import type { MynumberQuestionData } from "@/lib/mynumber-questions";
+import { pageMetadata } from "@/lib/page-metadata";
 
 const fieldMap: Record<string, { name: string; desc: string }> = {
   "outline": { name: "番号法の概要", desc: "番号法の目的、利用範囲（社会保障・税・災害対策）、個人番号と法人番号の定義、本人確認の3要素など" },
@@ -19,10 +20,11 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const field = fieldMap[slug];
   if (!field) return { title: "Not Found" };
-  return {
+  return pageMetadata({
+    path: `/mynumber/field/${slug}/`,
     title: `マイナンバー実務検定3級｜${field.name} 練習問題`,
     description: `マイナンバー実務検定3級試験対策。${field.name}分野のオリジナル練習問題と詳細解説。各問に根拠条文を含む解説付きで効率的に学習できます。`,
-  };
+  });
 }
 
 function QuestionCard({ q, index }: { q: MynumberQuestionData; index: number }) {

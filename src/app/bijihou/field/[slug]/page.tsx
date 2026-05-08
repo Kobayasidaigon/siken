@@ -2,6 +2,7 @@ import { getBijihouQuestionsByField } from "@/lib/bijihou-questions";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import type { BijihouQuestionData } from "@/lib/bijihou-questions";
+import { pageMetadata } from "@/lib/page-metadata";
 
 const fieldMap: Record<string, { name: string; desc: string }> = {
   "kiso": { name: "法体系・取引の基礎", desc: "公法と私法、行為能力、代理、契約成立、意思表示、消滅時効など" },
@@ -19,10 +20,11 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const field = fieldMap[slug];
   if (!field) return { title: "Not Found" };
-  return {
+  return pageMetadata({
+    path: `/bijihou/field/${slug}/`,
     title: `ビジネス実務法務検定3級｜${field.name} 練習問題`,
     description: `ビジネス実務法務検定3級試験対策。${field.name}分野のオリジナル練習問題と詳細解説。各問に根拠条文を含む解説付きで効率的に学習できます。`,
-  };
+  });
 }
 
 function QuestionCard({ q, index }: { q: BijihouQuestionData; index: number }) {

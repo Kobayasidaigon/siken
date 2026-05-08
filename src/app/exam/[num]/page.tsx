@@ -2,6 +2,7 @@ import { getQuestionsByExam, getExamNumbers } from "@/lib/questions";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import type { QuestionData } from "@/lib/types";
+import { pageMetadata } from "@/lib/page-metadata";
 
 export async function generateStaticParams() {
   const exams = getExamNumbers();
@@ -11,10 +12,11 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: { params: Promise<{ num: string }> }): Promise<Metadata> {
   const { num } = await params;
   const title = num === "0" ? "オリジナル練習問題 一覧" : `第${num}回 問題一覧`;
-  return {
+  return pageMetadata({
+    path: `/exam/${num}/`,
     title,
     description: `貸金業務取扱主任者試験 ${title}。問題ごとに詳しい解説付き。`,
-  };
+  });
 }
 
 const fieldOrder = ["貸金業法", "利息制限法・出資法", "民法・民事訴訟法", "資金需要者等の保護"];

@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/page-metadata";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
+  path: "/contact/",
   title: "お問い合わせ｜シカクモン - 資格試験の練習問題サイト",
   description: "シカクモンへのお問い合わせ。解説内容の誤りのご指摘やサイト改善のご要望など、メールでご連絡ください。",
-};
+});
 
 export default function ContactPage() {
   return (

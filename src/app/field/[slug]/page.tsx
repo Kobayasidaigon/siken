@@ -1,6 +1,7 @@
 import { getQuestionsByField } from "@/lib/questions";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/page-metadata";
 
 const fieldMap: Record<string, { name: string; desc: string }> = {
   kashikingyouhou: { name: "貸金業法", desc: "登録制度、業務規制、帳簿管理、取立て行為の規制、書面交付義務、総量規制など" },
@@ -17,10 +18,11 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const field = fieldMap[slug];
   if (!field) return { title: "Not Found" };
-  return {
+  return pageMetadata({
+    path: `/field/${slug}/`,
     title: `${field.name} 練習問題一覧`,
     description: `貸金業務取扱主任者試験対策。${field.name}分野のオリジナル練習問題と詳細解説。${field.desc}。`,
-  };
+  });
 }
 
 export default async function FieldPage({ params }: { params: Promise<{ slug: string }> }) {

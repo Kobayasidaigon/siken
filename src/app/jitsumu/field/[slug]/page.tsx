@@ -2,6 +2,7 @@ import { getJitsumuQuestionsByField } from "@/lib/jitsumu-questions";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import type { JitsumuQuestionData } from "@/lib/jitsumu-questions";
+import { pageMetadata } from "@/lib/page-metadata";
 
 const fieldMap: Record<string, { name: string; desc: string }> = {
   "basic": { name: "個人情報保護法の基礎", desc: "目的・定義、個人情報・個人データ・保有個人データの違い、要配慮個人情報、事業者の義務" },
@@ -19,10 +20,11 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const field = fieldMap[slug];
   if (!field) return { title: "Not Found" };
-  return {
+  return pageMetadata({
+    path: `/jitsumu/field/${slug}/`,
     title: `個人情報保護実務検定3級｜${field.name} 練習問題`,
     description: `個人情報保護実務検定3級試験対策。${field.name}分野のオリジナル練習問題と詳細解説。各問に根拠条文を含む解説付きで効率的に学習できます。`,
-  };
+  });
 }
 
 function QuestionCard({ q, index }: { q: JitsumuQuestionData; index: number }) {

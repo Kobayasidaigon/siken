@@ -130,9 +130,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 </ul>
               </div>
             </div>
-            <div className="border-t border-[color:var(--c-border)] pt-4 text-xs text-[color:var(--c-text-sub)]">
-              <p className="mb-1">運営：熊太郎　｜　{new Date().getFullYear()} シカクモン</p>
+            <div className="border-t border-[color:var(--c-border)] pt-4 text-xs text-[color:var(--c-text-sub)] space-y-1">
+              <p>運営：熊太郎　｜　{new Date().getFullYear()} シカクモン</p>
               <p>※ 内容は学習目的で提供しています。正確な情報は各試験の公式サイトをご確認ください。</p>
+              <p>※「ビジネス実務法務検定試験®」は東京商工会議所、「個人情報保護士®」は一般財団法人全日本情報学習振興協会の登録商標です。その他、本サイトに記載されている試験名・サービス名は各実施機関に帰属します。</p>
             </div>
           </div>
         </footer>

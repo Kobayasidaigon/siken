@@ -87,6 +87,14 @@ export default async function ColumnPage({ params }: { params: Promise<{ slug: s
 
       <section className="prose max-w-none" dangerouslySetInnerHTML={{ __html: col.content }} />
 
+      <aside className="mt-8 p-4 rounded border border-[color:var(--c-border)] bg-[color:var(--c-bg-alt)] text-xs text-[color:var(--c-text-sub)] leading-relaxed">
+        <p className="mb-1"><span className="font-bold">記事の前提</span></p>
+        <p>
+          本記事は{col.updatedAt || col.publishedAt}時点の法令・試験制度に基づいて作成しています。
+          受験料・試験日程・出題範囲・改正法対応などの最新情報は、各実施機関の公式サイトで必ずご確認ください。
+        </p>
+      </aside>
+
       {isPiiArticle && (
         <PiiCourseAd
           headline={piiAdContent?.headline}

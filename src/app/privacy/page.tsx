@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/page-metadata";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
+  path: "/privacy/",
   title: "プライバシーポリシー｜シカクモン",
   description: "シカクモンのプライバシーポリシー。個人情報の取得・利用目的、Google Analytics、広告配信について記載しています。",
-};
+});
 
 export default function PrivacyPage() {
   return (

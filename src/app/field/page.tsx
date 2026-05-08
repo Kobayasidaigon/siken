@@ -1,10 +1,12 @@
 import { getQuestionsByField } from "@/lib/questions";
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/page-metadata";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
+  path: "/field/",
   title: "分野別 練習問題一覧",
   description: "貸金業務取扱主任者試験のオリジナル練習問題を分野別に整理。貸金業法・利息制限法・民法・資金需要者保護。",
-};
+});
 
 const fields = [
   { name: "貸金業法", slug: "kashikingyouhou", desc: "試験の中心分野。登録制度、業務規制、帳簿管理、取立て行為の規制などが出題される。" },

@@ -2,6 +2,7 @@ import { getChizaiQuestionsByField } from "@/lib/chizai-questions";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import type { ChizaiQuestionData } from "@/lib/chizai-questions";
+import { pageMetadata } from "@/lib/page-metadata";
 
 const fieldMap: Record<string, { name: string; desc: string }> = {
   "patent": { name: "特許法", desc: "発明の定義、特許要件、出願手続、権利化、侵害と救済など" },
@@ -23,10 +24,11 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const field = fieldMap[slug];
   if (!field) return { title: "Not Found" };
-  return {
+  return pageMetadata({
+    path: `/chizai/field/${slug}/`,
     title: `知的財産管理技能検定3級｜${field.name} 練習問題`,
     description: `知的財産管理技能検定3級試験対策。${field.name}分野のオリジナル練習問題と詳細解説。各問に根拠条文を含む解説付きで効率的に学習できます。`,
-  };
+  });
 }
 
 function QuestionCard({ q, index }: { q: ChizaiQuestionData; index: number }) {

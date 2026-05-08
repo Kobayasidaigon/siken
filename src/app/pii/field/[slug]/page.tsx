@@ -2,6 +2,7 @@ import { getPiiQuestionsByField } from "@/lib/pii-questions";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import type { PiiQuestionData } from "@/lib/pii-questions";
+import { pageMetadata } from "@/lib/page-metadata";
 
 const fieldMap: Record<string, { name: string; desc: string }> = {
   "hogo-law": { name: "個人情報保護法", desc: "個人情報の定義、利用目的、安全管理措置、第三者提供、開示請求、仮名加工情報、匿名加工情報など" },
@@ -17,10 +18,11 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const field = fieldMap[slug];
   if (!field) return { title: "Not Found" };
-  return {
+  return pageMetadata({
+    path: `/pii/field/${slug}/`,
     title: `個人情報保護士｜${field.name} 練習問題`,
     description: `個人情報保護士試験対策。${field.name}分野のオリジナル練習問題と詳細解説。各問に根拠法令を含む解説付きで効率的に学習できます。`,
-  };
+  });
 }
 
 function QuestionCard({ q, index }: { q: PiiQuestionData; index: number }) {

@@ -1,10 +1,12 @@
 import { getAllChizaiQuestions, getChizaiQuestionsByField } from "@/lib/chizai-questions";
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/page-metadata";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
+  path: "/chizai/",
   title: "知的財産管理技能検定3級 試験対策｜オリジナル200問を無料で",
   description: "知的財産管理技能検定3級のオリジナル練習問題200問を詳細解説。特許法・著作権法・意匠法・商標法・不正競争防止法・国際条約などを収録。",
-};
+});
 
 const fields = [
   { name: "特許法", slug: "patent" },

@@ -2,6 +2,7 @@ import { getAllMynumberSlugs, getMynumberQuestion, getMynumberQuestionsByField }
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import AnswerReveal from "@/app/q/[slug]/AnswerReveal";
+import { pageMetadata } from "@/lib/page-metadata";
 
 const fieldSlugMap: Record<string, string> = {
   "番号法の概要": "outline",
@@ -19,7 +20,11 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const q = await getMynumberQuestion(slug);
   if (!q) return {};
-  return { title: q.title, description: q.description };
+  return pageMetadata({
+    path: `/mynumber/q/${slug}/`,
+    title: q.title,
+    description: q.description,
+  });
 }
 
 export default async function MynumberQuestionPage({ params }: { params: Promise<{ slug: string }> }) {

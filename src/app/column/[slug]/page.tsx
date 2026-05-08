@@ -9,6 +9,7 @@ import BijihouCourseAd from "@/components/BijihouCourseAd";
 import { getBijihouAdContent } from "@/lib/bijihou-ad-content";
 import JitsumuCourseAd from "@/components/JitsumuCourseAd";
 import { getJitsumuAdContent } from "@/lib/jitsumu-ad-content";
+import { pageMetadata } from "@/lib/page-metadata";
 
 export async function generateStaticParams() {
   return getAllColumnSlugs().map((slug) => ({ slug }));
@@ -18,10 +19,11 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const col = await getColumn(slug);
   if (!col) return {};
-  return {
+  return pageMetadata({
+    path: `/column/${slug}/`,
     title: col.title,
     description: col.description,
-  };
+  });
 }
 
 export default async function ColumnPage({ params }: { params: Promise<{ slug: string }> }) {

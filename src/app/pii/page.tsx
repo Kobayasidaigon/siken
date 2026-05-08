@@ -2,11 +2,13 @@ import { getAllPiiQuestions, getPiiQuestionsByField } from "@/lib/pii-questions"
 import type { Metadata } from "next";
 import PiiCourseAd from "@/components/PiiCourseAd";
 import { PII_TOP_AD } from "@/lib/pii-ad-content";
+import { pageMetadata } from "@/lib/page-metadata";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
+  path: "/pii/",
   title: "個人情報保護士 試験対策｜オリジナル300問を無料で",
   description: "個人情報保護士認定試験のオリジナル練習問題300問を詳細解説。個人情報保護法・マイナンバー法・情報セキュリティの3分野を収録。",
-};
+});
 
 const fields = [
   {
@@ -119,7 +121,7 @@ export default async function PiiPage() {
           <p><span className="font-bold text-[color:var(--c-ink)]">試験形式</span>　マークシート 100問（課題Ⅰ 50問 + 課題Ⅱ 50問）</p>
           <p><span className="font-bold text-[color:var(--c-ink)]">試験時間</span>　150分</p>
           <p><span className="font-bold text-[color:var(--c-ink)]">合格基準</span>　各課題70%以上</p>
-          <p><span className="font-bold text-[color:var(--c-ink)]">受験料</span>　11,000円（税込）</p>
+          <p><span className="font-bold text-[color:var(--c-ink)]">受験料</span>　11,000円（公開会場・税込）／CBT会場 +1,500円／オンラインIBT +3,000円</p>
         </div>
       </section>
 

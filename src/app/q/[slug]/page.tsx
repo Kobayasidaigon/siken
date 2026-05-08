@@ -2,6 +2,7 @@ import { getAllQuestionSlugs, getQuestion, getQuestionsByField } from "@/lib/que
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import AnswerReveal from "./AnswerReveal";
+import { pageMetadata } from "@/lib/page-metadata";
 
 const fieldSlugMap: Record<string, string> = {
   "貸金業法": "kashikingyouhou",
@@ -18,10 +19,11 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const q = await getQuestion(slug);
   if (!q) return {};
-  return {
+  return pageMetadata({
+    path: `/q/${slug}/`,
     title: q.title,
     description: q.description,
-  };
+  });
 }
 
 export default async function QuestionPage({ params }: { params: Promise<{ slug: string }> }) {

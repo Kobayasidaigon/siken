@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/page-metadata";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
+  path: "/guide/",
   title: "貸金業務取扱主任者の勉強法・学習ガイド",
   description: "貸金業務取扱主任者試験の難易度・合格率・おすすめ勉強法を解説。独学で合格するための完全ガイド。",
-};
+});
 
 export default function GuidePage() {
   return (

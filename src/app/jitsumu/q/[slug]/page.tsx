@@ -2,6 +2,7 @@ import { getAllJitsumuSlugs, getJitsumuQuestion, getJitsumuQuestionsByField } fr
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import AnswerReveal from "@/app/q/[slug]/AnswerReveal";
+import { pageMetadata } from "@/lib/page-metadata";
 
 const fieldSlugMap: Record<string, string> = {
   "個人情報保護法の基礎": "basic",
@@ -19,7 +20,11 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const q = await getJitsumuQuestion(slug);
   if (!q) return {};
-  return { title: q.title, description: q.description };
+  return pageMetadata({
+    path: `/jitsumu/q/${slug}/`,
+    title: q.title,
+    description: q.description,
+  });
 }
 
 export default async function JitsumuQuestionPage({ params }: { params: Promise<{ slug: string }> }) {

@@ -2,11 +2,13 @@ import { getAllJitsumuQuestions, getJitsumuQuestionsByField } from "@/lib/jitsum
 import type { Metadata } from "next";
 import JitsumuCourseAd from "@/components/JitsumuCourseAd";
 import { JITSUMU_TOP_AD } from "@/lib/jitsumu-ad-content";
+import { pageMetadata } from "@/lib/page-metadata";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
+  path: "/jitsumu/",
   title: "個人情報保護実務検定3級 試験対策｜オリジナル200問を無料で",
   description: "個人情報保護実務検定3級のオリジナル練習問題200問を詳細解説。個人情報保護法の基礎・取得利用・安全管理・本人の権利を収録。",
-};
+});
 
 const fields = [
   { name: "個人情報保護法の基礎", slug: "basic", desc: "目的・定義、個人情報・個人データ・保有個人データ、要配慮個人情報、事業者の義務" },

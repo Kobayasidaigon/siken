@@ -1,11 +1,13 @@
 import { getAllColumns } from "@/lib/columns";
 import type { Metadata } from "next";
 import ColumnFilter from "./ColumnFilter";
+import { pageMetadata } from "@/lib/page-metadata";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
+  path: "/column/",
   title: "コラム一覧｜資格試験の勉強法・合格率・試験日程",
   description: "シカクモンが扱う各資格試験のコラム。合格率・勉強法・試験日程・おすすめテキストなどの情報を資格別に整理。",
-};
+});
 
 interface ExamGroup {
   id: string;

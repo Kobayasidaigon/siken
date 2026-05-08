@@ -1,11 +1,13 @@
 import { getAllQuestions } from "@/lib/questions";
 import { getAllColumns } from "@/lib/columns";
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/page-metadata";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
+  path: "/kashikin/",
   title: "貸金業務取扱主任者 試験対策｜オリジナル504問を無料で",
   description: "貸金業務取扱主任者試験のオリジナル練習問題504問を詳細解説。分野別に整理し、根拠条文を添えた解説付きで本試験に備えられます。",
-};
+});
 
 export default async function KashikinPage() {
   const questions = await getAllQuestions();
@@ -90,19 +92,29 @@ export default async function KashikinPage() {
         </div>
       </section>
 
-      {/* コラム */}
-      {columns.length > 0 && (
-        <section className="border-t border-[color:var(--c-border)] pt-8">
-          <h2 className="text-base font-bold text-[color:var(--c-ink)] mb-4 font-serif">読みもの</h2>
-          <div className="space-y-2">
-            {columns.slice(0, 4).map((col) => (
-              <a key={col.slug} href={`/column/${col.slug}/`} className="block text-sm text-[color:var(--c-text)] no-underline hover:text-[color:var(--c-kashikin)]">
-                {col.title}
-              </a>
-            ))}
-          </div>
-        </section>
-      )}
+      {/* コラム（貸金関連のみ） */}
+      {(() => {
+        const kashikinSlugSet = new Set([
+          "goukakuritsu", "benkyouhou", "osusume-text", "shiken-nittei",
+          "kashikingyou-toha", "benkyou-jikan", "takken-hikaku",
+        ]);
+        const kashikinColumns = columns.filter(
+          (c) => c.slug.startsWith("kashikin-") || kashikinSlugSet.has(c.slug)
+        );
+        if (kashikinColumns.length === 0) return null;
+        return (
+          <section className="border-t border-[color:var(--c-border)] pt-8">
+            <h2 className="text-base font-bold text-[color:var(--c-ink)] mb-4 font-serif">読みもの</h2>
+            <div className="space-y-2">
+              {kashikinColumns.slice(0, 4).map((col) => (
+                <a key={col.slug} href={`/column/${col.slug}/`} className="block text-sm text-[color:var(--c-text)] no-underline hover:text-[color:var(--c-kashikin)]">
+                  {col.title}
+                </a>
+              ))}
+            </div>
+          </section>
+        );
+      })()}
     </div>
   );
 }

@@ -2,11 +2,13 @@ import { getAllMynumberQuestions, getMynumberQuestionsByField } from "@/lib/mynu
 import type { Metadata } from "next";
 import MynumberCourseAd from "@/components/MynumberCourseAd";
 import { MYNUMBER_TOP_AD } from "@/lib/mynumber-ad-content";
+import { pageMetadata } from "@/lib/page-metadata";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
+  path: "/mynumber/",
   title: "マイナンバー実務検定3級 試験対策｜オリジナル200問を無料で",
   description: "マイナンバー実務検定3級のオリジナル練習問題200問を詳細解説。番号法・個人番号カード・特定個人情報保護・事業者の取扱いを収録。",
-};
+});
 
 const fields = [
   { name: "番号法の概要", slug: "outline", desc: "番号法の目的、利用範囲、個人番号・法人番号の定義、本人確認" },
@@ -67,7 +69,7 @@ export default async function MynumberPage() {
         <div className="card p-5 text-sm text-[color:var(--c-text-sub)] space-y-2">
           <p><span className="font-bold text-[color:var(--c-ink)]">試験形式</span>　マークシート 50問・75分</p>
           <p><span className="font-bold text-[color:var(--c-ink)]">合格基準</span>　70%以上</p>
-          <p><span className="font-bold text-[color:var(--c-ink)]">受験料</span>　7,000円（3級・税込）</p>
+          <p><span className="font-bold text-[color:var(--c-ink)]">受験料</span>　7,700円（公開会場）／CBT会場 +1,500円／オンラインIBT +3,000円（いずれも税込）</p>
           <p><span className="font-bold text-[color:var(--c-ink)]">試験日</span>　年複数回（協会の公式サイトで確認）</p>
           <p><span className="font-bold text-[color:var(--c-ink)]">実施機関</span>　全日本情報学習振興協会</p>
         </div>

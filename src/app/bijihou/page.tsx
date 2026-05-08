@@ -2,11 +2,13 @@ import { getAllBijihouQuestions, getBijihouQuestionsByField } from "@/lib/bijiho
 import type { Metadata } from "next";
 import BijihouCourseAd from "@/components/BijihouCourseAd";
 import { BIJIHOU_TOP_AD } from "@/lib/bijihou-ad-content";
+import { pageMetadata } from "@/lib/page-metadata";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
+  path: "/bijihou/",
   title: "ビジネス実務法務検定3級 試験対策｜オリジナル200問を無料で",
   description: "ビジネス実務法務検定3級のオリジナル練習問題200問を詳細解説。民法・商法・会社法・関連法規（独禁法・消費者法・知財法）を収録。",
-};
+});
 
 const fields = [
   { name: "法体系・取引の基礎", slug: "kiso", desc: "公法/私法、行為能力、代理、契約成立、意思表示、消滅時効" },
@@ -63,7 +65,7 @@ export default async function BijihouPage() {
         <div className="card p-5 text-sm text-[color:var(--c-text-sub)] space-y-2">
           <p><span className="font-bold text-[color:var(--c-ink)]">試験形式</span>　多肢選択式・90分・100点満点</p>
           <p><span className="font-bold text-[color:var(--c-ink)]">合格基準</span>　70点以上</p>
-          <p><span className="font-bold text-[color:var(--c-ink)]">受験料</span>　5,500円（税込）</p>
+          <p><span className="font-bold text-[color:var(--c-ink)]">受験料</span>　IBT方式 5,500円／CBT方式 7,700円（いずれも税込）</p>
           <p><span className="font-bold text-[color:var(--c-ink)]">試験日</span>　年2回（6〜7月、10〜11月）</p>
           <p><span className="font-bold text-[color:var(--c-ink)]">実施機関</span>　東京商工会議所</p>
         </div>

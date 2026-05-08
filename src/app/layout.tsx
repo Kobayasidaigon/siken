@@ -27,9 +27,6 @@ export const metadata: Metadata = {
     icon: "/favicon.svg",
   },
   metadataBase: new URL("https://shikakumon.com"),
-  alternates: {
-    canonical: "https://shikakumon.com",
-  },
   verification: {
     google: "dnyK_8fRmK5hV625XjQD10ccjXMiXHXp_8RdH-jq2zw",
   },
@@ -40,9 +37,6 @@ export const metadata: Metadata = {
     type: "website",
     locale: "ja_JP",
     siteName: "シカクモン",
-    title: "シカクモン｜資格試験のオリジナル練習問題を無料で提供",
-    description: "シカクモンは資格試験のオリジナル練習問題を無料で提供するサイトです。貸金業務取扱主任者・個人情報保護士・知財3級・マイナンバー3級・個情保実務3級・ビジ法3級の6資格、合計1604問。",
-    url: "https://shikakumon.com",
   },
 };
 

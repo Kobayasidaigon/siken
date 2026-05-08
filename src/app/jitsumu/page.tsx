@@ -1,4 +1,5 @@
 import { getAllJitsumuQuestions, getJitsumuQuestionsByField } from "@/lib/jitsumu-questions";
+import { getAllColumns } from "@/lib/columns";
 import type { Metadata } from "next";
 import JitsumuCourseAd from "@/components/JitsumuCourseAd";
 import { JITSUMU_TOP_AD } from "@/lib/jitsumu-ad-content";
@@ -20,6 +21,8 @@ const fields = [
 
 export default async function JitsumuPage() {
   const allQuestions = await getAllJitsumuQuestions();
+  const allColumns = await getAllColumns();
+  const jitsumuColumns = allColumns.filter((c) => c.slug.startsWith("jitsumu-"));
   const fieldCounts = await Promise.all(fields.map(async (f) => (await getJitsumuQuestionsByField(f.name)).length));
 
   return (
@@ -67,6 +70,29 @@ export default async function JitsumuPage() {
       </section>
 
       <JitsumuCourseAd headline={JITSUMU_TOP_AD.headline} body={JITSUMU_TOP_AD.body} />
+
+      {/* コラム */}
+      {jitsumuColumns.length > 0 && (
+        <section className="border-t border-[color:var(--c-border)] pt-8 mt-8">
+          <h2 className="text-base font-bold text-[color:var(--c-ink)] mb-4 font-serif">コラム</h2>
+          <div className="space-y-2">
+            {jitsumuColumns.slice(0, 6).map((col) => (
+              <a
+                key={col.slug}
+                href={`/column/${col.slug}/`}
+                className="block py-2 text-sm text-[color:var(--c-text)] no-underline hover:text-[color:var(--c-pii)] border-b border-[color:var(--c-border)] last:border-b-0"
+              >
+                {col.title}
+              </a>
+            ))}
+          </div>
+          {jitsumuColumns.length > 6 && (
+            <a href="/column/#jitsumu" className="inline-block mt-4 text-sm text-[color:var(--c-text-sub)] no-underline hover:text-[color:var(--c-pii)] underline">
+              個人情報保護実務検定3級のコラムをすべて見る →
+            </a>
+          )}
+        </section>
+      )}
     </div>
   );
 }

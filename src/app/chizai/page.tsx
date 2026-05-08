@@ -1,4 +1,5 @@
 import { getAllChizaiQuestions, getChizaiQuestionsByField } from "@/lib/chizai-questions";
+import { getAllColumns } from "@/lib/columns";
 import type { Metadata } from "next";
 import { pageMetadata } from "@/lib/page-metadata";
 
@@ -22,6 +23,8 @@ const fields = [
 
 export default async function ChizaiPage() {
   const allQuestions = await getAllChizaiQuestions();
+  const allColumns = await getAllColumns();
+  const chizaiColumns = allColumns.filter((c) => c.slug.startsWith("chizai-"));
 
   const fieldCounts = await Promise.all(
     fields.map(async (f) => {
@@ -133,6 +136,29 @@ export default async function ChizaiPage() {
           <p><span className="font-bold text-[color:var(--c-ink)]">実施機関</span>　知的財産教育協会</p>
         </div>
       </section>
+
+      {/* コラム */}
+      {chizaiColumns.length > 0 && (
+        <section className="border-t border-[color:var(--c-border)] pt-8">
+          <h2 className="text-base font-bold text-[color:var(--c-ink)] mb-4 font-serif">コラム</h2>
+          <div className="space-y-2">
+            {chizaiColumns.slice(0, 6).map((col) => (
+              <a
+                key={col.slug}
+                href={`/column/${col.slug}/`}
+                className="block py-2 text-sm text-[color:var(--c-text)] no-underline hover:text-[color:var(--c-chizai)] border-b border-[color:var(--c-border)] last:border-b-0"
+              >
+                {col.title}
+              </a>
+            ))}
+          </div>
+          {chizaiColumns.length > 6 && (
+            <a href="/column/#chizai" className="inline-block mt-4 text-sm text-[color:var(--c-text-sub)] no-underline hover:text-[color:var(--c-chizai)] underline">
+              知的財産管理技能検定3級のコラムをすべて見る →
+            </a>
+          )}
+        </section>
+      )}
     </div>
   );
 }

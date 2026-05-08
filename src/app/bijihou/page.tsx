@@ -1,4 +1,5 @@
 import { getAllBijihouQuestions, getBijihouQuestionsByField } from "@/lib/bijihou-questions";
+import { getAllColumns } from "@/lib/columns";
 import type { Metadata } from "next";
 import BijihouCourseAd from "@/components/BijihouCourseAd";
 import { BIJIHOU_TOP_AD } from "@/lib/bijihou-ad-content";
@@ -20,6 +21,8 @@ const fields = [
 
 export default async function BijihouPage() {
   const allQuestions = await getAllBijihouQuestions();
+  const allColumns = await getAllColumns();
+  const bijihouColumns = allColumns.filter((c) => c.slug.startsWith("bijihou-"));
   const fieldCounts = await Promise.all(
     fields.map(async (f) => {
       const qs = await getBijihouQuestionsByField(f.name);
@@ -72,6 +75,29 @@ export default async function BijihouPage() {
       </section>
 
       <BijihouCourseAd headline={BIJIHOU_TOP_AD.headline} body={BIJIHOU_TOP_AD.body} />
+
+      {/* コラム */}
+      {bijihouColumns.length > 0 && (
+        <section className="border-t border-[color:var(--c-border)] pt-8 mt-8">
+          <h2 className="text-base font-bold text-[color:var(--c-ink)] mb-4 font-serif">コラム</h2>
+          <div className="space-y-2">
+            {bijihouColumns.slice(0, 6).map((col) => (
+              <a
+                key={col.slug}
+                href={`/column/${col.slug}/`}
+                className="block py-2 text-sm text-[color:var(--c-text)] no-underline hover:text-[color:var(--c-kashikin)] border-b border-[color:var(--c-border)] last:border-b-0"
+              >
+                {col.title}
+              </a>
+            ))}
+          </div>
+          {bijihouColumns.length > 6 && (
+            <a href="/column/#bijihou" className="inline-block mt-4 text-sm text-[color:var(--c-text-sub)] no-underline hover:text-[color:var(--c-kashikin)] underline">
+              ビジネス実務法務検定3級のコラムをすべて見る →
+            </a>
+          )}
+        </section>
+      )}
     </div>
   );
 }

@@ -104,14 +104,23 @@ export default async function KashikinPage() {
         if (kashikinColumns.length === 0) return null;
         return (
           <section className="border-t border-[color:var(--c-border)] pt-8">
-            <h2 className="text-base font-bold text-[color:var(--c-ink)] mb-4 font-serif">読みもの</h2>
+            <h2 className="text-base font-bold text-[color:var(--c-ink)] mb-4 font-serif">コラム</h2>
             <div className="space-y-2">
-              {kashikinColumns.slice(0, 4).map((col) => (
-                <a key={col.slug} href={`/column/${col.slug}/`} className="block text-sm text-[color:var(--c-text)] no-underline hover:text-[color:var(--c-kashikin)]">
+              {kashikinColumns.slice(0, 6).map((col) => (
+                <a
+                  key={col.slug}
+                  href={`/column/${col.slug}/`}
+                  className="block py-2 text-sm text-[color:var(--c-text)] no-underline hover:text-[color:var(--c-kashikin)] border-b border-[color:var(--c-border)] last:border-b-0"
+                >
                   {col.title}
                 </a>
               ))}
             </div>
+            {kashikinColumns.length > 6 && (
+              <a href="/column/#kashikin" className="inline-block mt-4 text-sm text-[color:var(--c-text-sub)] no-underline hover:text-[color:var(--c-kashikin)] underline">
+                貸金業務取扱主任者のコラムをすべて見る →
+              </a>
+            )}
           </section>
         );
       })()}

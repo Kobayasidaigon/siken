@@ -42,6 +42,12 @@ body {
   min-height: 100dvh;
 }
 
+/* 日本語の自然な改行（文節区切りで折り返す）。Chrome/Safari対応、未対応ブラウザは従来挙動 */
+body, p, h1, h2, h3, h4, h5, h6, li, td, th, summary {
+  word-break: auto-phrase;
+  line-break: strict;
+}
+
 .font-serif {
   font-family: "Noto Serif JP", serif;
 }

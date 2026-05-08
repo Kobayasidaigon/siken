@@ -1,4 +1,5 @@
 import { getAllMynumberQuestions, getMynumberQuestionsByField } from "@/lib/mynumber-questions";
+import { getAllColumns } from "@/lib/columns";
 import type { Metadata } from "next";
 import MynumberCourseAd from "@/components/MynumberCourseAd";
 import { MYNUMBER_TOP_AD } from "@/lib/mynumber-ad-content";
@@ -20,6 +21,8 @@ const fields = [
 
 export default async function MynumberPage() {
   const allQuestions = await getAllMynumberQuestions();
+  const allColumns = await getAllColumns();
+  const mynumberColumns = allColumns.filter((c) => c.slug.startsWith("mynumber-"));
 
   const fieldCounts = await Promise.all(
     fields.map(async (f) => {
@@ -76,6 +79,29 @@ export default async function MynumberPage() {
       </section>
 
       <MynumberCourseAd headline={MYNUMBER_TOP_AD.headline} body={MYNUMBER_TOP_AD.body} />
+
+      {/* コラム */}
+      {mynumberColumns.length > 0 && (
+        <section className="border-t border-[color:var(--c-border)] pt-8 mt-8">
+          <h2 className="text-base font-bold text-[color:var(--c-ink)] mb-4 font-serif">コラム</h2>
+          <div className="space-y-2">
+            {mynumberColumns.slice(0, 6).map((col) => (
+              <a
+                key={col.slug}
+                href={`/column/${col.slug}/`}
+                className="block py-2 text-sm text-[color:var(--c-text)] no-underline hover:text-[color:var(--c-pii)] border-b border-[color:var(--c-border)] last:border-b-0"
+              >
+                {col.title}
+              </a>
+            ))}
+          </div>
+          {mynumberColumns.length > 6 && (
+            <a href="/column/#mynumber" className="inline-block mt-4 text-sm text-[color:var(--c-text-sub)] no-underline hover:text-[color:var(--c-pii)] underline">
+              マイナンバー実務検定3級のコラムをすべて見る →
+            </a>
+          )}
+        </section>
+      )}
     </div>
   );
 }

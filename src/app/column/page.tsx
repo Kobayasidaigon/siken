@@ -143,10 +143,9 @@ export default async function ColumnIndexPage() {
                 className="card p-4 no-underline group block transition-transform hover:-translate-y-0.5"
                 style={{ borderTop: `3px solid ${g.themeMain}` }}
               >
-                <p className="text-sm font-bold font-serif mb-1" style={{ color: g.themeInk }}>
-                  {g.shortName}
+                <p className="text-sm font-bold font-serif leading-snug mb-2" style={{ color: g.themeInk }}>
+                  {g.examName}
                 </p>
-                <p className="text-xs text-[color:var(--c-text-sub)] mb-2 line-clamp-1">{g.examName}</p>
                 <p className="text-[11px] text-[color:var(--c-text-sub)]">
                   <span className="font-bold" style={{ color: g.themeMain }}>{g.items.length}</span>
                   本のコラム

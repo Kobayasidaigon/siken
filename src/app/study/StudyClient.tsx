@@ -2,7 +2,17 @@
 import { useEffect, useState } from "react";
 import { loadProgress, clearProgress, EXAM_LIST, type AllProgress, type ExamSlug } from "@/lib/study-progress";
 
-export default function StudyClient() {
+export interface QuestionMeta {
+  questionNumber: number;
+  field: string;
+  topic: string;
+}
+
+export default function StudyClient({
+  questionMeta,
+}: {
+  questionMeta: Record<ExamSlug, Record<string, QuestionMeta>>;
+}) {
   const [progress, setProgress] = useState<AllProgress | null>(null);
 
   useEffect(() => {
@@ -44,6 +54,33 @@ export default function StudyClient() {
       setProgress(loadProgress());
     }
   };
+
+  function renderQuestionRow(exam: ExamSlug, slug: string, prefix: string, accentClass: string) {
+    const meta = questionMeta[exam]?.[slug];
+    const examInfo = EXAM_LIST.find((e) => e.slug === exam);
+    const href = `${examInfo?.questionPathPrefix ?? "/"}${slug}/`;
+    return (
+      <a
+        key={slug}
+        href={href}
+        className={`block py-2 no-underline border-b border-[color:var(--c-border)] last:border-b-0 hover:bg-[color:var(--c-bg-alt)] -mx-2 px-2 rounded-sm`}
+      >
+        {meta ? (
+          <>
+            <div className="flex items-baseline gap-2">
+              <span className={`text-xs font-bold shrink-0 ${accentClass}`}>{prefix}問{meta.questionNumber}</span>
+              <span className="text-xs text-[color:var(--c-text-sub)] shrink-0">{meta.field}</span>
+            </div>
+            <p className="text-sm text-[color:var(--c-text)] mt-0.5 leading-snug">{meta.topic}</p>
+          </>
+        ) : (
+          <span className={`text-sm ${accentClass}`}>
+            {prefix} {slug}
+          </span>
+        )}
+      </a>
+    );
+  }
 
   return (
     <div className="pb-16">
@@ -121,16 +158,8 @@ export default function StudyClient() {
                 <summary className="text-sm font-bold cursor-pointer text-red-700 mb-2">
                   間違えた問題 ({p.wrong.length})
                 </summary>
-                <div className="mt-2 space-y-1">
-                  {p.wrong.map((slug) => (
-                    <a
-                      key={slug}
-                      href={`${e.questionPathPrefix}${slug}/`}
-                      className="block text-sm text-[color:var(--c-text)] no-underline hover:text-[color:var(--c-kashikin)] py-1"
-                    >
-                      → {slug}
-                    </a>
-                  ))}
+                <div className="mt-2">
+                  {p.wrong.map((slug) => renderQuestionRow(e.slug, slug, "✗", "text-red-700"))}
                 </div>
                 {firstWrong && (
                   <a
@@ -148,16 +177,8 @@ export default function StudyClient() {
                 <summary className="text-sm font-bold cursor-pointer text-amber-800 mb-2">
                   ブックマーク ({p.bookmarks.length})
                 </summary>
-                <div className="mt-2 space-y-1">
-                  {p.bookmarks.map((slug) => (
-                    <a
-                      key={slug}
-                      href={`${e.questionPathPrefix}${slug}/`}
-                      className="block text-sm text-[color:var(--c-text)] no-underline hover:text-[color:var(--c-kashikin)] py-1"
-                    >
-                      ★ {slug}
-                    </a>
-                  ))}
+                <div className="mt-2">
+                  {p.bookmarks.map((slug) => renderQuestionRow(e.slug, slug, "★", "text-amber-800"))}
                 </div>
                 {firstBookmark && (
                   <a
@@ -175,16 +196,8 @@ export default function StudyClient() {
                 <summary className="text-sm font-bold cursor-pointer text-green-700 mb-2">
                   正解した問題 ({p.correct.length})
                 </summary>
-                <div className="mt-2 space-y-1">
-                  {p.correct.map((slug) => (
-                    <a
-                      key={slug}
-                      href={`${e.questionPathPrefix}${slug}/`}
-                      className="block text-sm text-[color:var(--c-text-sub)] no-underline hover:text-[color:var(--c-kashikin)] py-1"
-                    >
-                      ✓ {slug}
-                    </a>
-                  ))}
+                <div className="mt-2">
+                  {p.correct.map((slug) => renderQuestionRow(e.slug, slug, "✓", "text-green-700"))}
                 </div>
               </details>
             )}

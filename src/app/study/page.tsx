@@ -1,6 +1,13 @@
 import type { Metadata } from "next";
 import { pageMetadata } from "@/lib/page-metadata";
-import StudyClient from "./StudyClient";
+import StudyClient, { type QuestionMeta } from "./StudyClient";
+import { getAllQuestions } from "@/lib/questions";
+import { getAllPiiQuestions } from "@/lib/pii-questions";
+import { getAllChizaiQuestions } from "@/lib/chizai-questions";
+import { getAllMynumberQuestions } from "@/lib/mynumber-questions";
+import { getAllJitsumuQuestions } from "@/lib/jitsumu-questions";
+import { getAllBijihouQuestions } from "@/lib/bijihou-questions";
+import type { ExamSlug } from "@/lib/study-progress";
 
 export const metadata: Metadata = pageMetadata({
   path: "/study/",
@@ -8,6 +15,44 @@ export const metadata: Metadata = pageMetadata({
   description: "シカクモンで解いた問題の正誤履歴とブックマークを表示します。間違えた問題から再挑戦したり、後で見直したい問題を整理できます。",
 });
 
-export default function StudyPage() {
-  return <StudyClient />;
+function extractTopic(title: string): string {
+  // タイトルは "【問1】貸金業務取扱主任者 練習問題｜登録の基本" のような形式
+  // "｜" で区切って後半（トピック部分）を取り出す
+  const parts = title.split("｜");
+  if (parts.length >= 2) return parts[parts.length - 1].trim();
+  return title;
+}
+
+export default async function StudyPage() {
+  const [kashikin, pii, chizai, mynumber, jitsumu, bijihou] = await Promise.all([
+    getAllQuestions(),
+    getAllPiiQuestions(),
+    getAllChizaiQuestions(),
+    getAllMynumberQuestions(),
+    getAllJitsumuQuestions(),
+    getAllBijihouQuestions(),
+  ]);
+
+  const buildMap = (questions: { slug: string; questionNumber: number; field: string; title: string }[]): Record<string, QuestionMeta> => {
+    const map: Record<string, QuestionMeta> = {};
+    for (const q of questions) {
+      map[q.slug] = {
+        questionNumber: q.questionNumber,
+        field: q.field,
+        topic: extractTopic(q.title),
+      };
+    }
+    return map;
+  };
+
+  const questionMeta: Record<ExamSlug, Record<string, QuestionMeta>> = {
+    kashikin: buildMap(kashikin),
+    pii: buildMap(pii),
+    chizai: buildMap(chizai),
+    mynumber: buildMap(mynumber),
+    jitsumu: buildMap(jitsumu),
+    bijihou: buildMap(bijihou),
+  };
+
+  return <StudyClient questionMeta={questionMeta} />;
 }

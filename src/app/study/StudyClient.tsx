@@ -8,12 +8,25 @@ export interface QuestionMeta {
   topic: string;
 }
 
+const PREVIEW_LIMIT = 10;
+
+type SectionKind = "wrong" | "bookmarks" | "correct";
+
 export default function StudyClient({
   questionMeta,
 }: {
   questionMeta: Record<ExamSlug, Record<string, QuestionMeta>>;
 }) {
   const [progress, setProgress] = useState<AllProgress | null>(null);
+  const [expanded, setExpanded] = useState<Record<string, boolean>>({});
+  const [fieldFilter, setFieldFilter] = useState<Record<ExamSlug, string | null>>({
+    kashikin: null,
+    pii: null,
+    chizai: null,
+    mynumber: null,
+    jitsumu: null,
+    bijihou: null,
+  });
 
   useEffect(() => {
     const refresh = () => setProgress(loadProgress());
@@ -55,15 +68,35 @@ export default function StudyClient({
     }
   };
 
+  const toggleExpanded = (key: string) => {
+    setExpanded((prev) => ({ ...prev, [key]: !prev[key] }));
+  };
+
+  function fieldCounts(exam: ExamSlug, slugs: string[]): Record<string, number> {
+    const counts: Record<string, number> = {};
+    for (const s of slugs) {
+      const meta = questionMeta[exam]?.[s];
+      const field = meta?.field ?? "(分野不明)";
+      counts[field] = (counts[field] ?? 0) + 1;
+    }
+    return counts;
+  }
+
+  function applyFilter(exam: ExamSlug, slugs: string[]): string[] {
+    const filter = fieldFilter[exam];
+    if (!filter) return slugs;
+    return slugs.filter((s) => questionMeta[exam]?.[s]?.field === filter);
+  }
+
   function renderQuestionRow(exam: ExamSlug, slug: string, prefix: string, accentClass: string) {
     const meta = questionMeta[exam]?.[slug];
-    const examInfo = EXAM_LIST.find((e) => e.slug === exam);
+    const examInfo = EXAM_LIST.find((ex) => ex.slug === exam);
     const href = `${examInfo?.questionPathPrefix ?? "/"}${slug}/`;
     return (
       <a
         key={slug}
         href={href}
-        className={`block py-2 no-underline border-b border-[color:var(--c-border)] last:border-b-0 hover:bg-[color:var(--c-bg-alt)] -mx-2 px-2 rounded-sm`}
+        className="block py-2 no-underline border-b border-[color:var(--c-border)] last:border-b-0 hover:bg-[color:var(--c-bg-alt)] -mx-2 px-2 rounded-sm"
       >
         {meta ? (
           <>
@@ -79,6 +112,109 @@ export default function StudyClient({
           </span>
         )}
       </a>
+    );
+  }
+
+  function renderSection(
+    exam: ExamSlug,
+    kind: SectionKind,
+    rawSlugs: string[],
+    label: string,
+    accentClass: string,
+    bgClass: string,
+    prefix: string,
+    defaultOpen: boolean,
+    ctaLabel?: string,
+  ) {
+    if (rawSlugs.length === 0) return null;
+
+    // 新しい順に表示（push される順序の逆）
+    const reversed = [...rawSlugs].reverse();
+    const filtered = applyFilter(exam, reversed);
+    const expandKey = `${exam}-${kind}`;
+    const isExpanded = expanded[expandKey];
+    const visibleSlugs = isExpanded ? filtered : filtered.slice(0, PREVIEW_LIMIT);
+    const hiddenCount = filtered.length - visibleSlugs.length;
+    const counts = fieldCounts(exam, rawSlugs);
+    const fields = Object.keys(counts).sort((a, b) => counts[b] - counts[a]);
+    const filterValue = fieldFilter[exam];
+    const filterAvailable = fields.length > 1;
+    const ctaTarget = filtered[0];
+
+    return (
+      <details className="mt-3" open={defaultOpen}>
+        <summary className={`text-sm font-bold cursor-pointer ${accentClass} mb-2`}>
+          {label} ({rawSlugs.length})
+          {filterValue && <span className="ml-2 text-xs font-normal">— {filterValue} {filtered.length}件</span>}
+        </summary>
+
+        {filterAvailable && (
+          <div className="mt-2 mb-3 flex flex-wrap gap-1.5 text-xs">
+            <button
+              type="button"
+              onClick={() => setFieldFilter((p) => ({ ...p, [exam]: null }))}
+              className={`px-2 py-0.5 rounded-full border transition-colors ${
+                filterValue === null
+                  ? "border-[color:var(--c-ink)] bg-[color:var(--c-ink)] text-white"
+                  : "border-[color:var(--c-border)] text-[color:var(--c-text-sub)] hover:bg-[color:var(--c-bg-alt)]"
+              }`}
+            >
+              すべて ({rawSlugs.length})
+            </button>
+            {fields.map((field) => (
+              <button
+                key={field}
+                type="button"
+                onClick={() => setFieldFilter((p) => ({ ...p, [exam]: filterValue === field ? null : field }))}
+                className={`px-2 py-0.5 rounded-full border transition-colors ${
+                  filterValue === field
+                    ? "border-[color:var(--c-ink)] bg-[color:var(--c-ink)] text-white"
+                    : "border-[color:var(--c-border)] text-[color:var(--c-text-sub)] hover:bg-[color:var(--c-bg-alt)]"
+                }`}
+              >
+                {field} ({counts[field]})
+              </button>
+            ))}
+          </div>
+        )}
+
+        <div className="mt-2">
+          {visibleSlugs.map((slug) => renderQuestionRow(exam, slug, prefix, accentClass))}
+          {filtered.length === 0 && (
+            <p className="text-sm text-[color:var(--c-text-sub)] py-2">該当する問題はありません。</p>
+          )}
+        </div>
+
+        {hiddenCount > 0 && (
+          <button
+            type="button"
+            onClick={() => toggleExpanded(expandKey)}
+            className="text-xs text-[color:var(--c-text-sub)] hover:text-[color:var(--c-ink)] underline mt-3"
+          >
+            残り {hiddenCount} 件をすべて表示
+          </button>
+        )}
+        {isExpanded && filtered.length > PREVIEW_LIMIT && (
+          <button
+            type="button"
+            onClick={() => toggleExpanded(expandKey)}
+            className="text-xs text-[color:var(--c-text-sub)] hover:text-[color:var(--c-ink)] underline mt-3 ml-3"
+          >
+            折りたたむ
+          </button>
+        )}
+
+        {ctaLabel && ctaTarget && (
+          <div className="mt-3">
+            <a
+              href={`${EXAM_LIST.find((e) => e.slug === exam)?.questionPathPrefix ?? "/"}${ctaTarget}/`}
+              className={`inline-block text-xs px-3 py-1.5 rounded-full border ${bgClass} no-underline`}
+            >
+              {ctaLabel}
+            </a>
+          </div>
+        )}
+      </details>
     );
   }
 
@@ -133,8 +269,6 @@ export default function StudyClient({
         const p = progress[e.slug];
         const total = p.bookmarks.length + p.wrong.length + p.correct.length;
         if (total === 0) return null;
-        const firstWrong = p.wrong[0];
-        const firstBookmark = p.bookmarks[0];
         return (
           <section key={e.slug} className="mb-8 card p-5">
             <div className="flex items-start justify-between gap-3 mb-3">
@@ -153,53 +287,40 @@ export default function StudyClient({
               </button>
             </div>
 
-            {p.wrong.length > 0 && (
-              <details className="mt-3" open>
-                <summary className="text-sm font-bold cursor-pointer text-red-700 mb-2">
-                  間違えた問題 ({p.wrong.length})
-                </summary>
-                <div className="mt-2">
-                  {p.wrong.map((slug) => renderQuestionRow(e.slug, slug, "✗", "text-red-700"))}
-                </div>
-                {firstWrong && (
-                  <a
-                    href={`${e.questionPathPrefix}${firstWrong}/`}
-                    className="inline-block mt-3 text-xs px-3 py-1.5 rounded-full bg-red-50 border border-red-200 text-red-700 no-underline hover:bg-red-100"
-                  >
-                    間違えた問題から再挑戦 →
-                  </a>
-                )}
-              </details>
+            {renderSection(
+              e.slug,
+              "wrong",
+              p.wrong,
+              "間違えた問題",
+              "text-red-700",
+              "bg-red-50 border-red-200 text-red-700 hover:bg-red-100",
+              "✗",
+              true,
+              "間違えた問題から再挑戦 →",
             )}
 
-            {p.bookmarks.length > 0 && (
-              <details className="mt-3" open>
-                <summary className="text-sm font-bold cursor-pointer text-amber-800 mb-2">
-                  ブックマーク ({p.bookmarks.length})
-                </summary>
-                <div className="mt-2">
-                  {p.bookmarks.map((slug) => renderQuestionRow(e.slug, slug, "★", "text-amber-800"))}
-                </div>
-                {firstBookmark && (
-                  <a
-                    href={`${e.questionPathPrefix}${firstBookmark}/`}
-                    className="inline-block mt-3 text-xs px-3 py-1.5 rounded-full bg-amber-50 border border-amber-200 text-amber-800 no-underline hover:bg-amber-100"
-                  >
-                    ブックマークから見直す →
-                  </a>
-                )}
-              </details>
+            {renderSection(
+              e.slug,
+              "bookmarks",
+              p.bookmarks,
+              "ブックマーク",
+              "text-amber-800",
+              "bg-amber-50 border-amber-200 text-amber-800 hover:bg-amber-100",
+              "★",
+              true,
+              "ブックマークから見直す →",
             )}
 
-            {p.correct.length > 0 && (
-              <details className="mt-3">
-                <summary className="text-sm font-bold cursor-pointer text-green-700 mb-2">
-                  正解した問題 ({p.correct.length})
-                </summary>
-                <div className="mt-2">
-                  {p.correct.map((slug) => renderQuestionRow(e.slug, slug, "✓", "text-green-700"))}
-                </div>
-              </details>
+            {renderSection(
+              e.slug,
+              "correct",
+              p.correct,
+              "正解した問題",
+              "text-green-700",
+              "bg-green-50 border-green-200 text-green-700 hover:bg-green-100",
+              "✓",
+              false,
+              undefined,
             )}
           </section>
         );
@@ -220,7 +341,7 @@ export default function StudyClient({
       <section className="mt-10 pt-6 border-t border-[color:var(--c-border)]">
         <p className="text-xs text-[color:var(--c-text-sub)] leading-relaxed">
           学習履歴はあなたのブラウザにのみ保存されています。シークレットモードや別の端末では引き継がれません。
-          ブラウザのデータを削除すると履歴も消えます。
+          ブラウザのデータを削除すると履歴も消えます。一覧は新しい順に表示しています。
         </p>
       </section>
     </div>

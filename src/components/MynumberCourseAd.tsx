@@ -14,8 +14,10 @@ export default function MynumberCourseAd({ headline, body }: Props = {}) {
 
   return (
     <aside className="my-10 p-5 rounded-lg border border-[color:var(--c-border)] bg-[color:var(--c-bg-alt)]">
-      <p className="text-xs font-bold text-[color:var(--c-text-sub)] mb-3 inline-block px-2 py-0.5 rounded border border-[color:var(--c-border)] bg-[color:var(--c-surface)]">
-        【広告】PRを含みます
+      <p className="mb-3">
+        <span className="text-[10px] tracking-wider text-[color:var(--c-text-sub)] border border-[color:var(--c-border)] px-1.5 py-0.5 rounded">
+          広告
+        </span>
       </p>
       <p className="text-xs text-[color:var(--c-text-sub)] mb-3">{finalHeadline}</p>
       <p className="text-sm text-[color:var(--c-text)] leading-relaxed mb-4">

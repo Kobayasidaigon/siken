@@ -8,8 +8,10 @@ export default function JitsumuCourseAd({ headline, body }: Props = {}) {
   const finalBody = body ?? "個人情報保護実務検定試験を実施している全日本情報学習振興協会では、公式の認定講座「SMART合格講座」を提供しています。試験範囲を体系的に学びたい方は検討してみてください。";
   return (
     <aside className="my-10 p-5 rounded-lg border border-[color:var(--c-border)] bg-[color:var(--c-bg-alt)]">
-      <p className="text-xs font-bold text-[color:var(--c-text-sub)] mb-3 inline-block px-2 py-0.5 rounded border border-[color:var(--c-border)] bg-[color:var(--c-surface)]">
-        【広告】PRを含みます
+      <p className="mb-3">
+        <span className="text-[10px] tracking-wider text-[color:var(--c-text-sub)] border border-[color:var(--c-border)] px-1.5 py-0.5 rounded">
+          広告
+        </span>
       </p>
       <p className="text-xs text-[color:var(--c-text-sub)] mb-3">{finalHeadline}</p>
       <p className="text-sm text-[color:var(--c-text)] leading-relaxed mb-4">{finalBody}</p>

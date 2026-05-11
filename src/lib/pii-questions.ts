@@ -51,12 +51,15 @@ export async function getPiiQuestion(slug: string): Promise<PiiQuestionData | nu
   };
 }
 
+let _allCache: PiiQuestionData[] | null = null;
 export async function getAllPiiQuestions(): Promise<PiiQuestionData[]> {
+  if (_allCache) return _allCache;
   const slugs = getAllPiiSlugs();
   const questions = await Promise.all(slugs.map(getPiiQuestion));
-  return questions
+  _allCache = questions
     .filter((q): q is PiiQuestionData => q !== null)
     .sort((a, b) => a.questionNumber - b.questionNumber);
+  return _allCache;
 }
 
 export async function getPiiQuestionsByField(field: string): Promise<PiiQuestionData[]> {

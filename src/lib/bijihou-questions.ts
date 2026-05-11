@@ -45,10 +45,13 @@ export async function getBijihouQuestion(slug: string): Promise<BijihouQuestionD
   };
 }
 
+let _allCache: BijihouQuestionData[] | null = null;
 export async function getAllBijihouQuestions(): Promise<BijihouQuestionData[]> {
+  if (_allCache) return _allCache;
   const slugs = getAllBijihouSlugs();
   const questions = await Promise.all(slugs.map(getBijihouQuestion));
-  return questions.filter((q): q is BijihouQuestionData => q !== null).sort((a, b) => a.questionNumber - b.questionNumber);
+  _allCache = questions.filter((q): q is BijihouQuestionData => q !== null).sort((a, b) => a.questionNumber - b.questionNumber);
+  return _allCache;
 }
 
 export async function getBijihouQuestionsByField(field: string): Promise<BijihouQuestionData[]> {

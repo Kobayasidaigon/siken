@@ -9,6 +9,7 @@ import BijihouCourseAd from "@/components/BijihouCourseAd";
 import { getBijihouAdContent } from "@/lib/bijihou-ad-content";
 import JitsumuCourseAd from "@/components/JitsumuCourseAd";
 import { getJitsumuAdContent } from "@/lib/jitsumu-ad-content";
+import TextAffiliateAd from "@/components/TextAffiliateAd";
 import { pageMetadata } from "@/lib/page-metadata";
 
 export async function generateStaticParams() {
@@ -120,6 +121,27 @@ export default async function ColumnPage({ params }: { params: Promise<{ slug: s
         <BijihouCourseAd
           headline={bijihouAdContent?.headline}
           body={bijihouAdContent?.body}
+        />
+      )}
+
+      {/* GSC上位記事への追加アフィリエイト（アガルートアカデミー） */}
+      {slug === "osusume-text" && (
+        <TextAffiliateAd
+          headline="市販テキスト＋通信講座の併用も選択肢に"
+          body="市販テキストだけでは独学に不安が残る方は、スキマ時間を活用できるオンライン講座も検討してみてください。テキストとスマホ講義を組み合わせた学習スタイルです。"
+          linkHref="https://px.a8.net/svt/ejp?a8mat=4B3N6P+AWY41E+44M0+5YRHE"
+          linkText="スキマ時間も有効活用できるオンライン講座"
+          pixelSrc="https://www17.a8.net/0.gif?a8mat=4B3N6P+AWY41E+44M0+5YRHE"
+        />
+      )}
+
+      {slug === "takken-hikaku" && (
+        <TextAffiliateAd
+          headline="宅建側の対策をお探しの方へ"
+          body="貸金業務取扱主任者と宅建のダブルライセンスを狙うなら、宅建側もきちんと準備しておく必要があります。フルカラーテキストと動画講義で、ゼロから1年合格を目指せるカリキュラムです。"
+          linkHref="https://px.a8.net/svt/ejp?a8mat=4B3N6P+AWY41E+44M0+61Z82"
+          linkText="宅建士講座・ゼロから始めて1年合格！"
+          pixelSrc="https://www11.a8.net/0.gif?a8mat=4B3N6P+AWY41E+44M0+61Z82"
         />
       )}
 

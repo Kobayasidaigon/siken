@@ -45,10 +45,13 @@ export async function getJitsumuQuestion(slug: string): Promise<JitsumuQuestionD
   };
 }
 
+let _allCache: JitsumuQuestionData[] | null = null;
 export async function getAllJitsumuQuestions(): Promise<JitsumuQuestionData[]> {
+  if (_allCache) return _allCache;
   const slugs = getAllJitsumuSlugs();
   const questions = await Promise.all(slugs.map(getJitsumuQuestion));
-  return questions.filter((q): q is JitsumuQuestionData => q !== null).sort((a, b) => a.questionNumber - b.questionNumber);
+  _allCache = questions.filter((q): q is JitsumuQuestionData => q !== null).sort((a, b) => a.questionNumber - b.questionNumber);
+  return _allCache;
 }
 
 export async function getJitsumuQuestionsByField(field: string): Promise<JitsumuQuestionData[]> {

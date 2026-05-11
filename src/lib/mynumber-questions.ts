@@ -51,12 +51,15 @@ export async function getMynumberQuestion(slug: string): Promise<MynumberQuestio
   };
 }
 
+let _allCache: MynumberQuestionData[] | null = null;
 export async function getAllMynumberQuestions(): Promise<MynumberQuestionData[]> {
+  if (_allCache) return _allCache;
   const slugs = getAllMynumberSlugs();
   const questions = await Promise.all(slugs.map(getMynumberQuestion));
-  return questions
+  _allCache = questions
     .filter((q): q is MynumberQuestionData => q !== null)
     .sort((a, b) => a.questionNumber - b.questionNumber);
+  return _allCache;
 }
 
 export async function getMynumberQuestionsByField(field: string): Promise<MynumberQuestionData[]> {

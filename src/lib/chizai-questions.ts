@@ -51,12 +51,15 @@ export async function getChizaiQuestion(slug: string): Promise<ChizaiQuestionDat
   };
 }
 
+let _allCache: ChizaiQuestionData[] | null = null;
 export async function getAllChizaiQuestions(): Promise<ChizaiQuestionData[]> {
+  if (_allCache) return _allCache;
   const slugs = getAllChizaiSlugs();
   const questions = await Promise.all(slugs.map(getChizaiQuestion));
-  return questions
+  _allCache = questions
     .filter((q): q is ChizaiQuestionData => q !== null)
     .sort((a, b) => a.questionNumber - b.questionNumber);
+  return _allCache;
 }
 
 export async function getChizaiQuestionsByField(field: string): Promise<ChizaiQuestionData[]> {

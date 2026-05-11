@@ -41,10 +41,13 @@ export async function getQuestion(slug: string): Promise<QuestionData | null> {
   };
 }
 
+let _allCache: QuestionData[] | null = null;
 export async function getAllQuestions(): Promise<QuestionData[]> {
+  if (_allCache) return _allCache;
   const slugs = getAllQuestionSlugs();
   const questions = await Promise.all(slugs.map(getQuestion));
-  return questions.filter((q): q is QuestionData => q !== null);
+  _allCache = questions.filter((q): q is QuestionData => q !== null);
+  return _allCache;
 }
 
 export async function getQuestionsByExam(examNumber: number): Promise<QuestionData[]> {

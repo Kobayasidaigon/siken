@@ -4,7 +4,7 @@ import { pageMetadata } from "@/lib/page-metadata";
 export const metadata: Metadata = pageMetadata({
   path: "/privacy/",
   title: "プライバシーポリシー｜シカクモン",
-  description: "シカクモンのプライバシーポリシー。個人情報の取得・利用目的、Google Analytics、広告配信について記載しています。",
+  description: "シカクモンのプライバシーポリシー。個人情報の取得・利用目的、Google Analytics 4 によるアクセス解析、A8.net アフィリエイト広告について記載しています。",
 });
 
 export default function PrivacyPage() {
@@ -25,30 +25,34 @@ export default function PrivacyPage() {
 
       <h2>アクセス解析ツールについて</h2>
       <p>
-        当サイトでは、Googleによるアクセス解析ツール「Google Analytics」を利用しています。
-        Google Analyticsはトラフィックデータの収集のためにCookieを使用しています。
-        このトラフィックデータは匿名で収集されており、個人を特定するものではありません。
+        当サイトでは、サイト改善のために以下のアクセス解析ツールを利用しています。
       </p>
+      <ul>
+        <li>
+          <strong>Google Analytics 4（GA4）</strong>：Googleによるアクセス解析ツールです。
+          トラフィックデータの収集のためにCookieを使用していますが、収集されるデータは匿名であり、
+          個人を特定するものではありません。
+        </li>
+        <li>
+          <strong>Vercel Analytics</strong>：サイトホスティング事業者Vercelが提供するアクセス解析機能です。
+          ページビュー等の集計に使用し、こちらも個人を特定する情報は収集しません。
+        </li>
+      </ul>
       <p>
-        この機能はCookieを無効にすることで収集を拒否することが出来ますので、
-        お使いのブラウザの設定をご確認ください。
-      </p>
-
-      <h2>広告配信について</h2>
-      <p>
-        当サイトは、第三者配信の広告サービス（Google AdSense）を利用しています。
-        広告配信事業者は、ユーザーの興味に応じた広告を表示するためにCookieを使用することがあります。
-      </p>
-      <p>
-        Cookieの利用を望まない場合は、
-        <a href="https://www.google.com/settings/ads" target="_blank" rel="noopener noreferrer">Googleの広告設定</a>
-        から無効にすることができます。
+        Google Analyticsによるデータ収集を拒否されたい場合は、
+        <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener noreferrer">Google Analytics オプトアウトアドオン</a>
+        をブラウザにインストールするか、お使いのブラウザでCookieを無効化してください。
       </p>
 
       <h2>アフィリエイトプログラムについて</h2>
       <p>
-        当サイトは、Amazon.co.jpおよびその他アフィリエイトプログラムに参加しています。
-        当サイト経由で商品を購入された場合、当サイトが紹介料を受け取ることがあります。
+        当サイトは、株式会社ファンコミュニケーションズが運営する「A8.net」のアフィリエイトプログラムに参加しています。
+        コラム記事の一部に広告リンクを掲載しており、当サイト経由でユーザーが商品・サービスを購入された場合、
+        当サイトが紹介料を受け取ることがあります。
+      </p>
+      <p>
+        アフィリエイト広告には、景品表示法に基づき「広告」の表示を行っています。
+        広告リンクは「nofollow sponsored」属性を付与しており、ユーザーに対して広告である旨を明示しています。
       </p>
 
       <h2>個人情報の第三者提供</h2>
@@ -66,7 +70,7 @@ export default function PrivacyPage() {
         <a href="/contact/">お問い合わせフォーム</a>よりお願いいたします。
       </p>
 
-      <p className="text-sm text-slate-400 mt-8">制定日：2026年3月30日</p>
+      <p className="text-sm text-slate-400 mt-8">制定日：2026年3月30日／最終改訂：2026年5月12日</p>
     </div>
   );
 }

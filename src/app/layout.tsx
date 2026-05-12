@@ -1,7 +1,10 @@
 import type { Metadata } from "next";
 import { Noto_Sans_JP, Noto_Serif_JP } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import "./globals.css";
+
+const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
 
 const notoSans = Noto_Sans_JP({
   subsets: ["latin"],
@@ -162,6 +165,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         </nav>
         <Analytics />
       </body>
+      {GA_ID && <GoogleAnalytics gaId={GA_ID} />}
     </html>
   );
 }

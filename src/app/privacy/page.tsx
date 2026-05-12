@@ -4,7 +4,7 @@ import { pageMetadata } from "@/lib/page-metadata";
 export const metadata: Metadata = pageMetadata({
   path: "/privacy/",
   title: "プライバシーポリシー｜シカクモン",
-  description: "シカクモンのプライバシーポリシー。個人情報の取得・利用目的、Google Analytics 4 によるアクセス解析、A8.net アフィリエイト広告について記載しています。",
+  description: "シカクモンのプライバシーポリシー。個人情報の取得・利用目的、Google Analytics 4 によるアクセス解析、Google AdSense および A8.net によるアフィリエイト広告について記載しています。",
 });
 
 export default function PrivacyPage() {
@@ -43,6 +43,22 @@ export default function PrivacyPage() {
         <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener noreferrer">Google Analytics オプトアウトアドオン</a>
         をブラウザにインストールするか、お使いのブラウザでCookieを無効化してください。
       </p>
+
+      <h2>広告配信について</h2>
+      <p>
+        当サイトでは、第三者配信の広告サービスとして以下を利用しています。
+      </p>
+      <ul>
+        <li>
+          <strong>Google AdSense</strong>：Googleによる広告配信サービスです。
+          Cookieを使用してユーザーの興味に応じた広告を表示することがあります。
+          Cookieの利用を望まない場合は、
+          <a href="https://www.google.com/settings/ads" target="_blank" rel="noopener noreferrer">Googleの広告設定</a>
+          から無効化できます。第三者ベンダーが配信する広告に関する詳細は、
+          <a href="https://policies.google.com/technologies/ads" target="_blank" rel="noopener noreferrer">Googleの広告ポリシー</a>
+          をご覧ください。
+        </li>
+      </ul>
 
       <h2>アフィリエイトプログラムについて</h2>
       <p>

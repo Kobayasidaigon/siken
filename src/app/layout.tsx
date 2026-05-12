@@ -2,9 +2,11 @@ import type { Metadata } from "next";
 import { Noto_Sans_JP, Noto_Serif_JP } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import { GoogleAnalytics } from "@next/third-parties/google";
+import Script from "next/script";
 import "./globals.css";
 
 const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
+const ADSENSE_PID = process.env.NEXT_PUBLIC_ADSENSE_PID;
 
 const notoSans = Noto_Sans_JP({
   subsets: ["latin"],
@@ -166,6 +168,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Analytics />
       </body>
       {GA_ID && <GoogleAnalytics gaId={GA_ID} />}
+      {ADSENSE_PID && (
+        <Script
+          id="google-adsense"
+          async
+          strategy="afterInteractive"
+          src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE_PID}`}
+          crossOrigin="anonymous"
+        />
+      )}
     </html>
   );
 }

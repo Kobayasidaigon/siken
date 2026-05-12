@@ -40,12 +40,19 @@ html {
 body {
   margin: 0;
   min-height: 100dvh;
+  /* 句読点後など、より自然な改行位置をブラウザに任せる（孤立行の回避も兼ねる） */
+  text-wrap: pretty;
 }
 
 /* 日本語の自然な改行（文節区切りで折り返す）。Chrome/Safari対応、未対応ブラウザは従来挙動 */
 body, p, h1, h2, h3, h4, h5, h6, li, td, th, summary {
   word-break: auto-phrase;
   line-break: strict;
+}
+
+/* 見出しは複数行になる場合に行長を揃える */
+h1, h2, h3, h4, h5, h6 {
+  text-wrap: balance;
 }
 
 .font-serif {

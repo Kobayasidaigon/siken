@@ -173,6 +173,43 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Studio 案内 */}
+      <section className="mb-12">
+        <a
+          href="https://shikakumon-studio.vercel.app/?utm_source=shikakumon&utm_medium=home_card"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="card p-6 no-underline block group"
+          style={{ borderLeft: "4px solid var(--c-chizai)" }}
+        >
+          <div className="flex items-start justify-between gap-3 mb-3">
+            <div>
+              <p className="text-xs font-bold mb-1" style={{ color: "var(--c-chizai)" }}>関連サービス</p>
+              <h2 className="text-lg font-bold text-[color:var(--c-ink)] font-serif">
+                シカクモン Studio
+              </h2>
+            </div>
+            <span
+              className="text-[10px] px-2 py-1 rounded font-bold shrink-0"
+              style={{ background: "var(--c-chizai-soft)", color: "var(--c-chizai-ink)" }}
+            >
+              AI 学習補助
+            </span>
+          </div>
+          <p className="text-sm text-[color:var(--c-text-sub)] leading-relaxed mb-3">
+            シカクモンに無い資格や、自分のテキスト・ノートからも問題を作りたい人向けに、
+            AI が出題と解説を生成する学習ツールを別サイトで運営しています。
+            忘却曲線に沿った復習や、苦手分野の特訓にも使えます。
+          </p>
+          <p className="text-sm font-bold inline-flex items-center gap-1" style={{ color: "var(--c-chizai)" }}>
+            シカクモン Studio を見る
+            <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+            </svg>
+          </p>
+        </a>
+      </section>
+
       {/* About teaser */}
       <section className="border-t border-[color:var(--c-border)] pt-8">
         <h2 className="text-base font-bold text-[color:var(--c-ink)] mb-3 font-serif">このサイトについて</h2>

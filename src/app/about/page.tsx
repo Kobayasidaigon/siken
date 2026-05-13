@@ -64,8 +64,30 @@ export default function AboutPage() {
         <li><strong>サイト</strong>：シカクモン（<a href="https://shikakumon.com">https://shikakumon.com</a>）</li>
         <li><strong>運営開始</strong>：2025年</li>
         <li><strong>連絡先</strong>：<a href="/contact/">お問い合わせフォーム</a></li>
-        <li><strong>関連サイト</strong>：<a href="https://shikakumon-studio.vercel.app/" target="_blank" rel="noopener noreferrer">シカクモン Studio</a>（教材アップロード型のAI学習補助ツール）</li>
       </ul>
+
+      <h2>関連サービス：シカクモン Studio</h2>
+      <p>
+        シカクモン本体は、運営者が選んだ6資格・1604問のオリジナル問題集です。
+        ただ、世の中の資格はもっと数があり、市販のテキストや自作ノートを教材にしたい人もいるはずです。
+        その需要に応えるために、教材アップロード型の AI 学習補助ツール
+        「<a href="https://shikakumon-studio.vercel.app/?utm_source=shikakumon&utm_medium=about" target="_blank" rel="noopener noreferrer">シカクモン Studio</a>」
+        を別サイトで運営しています。
+      </p>
+      <p>主な機能：</p>
+      <ul>
+        <li>テキスト・PDF をアップロードして AI が問題と解説を生成</li>
+        <li>忘却曲線（SM-2 / FSRS）に基づく自動復習スケジュール</li>
+        <li>分からない問題は AI チャットで追加質問</li>
+        <li>苦手分野の特訓・模擬試験・進捗ダッシュボード</li>
+      </ul>
+      <p>
+        基本機能は無料、より多くの問題を作りたい方向けに有料プラン（Pro：月額980円）も用意しています。
+        シカクモン本体に無い資格を学習する方や、独自テキストで対策したい方に向いています。
+      </p>
+      <p>
+        <a href="https://shikakumon-studio.vercel.app/?utm_source=shikakumon&utm_medium=about_cta" target="_blank" rel="noopener noreferrer">シカクモン Studio を開く →</a>
+      </p>
 
       <h2>免責事項</h2>
       <p>

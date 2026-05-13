@@ -177,6 +177,35 @@ export default async function ColumnPage({ params }: { params: Promise<{ slug: s
         </div>
       </div>
 
+      {/* Studio 関連サービス案内 (記事末固定) */}
+      <aside
+        className="mt-10 p-4 rounded-lg border"
+        style={{
+          background: "var(--c-chizai-soft)",
+          borderColor: "var(--c-chizai)",
+        }}
+      >
+        <p className="text-xs font-bold mb-1" style={{ color: "var(--c-chizai-ink)" }}>
+          自分の教材から問題を作りたい人へ
+        </p>
+        <p className="text-xs leading-relaxed mb-2" style={{ color: "var(--c-chizai-ink)" }}>
+          シカクモン本体に無い資格や、手元のテキスト・PDF からも AI が問題を生成する別サイト「シカクモン Studio」を運営しています。
+          忘却曲線に沿った復習や AI への質問にも対応しています。
+        </p>
+        <a
+          href="https://shikakumon-studio.vercel.app/?utm_source=shikakumon&utm_medium=column_footer"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-xs font-bold inline-flex items-center gap-1 no-underline"
+          style={{ color: "var(--c-chizai)" }}
+        >
+          シカクモン Studio を見る
+          <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+          </svg>
+        </a>
+      </aside>
+
       <nav className="mt-6">
         <a href="/column/" className="text-sm text-slate-500 no-underline hover:underline">← コラム一覧に戻る</a>
       </nav>

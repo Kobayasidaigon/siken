@@ -48,6 +48,23 @@ export default async function ColumnPage({ params }: { params: Promise<{ slug: s
   const isBijihouArticle = slug.startsWith("bijihou-");
   const bijihouAdContent = isBijihouArticle ? getBijihouAdContent(slug) : undefined;
 
+  // 知財3級コラム（SMART講座 未対応資格）にアガルート通信講座を表示
+  const isChizaiArticle = slug.startsWith("chizai-");
+
+  // 貸金系コラム（SMART講座広告が無い記事）にアガルート通信講座を表示。
+  // osusume-text / takken-hikaku は別途アガルート個別素材を設置済みのため除外。
+  const kashikinAdSlugs = new Set([
+    "goukakuritsu",
+    "benkyouhou",
+    "shiken-nittei",
+    "kashikingyou-toha",
+    "benkyou-jikan",
+  ]);
+  const isKashikinGeneralArticle =
+    (slug.startsWith("kashikin-") || kashikinAdSlugs.has(slug)) &&
+    slug !== "osusume-text" &&
+    slug !== "takken-hikaku";
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Article",
@@ -142,6 +159,26 @@ export default async function ColumnPage({ params }: { params: Promise<{ slug: s
           linkHref="https://px.a8.net/svt/ejp?a8mat=4B3N6P+AWY41E+44M0+61Z82"
           linkText="宅建士講座・ゼロから始めて1年合格！"
           pixelSrc="https://www11.a8.net/0.gif?a8mat=4B3N6P+AWY41E+44M0+61Z82"
+        />
+      )}
+
+      {isChizaiArticle && (
+        <TextAffiliateAd
+          headline="知財検定の対策講座をお探しの方へ"
+          body="知的財産管理技能検定は市販教材が限られる試験です。独学で論点整理に行き詰まったときは、知財検定講座を持つ通信講座を選択肢に入れると、出題範囲を体系的に押さえられます。"
+          linkHref="https://px.a8.net/svt/ejp?a8mat=4B3N6P+AWY41E+44M0+5YJRM"
+          linkText="難関資格試験の通信講座ならアガルートアカデミー"
+          pixelSrc="https://www13.a8.net/0.gif?a8mat=4B3N6P+AWY41E+44M0+5YJRM"
+        />
+      )}
+
+      {isKashikinGeneralArticle && (
+        <TextAffiliateAd
+          headline="独学に不安があれば"
+          body="貸金業務取扱主任者は市販の問題集が少なく、独学で進めにくい試験です。通信講座を併用すると、頻出論点と法改正への対応を体系的に押さえられます。"
+          linkHref="https://px.a8.net/svt/ejp?a8mat=4B3N6P+AWY41E+44M0+5YJRM"
+          linkText="難関資格試験の通信講座ならアガルートアカデミー"
+          pixelSrc="https://www13.a8.net/0.gif?a8mat=4B3N6P+AWY41E+44M0+5YJRM"
         />
       )}
 

@@ -25,7 +25,7 @@ export default function TextAffiliateAd({ headline, body, linkHref, linkText, pi
       </p>
       <a
         href={linkHref}
-        rel="nofollow sponsored"
+        rel="nofollow sponsored noopener"
         target="_blank"
         className="text-sm text-blue-700 hover:underline font-medium"
       >

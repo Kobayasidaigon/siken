@@ -14,13 +14,16 @@ export default function JitsumuCourseAd({ headline, body }: Props = {}) {
         </span>
       </p>
       <p className="text-xs text-[color:var(--c-text-sub)] mb-3">{finalHeadline}</p>
-      <p className="text-sm text-[color:var(--c-text)] leading-relaxed mb-4">{finalBody}</p>
-      <div className="flex justify-center">
-        <a href="https://px.a8.net/svt/ejp?a8mat=4B1TI0+9T22IA+4LOQ+6BMG1" rel="nofollow sponsored" target="_blank">
-          <img width={300} height={250} alt="個人情報保護実務検定 SMART合格講座" src="https://www23.a8.net/svt/bgt?aid=260425368593&wid=001&eno=01&mid=s00000021473001062000&mc=1" style={{ maxWidth: "100%", height: "auto", border: 0 }} />
-        </a>
-        <img width={1} height={1} src="https://www13.a8.net/0.gif?a8mat=4B1TI0+9T22IA+4LOQ+6BMG1" alt="" style={{ position: "absolute", border: 0 }} />
-      </div>
+      <p className="text-sm text-[color:var(--c-text)] leading-relaxed mb-3">{finalBody}</p>
+      <a
+        href="https://px.a8.net/svt/ejp?a8mat=4B1TI0+9T22IA+4LOQ+BW8O2&a8ejpredirect=https%3A%2F%2Fwww.joho-gakushu.jp%2Fsmartinfo%2Fk_pipl%2F"
+        rel="nofollow sponsored noopener"
+        target="_blank"
+        className="text-sm text-blue-700 hover:underline font-medium"
+      >
+        個人情報保護実務検定のSMART合格講座を見る →
+      </a>
+      <img width={1} height={1} src="https://www15.a8.net/0.gif?a8mat=4B1TI0+9T22IA+4LOQ+BW8O2" alt="" style={{ position: "absolute", border: 0 }} />
     </aside>
   );
 }

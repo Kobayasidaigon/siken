@@ -24,7 +24,7 @@ export default function BijihouCourseAd({ headline, body }: Props = {}) {
         {finalBody}
       </p>
       <a
-        href="https://px.a8.net/svt/ejp?a8mat=4B1TI0+9T22IA+4LOQ+BW8O2&a8ejpredirect=https%3A%2F%2Fwww.joho-gakushu.or.jp%2Fbijihou%2F"
+        href="https://px.a8.net/svt/ejp?a8mat=4B1TI0+9T22IA+4LOQ+BW8O2&a8ejpredirect=https%3A%2F%2Fwww.joho-gakushu.jp%2Fsmartinfo%2Fsmart_lineup.php"
         rel="nofollow sponsored noopener"
         target="_blank"
         className="text-sm text-blue-700 hover:underline font-medium"

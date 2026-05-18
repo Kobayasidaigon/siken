@@ -64,6 +64,11 @@ export default async function ColumnPage({ params }: { params: Promise<{ slug: s
     slug !== "osusume-text" &&
     slug !== "takken-hikaku";
 
+  // 知財3級コラム。chizai-benrishi-hikaku（知財検定 vs 弁理士）は文脈一致する
+  // アガルート弁理士講座（既存提携・高単価）、その他はオンスク知財3級講座（暫定）。
+  const isBenrishiArticle = slug === "chizai-benrishi-hikaku";
+  const isChizaiGeneralArticle = slug.startsWith("chizai-") && !isBenrishiArticle;
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Article",
@@ -168,6 +173,26 @@ export default async function ColumnPage({ params }: { params: Promise<{ slug: s
           linkHref="https://px.a8.net/svt/ejp?a8mat=4B3N6P+AWY41E+44M0+BW8O2&a8ejpredirect=https%3A%2F%2Fwww.agaroot.jp%2Fkashikin%2F"
           linkText="アガルートの貸金業務取扱主任者講座を見る"
           pixelSrc="https://www14.a8.net/0.gif?a8mat=4B3N6P+AWY41E+44M0+BW8O2"
+        />
+      )}
+
+      {isBenrishiArticle && (
+        <TextAffiliateAd
+          headline="弁理士を視野に入れている方へ"
+          body="知財検定3級から弁理士を目指すなら、早い段階で弁理士試験の出題範囲を把握しておくと学習計画が立てやすくなります。アガルートアカデミーは弁理士試験講座を提供しています。"
+          linkHref="https://px.a8.net/svt/ejp?a8mat=4B3N6P+AWY41E+44M0+BW8O2&a8ejpredirect=https%3A%2F%2Fwww.agaroot.jp%2Fbenri%2F"
+          linkText="アガルートの弁理士試験講座を見る"
+          pixelSrc="https://www12.a8.net/0.gif?a8mat=4B3N6P+AWY41E+44M0+BW8O2"
+        />
+      )}
+
+      {isChizaiGeneralArticle && (
+        <TextAffiliateAd
+          headline="知財検定の対策講座をお探しの方へ"
+          body="知的財産管理技能検定は市販教材が限られる試験です。月額制のオンライン講座オンスク.JPは知財検定3級講座を提供しており、スキマ時間で出題範囲を体系的に押さえられます。"
+          linkHref="https://px.a8.net/svt/ejp?a8mat=4B3TF4+BJKL0Y+408S+BW8O2&a8ejpredirect=https%3A%2F%2Fonsuku.jp%2Ftraining%2Fchizai3"
+          linkText="知的財産管理技能検定3級の対策講座を見る"
+          pixelSrc="https://www11.a8.net/0.gif?a8mat=4B3TF4+BJKL0Y+408S+BW8O2"
         />
       )}
 

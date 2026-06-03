@@ -1,6 +1,7 @@
 import { getAllChizaiQuestions, getChizaiQuestionsByField } from "@/lib/chizai-questions";
 import { getAllColumns } from "@/lib/columns";
 import type { Metadata } from "next";
+import ChizaiCourseAd from "@/components/ChizaiCourseAd";
 import { pageMetadata } from "@/lib/page-metadata";
 
 export const metadata: Metadata = pageMetadata({
@@ -136,6 +137,11 @@ export default async function ChizaiPage() {
           <p><span className="font-bold text-[color:var(--c-ink)]">実施機関</span>　知的財産教育協会</p>
         </div>
       </section>
+
+      <ChizaiCourseAd
+        headline="9分野を効率よく対策するなら"
+        body="知的財産管理技能検定は出題範囲が9分野と広く、市販教材も限られる試験です。月額制のオンライン講座オンスク.JPは知財検定3級講座を提供しており、スキマ時間で全分野を体系的に押さえられます。"
+      />
 
       {/* コラム */}
       {chizaiColumns.length > 0 && (

@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import AnswerReveal from "@/app/q/[slug]/AnswerReveal";
 import BookmarkButton from "@/app/q/[slug]/BookmarkButton";
+import JitsumuCourseAd from "@/components/JitsumuCourseAd";
 import { pageMetadata } from "@/lib/page-metadata";
 
 const fieldSlugMap: Record<string, string> = {
@@ -48,7 +49,7 @@ export default async function JitsumuQuestionPage({ params }: { params: Promise<
     "@context": "https://schema.org",
     "@type": "Quiz",
     name: q.title,
-    about: { "@type": "Thing", name: "個人情報保護実務検定3級" },
+    about: { "@type": "Thing", name: "個人情報保護実務検定" },
     educationalLevel: q.difficulty === "A" ? "beginner" : q.difficulty === "B" ? "intermediate" : "advanced",
     hasPart: [{
       "@type": "Question",
@@ -64,7 +65,7 @@ export default async function JitsumuQuestionPage({ params }: { params: Promise<
 
       <nav className="breadcrumb text-xs text-[color:var(--c-text-sub)] mb-4 flex flex-wrap gap-1">
         <a href="/">ホーム</a><span>/</span>
-        <a href="/jitsumu/">個人情報保護実務検定3級</a><span>/</span>
+        <a href="/jitsumu/">個人情報保護実務検定</a><span>/</span>
         {fieldSlug && <><a href={`/jitsumu/field/${fieldSlug}/`}>{q.field}</a><span>/</span></>}
         <span className="text-[color:var(--c-ink)]">問{fieldIndex}</span>
       </nav>
@@ -86,6 +87,8 @@ export default async function JitsumuQuestionPage({ params }: { params: Promise<
       </section>
 
       <AnswerReveal choices={q.choices} correctAnswer={q.correctAnswer} explanationHtml={q.content} exam="jitsumu" questionSlug={slug} />
+
+      <JitsumuCourseAd />
 
       <nav className="mt-8 flex justify-between items-center pt-4 border-t border-[color:var(--c-border)]">
         {prevQ ? (<a href={`/jitsumu/q/${prevQ.slug}/`} className="text-sm text-[color:var(--c-text-sub)] no-underline hover:text-[color:var(--c-pii)]">← 問{idx}</a>) : <span />}

@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import AnswerReveal from "@/app/q/[slug]/AnswerReveal";
 import BookmarkButton from "@/app/q/[slug]/BookmarkButton";
+import ChizaiCourseAd from "@/components/ChizaiCourseAd";
 import { pageMetadata } from "@/lib/page-metadata";
 
 const fieldSlugMap: Record<string, string> = {
@@ -93,6 +94,8 @@ export default async function ChizaiQuestionPage({ params }: { params: Promise<{
       </section>
 
       <AnswerReveal choices={q.choices} correctAnswer={q.correctAnswer} explanationHtml={q.content} exam="chizai" questionSlug={slug} />
+
+      <ChizaiCourseAd />
 
       <nav className="mt-8 flex justify-between items-center pt-4 border-t border-[color:var(--c-border)]">
         {prevQ ? (

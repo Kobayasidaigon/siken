@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import AnswerReveal from "./AnswerReveal";
 import BookmarkButton from "./BookmarkButton";
+import KashikinCourseAd from "@/components/KashikinCourseAd";
 import { pageMetadata } from "@/lib/page-metadata";
 
 const fieldSlugMap: Record<string, string> = {
@@ -112,6 +113,8 @@ export default async function QuestionPage({ params }: { params: Promise<{ slug:
         exam="kashikin"
         questionSlug={slug}
       />
+
+      <KashikinCourseAd />
 
       <nav className="mt-8 flex justify-between items-center pt-4 border-t border-[color:var(--c-border)]">
         {prevQ ? (

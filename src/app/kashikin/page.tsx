@@ -1,6 +1,7 @@
 import { getAllQuestions } from "@/lib/questions";
 import { getAllColumns } from "@/lib/columns";
 import type { Metadata } from "next";
+import KashikinCourseAd from "@/components/KashikinCourseAd";
 import { pageMetadata } from "@/lib/page-metadata";
 
 export const metadata: Metadata = pageMetadata({
@@ -91,6 +92,11 @@ export default async function KashikinPage() {
           <p><span className="font-bold text-[color:var(--c-ink)]">実施機関</span>　日本貸金業協会</p>
         </div>
       </section>
+
+      <KashikinCourseAd
+        headline="本試験まで逆算で対策するなら"
+        body="貸金業務取扱主任者は市販の問題集が少なく、独学で進めにくい試験です。通信講座のアガルートアカデミーは貸金業務取扱主任者講座を提供しており、頻出論点と法改正への対応を体系的に押さえられます。"
+      />
 
       {/* コラム（貸金関連のみ） */}
       {(() => {

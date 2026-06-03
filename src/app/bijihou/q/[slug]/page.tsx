@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import AnswerReveal from "@/app/q/[slug]/AnswerReveal";
 import BookmarkButton from "@/app/q/[slug]/BookmarkButton";
+import BijihouCourseAd from "@/components/BijihouCourseAd";
 import { pageMetadata } from "@/lib/page-metadata";
 
 const fieldSlugMap: Record<string, string> = {
@@ -86,6 +87,8 @@ export default async function BijihouQuestionPage({ params }: { params: Promise<
       </section>
 
       <AnswerReveal choices={q.choices} correctAnswer={q.correctAnswer} explanationHtml={q.content} exam="bijihou" questionSlug={slug} />
+
+      <BijihouCourseAd />
 
       <nav className="mt-8 flex justify-between items-center pt-4 border-t border-[color:var(--c-border)]">
         {prevQ ? (

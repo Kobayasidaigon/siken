@@ -109,14 +109,7 @@ export default async function ColumnPage({ params }: { params: Promise<{ slug: s
 
       <section className="prose max-w-none" dangerouslySetInnerHTML={{ __html: col.content }} />
 
-      <aside className="mt-8 p-4 rounded border border-[color:var(--c-border)] bg-[color:var(--c-bg-alt)] text-xs text-[color:var(--c-text-sub)] leading-relaxed">
-        <p className="mb-1"><span className="font-bold">記事の前提</span></p>
-        <p>
-          本記事は{col.updatedAt || col.publishedAt}時点の法令・試験制度に基づいて作成しています。
-          受験料・試験日程・出題範囲・改正法対応などの最新情報は、各実施機関の公式サイトで必ずご確認ください。
-        </p>
-      </aside>
-
+      {/* 広告は本文を読み終えた直後（最も関心が高い位置）に配置。免責の注意書きは広告の下へ。 */}
       {isPiiArticle && (
         <PiiCourseAd
           headline={piiAdContent?.headline}
@@ -195,6 +188,14 @@ export default async function ColumnPage({ params }: { params: Promise<{ slug: s
           pixelSrc="https://www11.a8.net/0.gif?a8mat=4B3TF4+BJKL0Y+408S+BW8O2"
         />
       )}
+
+      <aside className="mt-8 p-4 rounded border border-[color:var(--c-border)] bg-[color:var(--c-bg-alt)] text-xs text-[color:var(--c-text-sub)] leading-relaxed">
+        <p className="mb-1"><span className="font-bold">記事の前提</span></p>
+        <p>
+          本記事は{col.updatedAt || col.publishedAt}時点の法令・試験制度に基づいて作成しています。
+          受験料・試験日程・出題範囲・改正法対応などの最新情報は、各実施機関の公式サイトで必ずご確認ください。
+        </p>
+      </aside>
 
       <div className="mt-10 pt-6 border-t border-slate-200">
         <p className="text-sm font-medium text-slate-700 mb-3">練習問題に挑戦する</p>

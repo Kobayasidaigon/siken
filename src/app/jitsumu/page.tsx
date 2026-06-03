@@ -7,8 +7,8 @@ import { pageMetadata } from "@/lib/page-metadata";
 
 export const metadata: Metadata = pageMetadata({
   path: "/jitsumu/",
-  title: "個人情報保護実務検定3級 試験対策｜オリジナル200問を無料で",
-  description: "個人情報保護実務検定3級のオリジナル練習問題200問を詳細解説。個人情報保護法の基礎・取得利用・安全管理・本人の権利を収録。",
+  title: "個人情報保護実務検定 試験対策｜オリジナル200問を無料で",
+  description: "個人情報保護実務検定のオリジナル練習問題200問を詳細解説。個人情報保護法の基礎・取得利用・安全管理・本人の権利を収録。",
 });
 
 const fields = [
@@ -29,10 +29,10 @@ export default async function JitsumuPage() {
     <div className="theme-pii pb-16">
       <section className="-mx-4 px-4 py-10 sm:py-14 border-y mb-10" style={{ background: "var(--c-pii-soft)", borderColor: "var(--c-border)" }}>
         <nav className="text-xs text-[color:var(--c-text-sub)] mb-4">
-          <a href="/" className="no-underline hover:underline">ホーム</a> / <span>個人情報保護実務検定3級</span>
+          <a href="/" className="no-underline hover:underline">ホーム</a> / <span>個人情報保護実務検定</span>
         </nav>
         <h1 className="text-2xl sm:text-3xl font-bold mb-3 font-serif leading-tight" style={{ color: "var(--c-pii-ink)" }}>
-          個人情報保護実務検定3級
+          個人情報保護実務検定
         </h1>
         <div className="w-16 h-1 mb-4" style={{ background: "var(--c-pii)" }}></div>
         <p className="text-sm sm:text-base leading-relaxed max-w-lg" style={{ color: "var(--c-pii-ink)" }}>
@@ -61,12 +61,16 @@ export default async function JitsumuPage() {
       <section className="mb-12">
         <h2 className="text-base font-bold text-[color:var(--c-ink)] mb-4 font-serif">試験の概要</h2>
         <div className="card p-5 text-sm text-[color:var(--c-text-sub)] space-y-2">
-          <p><span className="font-bold text-[color:var(--c-ink)]">試験形式</span>　マークシート 60問・90分（3級）</p>
-          <p><span className="font-bold text-[color:var(--c-ink)]">合格基準</span>　70%以上</p>
-          <p><span className="font-bold text-[color:var(--c-ink)]">受験料</span>　8,800円（3級・税込）</p>
-          <p><span className="font-bold text-[color:var(--c-ink)]">試験日</span>　年複数回（協会の公式サイトで確認）</p>
+          <p><span className="font-bold text-[color:var(--c-ink)]">級区分</span>　1級・2級（マークシート方式）</p>
+          <p><span className="font-bold text-[color:var(--c-ink)]">試験形式</span>　1級 100問・120分／2級 80問・90分</p>
+          <p><span className="font-bold text-[color:var(--c-ink)]">合格基準</span>　正答率70%以上</p>
+          <p><span className="font-bold text-[color:var(--c-ink)]">受験料</span>　1級 11,000円／2級 8,800円（税込）</p>
+          <p><span className="font-bold text-[color:var(--c-ink)]">試験日</span>　年4回（協会の公式サイトで確認）</p>
           <p><span className="font-bold text-[color:var(--c-ink)]">実施機関</span>　全日本情報学習振興協会</p>
         </div>
+        <p className="text-xs text-[color:var(--c-text-sub)] mt-3 leading-relaxed">
+          ※当サイトの練習問題は、個人情報保護法の基礎を中心に2級・1級の両方に通じる内容で構成しています。最新の試験範囲・日程は公式サイトで必ずご確認ください。
+        </p>
       </section>
 
       <JitsumuCourseAd headline={JITSUMU_TOP_AD.headline} body={JITSUMU_TOP_AD.body} />
@@ -88,7 +92,7 @@ export default async function JitsumuPage() {
           </div>
           {jitsumuColumns.length > 6 && (
             <a href="/column/#jitsumu" className="inline-block mt-4 text-sm text-[color:var(--c-text-sub)] no-underline hover:text-[color:var(--c-pii)] underline">
-              個人情報保護実務検定3級のコラムをすべて見る →
+              個人情報保護実務検定のコラムをすべて見る →
             </a>
           )}
         </section>

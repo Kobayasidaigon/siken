@@ -22,8 +22,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   if (!field) return { title: "Not Found" };
   return pageMetadata({
     path: `/jitsumu/field/${slug}/`,
-    title: `個人情報保護実務検定3級｜${field.name} 練習問題`,
-    description: `個人情報保護実務検定3級試験対策。${field.name}分野のオリジナル練習問題と詳細解説。各問に根拠条文を含む解説付きで効率的に学習できます。`,
+    title: `個人情報保護実務検定｜${field.name} 練習問題`,
+    description: `個人情報保護実務検定試験対策。${field.name}分野のオリジナル練習問題と詳細解説。各問に根拠条文を含む解説付きで効率的に学習できます。`,
   });
 }
 
@@ -60,7 +60,7 @@ export default async function JitsumuFieldPage({ params }: { params: Promise<{ s
     <div className="theme-pii pb-16">
       <nav className="breadcrumb text-xs text-[color:var(--c-text-sub)] mb-4 flex gap-1">
         <a href="/">ホーム</a><span>/</span>
-        <a href="/jitsumu/">個人情報保護実務検定3級</a><span>/</span>
+        <a href="/jitsumu/">個人情報保護実務検定</a><span>/</span>
         <span className="text-[color:var(--c-ink)]">{field.name}</span>
       </nav>
       <h1 className="text-xl sm:text-2xl font-bold text-[color:var(--c-ink)] mb-2 font-serif">{field.name}</h1>

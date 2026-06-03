@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: { absolute: "シカクモン｜資格試験のオリジナル練習問題を無料で提供" },
-  description: "シカクモンは資格試験のオリジナル練習問題を無料で提供するサイトです。貸金業務取扱主任者・個人情報保護士・知的財産管理技能検定3級・マイナンバー実務検定3級・個人情報保護実務検定3級・ビジネス実務法務検定3級の6資格、合計1604問。全問に根拠法令を含む詳細解説付き。",
+  description: "シカクモンは資格試験のオリジナル練習問題を無料で提供するサイトです。貸金業務取扱主任者・個人情報保護士・知的財産管理技能検定3級・マイナンバー実務検定3級・個人情報保護実務検定・ビジネス実務法務検定3級の6資格、合計1604問。全問に根拠法令を含む詳細解説付き。",
   alternates: { canonical: "/" },
   openGraph: {
     url: "/",
@@ -54,7 +54,7 @@ export default function Home() {
       softVar: "var(--c-pii-soft)",
     },
     {
-      name: "個人情報保護実務検定3級",
+      name: "個人情報保護実務検定",
       slug: "jitsumu",
       count: 200,
       fieldCount: 5,

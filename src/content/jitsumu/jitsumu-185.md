@@ -1,8 +1,8 @@
 ---
 examType: "jitsumu"
 questionNumber: 185
-title: "【問185】個人情報保護実務検定3級 練習問題｜GDPRの十分性認定"
-description: "個人情報保護実務検定3級試験対策。GDPRの十分性認定に関するオリジナル練習問題と詳細解説。"
+title: "【問185】個人情報保護実務検定 練習問題｜GDPRの十分性認定"
+description: "個人情報保護実務検定試験対策。GDPRの十分性認定に関するオリジナル練習問題と詳細解説。"
 field: "実務・関連法"
 questionText: "EU・日本間の個人データ移転と十分性認定に関する次の記述のうち、最も適切なものはどれか。"
 choices:

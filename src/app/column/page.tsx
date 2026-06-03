@@ -55,7 +55,7 @@ const examGroups: ExamGroup[] = [
   },
   {
     id: "jitsumu",
-    examName: "個人情報保護実務検定3級",
+    examName: "個人情報保護実務検定",
     shortName: "個情保実務",
     topPath: "/jitsumu/",
     themeKey: "pii",

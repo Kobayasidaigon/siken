@@ -1,8 +1,8 @@
 ---
 examType: "jitsumu"
 questionNumber: 187
-title: "【問187】個人情報保護実務検定3級 練習問題｜電気通信事業法のCookie規制"
-description: "個人情報保護実務検定3級試験対策。電気通信事業法のCookie規制に関するオリジナル練習問題と詳細解説。"
+title: "【問187】個人情報保護実務検定 練習問題｜電気通信事業法のCookie規制"
+description: "個人情報保護実務検定試験対策。電気通信事業法のCookie規制に関するオリジナル練習問題と詳細解説。"
 field: "実務・関連法"
 questionText: "電気通信事業法における利用者情報の外部送信規律（いわゆるCookie規制）に関する次の記述のうち、最も適切なものはどれか。"
 choices:

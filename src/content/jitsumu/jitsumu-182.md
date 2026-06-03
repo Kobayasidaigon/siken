@@ -1,8 +1,8 @@
 ---
 examType: "jitsumu"
 questionNumber: 182
-title: "【問182】個人情報保護実務検定3級 練習問題｜GDPRの基本"
-description: "個人情報保護実務検定3級試験対策。GDPRの基本に関するオリジナル練習問題と詳細解説。"
+title: "【問182】個人情報保護実務検定 練習問題｜GDPRの基本"
+description: "個人情報保護実務検定試験対策。GDPRの基本に関するオリジナル練習問題と詳細解説。"
 field: "実務・関連法"
 questionText: "GDPR（EU一般データ保護規則）に関する次の記述のうち、最も適切なものはどれか。"
 choices:

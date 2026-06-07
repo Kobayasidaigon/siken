@@ -29,3 +29,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# 作業用の分析レポート（リポジトリには含めない）
+revenue-audit-*.json

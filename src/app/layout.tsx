@@ -5,7 +5,6 @@ import { GoogleAnalytics } from "@next/third-parties/google";
 import "./globals.css";
 
 const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
-const ADSENSE_PID = process.env.NEXT_PUBLIC_ADSENSE_PID;
 
 const notoSans = Noto_Sans_JP({
   subsets: ["latin"],
@@ -202,14 +201,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Analytics />
       </body>
       {GA_ID && <GoogleAnalytics gaId={GA_ID} />}
-      {ADSENSE_PID && (
-        // eslint-disable-next-line @next/next/no-sync-scripts
-        <script
-          async
-          src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE_PID}`}
-          crossOrigin="anonymous"
-        ></script>
-      )}
     </html>
   );
 }

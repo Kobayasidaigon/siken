@@ -9,6 +9,8 @@ import BijihouCourseAd from "@/components/BijihouCourseAd";
 import { getBijihouAdContent } from "@/lib/bijihou-ad-content";
 import JitsumuCourseAd from "@/components/JitsumuCourseAd";
 import { getJitsumuAdContent } from "@/lib/jitsumu-ad-content";
+import ChizaiCourseAd from "@/components/ChizaiCourseAd";
+import { getChizaiAdContent } from "@/lib/chizai-ad-content";
 import TextAffiliateAd from "@/components/TextAffiliateAd";
 import { pageMetadata } from "@/lib/page-metadata";
 
@@ -68,6 +70,7 @@ export default async function ColumnPage({ params }: { params: Promise<{ slug: s
   // アガルート弁理士講座（既存提携・高単価）、その他はオンスク知財3級講座（暫定）。
   const isBenrishiArticle = slug === "chizai-benrishi-hikaku";
   const isChizaiGeneralArticle = slug.startsWith("chizai-") && !isBenrishiArticle;
+  const chizaiAdContent = isChizaiGeneralArticle ? getChizaiAdContent(slug) : undefined;
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -180,12 +183,20 @@ export default async function ColumnPage({ params }: { params: Promise<{ slug: s
       )}
 
       {isChizaiGeneralArticle && (
+        <ChizaiCourseAd
+          headline={chizaiAdContent?.headline}
+          body={chizaiAdContent?.body}
+        />
+      )}
+
+      {isChizaiGeneralArticle && chizaiAdContent?.secondaryBenrishi && (
         <TextAffiliateAd
-          headline="知財検定の対策講座をお探しの方へ"
-          body="知的財産管理技能検定は市販教材が限られる試験です。月額制のオンライン講座オンスク.JPは知財検定3級講座を提供しており、スキマ時間で出題範囲を体系的に押さえられます。"
-          linkHref="https://px.a8.net/svt/ejp?a8mat=4B3TF4+BJKL0Y+408S+BW8O2&a8ejpredirect=https%3A%2F%2Fonsuku.jp%2Ftraining%2Fchizai3"
-          linkText="知的財産管理技能検定3級の対策講座を見る"
-          pixelSrc="https://www11.a8.net/0.gif?a8mat=4B3TF4+BJKL0Y+408S+BW8O2"
+          themeClass="theme-chizai"
+          headline="3級の先に弁理士を狙うなら"
+          body="知財検定3級の対策はオンスクで十分ですが、将来的に弁理士まで視野に入れているなら、早い段階で出題範囲を把握しておくと学習計画が立てやすくなります。アガルートアカデミーは弁理士試験講座を提供しています。"
+          linkHref="https://px.a8.net/svt/ejp?a8mat=4B3N6P+AWY41E+44M0+BW8O2&a8ejpredirect=https%3A%2F%2Fwww.agaroot.jp%2Fbenri%2F"
+          linkText="アガルートの弁理士試験講座を見る"
+          pixelSrc="https://www12.a8.net/0.gif?a8mat=4B3N6P+AWY41E+44M0+BW8O2"
         />
       )}
 

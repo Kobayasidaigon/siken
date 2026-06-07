@@ -19,21 +19,21 @@ export default function KashikinCourseAd({ headline, body }: Props = {}) {
     "貸金業務取扱主任者は市販の問題集が少なく、独学で進めにくい試験です。通信講座のアガルートアカデミーは貸金業務取扱主任者講座を提供しており、頻出論点と法改正への対応を体系的に押さえられます。";
 
   return (
-    <aside className="my-10 p-5 rounded-lg border border-[color:var(--c-border)] bg-[color:var(--c-bg-alt)]">
+    <aside className="theme-kashikin my-10 p-5 rounded-lg border border-[color:var(--c-border)] bg-[color:var(--c-bg-alt)]">
       <p className="mb-3">
         <span className="text-[10px] tracking-wider text-[color:var(--c-text-sub)] border border-[color:var(--c-border)] px-1.5 py-0.5 rounded">
           広告
         </span>
       </p>
       <p className="text-xs text-[color:var(--c-text-sub)] mb-3">{finalHeadline}</p>
-      <p className="text-sm text-[color:var(--c-text)] leading-relaxed mb-3">
+      <p className="text-sm text-[color:var(--c-text)] leading-relaxed mb-4">
         {finalBody}
       </p>
       <a
         href="https://px.a8.net/svt/ejp?a8mat=4B3N6P+AWY41E+44M0+BW8O2&a8ejpredirect=https%3A%2F%2Fwww.agaroot.jp%2Fkashikin%2F"
         rel="nofollow sponsored noopener"
         target="_blank"
-        className="text-sm text-blue-700 hover:underline font-medium"
+        className="btn-ad"
       >
         アガルートの貸金業務取扱主任者講座を見る →
       </a>

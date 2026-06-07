@@ -112,3 +112,33 @@ h1, h2, h3, h4, h5, h6 {
   transform: translateY(-1px);
   filter: brightness(0.95);
 }
+
+/* 広告CTA用ボタン（控えめなアウトライン版）
+   一次アクション(.btn-accent=ベタ塗り)より一段下、内部テキストリンクより上の視覚階層。
+   誤認回避(広告とサイト機能の区別)と控えめ方針を両立しつつ、タップ面とコントラストを確保。
+   モバイルでは全幅、PCではインライン。 */
+.btn-ad {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4em;
+  width: 100%;
+  padding: 0.75em 1.5em;
+  min-height: 44px;
+  background: var(--c-accent-soft, var(--c-bg-alt));
+  color: var(--c-accent-ink, var(--c-ink));
+  border: 1.5px solid var(--c-accent, var(--c-border));
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-align: center;
+  text-decoration: none;
+  transition: transform 0.15s ease, filter 0.15s ease;
+}
+.btn-ad:hover {
+  transform: translateY(-1px);
+  filter: brightness(0.97);
+}
+@media (min-width: 640px) {
+  .btn-ad { width: auto; }
+}

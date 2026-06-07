@@ -20,21 +20,21 @@ export default function ChizaiCourseAd({ headline, body }: Props = {}) {
     "知的財産管理技能検定は市販教材が限られる試験です。月額制のオンライン講座オンスク.JPは知財検定3級講座を提供しており、スキマ時間で出題範囲を体系的に押さえられます。";
 
   return (
-    <aside className="my-10 p-5 rounded-lg border border-[color:var(--c-border)] bg-[color:var(--c-bg-alt)]">
+    <aside className="theme-chizai my-10 p-5 rounded-lg border border-[color:var(--c-border)] bg-[color:var(--c-bg-alt)]">
       <p className="mb-3">
         <span className="text-[10px] tracking-wider text-[color:var(--c-text-sub)] border border-[color:var(--c-border)] px-1.5 py-0.5 rounded">
           広告
         </span>
       </p>
       <p className="text-xs text-[color:var(--c-text-sub)] mb-3">{finalHeadline}</p>
-      <p className="text-sm text-[color:var(--c-text)] leading-relaxed mb-3">
+      <p className="text-sm text-[color:var(--c-text)] leading-relaxed mb-4">
         {finalBody}
       </p>
       <a
         href="https://px.a8.net/svt/ejp?a8mat=4B3TF4+BJKL0Y+408S+BW8O2&a8ejpredirect=https%3A%2F%2Fonsuku.jp%2Ftraining%2Fchizai3"
         rel="nofollow sponsored noopener"
         target="_blank"
-        className="text-sm text-blue-700 hover:underline font-medium"
+        className="btn-ad"
       >
         知的財産管理技能検定3級の対策講座を見る →
       </a>

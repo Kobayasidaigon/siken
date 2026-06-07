@@ -9,25 +9,26 @@ interface Props {
   linkHref: string;     // アフィリエイトURL
   linkText: string;     // アンカーテキスト
   pixelSrc?: string;    // A8の1x1トラッキングピクセル（任意）
+  themeClass?: string;  // テーマ色クラス（例 "theme-kashikin"）。CTAボタンの色に反映
 }
 
-export default function TextAffiliateAd({ headline, body, linkHref, linkText, pixelSrc }: Props) {
+export default function TextAffiliateAd({ headline, body, linkHref, linkText, pixelSrc, themeClass = "" }: Props) {
   return (
-    <aside className="my-8 p-5 rounded-lg border border-[color:var(--c-border)] bg-[color:var(--c-bg-alt)]">
+    <aside className={`${themeClass} my-8 p-5 rounded-lg border border-[color:var(--c-border)] bg-[color:var(--c-bg-alt)]`}>
       <p className="mb-3">
         <span className="text-[10px] tracking-wider text-[color:var(--c-text-sub)] border border-[color:var(--c-border)] px-1.5 py-0.5 rounded">
           広告
         </span>
       </p>
       <p className="text-xs text-[color:var(--c-text-sub)] mb-2">{headline}</p>
-      <p className="text-sm text-[color:var(--c-text)] leading-relaxed mb-3">
+      <p className="text-sm text-[color:var(--c-text)] leading-relaxed mb-4">
         {body}
       </p>
       <a
         href={linkHref}
         rel="nofollow sponsored noopener"
         target="_blank"
-        className="text-sm text-blue-700 hover:underline font-medium"
+        className="btn-ad"
       >
         {linkText} →
       </a>

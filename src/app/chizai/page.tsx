@@ -124,6 +124,9 @@ export default async function ChizaiPage() {
         <p className="text-xs text-[color:var(--c-text-sub)] mt-3">
           学科と実技はそれぞれ独立しています。両方に合格すると3級の資格が認定されます。
         </p>
+        <p className="text-xs text-[color:var(--c-text-sub)] mt-2">
+          第47回検定からCBT方式（コンピュータ受験）が導入され、申込時に従来の紙試験かCBT方式かを選択できます。
+        </p>
       </section>
 
       {/* 試験概要 */}
@@ -131,7 +134,7 @@ export default async function ChizaiPage() {
         <h2 className="text-base font-bold text-[color:var(--c-ink)] mb-4 font-serif">試験の概要</h2>
         <div className="card p-5 text-sm text-[color:var(--c-text-sub)] space-y-2">
           <p><span className="font-bold text-[color:var(--c-ink)]">試験日</span>　年3回（3月・7月・11月）</p>
-          <p><span className="font-bold text-[color:var(--c-ink)]">試験形式</span>　学科30問 + 実技30問（各45分・3肢択一）</p>
+          <p><span className="font-bold text-[color:var(--c-ink)]">試験形式</span>　学科30問 + 実技30問（各45分・3肢択一）。紙試験／CBT方式を選択可（第47回検定から）</p>
           <p><span className="font-bold text-[color:var(--c-ink)]">合格基準</span>　学科・実技ともに70%以上</p>
           <p><span className="font-bold text-[color:var(--c-ink)]">受験料</span>　学科6,100円 + 実技6,100円</p>
           <p><span className="font-bold text-[color:var(--c-ink)]">実施機関</span>　知的財産教育協会</p>

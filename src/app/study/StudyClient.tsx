@@ -1,6 +1,13 @@
 "use client";
 import { useEffect, useState } from "react";
 import { loadProgress, clearProgress, EXAM_LIST, type AllProgress, type ExamSlug } from "@/lib/study-progress";
+import AffiliateLink from "@/components/AffiliateLink";
+import { EXAM_AFFILIATE } from "@/lib/affiliate-links";
+
+// 弱点連動広告を出す誤答数のしきい値（1〜2問の誤答で講座広告は過剰）
+const STUDY_AD_WRONG_THRESHOLD = 3;
+// 1ページに出す弱点広告の最大資格数（過密回避）
+const STUDY_AD_MAX = 2;
 
 export interface QuestionMeta {
   questionNumber: number;
@@ -53,6 +60,15 @@ export default function StudyClient({
   const totalWrong = EXAM_LIST.reduce((sum, e) => sum + progress[e.slug].wrong.length, 0);
   const totalCorrect = EXAM_LIST.reduce((sum, e) => sum + progress[e.slug].correct.length, 0);
   const totalAttempted = totalWrong + totalCorrect;
+
+  // 弱点連動広告の対象資格: 誤答数が多い順、wrong>=しきい値、最大STUDY_AD_MAX資格に絞る（過密回避）
+  const adExams = new Set(
+    EXAM_LIST
+      .filter((e) => progress[e.slug].wrong.length >= STUDY_AD_WRONG_THRESHOLD)
+      .sort((a, b) => progress[b.slug].wrong.length - progress[a.slug].wrong.length)
+      .slice(0, STUDY_AD_MAX)
+      .map((e) => e.slug),
+  );
 
   const handleClearAll = () => {
     if (confirm("すべての学習履歴を削除します。よろしいですか？")) {
@@ -297,6 +313,22 @@ export default function StudyClient({
               "✗",
               true,
               "間違えた問題から再挑戦 →",
+            )}
+
+            {/* 弱点連動広告（誤答が多い資格＝講座CVに最も近い文脈。控えめに1枠） */}
+            {adExams.has(e.slug) && (
+              <aside className="mt-3 p-3 rounded-lg border border-[color:var(--c-border)] bg-[color:var(--c-bg-alt)] text-xs text-[color:var(--c-text-sub)] flex flex-wrap items-baseline gap-x-2 gap-y-1">
+                <span className="tracking-wider border border-[color:var(--c-border)] px-1.5 py-0.5 rounded text-[10px]">広告</span>
+                <span>間違えた問題が続く分野は、講座で体系的に補うのも手です。</span>
+                <AffiliateLink
+                  href={EXAM_AFFILIATE[e.slug].href}
+                  course={EXAM_AFFILIATE[e.slug].course}
+                  placement="study"
+                  className="text-blue-700 hover:underline font-medium"
+                >
+                  {EXAM_AFFILIATE[e.slug].label} →
+                </AffiliateLink>
+              </aside>
             )}
 
             {renderSection(

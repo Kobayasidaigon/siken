@@ -1,6 +1,11 @@
 "use client";
 import { useEffect, useState } from "react";
 import { recordResult, type ExamSlug } from "@/lib/study-progress";
+import AffiliateLink from "@/components/AffiliateLink";
+import { EXAM_AFFILIATE, RESULT_CTA_HEADLINE } from "@/lib/affiliate-links";
+
+// 答え合わせ直後CTAを出す資格（段階導入：まず流入の大きい bijihou と pii で検証）
+const RESULT_CTA_EXAMS: ExamSlug[] = ["bijihou", "pii"];
 
 export default function AnswerReveal({
   choices,
@@ -97,6 +102,22 @@ export default function AnswerReveal({
                 正解: {correctAnswer}
               </p>
             </div>
+          )}
+
+          {/* 答え合わせ直後CTA（最高関心点。結果カードの外・控えめなテキストリンク） */}
+          {exam && RESULT_CTA_EXAMS.includes(exam) && (
+            <p className="mb-6 text-xs text-[color:var(--c-text-sub)] flex flex-wrap items-baseline gap-x-2 gap-y-1">
+              <span className="tracking-wider border border-[color:var(--c-border)] px-1.5 py-0.5 rounded text-[10px]">広告</span>
+              <span>{RESULT_CTA_HEADLINE[exam]}</span>
+              <AffiliateLink
+                href={EXAM_AFFILIATE[exam].href}
+                course={EXAM_AFFILIATE[exam].course}
+                placement="question_result"
+                className="text-blue-700 hover:underline font-medium"
+              >
+                {EXAM_AFFILIATE[exam].label} →
+              </AffiliateLink>
+            </p>
           )}
 
           {/* Explanation */}

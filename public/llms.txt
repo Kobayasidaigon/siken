@@ -2,26 +2,45 @@
 
 > 資格試験のオリジナル練習問題を無料で提供するサイト
 
-シカクモンは、ニッチな資格試験に特化した練習問題サイトです。市販の問題集が少ない資格を中心に、オリジナルの四肢択一問題と詳細な解説を提供しています。
+シカクモンは、市販の問題集が少ないニッチな資格試験に特化した練習問題サイトです。オリジナルの四肢択一問題と、根拠法令を含む詳細な解説を無料で提供しています。全6資格・合計1,604問。
 
-## 対応資格
+## 対応資格（6資格・1,604問）
 
 - 貸金業務取扱主任者（504問）: 貸金業法・利息制限法・出資法・民法・資金需要者保護
 - 個人情報保護士（300問）: 個人情報保護法・マイナンバー法・情報セキュリティ
+- 知的財産管理技能検定3級（200問）: 特許法・著作権法・意匠法・商標法・不正競争防止法ほか9分野
+- マイナンバー実務検定3級（200問）: 番号法・個人番号カード・特定個人情報保護
+- 個人情報保護実務検定（200問）: 個人情報保護法の実務運用（1級・2級対応）
+- ビジネス実務法務検定3級（200問）: 民法・商法・会社法・関連法規
 
 ## コンテンツ
 
-- 合計804問のオリジナル練習問題
+- 合計1,604問のオリジナル練習問題
 - 各問題に根拠法令を含む詳細解説付き
 - 分野別・難易度別（A/B/C）に分類
-- コラム記事（勉強法・合格率・試験日程など）
+- 解答の正誤・ブックマークを記録できる学習履歴機能
+- コラム記事（勉強法・合格率・試験日程・資格比較など）
 
 ## リンク
 
 - トップページ: https://shikakumon.com/
 - 貸金業務取扱主任者: https://shikakumon.com/kashikin/
 - 個人情報保護士: https://shikakumon.com/pii/
-- コラム: https://shikakumon.com/column/
+- 知的財産管理技能検定3級: https://shikakumon.com/chizai/
+- マイナンバー実務検定3級: https://shikakumon.com/mynumber/
+- 個人情報保護実務検定: https://shikakumon.com/jitsumu/
+- ビジネス実務法務検定3級: https://shikakumon.com/bijihou/
+- コラム一覧: https://shikakumon.com/column/
+
+## よくある質問に答える記事
+
+- 個人情報保護士と個人情報保護実務検定の違い: https://shikakumon.com/column/pii-jitsumu-hikaku/
+- 個人情報保護士とITパスポートの違い: https://shikakumon.com/column/pii-itpassport-hikaku/
+- 知的財産管理技能検定3級と弁理士の違い: https://shikakumon.com/column/chizai-benrishi-hikaku/
+- 貸金業務取扱主任者と宅建の違い: https://shikakumon.com/column/takken-hikaku/
+- 個人情報保護士の過去問はどこで手に入る: https://shikakumon.com/column/pii-kakomonn/
+- ビジネス実務法務検定3級の過去問とIBT対策: https://shikakumon.com/column/bijihou-kakomonn/
+- 知的財産管理技能検定3級の難易度と合格率: https://shikakumon.com/column/chizai-goukakuritsu/
 
 ## 運営
 

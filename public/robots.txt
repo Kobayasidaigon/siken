@@ -2,4 +2,30 @@ User-agent: *
 Allow: /
 Disallow: /api/
 
+# AI検索・LLMクローラを明示的に許可（無料公開・引用流入歓迎）
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+# AI: サイト概要は /llms.txt を参照
 Sitemap: https://shikakumon.com/sitemap.xml

@@ -122,6 +122,28 @@ export default function AnswerReveal({
 
           {/* Explanation */}
           <section className="prose max-w-none" dangerouslySetInnerHTML={{ __html: explanationHtml }} />
+
+          {/* 答え合わせ後（最高関心点）の Studio 送客。全資格で表示・affiliate より優先 */}
+          <aside className="mt-8 p-4 rounded-lg border border-indigo-200 bg-indigo-50">
+            <p className="text-xs font-bold mb-1 text-indigo-900">
+              自分専用の問題集も作れます
+            </p>
+            <p className="text-xs leading-relaxed mb-2 text-indigo-900/80">
+              資格名を入れるだけ、または手元の教材 PDF・写真から、AI が 4 択問題を生成する姉妹サービス「シカクモン
+              Studio」。間違えた問題は忘却曲線で自動復習でき、試験まで続く学習に。
+            </p>
+            <a
+              href={`https://shikakumon-studio.vercel.app/?utm_source=shikakumon&utm_medium=quiz_${exam ?? "result"}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-xs font-bold inline-flex items-center gap-1 no-underline text-indigo-600 hover:underline"
+            >
+              シカクモン Studio を無料で試す
+              <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+              </svg>
+            </a>
+          </aside>
         </>
       )}
     </>

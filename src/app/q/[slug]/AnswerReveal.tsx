@@ -1,11 +1,18 @@
 "use client";
 import { useEffect, useState } from "react";
-import { recordResult, type ExamSlug } from "@/lib/study-progress";
+import { recordResult, loadProgress, type ExamSlug, type Medal } from "@/lib/study-progress";
 import AffiliateLink from "@/components/AffiliateLink";
 import { EXAM_AFFILIATE, RESULT_CTA_HEADLINE } from "@/lib/affiliate-links";
 
 // 答え合わせ直後CTAを出す資格（段階導入：まず流入の大きい bijihou と pii で検証）
 const RESULT_CTA_EXAMS: ExamSlug[] = ["bijihou", "pii"];
+
+const MEDAL_LABEL: Record<Medal, string> = { bronze: "🥉 銅", silver: "🥈 銀", gold: "🥇 金" };
+const MEDAL_NEXT: Record<Medal, string> = {
+  bronze: "もう一度正解で 🥈 銀になります",
+  silver: "もう一度正解で 🥇 金になります",
+  gold: "この問題はマスター（金）です！",
+};
 
 export default function AnswerReveal({
   choices,
@@ -22,10 +29,13 @@ export default function AnswerReveal({
 }) {
   const [revealed, setRevealed] = useState(false);
   const [selected, setSelected] = useState<number | null>(null);
+  const [medal, setMedal] = useState<Medal | null>(null);
 
   useEffect(() => {
     if (revealed && selected !== null && exam && questionSlug) {
       recordResult(exam, questionSlug, selected === correctAnswer);
+      // 更新後のメダルを取得して表示
+      setMedal(loadProgress()[exam].medals?.[questionSlug] ?? null);
     }
   }, [revealed, selected, correctAnswer, exam, questionSlug]);
 
@@ -88,10 +98,15 @@ export default function AnswerReveal({
               <p className={`text-base font-bold ${selected === correctAnswer ? "text-green-700" : "text-red-700"}`}>
                 {selected === correctAnswer ? "正解!" : `不正解 — 正解は ${correctAnswer} です`}
               </p>
-              {exam && questionSlug && (
-                <p className="text-xs text-[color:var(--c-text-sub)] mt-2">
-                  この問題は「学習履歴」に自動記録されます（<a href="/study/" className="underline">履歴を見る</a>）
-                </p>
+              {exam && questionSlug && medal && (
+                <>
+                  <p className="text-sm font-bold mt-2">
+                    この問題：{MEDAL_LABEL[medal]}
+                  </p>
+                  <p className="text-xs text-[color:var(--c-text-sub)] mt-1">
+                    {MEDAL_NEXT[medal]}（<a href="/study/" className="underline">学習履歴を見る</a>）
+                  </p>
+                </>
               )}
             </div>
           )}

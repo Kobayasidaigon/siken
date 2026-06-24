@@ -20,22 +20,27 @@ export const EXAM_LIST: { slug: ExamSlug; name: string; topPath: string; questio
   { slug: "bijihou", name: "ビジネス実務法務検定3級", topPath: "/bijihou/", questionPathPrefix: "/bijihou/q/" },
 ];
 
+export type Medal = "bronze" | "silver" | "gold";
+
 export interface ExamProgress {
   bookmarks: string[];
   wrong: string[];
   correct: string[];
+  // 問題ごとのメダル状態（連続正解でマスタリー管理）。後方互換のため optional。
+  // 未挑戦=エントリ無し / 不正解=bronze / 正解=silver / silverの状態で再度正解=gold
+  medals?: Record<string, Medal>;
 }
 
 export type AllProgress = Record<ExamSlug, ExamProgress>;
 
 function defaultProgress(): AllProgress {
   return {
-    kashikin: { bookmarks: [], wrong: [], correct: [] },
-    pii: { bookmarks: [], wrong: [], correct: [] },
-    chizai: { bookmarks: [], wrong: [], correct: [] },
-    mynumber: { bookmarks: [], wrong: [], correct: [] },
-    jitsumu: { bookmarks: [], wrong: [], correct: [] },
-    bijihou: { bookmarks: [], wrong: [], correct: [] },
+    kashikin: { bookmarks: [], wrong: [], correct: [], medals: {} },
+    pii: { bookmarks: [], wrong: [], correct: [], medals: {} },
+    chizai: { bookmarks: [], wrong: [], correct: [], medals: {} },
+    mynumber: { bookmarks: [], wrong: [], correct: [], medals: {} },
+    jitsumu: { bookmarks: [], wrong: [], correct: [], medals: {} },
+    bijihou: { bookmarks: [], wrong: [], correct: [], medals: {} },
   };
 }
 
@@ -53,6 +58,8 @@ export function loadProgress(): AllProgress {
           bookmarks: Array.isArray(part.bookmarks) ? part.bookmarks : [],
           wrong: Array.isArray(part.wrong) ? part.wrong : [],
           correct: Array.isArray(part.correct) ? part.correct : [],
+          // 旧データに medals が無くても安全に補完（後方互換）
+          medals: part.medals && typeof part.medals === "object" ? part.medals : {},
         };
       }
     }
@@ -100,7 +107,23 @@ export function recordResult(exam: ExamSlug, slug: string, correct: boolean): vo
   } else {
     p[exam].wrong.push(slug);
   }
+  // メダル遷移: 不正解→bronze / 正解は silver、すでに silver(以上)なら gold へ昇格。
+  // 「連続正解で金」のマスタリー（gold に到達したら間違えるまで維持）。
+  const medals = p[exam].medals ?? (p[exam].medals = {});
+  if (!correct) {
+    medals[slug] = "bronze";
+  } else {
+    medals[slug] = medals[slug] === "silver" || medals[slug] === "gold" ? "gold" : "silver";
+  }
   saveProgress(p);
+}
+
+/** 資格ごとのメダル枚数を集計（未挑戦は数えない）。 */
+export function medalCounts(progress: ExamProgress): { bronze: number; silver: number; gold: number } {
+  const counts = { bronze: 0, silver: 0, gold: 0 };
+  const medals = progress.medals ?? {};
+  for (const m of Object.values(medals)) counts[m]++;
+  return counts;
 }
 
 export function clearProgress(exam?: ExamSlug): void {
@@ -109,6 +132,6 @@ export function clearProgress(exam?: ExamSlug): void {
     return;
   }
   const p = loadProgress();
-  p[exam] = { bookmarks: [], wrong: [], correct: [] };
+  p[exam] = { bookmarks: [], wrong: [], correct: [], medals: {} };
   saveProgress(p);
 }

@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-import { loadProgress, clearProgress, EXAM_LIST, type AllProgress, type ExamSlug } from "@/lib/study-progress";
+import { loadProgress, clearProgress, medalCounts, EXAM_LIST, type AllProgress, type ExamSlug } from "@/lib/study-progress";
 import AffiliateLink from "@/components/AffiliateLink";
 import { EXAM_AFFILIATE } from "@/lib/affiliate-links";
 
@@ -60,6 +60,8 @@ export default function StudyClient({
   const totalWrong = EXAM_LIST.reduce((sum, e) => sum + progress[e.slug].wrong.length, 0);
   const totalCorrect = EXAM_LIST.reduce((sum, e) => sum + progress[e.slug].correct.length, 0);
   const totalAttempted = totalWrong + totalCorrect;
+  const accuracyPct = totalAttempted > 0 ? Math.round((totalCorrect / totalAttempted) * 100) : 0;
+  const totalGold = EXAM_LIST.reduce((sum, e) => sum + medalCounts(progress[e.slug]).gold, 0);
 
   // 弱点連動広告の対象資格: 誤答数が多い順、wrong>=しきい値、最大STUDY_AD_MAX資格に絞る（過密回避）
   const adExams = new Set(
@@ -243,10 +245,14 @@ export default function StudyClient({
         <p className="text-sm text-[color:var(--c-text-sub)] leading-relaxed max-w-lg">
           ブックマークした問題と、解答時の正誤履歴を表示します。すべてブラウザ内に保存されており、サーバには送信されません。
         </p>
-        <div className="mt-6 flex gap-6 text-sm">
+        <div className="mt-6 flex flex-wrap gap-x-6 gap-y-3 text-sm">
           <div>
             <p className="text-2xl font-bold font-serif text-[color:var(--c-ink)]">{totalAttempted}</p>
             <p className="text-xs text-[color:var(--c-text-sub)]">解いた問題</p>
+          </div>
+          <div>
+            <p className="text-2xl font-bold font-serif" style={{ color: totalAttempted > 0 ? "var(--c-ink)" : "var(--c-text-sub)" }}>{totalAttempted > 0 ? `${accuracyPct}%` : "—"}</p>
+            <p className="text-xs text-[color:var(--c-text-sub)]">正答率</p>
           </div>
           <div>
             <p className="text-2xl font-bold font-serif" style={{ color: totalWrong > 0 ? "#b91c1c" : "var(--c-text-sub)" }}>{totalWrong}</p>
@@ -260,7 +266,16 @@ export default function StudyClient({
             <p className="text-2xl font-bold font-serif" style={{ color: totalBookmarks > 0 ? "#b45309" : "var(--c-text-sub)" }}>{totalBookmarks}</p>
             <p className="text-xs text-[color:var(--c-text-sub)]">ブックマーク</p>
           </div>
+          <div>
+            <p className="text-2xl font-bold font-serif" style={{ color: totalGold > 0 ? "#ca8a04" : "var(--c-text-sub)" }}>🥇{totalGold}</p>
+            <p className="text-xs text-[color:var(--c-text-sub)]">金メダル</p>
+          </div>
         </div>
+        {totalAttempted > 0 && (
+          <p className="mt-4 text-xs text-[color:var(--c-text-sub)] leading-relaxed max-w-lg">
+            正解すると🥈銀、もう一度正解で🥇金になります。間違えると🥉銅に戻ります。すべて金にするのが目標です。
+          </p>
+        )}
       </section>
 
       {totalAttempted === 0 && totalBookmarks === 0 && (

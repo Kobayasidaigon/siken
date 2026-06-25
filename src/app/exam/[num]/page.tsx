@@ -82,7 +82,13 @@ export default async function ExamPage({ params }: { params: Promise<{ num: stri
         {isOriginal ? "オリジナル練習問題（全問）" : `第${examNumber}回 貸金業務取扱主任者試験`}
       </h1>
       <div className="w-12 h-1 mb-3" style={{ background: "var(--c-kashikin)" }}></div>
-      <p className="text-sm text-[color:var(--c-text-sub)] mb-8">{questions.length}問を分野別に表示しています。</p>
+      <p className="text-sm text-[color:var(--c-text-sub)] mb-4">{questions.length}問を分野別に表示しています。</p>
+
+      {isOriginal && (
+        <div className="mb-8">
+          <a href="/kashikin/mock/" className="btn-accent">本番形式テストに挑戦（20問・採点あり）→</a>
+        </div>
+      )}
 
       {questions.length === 0 ? (
         <div className="card p-8 text-center">

@@ -2,6 +2,7 @@ import { getQuestionsByField } from "@/lib/questions";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { pageMetadata } from "@/lib/page-metadata";
+import KashikinCourseAd from "@/components/KashikinCourseAd";
 
 const fieldMap: Record<string, { name: string; desc: string }> = {
   kashikingyouhou: { name: "貸金業法", desc: "登録制度、業務規制、帳簿管理、取立て行為の規制、書面交付義務、総量規制など" },
@@ -104,6 +105,8 @@ export default async function FieldPage({ params }: { params: Promise<{ slug: st
           );
         })}
       </div>
+
+      <KashikinCourseAd headline={`「${field.name}」でつまずくなら`} />
     </div>
   );
 }

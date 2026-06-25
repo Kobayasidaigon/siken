@@ -112,9 +112,8 @@ export default async function QuestionPage({ params }: { params: Promise<{ slug:
         explanationHtml={q.content}
         exam="kashikin"
         questionSlug={slug}
+        courseAd={<KashikinCourseAd />}
       />
-
-      <KashikinCourseAd />
 
       <nav className="mt-8 flex justify-between items-center pt-4 border-t border-[color:var(--c-border)]">
         {prevQ ? (

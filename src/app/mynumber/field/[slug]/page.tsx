@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import type { MynumberQuestionData } from "@/lib/mynumber-questions";
 import { pageMetadata } from "@/lib/page-metadata";
+import MynumberCourseAd from "@/components/MynumberCourseAd";
 
 const fieldMap: Record<string, { name: string; desc: string }> = {
   "outline": { name: "番号法の概要", desc: "番号法の目的、利用範囲（社会保障・税・災害対策）、個人番号と法人番号の定義、本人確認の3要素など" },
@@ -91,6 +92,8 @@ export default async function MynumberFieldPage({ params }: { params: Promise<{ 
       <div className="space-y-2">
         {questions.map((q, i) => <QuestionCard key={q.slug} q={q} index={i + 1} />)}
       </div>
+
+      <MynumberCourseAd headline={`「${field.name}」でつまずくなら`} />
     </div>
   );
 }

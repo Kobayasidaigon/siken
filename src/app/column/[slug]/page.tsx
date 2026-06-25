@@ -145,6 +145,7 @@ export default async function ColumnPage({ params }: { params: Promise<{ slug: s
       {slug === "osusume-text" && (
         <TextAffiliateAd
           headline="市販テキスト＋通信講座の併用も選択肢に"
+          course="agaroot-osusume"
           body="市販テキストだけでは独学に不安が残る方は、スキマ時間を活用できるオンライン講座も検討してみてください。テキストとスマホ講義を組み合わせた学習スタイルです。"
           linkHref="https://px.a8.net/svt/ejp?a8mat=4B3N6P+AWY41E+44M0+5YRHE"
           linkText="スキマ時間も有効活用できるオンライン講座"
@@ -155,6 +156,7 @@ export default async function ColumnPage({ params }: { params: Promise<{ slug: s
       {slug === "takken-hikaku" && (
         <TextAffiliateAd
           headline="宅建側の対策をお探しの方へ"
+          course="agaroot-takken"
           body="貸金業務取扱主任者と宅建のダブルライセンスを狙うなら、宅建側もきちんと準備しておく必要があります。フルカラーテキストと動画講義で、ゼロから1年合格を目指せるカリキュラムです。"
           linkHref="https://px.a8.net/svt/ejp?a8mat=4B3N6P+AWY41E+44M0+61Z82"
           linkText="宅建士講座・ゼロから始めて1年合格！"
@@ -165,6 +167,7 @@ export default async function ColumnPage({ params }: { params: Promise<{ slug: s
       {isKashikinGeneralArticle && (
         <TextAffiliateAd
           headline="独学に不安があれば"
+          course="kashikin"
           body="貸金業務取扱主任者は市販の問題集が少なく、独学で進めにくい試験です。通信講座のアガルートアカデミーは貸金業務取扱主任者講座を提供しており、頻出論点と法改正への対応を体系的に押さえられます。"
           linkHref="https://px.a8.net/svt/ejp?a8mat=4B3N6P+AWY41E+44M0+BW8O2&a8ejpredirect=https%3A%2F%2Fwww.agaroot.jp%2Fkashikin%2F"
           linkText="アガルートの貸金業務取扱主任者講座を見る"
@@ -175,6 +178,7 @@ export default async function ColumnPage({ params }: { params: Promise<{ slug: s
       {isBenrishiArticle && (
         <TextAffiliateAd
           headline="弁理士を視野に入れている方へ"
+          course="agaroot-benrishi"
           body="知財検定3級から弁理士を目指すなら、早い段階で弁理士試験の出題範囲を把握しておくと学習計画が立てやすくなります。アガルートアカデミーは弁理士試験講座を提供しています。"
           linkHref="https://px.a8.net/svt/ejp?a8mat=4B3N6P+AWY41E+44M0+BW8O2&a8ejpredirect=https%3A%2F%2Fwww.agaroot.jp%2Fbenri%2F"
           linkText="アガルートの弁理士試験講座を見る"
@@ -193,6 +197,7 @@ export default async function ColumnPage({ params }: { params: Promise<{ slug: s
         <TextAffiliateAd
           themeClass="theme-chizai"
           headline="3級の先に弁理士を狙うなら"
+          course="agaroot-benrishi"
           body="知財検定3級の対策はオンスクで十分ですが、将来的に弁理士まで視野に入れているなら、早い段階で出題範囲を把握しておくと学習計画が立てやすくなります。アガルートアカデミーは弁理士試験講座を提供しています。"
           linkHref="https://px.a8.net/svt/ejp?a8mat=4B3N6P+AWY41E+44M0+BW8O2&a8ejpredirect=https%3A%2F%2Fwww.agaroot.jp%2Fbenri%2F"
           linkText="アガルートの弁理士試験講座を見る"

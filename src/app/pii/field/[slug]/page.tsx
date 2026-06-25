@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import type { PiiQuestionData } from "@/lib/pii-questions";
 import { pageMetadata } from "@/lib/page-metadata";
+import PiiCourseAd from "@/components/PiiCourseAd";
 
 const fieldMap: Record<string, { name: string; desc: string }> = {
   "hogo-law": { name: "個人情報保護法", desc: "個人情報の定義、利用目的、安全管理措置、第三者提供、開示請求、仮名加工情報、匿名加工情報など" },
@@ -98,6 +99,8 @@ export default async function PiiFieldPage({ params }: { params: Promise<{ slug:
       <div className="space-y-2">
         {questions.map((q, i) => <QuestionCard key={q.slug} q={q} index={i + 1} />)}
       </div>
+
+      <PiiCourseAd headline={`「${field.name}」でつまずくなら`} />
     </div>
   );
 }

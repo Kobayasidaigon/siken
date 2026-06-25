@@ -1,7 +1,9 @@
 "use client";
 import { useEffect, useState } from "react";
+import type { ReactNode } from "react";
 import { recordResult, loadProgress, type ExamSlug, type Medal } from "@/lib/study-progress";
 import AffiliateLink from "@/components/AffiliateLink";
+import FreeLeadCTA from "@/components/FreeLeadCTA";
 import { EXAM_AFFILIATE, RESULT_CTA_HEADLINE } from "@/lib/affiliate-links";
 
 // 答え合わせ直後CTAを出す資格（段階導入：まず流入の大きい bijihou と pii で検証）
@@ -20,12 +22,16 @@ export default function AnswerReveal({
   explanationHtml,
   exam,
   questionSlug,
+  courseAd,
 }: {
   choices: string[];
   correctAnswer: number;
   explanationHtml: string;
   exam?: ExamSlug;
   questionSlug?: string;
+  // 講座広告（CourseAd）。解答後（最高関心点）にのみ表示する。設問を解いている最中の
+  // 常時表示はimpを焼くだけ（CTR 0.26%）なので、ここで revealed ゲートをかける。
+  courseAd?: ReactNode;
 }) {
   const [revealed, setRevealed] = useState(false);
   const [selected, setSelected] = useState<number | null>(null);
@@ -124,6 +130,8 @@ export default function AnswerReveal({
             <p className="mb-6 text-xs text-[color:var(--c-text-sub)] flex flex-wrap items-baseline gap-x-2 gap-y-1">
               <span className="tracking-wider border border-[color:var(--c-border)] px-1.5 py-0.5 rounded text-[10px]">広告</span>
               <span>{RESULT_CTA_HEADLINE[exam]}</span>
+              {/* 低摩擦の無料オファーが設定されていれば有料CTAの前に併置（freeHref未設定なら非表示） */}
+              <FreeLeadCTA exam={exam} placement="question_result" />
               <AffiliateLink
                 href={EXAM_AFFILIATE[exam].href}
                 course={EXAM_AFFILIATE[exam].course}
@@ -159,6 +167,10 @@ export default function AnswerReveal({
               </svg>
             </a>
           </aside>
+
+          {/* 講座広告（CourseAd）は解答後のみ表示。設問の最中の常時表示をやめ、
+              最高関心点だけに絞ることで低intentのimp浪費を止める。 */}
+          {courseAd}
         </>
       )}
     </>

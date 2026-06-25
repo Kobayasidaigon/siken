@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import type { JitsumuQuestionData } from "@/lib/jitsumu-questions";
 import { pageMetadata } from "@/lib/page-metadata";
+import JitsumuCourseAd from "@/components/JitsumuCourseAd";
 
 const fieldMap: Record<string, { name: string; desc: string }> = {
   "basic": { name: "個人情報保護法の基礎", desc: "目的・定義、個人情報・個人データ・保有個人データの違い、要配慮個人情報、事業者の義務" },
@@ -73,6 +74,8 @@ export default async function JitsumuFieldPage({ params }: { params: Promise<{ s
         <div className="card p-3 text-center"><p className="text-lg font-bold text-red-700 font-serif">{diffCounts.C}</p><p className="text-xs text-[color:var(--c-text-sub)] mt-1">応用 C</p></div>
       </div>
       <div className="space-y-2">{questions.map((q, i) => <QuestionCard key={q.slug} q={q} index={i + 1} />)}</div>
+
+      <JitsumuCourseAd headline={`「${field.name}」でつまずくなら`} />
     </div>
   );
 }

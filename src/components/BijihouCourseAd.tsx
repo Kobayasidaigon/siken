@@ -3,6 +3,9 @@
  * 配置: ビジネス実務法務検定関連コラム記事の本文末尾、トップページ
  */
 
+import AffiliateLink from "@/components/AffiliateLink";
+import FreeLeadCTA from "@/components/FreeLeadCTA";
+
 interface Props {
   headline?: string;
   body?: string;
@@ -23,14 +26,16 @@ export default function BijihouCourseAd({ headline, body }: Props = {}) {
       <p className="text-sm text-[color:var(--c-text)] leading-relaxed mb-4">
         {finalBody}
       </p>
-      <a
-        href="https://px.a8.net/svt/ejp?a8mat=4B1TI0+9T22IA+4LOQ+BW8O2&a8ejpredirect=https%3A%2F%2Fwww.joho-gakushu.jp%2Fsmartinfo%2Fsmart_lineup.php"
-        rel="nofollow sponsored noopener"
-        target="_blank"
-        className="btn-ad"
-      >
-        ビジネス実務法務検定のSMART合格講座を見る →
-      </a>
+      <div className="flex flex-col items-start gap-3">
+        <FreeLeadCTA exam="bijihou" placement="course_ad" withBadge />
+        <AffiliateLink
+          href="https://px.a8.net/svt/ejp?a8mat=4B1TI0+9T22IA+4LOQ+BW8O2&a8ejpredirect=https%3A%2F%2Fwww.joho-gakushu.jp%2Fsmartinfo%2Fsmart_lineup.php"
+          course="bijihou"
+          placement="course_ad"
+        >
+          ビジネス実務法務検定のSMART合格講座を見る →
+        </AffiliateLink>
+      </div>
       <img
         width={1}
         height={1}

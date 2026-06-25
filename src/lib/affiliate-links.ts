@@ -11,9 +11,23 @@
 import type { ExamSlug } from "./study-progress";
 
 export interface AffiliateTarget {
-  href: string;     // A8の計測付きリンク
+  href: string;     // A8の計測付きリンク（有料講座）
   label: string;    // アンカーテキスト
   course: string;   // GA4計測用の識別子
+
+  /**
+   * ★低摩擦オファー（資料請求・無料体験・無料受講相談など）のA8リンク。
+   * 有料講座の購入は摩擦が大きくCVRの天井が低いため、無料アクションを併設すると
+   * 発生件数が桁違いに取りやすい（監査の最優先課題＝offer-mix）。
+   *
+   * 使い方: A8管理画面で同じ広告主（アガルート／情報学習振興協会／オンスク等）の
+   * 「資料請求」「無料体験」「無料受講相談」プログラムの素材リンクを取得し、
+   * 下の freeHref / freeLabel に貼るだけで、採点直後・学習履歴・分野ページ・講座広告の
+   * 各所に自動で「無料」CTAが表示される（FreeLeadCTA / CourseAd が参照）。
+   * 未設定（undefined）の間は無料CTAは一切表示されない（安全な no-op）。
+   */
+  freeHref?: string;
+  freeLabel?: string;
 }
 
 export const EXAM_AFFILIATE: Record<ExamSlug, AffiliateTarget> = {

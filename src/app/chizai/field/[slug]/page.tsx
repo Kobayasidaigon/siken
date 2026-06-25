@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import type { ChizaiQuestionData } from "@/lib/chizai-questions";
 import { pageMetadata } from "@/lib/page-metadata";
+import ChizaiCourseAd from "@/components/ChizaiCourseAd";
 
 const fieldMap: Record<string, { name: string; desc: string }> = {
   "patent": { name: "特許法", desc: "発明の定義、特許要件、出願手続、権利化、侵害と救済など" },
@@ -104,6 +105,8 @@ export default async function ChizaiFieldPage({ params }: { params: Promise<{ sl
       <div className="space-y-2">
         {questions.map((q, i) => <QuestionCard key={q.slug} q={q} index={i + 1} />)}
       </div>
+
+      <ChizaiCourseAd headline={`「${field.name}」でつまずくなら`} />
     </div>
   );
 }

@@ -44,8 +44,15 @@ export default async function KashikinPage() {
         <p className="text-sm sm:text-base leading-relaxed max-w-lg" style={{ color: "var(--c-kashikin-ink)" }}>
           {totalQuestions}問、4分野。年1回の本試験まで逆算して解く、オリジナル練習問題集です。
         </p>
-        <div className="mt-6">
+        <div className="mt-6 flex flex-wrap gap-3">
           <a href="/exam/0/" className="btn-accent">問題を解き始める →</a>
+          <a
+            href="/kashikin/mock/"
+            className="inline-flex items-center px-4 py-2 rounded-lg border text-sm font-medium no-underline transition-colors hover:bg-[color:var(--c-kashikin-soft)]"
+            style={{ borderColor: "var(--c-kashikin)", color: "var(--c-kashikin-ink)" }}
+          >
+            本番形式で腕試し（20問・採点）→
+          </a>
         </div>
       </section>
 

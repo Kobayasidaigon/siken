@@ -3,6 +3,8 @@
  * バナーではなくテキストリンク中心。広告ラベルは控えめに表示。
  */
 
+import AffiliateLink from "@/components/AffiliateLink";
+
 interface Props {
   headline: string;     // 「○○をお探しの方へ」など導入
   body: string;         // 文脈の説明
@@ -10,9 +12,11 @@ interface Props {
   linkText: string;     // アンカーテキスト
   pixelSrc?: string;    // A8の1x1トラッキングピクセル（任意）
   themeClass?: string;  // テーマ色クラス（例 "theme-kashikin"）。CTAボタンの色に反映
+  course?: string;      // GA4計測用の識別子。指定時はAffiliateLink経由でクリックを計測する
+  placement?: string;   // GA4計測のplacement。既定 "column"
 }
 
-export default function TextAffiliateAd({ headline, body, linkHref, linkText, pixelSrc, themeClass = "" }: Props) {
+export default function TextAffiliateAd({ headline, body, linkHref, linkText, pixelSrc, themeClass = "", course, placement = "column" }: Props) {
   return (
     <aside className={`${themeClass} my-8 p-5 rounded-lg border border-[color:var(--c-border)] bg-[color:var(--c-bg-alt)]`}>
       <p className="mb-3">
@@ -24,14 +28,20 @@ export default function TextAffiliateAd({ headline, body, linkHref, linkText, pi
       <p className="text-sm text-[color:var(--c-text)] leading-relaxed mb-4">
         {body}
       </p>
-      <a
-        href={linkHref}
-        rel="nofollow sponsored noopener"
-        target="_blank"
-        className="btn-ad"
-      >
-        {linkText} →
-      </a>
+      {course ? (
+        <AffiliateLink href={linkHref} course={course} placement={placement}>
+          {linkText} →
+        </AffiliateLink>
+      ) : (
+        <a
+          href={linkHref}
+          rel="nofollow sponsored noopener"
+          target="_blank"
+          className="btn-ad"
+        >
+          {linkText} →
+        </a>
+      )}
       {pixelSrc && (
         <img
           width={1}

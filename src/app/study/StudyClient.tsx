@@ -2,12 +2,13 @@
 import { useEffect, useState } from "react";
 import { loadProgress, clearProgress, medalCounts, EXAM_LIST, type AllProgress, type ExamSlug } from "@/lib/study-progress";
 import AffiliateLink from "@/components/AffiliateLink";
+import FreeLeadCTA from "@/components/FreeLeadCTA";
 import { EXAM_AFFILIATE } from "@/lib/affiliate-links";
 
-// 弱点連動広告を出す誤答数のしきい値（1〜2問の誤答で講座広告は過剰）
-const STUDY_AD_WRONG_THRESHOLD = 3;
+// 弱点連動広告を出す誤答数のしきい値（高intent面なので露出母数を確保するため緩めに）
+const STUDY_AD_WRONG_THRESHOLD = 2;
 // 1ページに出す弱点広告の最大資格数（過密回避）
-const STUDY_AD_MAX = 2;
+const STUDY_AD_MAX = 3;
 
 export interface QuestionMeta {
   questionNumber: number;
@@ -71,6 +72,13 @@ export default function StudyClient({
       .slice(0, STUDY_AD_MAX)
       .map((e) => e.slug),
   );
+
+  // 正答率サマリ直下CTAの対象＝誤答が最も多い資格。最もスコア結果に近い高intent面を
+  // 未収益化のまま放置しないための導線（誤答が一定数たまってから出す）。
+  const topWrongExam =
+    EXAM_LIST
+      .filter((e) => progress[e.slug].wrong.length > 0)
+      .sort((a, b) => progress[b.slug].wrong.length - progress[a.slug].wrong.length)[0]?.slug ?? null;
 
   const handleClearAll = () => {
     if (confirm("すべての学習履歴を削除します。よろしいですか？")) {
@@ -276,6 +284,24 @@ export default function StudyClient({
             正解すると🥈銀、もう一度正解で🥇金になります。間違えると🥉銅に戻ります。すべて金にするのが目標です。
           </p>
         )}
+
+        {/* 正答率サマリ直下＝最もスコア結果に近い高intent面。誤答が一定数たまった人に、
+            誤答が最も多い資格の講座／無料資料請求を提示（freeHref未設定なら無料CTAは非表示）。 */}
+        {topWrongExam && totalWrong >= STUDY_AD_WRONG_THRESHOLD && (
+          <aside className="mt-6 p-4 rounded-lg border border-[color:var(--c-border)] bg-[color:var(--c-bg)] text-xs text-[color:var(--c-text-sub)] flex flex-wrap items-baseline gap-x-2 gap-y-1 max-w-lg">
+            <span className="tracking-wider border border-[color:var(--c-border)] px-1.5 py-0.5 rounded text-[10px]">広告</span>
+            <span>正答率が伸び悩む分野は、講座で体系的に補うと近道です。</span>
+            <FreeLeadCTA exam={topWrongExam} placement="study_summary" />
+            <AffiliateLink
+              href={EXAM_AFFILIATE[topWrongExam].href}
+              course={EXAM_AFFILIATE[topWrongExam].course}
+              placement="study_summary"
+              className="text-blue-700 hover:underline font-medium"
+            >
+              {EXAM_AFFILIATE[topWrongExam].label} →
+            </AffiliateLink>
+          </aside>
+        )}
       </section>
 
       {totalAttempted === 0 && totalBookmarks === 0 && (
@@ -335,6 +361,7 @@ export default function StudyClient({
               <aside className="mt-3 p-3 rounded-lg border border-[color:var(--c-border)] bg-[color:var(--c-bg-alt)] text-xs text-[color:var(--c-text-sub)] flex flex-wrap items-baseline gap-x-2 gap-y-1">
                 <span className="tracking-wider border border-[color:var(--c-border)] px-1.5 py-0.5 rounded text-[10px]">広告</span>
                 <span>間違えた問題が続く分野は、講座で体系的に補うのも手です。</span>
+                <FreeLeadCTA exam={e.slug} placement="study" />
                 <AffiliateLink
                   href={EXAM_AFFILIATE[e.slug].href}
                   course={EXAM_AFFILIATE[e.slug].course}

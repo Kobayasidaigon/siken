@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import type { BijihouQuestionData } from "@/lib/bijihou-questions";
 import { pageMetadata } from "@/lib/page-metadata";
+import BijihouCourseAd from "@/components/BijihouCourseAd";
 
 const fieldMap: Record<string, { name: string; desc: string }> = {
   "kiso": { name: "法体系・取引の基礎", desc: "公法と私法、行為能力、代理、契約成立、意思表示、消滅時効など" },
@@ -91,6 +92,8 @@ export default async function BijihouFieldPage({ params }: { params: Promise<{ s
       <div className="space-y-2">
         {questions.map((q, i) => <QuestionCard key={q.slug} q={q} index={i + 1} />)}
       </div>
+
+      <BijihouCourseAd headline={`「${field.name}」でつまずくなら`} />
     </div>
   );
 }

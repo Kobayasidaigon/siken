@@ -7,6 +7,9 @@
  * 各ページの文脈に合わせた訴求文を props で渡せる。渡さなければ汎用文を表示。
  */
 
+import AffiliateLink from "@/components/AffiliateLink";
+import FreeLeadCTA from "@/components/FreeLeadCTA";
+
 interface Props {
   headline?: string;
   body?: string;
@@ -29,14 +32,16 @@ export default function KashikinCourseAd({ headline, body }: Props = {}) {
       <p className="text-sm text-[color:var(--c-text)] leading-relaxed mb-4">
         {finalBody}
       </p>
-      <a
-        href="https://px.a8.net/svt/ejp?a8mat=4B3N6P+AWY41E+44M0+BW8O2&a8ejpredirect=https%3A%2F%2Fwww.agaroot.jp%2Fkashikin%2F"
-        rel="nofollow sponsored noopener"
-        target="_blank"
-        className="btn-ad"
-      >
-        アガルートの貸金業務取扱主任者講座を見る →
-      </a>
+      <div className="flex flex-col items-start gap-3">
+        <FreeLeadCTA exam="kashikin" placement="course_ad" withBadge />
+        <AffiliateLink
+          href="https://px.a8.net/svt/ejp?a8mat=4B3N6P+AWY41E+44M0+BW8O2&a8ejpredirect=https%3A%2F%2Fwww.agaroot.jp%2Fkashikin%2F"
+          course="kashikin"
+          placement="course_ad"
+        >
+          アガルートの貸金業務取扱主任者講座を見る →
+        </AffiliateLink>
+      </div>
       <img
         width={1}
         height={1}

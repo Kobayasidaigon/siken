@@ -93,9 +93,7 @@ export default async function ChizaiQuestionPage({ params }: { params: Promise<{
         <p className="text-sm text-[color:var(--c-text)] leading-relaxed whitespace-pre-wrap">{q.questionText}</p>
       </section>
 
-      <AnswerReveal choices={q.choices} correctAnswer={q.correctAnswer} explanationHtml={q.content} exam="chizai" questionSlug={slug} />
-
-      <ChizaiCourseAd />
+      <AnswerReveal choices={q.choices} correctAnswer={q.correctAnswer} explanationHtml={q.content} exam="chizai" questionSlug={slug} courseAd={<ChizaiCourseAd />} />
 
       <nav className="mt-8 flex justify-between items-center pt-4 border-t border-[color:var(--c-border)]">
         {prevQ ? (

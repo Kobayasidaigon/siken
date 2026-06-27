@@ -261,7 +261,7 @@ export default async function ColumnPage({ params }: { params: Promise<{ slug: s
           忘却曲線に沿った復習や AI への質問にも対応しています。
         </p>
         <a
-          href="https://shikakumon-studio.vercel.app/?utm_source=shikakumon&utm_medium=column_footer"
+          href="https://studio.shikakumon.com/?utm_source=shikakumon&utm_medium=column_footer"
           target="_blank"
           rel="noopener noreferrer"
           className="text-xs font-bold inline-flex items-center gap-1 no-underline"

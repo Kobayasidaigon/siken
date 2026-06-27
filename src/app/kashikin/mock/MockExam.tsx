@@ -41,7 +41,7 @@ function shuffle<T>(arr: T[]): T[] {
 }
 
 const STUDIO_URL =
-  "https://shikakumon-studio.vercel.app/?utm_source=shikakumon&utm_medium=mock_result";
+  "https://studio.shikakumon.com/?utm_source=shikakumon&utm_medium=mock_result";
 
 export default function MockExam({
   exam,

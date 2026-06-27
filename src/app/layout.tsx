@@ -95,7 +95,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <a href="/study/" className="text-[color:var(--c-text-sub)] hover:text-[color:var(--c-ink)] no-underline transition-colors">学習履歴</a>
               <a href="/about/" className="text-[color:var(--c-text-sub)] hover:text-[color:var(--c-ink)] no-underline transition-colors">サイトについて</a>
               <a
-                href="https://shikakumon-studio.vercel.app/?utm_source=shikakumon&utm_medium=header"
+                href="https://studio.shikakumon.com/?utm_source=shikakumon&utm_medium=header"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-bold no-underline transition-colors"
@@ -143,7 +143,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 <ul className="space-y-2">
                   <li>
                     <a
-                      href="https://shikakumon-studio.vercel.app/?utm_source=shikakumon&utm_medium=footer"
+                      href="https://studio.shikakumon.com/?utm_source=shikakumon&utm_medium=footer"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="no-underline inline-flex items-center gap-1"

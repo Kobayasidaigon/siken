@@ -156,7 +156,7 @@ export default function AnswerReveal({
               Studio」。間違えた問題は忘却曲線で自動復習でき、試験まで続く学習に。
             </p>
             <a
-              href={`https://shikakumon-studio.vercel.app/?utm_source=shikakumon&utm_medium=quiz_${exam ?? "result"}`}
+              href={`https://studio.shikakumon.com/?utm_source=shikakumon&utm_medium=quiz_${exam ?? "result"}`}
               target="_blank"
               rel="noopener noreferrer"
               className="text-xs font-bold inline-flex items-center gap-1 no-underline text-indigo-600 hover:underline"

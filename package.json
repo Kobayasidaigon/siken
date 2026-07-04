@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "next dev --port 3457",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "prebuild": "node scripts/generate-sitemap.js"
   },
   "keywords": [],
   "author": "",

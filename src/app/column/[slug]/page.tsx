@@ -12,6 +12,7 @@ import { getJitsumuAdContent } from "@/lib/jitsumu-ad-content";
 import ChizaiCourseAd from "@/components/ChizaiCourseAd";
 import { getChizaiAdContent } from "@/lib/chizai-ad-content";
 import TextAffiliateAd from "@/components/TextAffiliateAd";
+import JsonLd from "@/components/JsonLd";
 import { pageMetadata } from "@/lib/page-metadata";
 
 export async function generateStaticParams() {
@@ -72,26 +73,41 @@ export default async function ColumnPage({ params }: { params: Promise<{ slug: s
   const isChizaiGeneralArticle = slug.startsWith("chizai-") && !isBenrishiArticle;
   const chizaiAdContent = isChizaiGeneralArticle ? getChizaiAdContent(slug) : undefined;
 
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "Article",
-    headline: col.title,
-    description: col.description,
-    datePublished: col.publishedAt,
-    dateModified: col.updatedAt || col.publishedAt,
-    author: { "@type": "Person", name: "熊太郎" },
-    publisher: {
-      "@type": "Organization",
-      name: "貸金業務取扱主任者 試験対策サイト",
+  const pageUrl = `https://shikakumon.com/column/${slug}/`;
+  const jsonLd = [
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "@id": `${pageUrl}#article`,
+      headline: col.title,
+      description: col.description,
+      url: pageUrl,
+      mainEntityOfPage: pageUrl,
+      inLanguage: "ja",
+      datePublished: col.publishedAt,
+      dateModified: col.updatedAt || col.publishedAt,
+      author: { "@type": "Person", name: "熊太郎", url: "https://shikakumon.com/about/" },
+      publisher: {
+        "@type": "Organization",
+        "@id": "https://shikakumon.com/#organization",
+        name: "シカクモン",
+        url: "https://shikakumon.com",
+      },
     },
-  };
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "ホーム", item: "https://shikakumon.com/" },
+        { "@type": "ListItem", position: 2, name: "コラム", item: "https://shikakumon.com/column/" },
+        { "@type": "ListItem", position: 3, name: col.title, item: pageUrl },
+      ],
+    },
+  ];
 
   return (
     <article className="pb-4">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
+      <JsonLd data={jsonLd} />
 
       <nav className="breadcrumb text-xs text-slate-400 mb-4 flex flex-wrap gap-1">
         <a href="/">ホーム</a><span>/</span>
@@ -235,6 +251,11 @@ export default async function ColumnPage({ params }: { params: Promise<{ slug: s
             <>
               <a href="/bijihou/q/bijihou-001/" className="text-sm text-blue-700 no-underline hover:underline">ビジ法 全200問を見る →</a>
               <a href="/bijihou/" className="text-sm text-slate-500 no-underline hover:underline">分野別に選ぶ →</a>
+            </>
+          ) : slug.startsWith("chizai-") ? (
+            <>
+              <a href="/chizai/" className="text-sm text-blue-700 no-underline hover:underline">知財3級の練習問題を見る →</a>
+              <a href="/chizai/field/patent/" className="text-sm text-slate-500 no-underline hover:underline">特許法の問題から始める →</a>
             </>
           ) : (
             <>

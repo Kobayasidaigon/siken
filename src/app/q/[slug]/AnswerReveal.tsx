@@ -142,10 +142,21 @@ export default function AnswerReveal({
               </AffiliateLink>
             </p>
           )}
+        </>
+      )}
 
-          {/* Explanation */}
-          <section className="prose max-w-none" dangerouslySetInnerHTML={{ __html: explanationHtml }} />
+      {/* Explanation
+          SEO: 解説本文(このサイト最大の独自コンテンツ)は答え合わせ前から初期HTMLに
+          含め、hidden で視覚的にだけ隠す。クリック後にしかDOMに存在しない実装だと
+          クローラには問題文+選択肢だけの薄いページに見えてしまう。 */}
+      <section
+        className="prose max-w-none"
+        hidden={!revealed}
+        dangerouslySetInnerHTML={{ __html: explanationHtml }}
+      />
 
+      {revealed && (
+        <>
           {/* 答え合わせ後（最高関心点）の Studio 送客。全資格で表示・affiliate より優先 */}
           <aside className="mt-8 p-4 rounded-lg border border-indigo-200 bg-indigo-50">
             <p className="text-xs font-bold mb-1 text-indigo-900">

@@ -21,7 +21,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   if (!field) return { title: "Not Found" };
   return pageMetadata({
     path: `/field/${slug}/`,
-    title: `${field.name} 練習問題一覧`,
+    title: `貸金業務取扱主任者｜${field.name} 練習問題`,
     description: `貸金業務取扱主任者試験対策。${field.name}分野のオリジナル練習問題と詳細解説。${field.desc}。`,
   });
 }

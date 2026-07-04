@@ -23,7 +23,9 @@ const notoSerif = Noto_Serif_JP({
 export const metadata: Metadata = {
   title: {
     default: "シカクモン｜資格試験のオリジナル練習問題を無料で提供",
-    template: "%s｜シカクモン - 資格試験の練習問題",
+    // SERPのtitle表示は全角30字前後で切れるため、サフィックスは最小限にして
+    // ページ固有のキーワード部分を残す
+    template: "%s｜シカクモン",
   },
   description: "シカクモンは資格試験のオリジナル練習問題を無料で提供するサイトです。貸金業務取扱主任者・個人情報保護士・知的財産管理技能検定3級・マイナンバー実務検定3級・個人情報保護実務検定・ビジネス実務法務検定3級の6資格、合計1604問。全問に根拠法令を含む詳細解説付き。",
   icons: {
@@ -40,6 +42,7 @@ export const metadata: Metadata = {
     type: "website",
     locale: "ja_JP",
     siteName: "シカクモン",
+    images: [{ url: "/og-default.png", width: 1200, height: 630, alt: "シカクモン - 資格試験の練習問題" }],
   },
 };
 

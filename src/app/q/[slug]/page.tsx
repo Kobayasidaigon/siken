@@ -4,7 +4,9 @@ import type { Metadata } from "next";
 import AnswerReveal from "./AnswerReveal";
 import BookmarkButton from "./BookmarkButton";
 import KashikinCourseAd from "@/components/KashikinCourseAd";
+import JsonLd from "@/components/JsonLd";
 import { pageMetadata } from "@/lib/page-metadata";
+import { quizJsonLd, breadcrumbJsonLd, questionPageTitle, questionPageDescription } from "@/lib/quiz-jsonld";
 
 const fieldSlugMap: Record<string, string> = {
   "貸金業法": "kashikingyouhou",
@@ -23,8 +25,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   if (!q) return {};
   return pageMetadata({
     path: `/q/${slug}/`,
-    title: q.title,
-    description: q.description,
+    title: questionPageTitle(q.title, "貸金業務取扱主任者"),
+    description: questionPageDescription(q.description, q.questionText),
   });
 }
 
@@ -45,35 +47,19 @@ export default async function QuestionPage({ params }: { params: Promise<{ slug:
   const difficultyLabel = { A: "易しい", B: "標準", C: "難しい" }[q.difficulty];
   const difficultyColor = { A: "bg-green-100 text-green-800", B: "bg-amber-100 text-amber-800", C: "bg-red-100 text-red-800" }[q.difficulty];
 
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "Quiz",
-    name: q.title,
-    about: {
-      "@type": "Thing",
-      name: "貸金業務取扱主任者試験",
-    },
-    educationalLevel: q.difficulty === "A" ? "beginner" : q.difficulty === "B" ? "intermediate" : "advanced",
-    hasPart: [{
-      "@type": "Question",
-      name: q.questionText,
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: q.choices[q.correctAnswer - 1],
-      },
-      suggestedAnswer: q.choices.filter((_, i) => i !== q.correctAnswer - 1).map((c) => ({
-        "@type": "Answer",
-        text: c,
-      })),
-    }],
-  };
+  const jsonLd = [
+    quizJsonLd({ q, examName: "貸金業務取扱主任者試験", path: `/q/${slug}/` }),
+    breadcrumbJsonLd([
+      { name: "ホーム", path: "/" },
+      { name: "貸金業務取扱主任者", path: "/kashikin/" },
+      ...(fieldSlug ? [{ name: q.field, path: `/field/${fieldSlug}/` }] : []),
+      { name: `問${fieldIndex}`, path: `/q/${slug}/` },
+    ]),
+  ];
 
   return (
     <article className="theme-kashikin pb-16">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
+      <JsonLd data={jsonLd} />
       <nav className="breadcrumb text-xs text-[color:var(--c-text-sub)] mb-4 flex flex-wrap gap-1">
         <a href="/">ホーム</a><span>/</span>
         <a href="/kashikin/">貸金業務取扱主任者</a><span>/</span>

@@ -4,7 +4,9 @@ import type { Metadata } from "next";
 import AnswerReveal from "@/app/q/[slug]/AnswerReveal";
 import BookmarkButton from "@/app/q/[slug]/BookmarkButton";
 import JitsumuCourseAd from "@/components/JitsumuCourseAd";
+import JsonLd from "@/components/JsonLd";
 import { pageMetadata } from "@/lib/page-metadata";
+import { quizJsonLd, breadcrumbJsonLd, questionPageTitle, questionPageDescription } from "@/lib/quiz-jsonld";
 
 const fieldSlugMap: Record<string, string> = {
   "個人情報保護法の基礎": "basic",
@@ -24,8 +26,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   if (!q) return {};
   return pageMetadata({
     path: `/jitsumu/q/${slug}/`,
-    title: q.title,
-    description: q.description,
+    title: questionPageTitle(q.title, "個人情報保護実務検定"),
+    description: questionPageDescription(q.description, q.questionText),
   });
 }
 
@@ -45,23 +47,19 @@ export default async function JitsumuQuestionPage({ params }: { params: Promise<
   const difficultyLabel = { A: "易しい", B: "標準", C: "難しい" }[q.difficulty];
   const difficultyColor = { A: "bg-green-100 text-green-800", B: "bg-amber-100 text-amber-800", C: "bg-red-100 text-red-800" }[q.difficulty];
 
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "Quiz",
-    name: q.title,
-    about: { "@type": "Thing", name: "個人情報保護実務検定" },
-    educationalLevel: q.difficulty === "A" ? "beginner" : q.difficulty === "B" ? "intermediate" : "advanced",
-    hasPart: [{
-      "@type": "Question",
-      name: q.questionText,
-      acceptedAnswer: { "@type": "Answer", text: q.choices[q.correctAnswer - 1] },
-      suggestedAnswer: q.choices.filter((_, i) => i !== q.correctAnswer - 1).map((c) => ({ "@type": "Answer", text: c })),
-    }],
-  };
+  const jsonLd = [
+    quizJsonLd({ q, examName: "個人情報保護実務検定", path: `/jitsumu/q/${slug}/` }),
+    breadcrumbJsonLd([
+      { name: "ホーム", path: "/" },
+      { name: "個人情報保護実務検定", path: "/jitsumu/" },
+      ...(fieldSlug ? [{ name: q.field, path: `/jitsumu/field/${fieldSlug}/` }] : []),
+      { name: `問${fieldIndex}`, path: `/jitsumu/q/${slug}/` },
+    ]),
+  ];
 
   return (
     <article className="theme-pii pb-16">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <JsonLd data={jsonLd} />
 
       <nav className="breadcrumb text-xs text-[color:var(--c-text-sub)] mb-4 flex flex-wrap gap-1">
         <a href="/">ホーム</a><span>/</span>

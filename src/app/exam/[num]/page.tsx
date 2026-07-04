@@ -11,7 +11,7 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: { params: Promise<{ num: string }> }): Promise<Metadata> {
   const { num } = await params;
-  const title = num === "0" ? "オリジナル練習問題 一覧" : `第${num}回 問題一覧`;
+  const title = num === "0" ? "貸金業務取扱主任者 練習問題一覧" : `貸金業務取扱主任者｜第${num}回 問題一覧`;
   return pageMetadata({
     path: `/exam/${num}/`,
     title,
@@ -75,6 +75,7 @@ export default async function ExamPage({ params }: { params: Promise<{ num: stri
       <nav className="breadcrumb text-xs text-[color:var(--c-text-sub)] mb-4 flex gap-1">
         <a href="/">ホーム</a><span>/</span>
         <a href="/kashikin/">貸金業務取扱主任者</a><span>/</span>
+        <a href="/exam/">問題一覧</a><span>/</span>
         <span className="text-[color:var(--c-ink)]">{isOriginal ? "全問一覧" : `第${examNumber}回`}</span>
       </nav>
 

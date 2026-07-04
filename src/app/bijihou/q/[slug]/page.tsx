@@ -4,7 +4,9 @@ import type { Metadata } from "next";
 import AnswerReveal from "@/app/q/[slug]/AnswerReveal";
 import BookmarkButton from "@/app/q/[slug]/BookmarkButton";
 import BijihouCourseAd from "@/components/BijihouCourseAd";
+import JsonLd from "@/components/JsonLd";
 import { pageMetadata } from "@/lib/page-metadata";
+import { quizJsonLd, breadcrumbJsonLd, questionPageTitle, questionPageDescription } from "@/lib/quiz-jsonld";
 
 const fieldSlugMap: Record<string, string> = {
   "法体系・取引の基礎": "kiso",
@@ -24,8 +26,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   if (!q) return {};
   return pageMetadata({
     path: `/bijihou/q/${slug}/`,
-    title: q.title,
-    description: q.description,
+    title: questionPageTitle(q.title, "ビジネス実務法務検定3級"),
+    description: questionPageDescription(q.description, q.questionText),
   });
 }
 
@@ -45,23 +47,19 @@ export default async function BijihouQuestionPage({ params }: { params: Promise<
   const difficultyLabel = { A: "易しい", B: "標準", C: "難しい" }[q.difficulty];
   const difficultyColor = { A: "bg-green-100 text-green-800", B: "bg-amber-100 text-amber-800", C: "bg-red-100 text-red-800" }[q.difficulty];
 
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "Quiz",
-    name: q.title,
-    about: { "@type": "Thing", name: "ビジネス実務法務検定3級" },
-    educationalLevel: q.difficulty === "A" ? "beginner" : q.difficulty === "B" ? "intermediate" : "advanced",
-    hasPart: [{
-      "@type": "Question",
-      name: q.questionText,
-      acceptedAnswer: { "@type": "Answer", text: q.choices[q.correctAnswer - 1] },
-      suggestedAnswer: q.choices.filter((_, i) => i !== q.correctAnswer - 1).map((c) => ({ "@type": "Answer", text: c })),
-    }],
-  };
+  const jsonLd = [
+    quizJsonLd({ q, examName: "ビジネス実務法務検定3級", path: `/bijihou/q/${slug}/` }),
+    breadcrumbJsonLd([
+      { name: "ホーム", path: "/" },
+      { name: "ビジネス実務法務検定3級", path: "/bijihou/" },
+      ...(fieldSlug ? [{ name: q.field, path: `/bijihou/field/${fieldSlug}/` }] : []),
+      { name: `問${fieldIndex}`, path: `/bijihou/q/${slug}/` },
+    ]),
+  ];
 
   return (
     <article className="theme-kashikin pb-16">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <JsonLd data={jsonLd} />
 
       <nav className="breadcrumb text-xs text-[color:var(--c-text-sub)] mb-4 flex flex-wrap gap-1">
         <a href="/">ホーム</a><span>/</span>

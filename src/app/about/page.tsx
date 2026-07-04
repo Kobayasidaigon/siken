@@ -3,7 +3,7 @@ import { pageMetadata } from "@/lib/page-metadata";
 
 export const metadata: Metadata = pageMetadata({
   path: "/about/",
-  title: "このサイトについて｜シカクモン",
+  title: "このサイトについて",
   description: "シカクモンは個人運営の資格試験練習問題サイトです。運営者・熊太郎がサイトを作った経緯、運営ポリシー、連絡先を記載しています。",
 });
 

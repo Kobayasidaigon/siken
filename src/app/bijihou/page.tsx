@@ -69,7 +69,7 @@ export default async function BijihouPage() {
           <p><span className="font-bold text-[color:var(--c-ink)]">試験形式</span>　多肢選択式・90分・100点満点</p>
           <p><span className="font-bold text-[color:var(--c-ink)]">合格基準</span>　70点以上</p>
           <p><span className="font-bold text-[color:var(--c-ink)]">受験料</span>　IBT方式 5,500円／CBT方式 7,700円（いずれも税込）</p>
-          <p><span className="font-bold text-[color:var(--c-ink)]">試験日</span>　年2回（6〜7月、10〜11月）</p>
+          <p><span className="font-bold text-[color:var(--c-ink)]">試験日</span>　年2回（6〜7月、10〜11月）　<a href="/column/bijihou-nittei/" className="underline hover:no-underline">詳しい日程・申込方法 →</a></p>
           <p><span className="font-bold text-[color:var(--c-ink)]">実施機関</span>　東京商工会議所</p>
         </div>
       </section>

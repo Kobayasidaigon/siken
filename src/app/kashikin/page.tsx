@@ -3,6 +3,7 @@ import { getAllColumns } from "@/lib/columns";
 import type { Metadata } from "next";
 import KashikinCourseAd from "@/components/KashikinCourseAd";
 import { pageMetadata } from "@/lib/page-metadata";
+import { KASHIKIN_EXAMS, nextExam, daysUntil, formatExamDateJa } from "@/lib/exam-dates";
 
 export const metadata: Metadata = pageMetadata({
   path: "/kashikin/",
@@ -15,10 +16,9 @@ export default async function KashikinPage() {
   const columns = await getAllColumns();
   const totalQuestions = questions.length;
 
-  // 試験日カウントダウン（2026年11月第3日曜日 = 2026/11/15）
-  const examDate = new Date("2026-11-15");
-  const today = new Date();
-  const daysLeft = Math.max(0, Math.floor((examDate.getTime() - today.getTime()) / (1000 * 60 * 60 * 24)));
+  // 試験日カウントダウン (公式発表済みの日付リストから次回を自動選択)
+  const upcoming = nextExam(KASHIKIN_EXAMS);
+  const daysLeft = upcoming ? daysUntil(upcoming) : 0;
 
   const fields = [
     { name: "貸金業法", slug: "kashikingyouhou", topic: "登録・監督・業務規制・取立てルール", count: questions.filter(q => q.field === "貸金業法").length },
@@ -57,13 +57,13 @@ export default async function KashikinPage() {
       </section>
 
       {/* カウントダウン（貸金固有） */}
-      {daysLeft > 0 && (
+      {upcoming && daysLeft > 0 && (
         <section className="mb-10 card p-5 flex items-center justify-between">
           <div>
-            <p className="text-xs text-[color:var(--c-text-sub)] mb-1">次回本試験まで</p>
+            <p className="text-xs text-[color:var(--c-text-sub)] mb-1">次回本試験（{upcoming.label}）まで</p>
             <p className="text-lg font-bold font-serif" style={{ color: "var(--c-kashikin)" }}>あと {daysLeft} 日</p>
           </div>
-          <p className="text-sm text-[color:var(--c-text-sub)]">2026年11月15日（日）予定</p>
+          <p className="text-sm text-[color:var(--c-text-sub)]">{formatExamDateJa(upcoming)}</p>
         </section>
       )}
 
@@ -92,7 +92,7 @@ export default async function KashikinPage() {
       <section className="mb-12">
         <h2 className="text-base font-bold text-[color:var(--c-ink)] mb-4 font-serif">試験の概要</h2>
         <div className="card p-5 text-sm text-[color:var(--c-text-sub)] space-y-2">
-          <p><span className="font-bold text-[color:var(--c-ink)]">試験日</span>　毎年11月第3日曜日（年1回）</p>
+          <p><span className="font-bold text-[color:var(--c-ink)]">試験日</span>　毎年11月第3日曜日（年1回）　<a href="/column/shiken-nittei/" className="underline hover:no-underline">詳しい日程・申込方法 →</a></p>
           <p><span className="font-bold text-[color:var(--c-ink)]">試験形式</span>　四肢択一 50問・2時間</p>
           <p><span className="font-bold text-[color:var(--c-ink)]">合格基準</span>　概ね30/50点以上</p>
           <p><span className="font-bold text-[color:var(--c-ink)]">受験料</span>　8,500円</p>

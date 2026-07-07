@@ -65,7 +65,7 @@ export default async function JitsumuPage() {
           <p><span className="font-bold text-[color:var(--c-ink)]">試験形式</span>　1級 100問・120分／2級 80問・90分</p>
           <p><span className="font-bold text-[color:var(--c-ink)]">合格基準</span>　正答率70%以上</p>
           <p><span className="font-bold text-[color:var(--c-ink)]">受験料</span>　1級 11,000円／2級 8,800円（税込）</p>
-          <p><span className="font-bold text-[color:var(--c-ink)]">試験日</span>　年4回（協会の公式サイトで確認）</p>
+          <p><span className="font-bold text-[color:var(--c-ink)]">試験日</span>　年4回（5月・8月・11月・2月頃）　<a href="/column/jitsumu-nittei/" className="underline hover:no-underline">詳しい日程・申込方法 →</a></p>
           <p><span className="font-bold text-[color:var(--c-ink)]">実施機関</span>　全日本情報学習振興協会</p>
         </div>
         <p className="text-xs text-[color:var(--c-text-sub)] mt-3 leading-relaxed">

@@ -73,7 +73,7 @@ export default async function MynumberPage() {
           <p><span className="font-bold text-[color:var(--c-ink)]">試験形式</span>　マークシート 50問・75分</p>
           <p><span className="font-bold text-[color:var(--c-ink)]">合格基準</span>　70%以上</p>
           <p><span className="font-bold text-[color:var(--c-ink)]">受験料</span>　7,700円（公開会場）／CBT会場 +1,500円／オンラインIBT +3,000円（いずれも税込）</p>
-          <p><span className="font-bold text-[color:var(--c-ink)]">試験日</span>　年複数回（協会の公式サイトで確認）</p>
+          <p><span className="font-bold text-[color:var(--c-ink)]">試験日</span>　年4回（6月・9月・12月・3月頃）　<a href="/column/mynumber-nittei/" className="underline hover:no-underline">詳しい日程・申込方法 →</a></p>
           <p><span className="font-bold text-[color:var(--c-ink)]">実施機関</span>　全日本情報学習振興協会</p>
         </div>
       </section>

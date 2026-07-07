@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import PiiCourseAd from "@/components/PiiCourseAd";
 import { PII_TOP_AD } from "@/lib/pii-ad-content";
 import { pageMetadata } from "@/lib/page-metadata";
+import { PII_EXAMS, nextExam, daysUntil, formatExamDateJa } from "@/lib/exam-dates";
 
 export const metadata: Metadata = pageMetadata({
   path: "/pii/",
@@ -44,10 +45,9 @@ export default async function PiiPage() {
     })
   );
 
-  // 試験日カウントダウン（2026年6月21日）
-  const examDate = new Date("2026-06-21");
-  const today = new Date();
-  const daysLeft = Math.max(0, Math.floor((examDate.getTime() - today.getTime()) / (1000 * 60 * 60 * 24)));
+  // 試験日カウントダウン (公式発表済みの日付リストから次回を自動選択)
+  const upcoming = nextExam(PII_EXAMS);
+  const daysLeft = upcoming ? daysUntil(upcoming) : 0;
 
   return (
     <div className="theme-pii pb-16">
@@ -73,13 +73,13 @@ export default async function PiiPage() {
       </section>
 
       {/* カウントダウン */}
-      {daysLeft > 0 && (
+      {upcoming && daysLeft > 0 && (
         <section className="mb-10 card p-5 flex items-center justify-between">
           <div>
-            <p className="text-xs text-[color:var(--c-text-sub)] mb-1">次回試験まで</p>
+            <p className="text-xs text-[color:var(--c-text-sub)] mb-1">次回試験（{upcoming.label}）まで</p>
             <p className="text-lg font-bold font-serif" style={{ color: "var(--c-pii)" }}>あと {daysLeft} 日</p>
           </div>
-          <p className="text-sm text-[color:var(--c-text-sub)]">2026年6月21日（日）</p>
+          <p className="text-sm text-[color:var(--c-text-sub)]">{formatExamDateJa(upcoming)}</p>
         </section>
       )}
 
@@ -120,7 +120,7 @@ export default async function PiiPage() {
       <section className="mb-12">
         <h2 className="text-base font-bold text-[color:var(--c-ink)] mb-4 font-serif">試験の概要</h2>
         <div className="card p-5 text-sm text-[color:var(--c-text-sub)] space-y-2">
-          <p><span className="font-bold text-[color:var(--c-ink)]">試験日</span>　年3〜4回（6月・9月・12月・3月頃）</p>
+          <p><span className="font-bold text-[color:var(--c-ink)]">試験日</span>　年4回（6月・9月・12月・3月頃）　<a href="/column/pii-nittei/" className="underline hover:no-underline">詳しい日程・申込方法 →</a></p>
           <p><span className="font-bold text-[color:var(--c-ink)]">試験形式</span>　マークシート 100問（課題Ⅰ 50問 + 課題Ⅱ 50問）</p>
           <p><span className="font-bold text-[color:var(--c-ink)]">試験時間</span>　150分</p>
           <p><span className="font-bold text-[color:var(--c-ink)]">合格基準</span>　各課題70%以上</p>

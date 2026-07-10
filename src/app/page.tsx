@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: { absolute: "シカクモン｜資格試験のオリジナル練習問題を無料で提供" },
-  description: "シカクモンは資格試験のオリジナル練習問題を無料で提供するサイトです。貸金業務取扱主任者・個人情報保護士・知的財産管理技能検定3級・マイナンバー実務検定3級・個人情報保護実務検定・ビジネス実務法務検定3級の6資格、合計1604問。全問に根拠法令を含む詳細解説付き。",
+  description: "シカクモンは資格試験のオリジナル練習問題を無料で提供するサイトです。貸金業務取扱主任者・個人情報保護士・知的財産管理技能検定3級/2級・マイナンバー実務検定3級・個人情報保護実務検定・ビジネス実務法務検定3級、合計1,804問。全問に根拠法令を含む詳細解説付き。",
   alternates: { canonical: "/" },
   openGraph: {
     url: "/",
@@ -39,6 +39,16 @@ export default function Home() {
       count: 200,
       fieldCount: 9,
       desc: "特許法・著作権法・商標法など9分野を横断する国家資格。知財の実務で最初に目指す級です。",
+      date: "2026年7月12日",
+      themeVar: "var(--c-chizai)",
+      softVar: "var(--c-chizai-soft)",
+    },
+    {
+      name: "知的財産管理技能検定2級",
+      slug: "chizai2",
+      count: 200,
+      fieldCount: 9,
+      desc: "3級の一歩先、実務で問われる応用レベル。特許・著作権・商標など9分野を、事例に沿ってより深く扱う国家資格です。",
       date: "2026年7月12日",
       themeVar: "var(--c-chizai)",
       softVar: "var(--c-chizai-soft)",

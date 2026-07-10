@@ -31,6 +31,7 @@ export default function StudyClient({
     kashikin: null,
     pii: null,
     chizai: null,
+    chizai2: null,
     mynumber: null,
     jitsumu: null,
     bijihou: null,

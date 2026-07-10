@@ -9,12 +9,13 @@
 
 const STORAGE_KEY = "shikakumon-study-v1";
 
-export type ExamSlug = "kashikin" | "pii" | "chizai" | "mynumber" | "jitsumu" | "bijihou";
+export type ExamSlug = "kashikin" | "pii" | "chizai" | "chizai2" | "mynumber" | "jitsumu" | "bijihou";
 
 export const EXAM_LIST: { slug: ExamSlug; name: string; topPath: string; questionPathPrefix: string }[] = [
   { slug: "kashikin", name: "貸金業務取扱主任者", topPath: "/kashikin/", questionPathPrefix: "/q/" },
   { slug: "pii", name: "個人情報保護士", topPath: "/pii/", questionPathPrefix: "/pii/q/" },
   { slug: "chizai", name: "知的財産管理技能検定3級", topPath: "/chizai/", questionPathPrefix: "/chizai/q/" },
+  { slug: "chizai2", name: "知的財産管理技能検定2級", topPath: "/chizai2/", questionPathPrefix: "/chizai2/q/" },
   { slug: "mynumber", name: "マイナンバー実務検定3級", topPath: "/mynumber/", questionPathPrefix: "/mynumber/q/" },
   { slug: "jitsumu", name: "個人情報保護実務検定", topPath: "/jitsumu/", questionPathPrefix: "/jitsumu/q/" },
   { slug: "bijihou", name: "ビジネス実務法務検定3級", topPath: "/bijihou/", questionPathPrefix: "/bijihou/q/" },
@@ -38,6 +39,7 @@ function defaultProgress(): AllProgress {
     kashikin: { bookmarks: [], wrong: [], correct: [], medals: {} },
     pii: { bookmarks: [], wrong: [], correct: [], medals: {} },
     chizai: { bookmarks: [], wrong: [], correct: [], medals: {} },
+    chizai2: { bookmarks: [], wrong: [], correct: [], medals: {} },
     mynumber: { bookmarks: [], wrong: [], correct: [], medals: {} },
     jitsumu: { bookmarks: [], wrong: [], correct: [], medals: {} },
     bijihou: { bookmarks: [], wrong: [], correct: [], medals: {} },

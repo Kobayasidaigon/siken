@@ -73,6 +73,9 @@ export default async function ColumnPage({ params }: { params: Promise<{ slug: s
   const isChizaiGeneralArticle = slug.startsWith("chizai-") && !isBenrishiArticle;
   const chizaiAdContent = isChizaiGeneralArticle ? getChizaiAdContent(slug) : undefined;
 
+  // 知財2級コラム（chizai2-*）。chizai-* とは別扱い（startsWith("chizai-") は false）。
+  const isChizai2Article = slug.startsWith("chizai2-");
+
   const pageUrl = `https://shikakumon.com/column/${slug}/`;
   const jsonLd = [
     {
@@ -209,6 +212,10 @@ export default async function ColumnPage({ params }: { params: Promise<{ slug: s
         />
       )}
 
+      {isChizai2Article && (
+        <ChizaiCourseAd headline="2級レンジの論点を体系的に押さえるなら" />
+      )}
+
       {isChizaiGeneralArticle && chizaiAdContent?.secondaryBenrishi && (
         <TextAffiliateAd
           themeClass="theme-chizai"
@@ -252,6 +259,12 @@ export default async function ColumnPage({ params }: { params: Promise<{ slug: s
             <>
               <a href="/bijihou/q/bijihou-001/" className="text-sm text-blue-700 no-underline hover:underline">ビジ法 全200問を見る →</a>
               <a href="/bijihou/" className="text-sm text-slate-500 no-underline hover:underline">分野別に選ぶ →</a>
+            </>
+          ) : slug.startsWith("chizai2-") ? (
+            <>
+              <a href="/chizai2/" className="text-sm text-blue-700 no-underline hover:underline">知財2級の練習問題を見る →</a>
+              <a href="/chizai2/mock/" className="text-sm text-slate-500 no-underline hover:underline">本番形式で腕試し →</a>
+              <a href="/chizai/" className="text-sm text-slate-500 no-underline hover:underline">3級から始める →</a>
             </>
           ) : slug.startsWith("chizai-") ? (
             <>

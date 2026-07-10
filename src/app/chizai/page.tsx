@@ -67,6 +67,9 @@ export default async function ChizaiPage() {
             本番形式で腕試し（20問・採点）→
           </a>
         </div>
+        <p className="mt-4 text-xs text-[color:var(--c-text-sub)]">
+          3級に慣れたら <a href="/chizai2/" className="underline hover:no-underline" style={{ color: "var(--c-chizai-ink)" }}>知的財産管理技能検定2級</a> へ。
+        </p>
       </section>
 
       {/* カウントダウン */}

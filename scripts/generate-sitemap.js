@@ -13,6 +13,7 @@ const BASE_URL = "https://shikakumon.com";
 const questionsDir = path.join(__dirname, "../src/content/questions");
 const piiDir = path.join(__dirname, "../src/content/pii");
 const chizaiDir = path.join(__dirname, "../src/content/chizai");
+const chizai2Dir = path.join(__dirname, "../src/content/chizai2");
 const mynumberDir = path.join(__dirname, "../src/content/mynumber");
 const jitsumuDir = path.join(__dirname, "../src/content/jitsumu");
 const bijihouDir = path.join(__dirname, "../src/content/bijihou");
@@ -54,6 +55,7 @@ function maxDate(entries, fallback) {
 const questions = collect(questionsDir);
 const pii = collect(piiDir);
 const chizai = collect(chizaiDir);
+const chizai2 = collect(chizai2Dir);
 const mynumber = collect(mynumberDir);
 const jitsumu = collect(jitsumuDir);
 const bijihou = collect(bijihouDir);
@@ -63,11 +65,12 @@ const todayFallback = toDate(Date.now());
 const kashikinMax = maxDate(questions, todayFallback);
 const piiMax = maxDate(pii, todayFallback);
 const chizaiMax = maxDate(chizai, todayFallback);
+const chizai2Max = maxDate(chizai2, todayFallback);
 const mynumberMax = maxDate(mynumber, todayFallback);
 const jitsumuMax = maxDate(jitsumu, todayFallback);
 const bijihouMax = maxDate(bijihou, todayFallback);
 const columnsMax = maxDate(columns, todayFallback);
-const siteMax = [kashikinMax, piiMax, chizaiMax, mynumberMax, jitsumuMax, bijihouMax, columnsMax].sort().at(-1);
+const siteMax = [kashikinMax, piiMax, chizaiMax, chizai2Max, mynumberMax, jitsumuMax, bijihouMax, columnsMax].sort().at(-1);
 
 // 一覧・ハブページの lastmod は、そのページに表示されるコンテンツ群の最終更新日
 const staticPages = [
@@ -98,6 +101,18 @@ const staticPages = [
   { url: "/chizai/field/utility/", priority: "0.8", freq: "monthly", lastmod: chizaiMax },
   { url: "/chizai/field/treaty/", priority: "0.8", freq: "monthly", lastmod: chizaiMax },
   { url: "/chizai/field/practice/", priority: "0.8", freq: "monthly", lastmod: chizaiMax },
+  // 知的財産管理技能検定2級
+  { url: "/chizai2/", priority: "0.9", freq: "weekly", lastmod: chizai2Max },
+  { url: "/chizai2/mock/", priority: "0.6", freq: "monthly", lastmod: fileDate(path.join(appDir, "chizai2/mock/page.tsx")) },
+  { url: "/chizai2/field/patent/", priority: "0.8", freq: "monthly", lastmod: chizai2Max },
+  { url: "/chizai2/field/copyright/", priority: "0.8", freq: "monthly", lastmod: chizai2Max },
+  { url: "/chizai2/field/design/", priority: "0.8", freq: "monthly", lastmod: chizai2Max },
+  { url: "/chizai2/field/trademark/", priority: "0.8", freq: "monthly", lastmod: chizai2Max },
+  { url: "/chizai2/field/unfair/", priority: "0.8", freq: "monthly", lastmod: chizai2Max },
+  { url: "/chizai2/field/related/", priority: "0.8", freq: "monthly", lastmod: chizai2Max },
+  { url: "/chizai2/field/utility/", priority: "0.8", freq: "monthly", lastmod: chizai2Max },
+  { url: "/chizai2/field/treaty/", priority: "0.8", freq: "monthly", lastmod: chizai2Max },
+  { url: "/chizai2/field/practice/", priority: "0.8", freq: "monthly", lastmod: chizai2Max },
   // マイナンバー実務検定3級
   { url: "/mynumber/", priority: "0.9", freq: "weekly", lastmod: mynumberMax },
   { url: "/mynumber/field/outline/", priority: "0.8", freq: "monthly", lastmod: mynumberMax },
@@ -131,6 +146,7 @@ const contentPages = [
   { entries: questions, prefix: "/q/" },
   { entries: pii, prefix: "/pii/q/" },
   { entries: chizai, prefix: "/chizai/q/" },
+  { entries: chizai2, prefix: "/chizai2/q/" },
   { entries: mynumber, prefix: "/mynumber/q/" },
   { entries: jitsumu, prefix: "/jitsumu/q/" },
   { entries: bijihou, prefix: "/bijihou/q/" },

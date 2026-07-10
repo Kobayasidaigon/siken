@@ -4,6 +4,7 @@ import StudyClient, { type QuestionMeta } from "./StudyClient";
 import { getAllQuestions } from "@/lib/questions";
 import { getAllPiiQuestions } from "@/lib/pii-questions";
 import { getAllChizaiQuestions } from "@/lib/chizai-questions";
+import { getAllChizai2Questions } from "@/lib/chizai2-questions";
 import { getAllMynumberQuestions } from "@/lib/mynumber-questions";
 import { getAllJitsumuQuestions } from "@/lib/jitsumu-questions";
 import { getAllBijihouQuestions } from "@/lib/bijihou-questions";
@@ -26,10 +27,11 @@ function extractTopic(title: string): string {
 }
 
 export default async function StudyPage() {
-  const [kashikin, pii, chizai, mynumber, jitsumu, bijihou] = await Promise.all([
+  const [kashikin, pii, chizai, chizai2, mynumber, jitsumu, bijihou] = await Promise.all([
     getAllQuestions(),
     getAllPiiQuestions(),
     getAllChizaiQuestions(),
+    getAllChizai2Questions(),
     getAllMynumberQuestions(),
     getAllJitsumuQuestions(),
     getAllBijihouQuestions(),
@@ -51,6 +53,7 @@ export default async function StudyPage() {
     kashikin: buildMap(kashikin),
     pii: buildMap(pii),
     chizai: buildMap(chizai),
+    chizai2: buildMap(chizai2),
     mynumber: buildMap(mynumber),
     jitsumu: buildMap(jitsumu),
     bijihou: buildMap(bijihou),

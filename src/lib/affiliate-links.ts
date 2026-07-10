@@ -46,6 +46,13 @@ export const EXAM_AFFILIATE: Record<ExamSlug, AffiliateTarget> = {
     label: "知的財産管理技能検定3級の対策講座を見る",
     course: "chizai",
   },
+  // TODO(2級): オンスクに知財2級の個別講座があればそのa8matへ差し替える。
+  //   当面は3級と同じオンスク知財リンク(サブスクで2級範囲もカバー)を流用。
+  chizai2: {
+    href: "https://px.a8.net/svt/ejp?a8mat=4B3TF4+BJKL0Y+408S+BW8O2&a8ejpredirect=https%3A%2F%2Fonsuku.jp%2Ftraining%2Fchizai3",
+    label: "オンスクの知財検定対策講座を見る",
+    course: "chizai2",
+  },
   mynumber: {
     href: "https://px.a8.net/svt/ejp?a8mat=4B1TI0+9T22IA+4LOQ+BW8O2&a8ejpredirect=https%3A%2F%2Fwww.joho-gakushu.jp%2Fsmartinfo%2Fk_nns%2F",
     label: "マイナンバー実務検定のSMART合格講座を見る",
@@ -70,6 +77,7 @@ export const RESULT_CTA_HEADLINE: Record<ExamSlug, string> = {
   kashikin: "間違えた論点を体系的に整理するなら",
   pii: "間違えた論点を体系的に整理するなら",
   chizai: "間違えた論点を体系的に整理するなら",
+  chizai2: "間違えた論点を体系的に整理するなら",
   mynumber: "間違えた論点を体系的に整理するなら",
   jitsumu: "間違えた論点を体系的に整理するなら",
   bijihou: "間違えた論点を体系的に整理するなら",

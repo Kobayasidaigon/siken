@@ -43,6 +43,9 @@ function shuffle<T>(arr: T[]): T[] {
 const STUDIO_URL =
   "https://studio.shikakumon.com/?utm_source=shikakumon&utm_medium=mock_result";
 
+// 配色はテーマ非依存。各mockページの theme-* が --c-accent(-ink) を供給する
+// （貸金=theme-kashikin なので従来色のまま／知財=theme-chizai・個情保=theme-pii で各色に）。
+
 export default function MockExam({
   exam,
   examLabel,
@@ -88,7 +91,7 @@ export default function MockExam({
   if (phase === "intro") {
     return (
       <div className="card p-6">
-        <h2 className="text-lg font-bold font-serif mb-3" style={{ color: "var(--c-kashikin-ink)" }}>
+        <h2 className="text-lg font-bold font-serif mb-3" style={{ color: "var(--c-accent-ink)" }}>
           本番形式・腕試し
         </h2>
         <p className="text-sm text-[color:var(--c-text)] leading-relaxed mb-2">
@@ -120,10 +123,10 @@ export default function MockExam({
           <span>{q.field}</span>
         </div>
         <div className="h-1.5 rounded-full bg-[color:var(--c-bg-alt)] mb-6 overflow-hidden">
-          <div className="h-full rounded-full transition-all" style={{ width: `${progressPct}%`, background: "var(--c-kashikin)" }} />
+          <div className="h-full rounded-full transition-all" style={{ width: `${progressPct}%`, background: "var(--c-accent)" }} />
         </div>
 
-        <section className="card p-5 mb-6" style={{ borderLeft: "4px solid var(--c-kashikin)" }}>
+        <section className="card p-5 mb-6" style={{ borderLeft: "4px solid var(--c-accent)" }}>
           <p className="text-sm text-[color:var(--c-text)] leading-relaxed whitespace-pre-wrap">{q.questionText}</p>
         </section>
 
@@ -152,7 +155,7 @@ export default function MockExam({
             type="button"
             onClick={() => setIdx((v) => Math.max(0, v - 1))}
             disabled={idx === 0}
-            className="text-sm text-[color:var(--c-text-sub)] disabled:opacity-40 hover:text-[color:var(--c-kashikin)]"
+            className="text-sm text-[color:var(--c-text-sub)] disabled:opacity-40 hover:text-[color:var(--c-accent)]"
           >
             ← 前へ
           </button>
@@ -198,7 +201,7 @@ export default function MockExam({
     <div>
       <section className="card p-6 text-center mb-6">
         <p className="text-xs text-[color:var(--c-text-sub)] mb-1">あなたのスコア</p>
-        <p className="text-4xl font-bold font-serif mb-1" style={{ color: "var(--c-kashikin)" }}>
+        <p className="text-4xl font-bold font-serif mb-1" style={{ color: "var(--c-accent)" }}>
           {correctCount} <span className="text-2xl text-[color:var(--c-text-sub)]">/ {pool.length}</span>
         </p>
         <p className="text-sm font-bold" style={{ color: passLikely ? "#15803d" : "#b45309" }}>
@@ -215,7 +218,7 @@ export default function MockExam({
 
       {/* 分野別の正答率 */}
       <section className="card p-5 mb-6">
-        <h3 className="text-sm font-bold mb-4" style={{ color: "var(--c-kashikin-ink)" }}>分野別の正答率</h3>
+        <h3 className="text-sm font-bold mb-4" style={{ color: "var(--c-accent-ink)" }}>分野別の正答率</h3>
         <div className="space-y-3">
           {fieldsSorted.map(([field, s]) => {
             const p = Math.round((s.correct / s.total) * 100);
@@ -239,9 +242,9 @@ export default function MockExam({
 
       {/* 弱点判定＋送客（最高intent面） */}
       {!allPerfect && weakest && (
-        <aside className="card p-5 mb-6" style={{ borderLeft: "4px solid var(--c-kashikin)" }}>
+        <aside className="card p-5 mb-6" style={{ borderLeft: "4px solid var(--c-accent)" }}>
           <p className="text-sm text-[color:var(--c-text)] leading-relaxed mb-3">
-            いちばんの弱点は <strong style={{ color: "var(--c-kashikin-ink)" }}>{weakest[0]}</strong>
+            いちばんの弱点は <strong style={{ color: "var(--c-accent-ink)" }}>{weakest[0]}</strong>
             （{weakest[1].correct}/{weakest[1].total}正解）。ここを重点的に固めると伸びます。
           </p>
           <div className="text-xs text-[color:var(--c-text-sub)] flex flex-wrap items-baseline gap-x-2 gap-y-1">
@@ -286,7 +289,7 @@ export default function MockExam({
                 <a
                   key={q.slug}
                   href={`${questionPathPrefix}${q.slug}/`}
-                  className="block py-2 text-sm text-[color:var(--c-text)] no-underline hover:text-[color:var(--c-kashikin)] border-b border-[color:var(--c-border)] last:border-b-0"
+                  className="block py-2 text-sm text-[color:var(--c-text)] no-underline hover:text-[color:var(--c-accent)] border-b border-[color:var(--c-border)] last:border-b-0"
                 >
                   <span className="text-xs text-[color:var(--c-text-sub)] mr-2">{q.field}</span>
                   {q.questionText.slice(0, 48)}… →
@@ -301,7 +304,7 @@ export default function MockExam({
         <button type="button" onClick={start} className="btn-accent">
           もう一度（別の{count}問）→
         </button>
-        <a href="/study/" className="inline-flex items-center text-sm text-[color:var(--c-text-sub)] no-underline hover:text-[color:var(--c-kashikin)]">
+        <a href="/study/" className="inline-flex items-center text-sm text-[color:var(--c-text-sub)] no-underline hover:text-[color:var(--c-accent)]">
           学習履歴を見る →
         </a>
       </div>

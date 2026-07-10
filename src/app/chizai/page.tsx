@@ -57,8 +57,15 @@ export default async function ChizaiPage() {
           特許・著作権・商標…　9つの分野を横断する{allQuestions.length}問。
           知財の実務で最初に目指す国家資格です。
         </p>
-        <div className="mt-6">
+        <div className="mt-6 flex flex-wrap gap-3">
           <a href="/chizai/q/chizai-001/" className="btn-accent">問題を解き始める →</a>
+          <a
+            href="/chizai/mock/"
+            className="inline-flex items-center px-4 py-2 rounded-lg border text-sm font-medium no-underline transition-colors hover:bg-[color:var(--c-chizai-soft)]"
+            style={{ borderColor: "var(--c-chizai)", color: "var(--c-chizai-ink)" }}
+          >
+            本番形式で腕試し（20問・採点）→
+          </a>
         </div>
       </section>
 

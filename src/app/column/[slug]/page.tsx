@@ -235,6 +235,7 @@ export default async function ColumnPage({ params }: { params: Promise<{ slug: s
           {isPiiArticle ? (
             <>
               <a href="/pii/q/pii-001/" className="text-sm text-blue-700 no-underline hover:underline">個情保 全300問を見る →</a>
+              <a href="/pii/mock/" className="text-sm text-slate-500 no-underline hover:underline">本番形式で腕試し →</a>
               <a href="/pii/" className="text-sm text-slate-500 no-underline hover:underline">分野別に選ぶ →</a>
             </>
           ) : isMynumberArticle ? (
@@ -255,11 +256,13 @@ export default async function ColumnPage({ params }: { params: Promise<{ slug: s
           ) : slug.startsWith("chizai-") ? (
             <>
               <a href="/chizai/" className="text-sm text-blue-700 no-underline hover:underline">知財3級の練習問題を見る →</a>
+              <a href="/chizai/mock/" className="text-sm text-slate-500 no-underline hover:underline">本番形式で腕試し →</a>
               <a href="/chizai/field/patent/" className="text-sm text-slate-500 no-underline hover:underline">特許法の問題から始める →</a>
             </>
           ) : (
             <>
               <a href="/exam/0/" className="text-sm text-blue-700 no-underline hover:underline">全504問を見る →</a>
+              <a href="/kashikin/mock/" className="text-sm text-slate-500 no-underline hover:underline">本番形式で腕試し →</a>
               <a href="/field/" className="text-sm text-slate-500 no-underline hover:underline">分野別に選ぶ →</a>
             </>
           )}

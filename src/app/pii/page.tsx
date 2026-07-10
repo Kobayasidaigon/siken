@@ -67,8 +67,15 @@ export default async function PiiPage() {
           個人情報を守る側の視点で解く、{allQuestions.length}問。
           法律と情報セキュリティ、両方の知識が問われる認定試験です。
         </p>
-        <div className="mt-6">
+        <div className="mt-6 flex flex-wrap gap-3">
           <a href="/pii/q/pii-001/" className="btn-accent">問題を解き始める →</a>
+          <a
+            href="/pii/mock/"
+            className="inline-flex items-center px-4 py-2 rounded-lg border text-sm font-medium no-underline transition-colors hover:bg-[color:var(--c-pii-soft)]"
+            style={{ borderColor: "var(--c-pii)", color: "var(--c-pii-ink)" }}
+          >
+            本番形式で腕試し（20問・採点）→
+          </a>
         </div>
       </section>
 

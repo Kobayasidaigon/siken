@@ -6,7 +6,8 @@
     "dev": "next dev --port 3457",
     "build": "next build",
     "start": "next start",
-    "prebuild": "node scripts/generate-sitemap.js"
+    "prebuild": "node scripts/generate-sitemap.js",
+    "indexnow": "node scripts/indexnow-ping.mjs"
   },
   "keywords": [],
   "author": "",

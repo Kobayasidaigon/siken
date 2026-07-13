@@ -14,7 +14,7 @@ interface ExamGroup {
   examName: string;
   shortName: string;
   topPath: string;
-  themeKey: "kashikin" | "pii" | "chizai";
+  themeKey: "kashikin" | "pii" | "chizai" | "fukushi";
   matcher: (slug: string) => boolean;
 }
 
@@ -46,6 +46,14 @@ const examGroups: ExamGroup[] = [
     matcher: (slug) => slug.startsWith("chizai-"),
   },
   {
+    id: "chizai2",
+    examName: "知的財産管理技能検定2級",
+    shortName: "知財2級",
+    topPath: "/chizai2/",
+    themeKey: "chizai",
+    matcher: (slug) => slug.startsWith("chizai2-"),
+  },
+  {
     id: "mynumber",
     examName: "マイナンバー実務検定3級",
     shortName: "マイナンバー",
@@ -69,12 +77,21 @@ const examGroups: ExamGroup[] = [
     themeKey: "kashikin",
     matcher: (slug) => slug.startsWith("bijihou-"),
   },
+  {
+    id: "fukushi2",
+    examName: "福祉住環境コーディネーター2級",
+    shortName: "福祉住環境",
+    topPath: "/fukushi2/",
+    themeKey: "fukushi",
+    matcher: (slug) => slug.startsWith("fukushi2-"),
+  },
 ];
 
 const themeColor = {
   kashikin: { main: "#c2410c", soft: "#fde6d3", ink: "#7c2d12" },
   pii: { main: "#15803d", soft: "#d7ebd9", ink: "#14532d" },
   chizai: { main: "#6d28d9", soft: "#e6ddf4", ink: "#4c1d95" },
+  fukushi: { main: "#0e7490", soft: "#d9edf2", ink: "#155e75" },
 };
 
 export default async function ColumnIndexPage() {

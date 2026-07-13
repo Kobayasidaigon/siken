@@ -11,6 +11,7 @@ import JitsumuCourseAd from "@/components/JitsumuCourseAd";
 import { getJitsumuAdContent } from "@/lib/jitsumu-ad-content";
 import ChizaiCourseAd from "@/components/ChizaiCourseAd";
 import { getChizaiAdContent } from "@/lib/chizai-ad-content";
+import Fukushi2CourseAd from "@/components/Fukushi2CourseAd";
 import TextAffiliateAd from "@/components/TextAffiliateAd";
 import JsonLd from "@/components/JsonLd";
 import { pageMetadata } from "@/lib/page-metadata";
@@ -75,6 +76,9 @@ export default async function ColumnPage({ params }: { params: Promise<{ slug: s
 
   // 知財2級コラム（chizai2-*）。chizai-* とは別扱い（startsWith("chizai-") は false）。
   const isChizai2Article = slug.startsWith("chizai2-");
+
+  // 福祉住環境コーディネーター2級コラム（fukushi2-*）にユーキャン講座広告を表示
+  const isFukushi2Article = slug.startsWith("fukushi2-");
 
   const pageUrl = `https://shikakumon.com/column/${slug}/`;
   const jsonLd = [
@@ -216,6 +220,10 @@ export default async function ColumnPage({ params }: { params: Promise<{ slug: s
         <ChizaiCourseAd headline="2級レンジの論点を体系的に押さえるなら" />
       )}
 
+      {isFukushi2Article && (
+        <Fukushi2CourseAd headline="広い出題範囲を体系的に押さえるなら" />
+      )}
+
       {isChizaiGeneralArticle && chizaiAdContent?.secondaryBenrishi && (
         <TextAffiliateAd
           themeClass="theme-chizai"
@@ -259,6 +267,12 @@ export default async function ColumnPage({ params }: { params: Promise<{ slug: s
             <>
               <a href="/bijihou/q/bijihou-001/" className="text-sm text-blue-700 no-underline hover:underline">ビジ法 全200問を見る →</a>
               <a href="/bijihou/" className="text-sm text-slate-500 no-underline hover:underline">分野別に選ぶ →</a>
+            </>
+          ) : isFukushi2Article ? (
+            <>
+              <a href="/fukushi2/" className="text-sm text-blue-700 no-underline hover:underline">福祉住環境2級 全200問を見る →</a>
+              <a href="/fukushi2/mock/" className="text-sm text-slate-500 no-underline hover:underline">本番形式で腕試し →</a>
+              <a href="/fukushi2/field/kaigohoken/" className="text-sm text-slate-500 no-underline hover:underline">介護保険と住宅改修の問題から始める →</a>
             </>
           ) : slug.startsWith("chizai2-") ? (
             <>

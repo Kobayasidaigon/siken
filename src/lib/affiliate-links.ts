@@ -68,6 +68,14 @@ export const EXAM_AFFILIATE: Record<ExamSlug, AffiliateTarget> = {
     label: "ビジネス実務法務検定のSMART合格講座を見る",
     course: "bijihou",
   },
+  // TODO(fukushi2): A8でユーキャン「講座申込プログラム」と提携後、a8mat付きリンクへ差し替える
+  //   (講座申込=最大5,000円/件。afbの資料請求=最大1,000円は freeHref に設定する)。
+  //   提携承認まではトラッキング無しの公式講座ページへの直リンクで運用(収益ゼロだが導線は維持)。
+  fukushi2: {
+    href: "https://www.u-can.co.jp/%E7%A6%8F%E7%A5%89%E4%BD%8F%E7%92%B0%E5%A2%83%E3%82%B3%E3%83%BC%E3%83%87%E3%82%A3%E3%83%8D%E3%83%BC%E3%82%BF%E3%83%BC/",
+    label: "ユーキャンの福祉住環境コーディネーター講座を見る",
+    course: "fukushi2",
+  },
 };
 
 /**
@@ -81,4 +89,5 @@ export const RESULT_CTA_HEADLINE: Record<ExamSlug, string> = {
   mynumber: "間違えた論点を体系的に整理するなら",
   jitsumu: "間違えた論点を体系的に整理するなら",
   bijihou: "間違えた論点を体系的に整理するなら",
+  fukushi2: "間違えた論点を体系的に整理するなら",
 };

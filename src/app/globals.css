@@ -25,6 +25,11 @@
   --c-chizai-soft: #e6ddf4;
   --c-chizai-ink: #4c1d95;
 
+  /* 福祉住環境コーディネーター - ティールブルー */
+  --c-fukushi: #0e7490;
+  --c-fukushi-soft: #d9edf2;
+  --c-fukushi-ink: #155e75;
+
   /* 判定色 */
   --c-correct: #15803d;
   --c-wrong: #b91c1c;
@@ -95,6 +100,7 @@ h1, h2, h3, h4, h5, h6 {
 .theme-kashikin { --c-accent: var(--c-kashikin); --c-accent-soft: var(--c-kashikin-soft); --c-accent-ink: var(--c-kashikin-ink); }
 .theme-pii { --c-accent: var(--c-pii); --c-accent-soft: var(--c-pii-soft); --c-accent-ink: var(--c-pii-ink); }
 .theme-chizai { --c-accent: var(--c-chizai); --c-accent-soft: var(--c-chizai-soft); --c-accent-ink: var(--c-chizai-ink); }
+.theme-fukushi { --c-accent: var(--c-fukushi); --c-accent-soft: var(--c-fukushi-soft); --c-accent-ink: var(--c-fukushi-ink); }
 
 /* アクセントボタン */
 .btn-accent {

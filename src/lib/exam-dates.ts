@@ -23,6 +23,11 @@ export const CHIZAI_EXAMS: UpcomingExam[] = [
   { date: "2027-03-07", label: "第56回" },
 ];
 
+// 出典: 東京商工会議所検定サイト (2026年度スケジュール公表済。IBT/CBTの期間制のため試験期間初日を採用)
+export const FUKUSHI2_EXAMS: UpcomingExam[] = [
+  { date: "2026-10-22", label: "第57回(第2シーズン)" },
+];
+
 // 出典: 全日本情報学習振興協会 (第84〜86回は公式発表済)
 export const PII_EXAMS: UpcomingExam[] = [
   { date: "2026-09-27", label: "第84回" },

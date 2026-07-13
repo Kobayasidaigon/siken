@@ -410,7 +410,7 @@
   </url>
   <url>
     <loc>https://shikakumon.com/column/</loc>
-    <lastmod>2026-07-12</lastmod>
+    <lastmod>2026-07-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -565,6 +565,12 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://shikakumon.com/column/fukushi2-3kyu-hikaku/</loc>
+    <lastmod>2026-07-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://shikakumon.com/column/fukushi2-benkyou-jikan/</loc>
     <lastmod>2026-07-12</lastmod>
     <changefreq>monthly</changefreq>
@@ -583,6 +589,12 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://shikakumon.com/column/fukushi2-iminai/</loc>
+    <lastmod>2026-07-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://shikakumon.com/column/fukushi2-kakomonn/</loc>
     <lastmod>2026-07-12</lastmod>
     <changefreq>monthly</changefreq>
@@ -591,6 +603,24 @@
   <url>
     <loc>https://shikakumon.com/column/fukushi2-nittei/</loc>
     <lastmod>2026-07-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://shikakumon.com/column/fukushi2-riyusho/</loc>
+    <lastmod>2026-07-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://shikakumon.com/column/fukushi2-text/</loc>
+    <lastmod>2026-07-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://shikakumon.com/column/fukushi2-toha/</loc>
+    <lastmod>2026-07-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>

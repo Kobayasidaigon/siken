@@ -172,6 +172,31 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                     </p>
                   </li>
                 </ul>
+                <h4 className="text-[color:var(--c-ink)] font-bold mt-6 mb-3 text-xs font-serif">姉妹サイト</h4>
+                <ul className="space-y-2">
+                  <li>
+                    <a
+                      href="https://setsubi.shikakumon.com/"
+                      className="text-[color:var(--c-text-sub)] hover:text-[color:var(--c-ink)] no-underline"
+                    >
+                      設備資格ドリル
+                    </a>
+                    <p className="text-[11px] text-[color:var(--c-text-sub)] mt-0.5 leading-relaxed">
+                      電気工事士などビルメン4点セットの無料練習問題
+                    </p>
+                  </li>
+                  <li>
+                    <a
+                      href="https://kintore.shikakumon.com/"
+                      className="text-[color:var(--c-text-sub)] hover:text-[color:var(--c-ink)] no-underline"
+                    >
+                      筋トレ資格ドリル
+                    </a>
+                    <p className="text-[11px] text-[color:var(--c-text-sub)] mt-0.5 leading-relaxed">
+                      NSCA-CPTなど筋トレ資格の無料練習問題
+                    </p>
+                  </li>
+                </ul>
               </div>
               <div>
                 <h4 className="text-[color:var(--c-ink)] font-bold mb-3 text-xs font-serif">サイト情報</h4>

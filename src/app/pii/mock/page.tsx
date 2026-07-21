@@ -31,6 +31,11 @@ export default async function PiiMockPage() {
       <h1 className="text-xl sm:text-2xl font-bold text-[color:var(--c-ink)] mb-2 font-serif">本番形式テスト</h1>
       <div className="w-12 h-1 mb-5" style={{ background: "var(--c-pii)" }}></div>
 
+      <p className="text-xs text-[color:var(--c-text-sub)] mb-5">
+        本試験と同じ100問・150分・課題別判定で腕試しするなら
+        <a href="/pii/moshi/" className="underline hover:no-underline">模擬試験 第1回（無料）</a>へ。
+      </p>
+
       <MockExam
         exam="pii"
         examLabel="個人情報保護士"

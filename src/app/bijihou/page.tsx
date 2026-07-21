@@ -43,8 +43,15 @@ export default async function BijihouPage() {
         <p className="text-sm sm:text-base leading-relaxed max-w-lg" style={{ color: "var(--c-kashikin-ink)" }}>
           民法・会社法・関連法規を扱う、{allQuestions.length}問のオリジナル練習問題集です。
         </p>
-        <div className="mt-6">
+        <div className="mt-6 flex flex-wrap gap-3">
           <a href="/bijihou/q/bijihou-001/" className="btn-accent">問題を解き始める →</a>
+          <a
+            href="/bijihou/moshi/"
+            className="inline-flex items-center px-4 py-2 rounded-lg border text-sm font-medium no-underline transition-colors hover:bg-[color:var(--c-kashikin-soft)]"
+            style={{ borderColor: "var(--c-kashikin)", color: "var(--c-kashikin-ink)" }}
+          >
+            模擬試験を受ける（90分・70点合格判定）→
+          </a>
         </div>
       </section>
 

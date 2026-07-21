@@ -60,6 +60,13 @@ export default async function Chizai2Page() {
         <div className="mt-6 flex flex-wrap gap-3">
           <a href="/chizai2/q/chizai2-001/" className="btn-accent">問題を解き始める →</a>
           <a
+            href="/chizai2/moshi/"
+            className="inline-flex items-center px-4 py-2 rounded-lg border text-sm font-medium no-underline transition-colors hover:bg-[color:var(--c-chizai-soft)]"
+            style={{ borderColor: "var(--c-chizai)", color: "var(--c-chizai-ink)" }}
+          >
+            模擬試験を受ける（40問・60分・合否判定）→
+          </a>
+          <a
             href="/chizai2/mock/"
             className="inline-flex items-center px-4 py-2 rounded-lg border text-sm font-medium no-underline transition-colors hover:bg-[color:var(--c-chizai-soft)]"
             style={{ borderColor: "var(--c-chizai)", color: "var(--c-chizai-ink)" }}

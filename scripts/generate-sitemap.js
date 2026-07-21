@@ -90,11 +90,15 @@ const staticPages = [
   { url: "/field/hogo/", priority: "0.8", freq: "monthly", lastmod: kashikinMax },
   // 個人情報保護士
   { url: "/pii/", priority: "0.9", freq: "weekly", lastmod: piiMax },
+  { url: "/pii/moshi/", priority: "0.7", freq: "monthly", lastmod: fileDate(path.join(appDir, "pii/moshi/page.tsx")) },
+  { url: "/pii/mock/", priority: "0.6", freq: "monthly", lastmod: fileDate(path.join(appDir, "pii/mock/page.tsx")) },
   { url: "/pii/field/hogo-law/", priority: "0.8", freq: "monthly", lastmod: piiMax },
   { url: "/pii/field/mynumber/", priority: "0.8", freq: "monthly", lastmod: piiMax },
   { url: "/pii/field/security/", priority: "0.8", freq: "monthly", lastmod: piiMax },
   // 知的財産管理技能検定3級
   { url: "/chizai/", priority: "0.9", freq: "weekly", lastmod: chizaiMax },
+  { url: "/chizai/moshi/", priority: "0.7", freq: "monthly", lastmod: fileDate(path.join(appDir, "chizai/moshi/page.tsx")) },
+  { url: "/chizai/mock/", priority: "0.6", freq: "monthly", lastmod: fileDate(path.join(appDir, "chizai/mock/page.tsx")) },
   { url: "/chizai/field/patent/", priority: "0.8", freq: "monthly", lastmod: chizaiMax },
   { url: "/chizai/field/copyright/", priority: "0.8", freq: "monthly", lastmod: chizaiMax },
   { url: "/chizai/field/design/", priority: "0.8", freq: "monthly", lastmod: chizaiMax },
@@ -106,6 +110,7 @@ const staticPages = [
   { url: "/chizai/field/practice/", priority: "0.8", freq: "monthly", lastmod: chizaiMax },
   // 知的財産管理技能検定2級
   { url: "/chizai2/", priority: "0.9", freq: "weekly", lastmod: chizai2Max },
+  { url: "/chizai2/moshi/", priority: "0.7", freq: "monthly", lastmod: fileDate(path.join(appDir, "chizai2/moshi/page.tsx")) },
   { url: "/chizai2/mock/", priority: "0.6", freq: "monthly", lastmod: fileDate(path.join(appDir, "chizai2/mock/page.tsx")) },
   { url: "/chizai2/field/patent/", priority: "0.8", freq: "monthly", lastmod: chizai2Max },
   { url: "/chizai2/field/copyright/", priority: "0.8", freq: "monthly", lastmod: chizai2Max },
@@ -118,6 +123,7 @@ const staticPages = [
   { url: "/chizai2/field/practice/", priority: "0.8", freq: "monthly", lastmod: chizai2Max },
   // マイナンバー実務検定3級
   { url: "/mynumber/", priority: "0.9", freq: "weekly", lastmod: mynumberMax },
+  { url: "/mynumber/moshi/", priority: "0.7", freq: "monthly", lastmod: fileDate(path.join(appDir, "mynumber/moshi/page.tsx")) },
   { url: "/mynumber/field/outline/", priority: "0.8", freq: "monthly", lastmod: mynumberMax },
   { url: "/mynumber/field/card/", priority: "0.8", freq: "monthly", lastmod: mynumberMax },
   { url: "/mynumber/field/protection/", priority: "0.8", freq: "monthly", lastmod: mynumberMax },
@@ -125,6 +131,7 @@ const staticPages = [
   { url: "/mynumber/field/practice/", priority: "0.8", freq: "monthly", lastmod: mynumberMax },
   // 個人情報保護実務検定3級
   { url: "/jitsumu/", priority: "0.9", freq: "weekly", lastmod: jitsumuMax },
+  { url: "/jitsumu/moshi/", priority: "0.7", freq: "monthly", lastmod: fileDate(path.join(appDir, "jitsumu/moshi/page.tsx")) },
   { url: "/jitsumu/field/basic/", priority: "0.8", freq: "monthly", lastmod: jitsumuMax },
   { url: "/jitsumu/field/acquisition/", priority: "0.8", freq: "monthly", lastmod: jitsumuMax },
   { url: "/jitsumu/field/security/", priority: "0.8", freq: "monthly", lastmod: jitsumuMax },
@@ -132,6 +139,7 @@ const staticPages = [
   { url: "/jitsumu/field/practice/", priority: "0.8", freq: "monthly", lastmod: jitsumuMax },
   // ビジネス実務法務検定3級
   { url: "/bijihou/", priority: "0.9", freq: "weekly", lastmod: bijihouMax },
+  { url: "/bijihou/moshi/", priority: "0.7", freq: "monthly", lastmod: fileDate(path.join(appDir, "bijihou/moshi/page.tsx")) },
   { url: "/bijihou/field/kiso/", priority: "0.8", freq: "monthly", lastmod: bijihouMax },
   { url: "/bijihou/field/minpou-saiken/", priority: "0.8", freq: "monthly", lastmod: bijihouMax },
   { url: "/bijihou/field/minpou-bukken/", priority: "0.8", freq: "monthly", lastmod: bijihouMax },
@@ -139,6 +147,7 @@ const staticPages = [
   { url: "/bijihou/field/kanren/", priority: "0.8", freq: "monthly", lastmod: bijihouMax },
   // 福祉住環境コーディネーター2級
   { url: "/fukushi2/", priority: "0.9", freq: "weekly", lastmod: fukushi2Max },
+  { url: "/fukushi2/moshi/", priority: "0.7", freq: "monthly", lastmod: fileDate(path.join(appDir, "fukushi2/moshi/page.tsx")) },
   { url: "/fukushi2/mock/", priority: "0.6", freq: "monthly", lastmod: fileDate(path.join(appDir, "fukushi2/mock/page.tsx")) },
   { url: "/fukushi2/field/society/", priority: "0.8", freq: "monthly", lastmod: fukushi2Max },
   { url: "/fukushi2/field/consultation/", priority: "0.8", freq: "monthly", lastmod: fukushi2Max },

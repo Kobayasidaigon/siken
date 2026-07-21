@@ -31,6 +31,11 @@ export default async function Chizai2MockPage() {
       <h1 className="text-xl sm:text-2xl font-bold text-[color:var(--c-ink)] mb-2 font-serif">本番形式テスト</h1>
       <div className="w-12 h-1 mb-5" style={{ background: "var(--c-chizai)" }}></div>
 
+      <p className="text-xs text-[color:var(--c-text-sub)] mb-5">
+        本試験と同じ40問・60分・合否判定で腕試しするなら
+        <a href="/chizai2/moshi/" className="underline hover:no-underline">模擬試験 第1回（無料）</a>へ。
+      </p>
+
       <MockExam
         exam="chizai2"
         examLabel="知的財産管理技能検定2級"

@@ -70,6 +70,13 @@ export default async function PiiPage() {
         <div className="mt-6 flex flex-wrap gap-3">
           <a href="/pii/q/pii-001/" className="btn-accent">問題を解き始める →</a>
           <a
+            href="/pii/moshi/"
+            className="inline-flex items-center px-4 py-2 rounded-lg border text-sm font-medium no-underline transition-colors hover:bg-[color:var(--c-pii-soft)]"
+            style={{ borderColor: "var(--c-pii)", color: "var(--c-pii-ink)" }}
+          >
+            模擬試験を受ける（100問・150分・課題別判定）→
+          </a>
+          <a
             href="/pii/mock/"
             className="inline-flex items-center px-4 py-2 rounded-lg border text-sm font-medium no-underline transition-colors hover:bg-[color:var(--c-pii-soft)]"
             style={{ borderColor: "var(--c-pii)", color: "var(--c-pii-ink)" }}

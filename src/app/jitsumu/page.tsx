@@ -38,8 +38,15 @@ export default async function JitsumuPage() {
         <p className="text-sm sm:text-base leading-relaxed max-w-lg" style={{ color: "var(--c-pii-ink)" }}>
           個人情報保護法の実務知識を問う、{allQuestions.length}問のオリジナル練習問題集です。
         </p>
-        <div className="mt-6">
+        <div className="mt-6 flex flex-wrap gap-3">
           <a href="/jitsumu/q/jitsumu-001/" className="btn-accent">問題を解き始める →</a>
+          <a
+            href="/jitsumu/moshi/"
+            className="inline-flex items-center px-4 py-2 rounded-lg border text-sm font-medium no-underline transition-colors hover:bg-[color:var(--c-pii-soft)]"
+            style={{ borderColor: "var(--c-pii)", color: "var(--c-pii-ink)" }}
+          >
+            模擬試験を受ける（2級形式80問・90分）→
+          </a>
         </div>
       </section>
 

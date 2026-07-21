@@ -47,8 +47,15 @@ export default async function MynumberPage() {
         <p className="text-sm sm:text-base leading-relaxed max-w-lg" style={{ color: "var(--c-pii-ink)" }}>
           番号法と個人番号の基本知識を問う、{allQuestions.length}問のオリジナル練習問題集です。
         </p>
-        <div className="mt-6">
+        <div className="mt-6 flex flex-wrap gap-3">
           <a href="/mynumber/q/mynumber-001/" className="btn-accent">問題を解き始める →</a>
+          <a
+            href="/mynumber/moshi/"
+            className="inline-flex items-center px-4 py-2 rounded-lg border text-sm font-medium no-underline transition-colors hover:bg-[color:var(--c-pii-soft)]"
+            style={{ borderColor: "var(--c-pii)", color: "var(--c-pii-ink)" }}
+          >
+            模擬試験を受ける（50問・75分・合否判定）→
+          </a>
         </div>
       </section>
 

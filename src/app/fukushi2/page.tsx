@@ -59,6 +59,13 @@ export default async function Fukushi2Page() {
         <div className="mt-6 flex flex-wrap gap-3">
           <a href="/fukushi2/q/fukushi2-001/" className="btn-accent">問題を解き始める →</a>
           <a
+            href="/fukushi2/moshi/"
+            className="inline-flex items-center px-4 py-2 rounded-lg border text-sm font-medium no-underline transition-colors hover:bg-[color:var(--c-fukushi-soft)]"
+            style={{ borderColor: "var(--c-fukushi)", color: "var(--c-fukushi-ink)" }}
+          >
+            模擬試験を受ける（90分・70点合格判定）→
+          </a>
+          <a
             href="/fukushi2/mock/"
             className="inline-flex items-center px-4 py-2 rounded-lg border text-sm font-medium no-underline transition-colors hover:bg-[color:var(--c-fukushi-soft)]"
             style={{ borderColor: "var(--c-fukushi)", color: "var(--c-fukushi-ink)" }}

@@ -63,6 +63,58 @@ export const FUKUSHI2_MOSHI_1_SLUGS: string[] = [
   "fukushi2-185", // 介護保険と住宅改修 B ケアプランと利用者負担
 ];
 
+// =============================================================================
+// 本試験型ペーパー(○×30問+四肢択一28問=58問・100点満点)の四肢択一パート。
+// IBT/CBT本試験の問題数・形式内訳は公式非公表だが、複数の受験者の体験談が
+// 「○×約30問(各1点)+択一28問(2点14問・3点14問)」で一致しており、その構成に
+// 合わせる。上記50問から分野バランスを保って28問を選定(2点=難易度A中心、
+// 3点=B/C中心)。○×パートは fukushi2-moshi-ox.ts(模試専用・ドリル非掲載)。
+// =============================================================================
+export const FUKUSHI2_MOSHI_PASS_POINTS = 70; // 100点満点中70点(本試験と同じ)
+
+export const FUKUSHI2_MOSHI_1_TAKUITSU: { slug: string; points: 2 | 3 }[] = [
+  // 2点×14問(基礎論点)
+  { slug: "fukushi2-091", points: 2 },
+  { slug: "fukushi2-133", points: 2 },
+  { slug: "fukushi2-001", points: 2 },
+  { slug: "fukushi2-041", points: 2 },
+  { slug: "fukushi2-021", points: 2 },
+  { slug: "fukushi2-099", points: 2 },
+  { slug: "fukushi2-008", points: 2 },
+  { slug: "fukushi2-026", points: 2 },
+  { slug: "fukushi2-082", points: 2 },
+  { slug: "fukushi2-142", points: 2 },
+  { slug: "fukushi2-112", points: 2 },
+  { slug: "fukushi2-011", points: 2 },
+  { slug: "fukushi2-061", points: 2 },
+  { slug: "fukushi2-121", points: 2 },
+  // 3点×14問(応用論点)
+  { slug: "fukushi2-065", points: 3 },
+  { slug: "fukushi2-125", points: 3 },
+  { slug: "fukushi2-095", points: 3 },
+  { slug: "fukushi2-069", points: 3 },
+  { slug: "fukushi2-129", points: 3 },
+  { slug: "fukushi2-073", points: 3 },
+  { slug: "fukushi2-103", points: 3 },
+  { slug: "fukushi2-151", points: 3 },
+  { slug: "fukushi2-078", points: 3 },
+  { slug: "fukushi2-138", points: 3 },
+  { slug: "fukushi2-108", points: 3 },
+  { slug: "fukushi2-046", points: 3 },
+  { slug: "fukushi2-156", points: 3 },
+  { slug: "fukushi2-051", points: 3 },
+];
+
+export async function getFukushi2Moshi1Takuitsu(): Promise<(Fukushi2QuestionData & { points: number })[]> {
+  const all = await getAllFukushi2Questions();
+  const bySlug = new Map(all.map((q) => [q.slug, q]));
+  return FUKUSHI2_MOSHI_1_TAKUITSU.map(({ slug, points }) => {
+    const q = bySlug.get(slug);
+    if (!q) throw new Error(`fukushi2-moshi: 模試の問題が見つかりません: ${slug}`);
+    return { ...q, points };
+  });
+}
+
 export async function getFukushi2Moshi1Questions(): Promise<Fukushi2QuestionData[]> {
   const all = await getAllFukushi2Questions();
   const bySlug = new Map(all.map((q) => [q.slug, q]));

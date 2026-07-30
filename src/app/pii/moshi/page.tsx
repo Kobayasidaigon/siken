@@ -67,6 +67,7 @@ export default async function PiiMoshiPage() {
 
       <p className="text-xs text-[color:var(--c-text-sub)] mt-8 max-w-2xl leading-relaxed">
         ※本模試は当サイト編集部が作成したオリジナル問題で構成しており、実際の過去問題の転載ではありません。
+        本試験では、問題の難易度により正答率70%未満でも合格となる場合があると公式に案内されています(本模試は70%固定で判定)。
         合否判定はあくまで学習の目安です。時間を計らずに力試しをしたい方は
         <a href="/pii/mock/" className="underline hover:no-underline">本番形式テスト（ランダム20問）</a>へ、
         1問ずつじっくり学びたい方は<a href="/pii/" className="underline hover:no-underline">練習問題300問</a>へ。

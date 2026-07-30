@@ -30,6 +30,8 @@ export interface MoshiQuestion {
   questionText: string;
   choices: string[];
   correctAnswer: number; // 1始まり
+  points?: number;  // 問別配点(東商IBT型の○×1点/択一2〜3点など)。未指定は pointsPerQuestion
+  noLink?: boolean; // 模試専用問題(○×等)は個別問題ページが無いためリンクを出さない
   field: string;
   explanationHtml?: string;
 }
@@ -54,6 +56,7 @@ interface Props {
   topPath: string;            // 例 "/chizai/"
   sections?: MoshiSection[];
   pointsPerQuestion?: number;
+  passPoints?: number; // 指定時は問別配点の合計点で合否判定(100点満点70点合格など)
 }
 
 interface SavedSession {
@@ -111,6 +114,7 @@ export default function MoshiExam({
   topPath,
   sections,
   pointsPerQuestion,
+  passPoints,
 }: Props) {
   const limitMs = timeLimitMin * 60 * 1000;
 
@@ -139,18 +143,28 @@ export default function MoshiExam({
   const isPassed = useCallback(
     (ans: (number | null)[]) => {
       if (sections && sections.length > 0) {
-        return sections.every((sec) => {
+        const sectionsOk = sections.every((sec) => {
           let c = 0;
           for (let i = sec.start; i < sec.start + sec.count; i++) {
             if (ans[i] === questions[i].correctAnswer) c++;
           }
           return c >= sec.passCount;
         });
+        if (!sectionsOk) return false;
+        if (passPoints == null) return true;
+      }
+      // 問別配点がある試験(東商IBT型)は合計点で判定
+      if (passPoints != null) {
+        const pts = questions.reduce(
+          (s, q, i) => s + (ans[i] === q.correctAnswer ? (q.points ?? pointsPerQuestion ?? 1) : 0),
+          0,
+        );
+        return pts >= passPoints;
       }
       const score = questions.reduce((s, q, i) => s + (ans[i] === q.correctAnswer ? 1 : 0), 0);
       return score >= passCount;
     },
-    [questions, sections, passCount],
+    [questions, sections, passCount, passPoints, pointsPerQuestion],
   );
 
   const submit = useCallback(
@@ -160,7 +174,8 @@ export default function MoshiExam({
       // 学習履歴へ反映(未解答はスキップ＝腕試しと同じ扱い)
       questions.forEach((q, i) => {
         const sel = answers[i];
-        if (sel != null) recordResult(exam, q.slug, sel === q.correctAnswer);
+        // 模試専用問題(noLink)は問題ページが無いため学習履歴には積まない
+        if (sel != null && !q.noLink) recordResult(exam, q.slug, sel === q.correctAnswer);
       });
       const score = questions.reduce(
         (s, q, i) => s + (answers[i] === q.correctAnswer ? 1 : 0),
@@ -430,7 +445,11 @@ export default function MoshiExam({
         </p>
         <p className="text-sm font-bold mb-2" style={{ color: passed ? "#15803d" : "#b45309" }}>
           正答率 {pct}%
-          {pointsPerQuestion ? `・換算 ${score * pointsPerQuestion}点/100点` : ""}
+          {passPoints != null
+            ? `・得点 ${questions.reduce((s, q, i) => s + (answers[i] === q.correctAnswer ? (q.points ?? pointsPerQuestion ?? 1) : 0), 0)}点/${questions.reduce((s, q) => s + (q.points ?? pointsPerQuestion ?? 1), 0)}点`
+            : pointsPerQuestion
+              ? `・換算 ${score * pointsPerQuestion}点/100点`
+              : ""}
         </p>
         <p
           className="inline-block text-sm font-bold px-4 py-1.5 rounded-full"
@@ -567,21 +586,23 @@ export default function MoshiExam({
                   {q.explanationHtml ? (
                     <>
                       <div className="prose max-w-none" dangerouslySetInnerHTML={{ __html: q.explanationHtml }} />
-                      <a
-                        href={`${questionPathPrefix}${q.slug}/`}
-                        className="inline-block mt-2 text-xs text-[color:var(--c-text-sub)] underline hover:no-underline"
-                      >
-                        この問題のページで復習する →
-                      </a>
+                      {!q.noLink && (
+                        <a
+                          href={`${questionPathPrefix}${q.slug}/`}
+                          className="inline-block mt-2 text-xs text-[color:var(--c-text-sub)] underline hover:no-underline"
+                        >
+                          この問題のページで復習する →
+                        </a>
+                      )}
                     </>
-                  ) : (
+                  ) : !q.noLink ? (
                     <a
                       href={`${questionPathPrefix}${q.slug}/`}
                       className="inline-block text-xs text-blue-700 underline hover:no-underline"
                     >
                       詳しい解説を読む(問題ページへ)→
                     </a>
-                  )}
+                  ) : null}
                 </div>
               </details>
             );

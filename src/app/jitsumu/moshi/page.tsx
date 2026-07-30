@@ -63,6 +63,8 @@ export default async function JitsumuMoshiPage() {
 
       <p className="text-xs text-[color:var(--c-text-sub)] mt-8 max-w-2xl leading-relaxed">
         ※本模試は当サイト編集部が作成したオリジナル問題で構成しており、実際の過去問題の転載ではありません。
+        本試験(2級)は課題Ⅰ60問:課題Ⅱ20問の配分で、課題ごとに70%以上が合格基準です(配点は非公表のため本模試は均等配点・総合70%で判定)。
+        また、問題の難易度により正答率70%未満でも合格となる場合があると公式に案内されています。
         合否判定はあくまで学習の目安です。1問ずつじっくり学びたい方は
         <a href="/jitsumu/" className="underline hover:no-underline">練習問題200問</a>へ。
         上位資格を目指す方は<a href="/pii/moshi/" className="underline hover:no-underline">個人情報保護士の模擬試験</a>も。

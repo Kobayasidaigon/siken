@@ -23,6 +23,7 @@ import AffiliateLink from "@/components/AffiliateLink";
 import FreeLeadCTA from "@/components/FreeLeadCTA";
 import { EXAM_AFFILIATE } from "@/lib/affiliate-links";
 import { recordResult, type ExamSlug } from "@/lib/study-progress";
+import MoshiFormatFeedback from "@/components/MoshiFormatFeedback";
 
 export interface MoshiQuestion {
   slug: string;
@@ -445,6 +446,9 @@ export default function MoshiExam({
           ※この判定はオリジナル問題による目安です。
         </p>
       </section>
+
+      {/* 本試験経験者への形式アンケート(出題形式の一次情報収集) */}
+      <MoshiFormatFeedback exam={exam} round={round} />
 
       {/* 課題(セクション)別の判定 */}
       {sectionStats.length > 0 && (

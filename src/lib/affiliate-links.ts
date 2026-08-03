@@ -35,16 +35,28 @@ export const EXAM_AFFILIATE: Record<ExamSlug, AffiliateTarget> = {
     href: "https://px.a8.net/svt/ejp?a8mat=4B3N6P+AWY41E+44M0+BW8O2&a8ejpredirect=https%3A%2F%2Fwww.agaroot.jp%2Fkashikin%2F",
     label: "アガルートの貸金業務取扱主任者講座を見る",
     course: "kashikin",
+    // アガルート公式の資料請求・無料体験ページ(登録1分)。2026-08-03設定。
+    freeHref:
+      "https://px.a8.net/svt/ejp?a8mat=4B3N6P+AWY41E+44M0+BW8O2&a8ejpredirect=https%3A%2F%2Fwww.agaroot.jp%2Fkashikin%2Fcatalog%2F",
+    freeLabel: "資料請求・無料体験を申し込む(登録1分)",
   },
   pii: {
     href: "https://px.a8.net/svt/ejp?a8mat=4B1TI0+9T22IA+4LOQ+BW8O2&a8ejpredirect=https%3A%2F%2Fwww.joho-gakushu.jp%2Fsmartinfo%2Fk_piip%2F",
     label: "個人情報保護士のSMART合格講座を見る",
     course: "pii",
+    // SMARTの無料ユーザー登録(講座の試し視聴可)。2026-08-03設定。
+    freeHref:
+      "https://px.a8.net/svt/ejp?a8mat=4B1TI0+9T22IA+4LOQ+BW8O2&a8ejpredirect=https%3A%2F%2Fwww.joho-gakushu.jp%2Fsmart%2Fregistfree.php",
+    freeLabel: "無料登録してSMART講座を試し見る",
   },
   chizai: {
     href: "https://px.a8.net/svt/ejp?a8mat=4B3TF4+BJKL0Y+408S+BW8O2&a8ejpredirect=https%3A%2F%2Fonsuku.jp%2Ftraining%2Fchizai3",
     label: "知的財産管理技能検定3級の対策講座を見る",
     course: "chizai",
+    // オンスク自身の無料体験導線(無料期間無制限・自動有料化なしと公式表記)。2026-08-03設定。
+    freeHref:
+      "https://px.a8.net/svt/ejp?a8mat=4B3TF4+BJKL0Y+408S+BW8O2&a8ejpredirect=https%3A%2F%2Fonsuku.jp%2Fmembers%2Flogin_required%3Frequired%3D1",
+    freeLabel: "オンスクの無料体験で講義を試す",
   },
   // TODO(2級): オンスクに知財2級の個別講座があればそのa8matへ差し替える。
   //   当面は3級と同じオンスク知財リンク(サブスクで2級範囲もカバー)を流用。
@@ -52,21 +64,33 @@ export const EXAM_AFFILIATE: Record<ExamSlug, AffiliateTarget> = {
     href: "https://px.a8.net/svt/ejp?a8mat=4B3TF4+BJKL0Y+408S+BW8O2&a8ejpredirect=https%3A%2F%2Fonsuku.jp%2Ftraining%2Fchizai3",
     label: "オンスクの知財検定対策講座を見る",
     course: "chizai2",
+    freeHref:
+      "https://px.a8.net/svt/ejp?a8mat=4B3TF4+BJKL0Y+408S+BW8O2&a8ejpredirect=https%3A%2F%2Fonsuku.jp%2Fmembers%2Flogin_required%3Frequired%3D1",
+    freeLabel: "オンスクの無料体験で講義を試す",
   },
   mynumber: {
     href: "https://px.a8.net/svt/ejp?a8mat=4B1TI0+9T22IA+4LOQ+BW8O2&a8ejpredirect=https%3A%2F%2Fwww.joho-gakushu.jp%2Fsmartinfo%2Fk_nns%2F",
     label: "マイナンバー実務検定のSMART合格講座を見る",
     course: "mynumber",
+    freeHref:
+      "https://px.a8.net/svt/ejp?a8mat=4B1TI0+9T22IA+4LOQ+BW8O2&a8ejpredirect=https%3A%2F%2Fwww.joho-gakushu.jp%2Fsmart%2Fregistfree.php",
+    freeLabel: "無料登録してSMART講座を試し見る",
   },
   jitsumu: {
     href: "https://px.a8.net/svt/ejp?a8mat=4B1TI0+9T22IA+4LOQ+BW8O2&a8ejpredirect=https%3A%2F%2Fwww.joho-gakushu.jp%2Fsmartinfo%2Fk_pipl%2F",
     label: "個人情報保護実務検定のSMART合格講座を見る",
     course: "jitsumu",
+    freeHref:
+      "https://px.a8.net/svt/ejp?a8mat=4B1TI0+9T22IA+4LOQ+BW8O2&a8ejpredirect=https%3A%2F%2Fwww.joho-gakushu.jp%2Fsmart%2Fregistfree.php",
+    freeLabel: "無料登録してSMART講座を試し見る",
   },
   bijihou: {
     href: "https://px.a8.net/svt/ejp?a8mat=4B1TI0+9T22IA+4LOQ+BW8O2&a8ejpredirect=https%3A%2F%2Fwww.joho-gakushu.jp%2Fsmartinfo%2Fsmart_lineup.php",
     label: "ビジネス実務法務検定のSMART合格講座を見る",
     course: "bijihou",
+    freeHref:
+      "https://px.a8.net/svt/ejp?a8mat=4B1TI0+9T22IA+4LOQ+BW8O2&a8ejpredirect=https%3A%2F%2Fwww.joho-gakushu.jp%2Fsmart%2Fregistfree.php",
+    freeLabel: "無料登録してSMART講座を試し見る",
   },
   // TODO(fukushi2): A8でユーキャン「講座申込プログラム」と提携後、a8mat付きリンクへ差し替える
   //   (講座申込=最大5,000円/件。afbの資料請求=最大1,000円は freeHref に設定する)。

@@ -24,6 +24,7 @@ import FreeLeadCTA from "@/components/FreeLeadCTA";
 import { EXAM_AFFILIATE } from "@/lib/affiliate-links";
 import { recordResult, type ExamSlug } from "@/lib/study-progress";
 import MoshiFormatFeedback from "@/components/MoshiFormatFeedback";
+import MoshiRound2Interest from "@/components/MoshiRound2Interest";
 
 export interface MoshiQuestion {
   slug: string;
@@ -468,6 +469,9 @@ export default function MoshiExam({
 
       {/* 本試験経験者への形式アンケート(出題形式の一次情報収集) */}
       <MoshiFormatFeedback exam={exam} round={round} />
+
+      {/* 第2回(有料)の意向調査(制作判断用のフェイクドア) */}
+      <MoshiRound2Interest exam={exam} round={round} />
 
       {/* 課題(セクション)別の判定 */}
       {sectionStats.length > 0 && (

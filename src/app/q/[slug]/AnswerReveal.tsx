@@ -6,8 +6,9 @@ import AffiliateLink from "@/components/AffiliateLink";
 import FreeLeadCTA from "@/components/FreeLeadCTA";
 import { EXAM_AFFILIATE, RESULT_CTA_HEADLINE } from "@/lib/affiliate-links";
 
-// 答え合わせ直後CTAを出す資格（段階導入：まず流入の大きい bijihou と pii で検証）
-const RESULT_CTA_EXAMS: ExamSlug[] = ["bijihou", "pii"];
+// 答え合わせ直後CTAを出す資格。bijihou/piiで検証しSMART系の発生を確認できたため
+// 同系のmynumber/jitsumuへ横展開(2026-08-05)。chizaiはオンスク側の効果を見てから。
+const RESULT_CTA_EXAMS: ExamSlug[] = ["bijihou", "pii", "mynumber", "jitsumu"];
 
 const MEDAL_LABEL: Record<Medal, string> = { bronze: "🥉 銅", silver: "🥈 銀", gold: "🥇 金" };
 const MEDAL_NEXT: Record<Medal, string> = {

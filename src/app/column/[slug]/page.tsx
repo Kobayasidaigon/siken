@@ -80,6 +80,38 @@ export default async function ColumnPage({ params }: { params: Promise<{ slug: s
   // 福祉住環境コーディネーター2級コラム（fukushi2-*）にユーキャン講座広告を表示
   const isFukushi2Article = slug.startsWith("fukushi2-");
 
+  // 日程・申込コラム(全日本情報学習振興協会が実施するSMART系資格のみ)には、
+  // 講座広告より先に「試験申込」導線を置く。ドリル読者の必然行動(受験申込)が
+  // そのまま成果地点になるため。着地は協会公式の各試験ページ(申込ボタンあり)。
+  // ビジ法(東商実施)・知財(知財教育協会実施)は協会の試験ではないため対象外。
+  const examApplyAds: Record<
+    string,
+    { course: string; body: string; linkText: string; href: string; pixel: string }
+  > = {
+    "pii-nittei": {
+      course: "pii",
+      body: "個人情報保護士認定試験の申込みは、実施団体(全日本情報学習振興協会)の公式サイトから行います。公開会場・CBT・オンラインIBTの受験方式ごとに申込期限が定められているため、受験する回を決めたら早めに手続きしておきましょう。",
+      linkText: "協会公式サイトで試験日程・申込方法を確認する",
+      href: "https://px.a8.net/svt/ejp?a8mat=4B1TI0+9T22IA+4LOQ+BW8O2&a8ejpredirect=https%3A%2F%2Fwww.joho-gakushu.or.jp%2Fpiip%2F",
+      pixel: "https://www11.a8.net/0.gif?a8mat=4B1TI0+9T22IA+4LOQ+BW8O2",
+    },
+    "mynumber-nittei": {
+      course: "mynumber",
+      body: "マイナンバー実務検定の申込みは、実施団体(全日本情報学習振興協会)の公式サイトから行います。公開会場・CBT・オンラインIBTの受験方式ごとに申込期限が定められているため、受験する回を決めたら早めに手続きしておきましょう。",
+      linkText: "協会公式サイトで試験日程・申込方法を確認する",
+      href: "https://px.a8.net/svt/ejp?a8mat=4B1TI0+9T22IA+4LOQ+BW8O2&a8ejpredirect=https%3A%2F%2Fwww.joho-gakushu.or.jp%2Fnns%2F",
+      pixel: "https://www11.a8.net/0.gif?a8mat=4B1TI0+9T22IA+4LOQ+BW8O2",
+    },
+    "jitsumu-nittei": {
+      course: "jitsumu",
+      body: "個人情報保護実務検定の申込みは、実施団体(全日本情報学習振興協会)の公式サイトから行います。公開会場・CBT・オンラインIBTの受験方式ごとに申込期限が定められているため、受験する回を決めたら早めに手続きしておきましょう。",
+      linkText: "協会公式サイトで試験日程・申込方法を確認する",
+      href: "https://px.a8.net/svt/ejp?a8mat=4B1TI0+9T22IA+4LOQ+BW8O2&a8ejpredirect=https%3A%2F%2Fwww.joho-gakushu.or.jp%2Fpipl%2F",
+      pixel: "https://www11.a8.net/0.gif?a8mat=4B1TI0+9T22IA+4LOQ+BW8O2",
+    },
+  };
+  const examApplyAd = examApplyAds[slug];
+
   const pageUrl = `https://shikakumon.com/column/${slug}/`;
   const jsonLd = [
     {
@@ -134,6 +166,19 @@ export default async function ColumnPage({ params }: { params: Promise<{ slug: s
       </div>
 
       <section className="prose max-w-none" dangerouslySetInnerHTML={{ __html: col.content }} />
+
+      {/* 試験申込導線(日程コラムのみ)。読者の申込意図に最短で応えるため講座広告より上に置く */}
+      {examApplyAd && (
+        <TextAffiliateAd
+          headline="受験する回を決めたら"
+          body={examApplyAd.body}
+          linkHref={examApplyAd.href}
+          linkText={examApplyAd.linkText}
+          pixelSrc={examApplyAd.pixel}
+          course={examApplyAd.course}
+          placement="column_apply"
+        />
+      )}
 
       {/* 広告は本文を読み終えた直後（最も関心が高い位置）に配置。免責の注意書きは広告の下へ。 */}
       {isPiiArticle && (

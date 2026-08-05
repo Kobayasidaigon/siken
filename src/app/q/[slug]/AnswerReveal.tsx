@@ -6,9 +6,19 @@ import AffiliateLink from "@/components/AffiliateLink";
 import FreeLeadCTA from "@/components/FreeLeadCTA";
 import { EXAM_AFFILIATE, RESULT_CTA_HEADLINE } from "@/lib/affiliate-links";
 
-// 答え合わせ直後CTAを出す資格。bijihou/piiで検証しSMART系の発生を確認できたため
-// 同系のmynumber/jitsumuへ横展開(2026-08-05)。chizaiはオンスク側の効果を見てから。
-const RESULT_CTA_EXAMS: ExamSlug[] = ["bijihou", "pii", "mynumber", "jitsumu"];
+// 答え合わせ直後CTAを出す資格。bijihou/piiで検証→SMART系の発生確認→2026-08-05に
+// ユーザー指示で全資格へ展開(発生実績: SMART CVR7.5%・試験申込型あり)。
+// fukushi2は非A8の直リンク(ユーキャン提携待ち)だがUX統一のため含める。
+const RESULT_CTA_EXAMS: ExamSlug[] = [
+  "bijihou",
+  "pii",
+  "mynumber",
+  "jitsumu",
+  "chizai",
+  "chizai2",
+  "kashikin",
+  "fukushi2",
+];
 
 const MEDAL_LABEL: Record<Medal, string> = { bronze: "🥉 銅", silver: "🥈 銀", gold: "🥇 金" };
 const MEDAL_NEXT: Record<Medal, string> = {

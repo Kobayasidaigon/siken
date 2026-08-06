@@ -32,8 +32,8 @@ export default async function BijimaneMockPage() {
       <div className="w-12 h-1 mb-5" style={{ background: "var(--c-bijimane)" }}></div>
 
       <p className="text-xs text-[color:var(--c-text-sub)] mb-5">
-        全200問からランダムに20問を出題します。1問ずつ解説を読みながら進めたい方は
-        <a href="/bijimane/" className="underline hover:no-underline">練習問題の一覧</a>へ。
+        本試験と同じ90分・70点合格判定で腕試しするなら
+        <a href="/bijimane/moshi/" className="underline hover:no-underline">模擬試験 第1回（無料）</a>へ。
       </p>
 
       <MockExam

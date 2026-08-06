@@ -59,6 +59,13 @@ export default async function BijimanePage() {
         <div className="mt-6 flex flex-wrap gap-3">
           <a href="/bijimane/q/bijimane-001/" className="btn-accent">問題を解き始める →</a>
           <a
+            href="/bijimane/moshi/"
+            className="inline-flex items-center px-4 py-2 rounded-lg border text-sm font-medium no-underline transition-colors hover:bg-[color:var(--c-bijimane-soft)]"
+            style={{ borderColor: "var(--c-bijimane)", color: "var(--c-bijimane-ink)" }}
+          >
+            模擬試験を受ける（90分・70点合格判定）→
+          </a>
+          <a
             href="/bijimane/mock/"
             className="inline-flex items-center px-4 py-2 rounded-lg border text-sm font-medium no-underline transition-colors hover:bg-[color:var(--c-bijimane-soft)]"
             style={{ borderColor: "var(--c-bijimane)", color: "var(--c-bijimane-ink)" }}

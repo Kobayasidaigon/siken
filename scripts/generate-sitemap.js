@@ -163,6 +163,7 @@ const staticPages = [
   { url: "/fukushi2/field/law/", priority: "0.8", freq: "monthly", lastmod: fukushi2Max },
   // ビジネスマネジャー検定
   { url: "/bijimane/", priority: "0.9", freq: "weekly", lastmod: bijimaneMax },
+  { url: "/bijimane/moshi/", priority: "0.7", freq: "monthly", lastmod: fileDate(path.join(appDir, "bijimane/moshi/page.tsx")) },
   { url: "/bijimane/mock/", priority: "0.6", freq: "monthly", lastmod: fileDate(path.join(appDir, "bijimane/mock/page.tsx")) },
   { url: "/bijimane/field/role/", priority: "0.8", freq: "monthly", lastmod: bijimaneMax },
   { url: "/bijimane/field/self-communication/", priority: "0.8", freq: "monthly", lastmod: bijimaneMax },

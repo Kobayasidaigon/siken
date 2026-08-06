@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import StudyResumeCard from "@/components/StudyResumeCard";
 
 export const metadata: Metadata = {
   title: { absolute: "シカクモン｜資格試験のオリジナル練習問題を無料で提供" },
@@ -153,6 +154,9 @@ export default function Home() {
           </p>
         </div>
       </section>
+
+      {/* 前回の続き(学習履歴がある再訪者にだけ出る) */}
+      <StudyResumeCard />
 
       {/* Stats Bar */}
       <section className="mb-12">

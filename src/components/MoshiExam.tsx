@@ -22,7 +22,7 @@ import { sendGAEvent } from "@next/third-parties/google";
 import AffiliateLink from "@/components/AffiliateLink";
 import FreeLeadCTA from "@/components/FreeLeadCTA";
 import { EXAM_AFFILIATE } from "@/lib/affiliate-links";
-import { recordResult, type ExamSlug } from "@/lib/study-progress";
+import { EXAM_LIST, recordResult, type ExamSlug } from "@/lib/study-progress";
 import MoshiFormatFeedback from "@/components/MoshiFormatFeedback";
 import MoshiRound2Interest from "@/components/MoshiRound2Interest";
 
@@ -465,6 +465,21 @@ export default function MoshiExam({
           合格基準は{passLabel}。所要時間 約{result?.elapsedMin ?? timeLimitMin}分。
           ※この判定はオリジナル問題による目安です。
         </p>
+        {/* 結果のシェア(テキストのみ) */}
+        <div className="mt-4">
+          <a
+            href={`https://x.com/intent/post?text=${encodeURIComponent(
+              `${EXAM_LIST.find((e) => e.slug === exam)?.name ?? ""}の模擬試験(第${round}回)で${score}/${questions.length}問正解(${pct}%)${passed ? "・合格圏" : ""}でした。シカクモンで無料受験中`
+            )}&url=${encodeURIComponent(`https://shikakumon.com${topPath}moshi/`)}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => sendGAEvent("event", "share_click", { exam, channel: "x", place: "moshi" })}
+            className="inline-block text-xs font-bold border rounded-md px-3 py-1.5 no-underline transition hover:opacity-80"
+            style={{ color: "var(--c-accent)", borderColor: "var(--c-accent)" }}
+          >
+            この結果をXに投稿する
+          </a>
+        </div>
       </section>
 
       {/* 本試験経験者への形式アンケート(出題形式の一次情報収集) */}

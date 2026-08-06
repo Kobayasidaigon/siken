@@ -17,22 +17,31 @@ import AffiliateLink from "@/components/AffiliateLink";
 interface Props {
   exams: UpcomingExam[];
   accent: string; // 例 "var(--c-pii)"
+  accentSoft: string; // 例 "var(--c-pii-soft)"。締切間近の強調背景に使う
   examWord?: string; // 試験日表示の名詞。既定「次回試験」(貸金は「次回本試験」)
   periodExam?: boolean; // 東商IBT/CBTの期間制: 「試験期間の開始まで」+日付末尾に「〜」
   apply?: { href: string; course: string; pixel: string };
 }
 
-export default function ExamCountdown({ exams, accent, examWord = "次回試験", periodExam = false, apply }: Props) {
+// 締切がこの日数以内に迫ったら強調表示に切り替える。
+// 強調は「淡色背景+左罫線+日数の級数アップ」まで(赤・アニメーション等は設計言語に反するため使わない)。
+const URGENT_DAYS = 10;
+
+export default function ExamCountdown({ exams, accent, accentSoft, examWord = "次回試験", periodExam = false, apply }: Props) {
   const deadline = nextApplyDeadline(exams);
   if (deadline && deadline.applyEnd) {
     const daysLeft = daysUntilYmd(deadline.applyEnd);
+    const urgent = daysLeft <= URGENT_DAYS;
     return (
-      <section className="mb-10 card p-5">
+      <section
+        className="mb-10 card p-5"
+        style={urgent ? { background: accentSoft, borderLeft: `3px solid ${accent}` } : undefined}
+      >
         {/* モバイルは縦積み(日付が長く横並びだとはみ出すため)、sm以上で横並び */}
         <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between sm:gap-4">
           <div>
             <p className="text-xs text-[color:var(--c-text-sub)] mb-1">{deadline.label} 申込締切まで</p>
-            <p className="text-lg font-bold font-serif" style={{ color: accent }}>
+            <p className={`${urgent ? "text-2xl" : "text-lg"} font-bold font-serif`} style={{ color: accent }}>
               {daysLeft === 0 ? "本日締切" : <>あと {daysLeft} 日</>}
             </p>
           </div>

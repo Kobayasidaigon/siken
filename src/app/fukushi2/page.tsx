@@ -74,7 +74,7 @@ export default async function Fukushi2Page() {
       </section>
 
       {/* カウントダウン: 申込期間中は「申込締切まで」を優先表示(東商IBT/CBTは期間制) */}
-      <ExamCountdown exams={FUKUSHI2_EXAMS} accent="var(--c-fukushi)" periodExam />
+      <ExamCountdown exams={FUKUSHI2_EXAMS} accent="var(--c-fukushi)" accentSoft="var(--c-fukushi-soft)" periodExam />
 
       {/* 分野 - タグクラウド風 */}
       <section className="mb-12">

@@ -54,7 +54,7 @@ export default async function KashikinPage() {
       </section>
 
       {/* カウントダウン: 申込期間中は「申込締切まで」を優先表示 */}
-      <ExamCountdown exams={KASHIKIN_EXAMS} accent="var(--c-kashikin)" examWord="次回本試験" />
+      <ExamCountdown exams={KASHIKIN_EXAMS} accent="var(--c-kashikin)" accentSoft="var(--c-kashikin-soft)" examWord="次回本試験" />
 
       {/* 分野別 */}
       <section className="mb-12">

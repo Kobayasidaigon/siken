@@ -4,6 +4,8 @@ import type { Metadata } from "next";
 import JitsumuCourseAd from "@/components/JitsumuCourseAd";
 import { JITSUMU_TOP_AD } from "@/lib/jitsumu-ad-content";
 import { pageMetadata } from "@/lib/page-metadata";
+import { JITSUMU_EXAMS } from "@/lib/exam-dates";
+import ExamCountdown from "@/components/ExamCountdown";
 
 export const metadata: Metadata = pageMetadata({
   path: "/jitsumu/",
@@ -49,6 +51,17 @@ export default async function JitsumuPage() {
           </a>
         </div>
       </section>
+
+      {/* カウントダウン: 申込期間中は「申込締切まで」を優先表示 */}
+      <ExamCountdown
+        exams={JITSUMU_EXAMS}
+        accent="var(--c-pii)"
+        apply={{
+          href: "https://px.a8.net/svt/ejp?a8mat=4B1TI0+9T22IA+4LOQ+BW8O2&a8ejpredirect=https%3A%2F%2Fwww.joho-gakushu.or.jp%2Fpipl%2F",
+          course: "jitsumu",
+          pixel: "https://www11.a8.net/0.gif?a8mat=4B1TI0+9T22IA+4LOQ+BW8O2",
+        }}
+      />
 
       <section className="mb-12">
         <h2 className="text-lg font-bold text-[color:var(--c-ink)] mb-5 font-serif">分野から選ぶ</h2>

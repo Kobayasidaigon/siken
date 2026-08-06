@@ -3,7 +3,8 @@ import { getAllColumns } from "@/lib/columns";
 import type { Metadata } from "next";
 import KashikinCourseAd from "@/components/KashikinCourseAd";
 import { pageMetadata } from "@/lib/page-metadata";
-import { KASHIKIN_EXAMS, nextExam, daysUntil, formatExamDateJa } from "@/lib/exam-dates";
+import { KASHIKIN_EXAMS } from "@/lib/exam-dates";
+import ExamCountdown from "@/components/ExamCountdown";
 
 export const metadata: Metadata = pageMetadata({
   path: "/kashikin/",
@@ -15,10 +16,6 @@ export default async function KashikinPage() {
   const questions = await getAllQuestions();
   const columns = await getAllColumns();
   const totalQuestions = questions.length;
-
-  // 試験日カウントダウン (公式発表済みの日付リストから次回を自動選択)
-  const upcoming = nextExam(KASHIKIN_EXAMS);
-  const daysLeft = upcoming ? daysUntil(upcoming) : 0;
 
   const fields = [
     { name: "貸金業法", slug: "kashikingyouhou", topic: "登録・監督・業務規制・取立てルール", count: questions.filter(q => q.field === "貸金業法").length },
@@ -56,16 +53,8 @@ export default async function KashikinPage() {
         </div>
       </section>
 
-      {/* カウントダウン（貸金固有） */}
-      {upcoming && daysLeft > 0 && (
-        <section className="mb-10 card p-5 flex items-center justify-between">
-          <div>
-            <p className="text-xs text-[color:var(--c-text-sub)] mb-1">次回本試験（{upcoming.label}）まで</p>
-            <p className="text-lg font-bold font-serif" style={{ color: "var(--c-kashikin)" }}>あと {daysLeft} 日</p>
-          </div>
-          <p className="text-sm text-[color:var(--c-text-sub)]">{formatExamDateJa(upcoming)}</p>
-        </section>
-      )}
+      {/* カウントダウン: 申込期間中は「申込締切まで」を優先表示 */}
+      <ExamCountdown exams={KASHIKIN_EXAMS} accent="var(--c-kashikin)" examWord="次回本試験" />
 
       {/* 分野別 */}
       <section className="mb-12">

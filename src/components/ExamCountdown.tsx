@@ -1,0 +1,73 @@
+import type { UpcomingExam } from "@/lib/exam-dates";
+import { nextExam, nextApplyDeadline, daysUntilYmd, formatYmdJa } from "@/lib/exam-dates";
+import AffiliateLink from "@/components/AffiliateLink";
+
+/**
+ * 資格トップの試験カウントダウンカード。
+ *
+ * A8実測(2026-08-06)で成果は「申込締切の直前」に集中すると分かったため、
+ * 申込期間中は「次回試験まであとN日」より優先して「申込締切まであとN日」を
+ * 表示する(締切の方が読者の行動=申込・講座検討を生む)。
+ * 申込期間外は従来どおり試験日カウントダウンに戻り、日付リストが尽きたら非表示。
+ *
+ * apply: 試験実施団体がA8広告主の場合(SMART系=全日本情報学習振興協会)のみ、
+ * 締切表示時に公式申込ページへのA8導線を添える(「広告」ラベル付き)。
+ */
+
+interface Props {
+  exams: UpcomingExam[];
+  accent: string; // 例 "var(--c-pii)"
+  examWord?: string; // 試験日表示の名詞。既定「次回試験」(貸金は「次回本試験」)
+  periodExam?: boolean; // 東商IBT/CBTの期間制: 「試験期間の開始まで」+日付末尾に「〜」
+  apply?: { href: string; course: string; pixel: string };
+}
+
+export default function ExamCountdown({ exams, accent, examWord = "次回試験", periodExam = false, apply }: Props) {
+  const deadline = nextApplyDeadline(exams);
+  if (deadline && deadline.applyEnd) {
+    const daysLeft = daysUntilYmd(deadline.applyEnd);
+    return (
+      <section className="mb-10 card p-5">
+        <div className="flex items-center justify-between gap-4">
+          <div>
+            <p className="text-xs text-[color:var(--c-text-sub)] mb-1">{deadline.label} 申込締切まで</p>
+            <p className="text-lg font-bold font-serif" style={{ color: accent }}>
+              {daysLeft === 0 ? "本日締切" : <>あと {daysLeft} 日</>}
+            </p>
+          </div>
+          <div className="text-right text-sm text-[color:var(--c-text-sub)]">
+            <p>締切 {formatYmdJa(deadline.applyEnd)}</p>
+            <p className="mt-1">試験日 {formatYmdJa(deadline.date)}{periodExam ? "〜" : ""}</p>
+          </div>
+        </div>
+        {apply && (
+          <p className="mt-4 pt-3 border-t border-[color:var(--c-border)] text-sm flex items-center gap-2">
+            <span className="text-[10px] tracking-wider text-[color:var(--c-text-sub)] border border-[color:var(--c-border)] px-1.5 py-0.5 rounded shrink-0">
+              広告
+            </span>
+            <AffiliateLink href={apply.href} course={apply.course} placement="top_apply" className="underline hover:no-underline">
+              協会公式サイトで申し込む →
+            </AffiliateLink>
+            <img width={1} height={1} src={apply.pixel} alt="" style={{ position: "absolute", border: 0 }} />
+          </p>
+        )}
+      </section>
+    );
+  }
+
+  const upcoming = nextExam(exams);
+  if (!upcoming) return null;
+  const daysLeft = daysUntilYmd(upcoming.date);
+  if (daysLeft <= 0) return null;
+  return (
+    <section className="mb-10 card p-5 flex items-center justify-between">
+      <div>
+        <p className="text-xs text-[color:var(--c-text-sub)] mb-1">
+          {periodExam ? `${examWord}期間（${upcoming.label}）の開始まで` : `${examWord}（${upcoming.label}）まで`}
+        </p>
+        <p className="text-lg font-bold font-serif" style={{ color: accent }}>あと {daysLeft} 日</p>
+      </div>
+      <p className="text-sm text-[color:var(--c-text-sub)]">{formatYmdJa(upcoming.date)}{periodExam ? "〜" : ""}</p>
+    </section>
+  );
+}

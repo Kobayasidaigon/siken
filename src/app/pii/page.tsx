@@ -4,7 +4,8 @@ import type { Metadata } from "next";
 import PiiCourseAd from "@/components/PiiCourseAd";
 import { PII_TOP_AD } from "@/lib/pii-ad-content";
 import { pageMetadata } from "@/lib/page-metadata";
-import { PII_EXAMS, nextExam, daysUntil, formatExamDateJa } from "@/lib/exam-dates";
+import { PII_EXAMS } from "@/lib/exam-dates";
+import ExamCountdown from "@/components/ExamCountdown";
 
 export const metadata: Metadata = pageMetadata({
   path: "/pii/",
@@ -46,9 +47,6 @@ export default async function PiiPage() {
   );
 
   // 試験日カウントダウン (公式発表済みの日付リストから次回を自動選択)
-  const upcoming = nextExam(PII_EXAMS);
-  const daysLeft = upcoming ? daysUntil(upcoming) : 0;
-
   return (
     <div className="theme-pii pb-16">
       {/* Hero */}
@@ -86,16 +84,16 @@ export default async function PiiPage() {
         </div>
       </section>
 
-      {/* カウントダウン */}
-      {upcoming && daysLeft > 0 && (
-        <section className="mb-10 card p-5 flex items-center justify-between">
-          <div>
-            <p className="text-xs text-[color:var(--c-text-sub)] mb-1">次回試験（{upcoming.label}）まで</p>
-            <p className="text-lg font-bold font-serif" style={{ color: "var(--c-pii)" }}>あと {daysLeft} 日</p>
-          </div>
-          <p className="text-sm text-[color:var(--c-text-sub)]">{formatExamDateJa(upcoming)}</p>
-        </section>
-      )}
+      {/* カウントダウン: 申込期間中は「申込締切まで」を優先表示 */}
+      <ExamCountdown
+        exams={PII_EXAMS}
+        accent="var(--c-pii)"
+        apply={{
+          href: "https://px.a8.net/svt/ejp?a8mat=4B1TI0+9T22IA+4LOQ+BW8O2&a8ejpredirect=https%3A%2F%2Fwww.joho-gakushu.or.jp%2Fpiip%2F",
+          course: "pii",
+          pixel: "https://www11.a8.net/0.gif?a8mat=4B1TI0+9T22IA+4LOQ+BW8O2",
+        }}
+      />
 
       {/* 分野 - 縦1列の大きめカード */}
       <section className="mb-12">

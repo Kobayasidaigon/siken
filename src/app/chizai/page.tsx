@@ -3,7 +3,8 @@ import { getAllColumns } from "@/lib/columns";
 import type { Metadata } from "next";
 import ChizaiCourseAd from "@/components/ChizaiCourseAd";
 import { pageMetadata } from "@/lib/page-metadata";
-import { CHIZAI_EXAMS, nextExam, daysUntil, formatExamDateJa } from "@/lib/exam-dates";
+import { CHIZAI_EXAMS } from "@/lib/exam-dates";
+import ExamCountdown from "@/components/ExamCountdown";
 
 export const metadata: Metadata = pageMetadata({
   path: "/chizai/",
@@ -34,10 +35,6 @@ export default async function ChizaiPage() {
       return qs.length;
     })
   );
-
-  // 試験日カウントダウン (公式発表済みの日付リストから次回を自動選択)
-  const upcoming = nextExam(CHIZAI_EXAMS);
-  const daysLeft = upcoming ? daysUntil(upcoming) : 0;
 
   return (
     <div className="theme-chizai pb-16">
@@ -79,16 +76,8 @@ export default async function ChizaiPage() {
         </p>
       </section>
 
-      {/* カウントダウン */}
-      {upcoming && daysLeft > 0 && (
-        <section className="mb-10 card p-5 flex items-center justify-between">
-          <div>
-            <p className="text-xs text-[color:var(--c-text-sub)] mb-1">次回試験（{upcoming.label}）まで</p>
-            <p className="text-lg font-bold font-serif" style={{ color: "var(--c-chizai)" }}>あと {daysLeft} 日</p>
-          </div>
-          <p className="text-sm text-[color:var(--c-text-sub)]">{formatExamDateJa(upcoming)}</p>
-        </section>
-      )}
+      {/* カウントダウン: 申込期間中は「申込締切まで」を優先表示 */}
+      <ExamCountdown exams={CHIZAI_EXAMS} accent="var(--c-chizai)" />
 
       {/* 分野 - タグクラウド風 */}
       <section className="mb-12">

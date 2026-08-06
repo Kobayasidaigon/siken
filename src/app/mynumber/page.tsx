@@ -4,6 +4,8 @@ import type { Metadata } from "next";
 import MynumberCourseAd from "@/components/MynumberCourseAd";
 import { MYNUMBER_TOP_AD } from "@/lib/mynumber-ad-content";
 import { pageMetadata } from "@/lib/page-metadata";
+import { MYNUMBER_EXAMS } from "@/lib/exam-dates";
+import ExamCountdown from "@/components/ExamCountdown";
 
 export const metadata: Metadata = pageMetadata({
   path: "/mynumber/",
@@ -58,6 +60,17 @@ export default async function MynumberPage() {
           </a>
         </div>
       </section>
+
+      {/* カウントダウン: 申込期間中は「申込締切まで」を優先表示 */}
+      <ExamCountdown
+        exams={MYNUMBER_EXAMS}
+        accent="var(--c-pii)"
+        apply={{
+          href: "https://px.a8.net/svt/ejp?a8mat=4B1TI0+9T22IA+4LOQ+BW8O2&a8ejpredirect=https%3A%2F%2Fwww.joho-gakushu.or.jp%2Fnns%2F",
+          course: "mynumber",
+          pixel: "https://www11.a8.net/0.gif?a8mat=4B1TI0+9T22IA+4LOQ+BW8O2",
+        }}
+      />
 
       <section className="mb-12">
         <h2 className="text-lg font-bold text-[color:var(--c-ink)] mb-5 font-serif">分野から選ぶ</h2>

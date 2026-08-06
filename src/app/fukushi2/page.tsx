@@ -3,7 +3,8 @@ import { getAllColumns } from "@/lib/columns";
 import type { Metadata } from "next";
 import Fukushi2CourseAd from "@/components/Fukushi2CourseAd";
 import { pageMetadata } from "@/lib/page-metadata";
-import { FUKUSHI2_EXAMS, nextExam, daysUntil, formatExamDateJa } from "@/lib/exam-dates";
+import { FUKUSHI2_EXAMS } from "@/lib/exam-dates";
+import ExamCountdown from "@/components/ExamCountdown";
 
 export const metadata: Metadata = pageMetadata({
   path: "/fukushi2/",
@@ -34,9 +35,6 @@ export default async function Fukushi2Page() {
       return qs.length;
     })
   );
-
-  const upcoming = nextExam(FUKUSHI2_EXAMS);
-  const daysLeft = upcoming ? daysUntil(upcoming) : 0;
 
   return (
     <div className="theme-fukushi pb-16">
@@ -75,16 +73,8 @@ export default async function Fukushi2Page() {
         </div>
       </section>
 
-      {/* カウントダウン */}
-      {upcoming && daysLeft > 0 && (
-        <section className="mb-10 card p-5 flex items-center justify-between">
-          <div>
-            <p className="text-xs text-[color:var(--c-text-sub)] mb-1">次回試験期間（{upcoming.label}）の開始まで</p>
-            <p className="text-lg font-bold font-serif" style={{ color: "var(--c-fukushi)" }}>あと {daysLeft} 日</p>
-          </div>
-          <p className="text-sm text-[color:var(--c-text-sub)]">{formatExamDateJa(upcoming)}〜</p>
-        </section>
-      )}
+      {/* カウントダウン: 申込期間中は「申込締切まで」を優先表示(東商IBT/CBTは期間制) */}
+      <ExamCountdown exams={FUKUSHI2_EXAMS} accent="var(--c-fukushi)" periodExam />
 
       {/* 分野 - タグクラウド風 */}
       <section className="mb-12">

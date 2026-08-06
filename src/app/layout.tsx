@@ -99,6 +99,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                       <span className="w-1 h-4 mr-3 rounded-full" style={{ background: "var(--c-fukushi)" }}></span>
                       福祉住環境コーディネーター2級
                     </a>
+                    <a href="/bijimane/" className="flex items-center px-4 py-2 text-[color:var(--c-text)] hover:bg-[color:var(--c-bg-alt)] hover:text-[color:var(--c-bijimane)] no-underline transition-colors">
+                      <span className="w-1 h-4 mr-3 rounded-full" style={{ background: "var(--c-bijimane)" }}></span>
+                      ビジネスマネジャー検定
+                    </a>
                   </div>
                 </div>
               </div>
@@ -144,6 +148,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                   <li><a href="/jitsumu/" className="text-[color:var(--c-text-sub)] hover:text-[color:var(--c-pii)] no-underline">個人情報保護実務検定</a></li>
                   <li><a href="/bijihou/" className="text-[color:var(--c-text-sub)] hover:text-[color:var(--c-kashikin)] no-underline">ビジネス実務法務検定3級</a></li>
                   <li><a href="/fukushi2/" className="text-[color:var(--c-text-sub)] hover:text-[color:var(--c-fukushi)] no-underline">福祉住環境コーディネーター2級</a></li>
+                  <li><a href="/bijimane/" className="text-[color:var(--c-text-sub)] hover:text-[color:var(--c-bijimane)] no-underline">ビジネスマネジャー検定</a></li>
                 </ul>
               </div>
               <div>

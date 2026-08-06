@@ -9,6 +9,7 @@ import { getAllMynumberQuestions } from "@/lib/mynumber-questions";
 import { getAllJitsumuQuestions } from "@/lib/jitsumu-questions";
 import { getAllBijihouQuestions } from "@/lib/bijihou-questions";
 import { getAllFukushi2Questions } from "@/lib/fukushi2-questions";
+import { getAllBijimaneQuestions } from "@/lib/bijimane-questions";
 import type { ExamSlug } from "@/lib/study-progress";
 
 export const metadata: Metadata = pageMetadata({
@@ -28,7 +29,7 @@ function extractTopic(title: string): string {
 }
 
 export default async function StudyPage() {
-  const [kashikin, pii, chizai, chizai2, mynumber, jitsumu, bijihou, fukushi2] = await Promise.all([
+  const [kashikin, pii, chizai, chizai2, mynumber, jitsumu, bijihou, fukushi2, bijimane] = await Promise.all([
     getAllQuestions(),
     getAllPiiQuestions(),
     getAllChizaiQuestions(),
@@ -37,6 +38,7 @@ export default async function StudyPage() {
     getAllJitsumuQuestions(),
     getAllBijihouQuestions(),
     getAllFukushi2Questions(),
+    getAllBijimaneQuestions(),
   ]);
 
   const buildMap = (questions: { slug: string; questionNumber: number; field: string; title: string }[]): Record<string, QuestionMeta> => {
@@ -60,6 +62,7 @@ export default async function StudyPage() {
     jitsumu: buildMap(jitsumu),
     bijihou: buildMap(bijihou),
     fukushi2: buildMap(fukushi2),
+    bijimane: buildMap(bijimane),
   };
 
   return <StudyClient questionMeta={questionMeta} />;

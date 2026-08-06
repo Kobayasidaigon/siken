@@ -30,6 +30,11 @@
   --c-fukushi-soft: #d9edf2;
   --c-fukushi-ink: #155e75;
 
+  /* ビジネスマネジャー検定 - ネイビーブルー */
+  --c-bijimane: #1e40af;
+  --c-bijimane-soft: #dde5f7;
+  --c-bijimane-ink: #1e3a8a;
+
   /* 判定色 */
   --c-correct: #15803d;
   --c-wrong: #b91c1c;
@@ -101,6 +106,7 @@ h1, h2, h3, h4, h5, h6 {
 .theme-pii { --c-accent: var(--c-pii); --c-accent-soft: var(--c-pii-soft); --c-accent-ink: var(--c-pii-ink); }
 .theme-chizai { --c-accent: var(--c-chizai); --c-accent-soft: var(--c-chizai-soft); --c-accent-ink: var(--c-chizai-ink); }
 .theme-fukushi { --c-accent: var(--c-fukushi); --c-accent-soft: var(--c-fukushi-soft); --c-accent-ink: var(--c-fukushi-ink); }
+.theme-bijimane { --c-accent: var(--c-bijimane); --c-accent-soft: var(--c-bijimane-soft); --c-accent-ink: var(--c-bijimane-ink); }
 
 /* アクセントボタン */
 .btn-accent {

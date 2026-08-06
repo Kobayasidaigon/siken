@@ -36,6 +36,7 @@ export default function StudyClient({
     jitsumu: null,
     bijihou: null,
     fukushi2: null,
+    bijimane: null,
   });
 
   useEffect(() => {

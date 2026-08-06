@@ -100,6 +100,15 @@ export const EXAM_AFFILIATE: Record<ExamSlug, AffiliateTarget> = {
     label: "ユーキャンの福祉住環境コーディネーター講座を見る",
     course: "fukushi2",
   },
+  // TODO(bijimane): A8で産業能率大学(東商の公式通信講座)またはTACのプログラムと提携できたら
+  //   a8mat付きリンクへ差し替える。提携可否はユーザー確認待ち(night-batch/INBOX.md 項目1)。
+  //   それまではトラッキング無しの公式講座ページへの直リンクで運用する(収益ゼロだが導線は維持)。
+  //   ※ SMART合格講座(情報学習振興協会)はビジネスマネジャー検定を扱っていないため流用しないこと。
+  bijimane: {
+    href: "https://www.hj.sanno.ac.jp/cp/distance-learning/course/B650-01.html",
+    label: "東商公式通信講座（産業能率大学）を見る",
+    course: "bijimane",
+  },
 };
 
 /**
@@ -114,4 +123,5 @@ export const RESULT_CTA_HEADLINE: Record<ExamSlug, string> = {
   jitsumu: "間違えた論点を体系的に整理するなら",
   bijihou: "間違えた論点を体系的に整理するなら",
   fukushi2: "間違えた論点を体系的に整理するなら",
+  bijimane: "間違えた論点を体系的に整理するなら",
 };

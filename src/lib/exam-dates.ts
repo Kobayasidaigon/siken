@@ -43,6 +43,14 @@ export const BIJIHOU_EXAMS: UpcomingExam[] = [
   { date: "2026-10-22", label: "第60回(2・3級)", applyStart: "2026-09-16", applyEnd: "2026-09-29" },
 ];
 
+// 出典: 東京商工会議所検定サイト kentei.tokyo-cci.or.jp/bijimane/ および
+// 同 exam-info/entry.html (2026-08-06確認・2ページで一致)。
+// 第24回(2026年度 第2シーズン)はIBT/CBT期間制(10/22〜11/9)のため試験期間初日を採用。
+// ※ビジ法第60回と全く同じ期間だが取り違えではない(東商のIBT/CBT検定は同一ウィンドウで実施)。
+export const BIJIMANE_EXAMS: UpcomingExam[] = [
+  { date: "2026-10-22", label: "第24回", applyStart: "2026-09-16", applyEnd: "2026-09-29" },
+];
+
 // 出典: 全日本情報学習振興協会 令和8年度試験日程 joho-gakushu.or.jp/schedule/2026.php
 // (2026-08-06確認)。申込開始日は協会が公表していないため省略(=受付中として扱う)。
 export const PII_EXAMS: UpcomingExam[] = [

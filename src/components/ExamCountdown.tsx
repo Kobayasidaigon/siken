@@ -28,14 +28,15 @@ export default function ExamCountdown({ exams, accent, examWord = "次回試験"
     const daysLeft = daysUntilYmd(deadline.applyEnd);
     return (
       <section className="mb-10 card p-5">
-        <div className="flex items-center justify-between gap-4">
+        {/* モバイルは縦積み(日付が長く横並びだとはみ出すため)、sm以上で横並び */}
+        <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between sm:gap-4">
           <div>
             <p className="text-xs text-[color:var(--c-text-sub)] mb-1">{deadline.label} 申込締切まで</p>
             <p className="text-lg font-bold font-serif" style={{ color: accent }}>
               {daysLeft === 0 ? "本日締切" : <>あと {daysLeft} 日</>}
             </p>
           </div>
-          <div className="text-right text-sm text-[color:var(--c-text-sub)]">
+          <div className="text-sm text-[color:var(--c-text-sub)] sm:text-right">
             <p>締切 {formatYmdJa(deadline.applyEnd)}</p>
             <p className="mt-1">試験日 {formatYmdJa(deadline.date)}{periodExam ? "〜" : ""}</p>
           </div>

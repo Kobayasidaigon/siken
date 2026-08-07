@@ -31,6 +31,11 @@ export default async function EcoMockPage() {
       <h1 className="text-xl sm:text-2xl font-bold text-[color:var(--c-ink)] mb-2 font-serif">本番形式テスト</h1>
       <div className="w-12 h-1 mb-5" style={{ background: "var(--c-eco)" }}></div>
 
+      <p className="text-xs text-[color:var(--c-text-sub)] mb-5">
+        本試験と同じ90分・70点合格判定で腕試しするなら
+        <a href="/eco/moshi/" className="underline hover:no-underline">模擬試験 第1回（無料）</a>へ。
+      </p>
+
       <MockExam
         exam="eco"
         examLabel="eco検定（環境社会検定試験）"

@@ -179,6 +179,7 @@ const staticPages = [
   { url: "/bijimane/field/risk/", priority: "0.8", freq: "monthly", lastmod: bijimaneMax },
   { url: "/bijimane/field/risk-operation/", priority: "0.8", freq: "monthly", lastmod: bijimaneMax },
   { url: "/eco/", priority: "0.9", freq: "weekly", lastmod: ecoMax },
+  { url: "/eco/moshi/", priority: "0.7", freq: "monthly", lastmod: fileDate(path.join(appDir, "eco/moshi/page.tsx")) },
   { url: "/eco/mock/", priority: "0.6", freq: "monthly", lastmod: fileDate(path.join(appDir, "eco/mock/page.tsx")) },
   { url: "/eco/field/history/", priority: "0.8", freq: "monthly", lastmod: ecoMax },
   { url: "/eco/field/earth/", priority: "0.8", freq: "monthly", lastmod: ecoMax },

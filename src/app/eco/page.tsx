@@ -59,6 +59,13 @@ export default async function EcoPage() {
         <div className="mt-6 flex flex-wrap gap-3">
           <a href="/eco/q/eco-001/" className="btn-accent">問題を解き始める →</a>
           <a
+            href="/eco/moshi/"
+            className="inline-flex items-center px-4 py-2 rounded-lg border text-sm font-medium no-underline transition-colors hover:bg-[color:var(--c-eco-soft)]"
+            style={{ borderColor: "var(--c-eco)", color: "var(--c-eco-ink)" }}
+          >
+            模擬試験を受ける（90分・70点合格判定）→
+          </a>
+          <a
             href="/eco/mock/"
             className="inline-flex items-center px-4 py-2 rounded-lg border text-sm font-medium no-underline transition-colors hover:bg-[color:var(--c-eco-soft)]"
             style={{ borderColor: "var(--c-eco)", color: "var(--c-eco-ink)" }}

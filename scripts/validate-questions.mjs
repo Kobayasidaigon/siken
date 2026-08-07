@@ -2,6 +2,8 @@ import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
 const dir = process.argv[2];
+// 期待する examType。省略時はディレクトリ名(src/content/eco → "eco")を使う
+const expectExamType = process.argv[3] || path.basename(dir.replace(/[\\/]+$/,""));
 const files = fs.readdirSync(dir).filter(f=>f.endsWith(".md")).sort();
 let bad=0; const seenQ=new Map(); const ansDist={1:0,2:0,3:0,4:0}; const diff={};
 for (const f of files) {
@@ -11,7 +13,7 @@ for (const f of files) {
   const fm=d.data, body=d.content;
   const n = parseInt(f.match(/-(\d+)\.md$/)[1],10);
   const err=[];
-  if (fm.examType!=="bijimane") err.push("examType="+fm.examType);
+  if (fm.examType!==expectExamType) err.push("examType="+fm.examType);
   if (fm.questionNumber!==n) err.push("questionNumber="+fm.questionNumber+" != "+n);
   if (!Array.isArray(fm.choices)||fm.choices.length!==4) err.push("choices="+(fm.choices?fm.choices.length:"none"));
   if (!(fm.correctAnswer>=1&&fm.correctAnswer<=4)) err.push("correctAnswer="+fm.correctAnswer);

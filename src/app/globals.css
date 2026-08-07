@@ -35,6 +35,11 @@
   --c-bijimane-soft: #dde5f7;
   --c-bijimane-ink: #1e3a8a;
 
+  /* eco検定 - リーフグリーン(正解色 #15803d と紛れないよう黄味寄りの緑にする) */
+  --c-eco: #3f6212;
+  --c-eco-soft: #e9f0d8;
+  --c-eco-ink: #365314;
+
   /* 判定色 */
   --c-correct: #15803d;
   --c-wrong: #b91c1c;
@@ -107,6 +112,7 @@ h1, h2, h3, h4, h5, h6 {
 .theme-chizai { --c-accent: var(--c-chizai); --c-accent-soft: var(--c-chizai-soft); --c-accent-ink: var(--c-chizai-ink); }
 .theme-fukushi { --c-accent: var(--c-fukushi); --c-accent-soft: var(--c-fukushi-soft); --c-accent-ink: var(--c-fukushi-ink); }
 .theme-bijimane { --c-accent: var(--c-bijimane); --c-accent-soft: var(--c-bijimane-soft); --c-accent-ink: var(--c-bijimane-ink); }
+.theme-eco { --c-accent: var(--c-eco); --c-accent-soft: var(--c-eco-soft); --c-accent-ink: var(--c-eco-ink); }
 
 /* アクセントボタン */
 .btn-accent {

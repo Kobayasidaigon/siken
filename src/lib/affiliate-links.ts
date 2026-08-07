@@ -109,6 +109,16 @@ export const EXAM_AFFILIATE: Record<ExamSlug, AffiliateTarget> = {
     label: "東商公式通信講座（産業能率大学）を見る",
     course: "bijimane",
   },
+  // TODO(eco): A8でeco検定を扱う講座プログラムと提携できたら a8mat付きリンクへ差し替える。
+  //   提携可否はユーザー確認待ち(night-batch/INBOX.md)。eco検定は年間受験者数がビジマネの
+  //   約3倍(公式データ)で、提携が取れたときの伸びしろはこちらの方が大きい。
+  //   それまでは東商の公式検定サイト(学習方法・公式テキストの案内ページ)への直リンクで運用する。
+  //   ※ SMART合格講座(情報学習振興協会)はeco検定を扱っていないため流用しないこと。
+  eco: {
+    href: "https://kentei.tokyo-cci.or.jp/eco/",
+    label: "東商の公式サイトで公式テキスト・学習方法を見る",
+    course: "eco",
+  },
 };
 
 /**
@@ -124,4 +134,5 @@ export const RESULT_CTA_HEADLINE: Record<ExamSlug, string> = {
   bijihou: "間違えた論点を体系的に整理するなら",
   fukushi2: "間違えた論点を体系的に整理するなら",
   bijimane: "間違えた論点を体系的に整理するなら",
+  eco: "間違えた論点を体系的に整理するなら",
 };

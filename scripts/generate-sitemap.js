@@ -19,6 +19,7 @@ const jitsumuDir = path.join(__dirname, "../src/content/jitsumu");
 const bijihouDir = path.join(__dirname, "../src/content/bijihou");
 const fukushi2Dir = path.join(__dirname, "../src/content/fukushi2");
 const bijimaneDir = path.join(__dirname, "../src/content/bijimane");
+const ecoDir = path.join(__dirname, "../src/content/eco");
 const columnsDir = path.join(__dirname, "../src/content/columns");
 const appDir = path.join(__dirname, "../src/app");
 const outputPath = path.join(__dirname, "../public/sitemap.xml");
@@ -63,6 +64,7 @@ const jitsumu = collect(jitsumuDir);
 const bijihou = collect(bijihouDir);
 const fukushi2 = collect(fukushi2Dir);
 const bijimane = collect(bijimaneDir);
+const eco = collect(ecoDir);
 const columns = collect(columnsDir);
 
 const todayFallback = toDate(Date.now());
@@ -75,8 +77,9 @@ const jitsumuMax = maxDate(jitsumu, todayFallback);
 const bijihouMax = maxDate(bijihou, todayFallback);
 const fukushi2Max = maxDate(fukushi2, todayFallback);
 const bijimaneMax = maxDate(bijimane, todayFallback);
+const ecoMax = maxDate(eco, todayFallback);
 const columnsMax = maxDate(columns, todayFallback);
-const siteMax = [kashikinMax, piiMax, chizaiMax, chizai2Max, mynumberMax, jitsumuMax, bijihouMax, fukushi2Max, bijimaneMax, columnsMax].sort().at(-1);
+const siteMax = [kashikinMax, piiMax, chizaiMax, chizai2Max, mynumberMax, jitsumuMax, bijihouMax, fukushi2Max, bijimaneMax, ecoMax, columnsMax].sort().at(-1);
 
 // 一覧・ハブページの lastmod は、そのページに表示されるコンテンツ群の最終更新日
 const staticPages = [
@@ -175,6 +178,18 @@ const staticPages = [
   { url: "/bijimane/field/marketing/", priority: "0.8", freq: "monthly", lastmod: bijimaneMax },
   { url: "/bijimane/field/risk/", priority: "0.8", freq: "monthly", lastmod: bijimaneMax },
   { url: "/bijimane/field/risk-operation/", priority: "0.8", freq: "monthly", lastmod: bijimaneMax },
+  { url: "/eco/", priority: "0.9", freq: "weekly", lastmod: ecoMax },
+  { url: "/eco/mock/", priority: "0.6", freq: "monthly", lastmod: fileDate(path.join(appDir, "eco/mock/page.tsx")) },
+  { url: "/eco/field/history/", priority: "0.8", freq: "monthly", lastmod: ecoMax },
+  { url: "/eco/field/earth/", priority: "0.8", freq: "monthly", lastmod: ecoMax },
+  { url: "/eco/field/now/", priority: "0.8", freq: "monthly", lastmod: ecoMax },
+  { url: "/eco/field/climate/", priority: "0.8", freq: "monthly", lastmod: ecoMax },
+  { url: "/eco/field/biodiversity/", priority: "0.8", freq: "monthly", lastmod: ecoMax },
+  { url: "/eco/field/recycle/", priority: "0.8", freq: "monthly", lastmod: ecoMax },
+  { url: "/eco/field/local/", priority: "0.8", freq: "monthly", lastmod: ecoMax },
+  { url: "/eco/field/policy/", priority: "0.8", freq: "monthly", lastmod: ecoMax },
+  { url: "/eco/field/international/", priority: "0.8", freq: "monthly", lastmod: ecoMax },
+  { url: "/eco/field/actors/", priority: "0.8", freq: "monthly", lastmod: ecoMax },
   // その他 (/study/ は localStorage 依存の個人ページで noindex のため sitemap から除外)
   { url: "/guide/", priority: "0.6", freq: "monthly", lastmod: fileDate(path.join(appDir, "guide/page.tsx")) },
   { url: "/about/", priority: "0.3", freq: "yearly", lastmod: fileDate(path.join(appDir, "about/page.tsx")) },
@@ -193,6 +208,7 @@ const contentPages = [
   { entries: bijihou, prefix: "/bijihou/q/" },
   { entries: fukushi2, prefix: "/fukushi2/q/" },
   { entries: bijimane, prefix: "/bijimane/q/" },
+  { entries: eco, prefix: "/eco/q/" },
 ].flatMap(({ entries, prefix }) =>
   entries.map((e) => ({
     url: `${prefix}${e.slug}/`,

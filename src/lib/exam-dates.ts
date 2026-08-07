@@ -84,10 +84,17 @@ function ymdDate(ymd: string): Date {
   return new Date(`${ymd}T00:00:00+09:00`);
 }
 
+/**
+ * JSTでの「今日0時」のepoch。ローカルTZの setHours(0,0,0,0) だと、UTC等の
+ * ビルド環境で日付境界がJSTと最大9時間ずれ、残り日数が1日少なく表示される
+ * (formatYmdJaの-1日バグと同族)。UTC+9へ平行移動してから日付を切り出す。
+ */
 function todayStart(): number {
-  const t = new Date();
-  t.setHours(0, 0, 0, 0);
-  return t.getTime();
+  const shifted = new Date(Date.now() + 9 * 3600_000);
+  return (
+    Date.UTC(shifted.getUTCFullYear(), shifted.getUTCMonth(), shifted.getUTCDate()) -
+    9 * 3600_000
+  );
 }
 
 /** 今日以降で最も近い試験を返す。なければ null (カウントダウン非表示)。 */

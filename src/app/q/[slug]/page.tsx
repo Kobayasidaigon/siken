@@ -92,7 +92,7 @@ export default async function QuestionPage({ params }: { params: Promise<{ slug:
         </p>
       </section>
 
-      <AnswerReveal
+      <AnswerReveal nextHref={nextQ ? `/q/${nextQ.slug}/` : undefined} nextLabel={nextQ ? `次の問題（問${idx + 2}）へ` : undefined}
         choices={q.choices}
         correctAnswer={q.correctAnswer}
         explanationHtml={q.content}

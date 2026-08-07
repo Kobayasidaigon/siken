@@ -84,7 +84,7 @@ export default async function JitsumuQuestionPage({ params }: { params: Promise<
         <p className="text-sm text-[color:var(--c-text)] leading-relaxed whitespace-pre-wrap">{q.questionText}</p>
       </section>
 
-      <AnswerReveal choices={q.choices} correctAnswer={q.correctAnswer} explanationHtml={q.content} exam="jitsumu" questionSlug={slug} courseAd={<JitsumuCourseAd />} />
+      <AnswerReveal nextHref={nextQ ? `/jitsumu/q/${nextQ.slug}/` : undefined} nextLabel={nextQ ? `次の問題（問${idx + 2}）へ` : undefined} choices={q.choices} correctAnswer={q.correctAnswer} explanationHtml={q.content} exam="jitsumu" questionSlug={slug} courseAd={<JitsumuCourseAd />} />
 
       <nav className="mt-8 flex justify-between items-center pt-4 border-t border-[color:var(--c-border)]">
         {prevQ ? (<a href={`/jitsumu/q/${prevQ.slug}/`} className="text-sm text-[color:var(--c-text-sub)] no-underline hover:text-[color:var(--c-pii)]">← 問{idx}</a>) : <span />}

@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import type { ReactNode } from "react";
+import { sendGAEvent } from "@next/third-parties/google";
 import { recordResult, loadProgress, type ExamSlug, type Medal } from "@/lib/study-progress";
 import AffiliateLink from "@/components/AffiliateLink";
 import FreeLeadCTA from "@/components/FreeLeadCTA";
@@ -34,6 +35,8 @@ export default function AnswerReveal({
   exam,
   questionSlug,
   courseAd,
+  nextHref,
+  nextLabel,
 }: {
   choices: string[];
   correctAnswer: number;
@@ -43,6 +46,11 @@ export default function AnswerReveal({
   // 講座広告（CourseAd）。解答後（最高関心点）にのみ表示する。設問を解いている最中の
   // 常時表示はimpを焼くだけ（CTR 0.26%）なので、ここで revealed ゲートをかける。
   courseAd?: ReactNode;
+  // 次の問題への導線。従来はページ最下部の小さなテキストリンクだけで、解説を
+  // 読み終えた地点から遠く連続演習が途切れやすかった(UX監査指摘)。解説直下に
+  // 大きなボタンとして出す。未指定(分野の最終問など)は非表示。
+  nextHref?: string;
+  nextLabel?: string;
 }) {
   const [revealed, setRevealed] = useState(false);
   const [selected, setSelected] = useState<number | null>(null);
@@ -168,6 +176,23 @@ export default function AnswerReveal({
 
       {revealed && (
         <>
+          {/* 次の問題へ(解説直下の主要アクション)。連続演習の途切れを防ぐ */}
+          {nextHref && (
+            <a
+              href={nextHref}
+              onClick={() => {
+                try {
+                  sendGAEvent("event", "next_q_click", { exam: exam ?? "unknown" });
+                } catch {
+                  /* GA未ロードでも遷移は妨げない */
+                }
+              }}
+              className="block mt-6 w-full text-center py-3 rounded-lg font-bold text-sm no-underline transition-colors bg-blue-700 text-white hover:bg-blue-600"
+            >
+              {nextLabel ?? "次の問題へ"} →
+            </a>
+          )}
+
           {/* 答え合わせ後（最高関心点）の Studio 送客。全資格で表示・affiliate より優先 */}
           <aside className="mt-8 p-4 rounded-lg border border-indigo-200 bg-indigo-50">
             <p className="text-xs font-bold mb-1 text-indigo-900">

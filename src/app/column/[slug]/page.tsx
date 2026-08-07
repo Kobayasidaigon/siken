@@ -2,6 +2,7 @@ import { getAllColumnSlugs, getColumn } from "@/lib/columns";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import PiiCourseAd from "@/components/PiiCourseAd";
+import ColumnScrollPing from "@/components/ColumnScrollPing";
 import { getPiiAdContent } from "@/lib/pii-ad-content";
 import MynumberCourseAd from "@/components/MynumberCourseAd";
 import { getMynumberAdContent } from "@/lib/mynumber-ad-content";
@@ -165,6 +166,7 @@ export default async function ColumnPage({ params }: { params: Promise<{ slug: s
         )}
       </div>
 
+      <ColumnScrollPing slug={slug} />
       <section className="prose max-w-none" dangerouslySetInnerHTML={{ __html: col.content }} />
 
       {/* 試験申込導線(日程コラムのみ)。読者の申込意図に最短で応えるため講座広告より上に置く */}
@@ -209,15 +211,18 @@ export default async function ColumnPage({ params }: { params: Promise<{ slug: s
         />
       )}
 
-      {/* GSC上位記事への追加アフィリエイト（アガルートアカデミー） */}
+      {/* GSC上位記事への追加アフィリエイト（アガルートアカデミー）。
+          記事本文が「講座は記事末尾の案内へ」と誘導してくる受け皿なので、
+          行き先(貸金講座)とやること(講座を見る)を明示する文言にしている */}
       {slug === "osusume-text" && (
         <TextAffiliateAd
-          headline="市販テキスト＋通信講座の併用も選択肢に"
+          headline="独学より講義で時短したい方へ"
           course="agaroot-osusume"
-          body="市販テキストだけでは独学に不安が残る方は、スキマ時間を活用できるオンライン講座も検討してみてください。テキストとスマホ講義を組み合わせた学習スタイルです。"
-          linkHref="https://px.a8.net/svt/ejp?a8mat=4B3N6P+AWY41E+44M0+5YRHE"
-          linkText="スキマ時間も有効活用できるオンライン講座"
-          pixelSrc="https://www17.a8.net/0.gif?a8mat=4B3N6P+AWY41E+44M0+5YRHE"
+          placement="column_osusume"
+          body="市販テキストだけでは不安が残る方は、通信講座も選択肢です。アガルートアカデミーの貸金業務取扱主任者講座は、頻出論点と法改正対応をスマホ講義で体系的に押さえられます。テキストと講義のサンプルは資料請求(無料)で確認できます。"
+          linkHref="https://px.a8.net/svt/ejp?a8mat=4B3N6P+AWY41E+44M0+BW8O2&a8ejpredirect=https%3A%2F%2Fwww.agaroot.jp%2Fkashikin%2F"
+          linkText="アガルートの貸金業務取扱主任者講座を見る"
+          pixelSrc="https://www14.a8.net/0.gif?a8mat=4B3N6P+AWY41E+44M0+BW8O2"
         />
       )}
 

@@ -1,6 +1,7 @@
 import type { UpcomingExam } from "@/lib/exam-dates";
 import { nextExam, nextApplyDeadline, daysUntilYmd, formatYmdJa } from "@/lib/exam-dates";
 import AffiliateLink from "@/components/AffiliateLink";
+import CountdownPing from "@/components/CountdownPing";
 
 /**
  * 資格トップの試験カウントダウンカード。
@@ -37,6 +38,7 @@ export default function ExamCountdown({ exams, accent, accentSoft, examWord = "�
         className="mb-10 card p-5"
         style={urgent ? { background: accentSoft, borderLeft: `3px solid ${accent}` } : undefined}
       >
+        <CountdownPing mode="apply" ymd={deadline.applyEnd} />
         {/* モバイルは縦積み(日付が長く横並びだとはみ出すため)、sm以上で横並び */}
         <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between sm:gap-4">
           <div>
@@ -71,6 +73,7 @@ export default function ExamCountdown({ exams, accent, accentSoft, examWord = "�
   if (daysLeft <= 0) return null;
   return (
     <section className="mb-10 card p-5 flex items-center justify-between">
+      <CountdownPing mode="exam" ymd={upcoming.date} />
       <div>
         <p className="text-xs text-[color:var(--c-text-sub)] mb-1">
           {periodExam ? `${examWord}期間（${upcoming.label}）の開始まで` : `${examWord}（${upcoming.label}）まで`}

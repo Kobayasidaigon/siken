@@ -119,9 +119,29 @@ export function daysUntilYmd(ymd: string): number {
   return Math.max(0, Math.floor((ymdDate(ymd).getTime() - todayStart()) / 86400000));
 }
 
-/** "2026年11月15日（日）" 形式にフォーマット。 */
+/**
+ * "2026年11月15日（日）" 形式にフォーマット。
+ * ローカルタイムゾーンのgetterを使うと、UTC等JST以外のビルド環境で静的生成した
+ * ときに1日前の日付になる(実際に本番で試験日・締切が全て-1日表示になった)ため、
+ * 文字列を直接分解しUTC固定で曜日を求める。
+ */
 export function formatYmdJa(ymd: string): string {
-  const d = ymdDate(ymd);
-  const w = ["日", "月", "火", "水", "木", "金", "土"][d.getDay()];
-  return `${d.getFullYear()}年${d.getMonth() + 1}月${d.getDate()}日（${w}）`;
+  const [y, m, d] = ymd.split("-").map(Number);
+  const w = ["日", "月", "火", "水", "木", "金", "土"][new Date(Date.UTC(y, m - 1, d)).getUTCDay()];
+  return `${y}年${m}月${d}日（${w}）`;
+}
+
+/**
+ * トップページの資格カード用「次回試験」表示。今日以降で最も近い回を自動選択して
+ * "2026年11月15日（日）" を返す(period=trueの期間制IBT/CBTは末尾に〜を付ける)。
+ * リストが尽きたら fallback(開催サイクルの説明文)に落ち、手書き日付のように
+ * 期限切れ表示のまま腐ることがない。
+ */
+export function nextExamDateLabel(
+  exams: UpcomingExam[],
+  opts?: { period?: boolean; suffix?: string; fallback?: string }
+): string {
+  const e = nextExam(exams);
+  if (!e) return opts?.fallback ?? "公式サイトで最新日程を確認";
+  return `${formatYmdJa(e.date)}${opts?.period ? "〜" : ""}${opts?.suffix ?? ""}`;
 }

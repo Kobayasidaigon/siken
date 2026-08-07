@@ -91,7 +91,7 @@ export default async function ChizaiQuestionPage({ params }: { params: Promise<{
         <p className="text-sm text-[color:var(--c-text)] leading-relaxed whitespace-pre-wrap">{q.questionText}</p>
       </section>
 
-      <AnswerReveal choices={q.choices} correctAnswer={q.correctAnswer} explanationHtml={q.content} exam="chizai" questionSlug={slug} courseAd={<ChizaiCourseAd />} />
+      <AnswerReveal nextHref={nextQ ? `/chizai/q/${nextQ.slug}/` : undefined} nextLabel={nextQ ? `次の問題（問${idx + 2}）へ` : undefined} choices={q.choices} correctAnswer={q.correctAnswer} explanationHtml={q.content} exam="chizai" questionSlug={slug} courseAd={<ChizaiCourseAd />} />
 
       <nav className="mt-8 flex justify-between items-center pt-4 border-t border-[color:var(--c-border)]">
         {prevQ ? (

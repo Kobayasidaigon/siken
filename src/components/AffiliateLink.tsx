@@ -12,7 +12,7 @@ import { sendGAEvent } from "@next/third-parties/google";
  * 設計方針(監査の検証指示):
  * - 広告コンポーネント全体をclient化せず、アンカー1個だけをclient islandにする
  *   (静的書き出しのHTML/JS増分を最小化。コピーはサーバ側で描画されたまま)。
- * - rel="nofollow sponsored noopener" / target="_blank" / class は従来の広告と同一。
+ * - rel="nofollow sponsored noopener noreferrer" / target="_blank" / class は従来の広告と同一。
  *   控えめ方針・A8規約に影響を与えない。
  *
  * 注意: GA4の標準レポートで course/placement を分解表示するには、GA4管理画面で
@@ -32,7 +32,7 @@ export default function AffiliateLink({ href, course, placement, className = "bt
   return (
     <a
       href={href}
-      rel="nofollow sponsored noopener"
+      rel="nofollow sponsored noopener noreferrer"
       target="_blank"
       className={className}
       onClick={() => {

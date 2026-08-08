@@ -31,8 +31,21 @@ export async function getColumn(slug: string): Promise<ColumnData | null> {
     description: data.description || "",
     publishedAt: data.publishedAt || "",
     updatedAt: data.updatedAt || "",
-    content: processed.toString(),
+    content: decorateAffiliateLinks(processed.toString()),
   };
+}
+
+/**
+ * markdown本文内のアフィリエイトリンク(もしも経由の楽天リンク等)に、
+ * 規約・SEO要件の rel="nofollow sponsored" と target="_blank" を自動付与する。
+ * remark-html はmd内リンクに属性を付けられないため、生成後のHTMLを後処理する。
+ * 対象は af.moshimo.com / px.a8.net のみ(内部リンク・公式リンクには触れない)。
+ */
+function decorateAffiliateLinks(htmlStr: string): string {
+  return htmlStr.replace(
+    /<a href="(https?:\/\/(?:af\.moshimo\.com|px\.a8\.net)\/[^"]*)">/g,
+    '<a href="$1" target="_blank" rel="nofollow sponsored noopener noreferrer">'
+  );
 }
 
 export async function getAllColumns(): Promise<ColumnData[]> {

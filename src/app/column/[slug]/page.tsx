@@ -13,6 +13,8 @@ import { getJitsumuAdContent } from "@/lib/jitsumu-ad-content";
 import ChizaiCourseAd from "@/components/ChizaiCourseAd";
 import { getChizaiAdContent } from "@/lib/chizai-ad-content";
 import Fukushi2CourseAd from "@/components/Fukushi2CourseAd";
+import EcoCourseAd from "@/components/EcoCourseAd";
+import BijimaneCourseAd from "@/components/BijimaneCourseAd";
 import TextAffiliateAd from "@/components/TextAffiliateAd";
 import JsonLd from "@/components/JsonLd";
 import { pageMetadata } from "@/lib/page-metadata";
@@ -80,6 +82,12 @@ export default async function ColumnPage({ params }: { params: Promise<{ slug: s
 
   // 福祉住環境コーディネーター2級コラム（fukushi2-*）にユーキャン講座広告を表示
   const isFukushi2Article = slug.startsWith("fukushi2-");
+
+  // eco検定コラム（eco-*）・ビジマネコラム（bijimane-*）。
+  // この2つの分岐が無かったため、20本すべてが末尾の else に落ちて
+  // 貸金業務取扱主任者の CTA（/exam/0/「全504問を見る」）を出していた。
+  const isEcoArticle = slug.startsWith("eco-");
+  const isBijimaneArticle = slug.startsWith("bijimane-");
 
   // 日程・申込コラム(全日本情報学習振興協会が実施するSMART系資格のみ)には、
   // 講座広告より先に「試験申込」導線を置く。ドリル読者の必然行動(受験申込)が
@@ -274,6 +282,14 @@ export default async function ColumnPage({ params }: { params: Promise<{ slug: s
         <Fukushi2CourseAd headline="広い出題範囲を体系的に押さえるなら" />
       )}
 
+      {isEcoArticle && (
+        <EcoCourseAd headline="公式テキストの範囲を体系的に押さえるなら" />
+      )}
+
+      {isBijimaneArticle && (
+        <BijimaneCourseAd headline="公式テキストの範囲を体系的に押さえるなら" />
+      )}
+
       {isChizaiGeneralArticle && chizaiAdContent?.secondaryBenrishi && (
         <TextAffiliateAd
           themeClass="theme-chizai"
@@ -323,6 +339,18 @@ export default async function ColumnPage({ params }: { params: Promise<{ slug: s
               <a href="/fukushi2/" className="text-sm text-blue-700 no-underline hover:underline">福祉住環境2級 全200問を見る →</a>
               <a href="/fukushi2/mock/" className="text-sm text-slate-500 no-underline hover:underline">本番形式で腕試し →</a>
               <a href="/fukushi2/field/kaigohoken/" className="text-sm text-slate-500 no-underline hover:underline">介護保険と住宅改修の問題から始める →</a>
+            </>
+          ) : isEcoArticle ? (
+            <>
+              <a href="/eco/" className="text-sm text-blue-700 no-underline hover:underline">eco検定 全200問を見る →</a>
+              <a href="/eco/mock/" className="text-sm text-slate-500 no-underline hover:underline">本番形式で腕試し →</a>
+              <a href="/eco/field/climate/" className="text-sm text-slate-500 no-underline hover:underline">気候変動とエネルギーの問題から始める →</a>
+            </>
+          ) : isBijimaneArticle ? (
+            <>
+              <a href="/bijimane/" className="text-sm text-blue-700 no-underline hover:underline">ビジマネ 全200問を見る →</a>
+              <a href="/bijimane/mock/" className="text-sm text-slate-500 no-underline hover:underline">本番形式で腕試し →</a>
+              <a href="/bijimane/field/leadership/" className="text-sm text-slate-500 no-underline hover:underline">部下のマネジメントの問題から始める →</a>
             </>
           ) : slug.startsWith("chizai2-") ? (
             <>

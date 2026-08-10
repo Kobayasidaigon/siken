@@ -9,7 +9,7 @@ choices:
   - "4Pの各要素はそれぞれ独立に最適化すれば足り、要素間の整合性まで意識して全体を設計する必要はない"
   - "4PとはProduct・Price・Place・Peopleの4要素を指し、このうちPeopleを軸に他の3要素を従わせる形で設計する枠組みである"
   - "4Pのうち最も重視すべき要素はPriceであり、他の3要素は価格が決まった後に付随的に検討すれば足りる"
-  - "4PとはProduct・Price・Place・Promotionの4要素を指し、狙う顧客層に対してこれらが互いに矛盾しない形で組み合わされるよう設計する"
+  - "4PとはProduct・Price・Place・Promotionの4要素を指し、これらが互いに矛盾しない形で組み合わされるよう設計する"
 correctAnswer: 4
 difficulty: "B"
 ---

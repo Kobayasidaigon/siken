@@ -55,7 +55,8 @@ function readMarkdownQuestions(root) {
       const choices = cm
         ? [...cm[1].matchAll(/^\s*- "((?:[^"\\]|\\.)*)"/gm)].map((m) => m[1])
         : [];
-      items.push({ id: path.relative(root, p), q, choices, answer: Number(ca) - 1 });
+      const rel = path.relative(root, p);
+      items.push({ id: rel, exam: path.dirname(rel), q, choices, answer: Number(ca) - 1 });
     }
   };
   walk(root);
@@ -89,7 +90,9 @@ for (const it of items) {
     const gap = lens[a] - Math.max(...lens.filter((_, i) => i !== a));
     if (gap >= LIMITS.GAP_CHARS) overGap.push({ id: it.id, gap });
   }
-  const key = String(it.q).replace(/[（）()「」、。・,.\s]/g, "");
+  // 資格が違えば同じ設問文でも問題ない(同一利用者が両方を見ることはない)。
+  // 同じ資格の中での重複だけを違反とする。試験はディレクトリで分かれている。
+  const key = it.exam + "\u0000" + String(it.q).replace(/[（）()「」、。・,.\s]/g, "");
   if (seen.has(key)) dups.push(`${it.id} ⇔ ${seen.get(key)}`);
   else seen.set(key, it.id);
 }
@@ -104,7 +107,7 @@ console.log(`\n[問題監査] ${n}問`);
 console.log(`  最長肢=正解        : ${longest}問 (${pct(longest)}%)  ※4択の理論値25%`);
 console.log(`  正解肢が${LIMITS.GAP_CHARS}字以上長い: ${overGap.length}問 (${gapPct}%)  [上限 ${LIMITS.GAP_RATIO_PCT}%]`);
 console.log(`  正解位置の最大偏り : ${maxPosPct}%  [上限 ${LIMITS.ANSWER_POS_PCT}%]`);
-console.log(`  設問文の重複       : ${dups.length}件  [上限 ${LIMITS.DUP_MAX}件]`);
+console.log(`  設問文の重複(同資格内): ${dups.length}件  [上限 ${LIMITS.DUP_MAX}件]`);
 if (shape) console.log(`  形式不正           : ${shape}件`);
 
 if (shape > 0) violations.push(`形式不正が${shape}件`);

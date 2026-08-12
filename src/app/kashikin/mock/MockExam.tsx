@@ -12,6 +12,7 @@
 import { useState } from "react";
 import AffiliateLink from "@/components/AffiliateLink";
 import FreeLeadCTA from "@/components/FreeLeadCTA";
+import StudioLink from "@/components/StudioLink";
 import { EXAM_AFFILIATE } from "@/lib/affiliate-links";
 import { recordResult, type ExamSlug } from "@/lib/study-progress";
 
@@ -39,9 +40,6 @@ function shuffle<T>(arr: T[]): T[] {
   }
   return a;
 }
-
-const STUDIO_URL =
-  "https://studio.shikakumon.com/?utm_source=shikakumon&utm_medium=mock_result";
 
 // 配色はテーマ非依存。各mockページの theme-* が --c-accent(-ink) を供給する
 // （貸金=theme-kashikin なので従来色のまま／知財=theme-chizai・個情保=theme-pii で各色に）。
@@ -269,14 +267,13 @@ export default function MockExam({
         <p className="text-xs leading-relaxed mb-2 text-indigo-900/80">
           今回の取りこぼしを忘れる前に。資格名や手元の教材から作った問題を忘却曲線で自動復習できる姉妹サービス「シカクモン Studio」。
         </p>
-        <a
-          href={STUDIO_URL}
-          target="_blank"
-          rel="noopener noreferrer"
+        <StudioLink
+          placement="mock_result"
+          exam={exam}
           className="text-xs font-bold inline-flex items-center gap-1 no-underline text-indigo-600 hover:underline"
         >
           シカクモン Studio を無料で試す →
-        </a>
+        </StudioLink>
       </aside>
 
       {/* 間違えた問題の復習リンク */}

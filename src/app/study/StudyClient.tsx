@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { loadProgress, clearProgress, medalCounts, EXAM_LIST, type AllProgress, type ExamSlug } from "@/lib/study-progress";
 import AffiliateLink from "@/components/AffiliateLink";
 import FreeLeadCTA from "@/components/FreeLeadCTA";
+import StudioLink from "@/components/StudioLink";
 import { EXAM_AFFILIATE } from "@/lib/affiliate-links";
 
 // 弱点連動広告を出す誤答数のしきい値（高intent面なので露出母数を確保するため緩めに）
@@ -403,6 +404,28 @@ export default function StudyClient({
           </section>
         );
       })}
+
+      {/* Studio 送客。誤答履歴を見返している人は「間違えた問題だけ自動復習」の
+          ど真ん中の対象だが、この面にはこれまで導線が1本も無かった。
+          資格は誤答が最も多いものを渡し、着地側のコピーをその資格で出し分ける。 */}
+      {topWrongExam && totalWrong >= STUDY_AD_WRONG_THRESHOLD && (
+        <section className="mt-10 p-4 rounded-lg border border-indigo-200 bg-indigo-50">
+          <p className="text-xs font-bold mb-1 text-indigo-900">
+            間違えた {totalWrong} 問、忘れる前に復習しませんか
+          </p>
+          <p className="text-xs leading-relaxed mb-2 text-indigo-900/80">
+            姉妹サービス「シカクモン Studio」なら、資格名や手元の教材から作った問題を
+            忘却曲線に沿って自動で再出題します。解き直しのタイミングを自分で管理せずに済みます。
+          </p>
+          <StudioLink
+            placement="study_history"
+            exam={topWrongExam}
+            className="text-xs font-bold inline-flex items-center gap-1 no-underline text-indigo-600 hover:underline"
+          >
+            シカクモン Studio を無料で試す →
+          </StudioLink>
+        </section>
+      )}
 
       {(totalAttempted > 0 || totalBookmarks > 0) && (
         <section className="mt-10 pt-6 border-t border-[color:var(--c-border)]">

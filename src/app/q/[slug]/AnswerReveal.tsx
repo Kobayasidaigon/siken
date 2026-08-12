@@ -5,6 +5,7 @@ import { sendGAEvent } from "@next/third-parties/google";
 import { recordResult, loadProgress, type ExamSlug, type Medal } from "@/lib/study-progress";
 import AffiliateLink from "@/components/AffiliateLink";
 import FreeLeadCTA from "@/components/FreeLeadCTA";
+import StudioLink from "@/components/StudioLink";
 import { EXAM_AFFILIATE, RESULT_CTA_HEADLINE } from "@/lib/affiliate-links";
 
 // 答え合わせ直後CTAを出す資格。bijihou/piiで検証→SMART系の発生確認→2026-08-05に
@@ -202,17 +203,17 @@ export default function AnswerReveal({
               資格名を入れるだけ、または手元の教材 PDF・写真から、AI が 4 択問題を生成する姉妹サービス「シカクモン
               Studio」。間違えた問題は忘却曲線で自動復習でき、試験まで続く学習に。
             </p>
-            <a
-              href={`https://studio.shikakumon.com/?utm_source=shikakumon&utm_medium=quiz_${exam ?? "result"}`}
-              target="_blank"
-              rel="noopener noreferrer"
+            <StudioLink
+              placement="quiz_result"
+              exam={exam}
+              legacyMedium={`quiz_${exam ?? "result"}`}
               className="text-xs font-bold inline-flex items-center gap-1 no-underline text-indigo-600 hover:underline"
             >
               シカクモン Studio を無料で試す
               <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
               </svg>
-            </a>
+            </StudioLink>
           </aside>
 
           {/* 講座広告（CourseAd）は解答後のみ表示。設問の最中の常時表示をやめ、

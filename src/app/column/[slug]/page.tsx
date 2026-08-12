@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import PiiCourseAd from "@/components/PiiCourseAd";
 import ColumnScrollPing from "@/components/ColumnScrollPing";
+import StudioLink from "@/components/StudioLink";
 import { getPiiAdContent } from "@/lib/pii-ad-content";
 import MynumberCourseAd from "@/components/MynumberCourseAd";
 import { getMynumberAdContent } from "@/lib/mynumber-ad-content";
@@ -389,10 +390,8 @@ export default async function ColumnPage({ params }: { params: Promise<{ slug: s
           シカクモン本体に無い資格や、手元のテキスト・PDF からも AI が問題を生成する別サイト「シカクモン Studio」を運営しています。
           忘却曲線に沿った復習や AI への質問にも対応しています。
         </p>
-        <a
-          href="https://studio.shikakumon.com/?utm_source=shikakumon&utm_medium=column_footer"
-          target="_blank"
-          rel="noopener noreferrer"
+        <StudioLink
+          placement="column_footer"
           className="text-xs font-bold inline-flex items-center gap-1 no-underline"
           style={{ color: "var(--c-chizai)" }}
         >
@@ -400,7 +399,7 @@ export default async function ColumnPage({ params }: { params: Promise<{ slug: s
           <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
           </svg>
-        </a>
+        </StudioLink>
       </aside>
 
       <nav className="mt-6">

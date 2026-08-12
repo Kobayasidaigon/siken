@@ -21,6 +21,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { sendGAEvent } from "@next/third-parties/google";
 import AffiliateLink from "@/components/AffiliateLink";
 import FreeLeadCTA from "@/components/FreeLeadCTA";
+import StudioLink from "@/components/StudioLink";
 import { EXAM_AFFILIATE } from "@/lib/affiliate-links";
 import { EXAM_LIST, recordResult, type ExamSlug } from "@/lib/study-progress";
 import MoshiFormatFeedback from "@/components/MoshiFormatFeedback";
@@ -64,9 +65,6 @@ interface SavedSession {
   startedAt: number;
   answers: (number | null)[];
 }
-
-const STUDIO_URL =
-  "https://studio.shikakumon.com/?utm_source=shikakumon&utm_medium=moshi_result";
 
 function loadSession(key: string): SavedSession | null {
   try {
@@ -561,14 +559,13 @@ export default function MoshiExam({
         <p className="text-xs leading-relaxed mb-2 text-indigo-900/80">
           今回の取りこぼしを忘れる前に。資格名や手元の教材から作った問題を忘却曲線で自動復習できる姉妹サービス「シカクモン Studio」。
         </p>
-        <a
-          href={STUDIO_URL}
-          target="_blank"
-          rel="noopener noreferrer"
+        <StudioLink
+          placement="moshi_result"
+          exam={exam}
           className="text-xs font-bold inline-flex items-center gap-1 no-underline text-indigo-600 hover:underline"
         >
           シカクモン Studio を無料で試す →
-        </a>
+        </StudioLink>
       </aside>
 
       {/* 全問詳解 */}

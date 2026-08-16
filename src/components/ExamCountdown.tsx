@@ -13,6 +13,11 @@ import CountdownPing from "@/components/CountdownPing";
  *
  * apply: 試験実施団体がA8広告主の場合(SMART系=全日本情報学習振興協会)のみ、
  * 締切表示時に公式申込ページへのA8導線を添える(「広告」ラベル付き)。
+ *
+ * 資格トップだけでなく日程コラム(/column/*-nittei/)にも設置している。日程コラムは
+ * 「試験日はいつ」で検索して来る=申込意図が最も強い読者の着地点だが、本文は静的な
+ * markdownで「申込期間は〇月〇日まで」と書いてあるだけで残り日数が出ていなかった。
+ * applyPlacement はその2面のCTRを分けて計測するために置いている。
  */
 
 interface Props {
@@ -22,13 +27,14 @@ interface Props {
   examWord?: string; // 試験日表示の名詞。既定「次回試験」(貸金は「次回本試験」)
   periodExam?: boolean; // 東商IBT/CBTの期間制: 「試験期間の開始まで」+日付末尾に「〜」
   apply?: { href: string; course: string; pixel: string };
+  applyPlacement?: string; // GA4で設置面を区別する。既定は資格トップの "top_apply"
 }
 
 // 締切がこの日数以内に迫ったら強調表示に切り替える。
 // 強調は「淡色背景+左罫線+日数の級数アップ」まで(赤・アニメーション等は設計言語に反するため使わない)。
 const URGENT_DAYS = 10;
 
-export default function ExamCountdown({ exams, accent, accentSoft, examWord = "次回試験", periodExam = false, apply }: Props) {
+export default function ExamCountdown({ exams, accent, accentSoft, examWord = "次回試験", periodExam = false, apply, applyPlacement = "top_apply" }: Props) {
   const deadline = nextApplyDeadline(exams);
   if (deadline && deadline.applyEnd) {
     const daysLeft = daysUntilYmd(deadline.applyEnd);
@@ -57,7 +63,7 @@ export default function ExamCountdown({ exams, accent, accentSoft, examWord = "�
             <span className="text-[10px] tracking-wider text-[color:var(--c-text-sub)] border border-[color:var(--c-border)] px-1.5 py-0.5 rounded shrink-0">
               広告
             </span>
-            <AffiliateLink href={apply.href} course={apply.course} placement="top_apply" className="underline hover:no-underline">
+            <AffiliateLink href={apply.href} course={apply.course} placement={applyPlacement} className="underline hover:no-underline">
               協会公式サイトで申し込む →
             </AffiliateLink>
             <img width={1} height={1} src={apply.pixel} alt="" style={{ position: "absolute", border: 0 }} />

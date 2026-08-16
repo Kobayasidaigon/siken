@@ -16,8 +16,21 @@ import Fukushi2CourseAd from "@/components/Fukushi2CourseAd";
 import EcoCourseAd from "@/components/EcoCourseAd";
 import BijimaneCourseAd from "@/components/BijimaneCourseAd";
 import TextAffiliateAd from "@/components/TextAffiliateAd";
+import ExamCountdown from "@/components/ExamCountdown";
 import JsonLd from "@/components/JsonLd";
 import { pageMetadata } from "@/lib/page-metadata";
+import type { UpcomingExam } from "@/lib/exam-dates";
+import {
+  KASHIKIN_EXAMS,
+  CHIZAI_EXAMS,
+  FUKUSHI2_EXAMS,
+  BIJIHOU_EXAMS,
+  BIJIMANE_EXAMS,
+  ECO_EXAMS,
+  PII_EXAMS,
+  MYNUMBER_EXAMS,
+  JITSUMU_EXAMS,
+} from "@/lib/exam-dates";
 
 export async function generateStaticParams() {
   return getAllColumnSlugs().map((slug) => ({ slug }));
@@ -121,6 +134,77 @@ export default async function ColumnPage({ params }: { params: Promise<{ slug: s
   };
   const examApplyAd = examApplyAds[slug];
 
+  // 日程コラムの本文冒頭に、資格トップと同じ試験カウントダウンを出す。
+  // 日程コラムは「(資格名) 試験日/日程」で検索して来る=申込意図が最も強い着地点だが、
+  // 本文はmarkdownの静的な表(「申込期間 7月1日〜9月10日」)だけで、締切まで何日かは
+  // 読者が自分で数える必要があった。A8実測(2026-08-06)で成果は締切直前に集中すると
+  // 分かっているため、残り日数を最初に見せる。試験日リストが尽きれば自動で消える。
+  const niteiCountdowns: Record<
+    string,
+    {
+      exams: UpcomingExam[];
+      accent: string;
+      accentSoft: string;
+      examWord?: string;
+      periodExam?: boolean;
+    }
+  > = {
+    // 貸金の日程コラムだけ slug に資格接頭辞が無い(サイト初期からある記事のため)
+    "shiken-nittei": {
+      exams: KASHIKIN_EXAMS,
+      accent: "var(--c-kashikin)",
+      accentSoft: "var(--c-kashikin-soft)",
+      examWord: "次回本試験",
+    },
+    "chizai-nittei": {
+      exams: CHIZAI_EXAMS,
+      accent: "var(--c-chizai)",
+      accentSoft: "var(--c-chizai-soft)",
+    },
+    "chizai2-nittei": {
+      exams: CHIZAI_EXAMS,
+      accent: "var(--c-chizai)",
+      accentSoft: "var(--c-chizai-soft)",
+    },
+    // 東商のIBT/CBTは期間制なので periodExam(「試験期間の開始まで」+日付に「〜」)
+    "bijihou-nittei": {
+      exams: BIJIHOU_EXAMS,
+      accent: "var(--c-kashikin)",
+      accentSoft: "var(--c-kashikin-soft)",
+      periodExam: true,
+    },
+    "bijimane-nittei": {
+      exams: BIJIMANE_EXAMS,
+      accent: "var(--c-bijimane)",
+      accentSoft: "var(--c-bijimane-soft)",
+      periodExam: true,
+    },
+    "fukushi2-nittei": {
+      exams: FUKUSHI2_EXAMS,
+      accent: "var(--c-fukushi)",
+      accentSoft: "var(--c-fukushi-soft)",
+      periodExam: true,
+    },
+    "eco-nittei": {
+      exams: ECO_EXAMS,
+      accent: "var(--c-eco)",
+      accentSoft: "var(--c-eco-soft)",
+      periodExam: true,
+    },
+    "pii-nittei": { exams: PII_EXAMS, accent: "var(--c-pii)", accentSoft: "var(--c-pii-soft)" },
+    "mynumber-nittei": {
+      exams: MYNUMBER_EXAMS,
+      accent: "var(--c-pii)",
+      accentSoft: "var(--c-pii-soft)",
+    },
+    "jitsumu-nittei": {
+      exams: JITSUMU_EXAMS,
+      accent: "var(--c-pii)",
+      accentSoft: "var(--c-pii-soft)",
+    },
+  };
+  const niteiCountdown = niteiCountdowns[slug];
+
   const pageUrl = `https://shikakumon.com/column/${slug}/`;
   const jsonLd = [
     {
@@ -175,6 +259,28 @@ export default async function ColumnPage({ params }: { params: Promise<{ slug: s
       </div>
 
       <ColumnScrollPing slug={slug} />
+
+      {/* 日程コラムのみ: 本文より先に「申込締切まであとN日」を出す(締切10日以内は強調) */}
+      {niteiCountdown && (
+        <ExamCountdown
+          exams={niteiCountdown.exams}
+          accent={niteiCountdown.accent}
+          accentSoft={niteiCountdown.accentSoft}
+          examWord={niteiCountdown.examWord}
+          periodExam={niteiCountdown.periodExam}
+          apply={
+            examApplyAd
+              ? {
+                  href: examApplyAd.href,
+                  course: examApplyAd.course,
+                  pixel: examApplyAd.pixel,
+                }
+              : undefined
+          }
+          applyPlacement="column_countdown_apply"
+        />
+      )}
+
       <section className="prose max-w-none" dangerouslySetInnerHTML={{ __html: col.content }} />
 
       {/* 試験申込導線(日程コラムのみ)。読者の申込意図に最短で応えるため講座広告より上に置く */}

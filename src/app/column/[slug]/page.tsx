@@ -14,6 +14,7 @@ import { getJitsumuAdContent } from "@/lib/jitsumu-ad-content";
 import ChizaiCourseAd from "@/components/ChizaiCourseAd";
 import { getChizaiAdContent } from "@/lib/chizai-ad-content";
 import Fukushi2CourseAd from "@/components/Fukushi2CourseAd";
+import { canShowUcanAd } from "@/lib/ucan-policy";
 import EcoCourseAd from "@/components/EcoCourseAd";
 import BijimaneCourseAd from "@/components/BijimaneCourseAd";
 import TextAffiliateAd from "@/components/TextAffiliateAd";
@@ -99,6 +100,12 @@ export default async function ColumnPage({ params }: { params: Promise<{ slug: s
   const studioCta = studioCtaFor(certFromColumnSlug(slug), "column_footer");
 
   const isFukushi2Article = slug.startsWith("fukushi2-");
+
+  // 講座広告(ユーキャン)だけは、数値を伴う合格率・合格者数に触れる記事に出さない。
+  // 広告主の掲載ルールによる制限で、判定条件と根拠は lib/ucan-policy.ts に集約している。
+  // ここを isFukushi2Article 自体に混ぜないこと — 記事末尾の内部導線
+  // (「全200問を見る」等) まで消えて、貸金の CTA に落ちる。
+  const showFukushi2CourseAd = isFukushi2Article && canShowUcanAd(col);
 
   // eco検定コラム（eco-*）・ビジマネコラム（bijimane-*）。
   // この2つの分岐が無かったため、20本すべてが末尾の else に落ちて
@@ -388,7 +395,7 @@ export default async function ColumnPage({ params }: { params: Promise<{ slug: s
         <ChizaiCourseAd headline="2級レンジの論点を体系的に押さえるなら" />
       )}
 
-      {isFukushi2Article && (
+      {showFukushi2CourseAd && (
         <Fukushi2CourseAd headline="広い出題範囲を体系的に押さえるなら" />
       )}
 

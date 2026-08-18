@@ -14,6 +14,7 @@ import AffiliateLink from "@/components/AffiliateLink";
 import FreeLeadCTA from "@/components/FreeLeadCTA";
 import { EXAM_AFFILIATE } from "@/lib/affiliate-links";
 import { recordResult, type ExamSlug } from "@/lib/study-progress";
+import { studioMoshiHref } from "@/lib/studio-cta";
 
 export interface MockQuestion {
   slug: string;
@@ -263,19 +264,24 @@ export default function MockExam({
         </aside>
       )}
 
-      {/* Studio 送客（間違えた問題の自動復習という文脈一致） */}
+      {/* Studio 送客。弱点分野が出ていれば、その分野を引き継いで送る
+          (着地先で何も入力せずに弱点の問題を作れる状態にする) */}
       <aside className="mb-6 p-4 rounded-lg border border-indigo-200 bg-indigo-50">
-        <p className="text-xs font-bold mb-1 text-indigo-900">間違えた問題だけ、自動で復習</p>
+        <p className="text-xs font-bold mb-1 text-indigo-900">
+          {weakest ? `${weakest[0]}を、いま10問だけ解く` : "間違えた問題だけ、自動で復習"}
+        </p>
         <p className="text-xs leading-relaxed mb-2 text-indigo-900/80">
-          今回の取りこぼしを忘れる前に。資格名や手元の教材から作った問題を忘却曲線で自動復習できる姉妹サービス「シカクモン Studio」。
+          {weakest
+            ? `${weakest[0]}が ${weakest[1].correct}/${weakest[1].total} でした。姉妹サービス「シカクモン Studio」なら、この分野の問題をAIがその場で作ります。間違えた問題は忘却曲線で自動的に再出題されます。`
+            : "今回の取りこぼしを忘れる前に。資格名や手元の教材から作った問題を忘却曲線で自動復習できる姉妹サービス「シカクモン Studio」。"}
         </p>
         <a
-          href={STUDIO_URL}
+          href={studioMoshiHref(exam, weakest?.[0], "mock_result")}
           target="_blank"
           rel="noopener noreferrer"
           className="text-xs font-bold inline-flex items-center gap-1 no-underline text-indigo-600 hover:underline"
         >
-          シカクモン Studio を無料で試す →
+          {weakest ? `${weakest[0]}の問題を作る →` : "シカクモン Studio を無料で試す →"}
         </a>
       </aside>
 

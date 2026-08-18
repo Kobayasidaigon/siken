@@ -100,3 +100,55 @@ export function studioCtaFor(
   const { heading, body, linkLabel } = cta ?? GENERIC;
   return { href, heading, body, linkLabel };
 }
+
+/**
+ * 資格 ID → 正式名称。Studio の生成フォームに渡す資格名として使う。
+ * Studio 側 lib/referral-exam-names.ts の SHIKAKUMON_EXAM_NAMES と同じ値を保つこと
+ * (向こうは utm_medium から引く用、こちらは URL に載せる用)。
+ */
+export const EXAM_FULL_NAMES: Record<ExamSlug, string> = {
+  kashikin: "貸金業務取扱主任者",
+  pii: "個人情報保護士",
+  chizai: "知的財産管理技能検定",
+  chizai2: "知的財産管理技能検定2級",
+  mynumber: "マイナンバー実務検定",
+  jitsumu: "個人情報保護実務検定",
+  bijihou: "ビジネス実務法務検定",
+  fukushi2: "福祉住環境コーディネーター2級",
+  bijimane: "ビジネスマネジャー検定",
+  eco: "eco検定",
+};
+
+/**
+ * 模試の結果から Studio へ送るリンクを組み立てる。
+ *
+ * 模試の結果画面では既に分野別正答率を集計し「いちばんの弱点は◯◯」まで
+ * 出しているのに、Studio へのリンクは汎用トップのままで、その情報が
+ * 一切引き継がれていなかった。資格名と弱点分野を渡すことで、着地先では
+ * 何も入力せずに弱点分野の問題を作れる状態になる
+ * (Studio 側: トップのお試し生成は ?exam= を、作成画面は ?exam=&theme= を読む)。
+ *
+ * 模試完了者は全 CTA 設置箇所で最も転換率が高い層 (90日で完了87人 → Studio 19)
+ * なので、ここの精度を上げる価値が最も大きい。
+ *
+ * @param exam      資格
+ * @param weakField 最も正答率が低かった分野。無ければ省略
+ * @param medium    utm_medium (既存値を維持: moshi_result / mock_result)
+ */
+export function studioMoshiHref(
+  exam: ExamSlug,
+  weakField: string | null | undefined,
+  medium: string
+): string {
+  const lp = CERT_CTA[exam]?.lp;
+  const path = lp ? `/lp/${lp}` : "/";
+  const params = new URLSearchParams({
+    utm_source: "shikakumon",
+    utm_medium: medium,
+    exam: EXAM_FULL_NAMES[exam],
+  });
+  // 分野名はそのまま検索語として使われるので、長すぎるものは切る
+  const field = (weakField ?? "").trim();
+  if (field) params.set("theme", field.slice(0, 40));
+  return `${STUDIO_ORIGIN}${path}?${params.toString()}`;
+}

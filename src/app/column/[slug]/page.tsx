@@ -1,6 +1,7 @@
 import { getAllColumnSlugs, getColumn } from "@/lib/columns";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
+import { certFromColumnSlug, studioCtaFor } from "@/lib/studio-cta";
 import PiiCourseAd from "@/components/PiiCourseAd";
 import ColumnScrollPing from "@/components/ColumnScrollPing";
 import { getPiiAdContent } from "@/lib/pii-ad-content";
@@ -94,6 +95,9 @@ export default async function ColumnPage({ params }: { params: Promise<{ slug: s
   const isChizai2Article = slug.startsWith("chizai2-");
 
   // 福祉住環境コーディネーター2級コラム（fukushi2-*）にユーキャン講座広告を表示
+  // 資格別 LP がある資格は、その LP へ資格ごとの文言で送る (無ければ従来の汎用)
+  const studioCta = studioCtaFor(certFromColumnSlug(slug), "column_footer");
+
   const isFukushi2Article = slug.startsWith("fukushi2-");
 
   // eco検定コラム（eco-*）・ビジマネコラム（bijimane-*）。
@@ -489,20 +493,19 @@ export default async function ColumnPage({ params }: { params: Promise<{ slug: s
         }}
       >
         <p className="text-xs font-bold mb-1" style={{ color: "var(--c-chizai-ink)" }}>
-          自分の教材から問題を作りたい人へ
+          {studioCta.heading}
         </p>
         <p className="text-xs leading-relaxed mb-2" style={{ color: "var(--c-chizai-ink)" }}>
-          シカクモン本体に無い資格や、手元のテキスト・PDF からも AI が問題を生成する別サイト「シカクモン Studio」を運営しています。
-          忘却曲線に沿った復習や AI への質問にも対応しています。
+          {studioCta.body}
         </p>
         <a
-          href="https://studio.shikakumon.com/?utm_source=shikakumon&utm_medium=column_footer"
+          href={studioCta.href}
           target="_blank"
           rel="noopener noreferrer"
           className="text-xs font-bold inline-flex items-center gap-1 no-underline"
           style={{ color: "var(--c-chizai)" }}
         >
-          シカクモン Studio を見る
+          {studioCta.linkLabel}
           <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
           </svg>

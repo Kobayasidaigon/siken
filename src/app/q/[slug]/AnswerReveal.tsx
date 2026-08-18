@@ -4,6 +4,7 @@ import type { ReactNode } from "react";
 import { sendGAEvent } from "@next/third-parties/google";
 import { recordResult, loadProgress, type ExamSlug, type Medal } from "@/lib/study-progress";
 import AffiliateLink from "@/components/AffiliateLink";
+import { studioCtaFor } from "@/lib/studio-cta";
 import FreeLeadCTA from "@/components/FreeLeadCTA";
 import { EXAM_AFFILIATE, RESULT_CTA_HEADLINE } from "@/lib/affiliate-links";
 
@@ -55,6 +56,10 @@ export default function AnswerReveal({
   const [revealed, setRevealed] = useState(false);
   const [selected, setSelected] = useState<number | null>(null);
   const [medal, setMedal] = useState<Medal | null>(null);
+
+  // 答え合わせ直後の Studio 送客。資格別 LP がある資格はその LP へ資格ごとの
+  // 文言で送る (無ければ従来の汎用文言 + トップページ)。utm_medium は従来のまま。
+  const studioCta = studioCtaFor(exam, `quiz_${exam ?? "result"}`);
 
   useEffect(() => {
     if (revealed && selected !== null && exam && questionSlug) {
@@ -196,19 +201,18 @@ export default function AnswerReveal({
           {/* 答え合わせ後（最高関心点）の Studio 送客。全資格で表示・affiliate より優先 */}
           <aside className="mt-8 p-4 rounded-lg border border-indigo-200 bg-indigo-50">
             <p className="text-xs font-bold mb-1 text-indigo-900">
-              自分専用の問題集も作れます
+              {studioCta.heading}
             </p>
             <p className="text-xs leading-relaxed mb-2 text-indigo-900/80">
-              資格名を入れるだけ、または手元の教材 PDF・写真から、AI が 4 択問題を生成する姉妹サービス「シカクモン
-              Studio」。間違えた問題は忘却曲線で自動復習でき、試験まで続く学習に。
+              {studioCta.body}
             </p>
             <a
-              href={`https://studio.shikakumon.com/?utm_source=shikakumon&utm_medium=quiz_${exam ?? "result"}`}
+              href={studioCta.href}
               target="_blank"
               rel="noopener noreferrer"
               className="text-xs font-bold inline-flex items-center gap-1 no-underline text-indigo-600 hover:underline"
             >
-              シカクモン Studio を無料で試す
+              {studioCta.linkLabel}
               <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
               </svg>

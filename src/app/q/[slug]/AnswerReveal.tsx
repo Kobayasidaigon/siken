@@ -5,6 +5,7 @@ import { sendGAEvent } from "@next/third-parties/google";
 import { recordResult, loadProgress, type ExamSlug, type Medal } from "@/lib/study-progress";
 import AffiliateLink from "@/components/AffiliateLink";
 import { studioCtaFor } from "@/lib/studio-cta";
+import { decideCtaPriority } from "@/lib/cta-priority";
 import FreeLeadCTA from "@/components/FreeLeadCTA";
 import { EXAM_AFFILIATE, RESULT_CTA_HEADLINE } from "@/lib/affiliate-links";
 
@@ -60,6 +61,29 @@ export default function AnswerReveal({
   // 答え合わせ直後の Studio 送客。資格別 LP がある資格はその LP へ資格ごとの
   // 文言で送る (無ければ従来の汎用文言 + トップページ)。utm_medium は従来のまま。
   const studioCta = studioCtaFor(exam, `quiz_${exam ?? "result"}`);
+
+  // 申込締切が迫っている資格・時期だけ、講座広告(courseAd)を Studio 枠より上に出す。
+  // static export のビルド時評価だと、デプロイ間隔次第で締切後も「締切間近」の
+  // 並びのまま出しかねないので、クライアント側 (このコンポーネント) で毎回評価する。
+  const applyFirst = decideCtaPriority(exam).primary === "apply";
+
+  const studioAside = (
+    <aside className="mt-8 p-4 rounded-lg border border-indigo-200 bg-indigo-50">
+      <p className="text-xs font-bold mb-1 text-indigo-900">{studioCta.heading}</p>
+      <p className="text-xs leading-relaxed mb-2 text-indigo-900/80">{studioCta.body}</p>
+      <a
+        href={studioCta.href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="text-xs font-bold inline-flex items-center gap-1 no-underline text-indigo-600 hover:underline"
+      >
+        {studioCta.linkLabel}
+        <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+        </svg>
+      </a>
+    </aside>
+  );
 
   useEffect(() => {
     if (revealed && selected !== null && exam && questionSlug) {
@@ -198,30 +222,22 @@ export default function AnswerReveal({
             </a>
           )}
 
-          {/* 答え合わせ後（最高関心点）の Studio 送客。全資格で表示・affiliate より優先 */}
-          <aside className="mt-8 p-4 rounded-lg border border-indigo-200 bg-indigo-50">
-            <p className="text-xs font-bold mb-1 text-indigo-900">
-              {studioCta.heading}
-            </p>
-            <p className="text-xs leading-relaxed mb-2 text-indigo-900/80">
-              {studioCta.body}
-            </p>
-            <a
-              href={studioCta.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-xs font-bold inline-flex items-center gap-1 no-underline text-indigo-600 hover:underline"
-            >
-              {studioCta.linkLabel}
-              <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-              </svg>
-            </a>
-          </aside>
-
-          {/* 講座広告（CourseAd）は解答後のみ表示。設問の最中の常時表示をやめ、
-              最高関心点だけに絞ることで低intentのimp浪費を止める。 */}
-          {courseAd}
+          {/* 答え合わせ後（最高関心点）の 2 つの CTA。
+              どちらも消さず、申込締切までの日数で「上に出す方」だけを入れ替える
+              (lib/cta-priority.ts)。A8 の成果は申込締切の直前に集中し、
+              締切を過ぎるとその回は受験できなくなるため、その窓だけ講座広告を上に置く。
+              それ以外の期間は学習期間が長く、Studio の方が価値を訴求しやすい。 */}
+          {applyFirst ? (
+            <>
+              {courseAd}
+              {studioAside}
+            </>
+          ) : (
+            <>
+              {studioAside}
+              {courseAd}
+            </>
+          )}
         </>
       )}
     </>

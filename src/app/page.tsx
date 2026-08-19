@@ -12,15 +12,16 @@ import {
   BIJIMANE_EXAMS,
   ECO_EXAMS,
 } from "@/lib/exam-dates";
+import { siteTotals, formatCount } from "@/lib/site-totals";
 
 export const metadata: Metadata = {
   title: { absolute: "シカクモン｜資格試験のオリジナル練習問題を無料で提供" },
-  description: "シカクモンは資格試験のオリジナル練習問題を無料で提供するサイトです。貸金業務取扱主任者・個人情報保護士・知的財産管理技能検定3級/2級・マイナンバー実務検定3級・個人情報保護実務検定・ビジネス実務法務検定3級・福祉住環境コーディネーター2級・ビジネスマネジャー検定・eco検定、合計2,404問。全問に根拠を含む詳細解説付き。",
+  description: `シカクモンは資格試験のオリジナル練習問題を無料で提供するサイトです。貸金業務取扱主任者・個人情報保護士・知的財産管理技能検定3級/2級・マイナンバー実務検定3級・個人情報保護実務検定・ビジネス実務法務検定3級・福祉住環境コーディネーター2級・ビジネスマネジャー検定・eco検定、合計${formatCount(siteTotals().questions)}問。全問に根拠を含む詳細解説付き。`,
   alternates: { canonical: "/" },
   openGraph: {
     url: "/",
     title: "シカクモン｜資格試験のオリジナル練習問題を無料で提供",
-    description: "貸金業務取扱主任者・個人情報保護士・知財3級/2級・マイナンバー3級・個情保実務・ビジ法3級・福祉住環境2級・ビジマネ・eco検定の10資格、合計2,404問のオリジナル練習問題を無料公開。",
+    description: `貸金業務取扱主任者・個人情報保護士・知財3級/2級・マイナンバー3級・個情保実務・ビジ法3級・福祉住環境2級・ビジマネ・eco検定の${siteTotals().exams}資格、合計${formatCount(siteTotals().questions)}問のオリジナル練習問題を無料公開。`,
   },
 };
 

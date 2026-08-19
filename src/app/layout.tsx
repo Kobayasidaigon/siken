@@ -3,6 +3,7 @@ import { Noto_Sans_JP, Noto_Serif_JP } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import "./globals.css";
+import { siteTotals, formatCount } from "@/lib/site-totals";
 
 const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
 
@@ -27,9 +28,9 @@ export const metadata: Metadata = {
     // ページ固有のキーワード部分を残す
     template: "%s｜シカクモン",
   },
-  // 資格を増やしたらここの資格名と問題数も更新すること(自動集計はしていない)。
-  // 正しい数は night-batch/index/matrix.json で確認できる。2026-08-09時点=10資格2,404問
-  description: "シカクモンは資格試験のオリジナル練習問題を無料で提供するサイトです。貸金業務取扱主任者・個人情報保護士・知的財産管理技能検定3級/2級・マイナンバー実務検定3級・個人情報保護実務検定・ビジネス実務法務検定3級・福祉住環境コーディネーター2級・ビジネスマネジャー検定・eco検定、合計2,404問。全問に根拠法令を含む詳細解説付き。",
+  // 問題数は src/lib/site-totals.ts が実ファイルを数える(手書きしない)。
+  // 資格を増やしたら資格名の列挙と EXAM_DIRS の両方を更新すること。
+  description: `シカクモンは資格試験のオリジナル練習問題を無料で提供するサイトです。貸金業務取扱主任者・個人情報保護士・知的財産管理技能検定3級/2級・マイナンバー実務検定3級・個人情報保護実務検定・ビジネス実務法務検定3級・福祉住環境コーディネーター2級・ビジネスマネジャー検定・eco検定、合計${formatCount(siteTotals().questions)}問。全問に根拠法令を含む詳細解説付き。`,
   icons: {
     icon: "/favicon.svg",
   },

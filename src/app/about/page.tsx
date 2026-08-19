@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { pageMetadata } from "@/lib/page-metadata";
+import { siteTotals, formatCount } from "@/lib/site-totals";
 
 export const metadata: Metadata = pageMetadata({
   path: "/about/",
@@ -27,7 +28,7 @@ export default function AboutPage() {
         「それなら自分で作って公開しよう」と思ったのが、このサイトの始まりです。
       </p>
       <p>
-        現在は10資格・2404問・93コラムを公開しています。
+        現在は{siteTotals().exams}資格・{formatCount(siteTotals().questions)}問・{siteTotals().columns}コラムを公開しています。
         いずれも実際の試験を想定したオリジナル問題で、過去問の丸写しは避けて、条文番号を引きながら一から書き起こしました。
         「なぜその答えになるのか」を必ず説明したかったので、解説には根拠条文を載せるようにしています。
       </p>
@@ -68,7 +69,7 @@ export default function AboutPage() {
 
       <h2>関連サービス：シカクモン Studio</h2>
       <p>
-        シカクモン本体は、運営者が選んだ10資格・2404問のオリジナル問題集です。
+        シカクモン本体は、運営者が選んだ{siteTotals().exams}資格・{formatCount(siteTotals().questions)}問のオリジナル問題集です。
         ただ、世の中の資格はもっと数があり、市販のテキストや自作ノートを教材にしたい人もいるはずです。
         その需要に応えるために、教材アップロード型の AI 学習補助ツール
         「<a href="https://studio.shikakumon.com/?utm_source=shikakumon&utm_medium=about" target="_blank" rel="noopener noreferrer">シカクモン Studio</a>」

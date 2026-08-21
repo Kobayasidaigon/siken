@@ -31,6 +31,7 @@ const LIMITS = {
   ANSWER_POS_PCT: 45,  // 4択なら偶然は25%。45%を超えたら偏り
   DUP_MAX: 0,
   POS_REF_MAX: 0,
+  NEAR_DUP: 0.6,      // 設問文＋正解肢のbigram類似度がこれ以上なら言い換え重複を疑う
   PERIOD_SHARE: 0.7,   // 周期クラス内で同じ位置が占めてよい上限
   PERIOD_MIN: 2,
   PERIOD_MAX: 6,
@@ -92,18 +93,37 @@ function readFreeBank(certId) {
   if (!fs.existsSync(dir)) return { texts: new Map(), fields: new Set() };
   const texts = new Map();
   const fields = new Set();
+  const gists = [];
   for (const f of fs.readdirSync(dir).filter((x) => x.endsWith(".md"))) {
     const src = fs.readFileSync(path.join(dir, f), "utf8");
     const qt = (src.match(/^questionText:\s*"([\s\S]*?)"\s*$/m) || [])[1];
     const fd = (src.match(/^field:\s*"?([^"\n]+?)"?\s*$/m) || [])[1];
-    if (qt) texts.set(norm(qt), f.replace(/\.md$/, ""));
+    const ca = Number((src.match(/^correctAnswer:\s*(\d)/m) || [])[1]);
+    const cm = src.match(/^choices:\n([\s\S]*?)^correctAnswer:/m);
+    const chs = cm ? [...cm[1].matchAll(/^\s*-\s*"([\s\S]*?)"\s*$/gm)].map((m) => m[1]) : [];
+    const slug = f.replace(/\.md$/, "");
+    if (qt) texts.set(norm(qt), slug);
     if (fd) fields.add(fd.trim());
+    if (qt && chs[ca - 1]) gists.push({ slug, gist: norm(qt + chs[ca - 1]) });
   }
-  return { texts, fields };
+  return { texts, fields, gists };
 }
 
 /** 比較用に設問文を正規化(記号と空白の揺れを吸収)。 */
 const norm = (s) => String(s).replace(/[（）()「」『』、。・,.\s]/g, "");
+
+/** 文字bigramのDice係数。設問文の言い回しを変えただけの重複を拾うために使う。 */
+function bigrams(s) {
+  const out = new Set();
+  for (let i = 0; i + 1 < s.length; i++) out.add(s.slice(i, i + 2));
+  return out;
+}
+function dice(a, b) {
+  if (!a.size || !b.size) return 0;
+  let hit = 0;
+  for (const g of a) if (b.has(g)) hit++;
+  return (2 * hit) / (a.size + b.size);
+}
 
 let anyViolation = false;
 let anyData = false;
@@ -132,7 +152,7 @@ for (const t of TARGETS) {
   const badFields = [];
   const badDiff = [];
 
-  const { texts: freeTexts, fields: freeFields } = readFreeBank(t.certId);
+  const { texts: freeTexts, fields: freeFields, gists: freeGists } = readFreeBank(t.certId);
 
   for (const it of paid) {
     const { choices: ch, answer: a } = it;
@@ -190,6 +210,25 @@ for (const t of TARGETS) {
     if (hit) dupsFree.push(`${it.id} ⇔ ${hit}`);
   }
 
+  /* ---- 言い回しを変えただけの重複 ----
+     設問文が1文字でも違えば上の完全一致は素通りする。買った人が「無料で解いた
+     問題だ」と気づくのは論点が同じときなので、設問文＋正解肢をまとめた文字列の
+     bigram類似度で近い組を拾う。しきい値は、同じ分野の別論点(0.4前後)と
+     同一論点の言い換え(0.6超)が分かれる位置に置いている。 */
+  const freeBg = freeGists.map((g) => ({ slug: g.slug, bg: bigrams(g.gist) }));
+  const nearDups = [];
+  for (const it of paid) {
+    const mine = bigrams(norm(it.q + (it.choices[it.answer - 1] ?? "")));
+    let best = { slug: "", score: 0 };
+    for (const f of freeBg) {
+      const sc = dice(mine, f.bg);
+      if (sc > best.score) best = { slug: f.slug, score: sc };
+    }
+    if (best.score >= LIMITS.NEAR_DUP) {
+      nearDups.push(`${it.id} ⇔ ${best.slug} (類似度 ${Math.round(best.score * 100)}%)`);
+    }
+  }
+
   const n = paid.length;
   const pct = (x) => Math.round((x / n) * 1000) / 10;
   const maxPosPct = pct(Math.max(...pos));
@@ -199,6 +238,7 @@ for (const t of TARGETS) {
   console.log(`  正解位置の分布     : ${pos.slice(0, 4).join(" / ")}  (最大 ${maxPosPct}% / 上限 ${LIMITS.ANSWER_POS_PCT}%)`);
   console.log(`  正解位置の周期性   : ${periodHits.length}件  [上限 0件]`);
   console.log(`  設問文の重複(内部) : ${dupsInside.length}件  [上限 ${LIMITS.DUP_MAX}件]`);
+  console.log(`  無料問題と論点が近い: ${nearDups.length}件  [上限 0件]  ※言い換え重複の検出(類似度${Math.round(LIMITS.NEAR_DUP * 100)}%以上)`);
   console.log(`  無料問題との重複   : ${dupsFree.length}件  [上限 ${LIMITS.DUP_MAX}件]  ※有料の生命線 (無料 ${freeTexts.size}問と照合)`);
   console.log(`  解説が位置に言及   : ${posRef}問  [上限 ${LIMITS.POS_REF_MAX}問]`);
   console.log(`  分野名が第1回と不一致: ${badFields.length}問  [上限 0問]`);
@@ -220,6 +260,11 @@ for (const t of TARGETS) {
   if (dupsInside.length > LIMITS.DUP_MAX) violations.push(`第2回の内部で設問が${dupsInside.length}件重複`);
   if (dupsFree.length > LIMITS.DUP_MAX)
     violations.push(`無料で公開済みの問題と${dupsFree.length}件重複 — 有料商品として成立しない`);
+  if (nearDups.length > 0)
+    violations.push(
+      `無料問題と論点が同じ疑いのある問題が${nearDups.length}件 — 言い換えても買った人には同じ問題に見える\n      ` +
+        nearDups.join("\n      ")
+    );
 
   if (violations.length) {
     anyViolation = true;

@@ -20,6 +20,8 @@ export type Moshi2Question = {
   /** 1始まり。MoshiExam / 無料問題集の correctAnswer と同じ規約。 */
   correctAnswer: number;
   difficulty: "A" | "B" | "C";
+  /** 問別配点。福祉住環境のように100点満点で配点が分かれる試験でのみ指定する。 */
+  points?: 2 | 3;
   /** プレーンテキストの解説。選択肢の番号ではなく内容に言及する。 */
   explain: string;
 };

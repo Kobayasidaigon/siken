@@ -60,7 +60,7 @@ const TARGETS = [
   { certId: "mynumber", name: "マイナンバー実務検定3級",     expect: 35, ox: 15 },
   { certId: "jitsumu",  name: "個人情報保護実務検定",        expect: 80  },
   { certId: "bijihou",  name: "ビジネス実務法務検定3級",     expect: 35, ox: 15 },
-  { certId: "fukushi2", name: "福祉住環境コーディネーター2級", expect: 50 },
+  { certId: "fukushi2", name: "福祉住環境コーディネーター2級", expect: 28, ox: 30 },
   { certId: "bijimane", name: "ビジネスマネジャー検定",      expect: 50  },
   { certId: "eco",      name: "eco検定",                     expect: 50  },
 ];

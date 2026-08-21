@@ -45,6 +45,11 @@ const POS_REF = /選択肢[0-9１-４]|最初の選択肢|[1-4１-４]番目の�
 // 紛れ込む事故が設備サイトで実際に起きたので、機械で弾く。
 const STRAY_SCRIPT = /[Ѐ-ӿ가-힯฀-๿]/;
 
+// 日本語の文中に英単語が紛れ込む事故("一定回数continuously誤ると"のような生成崩れ)を拾う。
+// CVSS・DKIM・IoT のような略語は大文字なので、小文字4字以上の連なりだけを見る。
+// e-Tax / TLS 1.3 のような表記を誤検知しないよう、前後が英字の場合は対象外。
+const STRAY_LATIN = /(?<![A-Za-z])[a-z]{4,}(?![A-Za-z])/;
+
 // 監査の対象。**このリストはサイト固有**なので、他サイトからスクリプトを
 // コピーしたときは必ず書き換えること(コピーしたまま放置して、本来の資格を
 // 監査しなくなる事故を実際に起こした)。
@@ -52,9 +57,9 @@ const TARGETS = [
   { certId: "pii",      name: "個人情報保護士",              expect: 100 },
   { certId: "chizai",   name: "知的財産管理技能検定3級",     expect: 30  },
   { certId: "chizai2",  name: "知的財産管理技能検定2級",     expect: 40  },
-  { certId: "mynumber", name: "マイナンバー実務検定3級",     expect: 50  },
+  { certId: "mynumber", name: "マイナンバー実務検定3級",     expect: 35, ox: 15 },
   { certId: "jitsumu",  name: "個人情報保護実務検定",        expect: 80  },
-  { certId: "bijihou",  name: "ビジネス実務法務検定3級",     expect: 50  },
+  { certId: "bijihou",  name: "ビジネス実務法務検定3級",     expect: 35, ox: 15 },
   { certId: "fukushi2", name: "福祉住環境コーディネーター2級", expect: 50 },
   { certId: "bijimane", name: "ビジネスマネジャー検定",      expect: 50  },
   { certId: "eco",      name: "eco検定",                     expect: 50  },
@@ -83,6 +88,23 @@ function readMoshi2(file) {
       answer: Number(am[1]), // 1始まり
       explain: em ? em[1] : "",
     });
+  }
+  return items;
+}
+
+/** *-moshi2-ox.ts の○×問題を読む。 */
+function readMoshi2Ox(file) {
+  if (!fs.existsSync(file)) return [];
+  const src = fs.readFileSync(file, "utf8");
+  const items = [];
+  for (const b of src.split(/\r?\n  \{\r?\n/).slice(1)) {
+    const id = (b.match(/id: "((?:[^"\\]|\\.)*)"/) || [])[1];
+    const st = (b.match(/statement:\s*\r?\n?\s*"((?:[^"\\]|\\.)*)"/) || [])[1];
+    const an = (b.match(/answer: (true|false)/) || [])[1];
+    const fm = (b.match(/field: "([^"]+)"/) || [])[1];
+    const em = (b.match(/explain:\s*\r?\n?\s*"((?:[^"\\]|\\.)*)"/) || [])[1];
+    if (!id || !st || !an) continue;
+    items.push({ id, statement: st, answer: an === "true", field: fm ?? "", explain: em ?? "" });
   }
   return items;
 }
@@ -140,7 +162,7 @@ for (const t of TARGETS) {
   anyData = true;
   console.log(`\n[第2回の監査] ${t.certId} (${t.name}) — ${paid.length}問  (${file})`);
   if (paid.length !== t.expect) {
-    console.log(`  ※ 第1回と同じ ${t.expect}問 の想定に対して ${paid.length}問`);
+    console.log(`  ※ 想定 ${t.expect}問${t.ox ? `(+○×${t.ox}問)` : ""} に対して ${paid.length}問`);
   }
 
   const violations = [];
@@ -169,7 +191,7 @@ for (const t of TARGETS) {
     }
     if (POS_REF.test(it.explain)) posRef++;
     const blob = [it.q, it.explain, ...ch].join(" ");
-    if (STRAY_SCRIPT.test(blob)) strays.push(it.id);
+    if (STRAY_SCRIPT.test(blob) || STRAY_LATIN.test(blob)) strays.push(it.id);
     // 分野名は第1回・無料問題集と一致していないと弱点分析の集計が割れる
     if (freeFields.size && !freeFields.has(it.field)) badFields.push(`${it.id}: "${it.field}"`);
     if (!["A", "B", "C"].includes(it.difficulty)) badDiff.push(it.id);
@@ -242,7 +264,7 @@ for (const t of TARGETS) {
   console.log(`  無料問題との重複   : ${dupsFree.length}件  [上限 ${LIMITS.DUP_MAX}件]  ※有料の生命線 (無料 ${freeTexts.size}問と照合)`);
   console.log(`  解説が位置に言及   : ${posRef}問  [上限 ${LIMITS.POS_REF_MAX}問]`);
   console.log(`  分野名が第1回と不一致: ${badFields.length}問  [上限 0問]`);
-  console.log(`  異種文字の混入     : ${strays.length}問  [上限 0問]`);
+  console.log(`  異種文字・英単語混入: ${strays.length}問  [上限 0問]`);
   if (shape) console.log(`  形式不正           : ${shape}件`);
 
   if (shape > 0) violations.push(`形式不正(4択でない/正解番号が範囲外)が${shape}件`);
@@ -250,7 +272,7 @@ for (const t of TARGETS) {
   if (badDiff.length) violations.push(`difficulty が A/B/C でない問題が${badDiff.length}問 (${badDiff.slice(0, 5).join(", ")})`);
   if (badFields.length)
     violations.push(`分野名が第1回・無料問題集と一致しない問題が${badFields.length}問 — 弱点分析の集計が割れる\n      ` + badFields.slice(0, 5).join("\n      "));
-  if (strays.length) violations.push(`日本語以外の文字(ハングル/キリル等)が混入: ${strays.slice(0, 5).join(", ")}`);
+  if (strays.length) violations.push(`日本語以外の文字や英単語が混入: ${strays.slice(0, 5).join(", ")}`);
   if (posRef > LIMITS.POS_REF_MAX) violations.push(`解説が選択肢の位置に言及している問題が${posRef}問`);
   if (gapPct > LIMITS.GAP_RATIO_PCT)
     violations.push(`正解肢が${LIMITS.GAP_CHARS}字以上長い問題が${overGap.length}問(${gapPct}%) — 内容を知らなくても長い肢が当たる`);
@@ -285,6 +307,65 @@ for (const t of TARGETS) {
   } else {
     console.log("  → 監査OK");
   }
+}
+
+/* ---- ○×(二肢択一)問題の監査 ----
+   ○×は当てずっぽうで50%当たるため、○と×の偏りがそのまま得点の下駄になる。
+   4択以上に配分と連続を厳しく見る。 */
+for (const t of TARGETS) {
+  if (ONLY.length && !ONLY.includes(t.certId)) continue;
+  const file = `src/lib/${t.certId}-moshi2-ox.ts`;
+  const ox = readMoshi2Ox(file);
+  if (ox.length === 0) continue;
+  anyData = true;
+  console.log(`\n[第2回の監査/○×] ${t.certId} — ${ox.length}問  (${file})`);
+
+  const v = [];
+  const nTrue = ox.filter((x) => x.answer).length;
+  const truePct = Math.round((nTrue / ox.length) * 1000) / 10;
+  let run = 1, maxRun = 1;
+  for (let i = 1; i < ox.length; i++) {
+    run = ox[i].answer === ox[i - 1].answer ? run + 1 : 1;
+    if (run > maxRun) maxRun = run;
+  }
+  const seenOx = new Map(); const dupOx = [];
+  for (const x of ox) {
+    const k = norm(x.statement);
+    if (seenOx.has(k)) dupOx.push(`${x.id} ⇔ ${seenOx.get(k)}`); else seenOx.set(k, x.id);
+  }
+  const fb = readFreeBank(t.certId);
+  const freeBgOx = fb.gists.map((g) => ({ slug: g.slug, bg: bigrams(g.gist) }));
+  const nearOx = [];
+  for (const x of ox) {
+    const mine = bigrams(norm(x.statement));
+    let best = { slug: "", score: 0 };
+    for (const f of freeBgOx) { const sc = dice(mine, f.bg); if (sc > best.score) best = { slug: f.slug, score: sc }; }
+    if (best.score >= LIMITS.NEAR_DUP) nearOx.push(`${x.id} ⇔ ${best.slug} (類似度 ${Math.round(best.score * 100)}%)`);
+  }
+  const badFOx = ox.filter((x) => fb.fields.size && !fb.fields.has(x.field)).map((x) => `${x.id}: "${x.field}"`);
+  const strayOx = ox.filter((x) => {
+    const blob = x.statement + x.explain;
+    return STRAY_SCRIPT.test(blob) || STRAY_LATIN.test(blob);
+  }).map((x) => x.id);
+  const noExp = ox.filter((x) => !x.explain).map((x) => x.id);
+
+  console.log(`  ○の割合           : ${truePct}%  [30〜70%]`);
+  console.log(`  同じ答えの最大連続 : ${maxRun}問  [上限 3問]`);
+  console.log(`  記述の重複(内部)   : ${dupOx.length}件  [上限 0件]`);
+  console.log(`  無料問題と論点が近い: ${nearOx.length}件  [上限 0件]`);
+  console.log(`  分野名が第1回と不一致: ${badFOx.length}問  [上限 0問]`);
+  console.log(`  異種文字・英単語混入: ${strayOx.length}問  [上限 0問]`);
+
+  if (truePct < 30 || truePct > 70) v.push(`○の割合が${truePct}% — 当てずっぽうの正答率が上がる`);
+  if (maxRun > 3) v.push(`同じ答えが${maxRun}問連続している`);
+  if (dupOx.length) v.push(`記述が${dupOx.length}件重複 (${dupOx.slice(0, 3).join(", ")})`);
+  if (nearOx.length) v.push(`無料問題と論点が同じ疑いのある問題が${nearOx.length}件\n      ` + nearOx.join("\n      "));
+  if (badFOx.length) v.push(`分野名が一致しない問題が${badFOx.length}問 (${badFOx.slice(0, 3).join(", ")})`);
+  if (strayOx.length) v.push(`日本語以外の文字や英単語が混入: ${strayOx.join(", ")}`);
+  if (noExp.length) v.push(`解説が無い問題が${noExp.length}問 (${noExp.slice(0, 3).join(", ")})`);
+
+  if (v.length) { anyViolation = true; console.log("\n  違反:"); v.forEach((x) => console.log("    - " + x)); }
+  else console.log("  → 監査OK");
 }
 
 if (!anyData) console.log("\n[第2回の監査] 対象データなし");

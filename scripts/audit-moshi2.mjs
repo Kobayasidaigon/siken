@@ -147,7 +147,42 @@ function dice(a, b) {
   return (2 * hit) / (a.size + b.size);
 }
 
-let anyViolation = false;
+/* ---- 移植したまま書き換え忘れていないかの検査 ----
+   moshi2-config.ts は「移植時に書き換える唯一のファイル」だが、書き換えを忘れても
+   ビルドは通ってしまう。cookie の接頭辞が移植元と同じままだと、署名鍵を共有した
+   場合に別サイトで買った受験権がこちらでも通る。設備サイトへ移植したとき、
+   筋トレの値が残ったまま公開直前まで気づかなかったので機械で見る。 */
+function auditConfig() {
+  const cfgPath = "src/lib/moshi2-config.ts";
+  const sitePath = "src/lib/site.ts";
+  if (!fs.existsSync(cfgPath) || !fs.existsSync(sitePath)) return [];
+  const cfg = fs.readFileSync(cfgPath, "utf8");
+  const pick = (re, src) => (src.match(re) || [])[1] ?? "";
+  const siteName = pick(/name:\s*"([^"]+)"/, fs.readFileSync(sitePath, "utf8"));
+  const mailFrom = pick(/mailFrom:\s*"([^"]+)"/, cfg);
+  const contact = pick(/contactEmail:\s*"([^"]+)"/, cfg);
+  const v = [];
+  if (!pick(/cookiePrefix:\s*"([^"]+)"/, cfg)) v.push("cookiePrefix が読めない");
+  if (siteName && mailFrom && !mailFrom.startsWith(siteName))
+    v.push(`mailFrom の差出人名 "${mailFrom}" がサイト名 "${siteName}" と一致しない — 移植元の値が残っている疑い`);
+  // 購入メールに書く問い合わせ先が、サイトが公開している宛先と揃っているか
+  const contactPage = "src/app/contact/page.tsx";
+  if (contact && fs.existsSync(contactPage) && !fs.readFileSync(contactPage, "utf8").includes(contact))
+    v.push(`contactEmail "${contact}" がお問い合わせページに載っていない — 届かない宛先を案内する恐れ`);
+  return v;
+}
+
+const cfgViolations = auditConfig();
+console.log(`\n[第2回の設定の検査] src/lib/moshi2-config.ts`);
+if (cfgViolations.length) {
+  console.log("  違反:");
+  cfgViolations.forEach((x) => console.log("    - " + x));
+} else {
+  console.log("  → 移植時の書き換え漏れなし");
+}
+
+let anyViolation = cfgViolations.length > 0;
+
 let anyData = false;
 
 for (const t of TARGETS) {

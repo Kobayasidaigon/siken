@@ -5,6 +5,7 @@ import BijimaneCourseAd from "@/components/BijimaneCourseAd";
 import { pageMetadata } from "@/lib/page-metadata";
 import { BIJIMANE_EXAMS } from "@/lib/exam-dates";
 import ExamCountdown from "@/components/ExamCountdown";
+import Moshi2TopLink from "@/components/Moshi2TopLink";
 
 export const metadata: Metadata = pageMetadata({
   path: "/bijimane/",
@@ -65,6 +66,7 @@ export default async function BijimanePage() {
           >
             模擬試験を受ける（90分・70点合格判定）→
           </a>
+          <Moshi2TopLink certId="bijimane" />
           <a
             href="/bijimane/mock/"
             className="inline-flex items-center px-4 py-2 rounded-lg border text-sm font-medium no-underline transition-colors hover:bg-[color:var(--c-bijimane-soft)]"

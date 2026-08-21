@@ -5,6 +5,7 @@ import ChizaiCourseAd from "@/components/ChizaiCourseAd";
 import { pageMetadata } from "@/lib/page-metadata";
 import { CHIZAI_EXAMS } from "@/lib/exam-dates";
 import ExamCountdown from "@/components/ExamCountdown";
+import Moshi2TopLink from "@/components/Moshi2TopLink";
 
 export const metadata: Metadata = pageMetadata({
   path: "/chizai/",
@@ -63,6 +64,7 @@ export default async function ChizaiPage() {
           >
             模擬試験を受ける（30問・45分・合否判定）→
           </a>
+          <Moshi2TopLink certId="chizai" />
           <a
             href="/chizai/mock/"
             className="inline-flex items-center px-4 py-2 rounded-lg border text-sm font-medium no-underline transition-colors hover:bg-[color:var(--c-chizai-soft)]"

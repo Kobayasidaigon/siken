@@ -6,6 +6,7 @@ import { PII_TOP_AD } from "@/lib/pii-ad-content";
 import { pageMetadata } from "@/lib/page-metadata";
 import { PII_EXAMS } from "@/lib/exam-dates";
 import ExamCountdown from "@/components/ExamCountdown";
+import Moshi2TopLink from "@/components/Moshi2TopLink";
 
 export const metadata: Metadata = pageMetadata({
   path: "/pii/",
@@ -74,6 +75,7 @@ export default async function PiiPage() {
           >
             模擬試験を受ける（100問・150分・課題別判定）→
           </a>
+          <Moshi2TopLink certId="pii" />
           <a
             href="/pii/mock/"
             className="inline-flex items-center px-4 py-2 rounded-lg border text-sm font-medium no-underline transition-colors hover:bg-[color:var(--c-pii-soft)]"

@@ -5,6 +5,7 @@ import Fukushi2CourseAd from "@/components/Fukushi2CourseAd";
 import { pageMetadata } from "@/lib/page-metadata";
 import { FUKUSHI2_EXAMS } from "@/lib/exam-dates";
 import ExamCountdown from "@/components/ExamCountdown";
+import Moshi2TopLink from "@/components/Moshi2TopLink";
 
 export const metadata: Metadata = pageMetadata({
   path: "/fukushi2/",
@@ -63,6 +64,7 @@ export default async function Fukushi2Page() {
           >
             模擬試験を受ける（90分・70点合格判定）→
           </a>
+          <Moshi2TopLink certId="fukushi2" />
           <a
             href="/fukushi2/mock/"
             className="inline-flex items-center px-4 py-2 rounded-lg border text-sm font-medium no-underline transition-colors hover:bg-[color:var(--c-fukushi-soft)]"

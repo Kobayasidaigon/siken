@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "prebuild": "node scripts/audit-questions.mjs --report && node scripts/audit-moshi2.mjs && node scripts/generate-sitemap.js",
-    "indexnow": "node scripts/indexnow-ping.mjs"
+    "indexnow": "node scripts/indexnow-ping.mjs",
+    "stripe:check": "node scripts/check-stripe.mjs"
   },
   "keywords": [],
   "author": "",

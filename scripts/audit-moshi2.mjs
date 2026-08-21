@@ -28,7 +28,7 @@ const ONLY = process.argv.slice(2).filter((a) => !a.startsWith("--"));
 const LIMITS = {
   GAP_CHARS: 20,       // 正解肢が他より何字長ければ「長すぎ」とみなすか
   GAP_RATIO_PCT: 2,    // その問題が全体の何%まで許されるか
-  ANSWER_POS_PCT: 45,  // 4択なら偶然は25%。45%を超えたら偏り
+  ANSWER_POS_PCT: 45,  // 4択なら偶然は25%。45%を超えたら偏り(3択は偶然33%なので下の式で緩める)
   DUP_MAX: 0,
   POS_REF_MAX: 0,
   NEAR_DUP: 0.6,      // 設問文＋正解肢のbigram類似度がこれ以上なら言い換え重複を疑う
@@ -55,7 +55,7 @@ const STRAY_LATIN = /(?<![A-Za-z])[a-z]{4,}(?![A-Za-z])/;
 // 監査しなくなる事故を実際に起こした)。
 const TARGETS = [
   { certId: "pii",      name: "個人情報保護士",              expect: 100 },
-  { certId: "chizai",   name: "知的財産管理技能検定3級",     expect: 30  },
+  { certId: "chizai",   name: "知的財産管理技能検定3級",     expect: 30, choices: 3 },
   { certId: "chizai2",  name: "知的財産管理技能検定2級",     expect: 40  },
   { certId: "mynumber", name: "マイナンバー実務検定3級",     expect: 35, ox: 15 },
   { certId: "jitsumu",  name: "個人情報保護実務検定",        expect: 80  },
@@ -178,7 +178,8 @@ for (const t of TARGETS) {
 
   for (const it of paid) {
     const { choices: ch, answer: a } = it;
-    if (!Array.isArray(ch) || ch.length !== 4 || !(a >= 1 && a <= ch.length)) {
+    const want = t.choices ?? 4;
+    if (!Array.isArray(ch) || ch.length !== want || !(a >= 1 && a <= ch.length)) {
       shape++;
       continue;
     }
@@ -257,7 +258,7 @@ for (const t of TARGETS) {
   const gapPct = pct(overGap.length);
 
   console.log(`  正解肢が${LIMITS.GAP_CHARS}字以上長い: ${overGap.length}問 (${gapPct}%)  [上限 ${LIMITS.GAP_RATIO_PCT}%]`);
-  console.log(`  正解位置の分布     : ${pos.slice(0, 4).join(" / ")}  (最大 ${maxPosPct}% / 上限 ${LIMITS.ANSWER_POS_PCT}%)`);
+  console.log(`  正解位置の分布     : ${pos.slice(0, t.choices ?? 4).join(" / ")}  (最大 ${maxPosPct}% / 上限 ${t.choices === 3 ? 50 : LIMITS.ANSWER_POS_PCT}%)`);
   console.log(`  正解位置の周期性   : ${periodHits.length}件  [上限 0件]`);
   console.log(`  設問文の重複(内部) : ${dupsInside.length}件  [上限 ${LIMITS.DUP_MAX}件]`);
   console.log(`  無料問題と論点が近い: ${nearDups.length}件  [上限 0件]  ※言い換え重複の検出(類似度${Math.round(LIMITS.NEAR_DUP * 100)}%以上)`);
@@ -267,7 +268,7 @@ for (const t of TARGETS) {
   console.log(`  異種文字・英単語混入: ${strays.length}問  [上限 0問]`);
   if (shape) console.log(`  形式不正           : ${shape}件`);
 
-  if (shape > 0) violations.push(`形式不正(4択でない/正解番号が範囲外)が${shape}件`);
+  if (shape > 0) violations.push(`形式不正(${t.choices ?? 4}択でない/正解番号が範囲外)が${shape}件`);
   if (dupIds.length) violations.push(`IDが重複: ${[...new Set(dupIds)].join(", ")}`);
   if (badDiff.length) violations.push(`difficulty が A/B/C でない問題が${badDiff.length}問 (${badDiff.slice(0, 5).join(", ")})`);
   if (badFields.length)
@@ -276,7 +277,9 @@ for (const t of TARGETS) {
   if (posRef > LIMITS.POS_REF_MAX) violations.push(`解説が選択肢の位置に言及している問題が${posRef}問`);
   if (gapPct > LIMITS.GAP_RATIO_PCT)
     violations.push(`正解肢が${LIMITS.GAP_CHARS}字以上長い問題が${overGap.length}問(${gapPct}%) — 内容を知らなくても長い肢が当たる`);
-  if (maxPosPct > LIMITS.ANSWER_POS_PCT) violations.push(`正解位置が${maxPosPct}%に偏っている`);
+  // 3択は偶然の正答率が33%なので、4択と同じ45%では厳しすぎる。選択肢数に応じて緩める。
+  const posLimit = t.choices === 3 ? 50 : LIMITS.ANSWER_POS_PCT;
+  if (maxPosPct > posLimit) violations.push(`正解位置が${maxPosPct}%に偏っている(上限${posLimit}%)`);
   if (periodHits.length > 0)
     violations.push(`正解位置に周期パターンがある(${periodHits.length}件)\n      ` + periodHits.slice(0, 4).join("\n      "));
   if (dupsInside.length > LIMITS.DUP_MAX) violations.push(`第2回の内部で設問が${dupsInside.length}件重複`);

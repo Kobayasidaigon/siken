@@ -6,6 +6,7 @@ import { BIJIHOU_TOP_AD } from "@/lib/bijihou-ad-content";
 import { pageMetadata } from "@/lib/page-metadata";
 import { BIJIHOU_EXAMS } from "@/lib/exam-dates";
 import ExamCountdown from "@/components/ExamCountdown";
+import Moshi2TopLink from "@/components/Moshi2TopLink";
 
 export const metadata: Metadata = pageMetadata({
   path: "/bijihou/",
@@ -54,6 +55,7 @@ export default async function BijihouPage() {
           >
             模擬試験を受ける（90分・70点合格判定）→
           </a>
+          <Moshi2TopLink certId="bijihou" />
         </div>
       </section>
 

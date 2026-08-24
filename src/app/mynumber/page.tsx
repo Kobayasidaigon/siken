@@ -6,6 +6,7 @@ import { MYNUMBER_TOP_AD } from "@/lib/mynumber-ad-content";
 import { pageMetadata } from "@/lib/page-metadata";
 import { MYNUMBER_EXAMS } from "@/lib/exam-dates";
 import ExamCountdown from "@/components/ExamCountdown";
+import Moshi2TopLink from "@/components/Moshi2TopLink";
 
 export const metadata: Metadata = pageMetadata({
   path: "/mynumber/",
@@ -58,6 +59,7 @@ export default async function MynumberPage() {
           >
             模擬試験を受ける（50問・75分・合否判定）→
           </a>
+          <Moshi2TopLink certId="mynumber" />
         </div>
       </section>
 

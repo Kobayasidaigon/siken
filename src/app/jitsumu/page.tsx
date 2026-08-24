@@ -6,6 +6,7 @@ import { JITSUMU_TOP_AD } from "@/lib/jitsumu-ad-content";
 import { pageMetadata } from "@/lib/page-metadata";
 import { JITSUMU_EXAMS } from "@/lib/exam-dates";
 import ExamCountdown from "@/components/ExamCountdown";
+import Moshi2TopLink from "@/components/Moshi2TopLink";
 
 export const metadata: Metadata = pageMetadata({
   path: "/jitsumu/",
@@ -49,6 +50,7 @@ export default async function JitsumuPage() {
           >
             模擬試験を受ける（2級形式80問・90分）→
           </a>
+          <Moshi2TopLink certId="jitsumu" />
         </div>
       </section>
 

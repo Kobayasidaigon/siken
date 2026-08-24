@@ -26,6 +26,8 @@ import { studioMoshiHref } from "@/lib/studio-cta";
 import { EXAM_LIST, recordResult, type ExamSlug } from "@/lib/study-progress";
 import MoshiFormatFeedback from "@/components/MoshiFormatFeedback";
 import MoshiRound2Interest from "@/components/MoshiRound2Interest";
+import Moshi2Offer from "@/components/Moshi2Offer";
+import { moshi2ProductOf } from "@/lib/moshi2-products";
 
 export interface MoshiQuestion {
   slug: string;
@@ -486,8 +488,14 @@ export default function MoshiExam({
       {/* 本試験経験者への形式アンケート(出題形式の一次情報収集) */}
       <MoshiFormatFeedback exam={exam} round={round} />
 
-      {/* 第2回(有料)の意向調査(制作判断用のフェイクドア) */}
-      <MoshiRound2Interest exam={exam} round={round} />
+      {/* 第2回の案内。販売中なら購入導線、未販売なら制作判断用のフェイクドア。
+          第2回そのものを受けている画面では出さない(round === 1 の条件)。 */}
+      {round === 1 &&
+        (moshi2ProductOf(exam) ? (
+          <Moshi2Offer certId={exam} place="moshi_result" />
+        ) : (
+          <MoshiRound2Interest exam={exam} round={round} />
+        ))}
 
       {/* 課題(セクション)別の判定 */}
       {sectionStats.length > 0 && (
@@ -635,10 +643,12 @@ export default function MoshiExam({
         </div>
       </section>
 
-      {/* 第2回以降の予告(有料化の布石) */}
-      <p className="text-xs text-[color:var(--c-text-sub)] mb-6">
-        第2回・第3回の模擬試験は現在制作中です。
-      </p>
+      {/* 第2回以降の予告。販売中の資格で「制作中」と出すと嘘になるので出さない。 */}
+      {!moshi2ProductOf(exam) && (
+        <p className="text-xs text-[color:var(--c-text-sub)] mb-6">
+          第2回・第3回の模擬試験は現在制作中です。
+        </p>
+      )}
 
       <div className="flex flex-wrap gap-3">
         <button type="button" onClick={() => start("new")} className="btn-accent">

@@ -208,6 +208,17 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                       NSCA-CPTなど筋トレ資格の無料練習問題
                     </p>
                   </li>
+                  <li>
+                    <a
+                      href="https://eisei.shikakumon.com/"
+                      className="text-[color:var(--c-text-sub)] hover:text-[color:var(--c-ink)] no-underline"
+                    >
+                      衛生管理者ドリル
+                    </a>
+                    <p className="text-[11px] text-[color:var(--c-text-sub)] mt-0.5 leading-relaxed">
+                      第一種・第二種衛生管理者の無料練習問題と模擬試験
+                    </p>
+                  </li>
                 </ul>
               </div>
               <div>

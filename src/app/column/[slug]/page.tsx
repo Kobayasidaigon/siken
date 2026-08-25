@@ -12,6 +12,7 @@ import { getBijihouAdContent } from "@/lib/bijihou-ad-content";
 import JitsumuCourseAd from "@/components/JitsumuCourseAd";
 import { getJitsumuAdContent } from "@/lib/jitsumu-ad-content";
 import ChizaiCourseAd from "@/components/ChizaiCourseAd";
+import Chizai2CourseAd from "@/components/Chizai2CourseAd";
 import { getChizaiAdContent } from "@/lib/chizai-ad-content";
 import Fukushi2CourseAd from "@/components/Fukushi2CourseAd";
 import { canShowUcanAd } from "@/lib/ucan-policy";
@@ -392,7 +393,7 @@ export default async function ColumnPage({ params }: { params: Promise<{ slug: s
       )}
 
       {isChizai2Article && (
-        <ChizaiCourseAd headline="2級レンジの論点を体系的に押さえるなら" />
+        <Chizai2CourseAd headline="2級レンジの論点を体系的に押さえるなら" />
       )}
 
       {showFukushi2CourseAd && (

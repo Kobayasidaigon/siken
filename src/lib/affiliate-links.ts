@@ -58,15 +58,17 @@ export const EXAM_AFFILIATE: Record<ExamSlug, AffiliateTarget> = {
       "https://px.a8.net/svt/ejp?a8mat=4B3TF4+BJKL0Y+408S+BW8O2&a8ejpredirect=https%3A%2F%2Fonsuku.jp%2Fmembers%2Flogin_required%3Frequired%3D1",
     freeLabel: "オンスクの無料体験で講義を試す",
   },
-  // TODO(2級): オンスクに知財2級の個別講座があればそのa8matへ差し替える。
-  //   当面は3級と同じオンスク知財リンク(サブスクで2級範囲もカバー)を流用。
+  // LECオンライン(東京リーガルマインド)。A8提携承認=2026-08-06、実装=2026-08-26。
+  //   知財2級の専用対策講座はオンスクに無く、LECは2級対策講座を提供しているため
+  //   2級だけLECへ差し替え(3級は引き続きオンスク)。成果=講座・書籍購入1%+資料請求100円。
+  //   hrefはA8商品リンク作成(掲載サイト=シカクモン)で生成した知財講座一覧への直行リンク、
+  //   freeHrefはA8テキスト素材029(資料請求)。生成リンクは改変しないこと。
   chizai2: {
-    href: "https://px.a8.net/svt/ejp?a8mat=4B3TF4+BJKL0Y+408S+BW8O2&a8ejpredirect=https%3A%2F%2Fonsuku.jp%2Ftraining%2Fchizai3",
-    label: "オンスクの知財検定対策講座を見る",
+    href: "https://px.a8.net/svt/ejp?a8mat=4B9ZDE+3TJ5IQ+1G62+BW0YB&a8ejpredirect=https%3A%2F%2Fonline.lec-jp.com%2Fdisp%2FCSfDispListPage_001.jsp%3Fexm%3D10012%26gnr%3D2",
+    label: "LECの知的財産管理技能検定2級対策講座を見る",
     course: "chizai2",
-    freeHref:
-      "https://px.a8.net/svt/ejp?a8mat=4B3TF4+BJKL0Y+408S+BW8O2&a8ejpredirect=https%3A%2F%2Fonsuku.jp%2Fmembers%2Flogin_required%3Frequired%3D1",
-    freeLabel: "オンスクの無料体験で講義を試す",
+    freeHref: "https://px.a8.net/svt/ejp?a8mat=4B9ZDE+3TJ5IQ+1G62+64JTE",
+    freeLabel: "LECの講座案内資料を無料で請求する",
   },
   mynumber: {
     href: "https://px.a8.net/svt/ejp?a8mat=4B1TI0+9T22IA+4LOQ+BW8O2&a8ejpredirect=https%3A%2F%2Fwww.joho-gakushu.jp%2Fsmartinfo%2Fk_nns%2F",

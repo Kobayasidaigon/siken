@@ -1,7 +1,7 @@
 import { getAllChizai2Questions, getChizai2QuestionsByField } from "@/lib/chizai2-questions";
 import { getAllColumns } from "@/lib/columns";
 import type { Metadata } from "next";
-import ChizaiCourseAd from "@/components/ChizaiCourseAd";
+import Chizai2CourseAd from "@/components/Chizai2CourseAd";
 import { pageMetadata } from "@/lib/page-metadata";
 import { CHIZAI_EXAMS } from "@/lib/exam-dates";
 import ExamCountdown from "@/components/ExamCountdown";
@@ -122,9 +122,9 @@ export default async function Chizai2Page() {
         </div>
       </section>
 
-      <ChizaiCourseAd
+      <Chizai2CourseAd
         headline="2級レンジの論点を体系的に押さえるなら"
-        body="知的財産管理技能検定は出題範囲が広く、2級は実務寄りの応用まで問われます。月額制のオンライン講座オンスク.JPは知財検定の対策講座を提供しており、スキマ時間で範囲を体系的に押さえられます。"
+        body="知的財産管理技能検定2級は出題範囲が広く、実務寄りの応用まで問われます。資格スクールLEC東京リーガルマインドは2級の対策講座を提供しており、頻出論点を講義で体系的に押さえられます。"
       />
 
       {/* コラム */}

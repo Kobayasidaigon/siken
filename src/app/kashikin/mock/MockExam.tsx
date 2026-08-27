@@ -42,7 +42,7 @@ function shuffle<T>(arr: T[]): T[] {
 }
 
 const STUDIO_URL =
-  "https://studio.shikakumon.com/?utm_source=shikakumon&utm_medium=mock_result";
+  "https://studio.shikakumon.com/?utm_source=shikakumon&utm_medium=referral&utm_content=mock_result";
 
 // 配色はテーマ非依存。各mockページの theme-* が --c-accent(-ink) を供給する
 // （貸金=theme-kashikin なので従来色のまま／知財=theme-chizai・個情保=theme-pii で各色に）。

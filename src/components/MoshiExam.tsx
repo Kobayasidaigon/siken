@@ -69,7 +69,7 @@ interface SavedSession {
 }
 
 const STUDIO_URL =
-  "https://studio.shikakumon.com/?utm_source=shikakumon&utm_medium=moshi_result";
+  "https://studio.shikakumon.com/?utm_source=shikakumon&utm_medium=referral&utm_content=moshi_result";
 
 function loadSession(key: string): SavedSession | null {
   try {

@@ -87,16 +87,30 @@ export function certFromColumnSlug(slug: string): ExamSlug | null {
 
 /**
  * 送客 CTA を組み立てる。
- * @param exam    資格 (null なら汎用)
- * @param medium  utm_medium。既存の値をそのまま渡すこと (column_footer / quiz_<資格> 等)
+ *
+ * utm_medium は GA4 のチャネル判定キーなので `referral` 固定。独自値
+ * (column_footer 等) を入れると全部 Unassigned に落ちる (2026-08 実測で
+ * 流入の72%)。配置・資格IDは utm_content に載せる (移行仕様は studio repo
+ * docs/funnel-analytics.md)。資格の引き継ぎは utm の読み替えに頼らず
+ * ?exam= で明示する (Studio 本番のトップは ?exam= を読んでお試し生成に
+ * 資格名を入れる。模試リンク studioMoshiHref と同じ流儀)。
+ *
+ * @param exam     資格 (null なら汎用)
+ * @param content  utm_content。既存の配置名をそのまま渡すこと (column_footer / quiz_<資格> 等)
  */
 export function studioCtaFor(
   exam: ExamSlug | null | undefined,
-  medium: string
+  content: string
 ): StudioCta {
   const cta = exam ? CERT_CTA[exam] : undefined;
   const path = cta ? `/lp/${cta.lp}` : "/";
-  const href = `${STUDIO_ORIGIN}${path}?utm_source=shikakumon&utm_medium=${medium}`;
+  const params = new URLSearchParams({
+    utm_source: "shikakumon",
+    utm_medium: "referral",
+    utm_content: content,
+  });
+  if (exam) params.set("exam", EXAM_FULL_NAMES[exam]);
+  const href = `${STUDIO_ORIGIN}${path}?${params.toString()}`;
   const { heading, body, linkLabel } = cta ?? GENERIC;
   return { href, heading, body, linkLabel };
 }
@@ -104,7 +118,7 @@ export function studioCtaFor(
 /**
  * 資格 ID → 正式名称。Studio の生成フォームに渡す資格名として使う。
  * Studio 側 lib/referral-exam-names.ts の SHIKAKUMON_EXAM_NAMES と同じ値を保つこと
- * (向こうは utm_medium から引く用、こちらは URL に載せる用)。
+ * (向こうは utm_content — 旧リンクでは utm_medium — から引く用、こちらは URL に載せる用)。
  */
 export const EXAM_FULL_NAMES: Record<ExamSlug, string> = {
   kashikin: "貸金業務取扱主任者",
@@ -133,18 +147,20 @@ export const EXAM_FULL_NAMES: Record<ExamSlug, string> = {
  *
  * @param exam      資格
  * @param weakField 最も正答率が低かった分野。無ければ省略
- * @param medium    utm_medium (既存値を維持: moshi_result / mock_result)
+ * @param content   utm_content (既存値を維持: moshi_result / mock_result)。
+ *                  utm_medium は GA4 チャネル判定のため referral 固定 (studioCtaFor と同じ理由)
  */
 export function studioMoshiHref(
   exam: ExamSlug,
   weakField: string | null | undefined,
-  medium: string
+  content: string
 ): string {
   const lp = CERT_CTA[exam]?.lp;
   const path = lp ? `/lp/${lp}` : "/";
   const params = new URLSearchParams({
     utm_source: "shikakumon",
-    utm_medium: medium,
+    utm_medium: "referral",
+    utm_content: content,
     exam: EXAM_FULL_NAMES[exam],
   });
   // 分野名はそのまま検索語として使われるので、長すぎるものは切る

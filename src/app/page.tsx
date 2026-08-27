@@ -238,7 +238,7 @@ export default function Home() {
       {/* Studio 案内 */}
       <section className="mb-12">
         <a
-          href="https://studio.shikakumon.com/?utm_source=shikakumon&utm_medium=home_card"
+          href="https://studio.shikakumon.com/?utm_source=shikakumon&utm_medium=referral&utm_content=home_card"
           target="_blank"
           rel="noopener noreferrer"
           className="card p-6 no-underline block group"

@@ -71,7 +71,7 @@ export default function AboutPage() {
         シカクモン本体は、運営者が選んだ10資格・2404問のオリジナル問題集です。
         ただ、世の中の資格はもっと数があり、市販のテキストや自作ノートを教材にしたい人もいるはずです。
         その需要に応えるために、教材アップロード型の AI 学習補助ツール
-        「<a href="https://studio.shikakumon.com/?utm_source=shikakumon&utm_medium=about" target="_blank" rel="noopener noreferrer">シカクモン Studio</a>」
+        「<a href="https://studio.shikakumon.com/?utm_source=shikakumon&utm_medium=referral&utm_content=about" target="_blank" rel="noopener noreferrer">シカクモン Studio</a>」
         を別サイトで運営しています。
       </p>
       <p>主な機能：</p>
@@ -86,7 +86,7 @@ export default function AboutPage() {
         シカクモン本体に無い資格を学習する方や、独自テキストで対策したい方に向いています。
       </p>
       <p>
-        <a href="https://studio.shikakumon.com/?utm_source=shikakumon&utm_medium=about_cta" target="_blank" rel="noopener noreferrer">シカクモン Studio を開く →</a>
+        <a href="https://studio.shikakumon.com/?utm_source=shikakumon&utm_medium=referral&utm_content=about_cta" target="_blank" rel="noopener noreferrer">シカクモン Studio を開く →</a>
       </p>
 
       <h2>免責事項</h2>

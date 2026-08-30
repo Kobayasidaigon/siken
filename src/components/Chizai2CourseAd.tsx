@@ -43,6 +43,13 @@ export default function Chizai2CourseAd({ headline, body }: Props = {}) {
         >
           LECの知的財産管理技能検定2級対策講座を見る →
         </AffiliateLink>
+        <img
+          width={1}
+          height={1}
+          src="https://www11.a8.net/0.gif?a8mat=4B9ZDE+3TJ5IQ+1G62+BW0YB"
+          alt=""
+          style={{ position: "absolute", border: 0 }}
+        />
       </div>
     </aside>
   );

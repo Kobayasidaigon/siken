@@ -131,6 +131,7 @@ export const EXAM_FULL_NAMES: Record<ExamSlug, string> = {
   fukushi2: "福祉住環境コーディネーター2級",
   bijimane: "ビジネスマネジャー検定",
   eco: "eco検定",
+  bijihou2: "ビジネス実務法務検定2級",
 };
 
 /**

@@ -36,6 +36,7 @@ import {
  * exam-dates.ts は資格ごとに別々の const を export しているだけで
  * 資格 ID との対応表が無かったため、ここで一元化する。
  * 知財2級 (chizai2) は3級と同じ日程なので CHIZAI_EXAMS を共用する。
+ * ビジ法2級 (bijihou2) も同様で、東商のIBT/CBTは2級・3級を同一ウィンドウで実施する。
  */
 export const EXAM_SCHEDULES: Record<ExamSlug, UpcomingExam[]> = {
   kashikin: KASHIKIN_EXAMS,
@@ -45,6 +46,7 @@ export const EXAM_SCHEDULES: Record<ExamSlug, UpcomingExam[]> = {
   bijihou: BIJIHOU_EXAMS,
   bijimane: BIJIMANE_EXAMS,
   eco: ECO_EXAMS,
+  bijihou2: BIJIHOU_EXAMS,
   pii: PII_EXAMS,
   mynumber: MYNUMBER_EXAMS,
   jitsumu: JITSUMU_EXAMS,

@@ -9,7 +9,7 @@
 
 const STORAGE_KEY = "shikakumon-study-v1";
 
-export type ExamSlug = "kashikin" | "pii" | "chizai" | "chizai2" | "mynumber" | "jitsumu" | "bijihou" | "fukushi2" | "bijimane" | "eco";
+export type ExamSlug = "kashikin" | "pii" | "chizai" | "chizai2" | "mynumber" | "jitsumu" | "bijihou" | "fukushi2" | "bijimane" | "eco" | "bijihou2";
 
 export const EXAM_LIST: { slug: ExamSlug; name: string; topPath: string; questionPathPrefix: string }[] = [
   { slug: "kashikin", name: "貸金業務取扱主任者", topPath: "/kashikin/", questionPathPrefix: "/q/" },
@@ -22,6 +22,7 @@ export const EXAM_LIST: { slug: ExamSlug; name: string; topPath: string; questio
   { slug: "fukushi2", name: "福祉住環境コーディネーター2級", topPath: "/fukushi2/", questionPathPrefix: "/fukushi2/q/" },
   { slug: "bijimane", name: "ビジネスマネジャー検定", topPath: "/bijimane/", questionPathPrefix: "/bijimane/q/" },
   { slug: "eco", name: "eco検定(環境社会検定試験)", topPath: "/eco/", questionPathPrefix: "/eco/q/" },
+  { slug: "bijihou2", name: "ビジネス実務法務検定2級", topPath: "/bijihou2/", questionPathPrefix: "/bijihou2/q/" },
 ];
 
 export type Medal = "bronze" | "silver" | "gold";
@@ -49,6 +50,7 @@ function defaultProgress(): AllProgress {
     fukushi2: { bookmarks: [], wrong: [], correct: [], medals: {} },
     bijimane: { bookmarks: [], wrong: [], correct: [], medals: {} },
     eco: { bookmarks: [], wrong: [], correct: [], medals: {} },
+    bijihou2: { bookmarks: [], wrong: [], correct: [], medals: {} },
   };
 }
 

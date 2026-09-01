@@ -103,6 +103,16 @@ export default function Home() {
       softVar: "var(--c-kashikin-soft)",
     },
     {
+      name: "ビジネス実務法務検定2級",
+      slug: "bijihou2",
+      count: 200,
+      fieldCount: 10,
+      desc: "3級の上位級。契約・債権回収・会社法・労働法・国際法務まで、企業法務の実務で必要な要件と効果を問われます。IBT/CBT化で過去問が公開されない試験です。",
+      date: nextExamDateLabel(BIJIHOU_EXAMS, { period: true, fallback: "年2回（6〜7月、10〜11月）" }),
+      themeVar: "var(--c-kashikin)",
+      softVar: "var(--c-kashikin-soft)",
+    },
+    {
       name: "福祉住環境コーディネーター2級",
       slug: "fukushi2",
       count: 200,

@@ -175,6 +175,37 @@ export default function Home() {
     ],
   };
 
+  // 資格を実施団体・領域ごとにまとめて並べる。
+  // 12資格を平坦に並べると雑多に見えるが、実際は実施団体で4つの塊になっており、
+  // 同じ団体の検定は受験者層と併願パターンが重なる。その関係を見せるための区分。
+  const groups = [
+    {
+      key: "houmu",
+      title: "法務・知的財産",
+      lead: "契約や権利関係を扱う資格。条文の要件をそのまま問われるため、根拠つきの演習が効きます。",
+      slugs: ["kashikin", "chizai", "chizai2"],
+    },
+    {
+      key: "joho",
+      title: "情報とセキュリティ",
+      lead: "個人情報とマイナンバーの取扱いを問う検定群。いずれも全日本情報学習振興協会が実施しており、出題範囲が重なります。",
+      slugs: ["pii", "jitsumu", "mynumber"],
+    },
+    {
+      key: "tokyo-cci",
+      title: "東京商工会議所の検定",
+      lead: "同じ団体が実施する検定で、試験期間が共通のため併願する人が多い組み合わせです。",
+      slugs: ["bijihou", "bijihou2", "bijimane", "eco", "fukushi2"],
+    },
+    {
+      key: "it",
+      title: "IT",
+      lead: "経営戦略・法務からセキュリティまで横断する国家試験。上の法務・情報系と出題範囲が重なります。",
+      slugs: ["itpass"],
+    },
+  ];
+  const bySlug = Object.fromEntries(exams.map((e) => [e.slug, e]));
+
   const totalCount = exams.reduce((sum, e) => sum + e.count, 0);
   const totalFieldCount = exams.reduce((sum, e) => sum + e.fieldCount, 0);
   const examCount = exams.length;
@@ -231,8 +262,12 @@ export default function Home() {
       {/* Exams */}
       <section className="mb-12">
         <h2 className="text-lg font-bold text-[color:var(--c-ink)] mb-5 font-serif">いま解ける試験</h2>
-        <div className="space-y-4">
-          {exams.map((exam) => (
+        {groups.map((group) => (
+        <div key={group.key} className="mb-9 last:mb-0">
+          <h3 className="text-sm font-bold text-[color:var(--c-ink)] mb-1">{group.title}</h3>
+          <p className="text-xs text-[color:var(--c-text-sub)] leading-relaxed mb-4">{group.lead}</p>
+          <div className="space-y-4">
+          {group.slugs.map((slug) => bySlug[slug]).filter(Boolean).map((exam) => (
             <a
               key={exam.slug}
               href={`/${exam.slug}/`}
@@ -252,7 +287,9 @@ export default function Home() {
               <p className="text-xs text-[color:var(--c-text-sub)] mt-3">次回試験：{exam.date}</p>
             </a>
           ))}
+          </div>
         </div>
+        ))}
       </section>
 
       {/* Studio 案内 */}

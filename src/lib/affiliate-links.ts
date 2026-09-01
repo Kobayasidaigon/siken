@@ -105,6 +105,19 @@ export const EXAM_AFFILIATE: Record<ExamSlug, AffiliateTarget> = {
       "https://px.a8.net/svt/ejp?a8mat=4B1TI0+9T22IA+4LOQ+BW8O2&a8ejpredirect=https%3A%2F%2Fwww.joho-gakushu.jp%2Fsmart%2Fregistfree.php",
     freeLabel: "無料登録してSMART講座を試し見る",
   },
+  // ITパスポート。全日本情報学習振興協会のSMART合格講座がITパスポートを
+  //   扱っており(公式のIT系ラインナップに掲載)、bijihou/bijihou2 と同じ
+  //   承認済み提携(4B1TI0系)のリンクを共有する。
+  //   ※LEC・アガルートもITパスポート講座を持つため、成果が出ない場合は
+  //     そちらの提携リンクへの差し替えも検討できる。
+  itpass: {
+    href: "https://px.a8.net/svt/ejp?a8mat=4B1TI0+9T22IA+4LOQ+BW8O2&a8ejpredirect=https%3A%2F%2Fwww.joho-gakushu.jp%2Fsmartinfo%2Fsmart_lineup.php",
+    label: "ITパスポートのSMART合格講座を見る",
+    course: "itpass",
+    freeHref:
+      "https://px.a8.net/svt/ejp?a8mat=4B1TI0+9T22IA+4LOQ+BW8O2&a8ejpredirect=https%3A%2F%2Fwww.joho-gakushu.jp%2Fsmart%2Fregistfree.php",
+    freeLabel: "無料登録してSMART講座を試し見る",
+  },
   // TODO(fukushi2): A8でユーキャン「講座申込プログラム」と提携後、a8mat付きリンクへ差し替える
   //   (講座申込=最大5,000円/件。afbの資料請求=最大1,000円は freeHref に設定する)。
   //   提携承認まではトラッキング無しの公式講座ページへの直リンクで運用(収益ゼロだが導線は維持)。
@@ -155,4 +168,5 @@ export const RESULT_CTA_HEADLINE: Record<ExamSlug, string> = {
   bijimane: "間違えた論点を体系的に整理するなら",
   eco: "間違えた論点を体系的に整理するなら",
   bijihou2: "間違えた論点を体系的に整理するなら",
+  itpass: "間違えた論点を体系的に整理するなら",
 };

@@ -132,6 +132,7 @@ export const EXAM_FULL_NAMES: Record<ExamSlug, string> = {
   bijimane: "ビジネスマネジャー検定",
   eco: "eco検定",
   bijihou2: "ビジネス実務法務検定2級",
+  itpass: "ITパスポート試験",
 };
 
 /**

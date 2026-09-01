@@ -47,6 +47,8 @@ export const EXAM_SCHEDULES: Record<ExamSlug, UpcomingExam[]> = {
   bijimane: BIJIMANE_EXAMS,
   eco: ECO_EXAMS,
   bijihou2: BIJIHOU_EXAMS,
+  // ITパスポートはCBTで通年実施のため、次回試験日という概念がない
+  itpass: [],
   pii: PII_EXAMS,
   mynumber: MYNUMBER_EXAMS,
   jitsumu: JITSUMU_EXAMS,

@@ -39,6 +39,7 @@ export default function StudyClient({
     bijimane: null,
     eco: null,
     bijihou2: null,
+    itpass: null,
   });
 
   useEffect(() => {

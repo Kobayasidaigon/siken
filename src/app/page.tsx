@@ -113,6 +113,16 @@ export default function Home() {
       softVar: "var(--c-kashikin-soft)",
     },
     {
+      name: "ITパスポート試験",
+      slug: "itpass",
+      count: 200,
+      fieldCount: 10,
+      desc: "IT系の入門にあたる国家試験。経営戦略・法務からセキュリティ・ネットワークまで幅広く問われます。CBT方式で通年実施され、公開される過去問は年100問だけです。",
+      date: "CBT方式で通年実施",
+      themeVar: "var(--c-pii)",
+      softVar: "var(--c-pii-soft)",
+    },
+    {
       name: "福祉住環境コーディネーター2級",
       slug: "fukushi2",
       count: 200,

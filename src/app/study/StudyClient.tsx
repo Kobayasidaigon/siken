@@ -40,6 +40,7 @@ export default function StudyClient({
     eco: null,
     bijihou2: null,
     itpass: null,
+    chintai: null,
   });
 
   useEffect(() => {

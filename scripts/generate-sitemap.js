@@ -22,6 +22,7 @@ const bijimaneDir = path.join(__dirname, "../src/content/bijimane");
 const ecoDir = path.join(__dirname, "../src/content/eco");
 const bijihou2Dir = path.join(__dirname, "../src/content/bijihou2");
 const itpassDir = path.join(__dirname, "../src/content/itpass");
+const chintaiDir = path.join(__dirname, "../src/content/chintai");
 const columnsDir = path.join(__dirname, "../src/content/columns");
 const appDir = path.join(__dirname, "../src/app");
 const outputPath = path.join(__dirname, "../public/sitemap.xml");
@@ -69,6 +70,7 @@ const bijimane = collect(bijimaneDir);
 const eco = collect(ecoDir);
 const bijihou2 = collect(bijihou2Dir);
 const itpass = collect(itpassDir);
+const chintai = collect(chintaiDir);
 const columns = collect(columnsDir);
 
 const todayFallback = toDate(Date.now());
@@ -84,8 +86,9 @@ const bijimaneMax = maxDate(bijimane, todayFallback);
 const ecoMax = maxDate(eco, todayFallback);
 const bijihou2Max = maxDate(bijihou2, todayFallback);
 const itpassMax = maxDate(itpass, todayFallback);
+const chintaiMax = maxDate(chintai, todayFallback);
 const columnsMax = maxDate(columns, todayFallback);
-const siteMax = [kashikinMax, piiMax, chizaiMax, chizai2Max, mynumberMax, jitsumuMax, bijihouMax, fukushi2Max, bijimaneMax, ecoMax, bijihou2Max, itpassMax, columnsMax].sort().at(-1);
+const siteMax = [kashikinMax, piiMax, chizaiMax, chizai2Max, mynumberMax, jitsumuMax, bijihouMax, fukushi2Max, bijimaneMax, ecoMax, bijihou2Max, itpassMax, chintaiMax, columnsMax].sort().at(-1);
 
 // 一覧・ハブページの lastmod は、そのページに表示されるコンテンツ群の最終更新日
 const staticPages = [
@@ -219,6 +222,17 @@ const staticPages = [
   { url: "/itpass/field/computer/", priority: "0.8", freq: "monthly", lastmod: itpassMax },
   { url: "/itpass/field/tech/", priority: "0.8", freq: "monthly", lastmod: itpassMax },
   { url: "/itpass/field/security/", priority: "0.8", freq: "monthly", lastmod: itpassMax },
+  { url: "/chintai/", priority: "0.9", freq: "weekly", lastmod: chintaiMax },
+  { url: "/chintai/field/gyouhou/", priority: "0.8", freq: "monthly", lastmod: chintaiMax },
+  { url: "/chintai/field/jutaku/", priority: "0.8", freq: "monthly", lastmod: chintaiMax },
+  { url: "/chintai/field/sublease/", priority: "0.8", freq: "monthly", lastmod: chintaiMax },
+  { url: "/chintai/field/keiyaku/", priority: "0.8", freq: "monthly", lastmod: chintaiMax },
+  { url: "/chintai/field/shuuryou/", priority: "0.8", freq: "monthly", lastmod: chintaiMax },
+  { url: "/chintai/field/kinsen/", priority: "0.8", freq: "monthly", lastmod: chintaiMax },
+  { url: "/chintai/field/setsubi/", priority: "0.8", freq: "monthly", lastmod: chintaiMax },
+  { url: "/chintai/field/boshuu/", priority: "0.8", freq: "monthly", lastmod: chintaiMax },
+  { url: "/chintai/field/shien/", priority: "0.8", freq: "monthly", lastmod: chintaiMax },
+  { url: "/chintai/field/igi/", priority: "0.8", freq: "monthly", lastmod: chintaiMax },
   // その他 (/study/ は localStorage 依存の個人ページで noindex のため sitemap から除外)
   { url: "/guide/", priority: "0.6", freq: "monthly", lastmod: fileDate(path.join(appDir, "guide/page.tsx")) },
   { url: "/about/", priority: "0.3", freq: "yearly", lastmod: fileDate(path.join(appDir, "about/page.tsx")) },
@@ -240,6 +254,7 @@ const contentPages = [
   { entries: eco, prefix: "/eco/q/" },
   { entries: bijihou2, prefix: "/bijihou2/q/" },
   { entries: itpass, prefix: "/itpass/q/" },
+  { entries: chintai, prefix: "/chintai/q/" },
 ].flatMap(({ entries, prefix }) =>
   entries.map((e) => ({
     url: `${prefix}${e.slug}/`,

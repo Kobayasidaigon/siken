@@ -43,6 +43,16 @@ export default function Home() {
       softVar: "var(--c-kashikin-soft)",
     },
     {
+      name: "賃貸不動産経営管理士",
+      slug: "chintai",
+      count: 200,
+      fieldCount: 10,
+      desc: "2021年に国家資格化。賃貸住宅管理業法の登録制度とサブリース規制が主戦場で、借地借家法・建物設備・原状回復まで横断して問われます。",
+      date: "年1回（11月）",
+      themeVar: "var(--c-kashikin)",
+      softVar: "var(--c-kashikin-soft)",
+    },
+    {
       name: "個人情報保護士",
       slug: "pii",
       count: 337,
@@ -182,8 +192,8 @@ export default function Home() {
     {
       key: "houmu",
       title: "法務・知的財産",
-      lead: "契約や権利関係を扱う資格。条文の要件をそのまま問われるため、根拠つきの演習が効きます。",
-      slugs: ["kashikin", "chizai", "chizai2"],
+      lead: "契約や権利関係を扱う資格。条文の要件をそのまま問われるため、根拠つきの演習が効きます。貸金業と賃貸管理は受験者層が重なります。",
+      slugs: ["kashikin", "chintai", "chizai", "chizai2"],
     },
     {
       key: "joho",

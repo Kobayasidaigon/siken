@@ -49,6 +49,8 @@ export const EXAM_SCHEDULES: Record<ExamSlug, UpcomingExam[]> = {
   bijihou2: BIJIHOU_EXAMS,
   // ITパスポートはCBTで通年実施のため、次回試験日という概念がない
   itpass: [],
+  // 賃貸不動産経営管理士は年1回(11月)。実施日は年度ごとに要確認のため空にしておく
+  chintai: [],
   pii: PII_EXAMS,
   mynumber: MYNUMBER_EXAMS,
   jitsumu: JITSUMU_EXAMS,

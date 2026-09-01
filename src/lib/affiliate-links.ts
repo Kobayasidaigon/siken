@@ -118,6 +118,17 @@ export const EXAM_AFFILIATE: Record<ExamSlug, AffiliateTarget> = {
       "https://px.a8.net/svt/ejp?a8mat=4B1TI0+9T22IA+4LOQ+BW8O2&a8ejpredirect=https%3A%2F%2Fwww.joho-gakushu.jp%2Fsmart%2Fregistfree.php",
     freeLabel: "無料登録してSMART講座を試し見る",
   },
+  // 賃貸不動産経営管理士。貸金業務取扱主任者(kashikin)と同じアガルートの
+  //   承認済み提携(4B3N6P系)。アガルートは賃貸不動産経営管理士講座を持つ。
+  //   ※LECも同資格の講座を持つため、成果が出ない場合は差し替えを検討できる。
+  chintai: {
+    href: "https://px.a8.net/svt/ejp?a8mat=4B3N6P+AWY41E+44M0+BW8O2&a8ejpredirect=https%3A%2F%2Fwww.agaroot.jp%2Fchintai_kk%2F",
+    label: "アガルートの賃貸不動産経営管理士講座を見る",
+    course: "chintai",
+    freeHref:
+      "https://px.a8.net/svt/ejp?a8mat=4B3N6P+AWY41E+44M0+BW8O2&a8ejpredirect=https%3A%2F%2Fwww.agaroot.jp%2Fchintai_kk%2Fcatalog%2F",
+    freeLabel: "アガルートの講座資料を無料で請求する",
+  },
   // TODO(fukushi2): A8でユーキャン「講座申込プログラム」と提携後、a8mat付きリンクへ差し替える
   //   (講座申込=最大5,000円/件。afbの資料請求=最大1,000円は freeHref に設定する)。
   //   提携承認まではトラッキング無しの公式講座ページへの直リンクで運用(収益ゼロだが導線は維持)。
@@ -169,4 +180,5 @@ export const RESULT_CTA_HEADLINE: Record<ExamSlug, string> = {
   eco: "間違えた論点を体系的に整理するなら",
   bijihou2: "間違えた論点を体系的に整理するなら",
   itpass: "間違えた論点を体系的に整理するなら",
+  chintai: "間違えた論点を体系的に整理するなら",
 };

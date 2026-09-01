@@ -15,7 +15,7 @@ import {
 
 export const metadata: Metadata = {
   title: { absolute: "シカクモン｜資格試験のオリジナル練習問題を無料で提供" },
-  description: "シカクモンは資格試験のオリジナル練習問題を無料で提供するサイトです。貸金業務取扱主任者・個人情報保護士・知的財産管理技能検定3級/2級・マイナンバー実務検定3級・個人情報保護実務検定・ビジネス実務法務検定3級/2級・福祉住環境コーディネーター2級・ビジネスマネジャー検定・eco検定、合計2,770問。全問に根拠を含む詳細解説付き。",
+  description: "シカクモンは資格試験のオリジナル練習問題を無料で提供するサイトです。貸金業務取扱主任者・個人情報保護士・知的財産管理技能検定3級/2級・マイナンバー実務検定3級・個人情報保護実務検定・ビジネス実務法務検定3級/2級・ITパスポート・福祉住環境コーディネーター2級・ビジネスマネジャー検定・eco検定、合計2,970問。全問に根拠を含む詳細解説付き。",
   alternates: { canonical: "/" },
   // openGraphはトップレベルの浅いマージのため、部分指定するとlayout側の
   // siteName/locale/type/imagesが丸ごと消える(page-metadata.tsと同じ理由でフル指定)
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     siteName: "シカクモン",
     url: "/",
     title: "シカクモン｜資格試験のオリジナル練習問題を無料で提供",
-    description: "貸金業務取扱主任者・個人情報保護士・知財3級/2級・マイナンバー3級・個情保実務・ビジ法3級/2級・福祉住環境2級・ビジマネ・eco検定の11資格、合計2,770問のオリジナル練習問題を無料公開。",
+    description: "貸金業務取扱主任者・個人情報保護士・知財3級/2級・マイナンバー3級・個情保実務・ビジ法3級/2級・ITパスポート・福祉住環境2級・ビジマネ・eco検定の12資格、合計2,970問のオリジナル練習問題を無料公開。",
     images: [{ url: "/og-default.png", width: 1200, height: 630, alt: "シカクモン - 資格試験の練習問題" }],
   },
 };
@@ -45,7 +45,7 @@ export default function Home() {
     {
       name: "個人情報保護士",
       slug: "pii",
-      count: 300,
+      count: 337,
       fieldCount: 3,
       desc: "個人情報保護法・マイナンバー法・情報セキュリティの3分野。企業のコンプライアンス実務者向けの認定資格。",
       date: nextExamDateLabel(PII_EXAMS, { fallback: "年4回実施" }),
@@ -55,7 +55,7 @@ export default function Home() {
     {
       name: "知的財産管理技能検定3級",
       slug: "chizai",
-      count: 200,
+      count: 232,
       fieldCount: 9,
       desc: "特許法・著作権法・商標法など9分野を横断する国家資格。知財の実務で最初に目指す級です。",
       date: nextExamDateLabel(CHIZAI_EXAMS, { fallback: "年3回（3月・7月・11月）" }),
@@ -65,7 +65,7 @@ export default function Home() {
     {
       name: "知的財産管理技能検定2級",
       slug: "chizai2",
-      count: 200,
+      count: 231,
       fieldCount: 9,
       desc: "3級の一歩先、実務で問われる応用レベル。特許・著作権・商標など9分野を、事例に沿ってより深く扱う国家資格です。",
       date: nextExamDateLabel(CHIZAI_EXAMS, { fallback: "年3回（3月・7月・11月）" }),
@@ -125,7 +125,7 @@ export default function Home() {
     {
       name: "福祉住環境コーディネーター2級",
       slug: "fukushi2",
-      count: 200,
+      count: 230,
       fieldCount: 9,
       desc: "高齢者・障害者の暮らしを住まいから支える検定。疾患の特性・住宅改修の技術・介護保険まで、医療×福祉×建築を横断して問われます。",
       date: nextExamDateLabel(FUKUSHI2_EXAMS, { period: true, fallback: "年2回（6〜7月、10〜11月）" }),
@@ -145,7 +145,7 @@ export default function Home() {
     {
       name: "eco検定（環境社会検定試験）",
       slug: "eco",
-      count: 200,
+      count: 236,
       fieldCount: 10,
       desc: "環境の知識を広く体系的に問う検定。公害の歴史・気候変動・生物多様性・リサイクル・環境法まで、範囲の広さそのものが難所になります。",
       date: nextExamDateLabel(ECO_EXAMS, { period: true, fallback: "年2回（6〜7月、11〜12月）" }),

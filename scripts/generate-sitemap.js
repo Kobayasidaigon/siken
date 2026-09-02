@@ -29,11 +29,48 @@ const outputPath = path.join(__dirname, "../public/sitemap.xml");
 
 // lastmod はビルド日ではなく「そのページのコンテンツが実際に変わった日」を出す。
 // 全URL一律の生成日を入れると Google に偽シグナルとして無視されるため。
+//
+// 日付の出どころは「そのファイルを最後に変更したコミットの日付」(git log)。
+// mtime は clone / checkout / 別マシンで簡単に狂う (2026-08 に 3 資格 600 ページが
+// sitemap から丸ごと抜けたまま放置された原因の一つ) ので、git を優先し、
+// 未コミットのファイルだけ mtime にフォールバックする。
+const { execSync } = require("child_process");
+const repoRoot = path.join(__dirname, "..");
+
 function toDate(mtimeMs) {
   return new Date(mtimeMs).toISOString().split("T")[0];
 }
 
+// リポジトリ内の全ファイルについて「最終コミット日」を 1 回の git log で集める。
+// (ファイルごとに git を呼ぶと 3,000 回になるので一括で取る)
+const gitDates = (() => {
+  const map = new Map();
+  try {
+    const out = execSync("git log --format=%x00%cs --name-only --no-renames -- src public", {
+      cwd: repoRoot,
+      encoding: "utf8",
+      maxBuffer: 256 * 1024 * 1024,
+    });
+    let current = null;
+    for (const line of out.split("\n")) {
+      if (line.startsWith("\0")) {
+        current = line.slice(1).trim();
+        continue;
+      }
+      const f = line.trim();
+      // 新しいコミットから順に来るので、最初に見た日付がそのファイルの最終更新日
+      if (f && current && !map.has(f)) map.set(f, current);
+    }
+  } catch (e) {
+    console.warn("git log が使えないため lastmod は mtime にフォールバックします:", e.message);
+  }
+  return map;
+})();
+
 function fileDate(p) {
+  const rel = path.relative(repoRoot, p).split(path.sep).join("/");
+  const fromGit = gitDates.get(rel);
+  if (fromGit) return fromGit;
   try {
     return toDate(fs.statSync(p).mtimeMs);
   } catch {
@@ -49,7 +86,7 @@ function collect(dir) {
     .filter((f) => f.endsWith(".md"))
     .map((f) => ({
       slug: f.replace(/\.md$/, ""),
-      lastmod: toDate(fs.statSync(path.join(dir, f)).mtimeMs),
+      lastmod: fileDate(path.join(dir, f)),
     }));
 }
 

@@ -79,11 +79,13 @@ export default async function ChintaiPage() {
       <section className="mb-12">
         <h2 className="text-base font-bold text-[color:var(--c-ink)] mb-4 font-serif">試験の概要</h2>
         <div className="card p-5 text-sm text-[color:var(--c-text-sub)] space-y-2">
-          <p><span className="font-bold text-[color:var(--c-ink)]">試験形式</span>　多肢選択式・90分・100点満点</p>
-          <p><span className="font-bold text-[color:var(--c-ink)]">合格基準</span>　70点以上</p>
-          <p><span className="font-bold text-[color:var(--c-ink)]">受験料</span>　IBT方式 5,500円／CBT方式 7,700円（いずれも税込）</p>
-          <p><span className="font-bold text-[color:var(--c-ink)]">試験日</span>　CBT方式で通年実施（全国47都道府県の会場で随時受験可能）</p>
-          <p><span className="font-bold text-[color:var(--c-ink)]">実施機関</span>　東京商工会議所</p>
+          {/* 2026-09 修正: 以前はビジネス実務法務検定の概要 (東商・IBT/CBT・通年) が
+              そのまま貼られていた。賃貸不動産経営管理士は年 1 回の会場試験。 */}
+          <p><span className="font-bold text-[color:var(--c-ink)]">試験形式</span>　四肢択一・50問・120分（マークシート）</p>
+          <p><span className="font-bold text-[color:var(--c-ink)]">合格基準</span>　年度ごとに試験後に公表（例年おおむね7割前後の得点が目安）</p>
+          <p><span className="font-bold text-[color:var(--c-ink)]">受験料</span>　12,000円（税込）</p>
+          <p><span className="font-bold text-[color:var(--c-ink)]">試験日</span>　年1回（11月の日曜日。実施日・申込期間は年度ごとに公式サイトで要確認）</p>
+          <p><span className="font-bold text-[color:var(--c-ink)]">実施機関</span>　一般社団法人 賃貸不動産経営管理士協議会</p>
         </div>
       </section>
 

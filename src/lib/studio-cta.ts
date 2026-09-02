@@ -67,6 +67,25 @@ const CERT_CTA: Partial<Record<ExamSlug, CertCta>> = {
   },
 };
 
+/**
+ * 専用文言は無いが Studio 側に資格別 LP がある資格 → LP スラッグ。
+ * 文言は汎用 (GENERIC) のまま、リンク先とリンク文言だけ資格に寄せる。
+ * Studio 側 lib/cert-lps.ts (データ駆動 LP) と app/lp/<slug> に対応する
+ * スラッグを保つこと。
+ */
+const CERT_LP_ONLY: Partial<Record<ExamSlug, string>> = {
+  kashikin: "kashikin",
+  chintai: "chintai",
+  chizai: "chizai",
+  chizai2: "chizai2",
+  mynumber: "mynumber",
+  jitsumu: "jitsumu",
+  bijihou: "bijihou",
+  bijimane: "bijimane",
+  eco: "eco",
+  itpass: "it-passport",
+};
+
 /** 従来どおりの汎用 CTA (資格別 LP が無い場合)。文言は既存のまま。 */
 const GENERIC: Omit<CertCta, "lp"> = {
   heading: "自分の教材から問題を作りたい人へ",
@@ -103,7 +122,8 @@ export function studioCtaFor(
   content: string
 ): StudioCta {
   const cta = exam ? CERT_CTA[exam] : undefined;
-  const path = cta ? `/lp/${cta.lp}` : "/";
+  const lp = cta?.lp ?? (exam ? CERT_LP_ONLY[exam] : undefined);
+  const path = lp ? `/lp/${lp}` : "/";
   const params = new URLSearchParams({
     utm_source: "shikakumon",
     utm_medium: "referral",
@@ -111,8 +131,14 @@ export function studioCtaFor(
   });
   if (exam) params.set("exam", EXAM_FULL_NAMES[exam]);
   const href = `${STUDIO_ORIGIN}${path}?${params.toString()}`;
-  const { heading, body, linkLabel } = cta ?? GENERIC;
-  return { href, heading, body, linkLabel };
+  if (cta) {
+    const { heading, body, linkLabel } = cta;
+    return { href, heading, body, linkLabel };
+  }
+  // 専用文言なし・LP あり: 本文は汎用のまま、リンク文言だけ「その資格の問題を 1 問解ける」に寄せる
+  // (LP には登録なしで解ける検品済みサンプルが 1 問ある)
+  const linkLabel = lp && exam ? `${EXAM_FULL_NAMES[exam]}の問題を1問解いてみる` : GENERIC.linkLabel;
+  return { href, heading: GENERIC.heading, body: GENERIC.body, linkLabel };
 }
 
 /**
@@ -158,7 +184,7 @@ export function studioMoshiHref(
   weakField: string | null | undefined,
   content: string
 ): string {
-  const lp = CERT_CTA[exam]?.lp;
+  const lp = CERT_CTA[exam]?.lp ?? CERT_LP_ONLY[exam];
   const path = lp ? `/lp/${lp}` : "/";
   const params = new URLSearchParams({
     utm_source: "shikakumon",

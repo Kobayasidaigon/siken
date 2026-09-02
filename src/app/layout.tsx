@@ -34,6 +34,9 @@ export const metadata: Metadata = {
     icon: "/favicon.svg",
   },
   metadataBase: new URL("https://shikakumon.com"),
+  // RSS の自動検出。feed.xml 自体は前からあったが <link rel="alternate"> が無く、
+  // リーダーやクローラが購読先を見つけられなかった
+  alternates: { types: { "application/rss+xml": "/feed.xml" } },
   verification: {
     google: "dnyK_8fRmK5hV625XjQD10ccjXMiXHXp_8RdH-jq2zw",
   },
@@ -109,6 +112,18 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                       <span className="w-1 h-4 mr-3 rounded-full" style={{ background: "var(--c-eco)" }}></span>
                       eco検定（環境社会検定試験）
                     </a>
+                    <a href="/bijihou2/" className="flex items-center px-4 py-2 text-[color:var(--c-text)] hover:bg-[color:var(--c-bg-alt)] hover:text-[color:var(--c-kashikin)] no-underline transition-colors">
+                      <span className="w-1 h-4 mr-3 rounded-full" style={{ background: "var(--c-kashikin)" }}></span>
+                      ビジネス実務法務検定2級
+                    </a>
+                    <a href="/itpass/" className="flex items-center px-4 py-2 text-[color:var(--c-text)] hover:bg-[color:var(--c-bg-alt)] hover:text-[color:var(--c-pii)] no-underline transition-colors">
+                      <span className="w-1 h-4 mr-3 rounded-full" style={{ background: "var(--c-pii)" }}></span>
+                      ITパスポート
+                    </a>
+                    <a href="/chintai/" className="flex items-center px-4 py-2 text-[color:var(--c-text)] hover:bg-[color:var(--c-bg-alt)] hover:text-[color:var(--c-kashikin)] no-underline transition-colors">
+                      <span className="w-1 h-4 mr-3 rounded-full" style={{ background: "var(--c-kashikin)" }}></span>
+                      賃貸不動産経営管理士
+                    </a>
                   </div>
                 </div>
               </div>
@@ -156,6 +171,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                   <li><a href="/fukushi2/" className="text-[color:var(--c-text-sub)] hover:text-[color:var(--c-fukushi)] no-underline">福祉住環境コーディネーター2級</a></li>
                   <li><a href="/bijimane/" className="text-[color:var(--c-text-sub)] hover:text-[color:var(--c-bijimane)] no-underline">ビジネスマネジャー検定</a></li>
                   <li><a href="/eco/" className="text-[color:var(--c-text-sub)] hover:text-[color:var(--c-eco)] no-underline">eco検定（環境社会検定試験）</a></li>
+                  <li><a href="/bijihou2/" className="text-[color:var(--c-text-sub)] hover:text-[color:var(--c-kashikin)] no-underline">ビジネス実務法務検定2級</a></li>
+                  <li><a href="/itpass/" className="text-[color:var(--c-text-sub)] hover:text-[color:var(--c-pii)] no-underline">ITパスポート</a></li>
+                  <li><a href="/chintai/" className="text-[color:var(--c-text-sub)] hover:text-[color:var(--c-kashikin)] no-underline">賃貸不動産経営管理士</a></li>
                 </ul>
               </div>
               <div>
@@ -184,11 +202,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                     </p>
                   </li>
                 </ul>
+                {/* 姉妹サイト。utm_medium は GA4 のチャネル判定キーなので referral 固定
+                    (独自値だと Unassigned に落ちる)。配置は utm_content で区別する。 */}
                 <h4 className="text-[color:var(--c-ink)] font-bold mt-6 mb-3 text-xs font-serif">姉妹サイト</h4>
                 <ul className="space-y-2">
                   <li>
                     <a
-                      href="https://setsubi.shikakumon.com/"
+                      href="https://setsubi.shikakumon.com/?utm_source=shikakumon&utm_medium=referral&utm_content=footer"
                       className="text-[color:var(--c-text-sub)] hover:text-[color:var(--c-ink)] no-underline"
                     >
                       設備資格ドリル
@@ -199,7 +219,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                   </li>
                   <li>
                     <a
-                      href="https://kintore.shikakumon.com/"
+                      href="https://kintore.shikakumon.com/?utm_source=shikakumon&utm_medium=referral&utm_content=footer"
                       className="text-[color:var(--c-text-sub)] hover:text-[color:var(--c-ink)] no-underline"
                     >
                       筋トレ資格ドリル
@@ -210,7 +230,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                   </li>
                   <li>
                     <a
-                      href="https://eisei.shikakumon.com/"
+                      href="https://eisei.shikakumon.com/?utm_source=shikakumon&utm_medium=referral&utm_content=footer"
                       className="text-[color:var(--c-text-sub)] hover:text-[color:var(--c-ink)] no-underline"
                     >
                       衛生管理者ドリル

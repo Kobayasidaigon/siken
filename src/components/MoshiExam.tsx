@@ -468,21 +468,37 @@ export default function MoshiExam({
           合格基準は{passLabel}。所要時間 約{result?.elapsedMin ?? timeLimitMin}分。
           ※この判定はオリジナル問題による目安です。
         </p>
-        {/* 結果のシェア(テキストのみ) */}
-        <div className="mt-4">
-          <a
-            href={`https://x.com/intent/post?text=${encodeURIComponent(
-              `${EXAM_LIST.find((e) => e.slug === exam)?.name ?? ""}の模擬試験(第${round}回)で${score}/${questions.length}問正解(${pct}%)${passed ? "・合格圏" : ""}でした。シカクモンで無料受験中`
-            )}&url=${encodeURIComponent(`https://shikakumon.com${topPath}moshi/`)}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={() => sendGAEvent("event", "share_click", { exam, channel: "x", place: "moshi" })}
-            className="inline-block text-xs font-bold border rounded-md px-3 py-1.5 no-underline transition hover:opacity-80"
-            style={{ color: "var(--c-accent)", borderColor: "var(--c-accent)" }}
-          >
-            この結果をXに投稿する
-          </a>
-        </div>
+        {/* 結果のシェア(テキストのみ)。X に加えて LINE も置く:
+            受験者層はスマホ中心で、勉強仲間・同僚との共有は X より LINE が多い。 */}
+        {(() => {
+          const shareText = `${EXAM_LIST.find((e) => e.slug === exam)?.name ?? ""}の模擬試験(第${round}回)で${score}/${questions.length}問正解(${pct}%)${passed ? "・合格圏" : ""}でした。シカクモンで無料受験中`;
+          const shareUrl = `https://shikakumon.com${topPath}moshi/`;
+          const btn = "inline-block text-xs font-bold border rounded-md px-3 py-1.5 no-underline transition hover:opacity-80";
+          return (
+            <div className="mt-4 flex flex-wrap items-center gap-2">
+              <a
+                href={`https://x.com/intent/post?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(shareUrl)}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => sendGAEvent("event", "share_click", { exam, channel: "x", place: "moshi" })}
+                className={btn}
+                style={{ color: "var(--c-accent)", borderColor: "var(--c-accent)" }}
+              >
+                この結果をXに投稿する
+              </a>
+              <a
+                href={`https://line.me/R/share?text=${encodeURIComponent(`${shareText}\n${shareUrl}`)}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => sendGAEvent("event", "share_click", { exam, channel: "line", place: "moshi" })}
+                className={btn}
+                style={{ color: "#06C755", borderColor: "#06C755" }}
+              >
+                LINEで送る
+              </a>
+            </div>
+          );
+        })()}
       </section>
 
       {/* 本試験経験者への形式アンケート(出題形式の一次情報収集) */}

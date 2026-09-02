@@ -28,7 +28,7 @@ const fields = [
 export default async function Bijihou2Page() {
   const allQuestions = await getAllBijihou2Questions();
   const allColumns = await getAllColumns();
-  const bijihouColumns = allColumns.filter((c) => c.slug.startsWith("bijihou-"));
+  const bijihouColumns = allColumns.filter((c) => c.slug.startsWith("bijihou2-"));
   const fieldCounts = await Promise.all(
     fields.map(async (f) => {
       const qs = await getBijihou2QuestionsByField(f.name);
@@ -108,7 +108,7 @@ export default async function Bijihou2Page() {
             ))}
           </div>
           {bijihouColumns.length > 6 && (
-            <a href="/column/#bijihou" className="inline-block mt-4 text-sm text-[color:var(--c-text-sub)] no-underline hover:text-[color:var(--c-kashikin)] underline">
+            <a href="/column/#bijihou2" className="inline-block mt-4 text-sm text-[color:var(--c-text-sub)] no-underline hover:text-[color:var(--c-kashikin)] underline">
               ビジネス実務法務検定2級のコラムをすべて見る →
             </a>
           )}

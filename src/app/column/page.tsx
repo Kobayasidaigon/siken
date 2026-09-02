@@ -85,6 +85,54 @@ const examGroups: ExamGroup[] = [
     themeKey: "fukushi",
     matcher: (slug) => slug.startsWith("fukushi2-"),
   },
+  {
+    id: "bijihou2",
+    examName: "ビジネス実務法務検定2級",
+    shortName: "ビジ法2級",
+    topPath: "/bijihou2/",
+    themeKey: "chizai",
+    matcher: (slug) => slug.startsWith("bijihou2-"),
+  },
+  {
+    id: "itpass",
+    examName: "ITパスポート試験",
+    shortName: "ITパスポート",
+    topPath: "/itpass/",
+    themeKey: "pii",
+    matcher: (slug) => slug.startsWith("itpass-"),
+  },
+  {
+    id: "chintai",
+    examName: "賃貸不動産経営管理士",
+    shortName: "賃管士",
+    topPath: "/chintai/",
+    themeKey: "kashikin",
+    matcher: (slug) => slug.startsWith("chintai-"),
+  },
+  {
+    id: "kangyo",
+    examName: "管理業務主任者",
+    shortName: "管業",
+    topPath: "/kangyo/",
+    themeKey: "kashikin",
+    matcher: (slug) => slug.startsWith("kangyo-"),
+  },
+  {
+    id: "bijimane",
+    examName: "ビジネスマネジャー検定",
+    shortName: "ビジマネ",
+    topPath: "/bijimane/",
+    themeKey: "chizai",
+    matcher: (slug) => slug.startsWith("bijimane-"),
+  },
+  {
+    id: "eco",
+    examName: "eco検定",
+    shortName: "eco検定",
+    topPath: "/eco/",
+    themeKey: "fukushi",
+    matcher: (slug) => slug.startsWith("eco-"),
+  },
 ];
 
 const themeColor = {
@@ -124,7 +172,7 @@ export default async function ColumnIndexPage() {
     };
   });
 
-  const totalCount = columns.length;
+  const totalCount = groups.reduce((n, g) => n + g.items.length, 0);
   const examCount = groups.filter((g) => g.items.length > 0).length;
 
   return (

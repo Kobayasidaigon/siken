@@ -129,6 +129,17 @@ export const EXAM_AFFILIATE: Record<ExamSlug, AffiliateTarget> = {
       "https://px.a8.net/svt/ejp?a8mat=4B3N6P+AWY41E+44M0+BW8O2&a8ejpredirect=https%3A%2F%2Fwww.agaroot.jp%2Fchintai_kk%2Fcatalog%2F",
     freeLabel: "アガルートの講座資料を無料で請求する",
   },
+  // 管理業務主任者。アガルートのマンション管理士・管理業務主任者講座
+  //   (agaroot.jp/mankan/)。kashikin・chintai と同じ承認済み提携(4B3N6P系)。
+  //   LECも同資格の講座を持つため差し替え先がある。
+  kangyo: {
+    href: "https://px.a8.net/svt/ejp?a8mat=4B3N6P+AWY41E+44M0+BW8O2&a8ejpredirect=https%3A%2F%2Fwww.agaroot.jp%2Fmankan%2F",
+    label: "アガルートの管理業務主任者講座を見る",
+    course: "kangyo",
+    freeHref:
+      "https://px.a8.net/svt/ejp?a8mat=4B3N6P+AWY41E+44M0+BW8O2&a8ejpredirect=https%3A%2F%2Fwww.agaroot.jp%2Fmankan%2Fcatalog%2F",
+    freeLabel: "アガルートの講座資料を無料で請求する",
+  },
   // TODO(fukushi2): A8でユーキャン「講座申込プログラム」と提携後、a8mat付きリンクへ差し替える
   //   (講座申込=最大5,000円/件。afbの資料請求=最大1,000円は freeHref に設定する)。
   //   提携承認まではトラッキング無しの公式講座ページへの直リンクで運用(収益ゼロだが導線は維持)。
@@ -181,4 +192,5 @@ export const RESULT_CTA_HEADLINE: Record<ExamSlug, string> = {
   bijihou2: "間違えた論点を体系的に整理するなら",
   itpass: "間違えた論点を体系的に整理するなら",
   chintai: "間違えた論点を体系的に整理するなら",
+  kangyo: "間違えた論点を体系的に整理するなら",
 };

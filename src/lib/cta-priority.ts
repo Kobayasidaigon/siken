@@ -51,6 +51,8 @@ export const EXAM_SCHEDULES: Record<ExamSlug, UpcomingExam[]> = {
   itpass: [],
   // 賃貸不動産経営管理士は年1回(11月)。実施日は年度ごとに要確認のため空にしておく
   chintai: [],
+  // 管理業務主任者は年1回(12月第1日曜)。実施日は年度ごとに要確認のため空にしておく
+  kangyo: [],
   pii: PII_EXAMS,
   mynumber: MYNUMBER_EXAMS,
   jitsumu: JITSUMU_EXAMS,

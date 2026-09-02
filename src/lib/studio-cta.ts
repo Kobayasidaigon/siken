@@ -134,6 +134,7 @@ export const EXAM_FULL_NAMES: Record<ExamSlug, string> = {
   bijihou2: "ビジネス実務法務検定2級",
   itpass: "ITパスポート試験",
   chintai: "賃貸不動産経営管理士",
+  kangyo: "管理業務主任者",
 };
 
 /**

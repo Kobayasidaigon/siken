@@ -53,6 +53,16 @@ export default function Home() {
       softVar: "var(--c-kashikin-soft)",
     },
     {
+      name: "管理業務主任者",
+      slug: "kangyo",
+      count: 200,
+      fieldCount: 10,
+      desc: "マンション管理会社の必置資格。区分所有法・標準管理規約・管理委託契約・会計仕訳・建築設備を横断して問われます。2026年4月施行の改正区分所有法に対応。",
+      date: "年1回（12月）",
+      themeVar: "var(--c-kashikin)",
+      softVar: "var(--c-kashikin-soft)",
+    },
+    {
       name: "個人情報保護士",
       slug: "pii",
       count: 337,
@@ -192,8 +202,8 @@ export default function Home() {
     {
       key: "houmu",
       title: "法務・知的財産",
-      lead: "契約や権利関係を扱う資格。条文の要件をそのまま問われるため、根拠つきの演習が効きます。貸金業と賃貸管理は受験者層が重なります。",
-      slugs: ["kashikin", "chintai", "chizai", "chizai2"],
+      lead: "契約や権利関係を扱う資格。条文の要件をそのまま問われるため、根拠つきの演習が効きます。貸金業・賃貸管理・マンション管理は受験者層が重なります。",
+      slugs: ["kashikin", "chintai", "kangyo", "chizai", "chizai2"],
     },
     {
       key: "joho",

@@ -41,6 +41,7 @@ export default function StudyClient({
     bijihou2: null,
     itpass: null,
     chintai: null,
+    kangyo: null,
   });
 
   useEffect(() => {

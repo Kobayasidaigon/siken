@@ -195,6 +195,29 @@ export default function Home() {
     ],
   };
 
+  // 姉妹サイト。フッターのリンクだけでは本文からの導線が無く、検索からも見つかりにくいため
+  // トップの本文中で各サイトの中身を1行ずつ紹介する。
+  const sisterSites = [
+    {
+      name: "衛生管理者ドリル",
+      href: "https://eisei.shikakumon.com/",
+      color: "var(--c-kashikin)",
+      desc: "第一種・第二種衛生管理者の練習問題1,000問と本番形式の模擬試験。総務・人事で選任される方向け。",
+    },
+    {
+      name: "設備資格ドリル",
+      href: "https://setsubi.shikakumon.com/",
+      color: "var(--c-chizai)",
+      desc: "第二種電気工事士・危険物乙4・ビル管・冷凍3種などビルメン系9資格、2,162問。",
+    },
+    {
+      name: "筋トレ資格ドリル",
+      href: "https://kintore.shikakumon.com/",
+      color: "var(--c-pii)",
+      desc: "NSCA-CPT・NESTA-PFT・健康運動指導士などトレーナー系7資格の練習問題と模試。",
+    },
+  ];
+
   // 資格を実施団体・領域ごとにまとめて並べる。
   // 14資格を平坦に並べると雑多に見えるが、実際は実施団体で4つの塊になっており、
   // 同じ団体の検定は受験者層と併願パターンが重なる。その関係を見せるための区分。
@@ -347,6 +370,27 @@ export default function Home() {
             </svg>
           </p>
         </a>
+      </section>
+
+      {/* 姉妹サイト */}
+      <section className="mb-12">
+        <h2 className="text-lg font-bold text-[color:var(--c-ink)] mb-2 font-serif">姉妹サイト</h2>
+        <p className="text-sm text-[color:var(--c-text-sub)] leading-relaxed mb-5">
+          シカクモンに無い分野は、同じ作りの専門サイトで公開しています。
+        </p>
+        <div className="grid sm:grid-cols-3 gap-4">
+          {sisterSites.map((site) => (
+            <a
+              key={site.href}
+              href={site.href}
+              className="card p-5 no-underline block"
+              style={{ borderLeft: `4px solid ${site.color}` }}
+            >
+              <p className="font-bold text-[color:var(--c-ink)] mb-1">{site.name}</p>
+              <p className="text-xs text-[color:var(--c-text-sub)] leading-relaxed">{site.desc}</p>
+            </a>
+          ))}
+        </div>
       </section>
 
       {/* About teaser */}

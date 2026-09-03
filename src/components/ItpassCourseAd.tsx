@@ -1,10 +1,13 @@
 /**
- * ビジネス実務法務検定 公式講座（全日本情報学習振興協会 SMART合格講座）の広告
- * 配置: ビジネス実務法務検定関連コラム記事の本文末尾、トップページ
+ * ITパスポートの講座広告。
+ * リンクと文言は src/lib/affiliate-links.ts の EXAM_AFFILIATE を唯一の出典とする
+ * (直書きすると、雛形から複製したときに別資格の商品を宣伝してしまうため)。
+ * 配置: ITパスポート関連のコラム記事の末尾、資格トップページ、問題ページ。
  */
 
 import AffiliateLink from "@/components/AffiliateLink";
 import FreeLeadCTA from "@/components/FreeLeadCTA";
+import { EXAM_AFFILIATE } from "@/lib/affiliate-links";
 
 interface Props {
   headline?: string;
@@ -13,7 +16,7 @@ interface Props {
 
 export default function ItpassCourseAd({ headline, body }: Props = {}) {
   const finalHeadline = headline ?? "独学に不安があれば";
-  const finalBody = body ?? "ITパスポートの対策講座として、全日本情報学習振興協会のSMART合格講座があります。ストラテジ系からテクノロジ系まで範囲が広いため、体系的に学びたい方は検討してみてください。";
+  const finalBody = body ?? "ITパスポートの対策講座として、全日本情報学習振興協会のSMART合格講座があります。ストラテジ・マネジメント・テクノロジの3分野は範囲が広く、非IT職の方は独学だと優先順位をつけにくい試験です。";
 
   return (
     <aside className="theme-pii my-10 p-5 rounded-lg border border-[color:var(--c-border)] bg-[color:var(--c-bg-alt)]">
@@ -29,17 +32,17 @@ export default function ItpassCourseAd({ headline, body }: Props = {}) {
       <div className="flex flex-col items-start gap-3">
         <FreeLeadCTA exam="itpass" placement="course_ad" withBadge />
         <AffiliateLink
-          href="https://px.a8.net/svt/ejp?a8mat=4B1TI0+9T22IA+4LOQ+BW8O2&a8ejpredirect=https%3A%2F%2Fwww.joho-gakushu.jp%2Fsmartinfo%2Fsmart_lineup.php"
+          href={EXAM_AFFILIATE["itpass"].href}
           course="itpass"
           placement="course_ad"
         >
-          ビジネス実務法務検定のSMART合格講座を見る →
+          {EXAM_AFFILIATE["itpass"].label} →
         </AffiliateLink>
       </div>
       <img
         width={1}
         height={1}
-        src="https://www17.a8.net/0.gif?a8mat=4B1TI0+9T22IA+4LOQ+BW8O2"
+        src={`https://www11.a8.net/0.gif?${(EXAM_AFFILIATE["itpass"].href.match(/a8mat=[^&]+/) || [""])[0]}`}
         alt=""
         style={{ position: "absolute", border: 0 }}
       />

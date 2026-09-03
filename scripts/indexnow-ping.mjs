@@ -9,7 +9,10 @@
 // 前提: public/{KEY}.txt が本番にデプロイ済みであること。
 
 const HOST = "shikakumon.com";
-const KEY = "7f4dd77a2718e9c2c1cb3df2931be839";
+// Bing Webmaster Tools の IndexNow 画面で発行したキー(2026-09-03)。
+// 旧キーでは SiteVerificationNotCompleted で弾かれたため差し替えた。
+// 3サイトで同一キーを共用する(各ホストに同名の .txt を置けば仕様上問題ない)。
+const KEY = "f57ad98a989b48989e4b0a887481b31f";
 const SITEMAP_URL = `https://${HOST}/sitemap.xml`;
 const ENDPOINT = "https://api.indexnow.org/indexnow";
 

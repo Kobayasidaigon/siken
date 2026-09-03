@@ -10,8 +10,8 @@ import Moshi2TopLink from "@/components/Moshi2TopLink";
 
 export const metadata: Metadata = pageMetadata({
   path: "/pii/",
-  title: "個人情報保護士 試験対策｜オリジナル300問を無料で",
-  description: "個人情報保護士認定試験のオリジナル練習問題300問を詳細解説。個人情報保護法・マイナンバー法・情報セキュリティの3分野を収録。",
+  title: "個人情報保護士 練習問題・過去問対策【全337問・無料】",
+  description: "個人情報保護士認定試験のオリジナル練習問題337問を無料公開。個人情報保護法・マイナンバー法・情報セキュリティの3分野を、根拠条文つきの詳細解説で演習できます。",
 });
 
 const fields = [

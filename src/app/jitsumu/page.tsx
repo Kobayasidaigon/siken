@@ -10,8 +10,8 @@ import Moshi2TopLink from "@/components/Moshi2TopLink";
 
 export const metadata: Metadata = pageMetadata({
   path: "/jitsumu/",
-  title: "個人情報保護実務検定 試験対策｜オリジナル200問を無料で",
-  description: "個人情報保護実務検定のオリジナル練習問題200問を詳細解説。個人情報保護法の基礎・取得利用・安全管理・本人の権利を収録。",
+  title: "個人情報保護実務検定 練習問題・過去問対策【全200問・無料】",
+  description: "個人情報保護実務検定のオリジナル練習問題200問を無料公開。個人情報保護法の実務運用(1級・2級対応)を、根拠条文つきの詳細解説で演習できます。",
 });
 
 const fields = [

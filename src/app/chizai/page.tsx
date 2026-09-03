@@ -9,8 +9,8 @@ import Moshi2TopLink from "@/components/Moshi2TopLink";
 
 export const metadata: Metadata = pageMetadata({
   path: "/chizai/",
-  title: "知的財産管理技能検定3級 試験対策｜オリジナル200問を無料で",
-  description: "知的財産管理技能検定3級のオリジナル練習問題200問を詳細解説。特許法・著作権法・意匠法・商標法・不正競争防止法・国際条約などを収録。",
+  title: "知的財産管理技能検定3級 練習問題・過去問対策【全232問・無料】",
+  description: "知的財産管理技能検定3級のオリジナル練習問題232問を無料公開。特許法・著作権法・意匠法・商標法・不正競争防止法ほか9分野を、根拠つきの詳細解説で演習できます。",
 });
 
 const fields = [

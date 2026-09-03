@@ -8,8 +8,8 @@ import ExamCountdown from "@/components/ExamCountdown";
 
 export const metadata: Metadata = pageMetadata({
   path: "/kashikin/",
-  title: "貸金業務取扱主任者 試験対策｜オリジナル504問を無料で",
-  description: "貸金業務取扱主任者試験のオリジナル練習問題504問を詳細解説。分野別に整理し、根拠条文を添えた解説付きで本試験に備えられます。",
+  title: "貸金業務取扱主任者 練習問題・過去問対策【全504問・無料】",
+  description: "貸金業務取扱主任者のオリジナル練習問題504問を無料公開。貸金業法・利息制限法・民法・資金需要者保護の4分野を、根拠つきの詳細解説で演習できます。過去問対策の総仕上げにも。",
 });
 
 export default async function KashikinPage() {

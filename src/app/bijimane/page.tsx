@@ -9,9 +9,8 @@ import Moshi2TopLink from "@/components/Moshi2TopLink";
 
 export const metadata: Metadata = pageMetadata({
   path: "/bijimane/",
-  title: "ビジネスマネジャー検定 試験対策｜オリジナル200問を無料で",
-  description:
-    "ビジネスマネジャー検定試験のオリジナル練習問題を詳細解説付きで無料公開。IBT・CBT化で過去問が公開されない試験です。マネジャーの役割から人材育成、業務のマネジメント、リスクマネジメントまで分野別に演習できます。",
+  title: "ビジネスマネジャー検定 練習問題・過去問対策【全200問・無料】",
+  description: "ビジネスマネジャー検定のオリジナル練習問題200問を無料公開。マネジャーの役割・人材育成・経営計画・リスクマネジメントを根拠つき解説で演習できます。過去問が公開されない試験の対策に。",
 });
 
 const fields = [

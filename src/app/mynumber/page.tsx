@@ -10,8 +10,8 @@ import Moshi2TopLink from "@/components/Moshi2TopLink";
 
 export const metadata: Metadata = pageMetadata({
   path: "/mynumber/",
-  title: "マイナンバー実務検定3級 試験対策｜オリジナル200問を無料で",
-  description: "マイナンバー実務検定3級のオリジナル練習問題200問を詳細解説。番号法・個人番号カード・特定個人情報保護・事業者の取扱いを収録。",
+  title: "マイナンバー実務検定3級 練習問題・過去問対策【全200問・無料】",
+  description: "マイナンバー実務検定3級のオリジナル練習問題200問を無料公開。番号法・個人番号カード・特定個人情報の保護を、根拠条文つきの詳細解説で演習できます。",
 });
 
 const fields = [

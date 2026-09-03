@@ -10,8 +10,8 @@ import Moshi2TopLink from "@/components/Moshi2TopLink";
 
 export const metadata: Metadata = pageMetadata({
   path: "/bijihou/",
-  title: "ビジネス実務法務検定3級 試験対策｜オリジナル200問を無料で",
-  description: "ビジネス実務法務検定3級のオリジナル練習問題200問を詳細解説。民法・商法・会社法・関連法規（独禁法・消費者法・知財法）を収録。",
+  title: "ビジネス実務法務検定3級 練習問題・過去問対策【全200問・無料】",
+  description: "ビジネス実務法務検定3級のオリジナル練習問題200問を無料公開。民法・商法・会社法・関連法規を根拠つき解説で演習できます。IBT・CBT化で過去問が公開されない試験の演習量確保に。",
 });
 
 const fields = [

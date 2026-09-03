@@ -9,8 +9,8 @@ import Moshi2TopLink from "@/components/Moshi2TopLink";
 
 export const metadata: Metadata = pageMetadata({
   path: "/fukushi2/",
-  title: "福祉住環境コーディネーター2級 試験対策｜オリジナル200問を無料で",
-  description: "福祉住環境コーディネーター2級のオリジナル練習問題を詳細解説付きで無料公開。IBT化で過去問が公開されない今、疾患別の特性・住環境整備の技術・介護保険の住宅改修まで分野別に演習できます。",
+  title: "福祉住環境コーディネーター2級 練習問題・過去問対策【全230問・無料】",
+  description: "福祉住環境コーディネーター2級のオリジナル練習問題230問を無料公開。疾患・障害の特性、住環境整備の技術、介護保険と住宅改修まで根拠つき解説で演習できます。過去問が公開されない試験の対策に。",
 });
 
 const fields = [

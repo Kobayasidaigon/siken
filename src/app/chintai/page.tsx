@@ -6,8 +6,8 @@ import { pageMetadata } from "@/lib/page-metadata";
 
 export const metadata: Metadata = pageMetadata({
   path: "/chintai/",
-  title: "賃貸不動産経営管理士 試験対策｜オリジナル200問を無料で",
-  description: "賃貸不動産経営管理士のオリジナル練習問題200問を詳細解説。民法・商法・会社法・関連法規（独禁法・消費者法・知財法）を収録。",
+  title: "賃貸不動産経営管理士 練習問題・過去問対策【全200問・無料】",
+  description: "賃貸不動産経営管理士のオリジナル練習問題200問を無料公開。賃貸住宅管理業法の登録制度とサブリース規制、借地借家法、建物設備、原状回復まで10分野を根拠つき解説で演習できます。",
 });
 
 const fields = [

@@ -9,9 +9,8 @@ import Moshi2TopLink from "@/components/Moshi2TopLink";
 
 export const metadata: Metadata = pageMetadata({
   path: "/eco/",
-  title: "eco検定（環境社会検定試験）対策｜オリジナル200問を無料で",
-  description:
-    "eco検定（環境社会検定試験）のオリジナル練習問題を詳細解説付きで無料公開。IBT・CBT化で過去問が公開されない試験です。気候変動・生物多様性・循環型社会・環境法まで分野別に演習できます。",
+  title: "eco検定(環境社会検定試験) 練習問題・過去問対策【全236問・無料】",
+  description: "eco検定(環境社会検定試験)のオリジナル練習問題236問を無料公開。地球環境・気候変動・生物多様性・循環型社会・環境法を根拠つき解説で演習できます。過去問が公開されない試験の対策に。",
 });
 
 const fields = [

@@ -8,8 +8,8 @@ import ExamCountdown from "@/components/ExamCountdown";
 
 export const metadata: Metadata = pageMetadata({
   path: "/bijihou2/",
-  title: "ビジネス実務法務検定2級 試験対策｜オリジナル200問を無料で",
-  description: "ビジネス実務法務検定2級のオリジナル練習問題200問を詳細解説。民法・商法・会社法・関連法規（独禁法・消費者法・知財法）を収録。",
+  title: "ビジネス実務法務検定2級 練習問題・過去問対策【全200問・無料】",
+  description: "ビジネス実務法務検定2級のオリジナル練習問題200問を無料公開。契約・債権回収・倒産処理・会社法・労働法・国際法務まで企業法務の実務範囲を、根拠つき解説で演習できます。過去問が公開されない試験の対策に。",
 });
 
 const fields = [

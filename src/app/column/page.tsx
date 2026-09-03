@@ -133,6 +133,16 @@ const examGroups: ExamGroup[] = [
     themeKey: "fukushi",
     matcher: (slug) => slug.startsWith("eco-"),
   },
+  {
+    // 特定の資格に紐づかない横断記事。資格別のprefixに当たらないため
+    // 明示的に列挙する(ここに入れないと一覧から漏れる)。
+    id: "ousan",
+    examName: "資格の選び方・横断",
+    shortName: "横断",
+    topPath: "/",
+    themeKey: "fukushi",
+    matcher: (slug) => ["soumu-jinji-shikaku"].includes(slug),
+  },
 ];
 
 const themeColor = {

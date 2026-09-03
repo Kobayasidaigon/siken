@@ -45,7 +45,7 @@ export default async function ItpassPage() {
         </h1>
         <div className="w-16 h-1 mb-4" style={{ background: "var(--c-pii)" }}></div>
         <p className="text-sm sm:text-base leading-relaxed max-w-lg" style={{ color: "var(--c-pii-ink)" }}>
-          民法・会社法・関連法規を扱う、{allQuestions.length}問のオリジナル練習問題集です。
+          経営戦略・法務からセキュリティ・ネットワークまで、シラバスVer.6.5準拠の10分野。{allQuestions.length}問のオリジナル練習問題集です。
         </p>
         <div className="mt-6 flex flex-wrap gap-3">
           <a href="/itpass/q/itpass-001/" className="btn-accent">問題を解き始める →</a>

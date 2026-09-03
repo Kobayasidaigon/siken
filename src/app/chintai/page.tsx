@@ -45,7 +45,7 @@ export default async function ChintaiPage() {
         </h1>
         <div className="w-16 h-1 mb-4" style={{ background: "var(--c-kashikin)" }}></div>
         <p className="text-sm sm:text-base leading-relaxed max-w-lg" style={{ color: "var(--c-kashikin-ink)" }}>
-          民法・会社法・関連法規を扱う、{allQuestions.length}問のオリジナル練習問題集です。
+          賃貸住宅管理業法とサブリース規制、借地借家法、建物設備、原状回復まで10分野。{allQuestions.length}問のオリジナル練習問題集です。
         </p>
         <div className="mt-6 flex flex-wrap gap-3">
           <a href="/chintai/q/chintai-001/" className="btn-accent">問題を解き始める →</a>

@@ -45,7 +45,7 @@ export default async function KangyoPage() {
         </h1>
         <div className="w-16 h-1 mb-4" style={{ background: "var(--c-kashikin)" }}></div>
         <p className="text-sm sm:text-base leading-relaxed max-w-lg" style={{ color: "var(--c-kashikin-ink)" }}>
-          民法・会社法・関連法規を扱う、{allQuestions.length}問のオリジナル練習問題集です。
+          区分所有法・標準管理規約・管理委託契約・会計仕訳・建築設備まで10分野。{allQuestions.length}問のオリジナル練習問題集です。
         </p>
         <div className="mt-6 flex flex-wrap gap-3">
           <a href="/kangyo/q/kangyo-001/" className="btn-accent">問題を解き始める →</a>

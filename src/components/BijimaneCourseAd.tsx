@@ -10,6 +10,7 @@
 
 import AffiliateLink from "@/components/AffiliateLink";
 import FreeLeadCTA from "@/components/FreeLeadCTA";
+import BookLeadCTA from "@/components/BookLeadCTA";
 
 interface Props {
   headline?: string;
@@ -33,6 +34,7 @@ export default function BijimaneCourseAd({ headline, body }: Props = {}) {
       <p className="text-sm text-[color:var(--c-text)] leading-relaxed mb-4">{finalBody}</p>
       <div className="flex flex-col items-start gap-3">
         <FreeLeadCTA exam="bijimane" placement="course_ad" withBadge />
+        <BookLeadCTA exam="bijimane" placement="course_ad" />
         <AffiliateLink
           href="https://www.hj.sanno.ac.jp/cp/distance-learning/course/B650-01.html"
           course="bijimane"

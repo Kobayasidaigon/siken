@@ -25,6 +25,49 @@ import Bijihou2CourseAd from "@/components/Bijihou2CourseAd";
 import KashikinCourseAd from "@/components/KashikinCourseAd";
 import TextAffiliateAd from "@/components/TextAffiliateAd";
 import type { ExamSlug } from "@/lib/study-progress";
+import { EXAM_SCHEDULES, decideCtaPriority } from "@/lib/cta-priority";
+import { EXAM_AFFILIATE } from "@/lib/affiliate-links";
+
+/**
+ * コラムのスラッグから資格を引く(カウントダウンの出し分け用)。
+ * column/page.tsx の examGroups と同じ規則: 資格接頭辞、貸金だけ旧スラッグを列挙。
+ */
+const KASHIKIN_LEGACY_SLUGS = new Set([
+  "goukakuritsu",
+  "benkyouhou",
+  "shiken-nittei",
+  "kashikingyou-toha",
+  "benkyou-jikan",
+  "osusume-text",
+  "takken-hikaku",
+]);
+const EXAM_PREFIXES: ExamSlug[] = [
+  "pii", "chizai", "chizai2", "mynumber", "jitsumu", "bijihou", "bijihou2",
+  "fukushi2", "bijimane", "eco", "itpass", "chintai", "kangyo",
+];
+function examFromColumnSlug(slug: string): ExamSlug | null {
+  if (slug.startsWith("kashikin-") || KASHIKIN_LEGACY_SLUGS.has(slug)) return "kashikin";
+  const head = slug.split("-")[0] as ExamSlug;
+  return EXAM_PREFIXES.includes(head) ? head : null;
+}
+
+/** 資格ごとのテーマ色(カウントダウンの accent)。資格トップの theme-* と同じ対応 */
+const EXAM_THEME: Record<ExamSlug, { accent: string; soft: string; period: boolean }> = {
+  kashikin: { accent: "var(--c-kashikin)", soft: "var(--c-kashikin-soft)", period: false },
+  chintai: { accent: "var(--c-kashikin)", soft: "var(--c-kashikin-soft)", period: false },
+  kangyo: { accent: "var(--c-kashikin)", soft: "var(--c-kashikin-soft)", period: false },
+  bijihou: { accent: "var(--c-kashikin)", soft: "var(--c-kashikin-soft)", period: true },
+  bijihou2: { accent: "var(--c-kashikin)", soft: "var(--c-kashikin-soft)", period: true },
+  pii: { accent: "var(--c-pii)", soft: "var(--c-pii-soft)", period: false },
+  mynumber: { accent: "var(--c-pii)", soft: "var(--c-pii-soft)", period: false },
+  jitsumu: { accent: "var(--c-pii)", soft: "var(--c-pii-soft)", period: false },
+  itpass: { accent: "var(--c-pii)", soft: "var(--c-pii-soft)", period: false },
+  chizai: { accent: "var(--c-chizai)", soft: "var(--c-chizai-soft)", period: false },
+  chizai2: { accent: "var(--c-chizai)", soft: "var(--c-chizai-soft)", period: false },
+  fukushi2: { accent: "var(--c-fukushi)", soft: "var(--c-fukushi-soft)", period: true },
+  bijimane: { accent: "var(--c-bijimane)", soft: "var(--c-bijimane-soft)", period: true },
+  eco: { accent: "var(--c-eco)", soft: "var(--c-eco-soft)", period: true },
+};
 import ExamCountdown from "@/components/ExamCountdown";
 import JsonLd from "@/components/JsonLd";
 import { pageMetadata } from "@/lib/page-metadata";
@@ -291,6 +334,14 @@ export default async function ColumnPage({ params }: { params: Promise<{ slug: s
   };
   const niteiCountdown = niteiCountdowns[slug];
 
+  // 申込締切10日前(= AnswerReveal が講座広告を上に出す窓)だけ、日程・直前コラム以外の
+  // 同資格コラムにも本文冒頭に締切カウントダウンを出す。貸金は 9/10、ビジ法/ビジマネは 9/29、
+  // 賃管士/管業は 9/30 が締切で、この窓に「意味ない？」「過去問」系の記事へ来た読者にも
+  // 締切と無料オファー(または協会申込)を1回だけ見せる。窓の外では何も出ない(2026-09-05)。
+  const urgentExam = !niteiCountdown ? examFromColumnSlug(slug) : null;
+  const urgentCountdown =
+    urgentExam && decideCtaPriority(urgentExam).phase === "apply_urgent" ? urgentExam : null;
+
   const pageUrl = `https://shikakumon.com/column/${slug}/`;
   const jsonLd = [
     {
@@ -366,6 +417,27 @@ export default async function ColumnPage({ params }: { params: Promise<{ slug: s
           applyPlacement="column_countdown_apply"
           lead={niteiCountdown.lead}
           leadPlacement="column_countdown_lead"
+        />
+      )}
+
+      {urgentCountdown && (
+        <ExamCountdown
+          exams={EXAM_SCHEDULES[urgentCountdown]}
+          accent={EXAM_THEME[urgentCountdown].accent}
+          accentSoft={EXAM_THEME[urgentCountdown].soft}
+          periodExam={EXAM_THEME[urgentCountdown].period}
+          apply={
+            EXAM_AFFILIATE[urgentCountdown].applyHref
+              ? {
+                  href: EXAM_AFFILIATE[urgentCountdown].applyHref!,
+                  course: EXAM_AFFILIATE[urgentCountdown].course,
+                  pixel: EXAM_AFFILIATE[urgentCountdown].applyPixel ?? "",
+                }
+              : undefined
+          }
+          applyPlacement="column_urgent_apply"
+          lead={urgentCountdown}
+          leadPlacement="column_urgent_lead"
         />
       )}
 

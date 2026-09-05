@@ -42,6 +42,7 @@ export default async function PiiMockPage() {
         questionPathPrefix="/pii/q/"
         questions={questions}
         size={20}
+        passPct={70}
       />
     </div>
   );

@@ -9,6 +9,7 @@
 
 import AffiliateLink from "@/components/AffiliateLink";
 import FreeLeadCTA from "@/components/FreeLeadCTA";
+import BookLeadCTA from "@/components/BookLeadCTA";
 
 interface Props {
   headline?: string;
@@ -32,6 +33,7 @@ export default function Fukushi2CourseAd({ headline, body }: Props = {}) {
       </p>
       <div className="flex flex-col items-start gap-3">
         <FreeLeadCTA exam="fukushi2" placement="course_ad" withBadge />
+        <BookLeadCTA exam="fukushi2" placement="course_ad" />
         <AffiliateLink
           href="https://www.u-can.co.jp/%E7%A6%8F%E7%A5%89%E4%BD%8F%E7%92%B0%E5%A2%83%E3%82%B3%E3%83%BC%E3%83%87%E3%82%A3%E3%83%8D%E3%83%BC%E3%82%BF%E3%83%BC/"
           course="fukushi2"

@@ -150,7 +150,7 @@ export default function Home() {
       count: 230,
       fieldCount: 9,
       desc: "高齢者・障害者の暮らしを住まいから支える検定。疾患の特性・住宅改修の技術・介護保険まで、医療×福祉×建築を横断して問われます。",
-      date: nextExamDateLabel(FUKUSHI2_EXAMS, { period: true, fallback: "年2回（6〜7月、10〜11月）" }),
+      date: nextExamDateLabel(FUKUSHI2_EXAMS, { period: true, fallback: "年2回（6〜7月、11〜12月）" }),
       themeVar: "var(--c-fukushi)",
       softVar: "var(--c-fukushi-soft)",
     },

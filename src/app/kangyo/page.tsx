@@ -62,7 +62,7 @@ export default async function KangyoPage() {
       </section>
 
       {/* カウントダウン: 申込期間中(8/3〜9/30)は「申込締切まで」を優先表示。A8の成果は締切直前に集中する */}
-      <ExamCountdown exams={KANGYO_EXAMS} accent="var(--c-kashikin)" accentSoft="var(--c-kashikin-soft)" />
+      <ExamCountdown exams={KANGYO_EXAMS} accent="var(--c-kashikin)" accentSoft="var(--c-kashikin-soft)" lead="kangyo" />
 
       <section className="mb-12">
         <h2 className="text-lg font-bold text-[color:var(--c-ink)] mb-5 font-serif">分野から選ぶ</h2>

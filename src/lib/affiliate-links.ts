@@ -86,8 +86,13 @@ export const EXAM_AFFILIATE: Record<ExamSlug, AffiliateTarget> = {
       "https://px.a8.net/svt/ejp?a8mat=4B1TI0+9T22IA+4LOQ+BW8O2&a8ejpredirect=https%3A%2F%2Fwww.joho-gakushu.jp%2Fsmart%2Fregistfree.php",
     freeLabel: "無料登録してSMART講座を試し見る",
   },
+  // 2026-09-05: 着地を汎用ラインナップ頁(smart_lineup.php)から、協会のビジ法専用講座ページ
+  //   (joho-gakushu.or.jp/bijihou/ = 3級・2級対象)へ変更。検索結果に同ページへの A8 経由の
+  //   着地(?a8= 付き URL)が出ており、他アフィリエイターが同じ着地を使っている。
+  //   ※本環境から協会サイトへ到達できないため、デプロイ後に1回クリックして最終着地と
+  //     A8 のクリック計上を確認すること(監査レポート §5)。
   bijihou: {
-    href: "https://px.a8.net/svt/ejp?a8mat=4B1TI0+9T22IA+4LOQ+BW8O2&a8ejpredirect=https%3A%2F%2Fwww.joho-gakushu.jp%2Fsmartinfo%2Fsmart_lineup.php",
+    href: "https://px.a8.net/svt/ejp?a8mat=4B1TI0+9T22IA+4LOQ+BW8O2&a8ejpredirect=https%3A%2F%2Fwww.joho-gakushu.or.jp%2Fbijihou%2F",
     label: "ビジネス実務法務検定のSMART合格講座を見る",
     course: "bijihou",
     freeHref:
@@ -98,7 +103,8 @@ export const EXAM_AFFILIATE: Record<ExamSlug, AffiliateTarget> = {
   //   SMART合格講座で、講座ラインナップに2級が含まれるためリンクを共有する。
   //   a8mat は同一提携(4B1TI0系)で、シカクモン本体のサイトとして発行済み。
   bijihou2: {
-    href: "https://px.a8.net/svt/ejp?a8mat=4B1TI0+9T22IA+4LOQ+BW8O2&a8ejpredirect=https%3A%2F%2Fwww.joho-gakushu.jp%2Fsmartinfo%2Fsmart_lineup.php",
+    // 2026-09-05: bijihou と同じく専用講座ページ(3級・2級共通)へ着地を変更
+    href: "https://px.a8.net/svt/ejp?a8mat=4B1TI0+9T22IA+4LOQ+BW8O2&a8ejpredirect=https%3A%2F%2Fwww.joho-gakushu.or.jp%2Fbijihou%2F",
     label: "ビジネス実務法務検定2級のSMART合格講座を見る",
     course: "bijihou2",
     freeHref:
@@ -111,7 +117,9 @@ export const EXAM_AFFILIATE: Record<ExamSlug, AffiliateTarget> = {
   //   ※LEC・アガルートもITパスポート講座を持つため、成果が出ない場合は
   //     そちらの提携リンクへの差し替えも検討できる。
   itpass: {
-    href: "https://px.a8.net/svt/ejp?a8mat=4B1TI0+9T22IA+4LOQ+BW8O2&a8ejpredirect=https%3A%2F%2Fwww.joho-gakushu.jp%2Fsmartinfo%2Fsmart_lineup.php",
+    // 2026-09-05: 着地を汎用ラインナップ頁から協会の ITパスポート専用講座ページ
+    //   (joho-gakushu.or.jp/it-passport/)へ変更。bijihou と同じ根拠・同じ確認事項。
+    href: "https://px.a8.net/svt/ejp?a8mat=4B1TI0+9T22IA+4LOQ+BW8O2&a8ejpredirect=https%3A%2F%2Fwww.joho-gakushu.or.jp%2Fit-passport%2F",
     label: "ITパスポートのSMART合格講座を見る",
     course: "itpass",
     freeHref:

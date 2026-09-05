@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import type { QuestionData } from "@/lib/types";
 import { pageMetadata } from "@/lib/page-metadata";
+import KashikinCourseAd from "@/components/KashikinCourseAd";
 
 export async function generateStaticParams() {
   const exams = getExamNumbers();
@@ -120,6 +121,12 @@ export default async function ExamPage({ params }: { params: Promise<{ num: stri
             );
           })}
         </div>
+      )}
+
+      {/* 2026-09-05: 貸金トップ「問題を解き始める」の着地であるこの一覧面だけ講座広告が無かった
+          (他資格の分野一覧と貸金の /field/ には CourseAd がある)。一覧の末尾に同じ枠を置く */}
+      {questions.length > 0 && (
+        <KashikinCourseAd headline={isOriginal ? "全問を通して弱点が見えたら" : `第${examNumber}回の過去問でつまずくなら`} />
       )}
 
       <nav className="mt-10 flex justify-center pt-4 border-t border-[color:var(--c-border)]">

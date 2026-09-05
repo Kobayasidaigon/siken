@@ -60,24 +60,26 @@ export const ECO_EXAMS: UpcomingExam[] = [
 ];
 
 // 出典: 全日本情報学習振興協会 令和8年度試験日程 joho-gakushu.or.jp/schedule/2026.php
-// (2026-08-06確認)。申込開始日は協会が公表していないため省略(=受付中として扱う)。
+// (2026-08-06確認)。申込開始日は 2026-09-05 に日程コラム(pii-nittei.md 等・協会公表値)から補った。
+// applyStart が無いと、前の回の締切を過ぎた瞬間に次の回の「申込締切まで」+協会申込リンクが
+// 受付開始前から出てしまう(第84回締切 8/6 → 第85回受付開始 8/31 の間など)。
 export const PII_EXAMS: UpcomingExam[] = [
-  { date: "2026-09-27", label: "第84回", applyEnd: "2026-08-06" },
-  { date: "2026-12-13", label: "第85回", applyEnd: "2026-10-29" },
-  { date: "2027-03-14", label: "第86回", applyEnd: "2027-01-28" },
+  { date: "2026-09-27", label: "第84回", applyStart: "2026-05-25", applyEnd: "2026-08-06" },
+  { date: "2026-12-13", label: "第85回", applyStart: "2026-08-31", applyEnd: "2026-10-29" },
+  { date: "2027-03-14", label: "第86回", applyStart: "2026-11-16", applyEnd: "2027-01-28" },
 ];
 
-// 出典: 同上 (2026-08-06確認)
+// 出典: 同上 (2026-08-06確認、申込開始日は mynumber-nittei.md から 2026-09-05 補完)
 export const MYNUMBER_EXAMS: UpcomingExam[] = [
-  { date: "2026-09-27", label: "第47回", applyEnd: "2026-08-06" },
-  { date: "2026-12-13", label: "第48回", applyEnd: "2026-10-29" },
-  { date: "2027-03-14", label: "第49回", applyEnd: "2027-01-28" },
+  { date: "2026-09-27", label: "第47回", applyStart: "2026-05-25", applyEnd: "2026-08-06" },
+  { date: "2026-12-13", label: "第48回", applyStart: "2026-08-31", applyEnd: "2026-10-29" },
+  { date: "2027-03-14", label: "第49回", applyStart: "2026-11-16", applyEnd: "2027-01-28" },
 ];
 
-// 出典: 同上 (2026-08-06確認)
+// 出典: 同上 (2026-08-06確認、申込開始日は jitsumu-nittei.md から 2026-09-05 補完)
 export const JITSUMU_EXAMS: UpcomingExam[] = [
-  { date: "2026-11-29", label: "第71回", applyEnd: "2026-10-22" },
-  { date: "2027-02-21", label: "第72回", applyEnd: "2027-01-14" },
+  { date: "2026-11-29", label: "第71回", applyStart: "2026-07-28", applyEnd: "2026-10-22" },
+  { date: "2027-02-21", label: "第72回", applyStart: "2026-10-27", applyEnd: "2027-01-14" },
 ];
 
 // 出典: 賃貸不動産経営管理士協議会 chintaikanrishi.jp/exam/summary (令和8年度 試験実施要領)。
@@ -164,7 +166,32 @@ export function nextExamDateLabel(
   exams: UpcomingExam[],
   opts?: { period?: boolean; suffix?: string; fallback?: string }
 ): string {
-  const e = nextExam(exams);
+  // 2026-09-05: 申込を締め切った回(例: 個情保 第84回 9/27、締切 8/6)を「次回試験」として
+  // 出し続けていた。読者が行動できるのは申込受付中の回なので、受付中の回があればそれを優先し、
+  // 無ければ従来どおり日付順の次回に落とす。
+  const e = nextApplyDeadline(exams) ?? nextExam(exams);
   if (!e) return opts?.fallback ?? "公式サイトで最新日程を確認";
   return `${formatYmdJa(e.date)}${opts?.period ? "〜" : ""}${opts?.suffix ?? ""}`;
+}
+
+/**
+ * 東商IBT/CBT型(期間制)の「試験期間・申込期間」の1行説明。資格トップの併願案内など、
+ * これまで日付をハードコードして締切後に腐っていた文言の差し替え用。
+ * 受付中の回があればその回、無ければ次回(受付開始前)を使い、リストが尽きたら null。
+ */
+export function seasonLabel(exams: UpcomingExam[]): string | null {
+  const e = nextApplyDeadline(exams) ?? nextExam(exams);
+  if (!e) return null;
+  const today = todayStart();
+  const parts = [`${e.label}: 試験期間 ${formatYmdJa(e.date)}〜`];
+  if (e.applyEnd && ymdDate(e.applyEnd).getTime() < today) {
+    parts.push(`申込は${formatYmdJa(e.applyEnd)}で受付終了`);
+  } else if (e.applyStart && ymdDate(e.applyStart).getTime() > today) {
+    parts.push(`申込は${formatYmdJa(e.applyStart)}から`);
+  } else if (e.applyStart && e.applyEnd) {
+    parts.push(`申込期間 ${formatYmdJa(e.applyStart)}〜${formatYmdJa(e.applyEnd)}`);
+  } else if (e.applyEnd) {
+    parts.push(`申込締切 ${formatYmdJa(e.applyEnd)}`);
+  }
+  return parts.join("・");
 }

@@ -62,7 +62,7 @@ export default async function Bijihou2Page() {
       </section>
 
       {/* カウントダウン: 申込期間中は「申込締切まで」を優先表示(東商IBT/CBTは期間制) */}
-      <ExamCountdown exams={BIJIHOU_EXAMS} accent="var(--c-kashikin)" accentSoft="var(--c-kashikin-soft)" periodExam />
+      <ExamCountdown exams={BIJIHOU_EXAMS} accent="var(--c-kashikin)" accentSoft="var(--c-kashikin-soft)" periodExam lead="bijihou2" />
 
       <section className="mb-12">
         <h2 className="text-lg font-bold text-[color:var(--c-ink)] mb-5 font-serif">分野から選ぶ</h2>

@@ -111,7 +111,7 @@ export default async function Fukushi2Page() {
       <section className="mb-12">
         <h2 className="text-base font-bold text-[color:var(--c-ink)] mb-4 font-serif">試験の概要</h2>
         <div className="card p-5 text-sm text-[color:var(--c-text-sub)] space-y-2">
-          <p><span className="font-bold text-[color:var(--c-ink)]">試験日</span>　年2シーズン（例年6〜7月、10〜11月の各期間中に受験）</p>
+          <p><span className="font-bold text-[color:var(--c-ink)]">試験日</span>　年2シーズン（例年6〜7月、11〜12月の各期間中に受験）　<a href="/column/fukushi2-nittei/" className="underline hover:no-underline">詳しい日程・申込方法 →</a></p>
           <p><span className="font-bold text-[color:var(--c-ink)]">試験方式</span>　IBT（自宅等のパソコンで受験）または CBT（各地テストセンターで受験）の多肢選択式・90分</p>
           <p><span className="font-bold text-[color:var(--c-ink)]">合格基準</span>　100点満点中70点以上</p>
           <p><span className="font-bold text-[color:var(--c-ink)]">受験資格</span>　制限なし（3級を飛ばしていきなり2級から受験できます）</p>

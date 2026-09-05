@@ -140,6 +140,7 @@ export default async function PiiPage() {
           <p><span className="font-bold text-[color:var(--c-ink)]">試験時間</span>　150分</p>
           <p><span className="font-bold text-[color:var(--c-ink)]">合格基準</span>　各課題70%以上</p>
           <p><span className="font-bold text-[color:var(--c-ink)]">受験料</span>　11,000円（公開会場・税込）／CBT会場 +1,500円／オンラインIBT +3,000円</p>
+          <p><span className="font-bold text-[color:var(--c-ink)]">実施機関</span>　一般財団法人全日本情報学習振興協会</p>
         </div>
       </section>
 

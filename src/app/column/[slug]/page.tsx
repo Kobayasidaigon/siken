@@ -18,6 +18,10 @@ import Fukushi2CourseAd from "@/components/Fukushi2CourseAd";
 import { canShowUcanAd } from "@/lib/ucan-policy";
 import EcoCourseAd from "@/components/EcoCourseAd";
 import BijimaneCourseAd from "@/components/BijimaneCourseAd";
+import ItpassCourseAd from "@/components/ItpassCourseAd";
+import ChintaiCourseAd from "@/components/ChintaiCourseAd";
+import KangyoCourseAd from "@/components/KangyoCourseAd";
+import Bijihou2CourseAd from "@/components/Bijihou2CourseAd";
 import TextAffiliateAd from "@/components/TextAffiliateAd";
 import ExamCountdown from "@/components/ExamCountdown";
 import JsonLd from "@/components/JsonLd";
@@ -33,6 +37,8 @@ import {
   PII_EXAMS,
   MYNUMBER_EXAMS,
   JITSUMU_EXAMS,
+  CHINTAI_EXAMS,
+  KANGYO_EXAMS,
 } from "@/lib/exam-dates";
 
 export async function generateStaticParams() {
@@ -114,6 +120,15 @@ export default async function ColumnPage({ params }: { params: Promise<{ slug: s
   const isEcoArticle = slug.startsWith("eco-");
   const isBijimaneArticle = slug.startsWith("bijimane-");
 
+  // 2026-09-01〜02 に追加した4資格(ITパスポート・賃管士・管業・ビジ法2級)。
+  // 分岐が無かったため、17本のコラムが講座広告なし+末尾の内部導線が貸金(全504問)に
+  // 落ちていた(コラム一覧は 09-02 に直したが、詳細ページ側が未対応だった)。
+  // 各資格の A8 リンクは affiliate-links.ts に揃っているので CourseAd をそのまま使う。
+  const isItpassArticle = slug.startsWith("itpass-");
+  const isChintaiArticle = slug.startsWith("chintai-");
+  const isKangyoArticle = slug.startsWith("kangyo-");
+  const isBijihou2Article = slug.startsWith("bijihou2-");
+
   // 日程・申込コラム(全日本情報学習振興協会が実施するSMART系資格のみ)には、
   // 講座広告より先に「試験申込」導線を置く。ドリル読者の必然行動(受験申込)が
   // そのまま成果地点になるため。着地は協会公式の各試験ページ(申込ボタンあり)。
@@ -151,6 +166,9 @@ export default async function ColumnPage({ params }: { params: Promise<{ slug: s
   // 本文はmarkdownの静的な表(「申込期間 7月1日〜9月10日」)だけで、締切まで何日かは
   // 読者が自分で数える必要があった。A8実測(2026-08-06)で成果は締切直前に集中すると
   // 分かっているため、残り日数を最初に見せる。試験日リストが尽きれば自動で消える。
+  // 2026-09-05: 直前対策コラム(*-chokuzen)にも設置。「直前対策」で検索する読者は
+  // 試験日が確定しており、申込期間中なら締切、期間後なら試験日までの残り日数が
+  // そのまま行動(申込・講座検討)のきっかけになる。日程データのある資格だけ。
   const niteiCountdowns: Record<
     string,
     {
@@ -167,6 +185,30 @@ export default async function ColumnPage({ params }: { params: Promise<{ slug: s
       accent: "var(--c-kashikin)",
       accentSoft: "var(--c-kashikin-soft)",
       examWord: "次回本試験",
+    },
+    "kashikin-chokuzen": {
+      exams: KASHIKIN_EXAMS,
+      accent: "var(--c-kashikin)",
+      accentSoft: "var(--c-kashikin-soft)",
+      examWord: "本試験",
+    },
+    "chintai-chokuzen": {
+      exams: CHINTAI_EXAMS,
+      accent: "var(--c-kashikin)",
+      accentSoft: "var(--c-kashikin-soft)",
+      examWord: "本試験",
+    },
+    "kangyo-chokuzen": {
+      exams: KANGYO_EXAMS,
+      accent: "var(--c-kashikin)",
+      accentSoft: "var(--c-kashikin-soft)",
+      examWord: "本試験",
+    },
+    "pii-chokuzen": {
+      exams: PII_EXAMS,
+      accent: "var(--c-pii)",
+      accentSoft: "var(--c-pii-soft)",
+      examWord: "本試験",
     },
     "chizai-nittei": {
       exams: CHIZAI_EXAMS,
@@ -408,6 +450,36 @@ export default async function ColumnPage({ params }: { params: Promise<{ slug: s
         <BijimaneCourseAd headline="公式テキストの範囲を体系的に押さえるなら" />
       )}
 
+      {isItpassArticle && (
+        <ItpassCourseAd headline="3分野の優先順位を講座で整理するなら" />
+      )}
+
+      {isChintaiArticle && (
+        <ChintaiCourseAd headline="改正の続く管理業法を体系的に押さえるなら" />
+      )}
+
+      {/* 賃管士×宅建の比較記事。takken-hikaku(貸金×宅建)と同じアガルート宅建講座の
+          素材(承認済み提携 4B3N6P 系・A8素材リンク)を、宅建側の受け皿として併置する */}
+      {slug === "chintai-takken-hikaku" && (
+        <TextAffiliateAd
+          themeClass="theme-kashikin"
+          headline="宅建側の対策をお探しの方へ"
+          course="agaroot-takken"
+          body="賃貸不動産経営管理士と宅建士は出題範囲(借地借家法・民法・宅建業法)が重なり、同じ年に併願する方が多い組み合わせです。宅建側もきちんと準備するなら、フルカラーテキストと動画講義でゼロから1年合格を目指せるカリキュラムがあります。"
+          linkHref="https://px.a8.net/svt/ejp?a8mat=4B3N6P+AWY41E+44M0+61Z82"
+          linkText="宅建士講座・ゼロから始めて1年合格！"
+          pixelSrc="https://www11.a8.net/0.gif?a8mat=4B3N6P+AWY41E+44M0+61Z82"
+        />
+      )}
+
+      {isKangyoArticle && (
+        <KangyoCourseAd headline="区分所有法と標準管理規約を体系的に押さえるなら" />
+      )}
+
+      {isBijihou2Article && (
+        <Bijihou2CourseAd headline="2級の「あてはめ」を講座で鍛えるなら" />
+      )}
+
       {isChizaiGeneralArticle && chizaiAdContent?.secondaryBenrishi && (
         <TextAffiliateAd
           themeClass="theme-chizai"
@@ -475,6 +547,30 @@ export default async function ColumnPage({ params }: { params: Promise<{ slug: s
               <a href="/chizai2/" className="text-sm text-blue-700 no-underline hover:underline">知財2級の練習問題を見る →</a>
               <a href="/chizai2/mock/" className="text-sm text-slate-500 no-underline hover:underline">本番形式で腕試し →</a>
               <a href="/chizai/" className="text-sm text-slate-500 no-underline hover:underline">3級から始める →</a>
+            </>
+          ) : isItpassArticle ? (
+            <>
+              <a href="/itpass/q/itpass-001/" className="text-sm text-blue-700 no-underline hover:underline">ITパスポート 全200問を見る →</a>
+              <a href="/itpass/moshi/" className="text-sm text-slate-500 no-underline hover:underline">模擬試験（100問・120分）を受ける →</a>
+              <a href="/itpass/" className="text-sm text-slate-500 no-underline hover:underline">分野別に選ぶ →</a>
+            </>
+          ) : isChintaiArticle ? (
+            <>
+              <a href="/chintai/q/chintai-001/" className="text-sm text-blue-700 no-underline hover:underline">賃管士 全200問を見る →</a>
+              <a href="/chintai/moshi/" className="text-sm text-slate-500 no-underline hover:underline">模擬試験（50問・120分）を受ける →</a>
+              <a href="/chintai/" className="text-sm text-slate-500 no-underline hover:underline">分野別に選ぶ →</a>
+            </>
+          ) : isKangyoArticle ? (
+            <>
+              <a href="/kangyo/q/kangyo-001/" className="text-sm text-blue-700 no-underline hover:underline">管業 全200問を見る →</a>
+              <a href="/kangyo/moshi/" className="text-sm text-slate-500 no-underline hover:underline">模擬試験（50問・120分）を受ける →</a>
+              <a href="/kangyo/" className="text-sm text-slate-500 no-underline hover:underline">分野別に選ぶ →</a>
+            </>
+          ) : isBijihou2Article ? (
+            <>
+              <a href="/bijihou2/q/bijihou2-001/" className="text-sm text-blue-700 no-underline hover:underline">ビジ法2級 全200問を見る →</a>
+              <a href="/bijihou2/moshi/" className="text-sm text-slate-500 no-underline hover:underline">模擬試験（50問・90分）を受ける →</a>
+              <a href="/bijihou/" className="text-sm text-slate-500 no-underline hover:underline">3級から始める →</a>
             </>
           ) : slug.startsWith("chizai-") ? (
             <>

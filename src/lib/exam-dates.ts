@@ -80,6 +80,22 @@ export const JITSUMU_EXAMS: UpcomingExam[] = [
   { date: "2027-02-21", label: "第72回", applyEnd: "2027-01-14" },
 ];
 
+// 出典: 賃貸不動産経営管理士協議会 chintaikanrishi.jp/exam/summary (令和8年度 試験実施要領)。
+// 2026-09-05 に協議会の要領を引用する予備校3社(スタディング・アガルート・伊藤塾)の一致で確認。
+// 申込は WEB 8/3 12:00〜9/30 23:59、郵送 8/3〜9/24 消印有効。applyEnd は WEB の締切を採用
+// (郵送派は締切が6日早い点をカウントダウン文言では扱わない)。試験は年1回・13:00〜15:00。
+export const CHINTAI_EXAMS: UpcomingExam[] = [
+  { date: "2026-11-15", label: "令和8年度", applyStart: "2026-08-03", applyEnd: "2026-09-30" },
+];
+
+// 出典: マンション管理業協会 kanrikyo.or.jp/kanri/siken.html (令和8年度 試験案内)。
+// 2026-09-05 に協会の案内を引用する予備校3社(スタディング・アガルート・TAC)の一致で確認。
+// 申込は Web 8/3 10:00頃〜9/30 16:59、郵送 8/3〜8/24 消印有効。applyEnd は Web の締切を採用。
+// 試験は年1回・12月第1日曜。
+export const KANGYO_EXAMS: UpcomingExam[] = [
+  { date: "2026-12-06", label: "令和8年度", applyStart: "2026-08-03", applyEnd: "2026-09-30" },
+];
+
 function ymdDate(ymd: string): Date {
   return new Date(`${ymd}T00:00:00+09:00`);
 }

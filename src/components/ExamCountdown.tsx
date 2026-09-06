@@ -1,7 +1,10 @@
 import type { UpcomingExam } from "@/lib/exam-dates";
 import { nextExam, nextApplyDeadline, daysUntilYmd, formatYmdJa } from "@/lib/exam-dates";
 import AffiliateLink from "@/components/AffiliateLink";
+import FreeLeadCTA from "@/components/FreeLeadCTA";
 import CountdownPing from "@/components/CountdownPing";
+import type { ExamSlug } from "@/lib/study-progress";
+import { EXAM_AFFILIATE } from "@/lib/affiliate-links";
 
 /**
  * 資格トップの試験カウントダウンカード。
@@ -14,10 +17,14 @@ import CountdownPing from "@/components/CountdownPing";
  * apply: 試験実施団体がA8広告主の場合(SMART系=全日本情報学習振興協会)のみ、
  * 締切表示時に公式申込ページへのA8導線を添える(「広告」ラベル付き)。
  *
- * 資格トップだけでなく日程コラム(/column/*-nittei/)にも設置している。日程コラムは
- * 「試験日はいつ」で検索して来る=申込意図が最も強い読者の着地点だが、本文は静的な
- * markdownで「申込期間は〇月〇日まで」と書いてあるだけで残り日数が出ていなかった。
- * applyPlacement はその2面のCTRを分けて計測するために置いている。
+ * lead: 2026-09-05 追加。実施団体が広告主でない資格(アガルート系の貸金・賃管士・管業、
+ * オンスク/LEC の知財、SMART の ビジ法)では、締切カウントダウンが日数を見せるだけで
+ * 行動導線が無かった。成果が集中する窓なので、affiliate-links.ts に freeHref
+ * (資料請求・無料体験・無料登録)がある資格だけ、apply と同じ罫線下に無料オファーを
+ * 1行添える。apply と同時には出さない(協会申込が優先)。freeHref 未設定なら何も出ない。
+ *
+ * 資格トップだけでなく日程コラム(/column/*-nittei/)・直前対策コラムにも設置している。
+ * applyPlacement / leadPlacement は設置面ごとの CTR を分けて計測するために置いている。
  */
 
 interface Props {
@@ -28,13 +35,25 @@ interface Props {
   periodExam?: boolean; // 東商IBT/CBTの期間制: 「試験期間の開始まで」+日付末尾に「〜」
   apply?: { href: string; course: string; pixel: string };
   applyPlacement?: string; // GA4で設置面を区別する。既定は資格トップの "top_apply"
+  lead?: ExamSlug; // 締切表示時に無料オファー(freeHref)を添える資格。apply が無い資格向け
+  leadPlacement?: string; // 既定は資格トップの "top_lead"。コラムは "column_countdown_lead"
 }
 
 // 締切がこの日数以内に迫ったら強調表示に切り替える。
 // 強調は「淡色背景+左罫線+日数の級数アップ」まで(赤・アニメーション等は設計言語に反するため使わない)。
 const URGENT_DAYS = 10;
 
-export default function ExamCountdown({ exams, accent, accentSoft, examWord = "次回試験", periodExam = false, apply, applyPlacement = "top_apply" }: Props) {
+export default function ExamCountdown({
+  exams,
+  accent,
+  accentSoft,
+  examWord = "次回試験",
+  periodExam = false,
+  apply,
+  applyPlacement = "top_apply",
+  lead,
+  leadPlacement = "top_lead",
+}: Props) {
   const deadline = nextApplyDeadline(exams);
   if (deadline && deadline.applyEnd) {
     const daysLeft = daysUntilYmd(deadline.applyEnd);
@@ -69,6 +88,9 @@ export default function ExamCountdown({ exams, accent, accentSoft, examWord = "�
             <img width={1} height={1} src={apply.pixel} alt="" style={{ position: "absolute", border: 0 }} />
           </p>
         )}
+        {!apply && lead && (
+          <LeadRow exam={lead} placement={leadPlacement} />
+        )}
       </section>
     );
   }
@@ -88,5 +110,21 @@ export default function ExamCountdown({ exams, accent, accentSoft, examWord = "�
       </div>
       <p className="text-sm text-[color:var(--c-text-sub)]">{formatYmdJa(upcoming.date)}{periodExam ? "〜" : ""}</p>
     </section>
+  );
+}
+
+/**
+ * 無料オファー行。FreeLeadCTA は freeHref が無い資格では null を返すので、
+ * その場合は「広告」ラベルごと出さないよう、ここで先に有無を確認する。
+ */
+function LeadRow({ exam, placement }: { exam: ExamSlug; placement: string }) {
+  if (!EXAM_AFFILIATE[exam]?.freeHref) return null;
+  return (
+    <p className="mt-4 pt-3 border-t border-[color:var(--c-border)] text-sm flex items-center gap-2">
+      <span className="text-[10px] tracking-wider text-[color:var(--c-text-sub)] border border-[color:var(--c-border)] px-1.5 py-0.5 rounded shrink-0">
+        広告
+      </span>
+      <FreeLeadCTA exam={exam} placement={placement} className="underline hover:no-underline" />
+    </p>
   );
 }

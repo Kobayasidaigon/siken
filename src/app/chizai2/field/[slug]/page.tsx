@@ -3,7 +3,8 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import type { Chizai2QuestionData } from "@/lib/chizai2-questions";
 import { pageMetadata } from "@/lib/page-metadata";
-import ChizaiCourseAd from "@/components/ChizaiCourseAd";
+// 2026-09-05: 3級用の ChizaiCourseAd から、2級のLEC講座(Chizai2CourseAd)へそろえる(q ページと同じ理由)
+import Chizai2CourseAd from "@/components/Chizai2CourseAd";
 
 const fieldMap: Record<string, { name: string; desc: string }> = {
   "patent": { name: "特許法", desc: "発明の定義、特許要件、出願・審査手続、権利化、侵害と救済、実施権・ライセンスなど" },
@@ -106,7 +107,7 @@ export default async function Chizai2FieldPage({ params }: { params: Promise<{ s
         {questions.map((q, i) => <QuestionCard key={q.slug} q={q} index={i + 1} />)}
       </div>
 
-      <ChizaiCourseAd headline={`「${field.name}」でつまずくなら`} />
+      <Chizai2CourseAd headline={`「${field.name}」でつまずくなら`} />
     </div>
   );
 }

@@ -3,7 +3,10 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import AnswerReveal from "@/app/q/[slug]/AnswerReveal";
 import BookmarkButton from "@/app/q/[slug]/BookmarkButton";
-import ChizaiCourseAd from "@/components/ChizaiCourseAd";
+// 2026-09-05: 3級用(オンスク3級講座)の ChizaiCourseAd が残っていた。2級は 08-26 に
+// LECオンラインの2級対策講座へ差し替え済み(affiliate-links.ts chizai2)なので、
+// 最高intent面の問題ページも Chizai2CourseAd(LEC・資料請求の無料CTA付き)にそろえる。
+import Chizai2CourseAd from "@/components/Chizai2CourseAd";
 import { pageMetadata } from "@/lib/page-metadata";
 
 const fieldSlugMap: Record<string, string> = {
@@ -93,7 +96,7 @@ export default async function Chizai2QuestionPage({ params }: { params: Promise<
         <p className="text-sm text-[color:var(--c-text)] leading-relaxed whitespace-pre-wrap">{q.questionText}</p>
       </section>
 
-      <AnswerReveal nextHref={nextQ ? `/chizai2/q/${nextQ.slug}/` : undefined} nextLabel={nextQ ? `次の問題（問${idx + 2}）へ` : undefined} choices={q.choices} correctAnswer={q.correctAnswer} explanationHtml={q.content} exam="chizai2" questionSlug={slug} courseAd={<ChizaiCourseAd />} />
+      <AnswerReveal nextHref={nextQ ? `/chizai2/q/${nextQ.slug}/` : undefined} nextLabel={nextQ ? `次の問題（問${idx + 2}）へ` : undefined} choices={q.choices} correctAnswer={q.correctAnswer} explanationHtml={q.content} exam="chizai2" questionSlug={slug} courseAd={<Chizai2CourseAd />} />
 
       <nav className="mt-8 flex justify-between items-center pt-4 border-t border-[color:var(--c-border)]">
         {prevQ ? (

@@ -62,7 +62,7 @@ export default async function Bijihou2Page() {
       </section>
 
       {/* カウントダウン: 申込期間中は「申込締切まで」を優先表示(東商IBT/CBTは期間制) */}
-      <ExamCountdown exams={BIJIHOU_EXAMS} accent="var(--c-kashikin)" accentSoft="var(--c-kashikin-soft)" periodExam />
+      <ExamCountdown exams={BIJIHOU_EXAMS} accent="var(--c-kashikin)" accentSoft="var(--c-kashikin-soft)" periodExam lead="bijihou2" />
 
       <section className="mb-12">
         <h2 className="text-lg font-bold text-[color:var(--c-ink)] mb-5 font-serif">分野から選ぶ</h2>
@@ -84,7 +84,8 @@ export default async function Bijihou2Page() {
         <div className="card p-5 text-sm text-[color:var(--c-text-sub)] space-y-2">
           <p><span className="font-bold text-[color:var(--c-ink)]">試験形式</span>　多肢選択式・90分・100点満点</p>
           <p><span className="font-bold text-[color:var(--c-ink)]">合格基準</span>　70点以上</p>
-          <p><span className="font-bold text-[color:var(--c-ink)]">受験料</span>　IBT方式 5,500円／CBT方式 7,700円（いずれも税込）</p>
+          {/* 2026-09-05: 3級の受験料(5,500/7,700円)が残っていた誤記を2級の額に修正。CBTは利用料2,200円込み */}
+          <p><span className="font-bold text-[color:var(--c-ink)]">受験料</span>　IBT方式 7,700円／CBT方式 9,900円（CBT利用料2,200円を含む・いずれも税込）</p>
           <p><span className="font-bold text-[color:var(--c-ink)]">試験日</span>　年2回（6〜7月、10〜11月）　<a href="/column/bijihou-nittei/" className="underline hover:no-underline">詳しい日程・申込方法 →</a></p>
           <p><span className="font-bold text-[color:var(--c-ink)]">実施機関</span>　東京商工会議所</p>
         </div>

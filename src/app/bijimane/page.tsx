@@ -3,7 +3,7 @@ import { getAllColumns } from "@/lib/columns";
 import type { Metadata } from "next";
 import BijimaneCourseAd from "@/components/BijimaneCourseAd";
 import { pageMetadata } from "@/lib/page-metadata";
-import { BIJIMANE_EXAMS } from "@/lib/exam-dates";
+import { BIJIMANE_EXAMS, seasonLabel } from "@/lib/exam-dates";
 import ExamCountdown from "@/components/ExamCountdown";
 import Moshi2TopLink from "@/components/Moshi2TopLink";
 
@@ -139,7 +139,7 @@ export default async function BijimanePage() {
       <section className="mb-12">
         <h2 className="text-base font-bold text-[color:var(--c-ink)] mb-4 font-serif">試験の概要</h2>
         <div className="card p-5 text-sm text-[color:var(--c-text-sub)] space-y-2">
-          <p><span className="font-bold text-[color:var(--c-ink)]">試験日</span>　年2シーズン（例年6〜7月、10〜11月の各期間中に希望日を選んで受験）</p>
+          <p><span className="font-bold text-[color:var(--c-ink)]">試験日</span>　年2シーズン（例年6〜7月、10〜11月の各期間中に希望日を選んで受験）　<a href="/column/bijimane-nittei/" className="underline hover:no-underline">詳しい日程・申込方法 →</a></p>
           <p><span className="font-bold text-[color:var(--c-ink)]">試験方式</span>　IBT（自宅等のパソコンで受験）または CBT（各地テストセンターで受験）の多肢選択式・90分</p>
           <p><span className="font-bold text-[color:var(--c-ink)]">合格基準</span>　100点満点中70点以上</p>
           <p><span className="font-bold text-[color:var(--c-ink)]">受験料</span>　7,700円（税込）。CBT方式は別途テストセンター利用料2,200円（税込）</p>
@@ -159,7 +159,8 @@ export default async function BijimanePage() {
       <section className="mb-12">
         <h2 className="text-base font-bold text-[color:var(--c-ink)] mb-4 font-serif">同じ東商検定を併願する方へ</h2>
         <div className="card p-5 text-sm text-[color:var(--c-text-sub)] leading-relaxed space-y-2">
-          <p>ビジネスマネジャー検定と<a href="/bijihou/" className="underline hover:no-underline">ビジネス実務法務検定3級</a>は、どちらも東京商工会議所がIBT・CBTで実施する検定で、2026年度第2シーズンは試験期間（10月22日〜11月9日）も申込期間（9月16日〜9月29日）も同じです。</p>
+          {/* 日付は exam-dates.ts から組み立てる(以前は 2026年度第2シーズンの日付を直書きしており、締切後に腐っていた) */}
+          <p>ビジネスマネジャー検定と<a href="/bijihou/" className="underline hover:no-underline">ビジネス実務法務検定3級</a>は、どちらも東京商工会議所がIBT・CBTで実施する検定で、試験期間も申込期間も同じ枠です{seasonLabel(BIJIMANE_EXAMS) ? `（${seasonLabel(BIJIMANE_EXAMS)}）` : ""}。</p>
           <p>出題範囲も一部重なります。ビジマネ第4部の「リスクのマネジメント」で扱うコンプライアンス・ハラスメント・情報漏えい・製品事故といった論点は、ビジ法の企業法務と地続きです。片方の学習がもう片方の下地になるため、同一シーズンでの併願は現実的な選択肢です。</p>
         </div>
       </section>

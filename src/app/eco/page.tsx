@@ -3,7 +3,7 @@ import { getAllColumns } from "@/lib/columns";
 import type { Metadata } from "next";
 import EcoCourseAd from "@/components/EcoCourseAd";
 import { pageMetadata } from "@/lib/page-metadata";
-import { ECO_EXAMS } from "@/lib/exam-dates";
+import { ECO_EXAMS, BIJIHOU_EXAMS, seasonLabel } from "@/lib/exam-dates";
 import ExamCountdown from "@/components/ExamCountdown";
 import Moshi2TopLink from "@/components/Moshi2TopLink";
 
@@ -149,7 +149,7 @@ export default async function EcoPage() {
       <section className="mb-12">
         <h2 className="text-base font-bold text-[color:var(--c-ink)] mb-4 font-serif">試験の概要</h2>
         <div className="card p-5 text-sm text-[color:var(--c-text-sub)] space-y-2">
-          <p><span className="font-bold text-[color:var(--c-ink)]">試験日</span>　年2シーズン（各期間中に希望日を選んで受験）</p>
+          <p><span className="font-bold text-[color:var(--c-ink)]">試験日</span>　年2シーズン（各期間中に希望日を選んで受験）　<a href="/column/eco-nittei/" className="underline hover:no-underline">詳しい日程・申込方法 →</a></p>
           <p><span className="font-bold text-[color:var(--c-ink)]">試験方式</span>　IBT（自宅等のパソコンで受験）または CBT（各地テストセンターで受験）の多肢選択式・90分</p>
           <p><span className="font-bold text-[color:var(--c-ink)]">合格基準</span>　100点満点中70点以上</p>
           <p><span className="font-bold text-[color:var(--c-ink)]">受験料</span>　5,500円（税込）。CBT方式は別途テストセンター利用料2,200円（税込）</p>
@@ -166,8 +166,9 @@ export default async function EcoPage() {
       <section className="mb-12">
         <h2 className="text-base font-bold text-[color:var(--c-ink)] mb-4 font-serif">同じ東商検定を併願する方へ</h2>
         <div className="card p-5 text-sm text-[color:var(--c-text-sub)] leading-relaxed space-y-2">
-          <p>eco検定と<a href="/fukushi2/" className="underline hover:no-underline">福祉住環境コーディネーター2級</a>は、どちらも東京商工会議所がIBT・CBTで実施する検定で、2026年度第2シーズンは試験期間（11月12日〜12月3日）も申込期間（10月9日〜10月20日）も同じです。1回の申込で2つ受けるという組み方ができます。</p>
-          <p>同じ東商検定でも、<a href="/bijihou/" className="underline hover:no-underline">ビジネス実務法務検定3級</a>と<a href="/bijimane/" className="underline hover:no-underline">ビジネスマネジャー検定</a>は1つ前のシーズン（10月22日〜11月9日・申込9月16日〜9月29日）です。締切が別なので、まとめて受けるつもりなら申込期間を取り違えないよう注意してください。</p>
+          {/* 日付は exam-dates.ts から組み立てる(以前は 2026年度第2シーズンの日付を直書きしており、締切後に腐っていた) */}
+          <p>eco検定と<a href="/fukushi2/" className="underline hover:no-underline">福祉住環境コーディネーター2級</a>は、どちらも東京商工会議所がIBT・CBTで実施する検定で、試験期間も申込期間も同じ枠です{seasonLabel(ECO_EXAMS) ? `（${seasonLabel(ECO_EXAMS)}）` : ""}。1回の申込で2つ受けるという組み方ができます。</p>
+          <p>同じ東商検定でも、<a href="/bijihou/" className="underline hover:no-underline">ビジネス実務法務検定3級</a>と<a href="/bijimane/" className="underline hover:no-underline">ビジネスマネジャー検定</a>は1つ前のシーズン{seasonLabel(BIJIHOU_EXAMS) ? `（${seasonLabel(BIJIHOU_EXAMS)}）` : ""}です。締切が別なので、まとめて受けるつもりなら申込期間を取り違えないよう注意してください。</p>
         </div>
       </section>
 

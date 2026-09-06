@@ -42,6 +42,7 @@ export default async function ChizaiMockPage() {
         questionPathPrefix="/chizai/q/"
         questions={questions}
         size={20}
+        passPct={70}
       />
     </div>
   );

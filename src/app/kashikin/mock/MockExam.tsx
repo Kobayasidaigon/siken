@@ -13,6 +13,7 @@ import { useState } from "react";
 import AffiliateLink from "@/components/AffiliateLink";
 import FreeLeadCTA from "@/components/FreeLeadCTA";
 import { EXAM_AFFILIATE } from "@/lib/affiliate-links";
+import { decideCtaPriority } from "@/lib/cta-priority";
 import { recordResult, type ExamSlug } from "@/lib/study-progress";
 import { studioMoshiHref } from "@/lib/studio-cta";
 
@@ -30,6 +31,12 @@ interface Props {
   questionPathPrefix: string; // 復習リンクの接頭辞。例 "/q/"
   questions: MockQuestion[];
   size?: number;              // 出題数（既定20）
+  /**
+   * 合格ラインの目安(%)。既定60は貸金(50問中30点前後)の値。2026-09-05: このコンポーネントは
+   * 個情保・知財・東商系にも使い回されているのに 60% 固定で、70%(個情保・知財3級・東商)や
+   * 80%(知財2級)の資格に「合格ラインは超えています」と誤った安心文言を出していた。
+   */
+  passPct?: number;
 }
 
 function shuffle<T>(arr: T[]): T[] {
@@ -53,6 +60,7 @@ export default function MockExam({
   questionPathPrefix,
   questions,
   size = 20,
+  passPct = 60,
 }: Props) {
   const [phase, setPhase] = useState<"intro" | "running" | "done">("intro");
   const [pool, setPool] = useState<MockQuestion[]>([]);
@@ -195,8 +203,8 @@ export default function MockExam({
   );
   const weakest = fieldsSorted[0];
   const allPerfect = correctCount === pool.length;
-  // 合格基準（30/50＝60%）を目安にした簡易判定
-  const passLikely = pct >= 60;
+  // 合格基準(資格別 passPct。貸金は 30/50＝60%)を目安にした簡易判定
+  const passLikely = pct >= passPct;
 
   return (
     <div>
@@ -212,8 +220,8 @@ export default function MockExam({
           {allPerfect
             ? "全問正解！この調子です。"
             : passLikely
-              ? "合格ラインの目安（約60%）は超えています。弱点を詰めましょう。"
-              : "合格ラインの目安（約60%）まであと一歩。苦手分野から固めましょう。"}
+              ? `合格ラインの目安（約${passPct}%）は超えています。弱点を詰めましょう。`
+              : `合格ラインの目安（約${passPct}%）まであと一歩。苦手分野から固めましょう。`}
         </p>
       </section>
 
@@ -232,7 +240,7 @@ export default function MockExam({
                 <div className="h-2 rounded-full bg-[color:var(--c-bg-alt)] overflow-hidden">
                   <div
                     className="h-full rounded-full"
-                    style={{ width: `${p}%`, background: p >= 60 ? "#15803d" : "#dc2626" }}
+                    style={{ width: `${p}%`, background: p >= passPct ? "#15803d" : "#dc2626" }}
                   />
                 </div>
               </div>
@@ -261,6 +269,25 @@ export default function MockExam({
               {EXAM_AFFILIATE[exam].label} →
             </AffiliateLink>
           </div>
+          {/* 実施団体が広告主の資格(SMART系)は、申込受付中のときだけ協会申込の導線を添える(MoshiExam と同じ) */}
+          {EXAM_AFFILIATE[exam].applyHref &&
+            ["apply_open", "apply_urgent"].includes(decideCtaPriority(exam).phase) && (
+              <div className="mt-3 pt-3 border-t border-[color:var(--c-border)] text-xs text-[color:var(--c-text-sub)] flex flex-wrap items-baseline gap-x-2 gap-y-1">
+                <span className="tracking-wider border border-[color:var(--c-border)] px-1.5 py-0.5 rounded text-[10px]">広告</span>
+                <span>受験する回を決めたら</span>
+                <AffiliateLink
+                  href={EXAM_AFFILIATE[exam].applyHref!}
+                  course={EXAM_AFFILIATE[exam].course}
+                  placement="mock_result_apply"
+                  className="text-blue-700 hover:underline font-medium"
+                >
+                  {EXAM_AFFILIATE[exam].applyLabel ?? "協会公式サイトで申し込む"} →
+                </AffiliateLink>
+                {EXAM_AFFILIATE[exam].applyPixel && (
+                  <img width={1} height={1} src={EXAM_AFFILIATE[exam].applyPixel} alt="" style={{ position: "absolute", border: 0 }} />
+                )}
+              </div>
+            )}
         </aside>
       )}
 

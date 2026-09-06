@@ -28,7 +28,30 @@ export interface AffiliateTarget {
    */
   freeHref?: string;
   freeLabel?: string;
+
+  /**
+   * ★試験申込オファー(実施団体が A8 広告主の場合のみ)。2026-09-05 追加。
+   * SMART系3資格は協会の公式申込ページへの A8 リンクが成果地点になる(ドリル読者の
+   * 必然行動=受験申込がそのまま成果)。従来は資格トップ・日程コラムに直書きしていた
+   * ものを集約し、模試・本番形式テストの結果面(申込受付中のときだけ)にも出す。
+   */
+  applyHref?: string;
+  applyLabel?: string;
+  applyPixel?: string;
+
+  /**
+   * ★書籍オファー(もしもアフィリエイト経由の Amazon / 楽天ブックス)。2026-09-05 追加。
+   * 未提携3資格(fukushi2 / bijimane / eco)は「公式テキストからの出題」が明示された検定で、
+   * 講座の広告主が市場にほぼ無い(監査レポート §4)。もしもで shikakumon.com を登録し
+   * Amazon / 楽天と提携できたら、公式テキスト最新版の「かんたんリンク」をここに貼るだけで
+   * CourseAd に「広告」ラベル付きの書籍行が点灯する。未設定の間は何も出ない(安全な no-op)。
+   */
+  bookHref?: string;
+  bookLabel?: string;
 }
+
+/** SMART系3資格(全日本情報学習振興協会)の協会申込リンク。同一提携 4B1TI0 系。 */
+const SMART_APPLY_PIXEL = "https://www11.a8.net/0.gif?a8mat=4B1TI0+9T22IA+4LOQ+BW8O2";
 
 export const EXAM_AFFILIATE: Record<ExamSlug, AffiliateTarget> = {
   kashikin: {
@@ -48,6 +71,10 @@ export const EXAM_AFFILIATE: Record<ExamSlug, AffiliateTarget> = {
     freeHref:
       "https://px.a8.net/svt/ejp?a8mat=4B1TI0+9T22IA+4LOQ+BW8O2&a8ejpredirect=https%3A%2F%2Fwww.joho-gakushu.jp%2Fsmart%2Fregistfree.php",
     freeLabel: "無料登録してSMART講座を試し見る",
+    applyHref:
+      "https://px.a8.net/svt/ejp?a8mat=4B1TI0+9T22IA+4LOQ+BW8O2&a8ejpredirect=https%3A%2F%2Fwww.joho-gakushu.or.jp%2Fpiip%2F",
+    applyLabel: "協会公式サイトで申し込む",
+    applyPixel: SMART_APPLY_PIXEL,
   },
   chizai: {
     href: "https://px.a8.net/svt/ejp?a8mat=4B3TF4+BJKL0Y+408S+BW8O2&a8ejpredirect=https%3A%2F%2Fonsuku.jp%2Ftraining%2Fchizai3",
@@ -77,6 +104,10 @@ export const EXAM_AFFILIATE: Record<ExamSlug, AffiliateTarget> = {
     freeHref:
       "https://px.a8.net/svt/ejp?a8mat=4B1TI0+9T22IA+4LOQ+BW8O2&a8ejpredirect=https%3A%2F%2Fwww.joho-gakushu.jp%2Fsmart%2Fregistfree.php",
     freeLabel: "無料登録してSMART講座を試し見る",
+    applyHref:
+      "https://px.a8.net/svt/ejp?a8mat=4B1TI0+9T22IA+4LOQ+BW8O2&a8ejpredirect=https%3A%2F%2Fwww.joho-gakushu.or.jp%2Fnns%2F",
+    applyLabel: "協会公式サイトで申し込む",
+    applyPixel: SMART_APPLY_PIXEL,
   },
   jitsumu: {
     href: "https://px.a8.net/svt/ejp?a8mat=4B1TI0+9T22IA+4LOQ+BW8O2&a8ejpredirect=https%3A%2F%2Fwww.joho-gakushu.jp%2Fsmartinfo%2Fk_pipl%2F",
@@ -85,9 +116,18 @@ export const EXAM_AFFILIATE: Record<ExamSlug, AffiliateTarget> = {
     freeHref:
       "https://px.a8.net/svt/ejp?a8mat=4B1TI0+9T22IA+4LOQ+BW8O2&a8ejpredirect=https%3A%2F%2Fwww.joho-gakushu.jp%2Fsmart%2Fregistfree.php",
     freeLabel: "無料登録してSMART講座を試し見る",
+    applyHref:
+      "https://px.a8.net/svt/ejp?a8mat=4B1TI0+9T22IA+4LOQ+BW8O2&a8ejpredirect=https%3A%2F%2Fwww.joho-gakushu.or.jp%2Fpipl%2F",
+    applyLabel: "協会公式サイトで申し込む",
+    applyPixel: SMART_APPLY_PIXEL,
   },
+  // 2026-09-05: 着地を汎用ラインナップ頁(smart_lineup.php)から、協会のビジ法専用講座ページ
+  //   (joho-gakushu.or.jp/bijihou/ = 3級・2級対象)へ変更。検索結果に同ページへの A8 経由の
+  //   着地(?a8= 付き URL)が出ており、他アフィリエイターが同じ着地を使っている。
+  //   ※本環境から協会サイトへ到達できないため、デプロイ後に1回クリックして最終着地と
+  //     A8 のクリック計上を確認すること(監査レポート §5)。
   bijihou: {
-    href: "https://px.a8.net/svt/ejp?a8mat=4B1TI0+9T22IA+4LOQ+BW8O2&a8ejpredirect=https%3A%2F%2Fwww.joho-gakushu.jp%2Fsmartinfo%2Fsmart_lineup.php",
+    href: "https://px.a8.net/svt/ejp?a8mat=4B1TI0+9T22IA+4LOQ+BW8O2&a8ejpredirect=https%3A%2F%2Fwww.joho-gakushu.or.jp%2Fbijihou%2F",
     label: "ビジネス実務法務検定のSMART合格講座を見る",
     course: "bijihou",
     freeHref:
@@ -98,7 +138,8 @@ export const EXAM_AFFILIATE: Record<ExamSlug, AffiliateTarget> = {
   //   SMART合格講座で、講座ラインナップに2級が含まれるためリンクを共有する。
   //   a8mat は同一提携(4B1TI0系)で、シカクモン本体のサイトとして発行済み。
   bijihou2: {
-    href: "https://px.a8.net/svt/ejp?a8mat=4B1TI0+9T22IA+4LOQ+BW8O2&a8ejpredirect=https%3A%2F%2Fwww.joho-gakushu.jp%2Fsmartinfo%2Fsmart_lineup.php",
+    // 2026-09-05: bijihou と同じく専用講座ページ(3級・2級共通)へ着地を変更
+    href: "https://px.a8.net/svt/ejp?a8mat=4B1TI0+9T22IA+4LOQ+BW8O2&a8ejpredirect=https%3A%2F%2Fwww.joho-gakushu.or.jp%2Fbijihou%2F",
     label: "ビジネス実務法務検定2級のSMART合格講座を見る",
     course: "bijihou2",
     freeHref:
@@ -108,10 +149,15 @@ export const EXAM_AFFILIATE: Record<ExamSlug, AffiliateTarget> = {
   // ITパスポート。全日本情報学習振興協会のSMART合格講座がITパスポートを
   //   扱っており(公式のIT系ラインナップに掲載)、bijihou/bijihou2 と同じ
   //   承認済み提携(4B1TI0系)のリンクを共有する。
-  //   ※LEC・アガルートもITパスポート講座を持つため、成果が出ない場合は
-  //     そちらの提携リンクへの差し替えも検討できる。
+  //   2026-09-05: A8 のプログラム詳細(ユーザー確認)で SMART の成果報酬対象講座に
+  //   「ITパスポート」「ビジネス実務法務検定試験」「個人情報保護士」「個人情報保護実務検定」
+  //   「マイナンバー実務検定」が明記されていることを確認。全講座が成果報酬対象。
+  //   ※LEC・アガルートもITパスポート講座を持つが、SMART は無料登録の CVR 実績(7.5%)が
+  //     あるため主軸は SMART のまま(ユーザー判断 2026-09-05)。
   itpass: {
-    href: "https://px.a8.net/svt/ejp?a8mat=4B1TI0+9T22IA+4LOQ+BW8O2&a8ejpredirect=https%3A%2F%2Fwww.joho-gakushu.jp%2Fsmartinfo%2Fsmart_lineup.php",
+    // 2026-09-05: 着地を汎用ラインナップ頁から協会の ITパスポート専用講座ページ
+    //   (joho-gakushu.or.jp/it-passport/)へ変更。bijihou と同じ根拠・同じ確認事項。
+    href: "https://px.a8.net/svt/ejp?a8mat=4B1TI0+9T22IA+4LOQ+BW8O2&a8ejpredirect=https%3A%2F%2Fwww.joho-gakushu.or.jp%2Fit-passport%2F",
     label: "ITパスポートのSMART合格講座を見る",
     course: "itpass",
     freeHref:

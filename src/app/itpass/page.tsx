@@ -54,7 +54,7 @@ export default async function ItpassPage() {
             className="inline-flex items-center px-4 py-2 rounded-lg border text-sm font-medium no-underline transition-colors hover:bg-[color:var(--c-pii-soft)]"
             style={{ borderColor: "var(--c-pii)", color: "var(--c-pii-ink)" }}
           >
-            模擬試験を受ける（90分・70点合格判定）→
+            模擬試験を受ける（100問・120分・分野別判定）→
           </a>
         </div>
       </section>
@@ -79,11 +79,12 @@ export default async function ItpassPage() {
       <section className="mb-12">
         <h2 className="text-base font-bold text-[color:var(--c-ink)] mb-4 font-serif">試験の概要</h2>
         <div className="card p-5 text-sm text-[color:var(--c-text-sub)] space-y-2">
-          <p><span className="font-bold text-[color:var(--c-ink)]">試験形式</span>　多肢選択式・90分・100点満点</p>
-          <p><span className="font-bold text-[color:var(--c-ink)]">合格基準</span>　70点以上</p>
-          <p><span className="font-bold text-[color:var(--c-ink)]">受験料</span>　IBT方式 5,500円／CBT方式 7,700円（いずれも税込）</p>
+          {/* 2026-09-05: ビジ法の雛形(東商IBT/CBT・70点合格)が残ったままの誤記を IPA の試験要項に合わせて修正 */}
+          <p><span className="font-bold text-[color:var(--c-ink)]">試験形式</span>　四肢択一・100問・120分（CBT方式）</p>
+          <p><span className="font-bold text-[color:var(--c-ink)]">合格基準</span>　総合評価点600点以上（1,000点満点）かつ分野別評価点（ストラテジ系・マネジメント系・テクノロジ系）が各300点以上</p>
+          <p><span className="font-bold text-[color:var(--c-ink)]">受験料</span>　7,500円（税込）</p>
           <p><span className="font-bold text-[color:var(--c-ink)]">試験日</span>　CBT方式で通年実施（全国47都道府県の会場で随時受験可能）</p>
-          <p><span className="font-bold text-[color:var(--c-ink)]">実施機関</span>　東京商工会議所</p>
+          <p><span className="font-bold text-[color:var(--c-ink)]">実施機関</span>　独立行政法人情報処理推進機構（IPA）</p>
         </div>
       </section>
 

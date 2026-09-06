@@ -11,6 +11,8 @@ import {
   FUKUSHI2_EXAMS,
   BIJIMANE_EXAMS,
   ECO_EXAMS,
+  CHINTAI_EXAMS,
+  KANGYO_EXAMS,
 } from "@/lib/exam-dates";
 
 export const metadata: Metadata = {
@@ -48,7 +50,7 @@ export default function Home() {
       count: 200,
       fieldCount: 10,
       desc: "2021年に国家資格化。賃貸住宅管理業法の登録制度とサブリース規制が主戦場で、借地借家法・建物設備・原状回復まで横断して問われます。",
-      date: "年1回（11月）",
+      date: nextExamDateLabel(CHINTAI_EXAMS, { suffix: "（年1回）", fallback: "毎年11月（年1回）" }),
       themeVar: "var(--c-kashikin)",
       softVar: "var(--c-kashikin-soft)",
     },
@@ -58,7 +60,7 @@ export default function Home() {
       count: 200,
       fieldCount: 10,
       desc: "マンション管理会社の必置資格。区分所有法・標準管理規約・管理委託契約・会計仕訳・建築設備を横断して問われます。2026年4月施行の改正区分所有法に対応。",
-      date: "年1回（12月）",
+      date: nextExamDateLabel(KANGYO_EXAMS, { suffix: "（年1回）", fallback: "毎年12月（年1回）" }),
       themeVar: "var(--c-kashikin)",
       softVar: "var(--c-kashikin-soft)",
     },
@@ -148,7 +150,7 @@ export default function Home() {
       count: 230,
       fieldCount: 9,
       desc: "高齢者・障害者の暮らしを住まいから支える検定。疾患の特性・住宅改修の技術・介護保険まで、医療×福祉×建築を横断して問われます。",
-      date: nextExamDateLabel(FUKUSHI2_EXAMS, { period: true, fallback: "年2回（6〜7月、10〜11月）" }),
+      date: nextExamDateLabel(FUKUSHI2_EXAMS, { period: true, fallback: "年2回（6〜7月、11〜12月）" }),
       themeVar: "var(--c-fukushi)",
       softVar: "var(--c-fukushi-soft)",
     },

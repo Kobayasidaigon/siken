@@ -12,14 +12,22 @@ import { EXAM_AFFILIATE, RESULT_CTA_HEADLINE } from "@/lib/affiliate-links";
 // 答え合わせ直後CTAを出す資格。bijihou/piiで検証→SMART系の発生確認→2026-08-05に
 // ユーザー指示で全資格へ展開(発生実績: SMART CVR7.5%・試験申込型あり)。
 // fukushi2は非A8の直リンク(ユーキャン提携待ち)だがUX統一のため含める。
+// 2026-09-05: 9月に追加した bijihou2 / itpass / chintai / kangyo は A8 リンクが
+// affiliate-links.ts に揃っているのにこのリストから漏れ、最高intent面のCTAが
+// 出ていなかったため追加。bijimane / eco は A8 未提携(東商公式への直リンク)なので
+// 「広告」ラベル付きのこの面には出さない(提携後に追加する)。
 const RESULT_CTA_EXAMS: ExamSlug[] = [
   "bijihou",
+  "bijihou2",
   "pii",
   "mynumber",
   "jitsumu",
   "chizai",
   "chizai2",
   "kashikin",
+  "chintai",
+  "kangyo",
+  "itpass",
   "fukushi2",
 ];
 

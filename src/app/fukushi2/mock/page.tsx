@@ -42,6 +42,7 @@ export default async function Fukushi2MockPage() {
         questionPathPrefix="/fukushi2/q/"
         questions={questions}
         size={20}
+        passPct={70}
       />
     </div>
   );

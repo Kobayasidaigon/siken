@@ -15,6 +15,7 @@
 
 import AffiliateLink from "@/components/AffiliateLink";
 import FreeLeadCTA from "@/components/FreeLeadCTA";
+import BookLeadCTA from "@/components/BookLeadCTA";
 
 interface Props {
   headline?: string;
@@ -33,6 +34,7 @@ export default function EcoCourseAd({ headline, body }: Props = {}) {
       <p className="text-sm text-[color:var(--c-text)] leading-relaxed mb-4">{finalBody}</p>
       <div className="flex flex-col items-start gap-3">
         <FreeLeadCTA exam="eco" placement="course_ad" withBadge />
+        <BookLeadCTA exam="eco" placement="course_ad" />
         <AffiliateLink
           href="https://kentei.tokyo-cci.or.jp/eco/"
           course="eco"

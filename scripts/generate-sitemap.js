@@ -1,12 +1,48 @@
 const fs = require("fs");
 const path = require("path");
+const { execSync } = require("child_process");
 
-// CI(Vercel)では git clone 直後で全ファイルの mtime がビルド時刻になり、
+// CI(Vercel)は shallow clone のため git の履歴からも正しい更新日を引けず、
 // 全URL同一の偽 lastmod を生成してしまう。CIではローカル生成してコミット済みの
 // public/sitemap.xml をそのまま使う(ローカルの npm run build で常に再生成される)。
 if (process.env.VERCEL || process.env.CI) {
   console.log("CI detected: using committed public/sitemap.xml as-is");
   process.exit(0);
+}
+
+// lastmod の一次情報は git の最終コミット日。mtime は clone / checkout / 別マシンで
+// 失われる(2026-09-05: 別環境で clone したところ全ファイルの mtime が同日になり、
+// mtime 依存のままでは再生成できなかった)。git が使えない場合だけ mtime に落とす。
+// 未コミットの新規ファイルは git に無いので mtime(=作成日)になる。これは正しい。
+const REPO_ROOT = path.join(__dirname, "..");
+const gitDates = (() => {
+  try {
+    const out = execSync("git log --name-only --format=%ad --date=short", {
+      cwd: REPO_ROOT,
+      encoding: "utf-8",
+      maxBuffer: 64 * 1024 * 1024,
+      stdio: ["ignore", "pipe", "ignore"],
+    });
+    const map = new Map();
+    let current = null;
+    for (const line of out.split("\n")) {
+      if (/^\d{4}-\d{2}-\d{2}$/.test(line)) {
+        current = line;
+        continue;
+      }
+      // git log は新しいコミットから並ぶので、最初に出た日付が最終更新日
+      if (line && current && !map.has(line)) map.set(line, current);
+    }
+    return map;
+  } catch {
+    return null;
+  }
+})();
+
+function gitDate(p) {
+  if (!gitDates) return null;
+  const rel = path.relative(REPO_ROOT, p).split(path.sep).join("/");
+  return gitDates.get(rel) || null;
 }
 
 const BASE_URL = "https://shikakumon.com";
@@ -35,6 +71,8 @@ function toDate(mtimeMs) {
 }
 
 function fileDate(p) {
+  const g = gitDate(p);
+  if (g) return g;
   try {
     return toDate(fs.statSync(p).mtimeMs);
   } catch {
@@ -50,7 +88,7 @@ function collect(dir) {
     .filter((f) => f.endsWith(".md"))
     .map((f) => ({
       slug: f.replace(/\.md$/, ""),
-      lastmod: toDate(fs.statSync(path.join(dir, f)).mtimeMs),
+      lastmod: fileDate(path.join(dir, f)),
     }));
 }
 
@@ -204,6 +242,7 @@ const staticPages = [
   { url: "/eco/field/international/", priority: "0.8", freq: "monthly", lastmod: ecoMax },
   { url: "/eco/field/actors/", priority: "0.8", freq: "monthly", lastmod: ecoMax },
   { url: "/bijihou2/", priority: "0.9", freq: "weekly", lastmod: bijihou2Max },
+  { url: "/bijihou2/moshi/", priority: "0.7", freq: "monthly", lastmod: fileDate(path.join(appDir, "bijihou2/moshi/page.tsx")) },
   { url: "/bijihou2/field/torihiki/", priority: "0.8", freq: "monthly", lastmod: bijihou2Max },
   { url: "/bijihou2/field/zaisan/", priority: "0.8", freq: "monthly", lastmod: bijihou2Max },
   { url: "/bijihou2/field/kigyoukan/", priority: "0.8", freq: "monthly", lastmod: bijihou2Max },
@@ -215,6 +254,7 @@ const staticPages = [
   { url: "/bijihou2/field/kaisya/", priority: "0.8", freq: "monthly", lastmod: bijihou2Max },
   { url: "/bijihou2/field/juugyouin/", priority: "0.8", freq: "monthly", lastmod: bijihou2Max },
   { url: "/itpass/", priority: "0.9", freq: "weekly", lastmod: itpassMax },
+  { url: "/itpass/moshi/", priority: "0.7", freq: "monthly", lastmod: fileDate(path.join(appDir, "itpass/moshi/page.tsx")) },
   { url: "/itpass/field/kigyou/", priority: "0.8", freq: "monthly", lastmod: itpassMax },
   { url: "/itpass/field/senryaku/", priority: "0.8", freq: "monthly", lastmod: itpassMax },
   { url: "/itpass/field/system-senryaku/", priority: "0.8", freq: "monthly", lastmod: itpassMax },
@@ -226,6 +266,7 @@ const staticPages = [
   { url: "/itpass/field/tech/", priority: "0.8", freq: "monthly", lastmod: itpassMax },
   { url: "/itpass/field/security/", priority: "0.8", freq: "monthly", lastmod: itpassMax },
   { url: "/chintai/", priority: "0.9", freq: "weekly", lastmod: chintaiMax },
+  { url: "/chintai/moshi/", priority: "0.7", freq: "monthly", lastmod: fileDate(path.join(appDir, "chintai/moshi/page.tsx")) },
   { url: "/chintai/field/gyouhou/", priority: "0.8", freq: "monthly", lastmod: chintaiMax },
   { url: "/chintai/field/jutaku/", priority: "0.8", freq: "monthly", lastmod: chintaiMax },
   { url: "/chintai/field/sublease/", priority: "0.8", freq: "monthly", lastmod: chintaiMax },
@@ -237,6 +278,7 @@ const staticPages = [
   { url: "/chintai/field/shien/", priority: "0.8", freq: "monthly", lastmod: chintaiMax },
   { url: "/chintai/field/igi/", priority: "0.8", freq: "monthly", lastmod: chintaiMax },
   { url: "/kangyo/", priority: "0.9", freq: "weekly", lastmod: kangyoMax },
+  { url: "/kangyo/moshi/", priority: "0.7", freq: "monthly", lastmod: fileDate(path.join(appDir, "kangyo/moshi/page.tsx")) },
   { url: "/kangyo/field/kubun1/", priority: "0.8", freq: "monthly", lastmod: kangyoMax },
   { url: "/kangyo/field/kubun2/", priority: "0.8", freq: "monthly", lastmod: kangyoMax },
   { url: "/kangyo/field/kiyaku/", priority: "0.8", freq: "monthly", lastmod: kangyoMax },

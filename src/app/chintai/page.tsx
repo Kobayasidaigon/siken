@@ -3,6 +3,8 @@ import { getAllColumns } from "@/lib/columns";
 import type { Metadata } from "next";
 import ChintaiCourseAd from "@/components/ChintaiCourseAd";
 import { pageMetadata } from "@/lib/page-metadata";
+import { CHINTAI_EXAMS } from "@/lib/exam-dates";
+import ExamCountdown from "@/components/ExamCountdown";
 
 export const metadata: Metadata = pageMetadata({
   path: "/chintai/",
@@ -54,12 +56,13 @@ export default async function ChintaiPage() {
             className="inline-flex items-center px-4 py-2 rounded-lg border text-sm font-medium no-underline transition-colors hover:bg-[color:var(--c-kashikin-soft)]"
             style={{ borderColor: "var(--c-kashikin)", color: "var(--c-kashikin-ink)" }}
           >
-            模擬試験を受ける（90分・70点合格判定）→
+            模擬試験を受ける（50問・120分・合格点判定）→
           </a>
         </div>
       </section>
 
-      {/* カウントダウン: 申込期間中は「申込締切まで」を優先表示(東商IBT/CBTは期間制) */}
+      {/* カウントダウン: 申込期間中(8/3〜9/30)は「申込締切まで」を優先表示。A8の成果は締切直前に集中する */}
+      <ExamCountdown exams={CHINTAI_EXAMS} accent="var(--c-kashikin)" accentSoft="var(--c-kashikin-soft)" lead="chintai" />
 
       <section className="mb-12">
         <h2 className="text-lg font-bold text-[color:var(--c-ink)] mb-5 font-serif">分野から選ぶ</h2>
@@ -79,11 +82,13 @@ export default async function ChintaiPage() {
       <section className="mb-12">
         <h2 className="text-base font-bold text-[color:var(--c-ink)] mb-4 font-serif">試験の概要</h2>
         <div className="card p-5 text-sm text-[color:var(--c-text-sub)] space-y-2">
-          <p><span className="font-bold text-[color:var(--c-ink)]">試験形式</span>　多肢選択式・90分・100点満点</p>
-          <p><span className="font-bold text-[color:var(--c-ink)]">合格基準</span>　70点以上</p>
-          <p><span className="font-bold text-[color:var(--c-ink)]">受験料</span>　IBT方式 5,500円／CBT方式 7,700円（いずれも税込）</p>
-          <p><span className="font-bold text-[color:var(--c-ink)]">試験日</span>　CBT方式で通年実施（全国47都道府県の会場で随時受験可能）</p>
-          <p><span className="font-bold text-[color:var(--c-ink)]">実施機関</span>　東京商工会議所</p>
+          {/* 2026-09-05: ITパスポートの雛形(東商IBT/CBT・70点合格)が残ったままの誤記を、
+              協議会の令和8年度実施要領(予備校3社の転載で確認)に合わせて修正 */}
+          <p><span className="font-bold text-[color:var(--c-ink)]">試験形式</span>　四肢択一・50問・120分（賃貸不動産経営管理士講習の修了者は5問免除・45問・110分）</p>
+          <p><span className="font-bold text-[color:var(--c-ink)]">合格基準</span>　年度ごとに決定（令和7年度は50問中38点・合格率29.5%）　<a href="/column/chintai-chokuzen/" className="underline hover:no-underline">直前対策と合格点の推移 →</a></p>
+          <p><span className="font-bold text-[color:var(--c-ink)]">受験料</span>　12,000円（税込）</p>
+          <p><span className="font-bold text-[color:var(--c-ink)]">試験日</span>　年1回・11月（令和8年度は11月15日、申込は8月3日〜9月30日）</p>
+          <p><span className="font-bold text-[color:var(--c-ink)]">実施機関</span>　一般社団法人賃貸不動産経営管理士協議会</p>
         </div>
       </section>
 

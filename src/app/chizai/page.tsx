@@ -79,7 +79,7 @@ export default async function ChizaiPage() {
       </section>
 
       {/* カウントダウン: 申込期間中は「申込締切まで」を優先表示 */}
-      <ExamCountdown exams={CHIZAI_EXAMS} accent="var(--c-chizai)" accentSoft="var(--c-chizai-soft)" />
+      <ExamCountdown exams={CHIZAI_EXAMS} accent="var(--c-chizai)" accentSoft="var(--c-chizai-soft)" lead="chizai" />
 
       {/* 分野 - タグクラウド風 */}
       <section className="mb-12">

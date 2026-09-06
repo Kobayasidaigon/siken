@@ -74,12 +74,12 @@ export default async function Chizai2Page() {
           </a>
         </div>
         <p className="mt-4 text-xs text-[color:var(--c-text-sub)]">
-          まず3級から、という方は <a href="/chizai/" className="underline hover:no-underline" style={{ color: "var(--c-chizai-ink)" }}>知的財産管理技能検定3級（オリジナル200問）</a> へ。
+          まず3級から、という方は <a href="/chizai/" className="underline hover:no-underline" style={{ color: "var(--c-chizai-ink)" }}>知的財産管理技能検定3級の練習問題</a> へ。
         </p>
       </section>
 
       {/* カウントダウン: 2級と3級は同一機関・同一試験日のため3級の日程を共用。申込期間中は「申込締切まで」を優先表示 */}
-      <ExamCountdown exams={CHIZAI_EXAMS} accent="var(--c-chizai)" accentSoft="var(--c-chizai-soft)" />
+      <ExamCountdown exams={CHIZAI_EXAMS} accent="var(--c-chizai)" accentSoft="var(--c-chizai-soft)" lead="chizai2" />
 
       {/* 分野 - タグクラウド風 */}
       <section className="mb-12">
@@ -114,7 +114,7 @@ export default async function Chizai2Page() {
       <section className="mb-12">
         <h2 className="text-base font-bold text-[color:var(--c-ink)] mb-4 font-serif">試験の概要</h2>
         <div className="card p-5 text-sm text-[color:var(--c-text-sub)] space-y-2">
-          <p><span className="font-bold text-[color:var(--c-ink)]">試験日</span>　年3回（3月・7月・11月）　3級と同日</p>
+          <p><span className="font-bold text-[color:var(--c-ink)]">試験日</span>　年3回（3月・7月・11月）　3級と同日　<a href="/column/chizai2-nittei/" className="underline hover:no-underline">詳しい日程・受検資格 →</a></p>
           <p><span className="font-bold text-[color:var(--c-ink)]">試験区分</span>　学科試験と実技試験（それぞれに合格すると2級技能士に認定）</p>
           <p><span className="font-bold text-[color:var(--c-ink)]">受験資格</span>　3級技能検定の合格者、知的財産に関する業務に2年以上従事した方 など（＝誰でも受けられる3級と異なり、受験資格が必要）</p>
           <p><span className="font-bold text-[color:var(--c-ink)]">実施機関</span>　知的財産教育協会</p>

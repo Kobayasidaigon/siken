@@ -22,6 +22,7 @@ import { sendGAEvent } from "@next/third-parties/google";
 import AffiliateLink from "@/components/AffiliateLink";
 import FreeLeadCTA from "@/components/FreeLeadCTA";
 import { EXAM_AFFILIATE } from "@/lib/affiliate-links";
+import { decideCtaPriority } from "@/lib/cta-priority";
 import { studioMoshiHref } from "@/lib/studio-cta";
 import { EXAM_LIST, recordResult, type ExamSlug } from "@/lib/study-progress";
 import MoshiFormatFeedback from "@/components/MoshiFormatFeedback";
@@ -561,6 +562,26 @@ export default function MoshiExam({
               {EXAM_AFFILIATE[exam].label} →
             </AffiliateLink>
           </div>
+          {/* 実施団体が広告主の資格(SMART系)は、申込受付中のときだけ協会申込の導線を添える。
+              模試を終えた人が次に取る行動=受験申込がそのまま成果地点になる(2026-09-05) */}
+          {EXAM_AFFILIATE[exam].applyHref &&
+            ["apply_open", "apply_urgent"].includes(decideCtaPriority(exam).phase) && (
+              <div className="mt-3 pt-3 border-t border-[color:var(--c-border)] text-xs text-[color:var(--c-text-sub)] flex flex-wrap items-baseline gap-x-2 gap-y-1">
+                <span className="tracking-wider border border-[color:var(--c-border)] px-1.5 py-0.5 rounded text-[10px]">広告</span>
+                <span>受験する回を決めたら</span>
+                <AffiliateLink
+                  href={EXAM_AFFILIATE[exam].applyHref!}
+                  course={EXAM_AFFILIATE[exam].course}
+                  placement="moshi_result_apply"
+                  className="text-blue-700 hover:underline font-medium"
+                >
+                  {EXAM_AFFILIATE[exam].applyLabel ?? "協会公式サイトで申し込む"} →
+                </AffiliateLink>
+                {EXAM_AFFILIATE[exam].applyPixel && (
+                  <img width={1} height={1} src={EXAM_AFFILIATE[exam].applyPixel} alt="" style={{ position: "absolute", border: 0 }} />
+                )}
+              </div>
+            )}
         </aside>
       )}
 

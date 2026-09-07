@@ -1,4 +1,5 @@
 import { getAllChizai2Questions, getChizai2QuestionsByField } from "@/lib/chizai2-questions";
+import RecentCourseReminder from "@/components/RecentCourseReminder";
 import { getAllColumns } from "@/lib/columns";
 import type { Metadata } from "next";
 import Chizai2CourseAd from "@/components/Chizai2CourseAd";
@@ -77,6 +78,9 @@ export default async function Chizai2Page() {
           まず3級から、という方は <a href="/chizai/" className="underline hover:no-underline" style={{ color: "var(--c-chizai-ink)" }}>知的財産管理技能検定3級の練習問題</a> へ。
         </p>
       </section>
+
+      {/* 前回チェックした講座(再訪者の再クリック導線。記録が無ければ何も出ない) */}
+      <RecentCourseReminder exam="chizai2" placement="return_top" className="mb-8" />
 
       {/* カウントダウン: 2級と3級は同一機関・同一試験日のため3級の日程を共用。申込期間中は「申込締切まで」を優先表示 */}
       <ExamCountdown exams={CHIZAI_EXAMS} accent="var(--c-chizai)" accentSoft="var(--c-chizai-soft)" lead="chizai2" />

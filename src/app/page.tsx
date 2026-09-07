@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import StudyResumeCard from "@/components/StudyResumeCard";
+import RecentCourseReminder from "@/components/RecentCourseReminder";
 import {
   nextExamDateLabel,
   KASHIKIN_EXAMS,
@@ -281,6 +282,10 @@ export default function Home() {
 
       {/* 前回の続き(学習履歴がある再訪者にだけ出る) */}
       <StudyResumeCard />
+
+      {/* 前回チェックした講座(講座リンクを踏んだことのある再訪者にだけ出る。Safari の ITP で
+          A8 のクッキーが7日で消えるため、戻ってきた人に踏み直してもらう再クリック導線) */}
+      <RecentCourseReminder placement="return_home" className="mb-12" />
 
       {/* Stats Bar */}
       <section className="mb-12">

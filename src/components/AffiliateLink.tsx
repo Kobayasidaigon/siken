@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import { sendGAEvent } from "@next/third-parties/google";
+import { recordCourseClick } from "@/lib/recent-course";
 
 /**
  * A8アフィリエイトリンクの共通アンカー（クリック計測付き）。
@@ -72,6 +73,12 @@ export default function AffiliateLink({ href, course, placement, className = "bt
           sendGAEvent("event", "affiliate_click", { course, placement });
         } catch {
           // GA未ロード等でも遷移は妨げない
+        }
+        // 再訪時の「前回チェックした講座」用(lib/recent-course.ts)。資格ID以外の course は無視される
+        try {
+          recordCourseClick(course, placement);
+        } catch {
+          /* localStorage 不可でも遷移は妨げない */
         }
       }}
     >

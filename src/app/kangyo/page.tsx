@@ -1,4 +1,5 @@
 import { getAllKangyoQuestions, getKangyoQuestionsByField } from "@/lib/kangyo-questions";
+import RecentCourseReminder from "@/components/RecentCourseReminder";
 import { getAllColumns } from "@/lib/columns";
 import type { Metadata } from "next";
 import KangyoCourseAd from "@/components/KangyoCourseAd";
@@ -60,6 +61,9 @@ export default async function KangyoPage() {
           </a>
         </div>
       </section>
+
+      {/* 前回チェックした講座(再訪者の再クリック導線。記録が無ければ何も出ない) */}
+      <RecentCourseReminder exam="kangyo" placement="return_top" className="mb-8" />
 
       {/* カウントダウン: 申込期間中(8/3〜9/30)は「申込締切まで」を優先表示。A8の成果は締切直前に集中する */}
       <ExamCountdown exams={KANGYO_EXAMS} accent="var(--c-kashikin)" accentSoft="var(--c-kashikin-soft)" lead="kangyo" />

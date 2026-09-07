@@ -7,6 +7,7 @@ import { pageMetadata } from "@/lib/page-metadata";
 import { ECO_EXAMS, BIJIHOU_EXAMS, seasonLabel } from "@/lib/exam-dates";
 import ExamCountdown from "@/components/ExamCountdown";
 import Moshi2TopLink from "@/components/Moshi2TopLink";
+import ExamVoicesSection from "@/components/ExamVoicesSection";
 
 export const metadata: Metadata = pageMetadata({
   path: "/eco/",
@@ -163,6 +164,10 @@ export default async function EcoPage() {
           <p className="text-xs pt-1">出題数は公式に公表されていません。当サイトの演習問題数は本試験の出題数を示すものではありません。受験料・申込期間などの最新の詳細は、必ず公式サイトでご確認ください。</p>
         </div>
       </section>
+
+      {/* 合格報告(掲載済みがあれば)と、受験直後の方への報告のお願い。
+          どちらも条件を満たさなければ何も出ない */}
+      <ExamVoicesSection exam="eco" />
 
       <EcoCourseAd />
 

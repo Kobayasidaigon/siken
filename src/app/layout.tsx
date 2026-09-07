@@ -183,6 +183,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 <ul className="space-y-2">
                   <li><a href="/column/" className="text-[color:var(--c-text-sub)] hover:text-[color:var(--c-ink)] no-underline">コラム</a></li>
                   <li><a href="/guide/" className="text-[color:var(--c-text-sub)] hover:text-[color:var(--c-ink)] no-underline">学習ガイド</a></li>
+                  <li><a href="/voice/" className="text-[color:var(--c-text-sub)] hover:text-[color:var(--c-ink)] no-underline">合格報告</a></li>
                 </ul>
                 <h4 className="text-[color:var(--c-ink)] font-bold mt-6 mb-3 text-xs font-serif">関連サービス</h4>
                 <ul className="space-y-2">

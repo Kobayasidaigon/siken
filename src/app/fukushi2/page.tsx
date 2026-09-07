@@ -7,6 +7,7 @@ import { pageMetadata } from "@/lib/page-metadata";
 import { FUKUSHI2_EXAMS } from "@/lib/exam-dates";
 import ExamCountdown from "@/components/ExamCountdown";
 import Moshi2TopLink from "@/components/Moshi2TopLink";
+import ExamVoicesSection from "@/components/ExamVoicesSection";
 
 export const metadata: Metadata = pageMetadata({
   path: "/fukushi2/",
@@ -123,6 +124,10 @@ export default async function Fukushi2Page() {
           <p className="text-xs pt-1">受験料・申込期間などの最新の詳細は、必ず公式サイトでご確認ください。</p>
         </div>
       </section>
+
+      {/* 合格報告(掲載済みがあれば)と、受験直後の方への報告のお願い。
+          どちらも条件を満たさなければ何も出ない */}
+      <ExamVoicesSection exam="fukushi2" />
 
       <Fukushi2CourseAd
         headline="広い出題範囲を体系的に押さえるなら"

@@ -27,6 +27,7 @@ import TextAffiliateAd from "@/components/TextAffiliateAd";
 import type { ExamSlug } from "@/lib/study-progress";
 import { EXAM_SCHEDULES, decideCtaPriority } from "@/lib/cta-priority";
 import { EXAM_AFFILIATE } from "@/lib/affiliate-links";
+import { EXAM_THEME } from "@/lib/exam-theme";
 
 /**
  * コラムのスラッグから資格を引く(カウントダウンの出し分け用)。
@@ -51,23 +52,6 @@ function examFromColumnSlug(slug: string): ExamSlug | null {
   return EXAM_PREFIXES.includes(head) ? head : null;
 }
 
-/** 資格ごとのテーマ色(カウントダウンの accent)。資格トップの theme-* と同じ対応 */
-const EXAM_THEME: Record<ExamSlug, { accent: string; soft: string; period: boolean }> = {
-  kashikin: { accent: "var(--c-kashikin)", soft: "var(--c-kashikin-soft)", period: false },
-  chintai: { accent: "var(--c-kashikin)", soft: "var(--c-kashikin-soft)", period: false },
-  kangyo: { accent: "var(--c-kashikin)", soft: "var(--c-kashikin-soft)", period: false },
-  bijihou: { accent: "var(--c-kashikin)", soft: "var(--c-kashikin-soft)", period: true },
-  bijihou2: { accent: "var(--c-kashikin)", soft: "var(--c-kashikin-soft)", period: true },
-  pii: { accent: "var(--c-pii)", soft: "var(--c-pii-soft)", period: false },
-  mynumber: { accent: "var(--c-pii)", soft: "var(--c-pii-soft)", period: false },
-  jitsumu: { accent: "var(--c-pii)", soft: "var(--c-pii-soft)", period: false },
-  itpass: { accent: "var(--c-pii)", soft: "var(--c-pii-soft)", period: false },
-  chizai: { accent: "var(--c-chizai)", soft: "var(--c-chizai-soft)", period: false },
-  chizai2: { accent: "var(--c-chizai)", soft: "var(--c-chizai-soft)", period: false },
-  fukushi2: { accent: "var(--c-fukushi)", soft: "var(--c-fukushi-soft)", period: true },
-  bijimane: { accent: "var(--c-bijimane)", soft: "var(--c-bijimane-soft)", period: true },
-  eco: { accent: "var(--c-eco)", soft: "var(--c-eco-soft)", period: true },
-};
 import ExamCountdown from "@/components/ExamCountdown";
 import JsonLd from "@/components/JsonLd";
 import { pageMetadata } from "@/lib/page-metadata";

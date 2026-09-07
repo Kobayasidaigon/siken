@@ -4,6 +4,7 @@ import { getAllColumns } from "@/lib/columns";
 import type { Metadata } from "next";
 import ItpassCourseAd from "@/components/ItpassCourseAd";
 import { pageMetadata } from "@/lib/page-metadata";
+import ExamVoicesSection from "@/components/ExamVoicesSection";
 
 export const metadata: Metadata = pageMetadata({
   path: "/itpass/",
@@ -91,6 +92,10 @@ export default async function ItpassPage() {
           <p><span className="font-bold text-[color:var(--c-ink)]">実施機関</span>　独立行政法人情報処理推進機構（IPA）</p>
         </div>
       </section>
+
+      {/* 合格報告(掲載済みがあれば)と、受験直後の方への報告のお願い。
+          どちらも条件を満たさなければ何も出ない */}
+      <ExamVoicesSection exam="itpass" />
 
       <ItpassCourseAd />
 

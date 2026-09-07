@@ -889,6 +889,12 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://shikakumon.com/goukaku-houkoku/</loc>
+    <lastmod>2026-09-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
     <loc>https://shikakumon.com/about/</loc>
     <lastmod>2026-08-28</lastmod>
     <changefreq>yearly</changefreq>
@@ -896,7 +902,7 @@
   </url>
   <url>
     <loc>https://shikakumon.com/privacy/</loc>
-    <lastmod>2026-08-12</lastmod>
+    <lastmod>2026-09-07</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.2</priority>
   </url>

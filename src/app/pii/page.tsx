@@ -8,6 +8,7 @@ import { pageMetadata } from "@/lib/page-metadata";
 import { PII_EXAMS } from "@/lib/exam-dates";
 import ExamCountdown from "@/components/ExamCountdown";
 import Moshi2TopLink from "@/components/Moshi2TopLink";
+import ExamVoicesSection from "@/components/ExamVoicesSection";
 
 export const metadata: Metadata = pageMetadata({
   path: "/pii/",
@@ -147,6 +148,10 @@ export default async function PiiPage() {
           <p><span className="font-bold text-[color:var(--c-ink)]">実施機関</span>　一般財団法人全日本情報学習振興協会</p>
         </div>
       </section>
+
+      {/* 合格報告(掲載済みがあれば)と、受験直後の方への報告のお願い。
+          どちらも条件を満たさなければ何も出ない */}
+      <ExamVoicesSection exam="pii" />
 
       <PiiCourseAd headline={PII_TOP_AD.headline} body={PII_TOP_AD.body} />
 

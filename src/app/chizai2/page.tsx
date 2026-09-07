@@ -7,6 +7,7 @@ import { pageMetadata } from "@/lib/page-metadata";
 import { CHIZAI_EXAMS } from "@/lib/exam-dates";
 import ExamCountdown from "@/components/ExamCountdown";
 import Moshi2TopLink from "@/components/Moshi2TopLink";
+import ExamVoicesSection from "@/components/ExamVoicesSection";
 
 export const metadata: Metadata = pageMetadata({
   path: "/chizai2/",
@@ -125,6 +126,10 @@ export default async function Chizai2Page() {
           <p className="text-xs pt-1">受験料・出題数・合格基準などの最新の詳細は、必ず公式サイトでご確認ください。</p>
         </div>
       </section>
+
+      {/* 合格報告(掲載済みがあれば)と、受験直後の方への報告のお願い。
+          どちらも条件を満たさなければ何も出ない */}
+      <ExamVoicesSection exam="chizai2" />
 
       <Chizai2CourseAd
         headline="2級レンジの論点を体系的に押さえるなら"

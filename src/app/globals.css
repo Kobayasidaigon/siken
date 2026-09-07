@@ -1,5 +1,42 @@
 @import "tailwindcss";
 
+/* -----------------------------------------------------------------------------
+   第2回模試(有料)の部品が使うユーティリティ名の定義。2026-09-07 追加。
+
+   Moshi2Gate / Moshi2Offer は設備・筋トレの姉妹サイトから移植したもので、
+   姉妹サイトの @theme が定義するトークン名(bg-ink / text-paper / bg-surface /
+   text-ink-soft / border-line ...)をそのまま使っている。本体には @theme が無く、
+   配色は下の :root の --c-* に arbitrary value (text-[color:var(--c-ink)]) で
+   当てる流儀なので、これらのクラスは**一つも生成されていなかった**。
+   結果、決済ボタン(bg-ink text-paper)が背景色も文字色も付かない状態で出ていた。
+   有料模試は9資格の唯一の直接収益で、A8未提携の福祉住環境2級・ビジマネ・eco検定に
+   とっては唯一の換金手段なので、購入導線が崩れているのは実損だった。
+
+   配色は増やさず、下の --c-* を参照する別名にしてある(色の出典は :root ひとつ)。
+   本体の新しいコードでは従来どおり text-[color:var(--c-ink)] の流儀を使うこと。
+   ここは移植部品を動かすための互換層で、増やす場所ではない。
+   ----------------------------------------------------------------------------- */
+@theme {
+  --color-paper: var(--c-bg);
+  --color-surface: var(--c-surface);
+  --color-ink: var(--c-ink);
+  --color-ink-soft: var(--c-text-sub);
+  --color-ink-faint: var(--c-text-faint);
+  --color-line: var(--c-border);
+  --color-line-strong: var(--c-border-strong);
+  --color-correct: var(--c-correct);
+  --color-wrong: var(--c-wrong);
+  /* 資格色(--c-accent)はここに置かない。値が var() のフォールバック付きだと
+     Tailwind がユーティリティを生成せず、bg-accent が無言で効かなくなる
+     (2026-09-07 に実際そうなった)。資格色は theme-* の中で解決する必要もあるので、
+     使う側で bg-[color:var(--c-accent,var(--c-ink))] と書くこと。 */
+}
+
+/* 姉妹サイトの .tracked(字間を空けた小さなラベル)。同じく移植部品が使う */
+.tracked {
+  letter-spacing: 0.08em;
+}
+
 :root {
   /* ベース */
   --c-bg: #faf8f3;
@@ -9,6 +46,12 @@
   --c-text-sub: #6b6459;
   --c-border: #e8e3d6;
   --c-ink: #2b2a26;
+  /* 上の @theme と、移植部品の var(--c-line) 参照のために足した分 */
+  --c-text-faint: #9c968a;
+  --c-border-strong: #cdc6b5;
+  --c-line: var(--c-border);
+  --c-correct: #15803d;
+  --c-wrong: #b91c1c;
 
   /* 貸金業務取扱主任者 - ディープオレンジ */
   --c-kashikin: #c2410c;

@@ -197,7 +197,13 @@ export default function PassReportForm() {
           placeholder="どの分野が難しかったか、当サイトの問題は本試験とどれくらい近かったか、これから受ける人へのアドバイスなど"
           className={inputClass}
         />
-        <p className={noteClass}>20文字以上・2,000文字まで。いただいた文章は編集せずそのまま掲載します。</p>
+        <p className={noteClass}>
+          20文字以上・2,000文字まで。いただいた文章は編集せずそのまま掲載します。
+          <strong className="text-[color:var(--c-ink)]">
+            本試験の問題文・選択肢・正答を再現した内容は、守秘義務にあたるため掲載しません。
+          </strong>
+          傾向や手ごたえをお書きください。
+        </p>
       </div>
 
       <div className="grid sm:grid-cols-2 gap-5">

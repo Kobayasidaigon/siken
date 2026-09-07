@@ -188,7 +188,7 @@ export default function Moshi2Gate({ certId }: { certId: ExamSlug }) {
           </p>
           <Link
             href={`/${certId}/moshi2/print/`}
-            className="shrink-0 rounded-[8px] bg-ink px-4 py-2 text-[13px] text-paper no-underline transition-colors hover:bg-accent"
+            className="shrink-0 rounded-[8px] bg-ink px-4 py-2 text-[13px] text-paper no-underline transition-colors hover:bg-[color:var(--c-accent,var(--c-ink))]"
           >
             印刷用ページを開く →
           </Link>
@@ -284,7 +284,7 @@ export default function Moshi2Gate({ certId }: { certId: ExamSlug }) {
         <button
           onClick={buy}
           disabled={buying}
-          className="mt-3 bg-ink text-paper rounded-[8px] px-5 py-2.5 text-[13px] hover:bg-accent transition-colors disabled:opacity-50"
+          className="mt-3 bg-ink text-paper rounded-[8px] px-5 py-2.5 text-[13px] hover:bg-[color:var(--c-accent,var(--c-ink))] transition-colors disabled:opacity-50"
         >
           {buying ? "決済ページを準備中…" : "購入して受験する →"}
         </button>

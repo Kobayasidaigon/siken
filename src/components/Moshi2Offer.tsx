@@ -54,7 +54,7 @@ export default function Moshi2Offer({
   return (
     <section
       ref={ref}
-      className={`bg-surface border border-accent/40 rounded-[10px] p-5 mb-5 ${className}`}
+      className={`bg-surface border border-[color:var(--c-accent,var(--c-border))] rounded-[10px] p-5 mb-5 ${className}`}
     >
       <p className="text-[11px] text-ink-faint tracked mb-1.5">第2回模擬試験</p>
       <h3 className="font-serif text-[17px] font-medium text-ink mb-2 leading-snug">
@@ -68,7 +68,7 @@ export default function Moshi2Offer({
         <Link
           href={`/${certId}/moshi2/`}
           onClick={() => track("moshi2_offer_click", { cert: certId, place })}
-          className="bg-ink text-paper rounded-[8px] px-4 py-2.5 text-[13px] no-underline hover:bg-accent transition-colors"
+          className="bg-ink text-paper rounded-[8px] px-4 py-2.5 text-[13px] no-underline hover:bg-[color:var(--c-accent,var(--c-ink))] transition-colors"
         >
           第2回を見る(¥{product.priceJpy.toLocaleString()}) →
         </Link>

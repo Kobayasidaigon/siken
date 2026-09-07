@@ -440,7 +440,7 @@ export default function StudyClient({
       <section className="mt-10 pt-6 border-t border-[color:var(--c-border)]">
         <p className="text-xs text-[color:var(--c-text-sub)] leading-relaxed">
           学習履歴はあなたのブラウザにのみ保存されています。シークレットモードや別の端末では引き継がれません。
-          ブラウザのデータを削除すると履歴も消えます。一覧は新しい順に表示しています。
+          ブラウザのデータを削除すると履歴も消えます。上の「履歴の持ち出しと復元」からファイルに書き出しておけば、別の端末に移せます。一覧は新しい順に表示しています。
         </p>
       </section>
     </div>

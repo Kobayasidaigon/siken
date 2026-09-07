@@ -17,6 +17,29 @@ import { exportProgress, importProgress, type ImportMode } from "@/lib/study-pro
 
 type Note = { kind: "ok" | "ng"; text: string } | null;
 
+/**
+ * いまの学習履歴をJSONファイルとして保存させる。
+ * suffix は置き換え前の自動退避と手動の書き出しを、ファイル名で見分けるためのもの。
+ */
+function downloadProgress(suffix: string): boolean {
+  try {
+    const data = exportProgress();
+    const blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    // 日付入りにして、複数世代を手元に置いても見分けがつくようにする
+    a.download = `shikakumon-study-${data.exportedAt.slice(0, 10)}${suffix}.json`;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    URL.revokeObjectURL(url);
+    return true;
+  } catch {
+    return false;
+  }
+}
+
 function track(name: string, params: Record<string, unknown>) {
   try {
     sendGAEvent("event", name, params);
@@ -31,21 +54,10 @@ export default function ProgressBackup() {
   const [note, setNote] = useState<Note>(null);
 
   function handleExport() {
-    try {
-      const data = exportProgress();
-      const blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement("a");
-      a.href = url;
-      // 日付入りにして、複数世代を手元に置いても見分けがつくようにする
-      a.download = `shikakumon-study-${data.exportedAt.slice(0, 10)}.json`;
-      document.body.appendChild(a);
-      a.click();
-      a.remove();
-      URL.revokeObjectURL(url);
+    if (downloadProgress("")) {
       setNote({ kind: "ok", text: "書き出しました。このファイルを新しい端末で読み込んでください。" });
       track("progress_export", {});
-    } catch {
+    } else {
       setNote({ kind: "ng", text: "書き出せませんでした。別のブラウザでお試しください。" });
     }
   }
@@ -59,8 +71,20 @@ export default function ProgressBackup() {
       setNote({ kind: "ng", text: "ファイルが大きすぎます。学習履歴のファイルか確認してください。" });
       return;
     }
-    if (mode === "replace" && !confirm("いまの学習履歴を消して、ファイルの内容に置き換えます。よろしいですか？")) {
-      return;
+    if (mode === "replace") {
+      // 置き換えは取り消せない。サーバに控えが無いので、戻す手段は手元のファイルだけ。
+      // 先にいまの履歴を書き出しておく。黙ってファイルが2つ落ちると不審に見えるので、
+      // confirm で必ず予告する。
+      if (
+        !confirm(
+          "いまの学習履歴を消して、ファイルの内容に置き換えます。\n" +
+            "取り消せないので、先にいまの履歴をバックアップとして書き出します（ファイルが2つ保存されます）。\n\n" +
+            "続けますか？"
+        )
+      ) {
+        return;
+      }
+      downloadProgress("-before-replace");
     }
     try {
       const parsed = JSON.parse(await file.text());

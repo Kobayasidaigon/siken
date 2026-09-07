@@ -85,13 +85,20 @@ export function loadProgress(): AllProgress {
   }
 }
 
-function saveProgress(p: AllProgress): void {
-  if (typeof window === "undefined") return;
+/**
+ * 保存できたかを返す。1問ぶんの記録なら失敗を黙って落としてよいが、
+ * 履歴の復元(importProgress)だけは「保存できた」と偽ってはいけない。
+ * 利用者が復元できたと思い込んで、手元の書き出しファイルを捨てる事故になる。
+ */
+function saveProgress(p: AllProgress): boolean {
+  if (typeof window === "undefined") return false;
   try {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(p));
     window.dispatchEvent(new Event("shikakumon-progress-update"));
+    return true;
   } catch {
-    /* quota exceeded etc — silently ignore */
+    /* 容量超過・プライベートモード等。呼び出し側が必要に応じて拾う */
+    return false;
   }
 }
 
@@ -227,25 +234,69 @@ export function importProgress(raw: unknown, mode: ImportMode = "merge"): Import
     const cur = base[exam];
     const str = (v: unknown): string[] => (Array.isArray(v) ? v.filter((x) => typeof x === "string") : []);
 
-    // 正誤は「最後に解いた結果」なので、同じ問題が両方に入らないよう
-    // 取り込む側を後勝ちにする(merge でも、より新しい結果を持ち込む想定)
+    // 判断軸はメダル1本にする。
+    //
+    // ExamProgress は解答時刻を持たないので「どちらが新しいか」は決められない。
+    // それでも軸を2つ持つと必ず食い違う組み合わせができる。
+    // (メダルは強いほうを残し、正誤配列は後勝ちにしていたので、
+    //  「メダルは金なのに間違えた問題欄に出ている」状態が作れてしまう。
+    //  しかも復習ドリルは金を出題しないので、その問題は自力で直せない)
+    // そこでメダルを勝者に決め、wrong / correct はメダルから機械的に導く。
+    // 2つの表現が定義上ずれなくなる。
     const inWrong = str(part.wrong);
     const inCorrect = str(part.correct);
-    const incomingAll = new Set([...inWrong, ...inCorrect]);
-    cur.wrong = [...cur.wrong.filter((s) => !incomingAll.has(s)), ...inWrong];
-    cur.correct = [...cur.correct.filter((s) => !incomingAll.has(s)), ...inCorrect];
-    cur.bookmarks = [...new Set([...cur.bookmarks, ...str(part.bookmarks)])];
+
+    // 取り込む側のメダル。medals を持たない古い書き出しでも、
+    // wrong / correct から銅・銀として補える(それが recordResult と同じ意味付け)
+    const inMedals: Record<string, Medal> = {};
+    for (const slug of inWrong) inMedals[slug] = "bronze";
+    for (const slug of inCorrect) inMedals[slug] = "silver";
+    const declared = part.medals && typeof part.medals === "object" ? part.medals : {};
+    for (const [slug, m] of Object.entries(declared)) {
+      if (m === "bronze" || m === "silver" || m === "gold") inMedals[slug] = m;
+    }
 
     const medals = cur.medals ?? (cur.medals = {});
-    const inMedals = part.medals && typeof part.medals === "object" ? part.medals : {};
+    // 手元にメダルが無い解答済みの問題も、同じ規則で補ってから比較する
+    for (const slug of cur.wrong) if (!medals[slug]) medals[slug] = "bronze";
+    for (const slug of cur.correct) if (!medals[slug]) medals[slug] = "silver";
+
+    const touched: string[] = [];
     for (const [slug, m] of Object.entries(inMedals)) {
-      if (m !== "bronze" && m !== "silver" && m !== "gold") continue;
       const now = medals[slug];
       if (!now || MEDAL_RANK[m] > MEDAL_RANK[now]) medals[slug] = m;
+      if (!now) touched.push(slug);
     }
+
+    // 正誤配列をメダルから導き直す。既存の並び順(push順)はできるだけ保ち、
+    // 新しく増えた問題だけを末尾に足す(/study/ は配列順を「新しい順」として表示する)
+    const known = new Set([...cur.wrong, ...cur.correct]);
+    const order = [...cur.wrong, ...cur.correct, ...touched.filter((s) => !known.has(s))];
+    const seen = new Set<string>();
+    const wrong: string[] = [];
+    const correct: string[] = [];
+    for (const slug of order) {
+      if (seen.has(slug)) continue;
+      seen.add(slug);
+      const m = medals[slug];
+      if (m === "bronze") wrong.push(slug);
+      else if (m === "silver" || m === "gold") correct.push(slug);
+    }
+    cur.wrong = wrong;
+    cur.correct = correct;
+    cur.bookmarks = [...new Set([...cur.bookmarks, ...str(part.bookmarks)])];
   }
 
-  saveProgress(base);
+  // 保存できたかを必ず確かめる。「読み込みました」と出したのに保存されていないと、
+  // 利用者は復元できたと思って手元のファイルを捨てる。取り込みは全履歴を一度に書く
+  // 最大サイズの書き込みで、容量超過にいちばん当たりやすい操作でもある。
+  if (!saveProgress(base)) {
+    return {
+      ok: false,
+      error:
+        "ブラウザに保存できませんでした。空き容量を空けるか、プライベートモードを解除してからお試しください。書き出したファイルはそのまま残しておいてください。",
+    };
+  }
   const attempted = (Object.keys(base) as ExamSlug[]).reduce(
     (n, e) => n + base[e].wrong.length + base[e].correct.length,
     0

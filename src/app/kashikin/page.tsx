@@ -1,4 +1,5 @@
 import { getAllQuestions } from "@/lib/questions";
+import RecentCourseReminder from "@/components/RecentCourseReminder";
 import { getAllColumns } from "@/lib/columns";
 import type { Metadata } from "next";
 import KashikinCourseAd from "@/components/KashikinCourseAd";
@@ -52,6 +53,9 @@ export default async function KashikinPage() {
           </a>
         </div>
       </section>
+
+      {/* 前回チェックした講座(再訪者の再クリック導線。記録が無ければ何も出ない) */}
+      <RecentCourseReminder exam="kashikin" placement="return_top" className="mb-8" />
 
       {/* カウントダウン: 申込期間中は「申込締切まで」を優先表示 */}
       <ExamCountdown exams={KASHIKIN_EXAMS} accent="var(--c-kashikin)" accentSoft="var(--c-kashikin-soft)" examWord="次回本試験" lead="kashikin" />

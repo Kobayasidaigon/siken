@@ -4,6 +4,7 @@ import { loadProgress, clearProgress, medalCounts, EXAM_LIST, type AllProgress, 
 import AffiliateLink from "@/components/AffiliateLink";
 import FreeLeadCTA from "@/components/FreeLeadCTA";
 import { EXAM_AFFILIATE } from "@/lib/affiliate-links";
+import RecentCourseReminder from "@/components/RecentCourseReminder";
 
 // 弱点連動広告を出す誤答数のしきい値（高intent面なので露出母数を確保するため緩めに）
 const STUDY_AD_WRONG_THRESHOLD = 2;
@@ -311,6 +312,9 @@ export default function StudyClient({
           </aside>
         )}
       </section>
+
+      {/* 前回チェックした講座(講座リンクを踏んだことのある再訪者にだけ出る。再クリック導線) */}
+      <RecentCourseReminder placement="return_study" className="mb-6" />
 
       {totalAttempted === 0 && totalBookmarks === 0 && (
         <section className="card p-6 mb-8">

@@ -1,4 +1,5 @@
 import { getAllEcoQuestions, getEcoQuestionsByField } from "@/lib/eco-questions";
+import RecentCourseReminder from "@/components/RecentCourseReminder";
 import { getAllColumns } from "@/lib/columns";
 import type { Metadata } from "next";
 import EcoCourseAd from "@/components/EcoCourseAd";
@@ -75,6 +76,9 @@ export default async function EcoPage() {
           </a>
         </div>
       </section>
+
+      {/* 前回チェックした講座(再訪者の再クリック導線。記録が無ければ何も出ない) */}
+      <RecentCourseReminder exam="eco" placement="return_top" className="mb-8" />
 
       {/* カウントダウン: 申込期間中は「申込締切まで」を優先表示(東商IBT/CBTは期間制) */}
       <ExamCountdown exams={ECO_EXAMS} accent="var(--c-eco)" accentSoft="var(--c-eco-soft)" periodExam />

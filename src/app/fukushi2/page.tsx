@@ -1,4 +1,5 @@
 import { getAllFukushi2Questions, getFukushi2QuestionsByField } from "@/lib/fukushi2-questions";
+import RecentCourseReminder from "@/components/RecentCourseReminder";
 import { getAllColumns } from "@/lib/columns";
 import type { Metadata } from "next";
 import Fukushi2CourseAd from "@/components/Fukushi2CourseAd";
@@ -74,6 +75,9 @@ export default async function Fukushi2Page() {
           </a>
         </div>
       </section>
+
+      {/* 前回チェックした講座(再訪者の再クリック導線。記録が無ければ何も出ない) */}
+      <RecentCourseReminder exam="fukushi2" placement="return_top" className="mb-8" />
 
       {/* カウントダウン: 申込期間中は「申込締切まで」を優先表示(東商IBT/CBTは期間制) */}
       <ExamCountdown exams={FUKUSHI2_EXAMS} accent="var(--c-fukushi)" accentSoft="var(--c-fukushi-soft)" periodExam />

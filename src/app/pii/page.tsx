@@ -1,4 +1,5 @@
 import { getAllPiiQuestions, getPiiQuestionsByField } from "@/lib/pii-questions";
+import RecentCourseReminder from "@/components/RecentCourseReminder";
 import { getAllColumns } from "@/lib/columns";
 import type { Metadata } from "next";
 import PiiCourseAd from "@/components/PiiCourseAd";
@@ -85,6 +86,9 @@ export default async function PiiPage() {
           </a>
         </div>
       </section>
+
+      {/* 前回チェックした講座(再訪者の再クリック導線。記録が無ければ何も出ない) */}
+      <RecentCourseReminder exam="pii" placement="return_top" className="mb-8" />
 
       {/* カウントダウン: 申込期間中は「申込締切まで」を優先表示 */}
       <ExamCountdown

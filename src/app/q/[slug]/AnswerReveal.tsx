@@ -84,7 +84,7 @@ export default function AnswerReveal({
       <p className="text-xs leading-relaxed mb-2 text-indigo-900/80">{studioCta.body}</p>
       <StudioLink
         href={studioCta.href}
-        placement={`quiz_${exam ?? "result"}`}
+        placement="question_result"
         exam={exam}
         className="text-xs font-bold inline-flex items-center gap-1 no-underline text-indigo-600 hover:underline"
       >
@@ -128,7 +128,7 @@ export default function AnswerReveal({
   // 分母が無いので affiliate_click の CTR も「多いのか少ないのか」が言えず、
   // 面ごとの良し悪しを比べられない状態だった。
   //
-  // questionSlug は 2,866 通りあるのでパラメータに入れない(GA4 のカスタム
+  // questionSlug は 3,370 通りあるのでパラメータに入れない(GA4 のカスタム
   // ディメンションはカーディナリティが高いと集計から溢れる)。資格と正誤だけ送る。
   // 二重送信を ref で止めているのは、開発時の StrictMode でエフェクトが
   // 2回走るため。中核指標が2倍に見えると判断を誤る。
@@ -302,7 +302,7 @@ export default function AnswerReveal({
                         /* GA未ロードでも遷移は妨げない */
                       }
                     }}
-                    className="text-sm font-bold text-blue-700 hover:underline no-underline"
+                    className="text-sm font-bold text-[color:var(--c-accent,var(--c-ink))] hover:underline no-underline"
                   >
                     学習履歴を見る →
                   </a>
@@ -355,7 +355,7 @@ export default function AnswerReveal({
                     key={r.href}
                     href={r.href}
                     onClick={() => trackPractice(r.kind, "question_mid")}
-                    className="text-blue-700 hover:underline"
+                    className="text-[color:var(--c-accent,var(--c-ink))] hover:underline"
                   >
                     {r.label} →
                   </a>
@@ -375,7 +375,7 @@ export default function AnswerReveal({
                       <a
                         href={r.href}
                         onClick={() => trackPractice(r.kind, "question_end")}
-                        className="text-sm font-bold text-blue-700 hover:underline no-underline"
+                        className="text-sm font-bold text-[color:var(--c-accent,var(--c-ink))] hover:underline no-underline"
                       >
                         {r.label} →
                       </a>
@@ -383,6 +383,21 @@ export default function AnswerReveal({
                     </li>
                   ))}
                 </ul>
+                {/* コラムへの導線。問題ページからコラム(流入をいちばん作っている面)への
+                    リンクが1本も無かった。/column/ は資格ごとに <section id={資格ID}> を
+                    持っているので、フラグメントでその資格のセクションに着地する。
+                    連続演習が続いている inline 版には出さない(読み物へ逸らさない)。 */}
+                {exam && (
+                  <p className="mt-4 pt-3 border-t border-[color:var(--c-border)] text-xs">
+                    <a
+                      href={`/column/#${exam}`}
+                      onClick={() => trackPractice("column", "question_end")}
+                      className="text-[color:var(--c-accent,var(--c-ink))] hover:underline"
+                    >
+                      勉強法・試験日程のコラムを読む →
+                    </a>
+                  </p>
+                )}
               </section>
             ))}
 

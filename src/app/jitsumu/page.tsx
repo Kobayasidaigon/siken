@@ -53,6 +53,13 @@ export default async function JitsumuPage() {
             模擬試験を受ける（2級形式80問・90分）→
           </a>
           <Moshi2TopLink certId="jitsumu" />
+          <a
+            href="/jitsumu/mock/"
+            className="inline-flex items-center px-4 py-2 rounded-lg border text-sm font-medium no-underline transition-colors hover:bg-[color:var(--c-pii-soft)]"
+            style={{ borderColor: "var(--c-pii)", color: "var(--c-pii-ink)" }}
+          >
+            本番形式で腕試し（20問・採点）→
+          </a>
         </div>
       </section>
 

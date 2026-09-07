@@ -30,7 +30,18 @@ export default function StudioLink({
   children,
 }: {
   href: string;
-  /** 設置面。utm_content と同じ値を渡し、GA4 側で突き合わせられるようにする */
+  /**
+   * 設置面。**AffiliateLink.tsx と同じ語彙**を使う
+   * (question_result / moshi_result / mock_result / column_footer …)。
+   *
+   * utm_content とは別物で、面によっては食い違う。答え合わせ直後の枠は
+   * utm_content が quiz_<資格> だが placement は question_result にしている。
+   * この項目の本題は「同じ枠の A8 と Studio を並べて比べられるようにする」ことで、
+   * placement を資格別に散らすとその比較ができなくなるため。
+   * 資格の分解は placement ではなく exam パラメータで行う。
+   * utm_content 側は Studio 側の仕様(studio-cta.ts の studioCtaFor 参照)に
+   * 固定されているので動かさない。
+   */
   placement: string;
   /** 資格が確定している面だけ渡す(トップ・フッターなど汎用面は省略) */
   exam?: ExamSlug;

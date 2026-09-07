@@ -5,17 +5,14 @@ const { execSync } = require("child_process");
 // CI(Vercel)は shallow clone のため git の履歴からも正しい更新日を引けず、
 // 全URL同一の偽 lastmod を生成してしまう。CIではローカル生成してコミット済みの
 // public/sitemap.xml をそのまま使う(ローカルの npm run build で常に再生成される)。
-if (process.env.VERCEL || process.env.CI) {
-  console.log("CI detected: using committed public/sitemap.xml as-is");
-  process.exit(0);
-}
+const IS_CI = !!(process.env.VERCEL || process.env.CI);
 
 // lastmod の一次情報は git の最終コミット日。mtime は clone / checkout / 別マシンで
 // 失われる(2026-09-05: 別環境で clone したところ全ファイルの mtime が同日になり、
 // mtime 依存のままでは再生成できなかった)。git が使えない場合だけ mtime に落とす。
 // 未コミットの新規ファイルは git に無いので mtime(=作成日)になる。これは正しい。
 const REPO_ROOT = path.join(__dirname, "..");
-const gitDates = (() => {
+const gitDates = IS_CI ? null : (() => {
   try {
     const out = execSync("git log --name-only --format=%ad --date=short", {
       cwd: REPO_ROOT,
@@ -405,6 +402,31 @@ ${allPages.map(p => `  <url>
     <priority>${p.priority}</priority>
   </url>`).join("\n")}
 </urlset>`;
+
+// CI(Vercel)は shallow clone で lastmod を正しく引けないため、生成はせず
+// コミット済みの public/sitemap.xml をそのまま使う。ただし「ページを足したのに
+// 上の手書き配列に足し忘れた」「スクリプトは直したが sitemap を再生成し忘れた」
+// まま気づかずデプロイされるのを、ここで止める。
+// URL の一覧は git 履歴ではなくファイルの有無だけで決まるので、shallow clone でも
+// 正しく求まる(lastmod だけが引けない)。実際 /<資格>/moshi2/ の9本はこの
+// 取りこぼしで長期間 sitemap に載っていなかった(2026-09-07 に発見)。
+if (IS_CI) {
+  const committedXml = fs.readFileSync(outputPath, "utf-8");
+  const committed = new Set([...committedXml.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]));
+  const expected = new Set(allPages.map((p) => `${BASE_URL}${p.url}`));
+  const missing = [...expected].filter((u) => !committed.has(u));
+  const extra = [...committed].filter((u) => !expected.has(u));
+  if (missing.length || extra.length) {
+    console.error(
+      "public/sitemap.xml が古いです。ローカルで npm run build を実行し、再生成された public/sitemap.xml を同じコミットに含めてください。"
+    );
+    if (missing.length) console.error(`  未収録 ${missing.length}件:\n    ${missing.slice(0, 20).join("\n    ")}`);
+    if (extra.length) console.error(`  余分 ${extra.length}件:\n    ${extra.slice(0, 20).join("\n    ")}`);
+    process.exit(1);
+  }
+  console.log(`CI detected: committed public/sitemap.xml is up to date (${allPages.length} URLs)`);
+  process.exit(0);
+}
 
 fs.writeFileSync(outputPath, xml);
 console.log(`Sitemap generated: ${allPages.length} URLs`);

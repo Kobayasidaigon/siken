@@ -60,6 +60,13 @@ export default async function Bijihou2Page() {
           >
             模擬試験を受ける（90分・70点合格判定）→
           </a>
+          <a
+            href="/bijihou2/mock/"
+            className="inline-flex items-center px-4 py-2 rounded-lg border text-sm font-medium no-underline transition-colors hover:bg-[color:var(--c-kashikin-soft)]"
+            style={{ borderColor: "var(--c-kashikin)", color: "var(--c-kashikin-ink)" }}
+          >
+            本番形式で腕試し（20問・採点）→
+          </a>
         </div>
       </section>
 

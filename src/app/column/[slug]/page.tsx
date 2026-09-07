@@ -734,10 +734,13 @@ export default async function ColumnPage({ params }: { params: Promise<{ slug: s
         <p className="text-xs leading-relaxed mb-2" style={{ color: "var(--c-chizai-ink)" }}>
           {studioCta.body}
         </p>
+        {/* 遷移先の出し分け(資格別LPの有無)は certFromColumnSlug、計測の資格分解は
+            examFromColumnSlug。前者は LP のある2資格しか返さないので、計測にそのまま
+            使うと残りのコラムが資格不明で記録される。役割が違うので使い分ける。 */}
         <StudioLink
           href={studioCta.href}
           placement="column_footer"
-          exam={certFromColumnSlug(slug) ?? undefined}
+          exam={examFromColumnSlug(slug) ?? undefined}
           className="text-xs font-bold inline-flex items-center gap-1 no-underline"
           style={{ color: "var(--c-chizai)" }}
         >

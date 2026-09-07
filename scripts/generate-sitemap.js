@@ -291,6 +291,7 @@ const staticPages = [
   { url: "/kangyo/field/kenchiku/", priority: "0.8", freq: "monthly", lastmod: kangyoMax },
   // その他 (/study/ は localStorage 依存の個人ページで noindex のため sitemap から除外)
   { url: "/guide/", priority: "0.6", freq: "monthly", lastmod: fileDate(path.join(appDir, "guide/page.tsx")) },
+  { url: "/goukaku-houkoku/", priority: "0.4", freq: "monthly", lastmod: fileDate(path.join(appDir, "goukaku-houkoku/page.tsx")) },
   { url: "/about/", priority: "0.3", freq: "yearly", lastmod: fileDate(path.join(appDir, "about/page.tsx")) },
   { url: "/privacy/", priority: "0.2", freq: "yearly", lastmod: fileDate(path.join(appDir, "privacy/page.tsx")) },
   { url: "/contact/", priority: "0.2", freq: "yearly", lastmod: fileDate(path.join(appDir, "contact/page.tsx")) },
@@ -321,9 +322,19 @@ const contentPages = [
   }))
 );
 
+// 合格報告の一覧は、掲載済みの報告が1件でもあるときだけ sitemap に載せる。
+// 0件のうちは中身が「報告のお願い」だけなので、検索結果に出しても価値がない
+// (ページ側も 0件のときは noindex にしてある: src/app/voice/page.tsx)。
+const voices = collect(path.join(__dirname, "../src/content/voices"));
+const voicePages =
+  voices.length > 0
+    ? [{ url: "/voice/", priority: "0.6", freq: "weekly", lastmod: maxDate(voices, todayFallback) }]
+    : [];
+
 const allPages = [
   ...staticPages,
   { url: "/column/", priority: "0.8", freq: "weekly", lastmod: columnsMax },
+  ...voicePages,
   ...contentPages,
 ];
 

@@ -8,6 +8,7 @@ import { pageMetadata } from "@/lib/page-metadata";
 import { BIJIHOU_EXAMS } from "@/lib/exam-dates";
 import ExamCountdown from "@/components/ExamCountdown";
 import Moshi2TopLink from "@/components/Moshi2TopLink";
+import ExamVoicesSection from "@/components/ExamVoicesSection";
 
 export const metadata: Metadata = pageMetadata({
   path: "/bijihou/",
@@ -91,6 +92,10 @@ export default async function BijihouPage() {
           <p><span className="font-bold text-[color:var(--c-ink)]">実施機関</span>　東京商工会議所</p>
         </div>
       </section>
+
+      {/* 合格報告(掲載済みがあれば)と、受験直後の方への報告のお願い。
+          どちらも条件を満たさなければ何も出ない */}
+      <ExamVoicesSection exam="bijihou" />
 
       <BijihouCourseAd headline={BIJIHOU_TOP_AD.headline} body={BIJIHOU_TOP_AD.body} />
 

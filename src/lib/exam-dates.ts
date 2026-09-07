@@ -145,6 +145,26 @@ export function daysUntilYmd(ymd: string): number {
 }
 
 /**
+ * 「試験が終わった直後」の回を返す。試験日から withinDays 日以内なら、その回。
+ * 無ければ null。2026-09-05 追加。
+ *
+ * 合格報告(利用者からの受験報告)をお願いする窓を決めるために使う。試験の翌日から
+ * 数週間が、受験した記憶が新しく、かつ結果待ちで再訪しやすい時期にあたる。
+ * 締切カウントダウン(申込前)とは出る時期が重ならない。
+ */
+export function justFinishedExam(exams: UpcomingExam[], withinDays = 45): UpcomingExam | null {
+  const today = todayStart();
+  let best: UpcomingExam | null = null;
+  for (const e of exams) {
+    const d = ymdDate(e.date).getTime();
+    if (d > today) continue; // まだ実施していない
+    if ((today - d) / 86400000 > withinDays) continue; // 古すぎる
+    if (!best || d > ymdDate(best.date).getTime()) best = e;
+  }
+  return best;
+}
+
+/**
  * "2026年11月15日（日）" 形式にフォーマット。
  * ローカルタイムゾーンのgetterを使うと、UTC等JST以外のビルド環境で静的生成した
  * ときに1日前の日付になる(実際に本番で試験日・締切が全て-1日表示になった)ため、

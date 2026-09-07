@@ -6,6 +6,7 @@ import ChintaiCourseAd from "@/components/ChintaiCourseAd";
 import { pageMetadata } from "@/lib/page-metadata";
 import { CHINTAI_EXAMS } from "@/lib/exam-dates";
 import ExamCountdown from "@/components/ExamCountdown";
+import ExamVoicesSection from "@/components/ExamVoicesSection";
 
 export const metadata: Metadata = pageMetadata({
   path: "/chintai/",
@@ -95,6 +96,10 @@ export default async function ChintaiPage() {
           <p><span className="font-bold text-[color:var(--c-ink)]">実施機関</span>　一般社団法人賃貸不動産経営管理士協議会</p>
         </div>
       </section>
+
+      {/* 合格報告(掲載済みがあれば)と、受験直後の方への報告のお願い。
+          どちらも条件を満たさなければ何も出ない */}
+      <ExamVoicesSection exam="chintai" />
 
       <ChintaiCourseAd />
 

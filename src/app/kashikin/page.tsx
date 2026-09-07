@@ -6,6 +6,7 @@ import KashikinCourseAd from "@/components/KashikinCourseAd";
 import { pageMetadata } from "@/lib/page-metadata";
 import { KASHIKIN_EXAMS } from "@/lib/exam-dates";
 import ExamCountdown from "@/components/ExamCountdown";
+import ExamVoicesSection from "@/components/ExamVoicesSection";
 
 export const metadata: Metadata = pageMetadata({
   path: "/kashikin/",
@@ -92,6 +93,10 @@ export default async function KashikinPage() {
           <p><span className="font-bold text-[color:var(--c-ink)]">実施機関</span>　日本貸金業協会</p>
         </div>
       </section>
+
+      {/* 合格報告(掲載済みがあれば)と、受験直後の方への報告のお願い。
+          どちらも条件を満たさなければ何も出ない */}
+      <ExamVoicesSection exam="kashikin" />
 
       <KashikinCourseAd
         headline="本試験まで逆算で対策するなら"

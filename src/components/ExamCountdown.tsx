@@ -3,6 +3,7 @@ import { nextExam, nextApplyDeadline, daysUntilYmd, formatYmdJa } from "@/lib/ex
 import AffiliateLink from "@/components/AffiliateLink";
 import FreeLeadCTA from "@/components/FreeLeadCTA";
 import CountdownPing from "@/components/CountdownPing";
+import ExamCalendarLinks from "@/components/ExamCalendarLinks";
 import type { ExamSlug } from "@/lib/study-progress";
 import { EXAM_AFFILIATE } from "@/lib/affiliate-links";
 
@@ -37,6 +38,12 @@ interface Props {
   applyPlacement?: string; // GA4で設置面を区別する。既定は資格トップの "top_apply"
   lead?: ExamSlug; // 締切表示時に無料オファー(freeHref)を添える資格。apply が無い資格向け
   leadPlacement?: string; // 既定は資格トップの "top_lead"。コラムは "column_countdown_lead"
+  /**
+   * 締切・試験日をカレンダーに入れる一行を出す。2026-09-07 追加。
+   * 資格トップだけに付ける(コラムにも置くと同じ予定への導線が何本も並ぶため)。
+   * examName は予定のタイトルに、path は予定に載せる戻り先URLに使う。
+   */
+  calendar?: { examName: string; path: string };
 }
 
 // 締切がこの日数以内に迫ったら強調表示に切り替える。
@@ -53,6 +60,7 @@ export default function ExamCountdown({
   applyPlacement = "top_apply",
   lead,
   leadPlacement = "top_lead",
+  calendar,
 }: Props) {
   const deadline = nextApplyDeadline(exams);
   if (deadline && deadline.applyEnd) {
@@ -91,6 +99,16 @@ export default function ExamCountdown({
         {!apply && lead && (
           <LeadRow exam={lead} placement={leadPlacement} />
         )}
+        {calendar && (
+          <ExamCalendarLinks
+            examName={calendar.examName}
+            kind="apply"
+            ymd={deadline.applyEnd}
+            label={deadline.label}
+            path={calendar.path}
+            placement="top_countdown_apply"
+          />
+        )}
       </section>
     );
   }
@@ -100,15 +118,27 @@ export default function ExamCountdown({
   const daysLeft = daysUntilYmd(upcoming.date);
   if (daysLeft <= 0) return null;
   return (
-    <section className="mb-10 card p-5 flex items-center justify-between">
+    <section className="mb-10 card p-5">
       <CountdownPing mode="exam" ymd={upcoming.date} />
-      <div>
-        <p className="text-xs text-[color:var(--c-text-sub)] mb-1">
-          {periodExam ? `${examWord}期間（${upcoming.label}）の開始まで` : `${examWord}（${upcoming.label}）まで`}
-        </p>
-        <p className="text-lg font-bold font-serif" style={{ color: accent }}>あと {daysLeft} 日</p>
+      <div className="flex items-center justify-between">
+        <div>
+          <p className="text-xs text-[color:var(--c-text-sub)] mb-1">
+            {periodExam ? `${examWord}期間（${upcoming.label}）の開始まで` : `${examWord}（${upcoming.label}）まで`}
+          </p>
+          <p className="text-lg font-bold font-serif" style={{ color: accent }}>あと {daysLeft} 日</p>
+        </div>
+        <p className="text-sm text-[color:var(--c-text-sub)]">{formatYmdJa(upcoming.date)}{periodExam ? "〜" : ""}</p>
       </div>
-      <p className="text-sm text-[color:var(--c-text-sub)]">{formatYmdJa(upcoming.date)}{periodExam ? "〜" : ""}</p>
+      {calendar && (
+        <ExamCalendarLinks
+          examName={calendar.examName}
+          kind="exam"
+          ymd={upcoming.date}
+          label={upcoming.label}
+          path={calendar.path}
+          placement="top_countdown_exam"
+        />
+      )}
     </section>
   );
 }

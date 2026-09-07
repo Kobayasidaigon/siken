@@ -3,6 +3,8 @@ import { Noto_Sans_JP, Noto_Serif_JP } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import "./globals.css";
+import StudioLink from "@/components/StudioLink";
+import MobileNav from "@/components/MobileNav";
 
 const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
 
@@ -131,10 +133,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <a href="/column/" className="text-[color:var(--c-text-sub)] hover:text-[color:var(--c-ink)] no-underline transition-colors">コラム</a>
               <a href="/study/" className="text-[color:var(--c-text-sub)] hover:text-[color:var(--c-ink)] no-underline transition-colors">学習履歴</a>
               <a href="/about/" className="text-[color:var(--c-text-sub)] hover:text-[color:var(--c-ink)] no-underline transition-colors">サイトについて</a>
-              <a
+              <StudioLink
                 href="https://studio.shikakumon.com/?utm_source=shikakumon&utm_medium=referral&utm_content=header"
-                target="_blank"
-                rel="noopener noreferrer"
+                placement="header"
                 className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-bold no-underline transition-colors"
                 style={{ background: "var(--c-chizai-soft)", color: "var(--c-chizai-ink)" }}
               >
@@ -145,7 +146,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 >
                   AI
                 </span>
-              </a>
+              </StudioLink>
             </nav>
           </div>
         </header>
@@ -188,10 +189,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 <h4 className="text-[color:var(--c-ink)] font-bold mt-6 mb-3 text-xs font-serif">関連サービス</h4>
                 <ul className="space-y-2">
                   <li>
-                    <a
+                    <StudioLink
                       href="https://studio.shikakumon.com/?utm_source=shikakumon&utm_medium=referral&utm_content=footer"
-                      target="_blank"
-                      rel="noopener noreferrer"
+                      placement="footer"
                       className="no-underline inline-flex items-center gap-1"
                       style={{ color: "var(--c-chizai)" }}
                     >
@@ -199,7 +199,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                       <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                         <path strokeLinecap="round" strokeLinejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                       </svg>
-                    </a>
+                    </StudioLink>
                     <p className="text-[11px] text-[color:var(--c-text-sub)] mt-0.5 leading-relaxed">
                       テキストから AI が問題を作る
                     </p>
@@ -260,26 +260,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         </footer>
 
         {/* Mobile Nav */}
-        <nav className="sm:hidden fixed bottom-0 left-0 right-0 bg-[color:var(--c-surface)] border-t border-[color:var(--c-border)] z-50">
-          <div className="flex justify-around h-14 items-center text-xs">
-            <a href="/" className="flex flex-col items-center text-[color:var(--c-text-sub)] hover:text-[color:var(--c-ink)] no-underline">
-              <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-4 0h4" /></svg>
-              ホーム
-            </a>
-            <a href="/kashikin/" className="flex flex-col items-center text-[color:var(--c-text-sub)] hover:text-[color:var(--c-kashikin)] no-underline">
-              <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
-              貸金
-            </a>
-            <a href="/pii/" className="flex flex-col items-center text-[color:var(--c-text-sub)] hover:text-[color:var(--c-pii)] no-underline">
-              <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg>
-              個情保
-            </a>
-            <a href="/chizai/" className="flex flex-col items-center text-[color:var(--c-text-sub)] hover:text-[color:var(--c-chizai)] no-underline">
-              <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" /></svg>
-              知財
-            </a>
-          </div>
-        </nav>
+        <MobileNav />
         <Analytics />
       </body>
       {GA_ID && <GoogleAnalytics gaId={GA_ID} />}

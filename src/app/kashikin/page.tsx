@@ -59,7 +59,7 @@ export default async function KashikinPage() {
       <RecentCourseReminder exam="kashikin" placement="return_top" className="mb-8" />
 
       {/* カウントダウン: 申込期間中は「申込締切まで」を優先表示 */}
-      <ExamCountdown exams={KASHIKIN_EXAMS} accent="var(--c-kashikin)" accentSoft="var(--c-kashikin-soft)" examWord="次回本試験" lead="kashikin" />
+      <ExamCountdown exams={KASHIKIN_EXAMS} accent="var(--c-kashikin)" accentSoft="var(--c-kashikin-soft)" examWord="次回本試験" lead="kashikin" calendar={{ examName: "貸金業務取扱主任者", path: "/kashikin/" }} />
 
       {/* 分野別 */}
       <section className="mb-12">

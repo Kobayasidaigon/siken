@@ -48,6 +48,44 @@ function track(name: string, params?: Record<string, unknown>) {
   w.gtag?.("event", name, params);
 }
 
+/**
+ * GA4 の e コマース標準イベント。2026-09-07 追加。
+ *
+ * これまで送っていたのは moshi2_checkout_start / moshi2_purchase_complete という
+ * 独自名のイベントで、金額も通貨も載せていなかった。GA4 の「収益」は
+ * `purchase` イベントの value/currency からしか積まれないため、有料模試の売上は
+ * レポート上ずっと0円だった。A8 の成果額とも Studio の課金とも比較できない状態。
+ *
+ * 独自名のイベントは過去データとの連続性のために残し、標準イベントを併せて送る。
+ * 収益に積まれるのは `purchase` だけなので二重計上にはならない。
+ *
+ * transaction_id には Stripe の決済セッションIDを入れる。GA4 は同じ
+ * transaction_id の purchase を重複排除するので、購入直後にリロードされても
+ * 売上が二重に積まれない(復帰URLは replaceState で消しているが、
+ * 戻る操作で再評価される余地は残るため)。
+ */
+function trackEcommerce(
+  name: "begin_checkout" | "purchase",
+  product: { certId: string; name: string; priceJpy: number } | undefined,
+  extra?: Record<string, unknown>
+) {
+  if (!product) return;
+  track(name, {
+    currency: "JPY",
+    value: product.priceJpy,
+    items: [
+      {
+        item_id: `moshi2_${product.certId}`,
+        item_name: product.name,
+        item_category: "moshi2",
+        price: product.priceJpy,
+        quantity: 1,
+      },
+    ],
+    ...extra,
+  });
+}
+
 export default function Moshi2Gate({ certId }: { certId: ExamSlug }) {
   const product = moshi2ProductOf(certId);
   const [status, setStatus] = useState<Status>("loading");
@@ -122,6 +160,7 @@ export default function Moshi2Gate({ certId }: { certId: ExamSlug }) {
           if (!alive) return;
           if (res.ok) {
             track("moshi2_purchase_complete", { cert: certId });
+            trackEcommerce("purchase", product, { transaction_id: sessionId });
           } else {
             setMessage(data?.error ?? "決済の確認に失敗しました。");
           }
@@ -152,6 +191,7 @@ export default function Moshi2Gate({ certId }: { certId: ExamSlug }) {
     setBuying(true);
     setMessage(null);
     track("moshi2_checkout_start", { cert: certId });
+    trackEcommerce("begin_checkout", product);
     try {
       const res = await fetch("/api/checkout/", {
         method: "POST",

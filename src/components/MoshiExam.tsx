@@ -29,6 +29,7 @@ import MoshiFormatFeedback from "@/components/MoshiFormatFeedback";
 import MoshiRound2Interest from "@/components/MoshiRound2Interest";
 import Moshi2Offer from "@/components/Moshi2Offer";
 import { moshi2ProductOf } from "@/lib/moshi2-products";
+import StudioLink from "@/components/StudioLink";
 
 export interface MoshiQuestion {
   slug: string;
@@ -68,9 +69,6 @@ interface SavedSession {
   startedAt: number;
   answers: (number | null)[];
 }
-
-const STUDIO_URL =
-  "https://studio.shikakumon.com/?utm_source=shikakumon&utm_medium=referral&utm_content=moshi_result";
 
 function loadSession(key: string): SavedSession | null {
   try {
@@ -596,14 +594,14 @@ export default function MoshiExam({
             ? `${weakest[0]}が ${weakest[1].correct}/${weakest[1].total} でした。姉妹サービス「シカクモン Studio」なら、この分野の問題をAIがその場で作ります。間違えた問題は忘却曲線で自動的に再出題されます。`
             : "今回の取りこぼしを忘れる前に。資格名や手元の教材から作った問題を忘却曲線で自動復習できる姉妹サービス「シカクモン Studio」。"}
         </p>
-        <a
+        <StudioLink
           href={studioMoshiHref(exam, weakest?.[0], "moshi_result")}
-          target="_blank"
-          rel="noopener noreferrer"
+          placement="moshi_result"
+          exam={exam}
           className="text-xs font-bold inline-flex items-center gap-1 no-underline text-indigo-600 hover:underline"
         >
           {weakest ? `${weakest[0]}の問題を作る →` : "シカクモン Studio を無料で試す →"}
-        </a>
+        </StudioLink>
       </aside>
 
       {/* 全問詳解 */}

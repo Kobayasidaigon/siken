@@ -10,12 +10,14 @@
  */
 
 import { useState } from "react";
+import { sendGAEvent } from "@next/third-parties/google";
 import AffiliateLink from "@/components/AffiliateLink";
 import FreeLeadCTA from "@/components/FreeLeadCTA";
 import { EXAM_AFFILIATE } from "@/lib/affiliate-links";
 import { decideCtaPriority } from "@/lib/cta-priority";
 import { recordResult, type ExamSlug } from "@/lib/study-progress";
 import { studioMoshiHref } from "@/lib/studio-cta";
+import StudioLink from "@/components/StudioLink";
 
 export interface MockQuestion {
   slug: string;
@@ -48,8 +50,22 @@ function shuffle<T>(arr: T[]): T[] {
   return a;
 }
 
-const STUDIO_URL =
-  "https://studio.shikakumon.com/?utm_source=shikakumon&utm_medium=referral&utm_content=mock_result";
+/**
+ * 本番形式テストの計測。2026-09-07 追加。
+ *
+ * このコンポーネントは7資格の /mock/ が共有しているのに、GA のイベントを
+ * 1つも送っていなかった(import すら無かった)。開始も完了も測れていないので、
+ * この面が実際に使われているのか、結果画面の送客CTAが何人に届いているのかが
+ * 分からないままだった。模試(MoshiExam)は moshi_start / moshi_complete を
+ * 送っているので、同じ命名に揃える。
+ */
+function track(name: string, params: Record<string, unknown>) {
+  try {
+    sendGAEvent("event", name, params);
+  } catch {
+    /* GA未ロードでも採点は妨げない */
+  }
+}
 
 // 配色はテーマ非依存。各mockページの theme-* が --c-accent(-ink) を供給する
 // （貸金=theme-kashikin なので従来色のまま／知財=theme-chizai・個情保=theme-pii で各色に）。
@@ -75,6 +91,7 @@ export default function MockExam({
     setAnswers(new Array(picked.length).fill(null));
     setIdx(0);
     setPhase("running");
+    track("mock_start", { exam, size: picked.length });
     if (typeof window !== "undefined") window.scrollTo({ top: 0 });
   }
 
@@ -91,6 +108,15 @@ export default function MockExam({
     pool.forEach((q, i) => {
       const sel = answers[i];
       if (sel != null) recordResult(exam, q.slug, sel === q.correctAnswer);
+    });
+    const correct = pool.filter((q, i) => answers[i] === q.correctAnswer).length;
+    track("mock_complete", {
+      exam,
+      size: pool.length,
+      correct,
+      // 得点率は5点刻みに丸める。1点刻みだと値のばらつきで集計が読めない
+      score_bucket: pool.length ? Math.round((correct / pool.length) * 20) * 5 : 0,
+      passed: pool.length && (correct / pool.length) * 100 >= (passPct ?? 60) ? "yes" : "no",
     });
     setPhase("done");
     if (typeof window !== "undefined") window.scrollTo({ top: 0 });
@@ -302,14 +328,14 @@ export default function MockExam({
             ? `${weakest[0]}が ${weakest[1].correct}/${weakest[1].total} でした。姉妹サービス「シカクモン Studio」なら、この分野の問題をAIがその場で作ります。間違えた問題は忘却曲線で自動的に再出題されます。`
             : "今回の取りこぼしを忘れる前に。資格名や手元の教材から作った問題を忘却曲線で自動復習できる姉妹サービス「シカクモン Studio」。"}
         </p>
-        <a
+        <StudioLink
           href={studioMoshiHref(exam, weakest?.[0], "mock_result")}
-          target="_blank"
-          rel="noopener noreferrer"
+          placement="mock_result"
+          exam={exam}
           className="text-xs font-bold inline-flex items-center gap-1 no-underline text-indigo-600 hover:underline"
         >
           {weakest ? `${weakest[0]}の問題を作る →` : "シカクモン Studio を無料で試す →"}
-        </a>
+        </StudioLink>
       </aside>
 
       {/* 間違えた問題の復習リンク */}

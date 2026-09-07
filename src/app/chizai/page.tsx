@@ -84,7 +84,7 @@ export default async function ChizaiPage() {
       <RecentCourseReminder exam="chizai" placement="return_top" className="mb-8" />
 
       {/* カウントダウン: 申込期間中は「申込締切まで」を優先表示 */}
-      <ExamCountdown exams={CHIZAI_EXAMS} accent="var(--c-chizai)" accentSoft="var(--c-chizai-soft)" lead="chizai" />
+      <ExamCountdown exams={CHIZAI_EXAMS} accent="var(--c-chizai)" accentSoft="var(--c-chizai-soft)" lead="chizai" calendar={{ examName: "知的財産管理技能検定3級", path: "/chizai/" }} />
 
       {/* 分野 - タグクラウド風 */}
       <section className="mb-12">

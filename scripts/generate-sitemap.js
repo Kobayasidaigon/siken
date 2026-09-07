@@ -64,6 +64,10 @@ const columnsDir = path.join(__dirname, "../src/content/columns");
 const appDir = path.join(__dirname, "../src/app");
 const outputPath = path.join(__dirname, "../public/sitemap.xml");
 
+// 第2回模試(有料)の /<資格>/moshi2/ は、この staticPages 配列が手書きのため
+// 追加され忘れていた(2026-09-07 に発見)。9資格ぶんの商品ページが sitemap に
+// 1本も無く、robots の noindex も付いていない=出したいのに出していない状態だった。
+// 資格を増やすときは moshi と moshi2 を対で足すこと。
 // lastmod はビルド日ではなく「そのページのコンテンツが実際に変わった日」を出す。
 // 全URL一律の生成日を入れると Google に偽シグナルとして無視されるため。
 function toDate(mtimeMs) {
@@ -147,6 +151,7 @@ const staticPages = [
   // 個人情報保護士
   { url: "/pii/", priority: "0.9", freq: "weekly", lastmod: piiMax },
   { url: "/pii/moshi/", priority: "0.7", freq: "monthly", lastmod: fileDate(path.join(appDir, "pii/moshi/page.tsx")) },
+  { url: "/pii/moshi2/", priority: "0.6", freq: "monthly", lastmod: fileDate(path.join(appDir, "pii/moshi2/page.tsx")) },
   { url: "/pii/mock/", priority: "0.6", freq: "monthly", lastmod: fileDate(path.join(appDir, "pii/mock/page.tsx")) },
   { url: "/pii/field/hogo-law/", priority: "0.8", freq: "monthly", lastmod: piiMax },
   { url: "/pii/field/mynumber/", priority: "0.8", freq: "monthly", lastmod: piiMax },
@@ -154,6 +159,7 @@ const staticPages = [
   // 知的財産管理技能検定3級
   { url: "/chizai/", priority: "0.9", freq: "weekly", lastmod: chizaiMax },
   { url: "/chizai/moshi/", priority: "0.7", freq: "monthly", lastmod: fileDate(path.join(appDir, "chizai/moshi/page.tsx")) },
+  { url: "/chizai/moshi2/", priority: "0.6", freq: "monthly", lastmod: fileDate(path.join(appDir, "chizai/moshi2/page.tsx")) },
   { url: "/chizai/mock/", priority: "0.6", freq: "monthly", lastmod: fileDate(path.join(appDir, "chizai/mock/page.tsx")) },
   { url: "/chizai/field/patent/", priority: "0.8", freq: "monthly", lastmod: chizaiMax },
   { url: "/chizai/field/copyright/", priority: "0.8", freq: "monthly", lastmod: chizaiMax },
@@ -167,6 +173,7 @@ const staticPages = [
   // 知的財産管理技能検定2級
   { url: "/chizai2/", priority: "0.9", freq: "weekly", lastmod: chizai2Max },
   { url: "/chizai2/moshi/", priority: "0.7", freq: "monthly", lastmod: fileDate(path.join(appDir, "chizai2/moshi/page.tsx")) },
+  { url: "/chizai2/moshi2/", priority: "0.6", freq: "monthly", lastmod: fileDate(path.join(appDir, "chizai2/moshi2/page.tsx")) },
   { url: "/chizai2/mock/", priority: "0.6", freq: "monthly", lastmod: fileDate(path.join(appDir, "chizai2/mock/page.tsx")) },
   { url: "/chizai2/field/patent/", priority: "0.8", freq: "monthly", lastmod: chizai2Max },
   { url: "/chizai2/field/copyright/", priority: "0.8", freq: "monthly", lastmod: chizai2Max },
@@ -180,6 +187,8 @@ const staticPages = [
   // マイナンバー実務検定3級
   { url: "/mynumber/", priority: "0.9", freq: "weekly", lastmod: mynumberMax },
   { url: "/mynumber/moshi/", priority: "0.7", freq: "monthly", lastmod: fileDate(path.join(appDir, "mynumber/moshi/page.tsx")) },
+  { url: "/mynumber/mock/", priority: "0.6", freq: "monthly", lastmod: fileDate(path.join(appDir, "mynumber/mock/page.tsx")) },
+  { url: "/mynumber/moshi2/", priority: "0.6", freq: "monthly", lastmod: fileDate(path.join(appDir, "mynumber/moshi2/page.tsx")) },
   { url: "/mynumber/field/outline/", priority: "0.8", freq: "monthly", lastmod: mynumberMax },
   { url: "/mynumber/field/card/", priority: "0.8", freq: "monthly", lastmod: mynumberMax },
   { url: "/mynumber/field/protection/", priority: "0.8", freq: "monthly", lastmod: mynumberMax },
@@ -188,6 +197,8 @@ const staticPages = [
   // 個人情報保護実務検定3級
   { url: "/jitsumu/", priority: "0.9", freq: "weekly", lastmod: jitsumuMax },
   { url: "/jitsumu/moshi/", priority: "0.7", freq: "monthly", lastmod: fileDate(path.join(appDir, "jitsumu/moshi/page.tsx")) },
+  { url: "/jitsumu/mock/", priority: "0.6", freq: "monthly", lastmod: fileDate(path.join(appDir, "jitsumu/mock/page.tsx")) },
+  { url: "/jitsumu/moshi2/", priority: "0.6", freq: "monthly", lastmod: fileDate(path.join(appDir, "jitsumu/moshi2/page.tsx")) },
   { url: "/jitsumu/field/basic/", priority: "0.8", freq: "monthly", lastmod: jitsumuMax },
   { url: "/jitsumu/field/acquisition/", priority: "0.8", freq: "monthly", lastmod: jitsumuMax },
   { url: "/jitsumu/field/security/", priority: "0.8", freq: "monthly", lastmod: jitsumuMax },
@@ -196,6 +207,8 @@ const staticPages = [
   // ビジネス実務法務検定3級
   { url: "/bijihou/", priority: "0.9", freq: "weekly", lastmod: bijihouMax },
   { url: "/bijihou/moshi/", priority: "0.7", freq: "monthly", lastmod: fileDate(path.join(appDir, "bijihou/moshi/page.tsx")) },
+  { url: "/bijihou/mock/", priority: "0.6", freq: "monthly", lastmod: fileDate(path.join(appDir, "bijihou/mock/page.tsx")) },
+  { url: "/bijihou/moshi2/", priority: "0.6", freq: "monthly", lastmod: fileDate(path.join(appDir, "bijihou/moshi2/page.tsx")) },
   { url: "/bijihou/field/kiso/", priority: "0.8", freq: "monthly", lastmod: bijihouMax },
   { url: "/bijihou/field/minpou-saiken/", priority: "0.8", freq: "monthly", lastmod: bijihouMax },
   { url: "/bijihou/field/minpou-bukken/", priority: "0.8", freq: "monthly", lastmod: bijihouMax },
@@ -204,6 +217,7 @@ const staticPages = [
   // 福祉住環境コーディネーター2級
   { url: "/fukushi2/", priority: "0.9", freq: "weekly", lastmod: fukushi2Max },
   { url: "/fukushi2/moshi/", priority: "0.7", freq: "monthly", lastmod: fileDate(path.join(appDir, "fukushi2/moshi/page.tsx")) },
+  { url: "/fukushi2/moshi2/", priority: "0.6", freq: "monthly", lastmod: fileDate(path.join(appDir, "fukushi2/moshi2/page.tsx")) },
   { url: "/fukushi2/mock/", priority: "0.6", freq: "monthly", lastmod: fileDate(path.join(appDir, "fukushi2/mock/page.tsx")) },
   { url: "/fukushi2/field/society/", priority: "0.8", freq: "monthly", lastmod: fukushi2Max },
   { url: "/fukushi2/field/consultation/", priority: "0.8", freq: "monthly", lastmod: fukushi2Max },
@@ -217,6 +231,7 @@ const staticPages = [
   // ビジネスマネジャー検定
   { url: "/bijimane/", priority: "0.9", freq: "weekly", lastmod: bijimaneMax },
   { url: "/bijimane/moshi/", priority: "0.7", freq: "monthly", lastmod: fileDate(path.join(appDir, "bijimane/moshi/page.tsx")) },
+  { url: "/bijimane/moshi2/", priority: "0.6", freq: "monthly", lastmod: fileDate(path.join(appDir, "bijimane/moshi2/page.tsx")) },
   { url: "/bijimane/mock/", priority: "0.6", freq: "monthly", lastmod: fileDate(path.join(appDir, "bijimane/mock/page.tsx")) },
   { url: "/bijimane/field/role/", priority: "0.8", freq: "monthly", lastmod: bijimaneMax },
   { url: "/bijimane/field/self-communication/", priority: "0.8", freq: "monthly", lastmod: bijimaneMax },
@@ -230,6 +245,7 @@ const staticPages = [
   { url: "/bijimane/field/risk-operation/", priority: "0.8", freq: "monthly", lastmod: bijimaneMax },
   { url: "/eco/", priority: "0.9", freq: "weekly", lastmod: ecoMax },
   { url: "/eco/moshi/", priority: "0.7", freq: "monthly", lastmod: fileDate(path.join(appDir, "eco/moshi/page.tsx")) },
+  { url: "/eco/moshi2/", priority: "0.6", freq: "monthly", lastmod: fileDate(path.join(appDir, "eco/moshi2/page.tsx")) },
   { url: "/eco/mock/", priority: "0.6", freq: "monthly", lastmod: fileDate(path.join(appDir, "eco/mock/page.tsx")) },
   { url: "/eco/field/history/", priority: "0.8", freq: "monthly", lastmod: ecoMax },
   { url: "/eco/field/earth/", priority: "0.8", freq: "monthly", lastmod: ecoMax },
@@ -243,6 +259,7 @@ const staticPages = [
   { url: "/eco/field/actors/", priority: "0.8", freq: "monthly", lastmod: ecoMax },
   { url: "/bijihou2/", priority: "0.9", freq: "weekly", lastmod: bijihou2Max },
   { url: "/bijihou2/moshi/", priority: "0.7", freq: "monthly", lastmod: fileDate(path.join(appDir, "bijihou2/moshi/page.tsx")) },
+  { url: "/bijihou2/mock/", priority: "0.6", freq: "monthly", lastmod: fileDate(path.join(appDir, "bijihou2/mock/page.tsx")) },
   { url: "/bijihou2/field/torihiki/", priority: "0.8", freq: "monthly", lastmod: bijihou2Max },
   { url: "/bijihou2/field/zaisan/", priority: "0.8", freq: "monthly", lastmod: bijihou2Max },
   { url: "/bijihou2/field/kigyoukan/", priority: "0.8", freq: "monthly", lastmod: bijihou2Max },
@@ -255,6 +272,7 @@ const staticPages = [
   { url: "/bijihou2/field/juugyouin/", priority: "0.8", freq: "monthly", lastmod: bijihou2Max },
   { url: "/itpass/", priority: "0.9", freq: "weekly", lastmod: itpassMax },
   { url: "/itpass/moshi/", priority: "0.7", freq: "monthly", lastmod: fileDate(path.join(appDir, "itpass/moshi/page.tsx")) },
+  { url: "/itpass/mock/", priority: "0.6", freq: "monthly", lastmod: fileDate(path.join(appDir, "itpass/mock/page.tsx")) },
   { url: "/itpass/field/kigyou/", priority: "0.8", freq: "monthly", lastmod: itpassMax },
   { url: "/itpass/field/senryaku/", priority: "0.8", freq: "monthly", lastmod: itpassMax },
   { url: "/itpass/field/system-senryaku/", priority: "0.8", freq: "monthly", lastmod: itpassMax },
@@ -267,6 +285,7 @@ const staticPages = [
   { url: "/itpass/field/security/", priority: "0.8", freq: "monthly", lastmod: itpassMax },
   { url: "/chintai/", priority: "0.9", freq: "weekly", lastmod: chintaiMax },
   { url: "/chintai/moshi/", priority: "0.7", freq: "monthly", lastmod: fileDate(path.join(appDir, "chintai/moshi/page.tsx")) },
+  { url: "/chintai/mock/", priority: "0.6", freq: "monthly", lastmod: fileDate(path.join(appDir, "chintai/mock/page.tsx")) },
   { url: "/chintai/field/gyouhou/", priority: "0.8", freq: "monthly", lastmod: chintaiMax },
   { url: "/chintai/field/jutaku/", priority: "0.8", freq: "monthly", lastmod: chintaiMax },
   { url: "/chintai/field/sublease/", priority: "0.8", freq: "monthly", lastmod: chintaiMax },
@@ -279,6 +298,7 @@ const staticPages = [
   { url: "/chintai/field/igi/", priority: "0.8", freq: "monthly", lastmod: chintaiMax },
   { url: "/kangyo/", priority: "0.9", freq: "weekly", lastmod: kangyoMax },
   { url: "/kangyo/moshi/", priority: "0.7", freq: "monthly", lastmod: fileDate(path.join(appDir, "kangyo/moshi/page.tsx")) },
+  { url: "/kangyo/mock/", priority: "0.6", freq: "monthly", lastmod: fileDate(path.join(appDir, "kangyo/mock/page.tsx")) },
   { url: "/kangyo/field/kubun1/", priority: "0.8", freq: "monthly", lastmod: kangyoMax },
   { url: "/kangyo/field/kubun2/", priority: "0.8", freq: "monthly", lastmod: kangyoMax },
   { url: "/kangyo/field/kiyaku/", priority: "0.8", freq: "monthly", lastmod: kangyoMax },

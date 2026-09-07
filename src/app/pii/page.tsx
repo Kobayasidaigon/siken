@@ -101,6 +101,7 @@ export default async function PiiPage() {
           course: "pii",
           pixel: "https://www11.a8.net/0.gif?a8mat=4B1TI0+9T22IA+4LOQ+BW8O2",
         }}
+        calendar={{ examName: "個人情報保護士", path: "/pii/" }}
       />
 
       {/* 分野 - 縦1列の大きめカード */}

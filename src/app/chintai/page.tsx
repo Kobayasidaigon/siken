@@ -67,7 +67,7 @@ export default async function ChintaiPage() {
       <RecentCourseReminder exam="chintai" placement="return_top" className="mb-8" />
 
       {/* カウントダウン: 申込期間中(8/3〜9/30)は「申込締切まで」を優先表示。A8の成果は締切直前に集中する */}
-      <ExamCountdown exams={CHINTAI_EXAMS} accent="var(--c-kashikin)" accentSoft="var(--c-kashikin-soft)" lead="chintai" />
+      <ExamCountdown exams={CHINTAI_EXAMS} accent="var(--c-kashikin)" accentSoft="var(--c-kashikin-soft)" lead="chintai" calendar={{ examName: "賃貸不動産経営管理士", path: "/chintai/" }} />
 
       <section className="mb-12">
         <h2 className="text-lg font-bold text-[color:var(--c-ink)] mb-5 font-serif">分野から選ぶ</h2>

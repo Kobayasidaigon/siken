@@ -78,6 +78,7 @@ export default async function MynumberPage() {
           course: "mynumber",
           pixel: "https://www11.a8.net/0.gif?a8mat=4B1TI0+9T22IA+4LOQ+BW8O2",
         }}
+        calendar={{ examName: "マイナンバー実務検定3級", path: "/mynumber/" }}
       />
 
       <section className="mb-12">

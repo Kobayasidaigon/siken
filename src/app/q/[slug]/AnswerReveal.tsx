@@ -32,6 +32,8 @@ const RESULT_CTA_EXAMS: ExamSlug[] = [
   "kangyo",
   "itpass",
   "fukushi2",
+  // 2026-09-08 追加。isec は SMART合格講座(4B1TI0系)の無料登録を主導線にしている。
+  "isec",
 ];
 
 const MEDAL_LABEL: Record<Medal, string> = { bronze: "🥉 銅", silver: "🥈 銀", gold: "🥇 金" };

@@ -164,6 +164,23 @@ export const EXAM_AFFILIATE: Record<ExamSlug, AffiliateTarget> = {
       "https://px.a8.net/svt/ejp?a8mat=4B1TI0+9T22IA+4LOQ+BW8O2&a8ejpredirect=https%3A%2F%2Fwww.joho-gakushu.jp%2Fsmart%2Fregistfree.php",
     freeLabel: "無料登録してSMART講座を試し見る",
   },
+  // 情報・サイバーセキュリティ管理士認定試験。実施団体が全日本情報学習振興協会そのもので、
+  //   SMART合格講座に専用コース(joho-gakushu.jp/smartinfo/k_isme/)がある。
+  //   pii / jitsumu / mynumber と同じ承認済み提携(4B1TI0系)のリンクを共有する。
+  //   【未確認・要ユーザー確認】A8 のプログラム詳細で「ITパスポート」「ビジネス実務法務検定試験」
+  //     「個人情報保護士」「個人情報保護実務検定」「マイナンバー実務検定」が成果報酬対象と
+  //     確認済み(監査レポート §4)なのに対し、本試験の講座が対象に含まれるかは未確認。
+  //     対象外だった場合でも freeHref の無料ユーザー登録は講座を問わない成果地点(CVR実績7.5%)
+  //     なので、無料登録を主導線にしてある。対象と確認できたら applyHref(協会の申込ページ)も
+  //     pii と同じ形で追加すること。
+  isec: {
+    href: "https://px.a8.net/svt/ejp?a8mat=4B1TI0+9T22IA+4LOQ+BW8O2&a8ejpredirect=https%3A%2F%2Fwww.joho-gakushu.jp%2Fsmartinfo%2Fk_isme%2F",
+    label: "情報・サイバーセキュリティ管理士のSMART合格講座を見る",
+    course: "isec",
+    freeHref:
+      "https://px.a8.net/svt/ejp?a8mat=4B1TI0+9T22IA+4LOQ+BW8O2&a8ejpredirect=https%3A%2F%2Fwww.joho-gakushu.jp%2Fsmart%2Fregistfree.php",
+    freeLabel: "無料登録してSMART講座を試し見る",
+  },
   // 賃貸不動産経営管理士。貸金業務取扱主任者(kashikin)と同じアガルートの
   //   承認済み提携(4B3N6P系)。アガルートは賃貸不動産経営管理士講座を持つ。
   //   ※LECも同資格の講座を持つため、成果が出ない場合は差し替えを検討できる。
@@ -237,6 +254,7 @@ export const RESULT_CTA_HEADLINE: Record<ExamSlug, string> = {
   eco: "間違えた論点を体系的に整理するなら",
   bijihou2: "間違えた論点を体系的に整理するなら",
   itpass: "間違えた論点を体系的に整理するなら",
+  isec: "間違えた論点を体系的に整理するなら",
   chintai: "間違えた論点を体系的に整理するなら",
   kangyo: "間違えた論点を体系的に整理するなら",
 };

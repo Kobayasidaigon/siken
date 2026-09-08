@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     siteName: "シカクモン",
     url: "/",
     title: "シカクモン｜資格試験のオリジナル練習問題を無料で提供",
-    description: "貸金業務取扱主任者・個人情報保護士・知財3級/2級・マイナンバー3級・個情保実務・ビジ法3級/2級・ITパスポート・賃管士・管業・福祉住環境2級・ビジマネ・eco検定の14資格、合計3,370問のオリジナル練習問題を無料公開。",
+    description: "貸金業務取扱主任者・個人情報保護士・知財3級/2級・マイナンバー3級・個情保実務・ビジ法3級/2級・ITパスポート・賃管士・管業・福祉住環境2級・ビジマネ・eco検定・情報サイバーセキュリティ管理士の15資格、合計3,570問のオリジナル練習問題を無料公開。",
     images: [{ url: "/og-default.png", width: 1200, height: 630, alt: "シカクモン - 資格試験の練習問題" }],
   },
 };
@@ -147,6 +147,16 @@ export default function Home() {
       softVar: "var(--c-pii-soft)",
     },
     {
+      name: "情報・サイバーセキュリティ管理士",
+      slug: "isec",
+      count: 200,
+      fieldCount: 8,
+      desc: "全日本情報学習振興協会の認定試験。情報セキュリティの管理体制と関連法規、マルウェアやサイバー攻撃への対策、ネットワークとコンピュータの基礎までを4課題で問われます。",
+      date: "年4回実施",
+      themeVar: "var(--c-pii)",
+      softVar: "var(--c-pii-soft)",
+    },
+    {
       name: "福祉住環境コーディネーター2級",
       slug: "fukushi2",
       count: 230,
@@ -223,7 +233,7 @@ export default function Home() {
   ];
 
   // 資格を実施団体・領域ごとにまとめて並べる。
-  // 14資格を平坦に並べると雑多に見えるが、実際は実施団体で4つの塊になっており、
+  // 15資格を平坦に並べると雑多に見えるが、実際は実施団体で4つの塊になっており、
   // 同じ団体の検定は受験者層と併願パターンが重なる。その関係を見せるための区分。
   const groups = [
     {
@@ -247,8 +257,8 @@ export default function Home() {
     {
       key: "it",
       title: "IT",
-      lead: "経営戦略・法務からセキュリティまで横断する国家試験。上の法務・情報系と出題範囲が重なります。",
-      slugs: ["itpass"],
+      lead: "経営戦略・法務からセキュリティまで横断する試験。上の法務・情報系と出題範囲が重なります。",
+      slugs: ["itpass", "isec"],
     },
   ];
   const bySlug = Object.fromEntries(exams.map((e) => [e.slug, e]));

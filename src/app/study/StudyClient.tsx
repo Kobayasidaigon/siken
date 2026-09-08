@@ -45,6 +45,7 @@ export default function StudyClient({
     itpass: null,
     chintai: null,
     kangyo: null,
+    isec: null,
   });
 
   useEffect(() => {

@@ -164,6 +164,36 @@ export const EXAM_AFFILIATE: Record<ExamSlug, AffiliateTarget> = {
       "https://px.a8.net/svt/ejp?a8mat=4B1TI0+9T22IA+4LOQ+BW8O2&a8ejpredirect=https%3A%2F%2Fwww.joho-gakushu.jp%2Fsmart%2Fregistfree.php",
     freeLabel: "無料登録してSMART講座を試し見る",
   },
+  // 情報・サイバーセキュリティ管理士認定試験。実施団体が全日本情報学習振興協会そのもので、
+  //   SMART合格講座に専用コース(joho-gakushu.jp/smartinfo/k_isme/)がある。
+  //   pii / jitsumu / mynumber と同じ承認済み提携(4B1TI0系)のリンクを共有する。
+  //
+  //   成果地点の考え方(ユーザー判断 2026-09-08):
+  //     この資格で狙うのは applyHref の受験申込と href の講座購入で、無料登録はその入口。
+  //     applyHref は pii / mynumber / jitsumu と全く同じ形 — 協会の当該試験ページへ
+  //     4B1TI0 系のリンクで送る。広告主が協会そのものなので、ドリル読者の必然行動である
+  //     受験申込がそのまま成果になる(監査レポート §4 の applyHref 追加時の根拠と同じ)。
+  //     講座が成果報酬対象講座の一覧に入っているかに左右されない導線はこちら。
+  //     申込導線は ExamCountdown(資格トップ)と模試・本番形式テストの結果面に出る。
+  //     申込受付中のときだけ出るので、exam-dates.ts の ISEC_EXAMS の正確さが効く。
+  //
+  //   【要ユーザー確認】href の有料講座リンクだけは対象が未確認。A8 のプログラム詳細で
+  //     成果報酬対象と明記されているのは「ITパスポート」「ビジネス実務法務検定試験」
+  //     「個人情報保護士」「個人情報保護実務検定」「マイナンバー実務検定」で、
+  //     本試験の講座は入っていない(=購入されても成果にならない可能性がある)。
+  //     対象外と分かった場合は、この資格の CourseAd の主導線を applyHref 側に寄せること。
+  isec: {
+    href: "https://px.a8.net/svt/ejp?a8mat=4B1TI0+9T22IA+4LOQ+BW8O2&a8ejpredirect=https%3A%2F%2Fwww.joho-gakushu.jp%2Fsmartinfo%2Fk_isme%2F",
+    label: "情報・サイバーセキュリティ管理士のSMART合格講座を見る",
+    course: "isec",
+    freeHref:
+      "https://px.a8.net/svt/ejp?a8mat=4B1TI0+9T22IA+4LOQ+BW8O2&a8ejpredirect=https%3A%2F%2Fwww.joho-gakushu.jp%2Fsmart%2Fregistfree.php",
+    freeLabel: "無料登録してSMART講座を試し見る",
+    applyHref:
+      "https://px.a8.net/svt/ejp?a8mat=4B1TI0+9T22IA+4LOQ+BW8O2&a8ejpredirect=https%3A%2F%2Fwww.joho-gakushu.or.jp%2Fisme%2F",
+    applyLabel: "協会公式サイトで申し込む",
+    applyPixel: SMART_APPLY_PIXEL,
+  },
   // 賃貸不動産経営管理士。貸金業務取扱主任者(kashikin)と同じアガルートの
   //   承認済み提携(4B3N6P系)。アガルートは賃貸不動産経営管理士講座を持つ。
   //   ※LECも同資格の講座を持つため、成果が出ない場合は差し替えを検討できる。
@@ -237,6 +267,7 @@ export const RESULT_CTA_HEADLINE: Record<ExamSlug, string> = {
   eco: "間違えた論点を体系的に整理するなら",
   bijihou2: "間違えた論点を体系的に整理するなら",
   itpass: "間違えた論点を体系的に整理するなら",
+  isec: "間違えた論点を体系的に整理するなら",
   chintai: "間違えた論点を体系的に整理するなら",
   kangyo: "間違えた論点を体系的に整理するなら",
 };

@@ -44,7 +44,7 @@ const KASHIKIN_LEGACY_SLUGS = new Set([
 ]);
 const EXAM_PREFIXES: ExamSlug[] = [
   "pii", "chizai", "chizai2", "mynumber", "jitsumu", "bijihou", "bijihou2",
-  "fukushi2", "bijimane", "eco", "itpass", "chintai", "kangyo",
+  "fukushi2", "bijimane", "eco", "itpass", "chintai", "kangyo", "isec",
 ];
 function examFromColumnSlug(slug: string): ExamSlug | null {
   if (slug.startsWith("kashikin-") || KASHIKIN_LEGACY_SLUGS.has(slug)) return "kashikin";

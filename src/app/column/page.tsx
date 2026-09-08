@@ -102,6 +102,14 @@ const examGroups: ExamGroup[] = [
     matcher: (slug) => slug.startsWith("itpass-"),
   },
   {
+    id: "isec",
+    examName: "情報・サイバーセキュリティ管理士認定試験",
+    shortName: "情報セキュリティ管理士",
+    topPath: "/isec/",
+    themeKey: "pii",
+    matcher: (slug) => slug.startsWith("isec-"),
+  },
+  {
     id: "chintai",
     examName: "賃貸不動産経営管理士",
     shortName: "賃管士",

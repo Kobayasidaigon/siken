@@ -29,6 +29,7 @@ import {
   PII_EXAMS,
   MYNUMBER_EXAMS,
   JITSUMU_EXAMS,
+  ISEC_EXAMS,
   CHINTAI_EXAMS,
   KANGYO_EXAMS,
 } from "./exam-dates";
@@ -51,6 +52,8 @@ export const EXAM_SCHEDULES: Record<ExamSlug, UpcomingExam[]> = {
   bijihou2: BIJIHOU_EXAMS,
   // ITパスポートはCBTで通年実施のため、次回試験日という概念がない
   itpass: [],
+  // 情報・サイバーセキュリティ管理士。pii / mynumber / jitsumu と同じ協会の共通日程。
+  isec: ISEC_EXAMS,
   // 賃貸不動産経営管理士(年1回11月)・管理業務主任者(年1回12月)。2026-09-05 に令和8年度の
   // 日程を登録(exam-dates.ts)。どちらも WEB 申込締切が 9/30 で、締切10日前の 9/20 から
   // 答え合わせ直後CTAが講座広告優先に切り替わる。

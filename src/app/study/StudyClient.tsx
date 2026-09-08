@@ -46,6 +46,7 @@ export default function StudyClient({
     chintai: null,
     kangyo: null,
     isec: null,
+    kyoin: null,
   });
 
   useEffect(() => {

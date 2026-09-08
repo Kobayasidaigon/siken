@@ -9,7 +9,7 @@
 
 const STORAGE_KEY = "shikakumon-study-v1";
 
-export type ExamSlug = "kashikin" | "pii" | "chizai" | "chizai2" | "mynumber" | "jitsumu" | "bijihou" | "fukushi2" | "bijimane" | "eco" | "bijihou2" | "itpass" | "chintai" | "kangyo" | "isec";
+export type ExamSlug = "kashikin" | "pii" | "chizai" | "chizai2" | "mynumber" | "jitsumu" | "bijihou" | "fukushi2" | "bijimane" | "eco" | "bijihou2" | "itpass" | "chintai" | "kangyo" | "isec" | "kyoin";
 
 export const EXAM_LIST: { slug: ExamSlug; name: string; topPath: string; questionPathPrefix: string }[] = [
   { slug: "kashikin", name: "貸金業務取扱主任者", topPath: "/kashikin/", questionPathPrefix: "/q/" },
@@ -27,6 +27,7 @@ export const EXAM_LIST: { slug: ExamSlug; name: string; topPath: string; questio
   { slug: "chintai", name: "賃貸不動産経営管理士", topPath: "/chintai/", questionPathPrefix: "/chintai/q/" },
   { slug: "kangyo", name: "管理業務主任者", topPath: "/kangyo/", questionPathPrefix: "/kangyo/q/" },
   { slug: "isec", name: "情報・サイバーセキュリティ管理士", topPath: "/isec/", questionPathPrefix: "/isec/q/" },
+  { slug: "kyoin", name: "教員採用試験（教職教養）", topPath: "/kyoin/", questionPathPrefix: "/kyoin/q/" },
 ];
 
 export type Medal = "bronze" | "silver" | "gold";
@@ -59,6 +60,7 @@ function defaultProgress(): AllProgress {
     chintai: { bookmarks: [], wrong: [], correct: [], medals: {} },
     kangyo: { bookmarks: [], wrong: [], correct: [], medals: {} },
     isec: { bookmarks: [], wrong: [], correct: [], medals: {} },
+    kyoin: { bookmarks: [], wrong: [], correct: [], medals: {} },
   };
 }
 

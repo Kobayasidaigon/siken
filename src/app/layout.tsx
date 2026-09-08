@@ -30,8 +30,8 @@ export const metadata: Metadata = {
     template: "%s｜シカクモン",
   },
   // 資格を増やしたらここの資格名と問題数も更新すること(自動集計はしていない)。
-  // 正しい数は night-batch/index/matrix.json で確認できる。2026-09-08時点=15資格3,570問
-  description: "シカクモンは資格試験のオリジナル練習問題を無料で提供するサイトです。貸金業務取扱主任者・個人情報保護士・知的財産管理技能検定3級/2級・マイナンバー実務検定3級・個人情報保護実務検定・ビジネス実務法務検定3級/2級・ITパスポート・賃貸不動産経営管理士・管理業務主任者・福祉住環境コーディネーター2級・ビジネスマネジャー検定・eco検定・情報サイバーセキュリティ管理士、合計3,570問。全問に根拠法令を含む詳細解説付き。",
+  // 正しい数は night-batch/index/matrix.json で確認できる。2026-09-08時点=16資格3,770問
+  description: "シカクモンは資格試験のオリジナル練習問題を無料で提供するサイトです。貸金業務取扱主任者・個人情報保護士・知的財産管理技能検定3級/2級・マイナンバー実務検定3級・個人情報保護実務検定・ビジネス実務法務検定3級/2級・ITパスポート・賃貸不動産経営管理士・管理業務主任者・福祉住環境コーディネーター2級・ビジネスマネジャー検定・eco検定・情報サイバーセキュリティ管理士・教員採用試験、合計3,770問。全問に根拠法令を含む詳細解説付き。",
   icons: {
     icon: "/favicon.svg",
   },
@@ -111,6 +111,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                       <span className="w-1 h-4 mr-3 rounded-full" style={{ background: "var(--c-pii)" }}></span>
                       情報・サイバーセキュリティ管理士
                     </a>
+                    <a href="/kyoin/" className="flex items-center px-4 py-2 text-[color:var(--c-text)] hover:bg-[color:var(--c-bg-alt)] hover:text-[color:var(--c-fukushi)] no-underline transition-colors">
+                      <span className="w-1 h-4 mr-3 rounded-full" style={{ background: "var(--c-fukushi)" }}></span>
+                      教員採用試験（教職教養）
+                    </a>
                     <a href="/bijihou/" className="flex items-center px-4 py-2 text-[color:var(--c-text)] hover:bg-[color:var(--c-bg-alt)] hover:text-[color:var(--c-kashikin)] no-underline transition-colors">
                       <span className="w-1 h-4 mr-3 rounded-full" style={{ background: "var(--c-kashikin)" }}></span>
                       ビジネス実務法務検定3級
@@ -177,6 +181,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                   <li><a href="/jitsumu/" className="text-[color:var(--c-text-sub)] hover:text-[color:var(--c-pii)] no-underline">個人情報保護実務検定</a></li>
                   <li><a href="/itpass/" className="text-[color:var(--c-text-sub)] hover:text-[color:var(--c-pii)] no-underline">ITパスポート試験</a></li>
                   <li><a href="/isec/" className="text-[color:var(--c-text-sub)] hover:text-[color:var(--c-pii)] no-underline">情報・サイバーセキュリティ管理士</a></li>
+                  <li><a href="/kyoin/" className="text-[color:var(--c-text-sub)] hover:text-[color:var(--c-fukushi)] no-underline">教員採用試験（教職教養）</a></li>
                   <li><a href="/bijihou/" className="text-[color:var(--c-text-sub)] hover:text-[color:var(--c-kashikin)] no-underline">ビジネス実務法務検定3級</a></li>
                   <li><a href="/bijihou2/" className="text-[color:var(--c-text-sub)] hover:text-[color:var(--c-kashikin)] no-underline">ビジネス実務法務検定2級</a></li>
                   <li><a href="/fukushi2/" className="text-[color:var(--c-text-sub)] hover:text-[color:var(--c-fukushi)] no-underline">福祉住環境コーディネーター2級</a></li>

@@ -110,6 +110,14 @@ const examGroups: ExamGroup[] = [
     matcher: (slug) => slug.startsWith("isec-"),
   },
   {
+    id: "kyoin",
+    examName: "教員採用試験（教職教養）",
+    shortName: "教員採用試験",
+    topPath: "/kyoin/",
+    themeKey: "fukushi",
+    matcher: (slug) => slug.startsWith("kyoin-"),
+  },
+  {
     id: "chintai",
     examName: "賃貸不動産経営管理士",
     shortName: "賃管士",

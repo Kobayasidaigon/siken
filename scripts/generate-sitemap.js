@@ -58,6 +58,7 @@ const itpassDir = path.join(__dirname, "../src/content/itpass");
 const chintaiDir = path.join(__dirname, "../src/content/chintai");
 const kangyoDir = path.join(__dirname, "../src/content/kangyo");
 const isecDir = path.join(__dirname, "../src/content/isec");
+const kyoinDir = path.join(__dirname, "../src/content/kyoin");
 const columnsDir = path.join(__dirname, "../src/content/columns");
 const appDir = path.join(__dirname, "../src/app");
 const outputPath = path.join(__dirname, "../public/sitemap.xml");
@@ -114,6 +115,7 @@ const itpass = collect(itpassDir);
 const chintai = collect(chintaiDir);
 const kangyo = collect(kangyoDir);
 const isec = collect(isecDir);
+const kyoin = collect(kyoinDir);
 const columns = collect(columnsDir);
 
 const todayFallback = toDate(Date.now());
@@ -132,8 +134,9 @@ const itpassMax = maxDate(itpass, todayFallback);
 const chintaiMax = maxDate(chintai, todayFallback);
 const kangyoMax = maxDate(kangyo, todayFallback);
 const isecMax = maxDate(isec, todayFallback);
+const kyoinMax = maxDate(kyoin, todayFallback);
 const columnsMax = maxDate(columns, todayFallback);
-const siteMax = [kashikinMax, piiMax, chizaiMax, chizai2Max, mynumberMax, jitsumuMax, bijihouMax, fukushi2Max, bijimaneMax, ecoMax, bijihou2Max, itpassMax, chintaiMax, kangyoMax, isecMax, columnsMax].sort().at(-1);
+const siteMax = [kashikinMax, piiMax, chizaiMax, chizai2Max, mynumberMax, jitsumuMax, bijihouMax, fukushi2Max, bijimaneMax, ecoMax, bijihou2Max, itpassMax, chintaiMax, kangyoMax, isecMax, kyoinMax, columnsMax].sort().at(-1);
 
 // 一覧・ハブページの lastmod は、そのページに表示されるコンテンツ群の最終更新日
 const staticPages = [
@@ -333,6 +336,18 @@ const staticPages = [
   { url: "/isec/field/incident/", priority: "0.8", freq: "monthly", lastmod: isecMax },
   { url: "/isec/field/network/", priority: "0.8", freq: "monthly", lastmod: isecMax },
   { url: "/isec/field/computer/", priority: "0.8", freq: "monthly", lastmod: isecMax },
+  // 教員採用試験（教職教養）
+  { url: "/kyoin/", priority: "0.9", freq: "weekly", lastmod: kyoinMax },
+  { url: "/kyoin/moshi/", priority: "0.7", freq: "monthly", lastmod: fileDate(path.join(appDir, "kyoin/moshi/page.tsx")) },
+  { url: "/kyoin/mock/", priority: "0.6", freq: "monthly", lastmod: fileDate(path.join(appDir, "kyoin/mock/page.tsx")) },
+  { url: "/kyoin/field/houki-kihon/", priority: "0.8", freq: "monthly", lastmod: kyoinMax },
+  { url: "/kyoin/field/houki-jinji/", priority: "0.8", freq: "monthly", lastmod: kyoinMax },
+  { url: "/kyoin/field/genri-yoryo/", priority: "0.8", freq: "monthly", lastmod: kyoinMax },
+  { url: "/kyoin/field/genri-shido/", priority: "0.8", freq: "monthly", lastmod: kyoinMax },
+  { url: "/kyoin/field/shinri/", priority: "0.8", freq: "monthly", lastmod: kyoinMax },
+  { url: "/kyoin/field/rekishi/", priority: "0.8", freq: "monthly", lastmod: kyoinMax },
+  { url: "/kyoin/field/jiji/", priority: "0.8", freq: "monthly", lastmod: kyoinMax },
+  { url: "/kyoin/field/kyoyo/", priority: "0.8", freq: "monthly", lastmod: kyoinMax },
   { url: "/chintai/", priority: "0.9", freq: "weekly", lastmod: chintaiMax },
   { url: "/chintai/moshi/", priority: "0.7", freq: "monthly", lastmod: fileDate(path.join(appDir, "chintai/moshi/page.tsx")) },
   { url: "/chintai/mock/", priority: "0.6", freq: "monthly", lastmod: fileDate(path.join(appDir, "chintai/mock/page.tsx")) },
@@ -384,6 +399,7 @@ const contentPages = [
   { entries: chintai, prefix: "/chintai/q/" },
   { entries: kangyo, prefix: "/kangyo/q/" },
   { entries: isec, prefix: "/isec/q/" },
+  { entries: kyoin, prefix: "/kyoin/q/" },
 ].flatMap(({ entries, prefix }) =>
   entries.map((e) => ({
     url: `${prefix}${e.slug}/`,

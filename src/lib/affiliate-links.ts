@@ -216,6 +216,24 @@ export const EXAM_AFFILIATE: Record<ExamSlug, AffiliateTarget> = {
       "https://px.a8.net/svt/ejp?a8mat=4B3N6P+AWY41E+44M0+BW8O2&a8ejpredirect=https%3A%2F%2Fwww.agaroot.jp%2Fmankan%2Fcatalog%2F",
     freeLabel: "アガルートの講座資料を無料で請求する",
   },
+  // 教員採用試験。アガルートの教員採用試験講座(agaroot.jp/kyoin/)。
+  //   kashikin / chintai / kangyo と同じ承認済み提携(4B3N6P系)で、同じ広告主。
+  //   2026-09-08 追加。A8 の新着情報でアガルートが教員採用試験の新講座をリリースしたことを
+  //   確認しており、他アフィリエイターの記事がまだ薄い枠。
+  //   freeHref はアガルート公式の「無料体験（資料請求）」ページ。他のアガルート資格は
+  //   agaroot.jp/<資格>/catalog/ を使っているが、この資格では到達を確認できた
+  //   agaroot.jp/customer/catalog/(全講座共通の資料請求フォーム)を指定してある。
+  //   ※監査レポート §4 のとおり、アガルートの成果条件に「資料請求」が含まれるかは未確認。
+  //     含まれない場合、成果になるのは href の講座購入だけになる。だから CourseAd は
+  //     isec と同じく「有料講座(主) → 資料請求(副)」の順にしてある。
+  kyoin: {
+    href: "https://px.a8.net/svt/ejp?a8mat=4B3N6P+AWY41E+44M0+BW8O2&a8ejpredirect=https%3A%2F%2Fwww.agaroot.jp%2Fkyoin%2F",
+    label: "アガルートの教員採用試験講座を見る",
+    course: "kyoin",
+    freeHref:
+      "https://px.a8.net/svt/ejp?a8mat=4B3N6P+AWY41E+44M0+BW8O2&a8ejpredirect=https%3A%2F%2Fwww.agaroot.jp%2Fcustomer%2Fcatalog%2F",
+    freeLabel: "無料体験・資料請求を申し込む（サンプル講義つき）",
+  },
   // TODO(fukushi2): A8でユーキャン「講座申込プログラム」と提携後、a8mat付きリンクへ差し替える
   //   (講座申込=最大5,000円/件。afbの資料請求=最大1,000円は freeHref に設定する)。
   //   提携承認まではトラッキング無しの公式講座ページへの直リンクで運用(収益ゼロだが導線は維持)。
@@ -268,6 +286,7 @@ export const RESULT_CTA_HEADLINE: Record<ExamSlug, string> = {
   bijihou2: "間違えた論点を体系的に整理するなら",
   itpass: "間違えた論点を体系的に整理するなら",
   isec: "間違えた論点を体系的に整理するなら",
+  kyoin: "間違えた論点を体系的に整理するなら",
   chintai: "間違えた論点を体系的に整理するなら",
   kangyo: "間違えた論点を体系的に整理するなら",
 };

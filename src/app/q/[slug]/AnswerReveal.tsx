@@ -1,11 +1,14 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import type { ReactNode } from "react";
 import { sendGAEvent } from "@next/third-parties/google";
 import { recordResult, loadProgress, type ExamSlug, type Medal } from "@/lib/study-progress";
 import AffiliateLink from "@/components/AffiliateLink";
+import StudioLink from "@/components/StudioLink";
 import { studioCtaFor } from "@/lib/studio-cta";
 import { decideCtaPriority } from "@/lib/cta-priority";
+import { practiceRoutesFor } from "@/lib/practice-routes";
+import { drillPositionOf, endDrill, loadDrill, type DrillState } from "@/lib/review-drill";
 import FreeLeadCTA from "@/components/FreeLeadCTA";
 import { EXAM_AFFILIATE, RESULT_CTA_HEADLINE } from "@/lib/affiliate-links";
 
@@ -79,19 +82,38 @@ export default function AnswerReveal({
     <aside className="mt-8 p-4 rounded-lg border border-indigo-200 bg-indigo-50">
       <p className="text-xs font-bold mb-1 text-indigo-900">{studioCta.heading}</p>
       <p className="text-xs leading-relaxed mb-2 text-indigo-900/80">{studioCta.body}</p>
-      <a
+      <StudioLink
         href={studioCta.href}
-        target="_blank"
-        rel="noopener noreferrer"
+        placement="question_result"
+        exam={exam}
         className="text-xs font-bold inline-flex items-center gap-1 no-underline text-indigo-600 hover:underline"
       >
         {studioCta.linkLabel}
         <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
           <path strokeLinecap="round" strokeLinejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
         </svg>
-      </a>
+      </StudioLink>
     </aside>
   );
+
+  // 通しで解く面(本番形式テスト・模試)。この資格に用意がある分だけ出る
+  const practiceRoutes = practiceRoutesFor(exam);
+
+  // 進行中の復習ドリル。localStorage を読むので、初期HTMLでは必ず null にする
+  // (サーバでの描画結果と食い違うと hydration が壊れる)。
+  const [drill, setDrill] = useState<DrillState | null>(null);
+  useEffect(() => {
+    setDrill(loadDrill());
+  }, []);
+  const drillPos = drillPositionOf(drill, exam, questionSlug);
+
+  function trackPractice(kind: string, placement: string) {
+    try {
+      sendGAEvent("event", "practice_link_click", { exam: exam ?? "unknown", kind, placement });
+    } catch {
+      /* GA未ロードでも遷移は妨げない */
+    }
+  }
 
   useEffect(() => {
     if (revealed && selected !== null && exam && questionSlug) {
@@ -100,6 +122,29 @@ export default function AnswerReveal({
       setMedal(loadProgress()[exam].medals?.[questionSlug] ?? null);
     }
   }, [revealed, selected, correctAnswer, exam, questionSlug]);
+
+  // 「問題を解いた」の計測。2026-09-07 追加。
+  // このサイトの中核行動なのに、これまで一度も GA に送っていなかった。
+  // 分母が無いので affiliate_click の CTR も「多いのか少ないのか」が言えず、
+  // 面ごとの良し悪しを比べられない状態だった。
+  //
+  // questionSlug は 3,370 通りあるのでパラメータに入れない(GA4 のカスタム
+  // ディメンションはカーディナリティが高いと集計から溢れる)。資格と正誤だけ送る。
+  // 二重送信を ref で止めているのは、開発時の StrictMode でエフェクトが
+  // 2回走るため。中核指標が2倍に見えると判断を誤る。
+  const answerSent = useRef(false);
+  useEffect(() => {
+    if (!revealed || answerSent.current) return;
+    answerSent.current = true;
+    try {
+      sendGAEvent("event", "question_answered", {
+        exam: exam ?? "unknown",
+        result: selected === null ? "revealed" : selected === correctAnswer ? "correct" : "wrong",
+      });
+    } catch {
+      /* GA未ロードでも学習は妨げない */
+    }
+  }, [revealed, selected, correctAnswer, exam]);
 
   return (
     <>
@@ -213,8 +258,71 @@ export default function AnswerReveal({
 
       {revealed && (
         <>
+          {/* 復習ドリルの最中は、こちらが「次」になる。分野順の次の問題ではなく
+              銅→銀→未挑戦の並びで進むので、通常の導線と入れ替える。
+              ドリルの現在位置は「今の問題が並びの何番目か」で毎回引き直しているので、
+              戻る操作やリロードで位置がずれない(lib/review-drill.ts)。 */}
+          {drillPos && (
+            <div className="mt-6">
+              <p className="text-xs text-[color:var(--c-text-sub)] mb-2">
+                復習ドリル {drillPos.position} / {drillPos.total} 問
+              </p>
+              {drillPos.nextHref ? (
+                <a
+                  href={drillPos.nextHref}
+                  onClick={() => {
+                    try {
+                      sendGAEvent("event", "drill_next", { exam: exam ?? "unknown" });
+                    } catch {
+                      /* GA未ロードでも遷移は妨げない */
+                    }
+                  }}
+                  className="block w-full text-center py-3 rounded-lg font-bold text-sm no-underline transition-colors bg-blue-700 text-white hover:bg-blue-600"
+                >
+                  ドリルの次の問題へ →
+                </a>
+              ) : (
+                <div className="card p-4">
+                  <p className="text-sm font-bold text-[color:var(--c-ink)] font-serif mb-1">
+                    ドリルはここまでです
+                  </p>
+                  <p className="text-xs text-[color:var(--c-text-sub)] leading-relaxed mb-3">
+                    {drillPos.total}問を解き終えました。メダルの変化は学習履歴で確認できます。
+                  </p>
+                  <a
+                    href="/study/"
+                    onClick={() => {
+                      endDrill();
+                      try {
+                        sendGAEvent("event", "drill_complete", {
+                          exam: exam ?? "unknown",
+                          size: drillPos.total,
+                        });
+                      } catch {
+                        /* GA未ロードでも遷移は妨げない */
+                      }
+                    }}
+                    className="text-sm font-bold text-[color:var(--c-accent,var(--c-ink))] hover:underline no-underline"
+                  >
+                    学習履歴を見る →
+                  </a>
+                </div>
+              )}
+              <button
+                type="button"
+                onClick={() => {
+                  endDrill();
+                  setDrill(null);
+                }}
+                className="mt-2 text-xs text-[color:var(--c-text-sub)] hover:text-[color:var(--c-ink)] underline"
+              >
+                ドリルを終える
+              </button>
+            </div>
+          )}
+
           {/* 次の問題へ(解説直下の主要アクション)。連続演習の途切れを防ぐ */}
-          {nextHref && (
+          {!drillPos && nextHref && (
             <a
               href={nextHref}
               onClick={() => {
@@ -229,6 +337,69 @@ export default function AnswerReveal({
               {nextLabel ?? "次の問題へ"} →
             </a>
           )}
+
+          {/* 通しで解く面への導線。2026-09-07 追加。
+              問題ページはこのサイトの着地の8割を占めるのに、模試・本番形式テストへの
+              リンクが1本も無かった。とくに分野の最終問(全14資格で109分野ぶん)は
+              「次の問題へ」が出ず、そこで完全に行き止まりだった。
+              実測では模試を解き終えた人がいちばん先へ進むので、演習が途切れる地点にだけ
+              その面への道を置く。サイト内の機能であって広告ではないので、
+              「広告」ラベル付きの講座CTAとは別の見た目にしている。 */}
+          {!drillPos &&
+            practiceRoutes.length > 0 &&
+            (nextHref ? (
+              <p className="mt-4 text-xs text-[color:var(--c-text-sub)] flex flex-wrap items-baseline gap-x-3 gap-y-1">
+                <span>まとめて解くなら</span>
+                {practiceRoutes.map((r) => (
+                  <a
+                    key={r.href}
+                    href={r.href}
+                    onClick={() => trackPractice(r.kind, "question_mid")}
+                    className="text-[color:var(--c-accent,var(--c-ink))] hover:underline"
+                  >
+                    {r.label} →
+                  </a>
+                ))}
+              </p>
+            ) : (
+              <section className="card p-5 mt-6">
+                <p className="text-sm font-bold text-[color:var(--c-ink)] font-serif mb-1">
+                  この分野の問題は以上です
+                </p>
+                <p className="text-xs text-[color:var(--c-text-sub)] leading-relaxed mb-3">
+                  通しで解くと、時間配分と、分野ごとの取りこぼしが分かります。
+                </p>
+                <ul className="space-y-3">
+                  {practiceRoutes.map((r) => (
+                    <li key={r.href}>
+                      <a
+                        href={r.href}
+                        onClick={() => trackPractice(r.kind, "question_end")}
+                        className="text-sm font-bold text-[color:var(--c-accent,var(--c-ink))] hover:underline no-underline"
+                      >
+                        {r.label} →
+                      </a>
+                      <span className="block text-xs text-[color:var(--c-text-sub)] mt-0.5">{r.note}</span>
+                    </li>
+                  ))}
+                </ul>
+                {/* コラムへの導線。問題ページからコラム(流入をいちばん作っている面)への
+                    リンクが1本も無かった。/column/ は資格ごとに <section id={資格ID}> を
+                    持っているので、フラグメントでその資格のセクションに着地する。
+                    連続演習が続いている inline 版には出さない(読み物へ逸らさない)。 */}
+                {exam && (
+                  <p className="mt-4 pt-3 border-t border-[color:var(--c-border)] text-xs">
+                    <a
+                      href={`/column/#${exam}`}
+                      onClick={() => trackPractice("column", "question_end")}
+                      className="text-[color:var(--c-accent,var(--c-ink))] hover:underline"
+                    >
+                      勉強法・試験日程のコラムを読む →
+                    </a>
+                  </p>
+                )}
+              </section>
+            ))}
 
           {/* 答え合わせ後（最高関心点）の 2 つの CTA。
               どちらも消さず、申込締切までの日数で「上に出す方」だけを入れ替える

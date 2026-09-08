@@ -5,17 +5,14 @@ const { execSync } = require("child_process");
 // CI(Vercel)は shallow clone のため git の履歴からも正しい更新日を引けず、
 // 全URL同一の偽 lastmod を生成してしまう。CIではローカル生成してコミット済みの
 // public/sitemap.xml をそのまま使う(ローカルの npm run build で常に再生成される)。
-if (process.env.VERCEL || process.env.CI) {
-  console.log("CI detected: using committed public/sitemap.xml as-is");
-  process.exit(0);
-}
+const IS_CI = !!(process.env.VERCEL || process.env.CI);
 
 // lastmod の一次情報は git の最終コミット日。mtime は clone / checkout / 別マシンで
 // 失われる(2026-09-05: 別環境で clone したところ全ファイルの mtime が同日になり、
 // mtime 依存のままでは再生成できなかった)。git が使えない場合だけ mtime に落とす。
 // 未コミットの新規ファイルは git に無いので mtime(=作成日)になる。これは正しい。
 const REPO_ROOT = path.join(__dirname, "..");
-const gitDates = (() => {
+const gitDates = IS_CI ? null : (() => {
   try {
     const out = execSync("git log --name-only --format=%ad --date=short", {
       cwd: REPO_ROOT,
@@ -64,6 +61,10 @@ const columnsDir = path.join(__dirname, "../src/content/columns");
 const appDir = path.join(__dirname, "../src/app");
 const outputPath = path.join(__dirname, "../public/sitemap.xml");
 
+// 第2回模試(有料)の /<資格>/moshi2/ は、この staticPages 配列が手書きのため
+// 追加され忘れていた(2026-09-07 に発見)。9資格ぶんの商品ページが sitemap に
+// 1本も無く、robots の noindex も付いていない=出したいのに出していない状態だった。
+// 資格を増やすときは moshi と moshi2 を対で足すこと。
 // lastmod はビルド日ではなく「そのページのコンテンツが実際に変わった日」を出す。
 // 全URL一律の生成日を入れると Google に偽シグナルとして無視されるため。
 function toDate(mtimeMs) {
@@ -144,16 +145,56 @@ const staticPages = [
   { url: "/field/risoku/", priority: "0.8", freq: "monthly", lastmod: kashikinMax },
   { url: "/field/minpou/", priority: "0.8", freq: "monthly", lastmod: kashikinMax },
   { url: "/field/hogo/", priority: "0.8", freq: "monthly", lastmod: kashikinMax },
+  { url: "/topic/kinshi-koui/", priority: "0.7", freq: "monthly", lastmod: kashikinMax },
+  { url: "/topic/haigyou-todokede/", priority: "0.7", freq: "monthly", lastmod: kashikinMax },
+  { url: "/topic/riyousha-hogo/", priority: "0.7", freq: "monthly", lastmod: kashikinMax },
+  { url: "/topic/seimei-hoken/", priority: "0.7", freq: "monthly", lastmod: kashikinMax },
+  { url: "/topic/kousei-shousho/", priority: "0.7", freq: "monthly", lastmod: kashikinMax },
+  { url: "/topic/hakushi-ininjou/", priority: "0.7", freq: "monthly", lastmod: kashikinMax },
+  { url: "/topic/meigi-gashi/", priority: "0.7", freq: "monthly", lastmod: kashikinMax },
+  { url: "/topic/shoumeisho-keitai/", priority: "0.7", freq: "monthly", lastmod: kashikinMax },
+  { url: "/topic/hyoushiki-keiji/", priority: "0.7", freq: "monthly", lastmod: kashikinMax },
+  { url: "/topic/shuninsha-secchi/", priority: "0.7", freq: "monthly", lastmod: kashikinMax },
+  { url: "/topic/jougen-kinri/", priority: "0.7", freq: "monthly", lastmod: kashikinMax },
+  { url: "/topic/shoumetsu-jikou/", priority: "0.7", freq: "monthly", lastmod: kashikinMax },
+  { url: "/topic/hoshou-keiyaku/", priority: "0.7", freq: "monthly", lastmod: kashikinMax },
+  { url: "/topic/rentai-hoshou/", priority: "0.7", freq: "monthly", lastmod: kashikinMax },
+  { url: "/topic/bensai/", priority: "0.7", freq: "monthly", lastmod: kashikinMax },
+  { url: "/topic/fuhou-koui/", priority: "0.7", freq: "monthly", lastmod: kashikinMax },
+  { url: "/topic/teitouken/", priority: "0.7", freq: "monthly", lastmod: kashikinMax },
+  { url: "/topic/shichiken/", priority: "0.7", freq: "monthly", lastmod: kashikinMax },
+  { url: "/topic/souzoku/", priority: "0.7", freq: "monthly", lastmod: kashikinMax },
+  { url: "/topic/seigen-kouiryoku/", priority: "0.7", freq: "monthly", lastmod: kashikinMax },
+  { url: "/topic/kinshou-hou/", priority: "0.7", freq: "monthly", lastmod: kashikinMax },
+  { url: "/topic/keihyou-hou/", priority: "0.7", freq: "monthly", lastmod: kashikinMax },
+  { url: "/topic/tajuu-saimu/", priority: "0.7", freq: "monthly", lastmod: kashikinMax },
+  { url: "/topic/shouhisha-kihonhou/", priority: "0.7", freq: "monthly", lastmod: kashikinMax },
   // 個人情報保護士
   { url: "/pii/", priority: "0.9", freq: "weekly", lastmod: piiMax },
   { url: "/pii/moshi/", priority: "0.7", freq: "monthly", lastmod: fileDate(path.join(appDir, "pii/moshi/page.tsx")) },
+  { url: "/pii/moshi2/", priority: "0.6", freq: "monthly", lastmod: fileDate(path.join(appDir, "pii/moshi2/page.tsx")) },
   { url: "/pii/mock/", priority: "0.6", freq: "monthly", lastmod: fileDate(path.join(appDir, "pii/mock/page.tsx")) },
   { url: "/pii/field/hogo-law/", priority: "0.8", freq: "monthly", lastmod: piiMax },
   { url: "/pii/field/mynumber/", priority: "0.8", freq: "monthly", lastmod: piiMax },
   { url: "/pii/field/security/", priority: "0.8", freq: "monthly", lastmod: piiMax },
+  // 論点別のまとめページ(2026-09-07 追加)。同じ論点の問題が3問以上ある論点だけ、
+  // 検索語に答える面を1枚にまとめている。lastmod はその資格の問題群の最終更新日
+  // (ページの中身は問題データから組み立てているため)。
+  { url: "/pii/topic/jigyousha/", priority: "0.7", freq: "monthly", lastmod: piiMax },
+  { url: "/pii/topic/riyou-mokuteki/", priority: "0.7", freq: "monthly", lastmod: piiMax },
+  { url: "/pii/topic/tekisei-shutoku/", priority: "0.7", freq: "monthly", lastmod: piiMax },
+  { url: "/pii/topic/daisansha-teikyou/", priority: "0.7", freq: "monthly", lastmod: piiMax },
+  { url: "/pii/topic/gaikoku-teikyou/", priority: "0.7", freq: "monthly", lastmod: piiMax },
+  { url: "/pii/topic/teikyou-kiroku/", priority: "0.7", freq: "monthly", lastmod: piiMax },
+  { url: "/pii/topic/kamei-kakou/", priority: "0.7", freq: "monthly", lastmod: piiMax },
+  { url: "/pii/topic/tokumei-kakou/", priority: "0.7", freq: "monthly", lastmod: piiMax },
+  { url: "/pii/topic/mynumber-kiso/", priority: "0.7", freq: "monthly", lastmod: piiMax },
+  { url: "/pii/topic/security-kyoui/", priority: "0.7", freq: "monthly", lastmod: piiMax },
+  { url: "/pii/topic/cyber-kougeki/", priority: "0.7", freq: "monthly", lastmod: piiMax },
   // 知的財産管理技能検定3級
   { url: "/chizai/", priority: "0.9", freq: "weekly", lastmod: chizaiMax },
   { url: "/chizai/moshi/", priority: "0.7", freq: "monthly", lastmod: fileDate(path.join(appDir, "chizai/moshi/page.tsx")) },
+  { url: "/chizai/moshi2/", priority: "0.6", freq: "monthly", lastmod: fileDate(path.join(appDir, "chizai/moshi2/page.tsx")) },
   { url: "/chizai/mock/", priority: "0.6", freq: "monthly", lastmod: fileDate(path.join(appDir, "chizai/mock/page.tsx")) },
   { url: "/chizai/field/patent/", priority: "0.8", freq: "monthly", lastmod: chizaiMax },
   { url: "/chizai/field/copyright/", priority: "0.8", freq: "monthly", lastmod: chizaiMax },
@@ -167,6 +208,7 @@ const staticPages = [
   // 知的財産管理技能検定2級
   { url: "/chizai2/", priority: "0.9", freq: "weekly", lastmod: chizai2Max },
   { url: "/chizai2/moshi/", priority: "0.7", freq: "monthly", lastmod: fileDate(path.join(appDir, "chizai2/moshi/page.tsx")) },
+  { url: "/chizai2/moshi2/", priority: "0.6", freq: "monthly", lastmod: fileDate(path.join(appDir, "chizai2/moshi2/page.tsx")) },
   { url: "/chizai2/mock/", priority: "0.6", freq: "monthly", lastmod: fileDate(path.join(appDir, "chizai2/mock/page.tsx")) },
   { url: "/chizai2/field/patent/", priority: "0.8", freq: "monthly", lastmod: chizai2Max },
   { url: "/chizai2/field/copyright/", priority: "0.8", freq: "monthly", lastmod: chizai2Max },
@@ -180,6 +222,8 @@ const staticPages = [
   // マイナンバー実務検定3級
   { url: "/mynumber/", priority: "0.9", freq: "weekly", lastmod: mynumberMax },
   { url: "/mynumber/moshi/", priority: "0.7", freq: "monthly", lastmod: fileDate(path.join(appDir, "mynumber/moshi/page.tsx")) },
+  { url: "/mynumber/mock/", priority: "0.6", freq: "monthly", lastmod: fileDate(path.join(appDir, "mynumber/mock/page.tsx")) },
+  { url: "/mynumber/moshi2/", priority: "0.6", freq: "monthly", lastmod: fileDate(path.join(appDir, "mynumber/moshi2/page.tsx")) },
   { url: "/mynumber/field/outline/", priority: "0.8", freq: "monthly", lastmod: mynumberMax },
   { url: "/mynumber/field/card/", priority: "0.8", freq: "monthly", lastmod: mynumberMax },
   { url: "/mynumber/field/protection/", priority: "0.8", freq: "monthly", lastmod: mynumberMax },
@@ -188,6 +232,8 @@ const staticPages = [
   // 個人情報保護実務検定3級
   { url: "/jitsumu/", priority: "0.9", freq: "weekly", lastmod: jitsumuMax },
   { url: "/jitsumu/moshi/", priority: "0.7", freq: "monthly", lastmod: fileDate(path.join(appDir, "jitsumu/moshi/page.tsx")) },
+  { url: "/jitsumu/mock/", priority: "0.6", freq: "monthly", lastmod: fileDate(path.join(appDir, "jitsumu/mock/page.tsx")) },
+  { url: "/jitsumu/moshi2/", priority: "0.6", freq: "monthly", lastmod: fileDate(path.join(appDir, "jitsumu/moshi2/page.tsx")) },
   { url: "/jitsumu/field/basic/", priority: "0.8", freq: "monthly", lastmod: jitsumuMax },
   { url: "/jitsumu/field/acquisition/", priority: "0.8", freq: "monthly", lastmod: jitsumuMax },
   { url: "/jitsumu/field/security/", priority: "0.8", freq: "monthly", lastmod: jitsumuMax },
@@ -196,6 +242,8 @@ const staticPages = [
   // ビジネス実務法務検定3級
   { url: "/bijihou/", priority: "0.9", freq: "weekly", lastmod: bijihouMax },
   { url: "/bijihou/moshi/", priority: "0.7", freq: "monthly", lastmod: fileDate(path.join(appDir, "bijihou/moshi/page.tsx")) },
+  { url: "/bijihou/mock/", priority: "0.6", freq: "monthly", lastmod: fileDate(path.join(appDir, "bijihou/mock/page.tsx")) },
+  { url: "/bijihou/moshi2/", priority: "0.6", freq: "monthly", lastmod: fileDate(path.join(appDir, "bijihou/moshi2/page.tsx")) },
   { url: "/bijihou/field/kiso/", priority: "0.8", freq: "monthly", lastmod: bijihouMax },
   { url: "/bijihou/field/minpou-saiken/", priority: "0.8", freq: "monthly", lastmod: bijihouMax },
   { url: "/bijihou/field/minpou-bukken/", priority: "0.8", freq: "monthly", lastmod: bijihouMax },
@@ -204,6 +252,7 @@ const staticPages = [
   // 福祉住環境コーディネーター2級
   { url: "/fukushi2/", priority: "0.9", freq: "weekly", lastmod: fukushi2Max },
   { url: "/fukushi2/moshi/", priority: "0.7", freq: "monthly", lastmod: fileDate(path.join(appDir, "fukushi2/moshi/page.tsx")) },
+  { url: "/fukushi2/moshi2/", priority: "0.6", freq: "monthly", lastmod: fileDate(path.join(appDir, "fukushi2/moshi2/page.tsx")) },
   { url: "/fukushi2/mock/", priority: "0.6", freq: "monthly", lastmod: fileDate(path.join(appDir, "fukushi2/mock/page.tsx")) },
   { url: "/fukushi2/field/society/", priority: "0.8", freq: "monthly", lastmod: fukushi2Max },
   { url: "/fukushi2/field/consultation/", priority: "0.8", freq: "monthly", lastmod: fukushi2Max },
@@ -217,6 +266,7 @@ const staticPages = [
   // ビジネスマネジャー検定
   { url: "/bijimane/", priority: "0.9", freq: "weekly", lastmod: bijimaneMax },
   { url: "/bijimane/moshi/", priority: "0.7", freq: "monthly", lastmod: fileDate(path.join(appDir, "bijimane/moshi/page.tsx")) },
+  { url: "/bijimane/moshi2/", priority: "0.6", freq: "monthly", lastmod: fileDate(path.join(appDir, "bijimane/moshi2/page.tsx")) },
   { url: "/bijimane/mock/", priority: "0.6", freq: "monthly", lastmod: fileDate(path.join(appDir, "bijimane/mock/page.tsx")) },
   { url: "/bijimane/field/role/", priority: "0.8", freq: "monthly", lastmod: bijimaneMax },
   { url: "/bijimane/field/self-communication/", priority: "0.8", freq: "monthly", lastmod: bijimaneMax },
@@ -230,6 +280,7 @@ const staticPages = [
   { url: "/bijimane/field/risk-operation/", priority: "0.8", freq: "monthly", lastmod: bijimaneMax },
   { url: "/eco/", priority: "0.9", freq: "weekly", lastmod: ecoMax },
   { url: "/eco/moshi/", priority: "0.7", freq: "monthly", lastmod: fileDate(path.join(appDir, "eco/moshi/page.tsx")) },
+  { url: "/eco/moshi2/", priority: "0.6", freq: "monthly", lastmod: fileDate(path.join(appDir, "eco/moshi2/page.tsx")) },
   { url: "/eco/mock/", priority: "0.6", freq: "monthly", lastmod: fileDate(path.join(appDir, "eco/mock/page.tsx")) },
   { url: "/eco/field/history/", priority: "0.8", freq: "monthly", lastmod: ecoMax },
   { url: "/eco/field/earth/", priority: "0.8", freq: "monthly", lastmod: ecoMax },
@@ -243,6 +294,7 @@ const staticPages = [
   { url: "/eco/field/actors/", priority: "0.8", freq: "monthly", lastmod: ecoMax },
   { url: "/bijihou2/", priority: "0.9", freq: "weekly", lastmod: bijihou2Max },
   { url: "/bijihou2/moshi/", priority: "0.7", freq: "monthly", lastmod: fileDate(path.join(appDir, "bijihou2/moshi/page.tsx")) },
+  { url: "/bijihou2/mock/", priority: "0.6", freq: "monthly", lastmod: fileDate(path.join(appDir, "bijihou2/mock/page.tsx")) },
   { url: "/bijihou2/field/torihiki/", priority: "0.8", freq: "monthly", lastmod: bijihou2Max },
   { url: "/bijihou2/field/zaisan/", priority: "0.8", freq: "monthly", lastmod: bijihou2Max },
   { url: "/bijihou2/field/kigyoukan/", priority: "0.8", freq: "monthly", lastmod: bijihou2Max },
@@ -255,6 +307,7 @@ const staticPages = [
   { url: "/bijihou2/field/juugyouin/", priority: "0.8", freq: "monthly", lastmod: bijihou2Max },
   { url: "/itpass/", priority: "0.9", freq: "weekly", lastmod: itpassMax },
   { url: "/itpass/moshi/", priority: "0.7", freq: "monthly", lastmod: fileDate(path.join(appDir, "itpass/moshi/page.tsx")) },
+  { url: "/itpass/mock/", priority: "0.6", freq: "monthly", lastmod: fileDate(path.join(appDir, "itpass/mock/page.tsx")) },
   { url: "/itpass/field/kigyou/", priority: "0.8", freq: "monthly", lastmod: itpassMax },
   { url: "/itpass/field/senryaku/", priority: "0.8", freq: "monthly", lastmod: itpassMax },
   { url: "/itpass/field/system-senryaku/", priority: "0.8", freq: "monthly", lastmod: itpassMax },
@@ -267,6 +320,7 @@ const staticPages = [
   { url: "/itpass/field/security/", priority: "0.8", freq: "monthly", lastmod: itpassMax },
   { url: "/chintai/", priority: "0.9", freq: "weekly", lastmod: chintaiMax },
   { url: "/chintai/moshi/", priority: "0.7", freq: "monthly", lastmod: fileDate(path.join(appDir, "chintai/moshi/page.tsx")) },
+  { url: "/chintai/mock/", priority: "0.6", freq: "monthly", lastmod: fileDate(path.join(appDir, "chintai/mock/page.tsx")) },
   { url: "/chintai/field/gyouhou/", priority: "0.8", freq: "monthly", lastmod: chintaiMax },
   { url: "/chintai/field/jutaku/", priority: "0.8", freq: "monthly", lastmod: chintaiMax },
   { url: "/chintai/field/sublease/", priority: "0.8", freq: "monthly", lastmod: chintaiMax },
@@ -279,6 +333,7 @@ const staticPages = [
   { url: "/chintai/field/igi/", priority: "0.8", freq: "monthly", lastmod: chintaiMax },
   { url: "/kangyo/", priority: "0.9", freq: "weekly", lastmod: kangyoMax },
   { url: "/kangyo/moshi/", priority: "0.7", freq: "monthly", lastmod: fileDate(path.join(appDir, "kangyo/moshi/page.tsx")) },
+  { url: "/kangyo/mock/", priority: "0.6", freq: "monthly", lastmod: fileDate(path.join(appDir, "kangyo/mock/page.tsx")) },
   { url: "/kangyo/field/kubun1/", priority: "0.8", freq: "monthly", lastmod: kangyoMax },
   { url: "/kangyo/field/kubun2/", priority: "0.8", freq: "monthly", lastmod: kangyoMax },
   { url: "/kangyo/field/kiyaku/", priority: "0.8", freq: "monthly", lastmod: kangyoMax },
@@ -347,6 +402,31 @@ ${allPages.map(p => `  <url>
     <priority>${p.priority}</priority>
   </url>`).join("\n")}
 </urlset>`;
+
+// CI(Vercel)は shallow clone で lastmod を正しく引けないため、生成はせず
+// コミット済みの public/sitemap.xml をそのまま使う。ただし「ページを足したのに
+// 上の手書き配列に足し忘れた」「スクリプトは直したが sitemap を再生成し忘れた」
+// まま気づかずデプロイされるのを、ここで止める。
+// URL の一覧は git 履歴ではなくファイルの有無だけで決まるので、shallow clone でも
+// 正しく求まる(lastmod だけが引けない)。実際 /<資格>/moshi2/ の9本はこの
+// 取りこぼしで長期間 sitemap に載っていなかった(2026-09-07 に発見)。
+if (IS_CI) {
+  const committedXml = fs.readFileSync(outputPath, "utf-8");
+  const committed = new Set([...committedXml.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]));
+  const expected = new Set(allPages.map((p) => `${BASE_URL}${p.url}`));
+  const missing = [...expected].filter((u) => !committed.has(u));
+  const extra = [...committed].filter((u) => !expected.has(u));
+  if (missing.length || extra.length) {
+    console.error(
+      "public/sitemap.xml が古いです。ローカルで npm run build を実行し、再生成された public/sitemap.xml を同じコミットに含めてください。"
+    );
+    if (missing.length) console.error(`  未収録 ${missing.length}件:\n    ${missing.slice(0, 20).join("\n    ")}`);
+    if (extra.length) console.error(`  余分 ${extra.length}件:\n    ${extra.slice(0, 20).join("\n    ")}`);
+    process.exit(1);
+  }
+  console.log(`CI detected: committed public/sitemap.xml is up to date (${allPages.length} URLs)`);
+  process.exit(0);
+}
 
 fs.writeFileSync(outputPath, xml);
 console.log(`Sitemap generated: ${allPages.length} URLs`);

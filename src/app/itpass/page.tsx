@@ -58,6 +58,13 @@ export default async function ItpassPage() {
           >
             模擬試験を受ける（100問・120分・分野別判定）→
           </a>
+          <a
+            href="/itpass/mock/"
+            className="inline-flex items-center px-4 py-2 rounded-lg border text-sm font-medium no-underline transition-colors hover:bg-[color:var(--c-pii-soft)]"
+            style={{ borderColor: "var(--c-pii)", color: "var(--c-pii-ink)" }}
+          >
+            本番形式で腕試し（20問・採点）→
+          </a>
         </div>
       </section>
 

@@ -15,6 +15,7 @@ import {
   CHINTAI_EXAMS,
   KANGYO_EXAMS,
 } from "@/lib/exam-dates";
+import StudioLink from "@/components/StudioLink";
 
 export const metadata: Metadata = {
   title: { absolute: "シカクモン｜資格試験のオリジナル練習問題を無料で提供" },
@@ -344,10 +345,9 @@ export default function Home() {
 
       {/* Studio 案内 */}
       <section className="mb-12">
-        <a
+        <StudioLink
           href="https://studio.shikakumon.com/?utm_source=shikakumon&utm_medium=referral&utm_content=home_card"
-          target="_blank"
-          rel="noopener noreferrer"
+          placement="home_card"
           className="card p-6 no-underline block group"
           style={{ borderLeft: "4px solid var(--c-chizai)" }}
         >
@@ -376,7 +376,7 @@ export default function Home() {
               <path strokeLinecap="round" strokeLinejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
             </svg>
           </p>
-        </a>
+        </StudioLink>
       </section>
 
       {/* 姉妹サイト */}

@@ -5,6 +5,8 @@ import AffiliateLink from "@/components/AffiliateLink";
 import FreeLeadCTA from "@/components/FreeLeadCTA";
 import { EXAM_AFFILIATE } from "@/lib/affiliate-links";
 import RecentCourseReminder from "@/components/RecentCourseReminder";
+import ReviewDrillSection from "@/components/ReviewDrillSection";
+import ProgressBackup from "@/components/ProgressBackup";
 
 // 弱点連動広告を出す誤答数のしきい値（高intent面なので露出母数を確保するため緩めに）
 const STUDY_AD_WRONG_THRESHOLD = 2;
@@ -356,6 +358,13 @@ export default function StudyClient({
               </button>
             </div>
 
+            <ReviewDrillSection
+              exam={e.slug}
+              examName={e.name}
+              progress={p}
+              allSlugs={Object.keys(questionMeta[e.slug] ?? {})}
+            />
+
             {renderSection(
               e.slug,
               "wrong",
@@ -412,6 +421,10 @@ export default function StudyClient({
         );
       })}
 
+      <div className="mt-10">
+        <ProgressBackup />
+      </div>
+
       {(totalAttempted > 0 || totalBookmarks > 0) && (
         <section className="mt-10 pt-6 border-t border-[color:var(--c-border)]">
           <button
@@ -427,7 +440,7 @@ export default function StudyClient({
       <section className="mt-10 pt-6 border-t border-[color:var(--c-border)]">
         <p className="text-xs text-[color:var(--c-text-sub)] leading-relaxed">
           学習履歴はあなたのブラウザにのみ保存されています。シークレットモードや別の端末では引き継がれません。
-          ブラウザのデータを削除すると履歴も消えます。一覧は新しい順に表示しています。
+          ブラウザのデータを削除すると履歴も消えます。上の「履歴の持ち出しと復元」からファイルに書き出しておけば、別の端末に移せます。一覧は新しい順に表示しています。
         </p>
       </section>
     </div>

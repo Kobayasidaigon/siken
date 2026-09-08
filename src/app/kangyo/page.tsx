@@ -60,6 +60,13 @@ export default async function KangyoPage() {
           >
             模擬試験を受ける（50問・120分・合格点判定）→
           </a>
+          <a
+            href="/kangyo/mock/"
+            className="inline-flex items-center px-4 py-2 rounded-lg border text-sm font-medium no-underline transition-colors hover:bg-[color:var(--c-kashikin-soft)]"
+            style={{ borderColor: "var(--c-kashikin)", color: "var(--c-kashikin-ink)" }}
+          >
+            本番形式で腕試し（20問・採点）→
+          </a>
         </div>
       </section>
 
@@ -67,7 +74,7 @@ export default async function KangyoPage() {
       <RecentCourseReminder exam="kangyo" placement="return_top" className="mb-8" />
 
       {/* カウントダウン: 申込期間中(8/3〜9/30)は「申込締切まで」を優先表示。A8の成果は締切直前に集中する */}
-      <ExamCountdown exams={KANGYO_EXAMS} accent="var(--c-kashikin)" accentSoft="var(--c-kashikin-soft)" lead="kangyo" />
+      <ExamCountdown exams={KANGYO_EXAMS} accent="var(--c-kashikin)" accentSoft="var(--c-kashikin-soft)" lead="kangyo" calendar={{ examName: "管理業務主任者", path: "/kangyo/" }} />
 
       <section className="mb-12">
         <h2 className="text-lg font-bold text-[color:var(--c-ink)] mb-5 font-serif">分野から選ぶ</h2>

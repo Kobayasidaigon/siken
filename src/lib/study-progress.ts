@@ -85,13 +85,20 @@ export function loadProgress(): AllProgress {
   }
 }
 
-function saveProgress(p: AllProgress): void {
-  if (typeof window === "undefined") return;
+/**
+ * 保存できたかを返す。1問ぶんの記録なら失敗を黙って落としてよいが、
+ * 履歴の復元(importProgress)だけは「保存できた」と偽ってはいけない。
+ * 利用者が復元できたと思い込んで、手元の書き出しファイルを捨てる事故になる。
+ */
+function saveProgress(p: AllProgress): boolean {
+  if (typeof window === "undefined") return false;
   try {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(p));
     window.dispatchEvent(new Event("shikakumon-progress-update"));
+    return true;
   } catch {
-    /* quota exceeded etc — silently ignore */
+    /* 容量超過・プライベートモード等。呼び出し側が必要に応じて拾う */
+    return false;
   }
 }
 
@@ -140,6 +147,162 @@ export function medalCounts(progress: ExamProgress): { bronze: number; silver: n
   const medals = progress.medals ?? {};
   for (const m of Object.values(medals)) counts[m]++;
   return counts;
+}
+
+/* ===================== 書き出し・読み込み ===================== */
+
+/**
+ * 学習履歴の持ち出し。2026-09-07 追加。
+ *
+ * 保存先は localStorage だけで、アカウントもサーバ保存も無い。つまり機種変・
+ * ブラウザ変更・サイトデータの削除で全部消える。3,370問を解いた人ほど失うものが
+ * 大きいのに、退避する手段が何も無かった。
+ *
+ * サーバに置かない方針は変えない(「サーバには送信されません」と明記して集めてきた
+ * 履歴を、後から送信先のあるものに変えるべきではない)。持ち出しと復元だけを、
+ * 利用者の手元のファイルで完結させる。
+ */
+export const PROGRESS_EXPORT_VERSION = 1;
+
+export interface ProgressExport {
+  app: "shikakumon";
+  kind: "study-progress";
+  version: number;
+  /** 書き出した日時(ISO)。中身は使わず、利用者がファイルを見分けるための情報 */
+  exportedAt: string;
+  progress: AllProgress;
+}
+
+export function exportProgress(): ProgressExport {
+  return {
+    app: "shikakumon",
+    kind: "study-progress",
+    version: PROGRESS_EXPORT_VERSION,
+    exportedAt: new Date().toISOString(),
+    progress: loadProgress(),
+  };
+}
+
+/** メダルの強さ。統合するときは強いほうを残す */
+const MEDAL_RANK: Record<Medal, number> = { bronze: 1, silver: 2, gold: 3 };
+
+export type ImportMode = "merge" | "replace";
+
+export interface ImportResult {
+  ok: boolean;
+  /** 失敗したときだけ入る。利用者にそのまま見せる文言 */
+  error?: string;
+  /** 取り込み後の合計。成功したときだけ入る */
+  totals?: { attempted: number; bookmarks: number };
+}
+
+/**
+ * 書き出したファイルを読み込む。
+ *
+ * merge: 今の履歴と統合する。解答済みの問題はメダルが強いほうを残す。
+ *        別の端末で進めた分を合流させる用途。既定はこちら。
+ * replace: 今の履歴を捨てて、ファイルの内容にする。
+ *
+ * 統合で「強いほうを残す」のは、片方で金にした問題が、もう片方の古い銅で
+ * 上書きされて消えるのを防ぐため。逆(弱いほうを残す)にすると、
+ * 復元するたびに進捗が後退して見える。
+ */
+export function importProgress(raw: unknown, mode: ImportMode = "merge"): ImportResult {
+  if (typeof raw !== "object" || raw === null) {
+    return { ok: false, error: "ファイルの形式が読み取れませんでした。" };
+  }
+  const data = raw as Partial<ProgressExport>;
+  if (data.app !== "shikakumon" || data.kind !== "study-progress") {
+    return { ok: false, error: "シカクモンの学習履歴ファイルではないようです。" };
+  }
+  if (typeof data.version !== "number" || data.version > PROGRESS_EXPORT_VERSION) {
+    return {
+      ok: false,
+      error: "このファイルは新しい形式です。ブラウザを再読み込みしてからお試しください。",
+    };
+  }
+  if (typeof data.progress !== "object" || data.progress === null) {
+    return { ok: false, error: "学習履歴が入っていないファイルです。" };
+  }
+
+  const incoming = data.progress as Partial<AllProgress>;
+  const base = mode === "replace" ? defaultProgress() : loadProgress();
+
+  for (const exam of Object.keys(base) as ExamSlug[]) {
+    const part = incoming[exam];
+    if (!part) continue;
+    const cur = base[exam];
+    const str = (v: unknown): string[] => (Array.isArray(v) ? v.filter((x) => typeof x === "string") : []);
+
+    // 判断軸はメダル1本にする。
+    //
+    // ExamProgress は解答時刻を持たないので「どちらが新しいか」は決められない。
+    // それでも軸を2つ持つと必ず食い違う組み合わせができる。
+    // (メダルは強いほうを残し、正誤配列は後勝ちにしていたので、
+    //  「メダルは金なのに間違えた問題欄に出ている」状態が作れてしまう。
+    //  しかも復習ドリルは金を出題しないので、その問題は自力で直せない)
+    // そこでメダルを勝者に決め、wrong / correct はメダルから機械的に導く。
+    // 2つの表現が定義上ずれなくなる。
+    const inWrong = str(part.wrong);
+    const inCorrect = str(part.correct);
+
+    // 取り込む側のメダル。medals を持たない古い書き出しでも、
+    // wrong / correct から銅・銀として補える(それが recordResult と同じ意味付け)
+    const inMedals: Record<string, Medal> = {};
+    for (const slug of inWrong) inMedals[slug] = "bronze";
+    for (const slug of inCorrect) inMedals[slug] = "silver";
+    const declared = part.medals && typeof part.medals === "object" ? part.medals : {};
+    for (const [slug, m] of Object.entries(declared)) {
+      if (m === "bronze" || m === "silver" || m === "gold") inMedals[slug] = m;
+    }
+
+    const medals = cur.medals ?? (cur.medals = {});
+    // 手元にメダルが無い解答済みの問題も、同じ規則で補ってから比較する
+    for (const slug of cur.wrong) if (!medals[slug]) medals[slug] = "bronze";
+    for (const slug of cur.correct) if (!medals[slug]) medals[slug] = "silver";
+
+    const touched: string[] = [];
+    for (const [slug, m] of Object.entries(inMedals)) {
+      const now = medals[slug];
+      if (!now || MEDAL_RANK[m] > MEDAL_RANK[now]) medals[slug] = m;
+      if (!now) touched.push(slug);
+    }
+
+    // 正誤配列をメダルから導き直す。既存の並び順(push順)はできるだけ保ち、
+    // 新しく増えた問題だけを末尾に足す(/study/ は配列順を「新しい順」として表示する)
+    const known = new Set([...cur.wrong, ...cur.correct]);
+    const order = [...cur.wrong, ...cur.correct, ...touched.filter((s) => !known.has(s))];
+    const seen = new Set<string>();
+    const wrong: string[] = [];
+    const correct: string[] = [];
+    for (const slug of order) {
+      if (seen.has(slug)) continue;
+      seen.add(slug);
+      const m = medals[slug];
+      if (m === "bronze") wrong.push(slug);
+      else if (m === "silver" || m === "gold") correct.push(slug);
+    }
+    cur.wrong = wrong;
+    cur.correct = correct;
+    cur.bookmarks = [...new Set([...cur.bookmarks, ...str(part.bookmarks)])];
+  }
+
+  // 保存できたかを必ず確かめる。「読み込みました」と出したのに保存されていないと、
+  // 利用者は復元できたと思って手元のファイルを捨てる。取り込みは全履歴を一度に書く
+  // 最大サイズの書き込みで、容量超過にいちばん当たりやすい操作でもある。
+  if (!saveProgress(base)) {
+    return {
+      ok: false,
+      error:
+        "ブラウザに保存できませんでした。空き容量を空けるか、プライベートモードを解除してからお試しください。書き出したファイルはそのまま残しておいてください。",
+    };
+  }
+  const attempted = (Object.keys(base) as ExamSlug[]).reduce(
+    (n, e) => n + base[e].wrong.length + base[e].correct.length,
+    0
+  );
+  const bookmarks = (Object.keys(base) as ExamSlug[]).reduce((n, e) => n + base[e].bookmarks.length, 0);
+  return { ok: true, totals: { attempted, bookmarks } };
 }
 
 export function clearProgress(exam?: ExamSlug): void {

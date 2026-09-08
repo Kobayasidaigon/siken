@@ -6,6 +6,7 @@ import BookmarkButton from "@/app/q/[slug]/BookmarkButton";
 import PiiCourseAd from "@/components/PiiCourseAd";
 import JsonLd from "@/components/JsonLd";
 import { pageMetadata } from "@/lib/page-metadata";
+import { hubForQuestion, topicHubPath } from "@/lib/topic-hubs";
 import { quizJsonLd, breadcrumbJsonLd, questionPageTitle, questionPageDescription } from "@/lib/quiz-jsonld";
 
 const fieldSlugMap: Record<string, string> = {
@@ -41,6 +42,10 @@ export default async function PiiQuestionPage({ params }: { params: Promise<{ sl
   const prevQ = idx > 0 ? fieldQuestions[idx - 1] : null;
   const nextQ = idx < fieldQuestions.length - 1 ? fieldQuestions[idx + 1] : null;
   const fieldSlug = fieldSlugMap[q.field] || "";
+  // 同じ論点の問題が3問以上ある場合だけ、その論点のまとめページがある。
+  // 検索語に答える面はそちら1枚に寄せ、この問題ページはそこから辿る位置づけにする
+  // (同一タイトルのページが並んで互いの順位を食い合っていたため)。
+  const hub = hubForQuestion("pii", q.title);
 
   const difficultyLabel = { A: "易しい", B: "標準", C: "難しい" }[q.difficulty];
   const difficultyColor = { A: "bg-green-100 text-green-800", B: "bg-amber-100 text-amber-800", C: "bg-red-100 text-red-800" }[q.difficulty];
@@ -51,6 +56,7 @@ export default async function PiiQuestionPage({ params }: { params: Promise<{ sl
       { name: "ホーム", path: "/" },
       { name: "個人情報保護士", path: "/pii/" },
       ...(fieldSlug ? [{ name: q.field, path: `/pii/field/${fieldSlug}/` }] : []),
+      ...(hub ? [{ name: hub.topic, path: topicHubPath("pii", hub.slug) }] : []),
       { name: `問${fieldIndex}`, path: `/pii/q/${slug}/` },
     ]),
   ];
@@ -63,6 +69,7 @@ export default async function PiiQuestionPage({ params }: { params: Promise<{ sl
         <a href="/">ホーム</a><span>/</span>
         <a href="/pii/">個人情報保護士</a><span>/</span>
         {fieldSlug && <><a href={`/pii/field/${fieldSlug}/`}>{q.field}</a><span>/</span></>}
+        {hub && <><a href={topicHubPath("pii", hub.slug)}>{hub.topic}</a><span>/</span></>}
         <span className="text-[color:var(--c-ink)]">問{fieldIndex}</span>
       </nav>
 

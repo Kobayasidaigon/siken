@@ -82,7 +82,7 @@ export default async function BijimanePage() {
       <RecentCourseReminder exam="bijimane" placement="return_top" className="mb-8" />
 
       {/* カウントダウン: 申込期間中は「申込締切まで」を優先表示(東商IBT/CBTは期間制) */}
-      <ExamCountdown exams={BIJIMANE_EXAMS} accent="var(--c-bijimane)" accentSoft="var(--c-bijimane-soft)" periodExam />
+      <ExamCountdown exams={BIJIMANE_EXAMS} accent="var(--c-bijimane)" accentSoft="var(--c-bijimane-soft)" periodExam calendar={{ examName: "ビジネスマネジャー検定", path: "/bijimane/" }} />
 
       {/* 分野 - タグクラウド風 */}
       <section className="mb-12">

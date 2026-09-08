@@ -81,7 +81,7 @@ export default async function Fukushi2Page() {
       <RecentCourseReminder exam="fukushi2" placement="return_top" className="mb-8" />
 
       {/* カウントダウン: 申込期間中は「申込締切まで」を優先表示(東商IBT/CBTは期間制) */}
-      <ExamCountdown exams={FUKUSHI2_EXAMS} accent="var(--c-fukushi)" accentSoft="var(--c-fukushi-soft)" periodExam />
+      <ExamCountdown exams={FUKUSHI2_EXAMS} accent="var(--c-fukushi)" accentSoft="var(--c-fukushi-soft)" periodExam calendar={{ examName: "福祉住環境コーディネーター2級", path: "/fukushi2/" }} />
 
       {/* 分野 - タグクラウド風 */}
       <section className="mb-12">

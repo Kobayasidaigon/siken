@@ -62,6 +62,13 @@ export default async function MynumberPage() {
             模擬試験を受ける（50問・75分・合否判定）→
           </a>
           <Moshi2TopLink certId="mynumber" />
+          <a
+            href="/mynumber/mock/"
+            className="inline-flex items-center px-4 py-2 rounded-lg border text-sm font-medium no-underline transition-colors hover:bg-[color:var(--c-pii-soft)]"
+            style={{ borderColor: "var(--c-pii)", color: "var(--c-pii-ink)" }}
+          >
+            本番形式で腕試し（20問・採点）→
+          </a>
         </div>
       </section>
 
@@ -78,6 +85,7 @@ export default async function MynumberPage() {
           course: "mynumber",
           pixel: "https://www11.a8.net/0.gif?a8mat=4B1TI0+9T22IA+4LOQ+BW8O2",
         }}
+        calendar={{ examName: "マイナンバー実務検定3級", path: "/mynumber/" }}
       />
 
       <section className="mb-12">

@@ -82,7 +82,7 @@ export default async function EcoPage() {
       <RecentCourseReminder exam="eco" placement="return_top" className="mb-8" />
 
       {/* カウントダウン: 申込期間中は「申込締切まで」を優先表示(東商IBT/CBTは期間制) */}
-      <ExamCountdown exams={ECO_EXAMS} accent="var(--c-eco)" accentSoft="var(--c-eco-soft)" periodExam />
+      <ExamCountdown exams={ECO_EXAMS} accent="var(--c-eco)" accentSoft="var(--c-eco-soft)" periodExam calendar={{ examName: "eco検定(環境社会検定試験)", path: "/eco/" }} />
 
       {/* 分野 - タグクラウド風 */}
       <section className="mb-12">

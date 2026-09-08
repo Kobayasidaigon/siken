@@ -29,6 +29,7 @@ import MoshiFormatFeedback from "@/components/MoshiFormatFeedback";
 import MoshiRound2Interest from "@/components/MoshiRound2Interest";
 import Moshi2Offer from "@/components/Moshi2Offer";
 import { moshi2ProductOf } from "@/lib/moshi2-products";
+import StudioLink from "@/components/StudioLink";
 
 export interface MoshiQuestion {
   slug: string;
@@ -69,9 +70,6 @@ interface SavedSession {
   answers: (number | null)[];
 }
 
-const STUDIO_URL =
-  "https://studio.shikakumon.com/?utm_source=shikakumon&utm_medium=referral&utm_content=moshi_result";
-
 function loadSession(key: string): SavedSession | null {
   try {
     const raw = localStorage.getItem(key);
@@ -106,6 +104,22 @@ function formatRemaining(sec: number): string {
   return `${m}:${String(s).padStart(2, "0")}`;
 }
 
+/**
+ * GA 送信。必ず try/catch で包む。2026-09-07 追加。
+ *
+ * submit() の GA 送信は submittedRef を立てた後、setResult / clearSession /
+ * setPhase("done") より前にある。ここで例外が出ると、採点結果が画面に出ないまま
+ * submittedRef だけが立ち、採点ボタンも二度と効かなくなる。
+ * この画面は Moshi2Gate 経由で有料の第2回模試にも使われるので、
+ * 計測のために答案を落とすことは許容できない。
+ */
+function track(name: string, params: Record<string, unknown>) {
+  try {
+    sendGAEvent("event", name, params);
+  } catch {
+    /* GA未ロードでも受験・採点は妨げない */
+  }
+}
 export default function MoshiExam({
   exam,
   round,
@@ -189,10 +203,15 @@ export default function MoshiExam({
       const elapsedMin = startedAt
         ? Math.min(timeLimitMin, Math.round((Date.now() - startedAt) / 60000))
         : timeLimitMin;
-      sendGAEvent("event", "moshi_complete", {
+      // 出題数は資格・回で30〜100問と幅があり、素点の score だけでは資格をまたいだ
+      // 比較も正答率の算出もできなかった。分母(size)と5点刻みに丸めた得点率を併せて送る。
+      // score は既存の集計を切らさないため残す。
+      track("moshi_complete", {
         exam,
         round,
         score,
+        size: questions.length,
+        score_bucket: questions.length ? Math.round((score / questions.length) * 20) * 5 : 0,
         passed: isPassed(answers) ? "yes" : "no",
         timeout: timeout ? "yes" : "no",
         minutes: elapsedMin,
@@ -235,7 +254,7 @@ export default function MoshiExam({
     submittedRef.current = false;
     setResult(null);
     setPhase("running");
-    sendGAEvent("event", "moshi_start", { exam, round, mode });
+    track("moshi_start", { exam, round, mode });
     window.scrollTo({ top: 0 });
   }
 
@@ -477,7 +496,7 @@ export default function MoshiExam({
             )}&url=${encodeURIComponent(`https://shikakumon.com${topPath}moshi/`)}`}
             target="_blank"
             rel="noopener noreferrer"
-            onClick={() => sendGAEvent("event", "share_click", { exam, channel: "x", place: "moshi" })}
+            onClick={() => track("share_click", { exam, channel: "x", place: "moshi" })}
             className="inline-block text-xs font-bold border rounded-md px-3 py-1.5 no-underline transition hover:opacity-80"
             style={{ color: "var(--c-accent)", borderColor: "var(--c-accent)" }}
           >
@@ -596,14 +615,14 @@ export default function MoshiExam({
             ? `${weakest[0]}が ${weakest[1].correct}/${weakest[1].total} でした。姉妹サービス「シカクモン Studio」なら、この分野の問題をAIがその場で作ります。間違えた問題は忘却曲線で自動的に再出題されます。`
             : "今回の取りこぼしを忘れる前に。資格名や手元の教材から作った問題を忘却曲線で自動復習できる姉妹サービス「シカクモン Studio」。"}
         </p>
-        <a
+        <StudioLink
           href={studioMoshiHref(exam, weakest?.[0], "moshi_result")}
-          target="_blank"
-          rel="noopener noreferrer"
+          placement="moshi_result"
+          exam={exam}
           className="text-xs font-bold inline-flex items-center gap-1 no-underline text-indigo-600 hover:underline"
         >
           {weakest ? `${weakest[0]}の問題を作る →` : "シカクモン Studio を無料で試す →"}
-        </a>
+        </StudioLink>
       </aside>
 
       {/* 全問詳解 */}

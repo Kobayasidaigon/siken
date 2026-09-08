@@ -34,6 +34,8 @@ const RESULT_CTA_EXAMS: ExamSlug[] = [
   "fukushi2",
   // 2026-09-08 追加。isec は SMART合格講座(4B1TI0系)の無料登録を主導線にしている。
   "isec",
+  // 2026-09-08 追加。kyoin はアガルート(4B3N6P系)の承認済み提携。
+  "kyoin",
 ];
 
 const MEDAL_LABEL: Record<Medal, string> = { bronze: "🥉 銅", silver: "🥈 銀", gold: "🥇 金" };

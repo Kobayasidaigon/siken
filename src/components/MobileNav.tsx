@@ -38,6 +38,7 @@ const SHORT_NAME: Record<ExamSlug, string> = {
   chintai: "賃管士",
   kangyo: "管業",
   isec: "情報セキュ",
+  kyoin: "教採",
 };
 
 const ICON = "w-5 h-5";

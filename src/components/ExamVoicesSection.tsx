@@ -14,7 +14,7 @@ import { EXAM_LIST, type ExamSlug } from "@/lib/study-progress";
  */
 
 /** 日程データを持たない資格(通年CBTなど)は、試験日で窓を作れないので常時お願いを出す */
-const ALWAYS_ASK: ExamSlug[] = ["itpass", "isec"];
+const ALWAYS_ASK: ExamSlug[] = ["itpass", "isec", "kyoin"];
 
 export default async function ExamVoicesSection({ exam }: { exam: ExamSlug }) {
   const theme = EXAM_THEME[exam];

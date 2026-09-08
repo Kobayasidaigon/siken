@@ -6,6 +6,9 @@ import IsecCourseAd from "@/components/IsecCourseAd";
 import { pageMetadata } from "@/lib/page-metadata";
 import ExamVoicesSection from "@/components/ExamVoicesSection";
 import { ISEC_FIELDS } from "@/lib/isec-fields";
+import ExamCountdown from "@/components/ExamCountdown";
+import { ISEC_EXAMS } from "@/lib/exam-dates";
+import { EXAM_AFFILIATE } from "@/lib/affiliate-links";
 
 export const metadata: Metadata = pageMetadata({
   path: "/isec/",
@@ -68,6 +71,21 @@ export default async function IsecPage() {
 
       {/* 前回チェックした講座(再訪者の再クリック導線。記録が無ければ何も出ない) */}
       <RecentCourseReminder exam="isec" placement="return_top" className="mb-8" />
+
+      {/* カウントダウン: 申込期間中は「申込締切まで」を優先表示し、協会の申込ページへ送る。
+          pii / mynumber / jitsumu と同じ形。実施団体(協会)がそのまま A8 の広告主なので、
+          ドリル読者の必然行動である受験申込が成果地点になる。 */}
+      <ExamCountdown
+        exams={ISEC_EXAMS}
+        accent="var(--c-pii)"
+        accentSoft="var(--c-pii-soft)"
+        apply={{
+          href: EXAM_AFFILIATE.isec.applyHref!,
+          course: "isec",
+          pixel: EXAM_AFFILIATE.isec.applyPixel!,
+        }}
+        calendar={{ examName: "情報・サイバーセキュリティ管理士認定試験", path: "/isec/" }}
+      />
 
       <section className="mb-12">
         <h2 className="text-lg font-bold text-[color:var(--c-ink)] mb-5 font-serif">分野から選ぶ</h2>
@@ -133,6 +151,35 @@ export default async function IsecPage() {
       <ExamVoicesSection exam="isec" />
 
       <IsecCourseAd />
+
+      {/* 姉妹検定。同じ協会が同じ日程で実施する3試験へ内部で送る。
+          bijimane / eco の「同じ東商検定を併願する方へ」と同じ役割。 */}
+      <section className="mb-12">
+        <h2 className="text-base font-bold text-[color:var(--c-ink)] mb-4 font-serif">
+          同じ協会の検定を併願する方へ
+        </h2>
+        <div className="card p-5 text-sm text-[color:var(--c-text-sub)] leading-relaxed space-y-2">
+          <p>
+            情報・サイバーセキュリティ管理士を実施している全日本情報学習振興協会は、
+            <a href="/pii/" className="underline hover:no-underline">
+              個人情報保護士
+            </a>
+            ・
+            <a href="/jitsumu/" className="underline hover:no-underline">
+              個人情報保護実務検定
+            </a>
+            ・
+            <a href="/mynumber/" className="underline hover:no-underline">
+              マイナンバー実務検定
+            </a>
+            も同じ年4回の日程で実施しています。申込先も出題の形式（4肢択一のマークシート・課題別構成）も共通です。
+          </p>
+          <p>
+            出題範囲も重なります。本試験の課題Ⅰで問われる情報セキュリティの管理体制・関連法規は、個人情報保護士の課題Ⅱ「情報セキュリティ」とほぼ同じ論点です。
+            個人情報保護法の安全管理措置は3試験すべてで問われます。片方の学習がもう片方の下地になるので、同じ回での併願は現実的な選択肢です。
+          </p>
+        </div>
+      </section>
 
       {/* コラム */}
       {isecColumns.length > 0 && (

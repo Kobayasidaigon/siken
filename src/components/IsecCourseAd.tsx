@@ -29,11 +29,14 @@ export default function IsecCourseAd({ headline, body }: Props = {}) {
       </p>
       <p className="text-xs text-[color:var(--c-text-sub)] mb-3">{finalHeadline}</p>
       <p className="text-sm text-[color:var(--c-text)] leading-relaxed mb-4">{finalBody}</p>
+      {/* 他資格の CourseAd は「無料登録(主) → 有料講座(副)」の順だが、この資格は逆にしてある。
+          成果になるのは講座購入と受験申込で、無料登録はそこへの入口にすぎない
+          (ユーザー判断 2026-09-08)。無料登録は摩擦の低い受け皿として残す。 */}
       <div className="flex flex-col items-start gap-3">
-        <FreeLeadCTA exam="isec" placement="course_ad" withBadge />
         <AffiliateLink href={EXAM_AFFILIATE["isec"].href} course="isec" placement="course_ad">
           {EXAM_AFFILIATE["isec"].label} →
         </AffiliateLink>
+        <FreeLeadCTA exam="isec" placement="course_ad" withBadge />
       </div>
       <img
         width={1}

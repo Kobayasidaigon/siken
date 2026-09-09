@@ -46,6 +46,13 @@ export default async function KashikinPage() {
         <div className="mt-6 flex flex-wrap gap-3">
           <a href="/exam/0/" className="btn-accent">問題を解き始める →</a>
           <a
+            href="/kashikin/moshi/"
+            className="inline-flex items-center px-4 py-2 rounded-lg border text-sm font-medium no-underline transition-colors hover:bg-[color:var(--c-kashikin-soft)]"
+            style={{ borderColor: "var(--c-kashikin)", color: "var(--c-kashikin-ink)" }}
+          >
+            模擬試験を受ける（50問・120分）→
+          </a>
+          <a
             href="/kashikin/mock/"
             className="inline-flex items-center px-4 py-2 rounded-lg border text-sm font-medium no-underline transition-colors hover:bg-[color:var(--c-kashikin-soft)]"
             style={{ borderColor: "var(--c-kashikin)", color: "var(--c-kashikin-ink)" }}

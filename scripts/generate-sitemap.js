@@ -144,9 +144,11 @@ const siteMax = [kashikinMax, piiMax, chizaiMax, chizai2Max, mynumberMax, jitsum
 // 一覧・ハブページの lastmod は、そのページに表示されるコンテンツ群の最終更新日
 const staticPages = [
   { url: "/", priority: "1.0", freq: "weekly", lastmod: siteMax },
+  { url: "/tokushoho/", priority: "0.3", freq: "yearly", lastmod: fileDate(path.join(appDir, "tokushoho/page.tsx")) },
   // 貸金業務取扱主任者
   { url: "/kashikin/", priority: "0.9", freq: "weekly", lastmod: kashikinMax },
   { url: "/exam/", priority: "0.7", freq: "monthly", lastmod: kashikinMax },
+  { url: "/kashikin/moshi/", priority: "0.7", freq: "monthly", lastmod: fileDate(path.join(appDir, "kashikin/moshi/page.tsx")) },
   { url: "/exam/0/", priority: "0.9", freq: "weekly", lastmod: kashikinMax },
   { url: "/kashikin/mock/", priority: "0.6", freq: "monthly", lastmod: fileDate(path.join(appDir, "kashikin/mock/page.tsx")) },
   { url: "/field/", priority: "0.8", freq: "weekly", lastmod: kashikinMax },

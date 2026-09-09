@@ -338,6 +338,18 @@ export default function Moshi2Gate({ certId }: { certId: ExamSlug }) {
           シークレットウィンドウ(プライベートモード)でのご購入はお控えください。
           ウィンドウを閉じた時点で受験権が消えてしまいます。
         </p>
+        {/* 返品特約。特定商取引法の広告表示義務にあたるため、購入ボタンの近くに置く。
+            2026-09-09 追加(それまで購入画面にも決済画面にも返金の記載が無かった)。 */}
+        <p className="text-[12px] text-ink-faint mt-3 leading-relaxed border-t border-line pt-3">
+          <span className="text-ink">返品・キャンセルについて</span>
+          ：商品の性質上、決済完了後のお客様のご都合による返金はお受けできません。
+          解錠できない等の不具合で受験いただけない場合は全額を返金しますので、お問い合わせください。
+          詳しくは
+          <Link href="/tokushoho/" className="underline underline-offset-2 hover:text-ink">
+            特定商取引法に基づく表記
+          </Link>
+          をご確認ください。
+        </p>
       </div>
 
       {message && <p className="text-[12px] text-wrong mt-4">{message}</p>}

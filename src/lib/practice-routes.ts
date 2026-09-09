@@ -54,6 +54,9 @@ const HAS_MOCK: ExamSlug[] = [
 
 /** /<資格>/moshi/ がある資格。本試験と同じ問数・時間の第1回模試(無料) */
 const HAS_MOSHI: ExamSlug[] = [
+  // 2026-09-09 追加。A8 主力資格なのにここだけ無料模試が無く、
+  // 「模試完了者が最も転換する」面が丸ごと欠けていた。
+  "kashikin",
   "pii",
   "chizai",
   "chizai2",

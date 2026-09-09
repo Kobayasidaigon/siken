@@ -17,6 +17,7 @@ import { getAllChintaiQuestions } from "@/lib/chintai-questions";
 import { getAllKangyoQuestions } from "@/lib/kangyo-questions";
 import { getAllIsecQuestions } from "@/lib/isec-questions";
 import { getAllKyoinQuestions } from "@/lib/kyoin-questions";
+import { getAllShakaiQuestions } from "@/lib/shakai-questions";
 import type { ExamSlug } from "@/lib/study-progress";
 
 export const metadata: Metadata = pageMetadata({
@@ -36,7 +37,7 @@ function extractTopic(title: string): string {
 }
 
 export default async function StudyPage() {
-  const [kashikin, pii, chizai, chizai2, mynumber, jitsumu, bijihou, fukushi2, bijimane, eco, bijihou2, itpass, chintai, kangyo, isec, kyoin] = await Promise.all([
+  const [kashikin, pii, chizai, chizai2, mynumber, jitsumu, bijihou, fukushi2, bijimane, eco, bijihou2, itpass, chintai, kangyo, isec, kyoin, shakai] = await Promise.all([
     getAllQuestions(),
     getAllPiiQuestions(),
     getAllChizaiQuestions(),
@@ -53,6 +54,7 @@ export default async function StudyPage() {
     getAllKangyoQuestions(),
     getAllIsecQuestions(),
     getAllKyoinQuestions(),
+    getAllShakaiQuestions(),
   ]);
 
   const buildMap = (questions: { slug: string; questionNumber: number; field: string; title: string }[]): Record<string, QuestionMeta> => {
@@ -84,6 +86,7 @@ export default async function StudyPage() {
     kangyo: buildMap(kangyo),
     isec: buildMap(isec),
     kyoin: buildMap(kyoin),
+    shakai: buildMap(shakai),
   };
 
   return <StudyClient questionMeta={questionMeta} />;

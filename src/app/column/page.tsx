@@ -14,7 +14,7 @@ interface ExamGroup {
   examName: string;
   shortName: string;
   topPath: string;
-  themeKey: "kashikin" | "pii" | "chizai" | "fukushi";
+  themeKey: "kashikin" | "pii" | "chizai" | "fukushi" | "eco";
   matcher: (slug: string) => boolean;
 }
 
@@ -118,6 +118,14 @@ const examGroups: ExamGroup[] = [
     matcher: (slug) => slug.startsWith("kyoin-"),
   },
   {
+    id: "shakai",
+    examName: "社会福祉士（共通科目）",
+    shortName: "社会福祉士",
+    topPath: "/shakai/",
+    themeKey: "eco",
+    matcher: (slug) => slug.startsWith("shakai-"),
+  },
+  {
     id: "chintai",
     examName: "賃貸不動産経営管理士",
     shortName: "賃管士",
@@ -166,6 +174,8 @@ const themeColor = {
   pii: { main: "#15803d", soft: "#d7ebd9", ink: "#14532d" },
   chizai: { main: "#6d28d9", soft: "#e6ddf4", ink: "#4c1d95" },
   fukushi: { main: "#0e7490", soft: "#d9edf2", ink: "#155e75" },
+  // globals.css の --c-eco / --c-eco-soft / --c-eco-ink と同じ値にしてある
+  eco: { main: "#3f6212", soft: "#e9f0d8", ink: "#365314" },
 };
 
 export default async function ColumnIndexPage() {

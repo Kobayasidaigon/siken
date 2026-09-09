@@ -135,6 +135,7 @@ export const EXAM_FULL_NAMES: Record<ExamSlug, string> = {
   itpass: "ITパスポート試験",
   isec: "情報・サイバーセキュリティ管理士認定試験",
   kyoin: "教員採用試験",
+  shakai: "社会福祉士国家試験",
   chintai: "賃貸不動産経営管理士",
   kangyo: "管理業務主任者",
 };

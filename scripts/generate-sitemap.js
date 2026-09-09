@@ -59,6 +59,7 @@ const chintaiDir = path.join(__dirname, "../src/content/chintai");
 const kangyoDir = path.join(__dirname, "../src/content/kangyo");
 const isecDir = path.join(__dirname, "../src/content/isec");
 const kyoinDir = path.join(__dirname, "../src/content/kyoin");
+const shakaiDir = path.join(__dirname, "../src/content/shakai");
 const columnsDir = path.join(__dirname, "../src/content/columns");
 const appDir = path.join(__dirname, "../src/app");
 const outputPath = path.join(__dirname, "../public/sitemap.xml");
@@ -116,6 +117,7 @@ const chintai = collect(chintaiDir);
 const kangyo = collect(kangyoDir);
 const isec = collect(isecDir);
 const kyoin = collect(kyoinDir);
+const shakai = collect(shakaiDir);
 const columns = collect(columnsDir);
 
 const todayFallback = toDate(Date.now());
@@ -135,8 +137,9 @@ const chintaiMax = maxDate(chintai, todayFallback);
 const kangyoMax = maxDate(kangyo, todayFallback);
 const isecMax = maxDate(isec, todayFallback);
 const kyoinMax = maxDate(kyoin, todayFallback);
+const shakaiMax = maxDate(shakai, todayFallback);
 const columnsMax = maxDate(columns, todayFallback);
-const siteMax = [kashikinMax, piiMax, chizaiMax, chizai2Max, mynumberMax, jitsumuMax, bijihouMax, fukushi2Max, bijimaneMax, ecoMax, bijihou2Max, itpassMax, chintaiMax, kangyoMax, isecMax, kyoinMax, columnsMax].sort().at(-1);
+const siteMax = [kashikinMax, piiMax, chizaiMax, chizai2Max, mynumberMax, jitsumuMax, bijihouMax, fukushi2Max, bijimaneMax, ecoMax, bijihou2Max, itpassMax, chintaiMax, kangyoMax, isecMax, kyoinMax, shakaiMax, columnsMax].sort().at(-1);
 
 // 一覧・ハブページの lastmod は、そのページに表示されるコンテンツ群の最終更新日
 const staticPages = [
@@ -348,6 +351,18 @@ const staticPages = [
   { url: "/kyoin/field/rekishi/", priority: "0.8", freq: "monthly", lastmod: kyoinMax },
   { url: "/kyoin/field/jiji/", priority: "0.8", freq: "monthly", lastmod: kyoinMax },
   { url: "/kyoin/field/kyoyo/", priority: "0.8", freq: "monthly", lastmod: kyoinMax },
+  // 社会福祉士（共通科目）
+  { url: "/shakai/", priority: "0.9", freq: "weekly", lastmod: shakaiMax },
+  { url: "/shakai/moshi/", priority: "0.7", freq: "monthly", lastmod: fileDate(path.join(appDir, "shakai/moshi/page.tsx")) },
+  { url: "/shakai/mock/", priority: "0.6", freq: "monthly", lastmod: fileDate(path.join(appDir, "shakai/mock/page.tsx")) },
+  { url: "/shakai/field/genri/", priority: "0.8", freq: "monthly", lastmod: shakaiMax },
+  { url: "/shakai/field/shakaihosho/", priority: "0.8", freq: "monthly", lastmod: shakaiMax },
+  { url: "/shakai/field/kenri/", priority: "0.8", freq: "monthly", lastmod: shakaiMax },
+  { url: "/shakai/field/chiiki/", priority: "0.8", freq: "monthly", lastmod: shakaiMax },
+  { url: "/shakai/field/shogai/", priority: "0.8", freq: "monthly", lastmod: shakaiMax },
+  { url: "/shakai/field/igaku/", priority: "0.8", freq: "monthly", lastmod: shakaiMax },
+  { url: "/shakai/field/shakaigaku/", priority: "0.8", freq: "monthly", lastmod: shakaiMax },
+  { url: "/shakai/field/sw/", priority: "0.8", freq: "monthly", lastmod: shakaiMax },
   { url: "/chintai/", priority: "0.9", freq: "weekly", lastmod: chintaiMax },
   { url: "/chintai/moshi/", priority: "0.7", freq: "monthly", lastmod: fileDate(path.join(appDir, "chintai/moshi/page.tsx")) },
   { url: "/chintai/mock/", priority: "0.6", freq: "monthly", lastmod: fileDate(path.join(appDir, "chintai/mock/page.tsx")) },
@@ -400,6 +415,7 @@ const contentPages = [
   { entries: kangyo, prefix: "/kangyo/q/" },
   { entries: isec, prefix: "/isec/q/" },
   { entries: kyoin, prefix: "/kyoin/q/" },
+  { entries: shakai, prefix: "/shakai/q/" },
 ].flatMap(({ entries, prefix }) =>
   entries.map((e) => ({
     url: `${prefix}${e.slug}/`,

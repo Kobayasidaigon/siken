@@ -34,4 +34,6 @@ export const EXAM_THEME: Record<ExamSlug, ExamTheme> = {
   kyoin: { accent: "var(--c-fukushi)", soft: "var(--c-fukushi-soft)", period: false },
   bijimane: { accent: "var(--c-bijimane)", soft: "var(--c-bijimane-soft)", period: true },
   eco: { accent: "var(--c-eco)", soft: "var(--c-eco-soft)", period: true },
+  // 社会福祉士は年1回2月の統一試験。日程データは未確認のため持たない(下の kyoin と同じ)
+  shakai: { accent: "var(--c-eco)", soft: "var(--c-eco-soft)", period: false },
 };

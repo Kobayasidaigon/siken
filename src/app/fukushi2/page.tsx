@@ -134,6 +134,28 @@ export default async function Fukushi2Page() {
         body="福祉住環境コーディネーター2級は、医療・福祉・建築にまたがる幅広い知識が問われます。ユーキャンの通信講座は開講20年以上の定番講座で、公式テキストの改訂にも対応しています。独学に不安がある方は検討してみてください。"
       />
 
+      {/* 次に取る資格への導線。2026-09-09 追加。
+          この資格は230問あるのに、解き終えた読者の行き先がサイト内に無かった。
+          社会福祉士の共通科目は介護保険・障害者福祉の論点が重なり、
+          広告主(アガルート)も承認済み提携なので、読者にも収益にも無駄がない。 */}
+      <section className="mb-12">
+        <h2 className="text-base font-bold text-[color:var(--c-ink)] mb-4 font-serif">
+          次の福祉の資格を考えている方へ
+        </h2>
+        <div className="card p-5 text-sm text-[color:var(--c-text-sub)] leading-relaxed space-y-2">
+          <p>
+            福祉住環境コーディネーターで学ぶ介護保険制度・障害者福祉・バリアフリーの考え方は、
+            <a href="/shakai/" className="underline hover:no-underline">
+              社会福祉士（共通科目）
+            </a>
+            の「社会保障」「障害者福祉」とそのまま重なります。相談援助の仕事に進むなら次の一歩になる国家資格です。
+          </p>
+          <p>
+            当サイトでは社会福祉士の共通科目12科目から200問を公開しています。共通科目は精神保健福祉士とも共通なので、どちらを目指す場合にも使えます。
+          </p>
+        </div>
+      </section>
+
       {/* コラム */}
       {fukushi2Columns.length > 0 && (
         <section className="border-t border-[color:var(--c-border)] pt-8">

@@ -36,6 +36,8 @@ const RESULT_CTA_EXAMS: ExamSlug[] = [
   "isec",
   // 2026-09-08 追加。kyoin はアガルート(4B3N6P系)の承認済み提携。
   "kyoin",
+  // 2026-09-09 追加。shakai もアガルート(4B3N6P系)の承認済み提携。
+  "shakai",
 ];
 
 const MEDAL_LABEL: Record<Medal, string> = { bronze: "🥉 銅", silver: "🥈 銀", gold: "🥇 金" };

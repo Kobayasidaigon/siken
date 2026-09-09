@@ -234,6 +234,29 @@ export const EXAM_AFFILIATE: Record<ExamSlug, AffiliateTarget> = {
       "https://px.a8.net/svt/ejp?a8mat=4B3N6P+AWY41E+44M0+BW8O2&a8ejpredirect=https%3A%2F%2Fwww.agaroot.jp%2Fcustomer%2Fcatalog%2F",
     freeLabel: "無料体験・資料請求を申し込む（サンプル講義つき）",
   },
+  // 社会福祉士国家試験（共通科目）。アガルートの社会福祉士講座(agaroot.jp/shakaifukushi/)。
+  //   kashikin / chintai / kangyo / kyoin と同じ承認済み提携(4B3N6P系)で、同じ広告主。
+  //   2026-09-09 追加。A8 の新着情報でアガルートが社会福祉士の新講座をリリースしたことを確認。
+  //
+  //   【この資格を足した狙い】
+  //   福祉住環境コーディネーター2級(fukushi2)は本体で3番目に問題数が多い(230問)のに、
+  //   ユーキャンの A8 提携が未承認で href が計測なしの直リンク=収益ゼロのまま。さらに
+  //   ucan-policy.ts の制約で資料請求リンクを置けず、合格率記事には広告を出せない。
+  //   社会福祉士は fukushi2 と受験者層が重なり、かつ承認済みのアガルートが講座を持つので、
+  //   福祉系の読者を審査待ちなしで換金できる導線になる。
+  //
+  //   freeHref はアガルート公式の「無料体験（資料請求）」ページ。kyoin と同じく、到達を
+  //   確認できた agaroot.jp/customer/catalog/(全講座共通の資料請求フォーム)を指定した。
+  //   ※監査レポート §4 のとおり、アガルートの成果条件に「資料請求」が含まれるかは未確認。
+  //     だから CourseAd は「有料講座(主) → 資料請求(副)」の順にしてある。
+  shakai: {
+    href: "https://px.a8.net/svt/ejp?a8mat=4B3N6P+AWY41E+44M0+BW8O2&a8ejpredirect=https%3A%2F%2Fwww.agaroot.jp%2Fshakaifukushi%2F",
+    label: "アガルートの社会福祉士講座を見る",
+    course: "shakai",
+    freeHref:
+      "https://px.a8.net/svt/ejp?a8mat=4B3N6P+AWY41E+44M0+BW8O2&a8ejpredirect=https%3A%2F%2Fwww.agaroot.jp%2Fcustomer%2Fcatalog%2F",
+    freeLabel: "無料体験・資料請求を申し込む（サンプル講義つき）",
+  },
   // TODO(fukushi2): A8でユーキャン「講座申込プログラム」と提携後、a8mat付きリンクへ差し替える
   //   (講座申込=最大5,000円/件。afbの資料請求=最大1,000円は freeHref に設定する)。
   //   提携承認まではトラッキング無しの公式講座ページへの直リンクで運用(収益ゼロだが導線は維持)。
@@ -287,6 +310,7 @@ export const RESULT_CTA_HEADLINE: Record<ExamSlug, string> = {
   itpass: "間違えた論点を体系的に整理するなら",
   isec: "間違えた論点を体系的に整理するなら",
   kyoin: "間違えた論点を体系的に整理するなら",
+  shakai: "間違えた論点を体系的に整理するなら",
   chintai: "間違えた論点を体系的に整理するなら",
   kangyo: "間違えた論点を体系的に整理するなら",
 };

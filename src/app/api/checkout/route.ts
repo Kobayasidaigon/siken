@@ -67,6 +67,15 @@ export async function POST(request: Request) {
         },
       ],
       // 決済後にこの URL へ戻る。session_id を付けて /api/unlock が検証する。
+      // 特定商取引法の最終確認画面の要件にあわせ、提供時期と撤回・解除の扱いを
+      // Stripe の Checkout 画面にも出す。2026-09-09 追加(それまで商品名と説明しか
+      // 渡しておらず、決済画面から返金条件が読めなかった)。
+      custom_text: {
+        submit: {
+          message:
+            "決済の完了後、ただちに受験ページが解錠されます。商品の性質上、決済完了後のお客様のご都合による返金はお受けできません（解錠できない等の不具合の場合は全額返金します）。詳しくは特定商取引法に基づく表記をご確認ください。",
+        },
+      },
       success_url: `${base}/${product.certId}/moshi2/?s={CHECKOUT_SESSION_ID}`,
       cancel_url: `${base}/${product.certId}/moshi2/?canceled=1`,
       metadata: { certId: product.certId, kind: "moshi2" },

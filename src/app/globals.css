@@ -203,3 +203,63 @@ h1, h2, h3, h4, h5, h6 {
 @media (min-width: 640px) {
   .btn-ad { width: auto; }
 }
+
+/* =============================================================================
+   印刷用のユーティリティ。2026-09-09 追加。
+
+   第2回模試の受験画面(Moshi2Gate)が print-hide / print-only を使っていたが、
+   どちらも未定義で、クラス名だけが付いた無効な状態だった。印刷用紙面
+   (/<資格>/moshi2/print/)の実装に合わせて定義する。
+
+   print-break-before は紙面の区切り(問題→解答用紙→解説)に使う。
+   break-inside-avoid は Tailwind のユーティリティで足りるのでここには置かない。
+   ============================================================================= */
+
+.print-only {
+  display: none;
+}
+
+@media print {
+  .print-hide {
+    display: none !important;
+  }
+  .print-only {
+    display: block;
+  }
+  .print-break-before {
+    break-before: page;
+  }
+
+  /* 紙は白地・黒字に寄せる。画面のテーマ色をそのまま出すとインクを食い、
+     淡色の罫線が飛んで読めなくなる。 */
+  :root {
+    --c-bg: #fff;
+    --c-bg-alt: #fff;
+    --c-text: #000;
+    --c-ink: #000;
+    --c-text-sub: #333;
+    --c-border: #999;
+  }
+
+  body {
+    background: #fff;
+  }
+
+  /* サイト共通のヘッダー・フッター・ナビは紙に出さない */
+  header nav,
+  footer,
+  .breadcrumb {
+    display: none !important;
+  }
+
+  /* 問題や解説が段の途中で割れないようにする */
+  li,
+  section {
+    break-inside: avoid;
+  }
+
+  @page {
+    size: A4;
+    margin: 14mm 12mm;
+  }
+}

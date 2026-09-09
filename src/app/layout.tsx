@@ -262,6 +262,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 <ul className="space-y-2">
                   <li><a href="/about/" className="text-[color:var(--c-text-sub)] hover:text-[color:var(--c-ink)] no-underline">このサイトについて</a></li>
                   <li><a href="/privacy/" className="text-[color:var(--c-text-sub)] hover:text-[color:var(--c-ink)] no-underline">プライバシー</a></li>
+                  <li><a href="/tokushoho/" className="text-[color:var(--c-text-sub)] hover:text-[color:var(--c-ink)] no-underline">特定商取引法に基づく表記</a></li>
                   <li><a href="/contact/" className="text-[color:var(--c-text-sub)] hover:text-[color:var(--c-ink)] no-underline">お問い合わせ</a></li>
                 </ul>
               </div>

@@ -8,6 +8,7 @@ import { CHIZAI_EXAMS } from "@/lib/exam-dates";
 import ExamCountdown from "@/components/ExamCountdown";
 import Moshi2TopLink from "@/components/Moshi2TopLink";
 import ExamVoicesSection from "@/components/ExamVoicesSection";
+import ExamDataSections from "@/components/growth/ExamDataSections";
 
 export const metadata: Metadata = pageMetadata({
   path: "/chizai2/",
@@ -84,7 +85,7 @@ export default async function Chizai2Page() {
       <RecentCourseReminder exam="chizai2" placement="return_top" className="mb-8" />
 
       {/* カウントダウン: 2級と3級は同一機関・同一試験日のため3級の日程を共用。申込期間中は「申込締切まで」を優先表示 */}
-      <ExamCountdown exams={CHIZAI_EXAMS} accent="var(--c-chizai)" accentSoft="var(--c-chizai-soft)" lead="chizai2" calendar={{ examName: "知的財産管理技能検定2級", path: "/chizai2/" }} />
+      <ExamCountdown exams={CHIZAI_EXAMS} accent="var(--c-chizai)" accentSoft="var(--c-chizai-soft)" lead="chizai2" calendar={{ examName: "知的財産管理技能検定2級", path: "/chizai2/" }} examDate={{ exam: "chizai2", examName: "知的財産管理技能検定2級" }} />
 
       {/* 分野 - タグクラウド風 */}
       <section className="mb-12">
@@ -126,6 +127,9 @@ export default async function Chizai2Page() {
           <p className="text-xs pt-1">受験料・出題数・合格基準などの最新の詳細は、必ず公式サイトでご確認ください。</p>
         </div>
       </section>
+
+      {/* 今日の3問(端末の学習履歴から)と、間違えた人が多い問題(集計が溜まってから出る) */}
+      <ExamDataSections exam="chizai2" questions={allQuestions} />
 
       {/* 合格報告(掲載済みがあれば)と、受験直後の方への報告のお願い。
           どちらも条件を満たさなければ何も出ない */}

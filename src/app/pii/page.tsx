@@ -9,6 +9,7 @@ import { PII_EXAMS } from "@/lib/exam-dates";
 import ExamCountdown from "@/components/ExamCountdown";
 import Moshi2TopLink from "@/components/Moshi2TopLink";
 import ExamVoicesSection from "@/components/ExamVoicesSection";
+import ExamDataSections from "@/components/growth/ExamDataSections";
 
 export const metadata: Metadata = pageMetadata({
   path: "/pii/",
@@ -101,7 +102,7 @@ export default async function PiiPage() {
           course: "pii",
           pixel: "https://www11.a8.net/0.gif?a8mat=4B1TI0+9T22IA+4LOQ+BW8O2",
         }}
-        calendar={{ examName: "個人情報保護士", path: "/pii/" }}
+        calendar={{ examName: "個人情報保護士", path: "/pii/" }} examDate={{ exam: "pii", examName: "個人情報保護士" }}
       />
 
       {/* 分野 - 縦1列の大きめカード */}
@@ -149,6 +150,9 @@ export default async function PiiPage() {
           <p><span className="font-bold text-[color:var(--c-ink)]">実施機関</span>　一般財団法人全日本情報学習振興協会</p>
         </div>
       </section>
+
+      {/* 今日の3問(端末の学習履歴から)と、間違えた人が多い問題(集計が溜まってから出る) */}
+      <ExamDataSections exam="pii" questions={allQuestions} />
 
       {/* 合格報告(掲載済みがあれば)と、受験直後の方への報告のお願い。
           どちらも条件を満たさなければ何も出ない */}

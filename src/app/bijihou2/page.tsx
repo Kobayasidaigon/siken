@@ -7,6 +7,7 @@ import { pageMetadata } from "@/lib/page-metadata";
 import { BIJIHOU_EXAMS } from "@/lib/exam-dates";
 import ExamCountdown from "@/components/ExamCountdown";
 import ExamVoicesSection from "@/components/ExamVoicesSection";
+import ExamDataSections from "@/components/growth/ExamDataSections";
 
 export const metadata: Metadata = pageMetadata({
   path: "/bijihou2/",
@@ -74,7 +75,7 @@ export default async function Bijihou2Page() {
       <RecentCourseReminder exam="bijihou2" placement="return_top" className="mb-8" />
 
       {/* カウントダウン: 申込期間中は「申込締切まで」を優先表示(東商IBT/CBTは期間制) */}
-      <ExamCountdown exams={BIJIHOU_EXAMS} accent="var(--c-kashikin)" accentSoft="var(--c-kashikin-soft)" periodExam lead="bijihou2" calendar={{ examName: "ビジネス実務法務検定2級", path: "/bijihou2/" }} />
+      <ExamCountdown exams={BIJIHOU_EXAMS} accent="var(--c-kashikin)" accentSoft="var(--c-kashikin-soft)" periodExam lead="bijihou2" calendar={{ examName: "ビジネス実務法務検定2級", path: "/bijihou2/" }} examDate={{ exam: "bijihou2", examName: "ビジネス実務法務検定2級" }} />
 
       <section className="mb-12">
         <h2 className="text-lg font-bold text-[color:var(--c-ink)] mb-5 font-serif">分野から選ぶ</h2>
@@ -102,6 +103,9 @@ export default async function Bijihou2Page() {
           <p><span className="font-bold text-[color:var(--c-ink)]">実施機関</span>　東京商工会議所</p>
         </div>
       </section>
+
+      {/* 今日の3問(端末の学習履歴から)と、間違えた人が多い問題(集計が溜まってから出る) */}
+      <ExamDataSections exam="bijihou2" questions={allQuestions} />
 
       {/* 合格報告(掲載済みがあれば)と、受験直後の方への報告のお願い。
           どちらも条件を満たさなければ何も出ない */}

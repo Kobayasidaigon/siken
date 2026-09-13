@@ -70,6 +70,30 @@ import {
   KANGYO_EXAMS,
 } from "@/lib/exam-dates";
 import StudioLink from "@/components/StudioLink";
+import InlineQuestion from "@/components/growth/InlineQuestion";
+import { getQuestionsOf, stableHash } from "@/lib/question-registry";
+import { EXAM_LIST } from "@/lib/study-progress";
+
+/**
+ * 「読む前に1問」を出すコラム。2026-09-13 追加(方針: docs/direction-2026-09.md §6)。
+ * 情報を見に来た人(試験日・合格率・勉強時間・とは・難易度)ほど、1問触ると解き始める。
+ * 問題はその資格の全問から、コラムのスラッグで決まる1問(ビルドをまたいでも同じ)。
+ * 難易度A(易しい)を優先する。最初の1問で止まらせないため。
+ */
+const INLINE_QUESTION_SUFFIX = /-(goukakuritsu|nittei|benkyou-jikan|toha|nanido)$/;
+const INLINE_QUESTION_LEGACY = new Set(["goukakuritsu", "benkyou-jikan", "shiken-nittei", "kashikingyou-toha"]);
+async function inlineQuestionFor(slug: string, exam: ExamSlug | null) {
+  if (!exam) return null;
+  if (!INLINE_QUESTION_SUFFIX.test(slug) && !INLINE_QUESTION_LEGACY.has(slug)) return null;
+  const all = await getQuestionsOf(exam);
+  if (all.length === 0) return null;
+  const easy = all.filter((q) => q.difficulty === "A");
+  const pool = easy.length >= 5 ? easy : all;
+  const q = pool[stableHash(slug) % pool.length];
+  const info = EXAM_LIST.find((e) => e.slug === exam);
+  if (!info || !q.choices?.length || !q.correctAnswer) return null;
+  return { q, examName: info.name, href: `${info.questionPathPrefix}${q.slug}/` };
+}
 
 export async function generateStaticParams() {
   return getAllColumnSlugs().map((slug) => ({ slug }));
@@ -319,6 +343,8 @@ export default async function ColumnPage({ params }: { params: Promise<{ slug: s
   };
   const niteiCountdown = niteiCountdowns[slug];
 
+  const inlineQ = await inlineQuestionFor(slug, examFromColumnSlug(slug));
+
   // 申込締切10日前(= AnswerReveal が講座広告を上に出す窓)だけ、日程・直前コラム以外の
   // 同資格コラムにも本文冒頭に締切カウントダウンを出す。貸金は 9/10、ビジ法/ビジマネは 9/29、
   // 賃管士/管業は 9/30 が締切で、この窓に「意味ない？」「過去問」系の記事へ来た読者にも
@@ -423,6 +449,20 @@ export default async function ColumnPage({ params }: { params: Promise<{ slug: s
           applyPlacement="column_urgent_apply"
           lead={urgentCountdown}
           leadPlacement="column_urgent_lead"
+        />
+      )}
+
+      {/* 読む前に1問(試験日・合格率・勉強時間・とは・難易度のコラムだけ) */}
+      {inlineQ && (
+        <InlineQuestion
+          exam={examFromColumnSlug(slug)!}
+          examName={inlineQ.examName}
+          slug={inlineQ.q.slug}
+          questionText={inlineQ.q.questionText}
+          choices={inlineQ.q.choices}
+          correctAnswer={inlineQ.q.correctAnswer}
+          href={inlineQ.href}
+          field={inlineQ.q.field}
         />
       )}
 

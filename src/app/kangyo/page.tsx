@@ -7,6 +7,7 @@ import { pageMetadata } from "@/lib/page-metadata";
 import { KANGYO_EXAMS } from "@/lib/exam-dates";
 import ExamCountdown from "@/components/ExamCountdown";
 import ExamVoicesSection from "@/components/ExamVoicesSection";
+import ExamDataSections from "@/components/growth/ExamDataSections";
 
 export const metadata: Metadata = pageMetadata({
   path: "/kangyo/",
@@ -74,7 +75,7 @@ export default async function KangyoPage() {
       <RecentCourseReminder exam="kangyo" placement="return_top" className="mb-8" />
 
       {/* カウントダウン: 申込期間中(8/3〜9/30)は「申込締切まで」を優先表示。A8の成果は締切直前に集中する */}
-      <ExamCountdown exams={KANGYO_EXAMS} accent="var(--c-kashikin)" accentSoft="var(--c-kashikin-soft)" lead="kangyo" calendar={{ examName: "管理業務主任者", path: "/kangyo/" }} />
+      <ExamCountdown exams={KANGYO_EXAMS} accent="var(--c-kashikin)" accentSoft="var(--c-kashikin-soft)" lead="kangyo" calendar={{ examName: "管理業務主任者", path: "/kangyo/" }} examDate={{ exam: "kangyo", examName: "管理業務主任者" }} />
 
       <section className="mb-12">
         <h2 className="text-lg font-bold text-[color:var(--c-ink)] mb-5 font-serif">分野から選ぶ</h2>
@@ -103,6 +104,9 @@ export default async function KangyoPage() {
           <p><span className="font-bold text-[color:var(--c-ink)]">実施機関</span>　一般社団法人マンション管理業協会</p>
         </div>
       </section>
+
+      {/* 今日の3問(端末の学習履歴から)と、間違えた人が多い問題(集計が溜まってから出る) */}
+      <ExamDataSections exam="kangyo" questions={allQuestions} />
 
       {/* 合格報告(掲載済みがあれば)と、受験直後の方への報告のお願い。
           どちらも条件を満たさなければ何も出ない */}

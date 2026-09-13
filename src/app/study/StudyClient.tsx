@@ -7,6 +7,10 @@ import { EXAM_AFFILIATE } from "@/lib/affiliate-links";
 import RecentCourseReminder from "@/components/RecentCourseReminder";
 import ReviewDrillSection from "@/components/ReviewDrillSection";
 import ProgressBackup from "@/components/ProgressBackup";
+import DailyThreeCard from "@/components/growth/DailyThreeCard";
+import StudioConnectCard from "@/components/growth/StudioConnectCard";
+import AnswerLogSetting from "@/components/growth/AnswerLogSetting";
+import { primaryExam } from "@/lib/growth/exam-date";
 
 // 弱点連動広告を出す誤答数のしきい値（高intent面なので露出母数を確保するため緩めに）
 const STUDY_AD_WRONG_THRESHOLD = 2;
@@ -30,6 +34,8 @@ export default function StudyClient({
 }) {
   const [progress, setProgress] = useState<AllProgress | null>(null);
   const [expanded, setExpanded] = useState<Record<string, boolean>>({});
+  // 「今日の3問」を出す資格。試験日を設定した資格があればそれ、無ければ解いた数が最も多い資格
+  const [dailyExam, setDailyExam] = useState<ExamSlug | null>(null);
   const [fieldFilter, setFieldFilter] = useState<Record<ExamSlug, string | null>>({
     kashikin: null,
     pii: null,
@@ -51,8 +57,23 @@ export default function StudyClient({
   });
 
   useEffect(() => {
-    const refresh = () => setProgress(loadProgress());
+    const refresh = () => {
+      const p = loadProgress();
+      setProgress(p);
+      const set = primaryExam();
+      if (set) {
+        setDailyExam(set);
+      } else {
+        let best: { slug: ExamSlug; n: number } | null = null;
+        for (const e of EXAM_LIST) {
+          const n = p[e.slug].wrong.length + p[e.slug].correct.length;
+          if (n > 0 && (!best || n > best.n)) best = { slug: e.slug, n };
+        }
+        setDailyExam(best?.slug ?? null);
+      }
+    };
     refresh();
+    window.addEventListener("shikakumon-exam-date-update", refresh);
     const handleUpdate = () => refresh();
     const handleStorage = (e: StorageEvent) => {
       if (e.key === "shikakumon-study-v1") refresh();
@@ -62,6 +83,7 @@ export default function StudyClient({
     return () => {
       window.removeEventListener("shikakumon-progress-update", handleUpdate);
       window.removeEventListener("storage", handleStorage);
+      window.removeEventListener("shikakumon-exam-date-update", refresh);
     };
   }, []);
 
@@ -265,7 +287,8 @@ export default function StudyClient({
           学習履歴
         </h1>
         <p className="text-sm text-[color:var(--c-text-sub)] leading-relaxed max-w-lg">
-          ブックマークした問題と、解答時の正誤履歴を表示します。すべてブラウザ内に保存されており、サーバには送信されません。
+          ブックマークした問題と、解答時の正誤履歴を表示します。この履歴はブラウザ内に保存されており、サーバには送信されません
+          （解答の正誤だけは匿名の統計用に送っています。ページ下部の設定で止められます）。
         </p>
         <div className="mt-6 flex flex-wrap gap-x-6 gap-y-3 text-sm">
           <div>
@@ -317,6 +340,17 @@ export default function StudyClient({
           </aside>
         )}
       </section>
+
+      {/* 今日の3問(2026-09-13)。試験日を設定した資格、無ければいちばん解いている資格 */}
+      {dailyExam && (
+        <DailyThreeCard
+          exam={dailyExam}
+          examName={EXAM_LIST.find((e) => e.slug === dailyExam)?.name ?? ""}
+          allSlugs={Object.keys(questionMeta[dailyExam] ?? {})}
+          placement="study"
+          className="mb-6"
+        />
+      )}
 
       {/* 前回チェックした講座(講座リンクを踏んだことのある再訪者にだけ出る。再クリック導線) */}
       <RecentCourseReminder placement="return_study" className="mb-6" />
@@ -426,6 +460,10 @@ export default function StudyClient({
 
       <div className="mt-10">
         <ProgressBackup />
+        {/* Studio との接続(履歴同期)。Studio 側の受け口ができるまで非表示(lib/growth/flags.ts) */}
+        <StudioConnectCard className="mt-6" />
+        {/* 解答の匿名記録の設定(2026-09-13)。既定は送る。ここで止められる */}
+        <AnswerLogSetting className="mt-6" />
       </div>
 
       {(totalAttempted > 0 || totalBookmarks > 0) && (

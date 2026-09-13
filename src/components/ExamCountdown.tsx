@@ -4,6 +4,7 @@ import AffiliateLink from "@/components/AffiliateLink";
 import FreeLeadCTA from "@/components/FreeLeadCTA";
 import CountdownPing from "@/components/CountdownPing";
 import ExamCalendarLinks from "@/components/ExamCalendarLinks";
+import ExamDateChip from "@/components/growth/ExamDateChip";
 import type { ExamSlug } from "@/lib/study-progress";
 import { EXAM_AFFILIATE } from "@/lib/affiliate-links";
 
@@ -44,6 +45,12 @@ interface Props {
    * examName は予定のタイトルに、path は予定に載せる戻り先URLに使う。
    */
   calendar?: { examName: string; path: string };
+  /**
+   * 「この回を受ける」のワンタップ設定(components/growth/ExamDateChip.tsx)を出す資格。
+   * 2026-09-13 追加。資格トップだけに付ける(calendar と同じ理由)。
+   * 日程リストが尽きて他が非表示になっても、この欄だけは出す(自分で日付を入れられる)。
+   */
+  examDate?: { exam: ExamSlug; examName: string };
 }
 
 // 締切がこの日数以内に迫ったら強調表示に切り替える。
@@ -60,8 +67,12 @@ export default function ExamCountdown({
   applyPlacement = "top_apply",
   lead,
   leadPlacement = "top_lead",
+  examDate,
   calendar,
 }: Props) {
+  const chip = examDate ? (
+    <ExamDateChip exam={examDate.exam} examName={examDate.examName} exams={exams} periodExam={periodExam} />
+  ) : null;
   const deadline = nextApplyDeadline(exams);
   if (deadline && deadline.applyEnd) {
     const daysLeft = daysUntilYmd(deadline.applyEnd);
@@ -109,14 +120,17 @@ export default function ExamCountdown({
             placement="top_countdown_apply"
           />
         )}
+        {chip}
       </section>
     );
   }
 
   const upcoming = nextExam(exams);
-  if (!upcoming) return null;
-  const daysLeft = daysUntilYmd(upcoming.date);
-  if (daysLeft <= 0) return null;
+  const daysLeft = upcoming ? daysUntilYmd(upcoming.date) : 0;
+  if (!upcoming || daysLeft <= 0) {
+    // 日程が無い・尽きた。試験日の自己設定だけは出す(日程を持たない資格もここに来る)
+    return chip ? <section className="mb-10 card p-5">{chip}</section> : null;
+  }
   return (
     <section className="mb-10 card p-5">
       <CountdownPing mode="exam" ymd={upcoming.date} />
@@ -139,6 +153,7 @@ export default function ExamCountdown({
           placement="top_countdown_exam"
         />
       )}
+      {chip}
     </section>
   );
 }

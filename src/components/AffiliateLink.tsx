@@ -33,11 +33,17 @@ interface Props {
   href: string;
   course: string;       // 例 "pii", "kashikin", "agaroot-benri"
   placement: string;    // 例 "question_result", "course_ad", "field", "study", "column"
+  /**
+   * 結果画面の得点帯(high / mid / low)。2026-09-13 追加。結果画面の分岐パネル
+   * (components/growth/ResultDecisionPanel.tsx)だけが渡す。placement の語彙は
+   * 変えずに、帯ごとのクリックを別パラメータで読めるようにする。
+   */
+  band?: string;
   className?: string;
   children: React.ReactNode;
 }
 
-export default function AffiliateLink({ href, course, placement, className = "btn-ad", children }: Props) {
+export default function AffiliateLink({ href, course, placement, band, className = "btn-ad", children }: Props) {
   const ref = useRef<HTMLAnchorElement | null>(null);
   const fired = useRef(false);
 
@@ -70,7 +76,7 @@ export default function AffiliateLink({ href, course, placement, className = "bt
       className={className}
       onClick={() => {
         try {
-          sendGAEvent("event", "affiliate_click", { course, placement });
+          sendGAEvent("event", "affiliate_click", band ? { course, placement, band } : { course, placement });
         } catch {
           // GA未ロード等でも遷移は妨げない
         }

@@ -11,6 +11,9 @@ import { practiceRoutesFor } from "@/lib/practice-routes";
 import { drillPositionOf, endDrill, loadDrill, type DrillState } from "@/lib/review-drill";
 import FreeLeadCTA from "@/components/FreeLeadCTA";
 import { EXAM_AFFILIATE, RESULT_CTA_HEADLINE } from "@/lib/affiliate-links";
+import { logAnswer } from "@/lib/growth/answer-log";
+import { markDailyDone } from "@/lib/growth/daily";
+import AccuracyBadge from "@/components/growth/AccuracyBadge";
 
 // 答え合わせ直後CTAを出す資格。bijihou/piiで検証→SMART系の発生確認→2026-08-05に
 // ユーザー指示で全資格へ展開(発生実績: SMART CVR7.5%・試験申込型あり)。
@@ -129,6 +132,33 @@ export default function AnswerReveal({
     }
   }, [revealed, selected, correctAnswer, exam, questionSlug]);
 
+  // 回答ログ(匿名・統計用)。2026-09-13 追加。方針: docs/direction-2026-09.md §5-3。
+  // 学習履歴(上のエフェクト)とは別物で、どの面で解いたか(問題ページ / 復習ドリル /
+  // 今日の3問)を添えて送る。答えを見ただけ(選択なし)は送らない。
+  // ref で二重送信を止めるのは question_answered と同じ理由(StrictMode 対策)。
+  const logged = useRef(false);
+  useEffect(() => {
+    if (!revealed || selected === null || !exam || !questionSlug || logged.current) return;
+    logged.current = true;
+    const mode = drillPos ? (drill?.kind === "daily" ? "daily" : "drill") : "question";
+    logAnswer(exam, questionSlug, selected === correctAnswer, mode);
+  }, [revealed, selected, correctAnswer, exam, questionSlug, drillPos, drill]);
+
+  // 今日の3問の最後の問題を解いたら完了にする(daily_complete)。
+  // ドリル(drill_complete)は「学習履歴を見る」のクリックで送っているが、
+  // 今日の分は「解き終えた」事実で数えたいので、答え合わせの時点で送る。
+  const dailyDone = useRef(false);
+  useEffect(() => {
+    if (!revealed || !exam || !drillPos || drill?.kind !== "daily" || drillPos.nextHref || dailyDone.current) return;
+    dailyDone.current = true;
+    markDailyDone(exam);
+    try {
+      sendGAEvent("event", "daily_complete", { exam, size: drillPos.total });
+    } catch {
+      /* GA未ロードでも完了扱いにする */
+    }
+  }, [revealed, exam, drillPos, drill]);
+
   // 「問題を解いた」の計測。2026-09-07 追加。
   // このサイトの中核行動なのに、これまで一度も GA に送っていなかった。
   // 分母が無いので affiliate_click の CTR も「多いのか少ないのか」が言えず、
@@ -221,6 +251,10 @@ export default function AnswerReveal({
                   </p>
                 </>
               )}
+              {/* みんなの正答率(n>=30 の問題だけ。集計が無い間は何も出ない) */}
+              {exam && questionSlug && (
+                <AccuracyBadge exam={exam} slug={questionSlug} revealed={revealed} correct={selected === correctAnswer} />
+              )}
             </div>
           )}
 
@@ -271,7 +305,7 @@ export default function AnswerReveal({
           {drillPos && (
             <div className="mt-6">
               <p className="text-xs text-[color:var(--c-text-sub)] mb-2">
-                復習ドリル {drillPos.position} / {drillPos.total} 問
+                {drill?.kind === "daily" ? "今日の3問" : "復習ドリル"} {drillPos.position} / {drillPos.total} 問
               </p>
               {drillPos.nextHref ? (
                 <a
@@ -285,20 +319,23 @@ export default function AnswerReveal({
                   }}
                   className="block w-full text-center py-3 rounded-lg font-bold text-sm no-underline transition-colors bg-blue-700 text-white hover:bg-blue-600"
                 >
-                  ドリルの次の問題へ →
+                  {drill?.kind === "daily" ? "次の問題へ" : "ドリルの次の問題へ"} →
                 </a>
               ) : (
                 <div className="card p-4">
                   <p className="text-sm font-bold text-[color:var(--c-ink)] font-serif mb-1">
-                    ドリルはここまでです
+                    {drill?.kind === "daily" ? "今日の3問はここまでです" : "ドリルはここまでです"}
                   </p>
                   <p className="text-xs text-[color:var(--c-text-sub)] leading-relaxed mb-3">
-                    {drillPos.total}問を解き終えました。メダルの変化は学習履歴で確認できます。
+                    {drill?.kind === "daily"
+                      ? "明日また別の3問が出ます。メダルの変化は学習履歴で確認できます。"
+                      : `${drillPos.total}問を解き終えました。メダルの変化は学習履歴で確認できます。`}
                   </p>
                   <a
                     href="/study/"
                     onClick={() => {
                       endDrill();
+                      if (drill?.kind === "daily") return; // 今日の分は答え合わせ時に daily_complete 済み
                       try {
                         sendGAEvent("event", "drill_complete", {
                           exam: exam ?? "unknown",
@@ -322,7 +359,7 @@ export default function AnswerReveal({
                 }}
                 className="mt-2 text-xs text-[color:var(--c-text-sub)] hover:text-[color:var(--c-ink)] underline"
               >
-                ドリルを終える
+                {drill?.kind === "daily" ? "今日の3問をやめる" : "ドリルを終える"}
               </button>
             </div>
           )}

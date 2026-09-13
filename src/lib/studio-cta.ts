@@ -19,6 +19,7 @@
  *   従来どおり汎用文言 + トップページのまま。
  */
 import type { ExamSlug } from "./study-progress";
+import type { ScoreBand } from "./growth/score-band";
 
 const STUDIO_ORIGIN = "https://studio.shikakumon.com";
 
@@ -93,7 +94,7 @@ export function certFromColumnSlug(slug: string): ExamSlug | null {
  * 流入の72%)。配置・資格IDは utm_content に載せる (移行仕様は studio repo
  * docs/funnel-analytics.md)。資格の引き継ぎは utm の読み替えに頼らず
  * ?exam= で明示する (Studio 本番のトップは ?exam= を読んでお試し生成に
- * 資格名を入れる。模試リンク studioMoshiHref と同じ流儀)。
+ * 資格名を入れる。結果画面のリンク studioResultHref と同じ流儀)。
  *
  * @param exam     資格 (null なら汎用)
  * @param content  utm_content。既存の配置名をそのまま渡すこと (column_footer / quiz_<資格> 等)
@@ -140,38 +141,71 @@ export const EXAM_FULL_NAMES: Record<ExamSlug, string> = {
   kangyo: "管理業務主任者",
 };
 
+/* =====================================================================
+   2026-09-13 追加。方針: docs/direction-2026-09.md §5・§7。
+   結果画面の得点帯つき送客と、リマインド／履歴同期の接続リンク。
+   utm_content は §7 の規則 `{placement}_{cert}_{band}` に固定する。
+   Studio 側は sign_up / pro_subscribed に ref_* としてこの値を残す。
+   ===================================================================== */
+
+
 /**
- * 模試の結果から Studio へ送るリンクを組み立てる。
+ * 結果画面(本番形式テスト・模試)から Studio へ送るリンク。
  *
- * 模試の結果画面では既に分野別正答率を集計し「いちばんの弱点は◯◯」まで
- * 出しているのに、Studio へのリンクは汎用トップのままで、その情報が
- * 一切引き継がれていなかった。資格名と弱点分野を渡すことで、着地先では
- * 何も入力せずに弱点分野の問題を作れる状態になる
+ * 模試の結果画面では分野別正答率を集計し「いちばんの弱点は◯◯」まで出しているので、
+ * 資格名と弱点分野を渡し、着地先では何も入力せずに弱点分野の問題を作れる状態にする
  * (Studio 側: トップのお試し生成は ?exam= を、作成画面は ?exam=&theme= を読む)。
+ * 模試完了者は全 CTA 設置箇所で最も転換率が高い層(90日で完了87人 → Studio 19)。
  *
- * 模試完了者は全 CTA 設置箇所で最も転換率が高い層 (90日で完了87人 → Studio 19)
- * なので、ここの精度を上げる価値が最も大きい。
- *
- * @param exam      資格
- * @param weakField 最も正答率が低かった分野。無ければ省略
- * @param content   utm_content (既存値を維持: moshi_result / mock_result)。
- *                  utm_medium は GA4 チャネル判定のため referral 固定 (studioCtaFor と同じ理由)
+ * 着地は資格別 LP があればそこ、無ければトップ。utm_content は
+ * `{placement}_{cert}_{band}`(方針 §7)。旧形式(utm_content=mock_result / moshi_result)は
+ * 2026-09-13 で送るのをやめた(旧の studioMoshiHref はこの関数に置き換え)。
  */
-export function studioMoshiHref(
+export function studioResultHref(
   exam: ExamSlug,
-  weakField: string | null | undefined,
-  content: string
+  placement: "mock_result" | "moshi_result",
+  band: ScoreBand,
+  weakField?: string | null
 ): string {
   const lp = CERT_CTA[exam]?.lp;
   const path = lp ? `/lp/${lp}` : "/";
   const params = new URLSearchParams({
     utm_source: "shikakumon",
     utm_medium: "referral",
-    utm_content: content,
+    utm_content: `${placement}_${exam}_${band}`,
     exam: EXAM_FULL_NAMES[exam],
   });
-  // 分野名はそのまま検索語として使われるので、長すぎるものは切る
   const field = (weakField ?? "").trim();
   if (field) params.set("theme", field.slice(0, 40));
   return `${STUDIO_ORIGIN}${path}?${params.toString()}`;
+}
+
+export type StudioConnectPlacement = "reminder" | "sync" | "daily";
+
+/**
+ * リマインド登録(毎朝3問のメール／プッシュ)と履歴同期の接続リンク。
+ *
+ * Studio 側の受け口は docs/growth-kit.md「Studio 側の契約」のとおり:
+ *   exam        資格の正式名称(既存の ?exam= と同じ)
+ *   exam_date   利用者が本体で設定した試験日(YYYY-MM-DD)。無ければ付けない
+ *   anon        本体の匿名ID。Studio は登録・ログイン後にこれをアカウントに紐づけ、
+ *               本体から届いている回答ログをその人の履歴として扱う(=履歴同期)。
+ *               URL に残さず、読んだら history.replaceState で消すこと。
+ *
+ * 本体からアカウントや個人情報を渡すことはない。渡すのは端末の乱数IDと日付だけ。
+ */
+export function studioConnectHref(
+  exam: ExamSlug | null,
+  placement: StudioConnectPlacement,
+  opts: { examDate?: string | null; anon?: string | null } = {}
+): string {
+  const params = new URLSearchParams({
+    utm_source: "shikakumon",
+    utm_medium: "referral",
+    utm_content: exam ? `${placement}_${exam}` : placement,
+  });
+  if (exam) params.set("exam", EXAM_FULL_NAMES[exam]);
+  if (opts.examDate) params.set("exam_date", opts.examDate);
+  if (opts.anon) params.set("anon", opts.anon);
+  return `${STUDIO_ORIGIN}/connect?${params.toString()}`;
 }

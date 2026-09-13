@@ -5,6 +5,7 @@ import type { Metadata } from "next";
 import IsecCourseAd from "@/components/IsecCourseAd";
 import { pageMetadata } from "@/lib/page-metadata";
 import ExamVoicesSection from "@/components/ExamVoicesSection";
+import ExamDataSections from "@/components/growth/ExamDataSections";
 import { ISEC_FIELDS } from "@/lib/isec-fields";
 import ExamCountdown from "@/components/ExamCountdown";
 import { ISEC_EXAMS } from "@/lib/exam-dates";
@@ -84,7 +85,7 @@ export default async function IsecPage() {
           course: "isec",
           pixel: EXAM_AFFILIATE.isec.applyPixel!,
         }}
-        calendar={{ examName: "情報・サイバーセキュリティ管理士認定試験", path: "/isec/" }}
+        calendar={{ examName: "情報・サイバーセキュリティ管理士認定試験", path: "/isec/" }} examDate={{ exam: "isec", examName: "情報・サイバーセキュリティ管理士認定試験" }}
       />
 
       <section className="mb-12">
@@ -145,6 +146,9 @@ export default async function IsecPage() {
           </p>
         </div>
       </section>
+
+      {/* 今日の3問(端末の学習履歴から)と、間違えた人が多い問題(集計が溜まってから出る) */}
+      <ExamDataSections exam="isec" questions={allQuestions} />
 
       {/* 合格報告(掲載済みがあれば)と、受験直後の方への報告のお願い。
           どちらも条件を満たさなければ何も出ない */}

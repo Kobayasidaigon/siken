@@ -9,6 +9,10 @@
  *
  * 「サーバには送信されません」と書いて集めてきた履歴なので、
  * ここでも送信は一切しない。ファイルの読み書きはすべてブラウザ内で完結する。
+ *
+ * 2026-09-13: 解答の正誤だけは別途、匿名の統計用に送るようになった
+ * (lib/growth/answer-log.ts)。あれは統計で、この履歴(メダル・ブックマーク・
+ * 正誤の一覧)は引き続き端末の外に出ない。文言はその区別が付くようにしてある。
  */
 
 import { useRef, useState } from "react";
@@ -107,8 +111,8 @@ export default function ProgressBackup() {
     <section className="card p-5">
       <h2 className="text-sm font-bold text-[color:var(--c-ink)] font-serif mb-1">履歴の持ち出しと復元</h2>
       <p className="text-xs text-[color:var(--c-text-sub)] leading-relaxed mb-4">
-        学習履歴はこのブラウザの中にだけ保存されています。機種変更やブラウザのデータ削除で消えるので、
-        ファイルに書き出して持ち出せるようにしています。読み書きはすべてブラウザ内で行い、どこにも送信しません。
+        この学習履歴（正誤の一覧・メダル・ブックマーク）はこのブラウザの中にだけ保存されています。機種変更やブラウザのデータ削除で消えるので、
+        ファイルに書き出して持ち出せるようにしています。ファイルの読み書きはすべてブラウザ内で行い、どこにも送信しません。
       </p>
 
       <div className="flex flex-wrap gap-2 items-center">

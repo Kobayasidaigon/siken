@@ -5,6 +5,8 @@ import type { Metadata } from "next";
 import ItpassCourseAd from "@/components/ItpassCourseAd";
 import { pageMetadata } from "@/lib/page-metadata";
 import ExamVoicesSection from "@/components/ExamVoicesSection";
+import ExamDataSections from "@/components/growth/ExamDataSections";
+import ExamCountdown from "@/components/ExamCountdown";
 
 export const metadata: Metadata = pageMetadata({
   path: "/itpass/",
@@ -71,6 +73,9 @@ export default async function ItpassPage() {
       {/* 前回チェックした講座(再訪者の再クリック導線。記録が無ければ何も出ない) */}
       <RecentCourseReminder exam="itpass" placement="return_top" className="mb-8" />
 
+      {/* 全国共通の日程を持たない資格。試験日の自己設定(今日の3問・残り日数の起点)だけを出す */}
+      <ExamCountdown exams={[]} accent="var(--c-accent)" accentSoft="var(--c-bg-alt)" examDate={{ exam: "itpass", examName: "ITパスポート試験" }} />
+
       {/* カウントダウン: 申込期間中は「申込締切まで」を優先表示(東商IBT/CBTは期間制) */}
 
       <section className="mb-12">
@@ -99,6 +104,9 @@ export default async function ItpassPage() {
           <p><span className="font-bold text-[color:var(--c-ink)]">実施機関</span>　独立行政法人情報処理推進機構（IPA）</p>
         </div>
       </section>
+
+      {/* 今日の3問(端末の学習履歴から)と、間違えた人が多い問題(集計が溜まってから出る) */}
+      <ExamDataSections exam="itpass" questions={allQuestions} />
 
       {/* 合格報告(掲載済みがあれば)と、受験直後の方への報告のお願い。
           どちらも条件を満たさなければ何も出ない */}

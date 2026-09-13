@@ -5,6 +5,8 @@ import type { Metadata } from "next";
 import ShakaiCourseAd from "@/components/ShakaiCourseAd";
 import { pageMetadata } from "@/lib/page-metadata";
 import ExamVoicesSection from "@/components/ExamVoicesSection";
+import ExamDataSections from "@/components/growth/ExamDataSections";
+import ExamCountdown from "@/components/ExamCountdown";
 import { SHAKAI_FIELDS } from "@/lib/shakai-fields";
 
 export const metadata: Metadata = pageMetadata({
@@ -69,6 +71,9 @@ export default async function ShakaiPage() {
       {/* 前回チェックした講座(再訪者の再クリック導線。記録が無ければ何も出ない) */}
       <RecentCourseReminder exam="shakai" placement="return_top" className="mb-8" />
 
+      {/* 全国共通の日程を持たない資格。試験日の自己設定(今日の3問・残り日数の起点)だけを出す */}
+      <ExamCountdown exams={[]} accent="var(--c-accent)" accentSoft="var(--c-bg-alt)" examDate={{ exam: "shakai", examName: "社会福祉士（共通科目）" }} />
+
       {/* カウントダウンは置かない。試験日は例年2月上旬の日曜だが、回ごとの正確な日付と
           受験申込期間(例年9月上旬〜下旬)を本環境から試験センターのサイトで確認できていない。
           誤った締切を出すくらいなら出さない。日程が確認できたら exam-dates.ts に追加すること。 */}
@@ -129,6 +134,9 @@ export default async function ShakaiPage() {
           </p>
         </div>
       </section>
+
+      {/* 今日の3問(端末の学習履歴から)と、間違えた人が多い問題(集計が溜まってから出る) */}
+      <ExamDataSections exam="shakai" questions={allQuestions} />
 
       {/* 合格報告(掲載済みがあれば)と、受験直後の方への報告のお願い。
           どちらも条件を満たさなければ何も出ない */}

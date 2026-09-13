@@ -5,6 +5,8 @@ import type { Metadata } from "next";
 import KyoinCourseAd from "@/components/KyoinCourseAd";
 import { pageMetadata } from "@/lib/page-metadata";
 import ExamVoicesSection from "@/components/ExamVoicesSection";
+import ExamDataSections from "@/components/growth/ExamDataSections";
+import ExamCountdown from "@/components/ExamCountdown";
 import { KYOIN_FIELDS } from "@/lib/kyoin-fields";
 
 export const metadata: Metadata = pageMetadata({
@@ -69,6 +71,9 @@ export default async function KyoinPage() {
       {/* 前回チェックした講座(再訪者の再クリック導線。記録が無ければ何も出ない) */}
       <RecentCourseReminder exam="kyoin" placement="return_top" className="mb-8" />
 
+      {/* 全国共通の日程を持たない資格。試験日の自己設定(今日の3問・残り日数の起点)だけを出す */}
+      <ExamCountdown exams={[]} accent="var(--c-accent)" accentSoft="var(--c-bg-alt)" examDate={{ exam: "kyoin", examName: "教員採用試験（教職教養）" }} />
+
       {/* カウントダウンは置かない。試験日・出願期間が自治体ごとに違うので、
           全国共通の「次回試験」を1つ出すと大半の読者にとって誤った日付になる。 */}
 
@@ -128,6 +133,9 @@ export default async function KyoinPage() {
           </p>
         </div>
       </section>
+
+      {/* 今日の3問(端末の学習履歴から)と、間違えた人が多い問題(集計が溜まってから出る) */}
+      <ExamDataSections exam="kyoin" questions={allQuestions} />
 
       {/* 合格報告(掲載済みがあれば)と、受験直後の方への報告のお願い。
           どちらも条件を満たさなければ何も出ない */}

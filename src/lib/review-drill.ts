@@ -30,12 +30,22 @@ export const DRILL_SIZE = 20;
 /** ドリルを作れる最小問題数。これ未満なら誘わない */
 export const DRILL_MIN = 5;
 
+/**
+ * ドリルの種類。2026-09-13 追加。
+ *   drill  /study/ から始める復習ドリル(20問)
+ *   daily  「今日の3問」(lib/growth/daily.ts)。同じ仕組みで3問だけ続けて解く
+ * 問題ページ側(AnswerReveal)は kind で見出しと完了イベントを出し分ける。
+ */
+export type DrillKind = "drill" | "daily";
+
 export interface DrillState {
   exam: ExamSlug;
   /** 解く順に並んだ問題 slug */
   slugs: string[];
   /** 開始時刻(ms)。古いドリルを黙って捨てるのに使う */
   startedAt: number;
+  /** 省略時は "drill"(2026-09-13 より前に保存された状態との互換) */
+  kind?: DrillKind;
 }
 
 /** 開始から この日数 を過ぎたドリルは無かったことにする */
@@ -105,15 +115,20 @@ export function loadDrill(): DrillState | null {
       localStorage.removeItem(DRILL_KEY);
       return null;
     }
-    return { exam: s.exam as ExamSlug, slugs: s.slugs.filter((x) => typeof x === "string"), startedAt };
+    return {
+      exam: s.exam as ExamSlug,
+      slugs: s.slugs.filter((x) => typeof x === "string"),
+      startedAt,
+      kind: s.kind === "daily" ? "daily" : "drill",
+    };
   } catch {
     return null;
   }
 }
 
-export function startDrill(exam: ExamSlug, slugs: string[]): DrillState | null {
+export function startDrill(exam: ExamSlug, slugs: string[], kind: DrillKind = "drill"): DrillState | null {
   if (typeof window === "undefined" || slugs.length === 0) return null;
-  const state: DrillState = { exam, slugs, startedAt: Date.now() };
+  const state: DrillState = { exam, slugs, startedAt: Date.now(), kind };
   try {
     localStorage.setItem(DRILL_KEY, JSON.stringify(state));
   } catch {

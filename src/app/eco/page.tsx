@@ -8,6 +8,7 @@ import { ECO_EXAMS, BIJIHOU_EXAMS, seasonLabel } from "@/lib/exam-dates";
 import ExamCountdown from "@/components/ExamCountdown";
 import Moshi2TopLink from "@/components/Moshi2TopLink";
 import ExamVoicesSection from "@/components/ExamVoicesSection";
+import ExamDataSections from "@/components/growth/ExamDataSections";
 
 export const metadata: Metadata = pageMetadata({
   path: "/eco/",
@@ -82,7 +83,7 @@ export default async function EcoPage() {
       <RecentCourseReminder exam="eco" placement="return_top" className="mb-8" />
 
       {/* カウントダウン: 申込期間中は「申込締切まで」を優先表示(東商IBT/CBTは期間制) */}
-      <ExamCountdown exams={ECO_EXAMS} accent="var(--c-eco)" accentSoft="var(--c-eco-soft)" periodExam calendar={{ examName: "eco検定(環境社会検定試験)", path: "/eco/" }} />
+      <ExamCountdown exams={ECO_EXAMS} accent="var(--c-eco)" accentSoft="var(--c-eco-soft)" periodExam calendar={{ examName: "eco検定(環境社会検定試験)", path: "/eco/" }} examDate={{ exam: "eco", examName: "eco検定(環境社会検定試験)" }} />
 
       {/* 分野 - タグクラウド風 */}
       <section className="mb-12">
@@ -164,6 +165,9 @@ export default async function EcoPage() {
           <p className="text-xs pt-1">出題数は公式に公表されていません。当サイトの演習問題数は本試験の出題数を示すものではありません。受験料・申込期間などの最新の詳細は、必ず公式サイトでご確認ください。</p>
         </div>
       </section>
+
+      {/* 今日の3問(端末の学習履歴から)と、間違えた人が多い問題(集計が溜まってから出る) */}
+      <ExamDataSections exam="eco" questions={allQuestions} />
 
       {/* 合格報告(掲載済みがあれば)と、受験直後の方への報告のお願い。
           どちらも条件を満たさなければ何も出ない */}

@@ -9,6 +9,7 @@ import { JITSUMU_EXAMS } from "@/lib/exam-dates";
 import ExamCountdown from "@/components/ExamCountdown";
 import Moshi2TopLink from "@/components/Moshi2TopLink";
 import ExamVoicesSection from "@/components/ExamVoicesSection";
+import ExamDataSections from "@/components/growth/ExamDataSections";
 
 export const metadata: Metadata = pageMetadata({
   path: "/jitsumu/",
@@ -76,7 +77,7 @@ export default async function JitsumuPage() {
           course: "jitsumu",
           pixel: "https://www11.a8.net/0.gif?a8mat=4B1TI0+9T22IA+4LOQ+BW8O2",
         }}
-        calendar={{ examName: "個人情報保護実務検定", path: "/jitsumu/" }}
+        calendar={{ examName: "個人情報保護実務検定", path: "/jitsumu/" }} examDate={{ exam: "jitsumu", examName: "個人情報保護実務検定" }}
       />
 
       <section className="mb-12">
@@ -108,6 +109,9 @@ export default async function JitsumuPage() {
           ※当サイトの練習問題は、個人情報保護法の基礎を中心に2級・1級の両方に通じる内容で構成しています。最新の試験範囲・日程は公式サイトで必ずご確認ください。
         </p>
       </section>
+
+      {/* 今日の3問(端末の学習履歴から)と、間違えた人が多い問題(集計が溜まってから出る) */}
+      <ExamDataSections exam="jitsumu" questions={allQuestions} />
 
       {/* 合格報告(掲載済みがあれば)と、受験直後の方への報告のお願い。
           どちらも条件を満たさなければ何も出ない */}

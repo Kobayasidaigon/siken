@@ -19,17 +19,13 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import { sendGAEvent } from "@next/third-parties/google";
-import AffiliateLink from "@/components/AffiliateLink";
-import FreeLeadCTA from "@/components/FreeLeadCTA";
-import { EXAM_AFFILIATE } from "@/lib/affiliate-links";
-import { decideCtaPriority } from "@/lib/cta-priority";
-import { studioMoshiHref } from "@/lib/studio-cta";
 import { EXAM_LIST, recordResult, type ExamSlug } from "@/lib/study-progress";
+import { logAnswers } from "@/lib/growth/answer-log";
+import ResultDecisionPanel from "@/components/growth/ResultDecisionPanel";
 import MoshiFormatFeedback from "@/components/MoshiFormatFeedback";
 import MoshiRound2Interest from "@/components/MoshiRound2Interest";
 import Moshi2Offer from "@/components/Moshi2Offer";
 import { moshi2ProductOf } from "@/lib/moshi2-products";
-import StudioLink from "@/components/StudioLink";
 
 export interface MoshiQuestion {
   slug: string;
@@ -196,6 +192,15 @@ export default function MoshiExam({
         // 模試専用問題(noLink)は問題ページが無いため学習履歴には積まない
         if (sel != null && !q.noLink) recordResult(exam, q.slug, sel === q.correctAnswer);
       });
+      // 回答ログ(匿名・統計用)。学習履歴と同じ範囲(解答済み・問題ページがあるもの)を、
+      // 解いた面(moshi)を添えて送る。送信は内部で try/catch 済みで答案を巻き込まない
+      logAnswers(
+        exam,
+        questions.flatMap((q, i) =>
+          answers[i] != null && !q.noLink ? [{ slug: q.slug, correct: answers[i] === q.correctAnswer }] : []
+        ),
+        "moshi"
+      );
       const score = questions.reduce(
         (s, q, i) => s + (answers[i] === q.correctAnswer ? 1 : 0),
         0,
@@ -561,69 +566,21 @@ export default function MoshiExam({
         </div>
       </section>
 
-      {/* 弱点判定＋送客(最高intent面) */}
-      {weakest && (
-        <aside className="card p-5 mb-6" style={{ borderLeft: "4px solid var(--c-accent)" }}>
-          <p className="text-sm text-[color:var(--c-text)] leading-relaxed mb-3">
-            いちばんの弱点は <strong style={{ color: "var(--c-accent-ink)" }}>{weakest[0]}</strong>
-            ({weakest[1].correct}/{weakest[1].total}正解)。本試験まで、ここを重点的に固めると得点が伸びます。
-          </p>
-          <div className="text-xs text-[color:var(--c-text-sub)] flex flex-wrap items-baseline gap-x-2 gap-y-1">
-            <span className="tracking-wider border border-[color:var(--c-border)] px-1.5 py-0.5 rounded text-[10px]">広告</span>
-            <span>苦手分野を体系的に補うなら</span>
-            <FreeLeadCTA exam={exam} placement="moshi_result" />
-            <AffiliateLink
-              href={EXAM_AFFILIATE[exam].href}
-              course={EXAM_AFFILIATE[exam].course}
-              placement="moshi_result"
-              className="text-blue-700 hover:underline font-medium"
-            >
-              {EXAM_AFFILIATE[exam].label} →
-            </AffiliateLink>
-          </div>
-          {/* 実施団体が広告主の資格(SMART系)は、申込受付中のときだけ協会申込の導線を添える。
-              模試を終えた人が次に取る行動=受験申込がそのまま成果地点になる(2026-09-05) */}
-          {EXAM_AFFILIATE[exam].applyHref &&
-            ["apply_open", "apply_urgent"].includes(decideCtaPriority(exam).phase) && (
-              <div className="mt-3 pt-3 border-t border-[color:var(--c-border)] text-xs text-[color:var(--c-text-sub)] flex flex-wrap items-baseline gap-x-2 gap-y-1">
-                <span className="tracking-wider border border-[color:var(--c-border)] px-1.5 py-0.5 rounded text-[10px]">広告</span>
-                <span>受験する回を決めたら</span>
-                <AffiliateLink
-                  href={EXAM_AFFILIATE[exam].applyHref!}
-                  course={EXAM_AFFILIATE[exam].course}
-                  placement="moshi_result_apply"
-                  className="text-blue-700 hover:underline font-medium"
-                >
-                  {EXAM_AFFILIATE[exam].applyLabel ?? "協会公式サイトで申し込む"} →
-                </AffiliateLink>
-                {EXAM_AFFILIATE[exam].applyPixel && (
-                  <img width={1} height={1} src={EXAM_AFFILIATE[exam].applyPixel} alt="" style={{ position: "absolute", border: 0 }} />
-                )}
-              </div>
-            )}
-        </aside>
-      )}
-
-      {/* Studio 送客。弱点分野が出ていれば、その分野を引き継いで送る
-          (着地先で何も入力せずに弱点の問題を作れる状態にする) */}
-      <aside className="mb-6 p-4 rounded-lg border border-indigo-200 bg-indigo-50">
-        <p className="text-xs font-bold mb-1 text-indigo-900">
-          {weakest ? `${weakest[0]}を、いま10問だけ解く` : "間違えた問題だけ、自動で復習"}
-        </p>
-        <p className="text-xs leading-relaxed mb-2 text-indigo-900/80">
-          {weakest
-            ? `${weakest[0]}が ${weakest[1].correct}/${weakest[1].total} でした。姉妹サービス「シカクモン Studio」なら、この分野の問題をAIがその場で作ります。間違えた問題は忘却曲線で自動的に再出題されます。`
-            : "今回の取りこぼしを忘れる前に。資格名や手元の教材から作った問題を忘却曲線で自動復習できる姉妹サービス「シカクモン Studio」。"}
-        </p>
-        <StudioLink
-          href={studioMoshiHref(exam, weakest?.[0], "moshi_result")}
-          placement="moshi_result"
-          exam={exam}
-          className="text-xs font-bold inline-flex items-center gap-1 no-underline text-indigo-600 hover:underline"
-        >
-          {weakest ? `${weakest[0]}の問題を作る →` : "シカクモン Studio を無料で試す →"}
-        </StudioLink>
-      </aside>
+      {/* 決める瞬間の分岐点(2026-09-13)。得点の事実 → 弱点 → 講座／Studio／解き直し。
+          得点帯で並びを変え、文言にはこの人の数字を使う(components/growth/ResultDecisionPanel.tsx)。
+          模試専用問題(noLink)は問題ページが無いので解き直しの対象から外す */}
+      <ResultDecisionPanel
+        exam={exam}
+        placement="moshi_result"
+        correct={score}
+        total={questions.length}
+        pct={pct}
+        passPct={passPct}
+        passed={passed}
+        passLabel={passLabel}
+        weakest={weakest ? { field: weakest[0], correct: weakest[1].correct, total: weakest[1].total } : null}
+        wrongSlugs={questions.filter((q, i) => !q.noLink && answers[i] !== q.correctAnswer).map((q) => q.slug)}
+      />
 
       {/* 全問詳解 */}
       <section className="mb-6">

@@ -7,6 +7,7 @@ import { pageMetadata } from "@/lib/page-metadata";
 import { CHINTAI_EXAMS } from "@/lib/exam-dates";
 import ExamCountdown from "@/components/ExamCountdown";
 import ExamVoicesSection from "@/components/ExamVoicesSection";
+import ExamDataSections from "@/components/growth/ExamDataSections";
 
 export const metadata: Metadata = pageMetadata({
   path: "/chintai/",
@@ -74,7 +75,7 @@ export default async function ChintaiPage() {
       <RecentCourseReminder exam="chintai" placement="return_top" className="mb-8" />
 
       {/* カウントダウン: 申込期間中(8/3〜9/30)は「申込締切まで」を優先表示。A8の成果は締切直前に集中する */}
-      <ExamCountdown exams={CHINTAI_EXAMS} accent="var(--c-kashikin)" accentSoft="var(--c-kashikin-soft)" lead="chintai" calendar={{ examName: "賃貸不動産経営管理士", path: "/chintai/" }} />
+      <ExamCountdown exams={CHINTAI_EXAMS} accent="var(--c-kashikin)" accentSoft="var(--c-kashikin-soft)" lead="chintai" calendar={{ examName: "賃貸不動産経営管理士", path: "/chintai/" }} examDate={{ exam: "chintai", examName: "賃貸不動産経営管理士" }} />
 
       <section className="mb-12">
         <h2 className="text-lg font-bold text-[color:var(--c-ink)] mb-5 font-serif">分野から選ぶ</h2>
@@ -103,6 +104,9 @@ export default async function ChintaiPage() {
           <p><span className="font-bold text-[color:var(--c-ink)]">実施機関</span>　一般社団法人賃貸不動産経営管理士協議会</p>
         </div>
       </section>
+
+      {/* 今日の3問(端末の学習履歴から)と、間違えた人が多い問題(集計が溜まってから出る) */}
+      <ExamDataSections exam="chintai" questions={allQuestions} />
 
       {/* 合格報告(掲載済みがあれば)と、受験直後の方への報告のお願い。
           どちらも条件を満たさなければ何も出ない */}

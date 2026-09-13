@@ -25,6 +25,8 @@ export default function StudioLink({
   href,
   placement,
   exam,
+  band,
+  onClick,
   className,
   style,
   children,
@@ -45,6 +47,10 @@ export default function StudioLink({
   placement: string;
   /** 資格が確定している面だけ渡す(トップ・フッターなど汎用面は省略) */
   exam?: ExamSlug;
+  /** 結果画面の得点帯。AffiliateLink と同じく、分岐パネルだけが渡す(2026-09-13) */
+  band?: string;
+  /** 追加の計測など。studio_click の送信後に呼ぶ。遷移は妨げない */
+  onClick?: () => void;
   className?: string;
   style?: CSSProperties;
   children: ReactNode;
@@ -58,9 +64,18 @@ export default function StudioLink({
       style={style}
       onClick={() => {
         try {
-          sendGAEvent("event", "studio_click", { placement, exam: exam ?? "none" });
+          sendGAEvent("event", "studio_click", {
+            placement,
+            exam: exam ?? "none",
+            ...(band ? { band } : {}),
+          });
         } catch {
           /* GA未ロードでも遷移は妨げない */
+        }
+        try {
+          onClick?.();
+        } catch {
+          /* 同上 */
         }
       }}
     >

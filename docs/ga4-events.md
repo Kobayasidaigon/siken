@@ -25,6 +25,11 @@
 キーイベント（旧コンバージョン）にすると良いもの：`affiliate_click` / `studio_click` / `purchase` /
 `pass_report_submit`。
 
+2026-09-13 追加（方針 `docs/direction-2026-09.md` §7 の共通語彙）: `band`（イベント。結果画面の得点帯
+high / mid / low）と `source`（`exam_date_set` の schedule / custom）もカスタムディメンションに登録する。
+グループ共通のイベント名は `result_view` `affiliate_click` `studio_click` `exam_date_set` `push_subscribed`
+`daily_complete` `history_sync` `share_click`。`push_subscribed` は Studio 側で送る（本体には push が無い）。
+
 ## 収益
 
 GA4 の「収益」は **`purchase` イベントの `value` と `currency` からしか積まれない**。
@@ -48,11 +53,19 @@ GA4 の「収益」は **`purchase` イベントの `value` と `currency` か�
 | `mock_start` | 本番形式テストの開始（全14資格が共有） | `exam`, `size` |
 | `mock_complete` | 同 採点 | `exam`, `size`, `correct`, `score_bucket`, `passed` |
 | `moshi_start` / `moshi_complete` | 模擬試験。`round` で第1回（無料）と第2回（有料）を区別する | `exam`, `round`, `mode`, `score`, `size`, `score_bucket`, `passed`, `timeout`, `minutes` |
-| `drill_start` | 復習ドリルの開始 | `exam`, `size`, `bronze`, `silver` |
+| `drill_start` | 復習ドリルの開始。2026-09-13 から結果画面の「間違えた N 問をいま解き直す」も送る（`from` 付き） | `exam`, `size`, `bronze`, `silver`, `from`(mock_result/moshi_result。結果画面からのみ) |
 | `drill_next` | ドリルの次の問題へ | `exam` |
 | `drill_complete` | ドリルを解き終えた | `exam`, `size` |
 | `progress_export` / `progress_import` | 学習履歴の書き出し・読み込み | `mode`(merge/replace) |
 | `share_click` | 模試結果の共有 | `exam`, `channel`, `place` |
+| `result_view` | 模試・本番形式テストの結果画面（分岐パネル）の表示。2026-09-13 | `exam`, `placement`(mock_result/moshi_result), `band`(high/mid/low), `score_bucket`, `passed` |
+| `exam_date_set` | 資格トップで「この回を受ける」（自分の試験日）を設定。2026-09-13 | `exam`, `source`(schedule/custom), `days_left`, `placement` |
+| `daily_start` / `daily_complete` | 「今日の3問」の開始・3問目の答え合わせ。2026-09-13 | `exam`, `size`, `placement`(start のみ: top/study/today) |
+| `history_sync` | /study/ から Studio へ履歴を引き継ぐリンクのクリック。2026-09-13。Studio 側の接続機能が有効なときだけ出る | `exam`, `target`(studio) |
+| `answer_log_setting` | /study/ の「解答の正誤を匿名で送る」の切り替え。2026-09-13 | `enabled`(yes/no) |
+
+`question_answered` は 2026-09-13 から、コラム内の「読む前に1問」でも送る（`placement: "column"`。
+問題ページからの送信には placement が無い）。
 
 `place` と `placement` が別名で併存している。`place` は模試の共有ボタンだけが使う古い名前で、
 収集済みデータとの連続性のために残してある。新しいイベントでは `placement` を使うこと。
@@ -63,10 +76,14 @@ GA4 の「収益」は **`purchase` イベントの `value` と `currency` か�
 |---|---|---|
 | `cta_impression` | A8 の広告リンクが画面に入ったとき | `course`, `placement` |
 | `affiliate_click` | A8 の広告リンクのクリック | `course`, `placement` |
-| `studio_click` | シカクモン Studio への送客（全9箇所） | `placement`, `exam` |
+| `studio_click` | シカクモン Studio への送客（全9箇所 + 結果画面の分岐パネル・試験日設定後のリマインド案内 `exam_date_reminder`・/study/ の同期 `study_sync`） | `placement`, `exam`, `band`(分岐パネルのみ) |
 | `countdown_view` | 試験日・申込締切のカウントダウンの表示 | `mode`(apply/exam), `days_left`, `path` |
 | `calendar_add` | 試験日・締切をカレンダーに追加 | `kind`(apply/exam), `target`(google/ics), `placement` |
 | `column_scroll_75` | コラムを 75% まで読んだ | `article` |
+
+`affiliate_click` / `studio_click` は 2026-09-13 から、結果画面の分岐パネルからのクリックにだけ
+`band`（high / mid / low）が付く。placement の語彙は変えていない。Studio への `utm_content` は
+同じ面で `{placement}_{cert}_{band}`（例 `mock_result_fukushi2_low`）。
 
 `studio_click` の `placement` は **`affiliate_click` と同じ語彙**（`question_result` /
 `moshi_result` / `mock_result` / `column_footer` など）にしてある。

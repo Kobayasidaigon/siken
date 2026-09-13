@@ -9,6 +9,7 @@ import { MYNUMBER_EXAMS } from "@/lib/exam-dates";
 import ExamCountdown from "@/components/ExamCountdown";
 import Moshi2TopLink from "@/components/Moshi2TopLink";
 import ExamVoicesSection from "@/components/ExamVoicesSection";
+import ExamDataSections from "@/components/growth/ExamDataSections";
 
 export const metadata: Metadata = pageMetadata({
   path: "/mynumber/",
@@ -85,7 +86,7 @@ export default async function MynumberPage() {
           course: "mynumber",
           pixel: "https://www11.a8.net/0.gif?a8mat=4B1TI0+9T22IA+4LOQ+BW8O2",
         }}
-        calendar={{ examName: "マイナンバー実務検定3級", path: "/mynumber/" }}
+        calendar={{ examName: "マイナンバー実務検定3級", path: "/mynumber/" }} examDate={{ exam: "mynumber", examName: "マイナンバー実務検定3級" }}
       />
 
       <section className="mb-12">
@@ -113,6 +114,9 @@ export default async function MynumberPage() {
           <p><span className="font-bold text-[color:var(--c-ink)]">実施機関</span>　全日本情報学習振興協会</p>
         </div>
       </section>
+
+      {/* 今日の3問(端末の学習履歴から)と、間違えた人が多い問題(集計が溜まってから出る) */}
+      <ExamDataSections exam="mynumber" questions={allQuestions} />
 
       {/* 合格報告(掲載済みがあれば)と、受験直後の方への報告のお願い。
           どちらも条件を満たさなければ何も出ない */}

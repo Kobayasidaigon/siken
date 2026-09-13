@@ -8,6 +8,7 @@ import { FUKUSHI2_EXAMS } from "@/lib/exam-dates";
 import ExamCountdown from "@/components/ExamCountdown";
 import Moshi2TopLink from "@/components/Moshi2TopLink";
 import ExamVoicesSection from "@/components/ExamVoicesSection";
+import ExamDataSections from "@/components/growth/ExamDataSections";
 
 export const metadata: Metadata = pageMetadata({
   path: "/fukushi2/",
@@ -81,7 +82,7 @@ export default async function Fukushi2Page() {
       <RecentCourseReminder exam="fukushi2" placement="return_top" className="mb-8" />
 
       {/* カウントダウン: 申込期間中は「申込締切まで」を優先表示(東商IBT/CBTは期間制) */}
-      <ExamCountdown exams={FUKUSHI2_EXAMS} accent="var(--c-fukushi)" accentSoft="var(--c-fukushi-soft)" periodExam calendar={{ examName: "福祉住環境コーディネーター2級", path: "/fukushi2/" }} />
+      <ExamCountdown exams={FUKUSHI2_EXAMS} accent="var(--c-fukushi)" accentSoft="var(--c-fukushi-soft)" periodExam calendar={{ examName: "福祉住環境コーディネーター2級", path: "/fukushi2/" }} examDate={{ exam: "fukushi2", examName: "福祉住環境コーディネーター2級" }} />
 
       {/* 分野 - タグクラウド風 */}
       <section className="mb-12">
@@ -124,6 +125,9 @@ export default async function Fukushi2Page() {
           <p className="text-xs pt-1">受験料・申込期間などの最新の詳細は、必ず公式サイトでご確認ください。</p>
         </div>
       </section>
+
+      {/* 今日の3問(端末の学習履歴から)と、間違えた人が多い問題(集計が溜まってから出る) */}
+      <ExamDataSections exam="fukushi2" questions={allQuestions} />
 
       {/* 合格報告(掲載済みがあれば)と、受験直後の方への報告のお願い。
           どちらも条件を満たさなければ何も出ない */}

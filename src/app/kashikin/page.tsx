@@ -7,6 +7,7 @@ import { pageMetadata } from "@/lib/page-metadata";
 import { KASHIKIN_EXAMS } from "@/lib/exam-dates";
 import ExamCountdown from "@/components/ExamCountdown";
 import ExamVoicesSection from "@/components/ExamVoicesSection";
+import ExamDataSections from "@/components/growth/ExamDataSections";
 
 export const metadata: Metadata = pageMetadata({
   path: "/kashikin/",
@@ -66,7 +67,7 @@ export default async function KashikinPage() {
       <RecentCourseReminder exam="kashikin" placement="return_top" className="mb-8" />
 
       {/* カウントダウン: 申込期間中は「申込締切まで」を優先表示 */}
-      <ExamCountdown exams={KASHIKIN_EXAMS} accent="var(--c-kashikin)" accentSoft="var(--c-kashikin-soft)" examWord="次回本試験" lead="kashikin" calendar={{ examName: "貸金業務取扱主任者", path: "/kashikin/" }} />
+      <ExamCountdown exams={KASHIKIN_EXAMS} accent="var(--c-kashikin)" accentSoft="var(--c-kashikin-soft)" examWord="次回本試験" lead="kashikin" calendar={{ examName: "貸金業務取扱主任者", path: "/kashikin/" }} examDate={{ exam: "kashikin", examName: "貸金業務取扱主任者" }} />
 
       {/* 分野別 */}
       <section className="mb-12">
@@ -100,6 +101,9 @@ export default async function KashikinPage() {
           <p><span className="font-bold text-[color:var(--c-ink)]">実施機関</span>　日本貸金業協会</p>
         </div>
       </section>
+
+      {/* 今日の3問(端末の学習履歴から)と、間違えた人が多い問題(集計が溜まってから出る) */}
+      <ExamDataSections exam="kashikin" questions={questions} />
 
       {/* 合格報告(掲載済みがあれば)と、受験直後の方への報告のお願い。
           どちらも条件を満たさなければ何も出ない */}

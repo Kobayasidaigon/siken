@@ -14,6 +14,7 @@ import { sendGAEvent } from "@next/third-parties/google";
 import { recordResult, type ExamSlug } from "@/lib/study-progress";
 import { logAnswers } from "@/lib/growth/answer-log";
 import ResultDecisionPanel from "@/components/growth/ResultDecisionPanel";
+import { scoreBand } from "@/lib/growth/score-band";
 
 export interface MockQuestion {
   slug: string;
@@ -229,10 +230,12 @@ export default function MockExam({
   const fieldsSorted = Object.entries(fieldStats).sort(
     (a, b) => a[1].correct / a[1].total - b[1].correct / b[1].total,
   );
-  const weakest = fieldsSorted[0];
+  // 全問正解の分野は弱点ではない(満点のときに先頭の分野を「弱点」と出さない)
+  const weakest = fieldsSorted.find(([, s]) => s.correct < s.total);
   const allPerfect = correctCount === pool.length;
   // 合格基準(資格別 passPct。貸金は 30/50＝60%)を目安にした簡易判定
   const passLikely = pct >= passPct;
+  const band = scoreBand(pct, passPct);
 
   return (
     <div>
@@ -246,10 +249,12 @@ export default function MockExam({
         </p>
         <p className="text-xs text-[color:var(--c-text-sub)] mt-2">
           {allPerfect
-            ? "全問正解！この調子です。"
+            ? "全問正解です。"
             : passLikely
               ? `合格ラインの目安（約${passPct}%）は超えています。弱点を詰めましょう。`
-              : `合格ラインの目安（約${passPct}%）まであと一歩。苦手分野から固めましょう。`}
+              : band === "mid"
+                ? `合格ラインの目安（約${passPct}%）まであと一歩。苦手分野から固めましょう。`
+                : `合格ラインの目安（約${passPct}%）までは距離があります。分野ごとに積み上げましょう。`}
         </p>
       </section>
 
@@ -286,6 +291,7 @@ export default function MockExam({
         total={pool.length}
         pct={pct}
         passPct={passPct}
+        passCount={Math.ceil((passPct / 100) * pool.length)}
         passed={passLikely}
         weakest={weakest ? { field: weakest[0], correct: weakest[1].correct, total: weakest[1].total } : null}
         wrongSlugs={pool.filter((q, i) => answers[i] !== q.correctAnswer).map((q) => q.slug)}

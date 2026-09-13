@@ -22,6 +22,7 @@ import { sendGAEvent } from "@next/third-parties/google";
 import { EXAM_LIST, recordResult, type ExamSlug } from "@/lib/study-progress";
 import { logAnswers } from "@/lib/growth/answer-log";
 import ResultDecisionPanel from "@/components/growth/ResultDecisionPanel";
+import { scoreBand } from "@/lib/growth/score-band";
 import MoshiFormatFeedback from "@/components/MoshiFormatFeedback";
 import MoshiRound2Interest from "@/components/MoshiRound2Interest";
 import Moshi2Offer from "@/components/Moshi2Offer";
@@ -442,6 +443,8 @@ export default function MoshiExam({
   const pct = Math.round((score / questions.length) * 100);
   const passed = isPassed(answers);
   const passPct = Math.round((passCount / questions.length) * 100);
+  // 不合格の見出しは得点帯で分ける。20% の人にも「あと一歩」と出すのは事実に反する
+  const band = scoreBand(pct, passPct, passed);
 
   const sectionStats = (sections ?? []).map((sec) => {
     let c = 0;
@@ -487,7 +490,7 @@ export default function MoshiExam({
             color: passed ? "#15803d" : "#b45309",
           }}
         >
-          {passed ? "判定: 合格圏" : "判定: あと一歩"}
+          {passed ? "判定: 合格圏" : band === "mid" ? "判定: あと一歩" : "判定: 基準未達"}
         </p>
         <p className="text-xs text-[color:var(--c-text-sub)] mt-3">
           合格基準は{passLabel}。所要時間 約{result?.elapsedMin ?? timeLimitMin}分。
@@ -576,6 +579,7 @@ export default function MoshiExam({
         total={questions.length}
         pct={pct}
         passPct={passPct}
+        passCount={passCount}
         passed={passed}
         passLabel={passLabel}
         weakest={weakest ? { field: weakest[0], correct: weakest[1].correct, total: weakest[1].total } : null}

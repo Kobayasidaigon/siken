@@ -73,13 +73,17 @@ export default function InlineQuestion({ exam, examName, slug, questionText, cho
             style = "bg-blue-50 border border-blue-300 text-blue-800 font-medium";
           }
           return (
-            <li
-              key={i}
-              onClick={() => !revealed && setSelected(num)}
-              className={`text-sm px-3 py-2 rounded-lg transition-colors flex items-start gap-2 ${style}`}
-            >
-              <span className="font-bold shrink-0">{num}.</span>
-              <span className="flex-1">{choice}</span>
+            <li key={i}>
+              <button
+                type="button"
+                disabled={revealed}
+                aria-pressed={isSelected}
+                onClick={() => !revealed && setSelected(num)}
+                className={`w-full text-left text-sm px-3 py-2 rounded-lg transition-colors flex items-start gap-2 disabled:cursor-default ${style}`}
+              >
+                <span className="font-bold shrink-0">{num}.</span>
+                <span className="flex-1">{choice}</span>
+              </button>
             </li>
           );
         })}

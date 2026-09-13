@@ -96,4 +96,10 @@ export function resetAnonId(): void {
   } catch {
     /* 消せなければそのまま */
   }
+  try {
+    // 同じ画面の他の部品(Studio との接続カードなど)が古いIDを持ち続けないように知らせる
+    window.dispatchEvent(new Event("shikakumon-answer-log-setting"));
+  } catch {
+    /* noop */
+  }
 }

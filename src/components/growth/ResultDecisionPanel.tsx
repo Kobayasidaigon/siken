@@ -22,6 +22,8 @@
  *   Studio への utm_content は `{placement}_{cert}_{band}`。
  *
  * 講座の行は、提携している資格にだけ出す(§7「案件が無い資格には無理に出さない」)。
+ * A8 の計測付きリンクを持たない fukushi2(ユーキャン提携待ち)・bijimane・eco は出ない。
+ * 提携が取れて affiliate-links.ts の href が a8.net になれば、自動で出る。
  */
 
 import { useEffect, useRef, useState } from "react";
@@ -32,7 +34,7 @@ import StudioLink from "@/components/StudioLink";
 import { EXAM_AFFILIATE } from "@/lib/affiliate-links";
 import { decideCtaPriority } from "@/lib/cta-priority";
 import { questionHref, startDrill } from "@/lib/review-drill";
-import { studioResultHref } from "@/lib/studio-cta";
+import { hasStudioLp, studioResultHref } from "@/lib/studio-cta";
 import type { ExamSlug } from "@/lib/study-progress";
 import { daysUntil, getUpcomingExamDate } from "@/lib/growth/exam-date";
 import { questionsToPass, scoreBand, scoreBucket, type ScoreBand } from "@/lib/growth/score-band";
@@ -58,6 +60,11 @@ interface Props {
   pct: number;
   /** 合格の目安(0–100) */
   passPct: number;
+  /**
+   * 合格基準の問数(分かっているとき)。「あと何問」はパーセントから逆算せず、
+   * この値から数える(lib/growth/score-band.ts の questionsToPass 参照)
+   */
+  passCount?: number;
   /** 合否判定(課題別基準・問別配点の試験はそちらの判定を渡す) */
   passed: boolean;
   /** 合格基準の表示文。例「70点／100点満点 以上」。無ければ passPct% を出す */
@@ -88,13 +95,16 @@ export default function ResultDecisionPanel({
   total,
   pct,
   passPct,
+  passCount,
   passed,
   passLabel,
   weakest,
   wrongSlugs,
 }: Props) {
   const band = scoreBand(pct, passPct, passed);
-  const toPass = questionsToPass(correct, total, passPct);
+  // 合否が別の基準(配点・課題別)で決まる試験では、問数の「あと何問」は合否と
+  // 食い違いうる。合格していれば 0 にし、「届いています」と「あとN問」を並べない
+  const toPass = passed ? 0 : questionsToPass(correct, total, passPct, passCount);
   const course = hasCourseOffer(exam) ? EXAM_AFFILIATE[exam] : null;
   const ctaPhase = decideCtaPriority(exam).phase;
   const applyOpen = ctaPhase === "apply_open" || ctaPhase === "apply_urgent";
@@ -136,7 +146,9 @@ export default function ResultDecisionPanel({
           {band === "low"
             ? `${weakest ? weakest.field + "から" : "分野ごとに"}体系的に積み上げ直すなら`
             : band === "mid"
-              ? `あと${toPass}問ぶんを講義で埋めるなら`
+              ? toPass > 0
+                ? `あと${toPass}問ぶんを講義で埋めるなら`
+                : "届かなかった基準を講義で埋めるなら"
               : "仕上げに講義で確認するなら"}
         </span>
         <FreeLeadCTA exam={exam} placement={placement} />
@@ -167,10 +179,11 @@ export default function ResultDecisionPanel({
         band={band}
         className="text-xs font-bold inline-flex items-center gap-1 no-underline text-indigo-700 hover:underline"
       >
-        {weakest ? `${weakest.field}の問題を Studio で作る →` : "シカクモン Studio で復習を組む →"}
+        {weakest ? `${weakest.field}を Studio で復習する →` : "シカクモン Studio で復習を組む →"}
       </StudioLink>
       <span className="block text-[11px] text-[color:var(--c-text-sub)] mt-0.5">
-        姉妹サービス。登録なしで1問試せます。
+        {/* 登録なしの1問は資格別 LP にだけある(lib/studio-cta.ts)。無い資格に書かない */}
+        {hasStudioLp(exam) ? "姉妹サービス。登録なしで1問試せます。" : "姉妹サービス。AIが作った問題を忘却曲線で復習できます。"}
       </span>
     </li>
   );
@@ -207,8 +220,10 @@ export default function ResultDecisionPanel({
         <strong style={{ color: "var(--c-accent-ink)" }}>
           {correct}/{total}問正解（{pct}%）
         </strong>
-        。合格の目安は{passLabel ?? `${passPct}%`}
-        {toPass > 0 ? `で、あと${toPass}問です。` : "です。"}
+        。
+        {passed
+          ? `合格の目安（${passLabel ?? `${passPct}%`}）に届いています。`
+          : `合格の目安は${passLabel ?? `${passPct}%`}${toPass > 0 ? `で、あと${toPass}問です。` : "です。"}`}
         {examDays != null && examDays >= 0 && (
           <span className="text-[color:var(--c-text-sub)]">
             {" "}

@@ -12,7 +12,7 @@ import { drillPositionOf, endDrill, loadDrill, type DrillState } from "@/lib/rev
 import FreeLeadCTA from "@/components/FreeLeadCTA";
 import { EXAM_AFFILIATE, RESULT_CTA_HEADLINE } from "@/lib/affiliate-links";
 import { logAnswer } from "@/lib/growth/answer-log";
-import { markDailyDone } from "@/lib/growth/daily";
+import { isTodaysDaily, markDailyDone } from "@/lib/growth/daily";
 import AccuracyBadge from "@/components/growth/AccuracyBadge";
 
 // 答え合わせ直後CTAを出す資格。bijihou/piiで検証→SMART系の発生確認→2026-08-05に
@@ -112,7 +112,15 @@ export default function AnswerReveal({
   // (サーバでの描画結果と食い違うと hydration が壊れる)。
   const [drill, setDrill] = useState<DrillState | null>(null);
   useEffect(() => {
-    setDrill(loadDrill());
+    const d = loadDrill();
+    // 「今日の3問」のドリルは、今日の分そのものと一致するときだけ有効。
+    // 前日の3問を残したまま翌日に同じ問題を開くと、今日の分を「完了」にしてしまうため
+    if (d?.kind === "daily" && !isTodaysDaily(d)) {
+      endDrill();
+      setDrill(null);
+      return;
+    }
+    setDrill(d);
   }, []);
   const drillPos = drillPositionOf(drill, exam, questionSlug);
 
@@ -147,17 +155,21 @@ export default function AnswerReveal({
   // 今日の3問の最後の問題を解いたら完了にする(daily_complete)。
   // ドリル(drill_complete)は「学習履歴を見る」のクリックで送っているが、
   // 今日の分は「解き終えた」事実で数えたいので、答え合わせの時点で送る。
+  // 「答えを見る」(選択なし)は解いたことにしない(回答ログと同じ扱い)。
+  // 完了したらドリルの状態は消す(画面の「ここまで」表示は drill の state で保つ)。
+  // 残しておくと翌日以降に同じ問題を開いたとき、ドリル中と誤認される。
   const dailyDone = useRef(false);
   useEffect(() => {
-    if (!revealed || !exam || !drillPos || drill?.kind !== "daily" || drillPos.nextHref || dailyDone.current) return;
+    if (!revealed || selected === null || !exam || !drillPos || drill?.kind !== "daily" || drillPos.nextHref || dailyDone.current) return;
     dailyDone.current = true;
     markDailyDone(exam);
+    endDrill();
     try {
       sendGAEvent("event", "daily_complete", { exam, size: drillPos.total });
     } catch {
       /* GA未ロードでも完了扱いにする */
     }
-  }, [revealed, exam, drillPos, drill]);
+  }, [revealed, selected, exam, drillPos, drill]);
 
   // 「問題を解いた」の計測。2026-09-07 追加。
   // このサイトの中核行動なのに、これまで一度も GA に送っていなかった。
@@ -328,7 +340,7 @@ export default function AnswerReveal({
                   </p>
                   <p className="text-xs text-[color:var(--c-text-sub)] leading-relaxed mb-3">
                     {drill?.kind === "daily"
-                      ? "明日また別の3問が出ます。メダルの変化は学習履歴で確認できます。"
+                      ? "明日も3問出ます（間違えた問題は先に出ます）。メダルの変化は学習履歴で確認できます。"
                       : `${drillPos.total}問を解き終えました。メダルの変化は学習履歴で確認できます。`}
                   </p>
                   <a

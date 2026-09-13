@@ -23,7 +23,7 @@
 | 共通問題ID `{site}:{cert}:{qid}` | `questionId()`（`lib/growth/answer-log.ts`）。本体は `site="main"`。サーバー側でも同じ式で照合して不一致は捨てる |
 | Studio への遷移は `utm_content={placement}_{cert}_{band}` | `studioResultHref()`。接続リンクは `{placement}_{cert}`（帯が無い面） |
 | アフィリは「広告」明記 + `rel="nofollow sponsored"` | 既存の `AffiliateLink`。分岐パネルもそれを使う |
-| 案件が無い資格には出さない | `hasCourseOffer()`（`ResultDecisionPanel.tsx`）。A8 の計測付きリンクを持つ資格だけ講座行を出す（bijimane / eco は出ない） |
+| 案件が無い資格には出さない | `hasCourseOffer()`（`ResultDecisionPanel.tsx`）。A8 の計測付きリンクを持つ資格だけ講座行を出す。**fukushi2（ユーキャン提携待ち）・bijimane・eco は結果画面に講座行が出ない**。提携が取れて `affiliate-links.ts` の href が a8.net になれば自動で出る。問題ページの答え合わせ直後CTA（`AnswerReveal`）は従来どおり fukushi2 も出す |
 | 結果画面の文言は煽らない。事実 → 弱点 → 選択肢。合格保証めいた表現は禁止 | `ResultDecisionPanel` の構成そのもの。文言は `BAND_NOTE` と各行の1文だけ |
 | 統計は n≥30 まで表示しない | `/api/question-stats/route.ts` の `MIN_SAMPLE`。Studio が返しても本体側でもう一度落とす |
 | 回答ログは匿名IDのみ、個人情報は送らない | `anon-id.ts`（端末内の乱数）。`/api/answer-log/` は IP・UA・Cookie を転送しない。`/privacy/` に項目を追加 |
@@ -43,6 +43,8 @@
 - `mode`: `question` / `mock` / `moshi` / `drill` / `daily` / `column`
 - 送らない人: `/study/` で止めた人、Global Privacy Control を送るブラウザ、localStorage が使えない環境
 - 再送しない（統計用。1件の欠けは体験に影響しない）
+- 偽装への備え: 本人確認はできない（GA と同じ）。`/api/answer-log/` は同一IPの受け付け件数を 10 分 400 件で止め、
+  `Sec-Fetch-Site` が cross-site の要求を捨てる。集計側は匿名IDごとに最初の解答だけを数える（§3.2）
 - 学習履歴（`study-progress.ts`: メダル・ブックマーク・正誤一覧）は **従来どおり端末の外に出ない**。
   「サーバには送信されません」の文言は、その区別が付くように各所で書き分けた（/study/ 見出し、`ProgressBackup`、`/privacy/`）
 
@@ -73,9 +75,9 @@
 | `utm_source=shikakumon&utm_medium=referral&utm_content={placement}_{cert}` | placement は `reminder`（試験日設定後の案内）/ `sync`（/study/ の同期）/ `daily` |
 | `exam` | 資格の正式名称（既存の `?exam=` と同じ。`EXAM_FULL_NAMES`） |
 | `exam_date` | 本体で設定した試験日 `YYYY-MM-DD`（無ければ付かない） |
-| `anon` | 本体の匿名ID |
+| `anon` | 本体の匿名ID。**placement=sync のときだけ**付く（リマインド案内には付けない。プライバシーポリシー「本人が履歴を引き継ぐ操作をしたときだけ結びつける」） |
 
-Studio 側でやること: 登録／ログイン → `anon` をアカウントに紐づける（＝履歴同期。`history_sync` は本体で送信済み）→
+Studio 側でやること: 登録／ログイン → `anon` があればアカウントに紐づける（＝履歴同期。`history_sync` は本体で送信済み）→
 `exam_date` を Studio の試験日に入れる → 毎朝3問のメール／プッシュを申し込ませる（`push_subscribed`）→
 リンク先は本体の `/today/?exam={cert}`。`anon` は読んだら `history.replaceState` で URL から消す。
 

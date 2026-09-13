@@ -68,6 +68,11 @@ const CERT_CTA: Partial<Record<ExamSlug, CertCta>> = {
   },
 };
 
+/** 資格別 LP(登録なしで1問解ける欄がある)を持つ資格か。文言の出し分けに使う */
+export function hasStudioLp(exam: ExamSlug | null | undefined): boolean {
+  return Boolean(exam && CERT_CTA[exam]);
+}
+
 /** 従来どおりの汎用 CTA (資格別 LP が無い場合)。文言は既存のまま。 */
 const GENERIC: Omit<CertCta, "lp"> = {
   heading: "自分の教材から問題を作りたい人へ",
@@ -188,9 +193,11 @@ export type StudioConnectPlacement = "reminder" | "sync" | "daily";
  * Studio 側の受け口は docs/growth-kit.md「Studio 側の契約」のとおり:
  *   exam        資格の正式名称(既存の ?exam= と同じ)
  *   exam_date   利用者が本体で設定した試験日(YYYY-MM-DD)。無ければ付けない
- *   anon        本体の匿名ID。Studio は登録・ログイン後にこれをアカウントに紐づけ、
- *               本体から届いている回答ログをその人の履歴として扱う(=履歴同期)。
- *               URL に残さず、読んだら history.replaceState で消すこと。
+ *   anon        本体の匿名ID。placement=sync(/study/ の「履歴を引き継ぐ」)のときだけ付く。
+ *               Studio は登録・ログイン後にこれをアカウントに紐づけ、本体から届いている
+ *               回答ログをその人の履歴として扱う(=履歴同期)。URL に残さず、読んだら
+ *               history.replaceState で消すこと。リマインド案内(reminder)には付けない
+ *               (プライバシーポリシー: 本人が履歴を引き継ぐ操作をしたときだけ結びつける)。
  *
  * 本体からアカウントや個人情報を渡すことはない。渡すのは端末の乱数IDと日付だけ。
  */

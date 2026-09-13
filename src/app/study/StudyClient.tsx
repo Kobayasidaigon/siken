@@ -287,8 +287,8 @@ export default function StudyClient({
           学習履歴
         </h1>
         <p className="text-sm text-[color:var(--c-text-sub)] leading-relaxed max-w-lg">
-          ブックマークした問題と、解答時の正誤履歴を表示します。この履歴はブラウザ内に保存されており、サーバには送信されません
-          （解答の正誤だけは匿名の統計用に送っています。ページ下部の設定で止められます）。
+          ブックマークした問題と、解答時の正誤履歴を表示します。ブックマーク・メダル・解いた問題の一覧はこのブラウザにだけ保存します。
+          問題ごとの正解・不正解は匿名の統計用に送っています（ページ下部の設定で止められます）。
         </p>
         <div className="mt-6 flex flex-wrap gap-x-6 gap-y-3 text-sm">
           <div>

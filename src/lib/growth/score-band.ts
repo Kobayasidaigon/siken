@@ -36,11 +36,15 @@ export function scoreBand(pct: number, passPct: number, passed?: boolean): Score
 
 /**
  * 「あと何問で合格の目安か」。届いていれば 0。
- * 問数の目安は切り上げ(あと 2.3 問 → 3 問)。
+ *
+ * passCount(合格基準の問数)が分かっているときはそれを使う。パーセントから
+ * 逆算すると、丸めのせいで 41/58 が「あと1問」になるような食い違いが出る
+ * (福祉住環境2級の模試: 41問 = 70.7% → 71% → ceil(0.71×58) = 42)。
+ * 無いときだけ切り上げで見積もる(あと 2.3 問 → 3 問)。
  */
-export function questionsToPass(correct: number, total: number, passPct: number): number {
+export function questionsToPass(correct: number, total: number, passPct: number, passCount?: number): number {
   if (total <= 0) return 0;
-  const need = Math.ceil((passPct / 100) * total);
+  const need = passCount != null && passCount > 0 ? passCount : Math.ceil((passPct / 100) * total);
   return Math.max(0, need - correct);
 }
 

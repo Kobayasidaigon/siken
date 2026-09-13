@@ -44,7 +44,7 @@ export default function TodayClient({ slugsByExam }: { slugsByExam: Record<ExamS
       <h1 className="text-xl sm:text-2xl font-bold text-[color:var(--c-ink)] mb-2 font-serif">今日の3問</h1>
       <p className="text-sm text-[color:var(--c-text-sub)] leading-relaxed mb-6 max-w-2xl">
         前回間違えた問題 → あと1回正解で金になる問題 → まだ解いていない問題、の順に3問だけ出します。
-        3問で終わります。試験日を設定した資格の分が出ます。
+        3問で終わります。試験日を設定した資格（無ければ最近解いている資格）の分が出ます。
       </p>
 
       {!mounted ? (
@@ -77,8 +77,8 @@ export default function TodayClient({ slugsByExam }: { slugsByExam: Record<ExamS
       ) : (
         <section className="card p-6">
           <p className="text-sm text-[color:var(--c-text-sub)] leading-relaxed mb-4">
-            まだ解いた問題がありません。資格のトップページで「この回を受ける」を押して試験日を決めるか、
-            問題を1問解くと、翌日からここに今日の3問が出ます。
+            まだ解いた問題がありません。資格のトップページで受験する回（試験日）を決めるか、
+            問題を1問解くと、ここに今日の3問が出ます。
           </p>
           <a href="/" className="btn-accent">
             資格を選ぶ →

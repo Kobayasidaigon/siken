@@ -105,7 +105,7 @@ export default function DailyThreeCard({
           </p>
           <p className="text-xs text-[color:var(--c-text-sub)] mt-1 leading-relaxed">
             {done
-              ? "明日また別の3問が出ます。続けて解くなら学習履歴の復習ドリルへ。"
+              ? "明日も3問出ます（間違えた問題は先に出ます）。続けて解くなら学習履歴の復習ドリルへ。"
               : "前回間違えた問題から順に出ます。3問で終わります。"}
           </p>
         </div>

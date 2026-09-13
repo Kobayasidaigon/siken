@@ -13,6 +13,7 @@
 
 import { useEffect, useState } from "react";
 import type { ExamSlug } from "@/lib/study-progress";
+import { MIN_SAMPLE } from "@/lib/growth/stats-config";
 
 interface Props {
   exam: ExamSlug;
@@ -33,7 +34,11 @@ export default function HardQuestionsSection({ exam, examName, questionPathPrefi
         if (!res.ok) return;
         const data = (await res.json()) as { top?: Row[] };
         if (!cancelled && Array.isArray(data.top)) {
-          setRows(data.top.filter((r) => r && typeof r.slug === "string" && typeof r.topic === "string"));
+          setRows(
+            data.top.filter(
+              (r) => r && typeof r.slug === "string" && typeof r.topic === "string" && typeof r.n === "number" && r.n >= MIN_SAMPLE
+            )
+          );
         }
       } catch {
         /* 取れなければ出さない */
@@ -50,7 +55,7 @@ export default function HardQuestionsSection({ exam, examName, questionPathPrefi
     <section className="mb-12">
       <h2 className="text-lg font-bold text-[color:var(--c-ink)] mb-2 font-serif">間違えた人が多い問題</h2>
       <p className="text-xs text-[color:var(--c-text-sub)] mb-4 leading-relaxed">
-        {examName}の練習問題を解いた人の正答率が低い順。正答率が低い＝本番で差がつく論点です（30人以上が解いた問題だけ）。
+        {examName}の練習問題を解いた人の正答率が低い順。正答率が低い＝本番で差がつく論点です（{MIN_SAMPLE}人以上が解いた問題だけ）。
       </p>
       <ol className="card divide-y divide-[color:var(--c-border)]">
         {rows.map((r, i) => {

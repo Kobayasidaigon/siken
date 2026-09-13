@@ -70,9 +70,16 @@ export default function ExamCountdown({
   examDate,
   calendar,
 }: Props) {
-  const chip = examDate ? (
-    <ExamDateChip exam={examDate.exam} examName={examDate.examName} exams={exams} periodExam={periodExam} />
-  ) : null;
+  const chip = (standalone: boolean) =>
+    examDate ? (
+      <ExamDateChip
+        exam={examDate.exam}
+        examName={examDate.examName}
+        exams={exams}
+        periodExam={periodExam}
+        standalone={standalone}
+      />
+    ) : null;
   const deadline = nextApplyDeadline(exams);
   if (deadline && deadline.applyEnd) {
     const daysLeft = daysUntilYmd(deadline.applyEnd);
@@ -120,7 +127,7 @@ export default function ExamCountdown({
             placement="top_countdown_apply"
           />
         )}
-        {chip}
+        {chip(false)}
       </section>
     );
   }
@@ -129,7 +136,8 @@ export default function ExamCountdown({
   const daysLeft = upcoming ? daysUntilYmd(upcoming.date) : 0;
   if (!upcoming || daysLeft <= 0) {
     // 日程が無い・尽きた。試験日の自己設定だけは出す(日程を持たない資格もここに来る)
-    return chip ? <section className="mb-10 card p-5">{chip}</section> : null;
+    const only = chip(true);
+    return only ? <section className="mb-10 card p-5">{only}</section> : null;
   }
   return (
     <section className="mb-10 card p-5">
@@ -153,7 +161,7 @@ export default function ExamCountdown({
           placement="top_countdown_exam"
         />
       )}
-      {chip}
+      {chip(false)}
     </section>
   );
 }

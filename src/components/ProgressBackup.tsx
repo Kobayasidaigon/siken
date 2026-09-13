@@ -111,8 +111,9 @@ export default function ProgressBackup() {
     <section className="card p-5">
       <h2 className="text-sm font-bold text-[color:var(--c-ink)] font-serif mb-1">履歴の持ち出しと復元</h2>
       <p className="text-xs text-[color:var(--c-text-sub)] leading-relaxed mb-4">
-        この学習履歴（正誤の一覧・メダル・ブックマーク）はこのブラウザの中にだけ保存されています。機種変更やブラウザのデータ削除で消えるので、
+        ここに表示している学習履歴（ブックマーク・メダル・解いた問題の一覧）は、このブラウザの中に保存されています。機種変更やブラウザのデータ削除で消えるので、
         ファイルに書き出して持ち出せるようにしています。ファイルの読み書きはすべてブラウザ内で行い、どこにも送信しません。
+        問題ごとの正解・不正解だけは、別途、匿名の統計用に送っています（下の「解答の記録」で止められます）。
       </p>
 
       <div className="flex flex-wrap gap-2 items-center">

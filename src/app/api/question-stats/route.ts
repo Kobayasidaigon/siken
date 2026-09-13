@@ -18,8 +18,7 @@
 import { NextResponse } from "next/server";
 import { EXAM_LIST, type ExamSlug } from "@/lib/study-progress";
 import { getQuestionsOf, topicOf } from "@/lib/question-registry";
-
-export const MIN_SAMPLE = 30;
+import { MIN_SAMPLE } from "@/lib/growth/stats-config";
 const MAX_SLUGS = 20;
 const MAX_TOP = 10;
 const SLUG = /^[a-zA-Z0-9-]{1,80}$/;

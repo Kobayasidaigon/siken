@@ -9,6 +9,11 @@
 //
 // 【送らないもの】IP・User-Agent・Cookie は転送しない。届いた本文のうち、
 // 検証を通った項目だけを組み直して送る(知らない項目は落とす)。
+//
+// 【偽装への備え】匿名の計測なので、本人確認はできない(GA と同じ)。統計を
+// 水増しする素朴な連投だけを止める: 同一IPの受け付け件数を窓で制限し(pass-report
+// と同じ最小の仕組み)、ブラウザが明示的に「別サイトから」と告げる要求は捨てる。
+// 集計側(Studio)は匿名IDごとに最初の解答だけを数える(docs/growth-kit.md §3.2)。
 // =============================================================================
 
 import { NextResponse } from "next/server";
@@ -24,6 +29,28 @@ const SLUG = /^[a-zA-Z0-9-]{1,80}$/;
 const TS_TOLERANCE_MS = 7 * 24 * 60 * 60 * 1000;
 const FORWARD_TIMEOUT_MS = 3000;
 
+/**
+ * 同一IPからの受け付け上限(イベント件数・10分)。1人が10分で解ける問題数を
+ * 大きく上回る値にしてある(模試100問 + 本番形式20問でも収まる)。
+ * サーバーレスではインスタンスごとの記憶なので完全ではないが、素朴な連投は止まる。
+ */
+const WINDOW_MS = 10 * 60 * 1000;
+const MAX_EVENTS_PER_WINDOW = 400;
+const recent = new Map<string, { count: number; since: number }>();
+
+function takeQuota(ip: string, n: number): boolean {
+  const now = Date.now();
+  if (recent.size > 1000) recent.clear();
+  const cur = recent.get(ip);
+  if (!cur || now - cur.since > WINDOW_MS) {
+    recent.set(ip, { count: n, since: now });
+    return true;
+  }
+  if (cur.count + n > MAX_EVENTS_PER_WINDOW) return false;
+  cur.count += n;
+  return true;
+}
+
 type CleanEvent = {
   qid: string;
   exam: string;
@@ -38,6 +65,11 @@ function accepted(extra: Record<string, unknown> = {}) {
 }
 
 export async function POST(request: Request) {
+  // ブラウザが付ける Sec-Fetch-Site。無い(古いブラウザ・非ブラウザ)ときは通し、
+  // 明示的に cross-site と告げてきたものだけ捨てる
+  const site = request.headers.get("sec-fetch-site");
+  if (site && site !== "same-origin" && site !== "none") return accepted({ accepted: 0 });
+
   let raw: string;
   try {
     raw = await request.text();
@@ -75,6 +107,9 @@ export async function POST(request: Request) {
     events.push({ qid, exam, slug, correct: ev.correct, mode, ts: Math.round(ts) });
   }
   if (events.length === 0) return accepted({ accepted: 0 });
+
+  const ip = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || "unknown";
+  if (!takeQuota(ip, events.length)) return accepted({ accepted: 0, limited: true });
 
   const url = process.env.STUDIO_INGEST_URL;
   if (!url) return accepted({ accepted: events.length, forwarded: false });

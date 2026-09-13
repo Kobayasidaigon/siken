@@ -13,6 +13,7 @@
 
 import { useEffect, useState } from "react";
 import type { ExamSlug } from "@/lib/study-progress";
+import { MIN_SAMPLE } from "@/lib/growth/stats-config";
 
 interface Props {
   exam: ExamSlug;
@@ -40,7 +41,7 @@ export default function AccuracyBadge({ exam, slug, revealed, correct }: Props) 
         if (!res.ok) return;
         const data = (await res.json()) as { stats?: Record<string, Stat> };
         const s = data.stats?.[slug];
-        if (!cancelled && s && typeof s.n === "number" && typeof s.rate === "number") setStat(s);
+        if (!cancelled && s && typeof s.n === "number" && typeof s.rate === "number" && s.n >= MIN_SAMPLE) setStat(s);
       } catch {
         /* 取れなければ出さない */
       }

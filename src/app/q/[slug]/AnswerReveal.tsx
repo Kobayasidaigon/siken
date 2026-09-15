@@ -76,7 +76,8 @@ export default function AnswerReveal({
   const [medal, setMedal] = useState<Medal | null>(null);
 
   // 答え合わせ直後の Studio 送客。資格別 LP がある資格はその LP へ資格ごとの
-  // 文言で送る (無ければ従来の汎用文言 + トップページ)。utm_medium は従来のまま。
+  // 文言で送る (無ければ従来の汎用文言 + トップページ)。utm_medium は referral 固定で、
+  // 配置・資格 ID は utm_content=quiz_<資格> に載る (studioCtaFor 参照)。
   const studioCta = studioCtaFor(exam, `quiz_${exam ?? "result"}`);
 
   // 申込締切が迫っている資格・時期だけ、講座広告(courseAd)を Studio 枠より上に出す。

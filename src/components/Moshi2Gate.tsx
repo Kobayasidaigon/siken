@@ -159,8 +159,12 @@ export default function Moshi2Gate({ certId }: { certId: ExamSlug }) {
           const data = await res.json().catch(() => ({}));
           if (!alive) return;
           if (res.ok) {
-            track("moshi2_purchase_complete", { cert: certId });
-            trackEcommerce("purchase", product, { transaction_id: sessionId });
+            // Stripe テストモードの決済(livemode=false)は GA4 に載せない(2026-09-19)。
+            // 設備ドリルで9月の「購入5件」が全部テストだった。受験権の付与はそのまま。
+            if (data?.livemode !== false) {
+              track("moshi2_purchase_complete", { cert: certId });
+              trackEcommerce("purchase", product, { transaction_id: sessionId });
+            }
           } else {
             setMessage(data?.error ?? "決済の確認に失敗しました。");
           }

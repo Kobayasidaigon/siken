@@ -457,6 +457,22 @@ export default function MoshiExam({
   );
   const weakest = fieldsSorted.find(([, s]) => s.correct < s.total);
 
+  // 第2回オファーの判定用の要約。問別配点の試験(東商IBT型)は点で、それ以外は問数で不足を出す。
+  const earnedPoints = questions.reduce(
+    (s, q, i) => s + (answers[i] === q.correctAnswer ? (q.points ?? pointsPerQuestion ?? 1) : 0),
+    0,
+  );
+  const fullPoints = questions.reduce((s, q) => s + (q.points ?? pointsPerQuestion ?? 1), 0);
+  const offerResult = {
+    passed,
+    gap: passPoints != null ? passPoints - earnedPoints : passCount - score,
+    unit: (passPoints != null ? "点" : "問") as "点" | "問",
+    passLine: passPoints ?? passCount,
+    scale: passPoints != null ? fullPoints : questions.length,
+    worstCategory: weakest?.[0],
+    worstPct: weakest ? Math.round((weakest[1].correct / weakest[1].total) * 100) : undefined,
+  };
+
   return (
     <div>
       <section className="card p-6 text-center mb-6">
@@ -512,7 +528,7 @@ export default function MoshiExam({
           第2回そのものを受けている画面では出さない(round === 1 の条件)。 */}
       {round === 1 &&
         (moshi2ProductOf(exam) ? (
-          <Moshi2Offer certId={exam} place="moshi_result" />
+          <Moshi2Offer certId={exam} place="moshi_result" result={offerResult} />
         ) : (
           <MoshiRound2Interest exam={exam} round={round} />
         ))}

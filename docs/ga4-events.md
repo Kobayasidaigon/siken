@@ -85,12 +85,23 @@ GA4 の「収益」は **`purchase` イベントの `value` と `currency` か�
 
 | イベント | 発火する場所 | パラメータ |
 |---|---|---|
-| `moshi2_offer_impression` / `moshi2_offer_click` | 第1回模試の結果画面に出す第2回の案内 | `cert` |
-| `moshi2_checkout_start` | 購入ボタン | `cert` |
+| `moshi2_offer_impression` / `moshi2_offer_click` | 第1回模試の結果画面(`place`=moshi_result)と資格トップ(`place`=cert_top)の第2回の案内 | `cert`, `place`, `verdict`(fail/near/pass。結果画面のみ), `days_to_exam`(日程がある資格のみ), `target`(sample=サンプルへのサブリンク) |
+| `moshi2_page_view` | 販売ページ /<cert>/moshi2/ の表示 | `cert`, `src`(result=結果画面 / landing=資格トップ / direct=それ以外) |
+| `moshi2_sample_open` | 販売ページのサンプル問題節が画面に半分入った | `cert` |
+| `moshi2_price_view` | 販売ページの価格ボックスが画面に半分入った | `cert` |
+| `moshi2_checkout_start` | 購入ボタン（`transport_type: beacon` で遷移前に送り切る） | `cert` |
 | `begin_checkout` | 同上（GA4 標準） | `currency`, `value`, `items` |
-| `moshi2_purchase_complete` | 決済からの復帰 | `cert` |
+| `moshi2_purchase_complete` | 決済からの復帰（Stripe テストモードの決済では送らない） | `cert` |
 | `purchase` | 同上（GA4 標準。**収益に積まれるのはこちら**） | `transaction_id`, `currency`, `value`, `items` |
 | `moshi2_restore` | 受験用リンクからの復元 | `cert` |
+
+購入ファネルは `moshi_complete`(round=1) → `moshi2_offer_impression` → `moshi2_offer_click`
+→ `moshi2_page_view` → `moshi2_sample_open` → `moshi2_price_view` → `moshi2_checkout_start` → `purchase`。
+2026-09-20 に `page_view`〜`price_view` を足した。それまでは販売ページ到達64人・checkout 0 の
+「間」が見えず、どの節で離脱しているか分からなかった。
+
+`place` / `verdict` / `days_to_exam` / `src` は GA4 のカスタム定義に**未登録**。登録するまで
+探索レポートで切れない（`scripts/register-ga4-dims.mjs` の対象に足すこと）。
 
 ### 合格報告
 

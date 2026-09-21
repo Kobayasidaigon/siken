@@ -28,6 +28,8 @@ import { EXAM_LIST, recordResult, type ExamSlug } from "@/lib/study-progress";
 import MoshiFormatFeedback from "@/components/MoshiFormatFeedback";
 import MoshiRound2Interest from "@/components/MoshiRound2Interest";
 import Moshi2Offer from "@/components/Moshi2Offer";
+import MoshiReminderForm from "@/components/MoshiReminderForm";
+import { nextExamYmd } from "@/lib/exam-dates";
 import { moshi2ProductOf } from "@/lib/moshi2-products";
 import StudioLink from "@/components/StudioLink";
 
@@ -532,6 +534,22 @@ export default function MoshiExam({
         ) : (
           <MoshiRound2Interest exam={exam} round={round} />
         ))}
+
+      {/* 結果のまとめ + 試験日までの学習リマインド(メール登録)。2026-09-22 追加。
+          完了者との再接点をつくる。保存先は Studio の API(lib/moshi-reminder.ts)。
+          第2回オファーの直後に置き、オファーの位置(判定の直後)は動かさない。 */}
+      {round === 1 && (
+        <MoshiReminderForm
+          certId={exam}
+          certName={EXAM_LIST.find((e) => e.slug === exam)?.name ?? exam}
+          round={round}
+          score={score}
+          result={offerResult}
+          topPath={topPath}
+          moshi2Path={moshi2ProductOf(exam) ? `/${exam}/moshi2/` : null}
+          defaultExamDate={nextExamYmd(exam)}
+        />
+      )}
 
       {/* 課題(セクション)別の判定 */}
       {sectionStats.length > 0 && (

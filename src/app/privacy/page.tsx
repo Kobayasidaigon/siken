@@ -1,10 +1,13 @@
 import type { Metadata } from "next";
 import { pageMetadata } from "@/lib/page-metadata";
+import { ADSENSE_CLIENT } from "@/lib/adsense";
 
+// AdSense の記載は、サイトを AdSense に紐付けているとき(環境変数あり)だけ出す。
+// 使っていないサービスを書くと虚偽記載になる(2026-06 に一度削除した経緯: ccc09b4)
 export const metadata: Metadata = pageMetadata({
   path: "/privacy/",
   title: "プライバシーポリシー",
-  description: "シカクモンのプライバシーポリシー。個人情報の取得・利用目的、Google Analytics 4 によるアクセス解析、A8.net によるアフィリエイト広告について記載しています。",
+  description: `シカクモンのプライバシーポリシー。個人情報の取得・利用目的、Google Analytics 4 によるアクセス解析、${ADSENSE_CLIENT ? "Google AdSense による広告配信、" : ""}A8.net によるアフィリエイト広告について記載しています。`,
 });
 
 export default function PrivacyPage() {
@@ -100,6 +103,35 @@ export default function PrivacyPage() {
         </li>
       </ul>
 
+      {ADSENSE_CLIENT && (
+        <>
+          <h2>広告配信について</h2>
+          <p>当サイトは、第三者配信の広告サービス「Google AdSense」を利用しています。</p>
+          <ul>
+            <li>
+              Google などの第三者配信事業者は Cookie を使用して、ユーザーが当サイトや他のサイトに
+              過去にアクセスした際の情報に基づいて広告を配信します。
+            </li>
+            <li>
+              Google は広告 Cookie を使用することで、ユーザーが当サイトや他のサイトにアクセスした際の情報に基づいて、
+              Google やそのパートナーが適切な広告を表示できるようにしています。
+            </li>
+            <li>
+              パーソナライズ広告は
+              <a href="https://adssettings.google.com/" target="_blank" rel="noopener noreferrer">Google の広告設定</a>
+              で無効にできます。また
+              <a href="https://www.aboutads.info/" target="_blank" rel="noopener noreferrer">www.aboutads.info</a>
+              では、パーソナライズ広告に使われる第三者配信事業者の Cookie を無効にできます。
+            </li>
+            <li>
+              詳しくは
+              <a href="https://policies.google.com/technologies/ads" target="_blank" rel="noopener noreferrer">Google の広告に関するポリシー</a>
+              をご覧ください。
+            </li>
+          </ul>
+        </>
+      )}
+
       <h2>アフィリエイトプログラムについて</h2>
       <p>
         当サイトは、株式会社ファンコミュニケーションズが運営する「A8.net」のアフィリエイトプログラムに参加しています。
@@ -126,7 +158,7 @@ export default function PrivacyPage() {
         <a href="/contact/">お問い合わせフォーム</a>よりお願いいたします。
       </p>
 
-      <p className="text-sm text-slate-400 mt-8">制定日：2026年3月30日／最終改訂：2026年9月22日</p>
+      <p className="text-sm text-slate-400 mt-8">制定日：2026年3月30日／最終改訂：2026年9月25日</p>
     </div>
   );
 }

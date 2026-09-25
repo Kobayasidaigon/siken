@@ -5,6 +5,7 @@ import { GoogleAnalytics } from "@next/third-parties/google";
 import "./globals.css";
 import StudioLink from "@/components/StudioLink";
 import MobileNav from "@/components/MobileNav";
+import { ADSENSE_CLIENT } from "@/lib/adsense";
 
 const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
 
@@ -39,6 +40,8 @@ export const metadata: Metadata = {
   verification: {
     google: "dnyK_8fRmK5hV625XjQD10ccjXMiXHXp_8RdH-jq2zw",
   },
+  // AdSense とサイトの紐付け(審査用)。静的HTMLに必ず出る meta で行い、広告スクリプトは承認後に入れる(src/lib/adsense.ts)
+  ...(ADSENSE_CLIENT ? { other: { "google-adsense-account": ADSENSE_CLIENT } } : {}),
   twitter: {
     card: "summary_large_image",
   },

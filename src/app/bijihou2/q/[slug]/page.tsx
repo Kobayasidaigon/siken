@@ -33,6 +33,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     path: `/bijihou2/q/${slug}/`,
     title: questionPageTitle(q.title, "ビジネス実務法務検定2級"),
     description: questionPageDescription(q.description, q.questionText),
+    // 問題ページは検索の入口にしない(資格トップ・分野・コラムに寄せる)。経緯は CHANGELOG 2026-09-25
+    noindex: true,
   });
 }
 

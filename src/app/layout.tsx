@@ -255,6 +255,17 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                       第一種・第二種衛生管理者の無料練習問題と模擬試験
                     </p>
                   </li>
+                  <li>
+                    <a
+                      href="https://sekokan.shikakumon.com/"
+                      className="text-[color:var(--c-text-sub)] hover:text-[color:var(--c-ink)] no-underline"
+                    >
+                      施工管理ドリル
+                    </a>
+                    <p className="text-[11px] text-[color:var(--c-text-sub)] mt-0.5 leading-relaxed">
+                      土木・建築・電気工事・管工事 施工管理技士 第一次検定の無料練習問題
+                    </p>
+                  </li>
                 </ul>
               </div>
               <div>

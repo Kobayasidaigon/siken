@@ -250,6 +250,12 @@ export default function Home() {
       color: "var(--c-pii)",
       desc: "NSCA-CPT・NESTA-PFT・健康運動指導士などトレーナー系7資格の練習問題と模試。",
     },
+    {
+      name: "施工管理ドリル",
+      href: "https://sekokan.shikakumon.com/",
+      color: "var(--c-eco)",
+      desc: "土木・建築・電気工事・管工事の1級・2級 施工管理技士 第一次検定、8試験1,960問と本試験形式の模擬試験。",
+    },
   ];
 
   // 資格を実施団体・領域ごとにまとめて並べる。
@@ -427,7 +433,7 @@ export default function Home() {
         <p className="text-sm text-[color:var(--c-text-sub)] leading-relaxed mb-5">
           シカクモンに無い分野は、同じ作りの専門サイトで公開しています。
         </p>
-        <div className="grid sm:grid-cols-3 gap-4">
+        <div className="grid sm:grid-cols-2 gap-4">
           {sisterSites.map((site) => (
             <a
               key={site.href}

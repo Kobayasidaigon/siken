@@ -3,6 +3,7 @@
 import { useEffect, useRef } from "react";
 import { sendGAEvent } from "@next/third-parties/google";
 import { recordCourseClick } from "@/lib/recent-course";
+import { programOf } from "@/lib/affiliate-program";
 
 /**
  * A8アフィリエイトリンクの共通アンカー（クリック計測付き）。
@@ -27,6 +28,11 @@ import { recordCourseClick } from "@/lib/recent-course";
  * このため換金の99%を担う本体だけ CTR が算出できなかった。
  * アンカー自身を IntersectionObserver で監視し、50%以上見えたら一度だけ送る。
  * DOMは1要素も足していない(ラッパを増やすとCTAのレイアウトが動くため)。
+ *
+ * program(広告主) — 2026-09-19追加:
+ * href の a8mat から広告主名(smart / agaroot / onsuku / lec …)を引いて両イベントに載せる
+ * (lib/affiliate-program.ts)。設備資格ドリルと同じ語彙で、サイト横断の比較に使う。
+ * GA4 側でカスタムディメンション program の登録が要る(seo-report/register-ga4-dims.mjs)。
  */
 
 interface Props {
@@ -40,6 +46,7 @@ interface Props {
 export default function AffiliateLink({ href, course, placement, className = "btn-ad", children }: Props) {
   const ref = useRef<HTMLAnchorElement | null>(null);
   const fired = useRef(false);
+  const program = programOf(href);
 
   useEffect(() => {
     const el = ref.current;
@@ -50,7 +57,7 @@ export default function AffiliateLink({ href, course, placement, className = "bt
         fired.current = true;
         io.disconnect();
         try {
-          sendGAEvent("event", "cta_impression", { course, placement });
+          sendGAEvent("event", "cta_impression", { course, placement, program });
         } catch {
           // GA未ロード等でも表示は妨げない
         }
@@ -59,7 +66,7 @@ export default function AffiliateLink({ href, course, placement, className = "bt
     );
     io.observe(el);
     return () => io.disconnect();
-  }, [course, placement]);
+  }, [course, placement, program]);
 
   return (
     <a
@@ -70,7 +77,7 @@ export default function AffiliateLink({ href, course, placement, className = "bt
       className={className}
       onClick={() => {
         try {
-          sendGAEvent("event", "affiliate_click", { course, placement });
+          sendGAEvent("event", "affiliate_click", { course, placement, program });
         } catch {
           // GA未ロード等でも遷移は妨げない
         }

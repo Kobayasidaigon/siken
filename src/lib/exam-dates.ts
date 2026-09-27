@@ -113,6 +113,38 @@ export const KANGYO_EXAMS: UpcomingExam[] = [
   { date: "2026-12-06", label: "令和8年度", applyStart: "2026-08-03", applyEnd: "2026-09-30" },
 ];
 
+/**
+ * 資格スラッグ → 今後の試験日リスト。日程を持つ資格だけ載せる (無い資格は undefined)。
+ * 2026-09-22 追加: 模試結果画面のリマインド登録で「試験日」の既定値に使う。
+ * moshi2-funnel.ts の EXAMS_BY_SLUG (第2回を売る 9 資格) より広く、日程がある 12 資格を持つ。
+ */
+export const EXAMS_BY_SLUG: Readonly<Record<string, UpcomingExam[]>> = {
+  kashikin: KASHIKIN_EXAMS,
+  chizai: CHIZAI_EXAMS,
+  chizai2: CHIZAI_EXAMS,
+  fukushi2: FUKUSHI2_EXAMS,
+  bijihou: BIJIHOU_EXAMS,
+  bijimane: BIJIMANE_EXAMS,
+  eco: ECO_EXAMS,
+  pii: PII_EXAMS,
+  mynumber: MYNUMBER_EXAMS,
+  jitsumu: JITSUMU_EXAMS,
+  isec: ISEC_EXAMS,
+  chintai: CHINTAI_EXAMS,
+  kangyo: KANGYO_EXAMS,
+};
+
+/**
+ * 今日以降で最も近い試験日 "YYYY-MM-DD"。受付中の回があればそれを優先する
+ * (nextExamDateLabel と同じ理由: 読者が実際に受けられる回)。日程が無ければ null。
+ */
+export function nextExamYmd(slug: string): string | null {
+  const exams = EXAMS_BY_SLUG[slug];
+  if (!exams) return null;
+  const e = nextApplyDeadline(exams) ?? nextExam(exams);
+  return e ? e.date : null;
+}
+
 function ymdDate(ymd: string): Date {
   return new Date(`${ymd}T00:00:00+09:00`);
 }

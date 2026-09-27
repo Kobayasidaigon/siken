@@ -76,14 +76,20 @@ export const EXAM_AFFILIATE: Record<ExamSlug, AffiliateTarget> = {
     applyLabel: "協会公式サイトで申し込む",
     applyPixel: SMART_APPLY_PIXEL,
   },
+  // オンスク(知財3級)。2026-09-19 に導線を成果地点へ寄せた。
+  //   A8 の商品別成果情報で成果対象は「新規月額有料プラン(ウケホーダイ スタンダード)」の
+  //   1件のみ。一括パック・ライト・資格別プラン・無料会員登録はすべて報酬ゼロ。
+  //   従来は freeHref で無料会員登録ページ(members/login_required)へ送っていたが、
+  //   無料プランは期限なし・自動有料化なしと公式表記があり、A8 実績も 120click→0件だった
+  //   (プログラム平均 EPC 0.91円 = 120click で 0.07件相当)。無料 CTA は撤去し、
+  //   着地を有料プラン案内(plan_guidance・月額タブ)にして月額スタンダードの価値で訴求する。
+  //   ライトは成果対象外なので価格は 1,628円(スタンダード)だけを書く。一括には触れない。
+  //   判定: 2026-11 中旬に A8 素材別(オンスク)と GA4 affiliate_click(course=chizai) を
+  //   2026-09-19 前後で比較。クリック数が同水準で成果 0 のままなら案件自体を差し替える。
   chizai: {
-    href: "https://px.a8.net/svt/ejp?a8mat=4B3TF4+BJKL0Y+408S+BW8O2&a8ejpredirect=https%3A%2F%2Fonsuku.jp%2Ftraining%2Fchizai3",
-    label: "知的財産管理技能検定3級の対策講座を見る",
+    href: "https://px.a8.net/svt/ejp?a8mat=4B3TF4+BJKL0Y+408S+BW8O2&a8ejpredirect=https%3A%2F%2Fonsuku.jp%2Fplan_guidance",
+    label: "月額1,628円で知財3級講座を受け放題にする(いつでも解約可)",
     course: "chizai",
-    // オンスク自身の無料体験導線(無料期間無制限・自動有料化なしと公式表記)。2026-08-03設定。
-    freeHref:
-      "https://px.a8.net/svt/ejp?a8mat=4B3TF4+BJKL0Y+408S+BW8O2&a8ejpredirect=https%3A%2F%2Fonsuku.jp%2Fmembers%2Flogin_required%3Frequired%3D1",
-    freeLabel: "オンスクの無料体験で講義を試す",
   },
   // LECオンライン(東京リーガルマインド)。A8提携承認=2026-08-06、実装=2026-08-26。
   //   知財2級の専用対策講座はオンスクに無く、LECは2級対策講座を提供しているため

@@ -436,11 +436,18 @@ const voicePages =
     ? [{ url: "/voice/", priority: "0.6", freq: "weekly", lastmod: maxDate(voices, todayFallback) }]
     : [];
 
+// 問題ページ(/q/ と /<資格>/q/)は 2026-09-25 から noindex(各 q/[slug]/page.tsx)。
+// 検索クリックの実測は Google 2%・Bing 0% で、流入はコラムと資格トップでほぼ全部だった。
+// 4千枚の同じ型のページはサイト全体の評価(AdSense の審査を含む)を下げる側に働くと判断した。
+// noindex の URL を sitemap に載せると Search Console が「noindex なのに送信されている」と
+// 警告するので、ここで外す。資格を増やして contentPages に足しても /q/ は自動で除かれる。
+const isQuestionUrl = (url) => /^\/(?:[a-z0-9]+\/)?q\//.test(url);
+
 const allPages = [
   ...staticPages,
   { url: "/column/", priority: "0.8", freq: "weekly", lastmod: columnsMax },
   ...voicePages,
-  ...contentPages,
+  ...contentPages.filter((p) => !isQuestionUrl(p.url)),
 ];
 
 const xml = `<?xml version="1.0" encoding="UTF-8"?>

@@ -82,7 +82,9 @@ export async function POST(request: Request) {
   }
 
   const token = signAccess({ c: certId, s: sessionId, t: Math.floor(Date.now() / 1000) });
-  const res = NextResponse.json({ ok: true });
+  // livemode=false は Stripe テストモードの決済(実売上なし)。クライアントはこれを見て
+  // GA4 の purchase(収益)を送らない(テスト購入が売上レポートに混ざるのを防ぐ)。
+  const res = NextResponse.json({ ok: true, livemode: session.livemode });
   res.cookies.set(accessCookieName(certId), token, {
     httpOnly: true,
     secure: process.env.NODE_ENV === "production",

@@ -31,6 +31,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     path: `/eco/q/${slug}/`,
     title: q.title,
     description: q.description,
+    // 問題ページは検索の入口にしない(資格トップ・分野・コラムに寄せる)。経緯は CHANGELOG 2026-09-25
+    noindex: true,
   });
 }
 

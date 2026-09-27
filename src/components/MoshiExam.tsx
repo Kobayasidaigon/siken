@@ -28,6 +28,8 @@ import { EXAM_LIST, recordResult, type ExamSlug } from "@/lib/study-progress";
 import MoshiFormatFeedback from "@/components/MoshiFormatFeedback";
 import MoshiRound2Interest from "@/components/MoshiRound2Interest";
 import Moshi2Offer from "@/components/Moshi2Offer";
+import MoshiReminderForm from "@/components/MoshiReminderForm";
+import { nextExamYmd } from "@/lib/exam-dates";
 import { moshi2ProductOf } from "@/lib/moshi2-products";
 import StudioLink from "@/components/StudioLink";
 
@@ -457,6 +459,22 @@ export default function MoshiExam({
   );
   const weakest = fieldsSorted.find(([, s]) => s.correct < s.total);
 
+  // 第2回オファーの判定用の要約。問別配点の試験(東商IBT型)は点で、それ以外は問数で不足を出す。
+  const earnedPoints = questions.reduce(
+    (s, q, i) => s + (answers[i] === q.correctAnswer ? (q.points ?? pointsPerQuestion ?? 1) : 0),
+    0,
+  );
+  const fullPoints = questions.reduce((s, q) => s + (q.points ?? pointsPerQuestion ?? 1), 0);
+  const offerResult = {
+    passed,
+    gap: passPoints != null ? passPoints - earnedPoints : passCount - score,
+    unit: (passPoints != null ? "点" : "問") as "点" | "問",
+    passLine: passPoints ?? passCount,
+    scale: passPoints != null ? fullPoints : questions.length,
+    worstCategory: weakest?.[0],
+    worstPct: weakest ? Math.round((weakest[1].correct / weakest[1].total) * 100) : undefined,
+  };
+
   return (
     <div>
       <section className="card p-6 text-center mb-6">
@@ -512,10 +530,26 @@ export default function MoshiExam({
           第2回そのものを受けている画面では出さない(round === 1 の条件)。 */}
       {round === 1 &&
         (moshi2ProductOf(exam) ? (
-          <Moshi2Offer certId={exam} place="moshi_result" />
+          <Moshi2Offer certId={exam} place="moshi_result" result={offerResult} />
         ) : (
           <MoshiRound2Interest exam={exam} round={round} />
         ))}
+
+      {/* 結果のまとめ + 試験日までの学習リマインド(メール登録)。2026-09-22 追加。
+          完了者との再接点をつくる。保存先は Studio の API(lib/moshi-reminder.ts)。
+          第2回オファーの直後に置き、オファーの位置(判定の直後)は動かさない。 */}
+      {round === 1 && (
+        <MoshiReminderForm
+          certId={exam}
+          certName={EXAM_LIST.find((e) => e.slug === exam)?.name ?? exam}
+          round={round}
+          score={score}
+          result={offerResult}
+          topPath={topPath}
+          moshi2Path={moshi2ProductOf(exam) ? `/${exam}/moshi2/` : null}
+          defaultExamDate={nextExamYmd(exam)}
+        />
+      )}
 
       {/* 課題(セクション)別の判定 */}
       {sectionStats.length > 0 && (

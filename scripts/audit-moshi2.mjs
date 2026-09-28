@@ -65,6 +65,13 @@ const TARGETS = [
   { certId: "eco",      name: "eco検定",                     expect: 50  },
 ];
 
+// 第1回のうち、練習問題からの編成ではなく模試専用に書き下ろした問題(無料で公開)。
+// 第2回がこれと重複すると「第1回と1問も重複しない」が崩れるので、無料の問題として
+// 第2回と照合する。問題そのものも第2回と同じ基準で監査する(下の「第1回の模試専用問題」)。
+const MOSHI1_ONLY = [
+  { certId: "pii", file: "src/lib/pii-moshi1-kadai1.ts", expect: 50 },
+];
+
 /** *-moshi2.ts をブロック分割して読む(TSを実行せずテキストとして解析)。 */
 function readMoshi2(file) {
   if (!fs.existsSync(file)) return [];
@@ -127,6 +134,12 @@ function readFreeBank(certId) {
     if (qt) texts.set(norm(qt), slug);
     if (fd) fields.add(fd.trim());
     if (qt && chs[ca - 1]) gists.push({ slug, gist: norm(qt + chs[ca - 1]) });
+  }
+  for (const m of MOSHI1_ONLY.filter((x) => x.certId === certId)) {
+    for (const it of readMoshi2(m.file)) {
+      texts.set(norm(it.q), it.id);
+      gists.push({ slug: it.id, gist: norm(it.q + (it.choices[it.answer - 1] ?? "")) });
+    }
   }
   return { texts, fields, gists };
 }
@@ -402,6 +415,82 @@ for (const t of TARGETS) {
   if (strayOx.length) v.push(`日本語以外の文字や英単語が混入: ${strayOx.join(", ")}`);
   if (noExp.length) v.push(`解説が無い問題が${noExp.length}問 (${noExp.slice(0, 3).join(", ")})`);
 
+  if (v.length) { anyViolation = true; console.log("\n  違反:"); v.forEach((x) => console.log("    - " + x)); }
+  else console.log("  → 監査OK");
+}
+
+/* ---- 第1回の模試専用問題の監査 ----
+   第2回と同じ基準(形式・正解位置の偏りと周期・正解肢の長さ・重複・分野名・位置への言及・
+   異種文字)に加え、各肢の解説(choiceNotes)が「正しい。」「誤り。」で始まり、その正誤が
+   問い方(正しいもの/誤っているもの)と正解に合っているかを見る。解説と正解の食い違いは、
+   読んでも見落としやすいのに学習者を最も混乱させる。 */
+const NEGATIVE_STEM = /誤っている|誤りである|適切でない|適切ではない|不適切|正しくない/;
+for (const m of MOSHI1_ONLY) {
+  if (ONLY.length && !ONLY.includes(m.certId)) continue;
+  const items = readMoshi2(m.file);
+  if (items.length === 0) continue;
+  anyData = true;
+  console.log(`\n[第1回の模試専用問題の監査] ${m.certId} — ${items.length}問  (${m.file})`);
+  const notesById = new Map();
+  for (const b of fs.readFileSync(m.file, "utf8").split(/\r?\n  \{\r?\n/).slice(1)) {
+    const id = (b.match(/id: "((?:[^"\\]|\\.)*)"/) || [])[1];
+    const nm = b.match(/choiceNotes: \[([\s\S]*?)\],\r?\n/);
+    if (id) notesById.set(id, nm ? [...nm[1].matchAll(/"((?:[^"\\]|\\.)*)"/g)].map((x) => x[1]) : []);
+  }
+  const { fields: freeFields } = readFreeBank(m.certId);
+  const v = [];
+  const pos = [0, 0, 0, 0];
+  const overGap = [];
+  const seen = new Map();
+  for (const it of items) {
+    const ch = it.choices;
+    const a = it.answer;
+    if (ch.length !== 4 || !(a >= 1 && a <= 4)) {
+      v.push(`${it.id}: 4択でない/正解番号が範囲外`);
+      continue;
+    }
+    pos[a - 1]++;
+    const lens = ch.map((c) => c.length);
+    if (lens[a - 1] - Math.max(...lens.filter((_, i) => i !== a - 1)) >= LIMITS.GAP_CHARS) overGap.push(it.id);
+    const notes = notesById.get(it.id) ?? [];
+    const blob = [it.q, it.explain, ...ch, ...notes].join(" ");
+    if (STRAY_SCRIPT.test(blob) || STRAY_LATIN.test(blob)) v.push(`${it.id}: 日本語以外の文字や英単語が混入`);
+    if (POS_REF.test(it.explain) || notes.some((x) => POS_REF.test(x))) v.push(`${it.id}: 解説が選択肢の位置に言及`);
+    if (freeFields.size && !freeFields.has(it.field)) v.push(`${it.id}: 分野名 "${it.field}" が練習問題と一致しない`);
+    if (!["A", "B", "C"].includes(it.difficulty)) v.push(`${it.id}: difficulty が A/B/C でない`);
+    const k = norm(it.q);
+    if (seen.has(k)) v.push(`${it.id}: 問題文が ${seen.get(k)} と重複`);
+    else seen.set(k, it.id);
+    const heads = notes.map((x) => (x.startsWith("正しい。") ? "正" : x.startsWith("誤り。") ? "誤" : "?"));
+    const want = NEGATIVE_STEM.test(it.q) ? "誤" : "正";
+    if (notes.length !== 4 || heads.includes("?")) {
+      v.push(`${it.id}: 各肢の解説が4つでないか、「正しい。」「誤り。」で始まっていない`);
+    } else if (heads.filter((h) => h === want).length !== 1 || heads[a - 1] !== want) {
+      v.push(`${it.id}: 各肢の解説の正誤(${heads.join("")})が正解(${a})と合わない`);
+    }
+  }
+  const n = items.length;
+  const maxPosPct = Math.round((Math.max(...pos) / n) * 1000) / 10;
+  const shown = items.map((it) => it.answer - 1);
+  const periodHits = [];
+  for (let k = LIMITS.PERIOD_MIN; k <= LIMITS.PERIOD_MAX; k++) {
+    for (let r = 0; r < k; r++) {
+      const cls = shown.filter((_, i) => i % k === r);
+      if (cls.length < 8) continue;
+      const freq = {};
+      for (const x of cls) freq[x] = (freq[x] || 0) + 1;
+      if (Math.max(...Object.values(freq)) / cls.length > LIMITS.PERIOD_SHARE) periodHits.push(`周期${k}の${r}番目`);
+    }
+  }
+  const negCount = items.filter((it) => NEGATIVE_STEM.test(it.q)).length;
+  console.log(`  正解位置の分布     : ${pos.join(" / ")}  (最大 ${maxPosPct}% / 上限 ${LIMITS.ANSWER_POS_PCT}%)`);
+  console.log(`  正解位置の周期性   : ${periodHits.length}件  [上限 0件]`);
+  console.log(`  正解肢が${LIMITS.GAP_CHARS}字以上長い: ${overGap.length}問  [上限 ${LIMITS.GAP_RATIO_PCT}%]`);
+  console.log(`  誤っているもの型   : ${negCount}問 (${Math.round((negCount / n) * 100)}%)`);
+  if (n !== m.expect) v.push(`想定 ${m.expect}問 に対して ${n}問`);
+  if (maxPosPct > LIMITS.ANSWER_POS_PCT) v.push(`正解位置が${maxPosPct}%に偏っている`);
+  if (periodHits.length) v.push(`正解位置に周期パターンがある: ${periodHits.join(", ")}`);
+  if ((overGap.length / n) * 100 > LIMITS.GAP_RATIO_PCT) v.push(`正解肢が長すぎる問題: ${overGap.join(", ")}`);
   if (v.length) { anyViolation = true; console.log("\n  違反:"); v.forEach((x) => console.log("    - " + x)); }
   else console.log("  → 監査OK");
 }

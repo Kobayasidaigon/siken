@@ -16,7 +16,7 @@ import FreeLeadCTA from "@/components/FreeLeadCTA";
 import { EXAM_AFFILIATE } from "@/lib/affiliate-links";
 import { decideCtaPriority } from "@/lib/cta-priority";
 import { recordResult, type ExamSlug } from "@/lib/study-progress";
-import { studioMoshiHref } from "@/lib/studio-cta";
+import { studioMoshiHref, studioResultCopy } from "@/lib/studio-cta";
 import StudioLink from "@/components/StudioLink";
 
 export interface MockQuestion {
@@ -231,6 +231,15 @@ export default function MockExam({
   const allPerfect = correctCount === pool.length;
   // 合格基準(資格別 passPct。貸金は 30/50＝60%)を目安にした簡易判定
   const passLikely = pct >= passPct;
+  // Studio 枠の文言。合格ライン(目安)の問題数との差と、間違えた数・最弱分野で出し分ける
+  const studioCopy = studioResultCopy({
+    exam,
+    wrong: pool.length - correctCount,
+    passed: passLikely,
+    gap: Math.ceil((passPct * pool.length) / 100) - correctCount,
+    unit: "問",
+    weakField: weakest ? { name: weakest[0], ...weakest[1] } : null,
+  });
 
   return (
     <div>
@@ -317,24 +326,18 @@ export default function MockExam({
         </aside>
       )}
 
-      {/* Studio 送客。弱点分野が出ていれば、その分野を引き継いで送る
-          (着地先で何も入力せずに弱点の問題を作れる状態にする) */}
+      {/* Studio 送客。弱点分野が出ていれば ?theme= で渡す(トップ行きの資格は登録後の作成画面まで
+          引き継ぐが、資格別 LP は今は引き継がない)。文言は点数・合否で出し分ける(studioResultCopy) */}
       <aside className="mb-6 p-4 rounded-lg border border-indigo-200 bg-indigo-50">
-        <p className="text-xs font-bold mb-1 text-indigo-900">
-          {weakest ? `${weakest[0]}を、いま10問だけ解く` : "間違えた問題だけ、自動で復習"}
-        </p>
-        <p className="text-xs leading-relaxed mb-2 text-indigo-900/80">
-          {weakest
-            ? `${weakest[0]}が ${weakest[1].correct}/${weakest[1].total} でした。姉妹サービス「シカクモン Studio」なら、この分野の問題をAIがその場で作ります。間違えた問題は忘却曲線で自動的に再出題されます。`
-            : "今回の取りこぼしを忘れる前に。資格名や手元の教材から作った問題を忘却曲線で自動復習できる姉妹サービス「シカクモン Studio」。"}
-        </p>
+        <p className="text-xs font-bold mb-1 text-indigo-900">{studioCopy.heading}</p>
+        <p className="text-xs leading-relaxed mb-2 text-indigo-900/80">{studioCopy.body}</p>
         <StudioLink
           href={studioMoshiHref(exam, weakest?.[0], "mock_result")}
           placement="mock_result"
           exam={exam}
           className="text-xs font-bold inline-flex items-center gap-1 no-underline text-indigo-600 hover:underline"
         >
-          {weakest ? `${weakest[0]}の問題を作る →` : "シカクモン Studio を無料で試す →"}
+          {`${studioCopy.linkLabel} →`}
         </StudioLink>
       </aside>
 

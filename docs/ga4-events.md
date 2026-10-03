@@ -64,9 +64,15 @@ GA4 の「収益」は **`purchase` イベントの `value` と `currency` か�
 | `cta_impression` | A8 の広告リンクが画面に入ったとき | `course`, `placement` |
 | `affiliate_click` | A8 の広告リンクのクリック | `course`, `placement` |
 | `studio_click` | シカクモン Studio への送客（全9箇所） | `placement`, `exam` |
+| `studio_cta_impression` | Studio への送客リンクが画面に半分入ったとき（2026-10-03 追加。`StudioLink` の全設置箇所） | `placement`, `exam` |
 | `countdown_view` | 試験日・申込締切のカウントダウンの表示 | `mode`(apply/exam), `days_left`, `path` |
 | `calendar_add` | 試験日・締切をカレンダーに追加 | `kind`(apply/exam), `target`(google/ics), `placement` |
 | `column_scroll_75` | コラムを 75% まで読んだ | `article` |
+
+`studio_cta_impression` は `cta_impression`（A8）と同じ作りで、1 つのリンクにつき 1 ページ表示あたり 1 回。
+パラメータを `studio_click` とそろえてあるので、表示→クリック率は `placement`（と `exam`）ごとにそのまま割れる。
+問題ページの枠は答え合わせの後にしか描画されないので、分母は「答え合わせをして、枠まで画面を進めた回数」になる。
+Studio 側の依頼文では資格を `cert` と書いていたが、既存の `studio_click` と同じ `exam`（カスタム定義に登録済み）にした。
 
 `studio_click` の `placement` は **`affiliate_click` と同じ語彙**（`question_result` /
 `moshi_result` / `mock_result` / `column_footer` など）にしてある。

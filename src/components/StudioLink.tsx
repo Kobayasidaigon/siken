@@ -15,9 +15,17 @@
  *
  * 見た目は変えない。既存の各設置箇所の className / style をそのまま受け取り、
  * 同じ <a> を出す。計測が乗るだけで、リンクの挙動も表示も従来どおり。
+ *
+ * 表示計測(studio_cta_impression) — 2026-10-03 追加:
+ * Studio 導線は表示回数が測れておらず、「押されない」のか「見られていない」のかを
+ * 分けられなかった(問題結果の枠は「次の問題へ」より下にある)。AffiliateLink の
+ * cta_impression と同じ作りで、アンカー自身が 50% 以上見えたら一度だけ送る。
+ * DOM は 1 要素も足さない。パラメータは studio_click と同じ placement / exam
+ * (exam = 資格。カスタムディメンション登録済み)にして、表示→クリック率を
+ * placement × exam でそのまま割れるようにする。
  */
 
-import type { CSSProperties, ReactNode } from "react";
+import { useEffect, useRef, type CSSProperties, type ReactNode } from "react";
 import { sendGAEvent } from "@next/third-parties/google";
 import type { ExamSlug } from "@/lib/study-progress";
 
@@ -49,8 +57,33 @@ export default function StudioLink({
   style?: CSSProperties;
   children: ReactNode;
 }) {
+  const ref = useRef<HTMLAnchorElement | null>(null);
+  const fired = useRef(false);
+  const examParam = exam ?? "none";
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el || fired.current || typeof IntersectionObserver === "undefined") return;
+    const io = new IntersectionObserver(
+      (entries) => {
+        if (fired.current || !entries.some((e) => e.isIntersecting)) return;
+        fired.current = true;
+        io.disconnect();
+        try {
+          sendGAEvent("event", "studio_cta_impression", { placement, exam: examParam });
+        } catch {
+          /* GA未ロードでも表示は妨げない */
+        }
+      },
+      { threshold: 0.5 }
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, [placement, examParam]);
+
   return (
     <a
+      ref={ref}
       href={href}
       target="_blank"
       rel="noopener noreferrer"
@@ -58,7 +91,7 @@ export default function StudioLink({
       style={style}
       onClick={() => {
         try {
-          sendGAEvent("event", "studio_click", { placement, exam: exam ?? "none" });
+          sendGAEvent("event", "studio_click", { placement, exam: examParam });
         } catch {
           /* GA未ロードでも遷移は妨げない */
         }

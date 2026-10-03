@@ -1,5 +1,13 @@
 # 変更履歴
 
+## 2026-10-03 Studio 送客リンクの表示計測(studio_cta_impression)
+
+Studio への送客(`studio_click`)は 9/8 から測っているが、表示回数が無く「押されない」のか「見られていない」のかを
+分けられなかった(問題ページの枠は「次の問題へ」より下にある)。`StudioLink` に A8 の `cta_impression` と同じ作りの
+表示計測を足した(アンカー自身が 50% 以上見えたら 1 回だけ。DOM は増やしていない)。
+パラメータは `studio_click` と同じ `placement` / `exam`。見た目・リンク先・広告枠は変えていない。
+Studio 側の計画と判定は shikakumon-studio の `docs/growth/`。
+
 ## 2026-09-25 AdSense 再申請の準備(問題ページの noindex・サイトの紐付け・運営者ページ)
 
 5月に審査NG、6月に広告0枚のままスクリプトが表示を遅くしていたため AdSense を撤去していた(`ccc09b4`)。

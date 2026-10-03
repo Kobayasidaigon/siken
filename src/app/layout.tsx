@@ -3,7 +3,7 @@ import { Noto_Sans_JP, Noto_Serif_JP } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import "./globals.css";
-import StudioLink from "@/components/StudioLink";
+import StudioNavLink from "@/components/StudioNavLink";
 import MobileNav from "@/components/MobileNav";
 import { ADSENSE_CLIENT } from "@/lib/adsense";
 
@@ -148,8 +148,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <a href="/column/" className="text-[color:var(--c-text-sub)] hover:text-[color:var(--c-ink)] no-underline transition-colors">コラム</a>
               <a href="/study/" className="text-[color:var(--c-text-sub)] hover:text-[color:var(--c-ink)] no-underline transition-colors">学習履歴</a>
               <a href="/about/" className="text-[color:var(--c-text-sub)] hover:text-[color:var(--c-ink)] no-underline transition-colors">サイトについて</a>
-              <StudioLink
-                href="https://studio.shikakumon.com/?utm_source=shikakumon&utm_medium=referral&utm_content=header"
+              <StudioNavLink
                 placement="header"
                 className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-bold no-underline transition-colors"
                 style={{ background: "var(--c-chizai-soft)", color: "var(--c-chizai-ink)" }}
@@ -161,7 +160,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 >
                   AI
                 </span>
-              </StudioLink>
+              </StudioNavLink>
             </nav>
           </div>
         </header>
@@ -207,8 +206,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 <h4 className="text-[color:var(--c-ink)] font-bold mt-6 mb-3 text-xs font-serif">関連サービス</h4>
                 <ul className="space-y-2">
                   <li>
-                    <StudioLink
-                      href="https://studio.shikakumon.com/?utm_source=shikakumon&utm_medium=referral&utm_content=footer"
+                    <StudioNavLink
                       placement="footer"
                       className="no-underline inline-flex items-center gap-1"
                       style={{ color: "var(--c-chizai)" }}
@@ -217,7 +215,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                       <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                         <path strokeLinecap="round" strokeLinejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                       </svg>
-                    </StudioLink>
+                    </StudioNavLink>
                     <p className="text-[11px] text-[color:var(--c-text-sub)] mt-0.5 leading-relaxed">
                       テキストから AI が問題を作る
                     </p>

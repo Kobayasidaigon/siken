@@ -74,6 +74,12 @@ GA4 の「収益」は **`purchase` イベントの `value` と `currency` か�
 問題ページの枠は答え合わせの後にしか描画されないので、分母は「答え合わせをして、枠まで画面を進めた回数」になる。
 Studio 側の依頼文では資格を `cert` と書いていたが、既存の `studio_click` と同じ `exam`（カスタム定義に登録済み）にした。
 
+`exam` は資格が決まる面だけに付き、付かないときは `none`。2026-10-03 から **`header` / `footer` も資格のページでは `exam` が付く**
+（`studio_click` / `studio_cta_impression` とも）。資格のページは `/<資格>/…`・貸金の `/q/` `/field/` `/exam/` `/topic/`・
+資格のコラム（判定は `studio-cta.ts` の `certFromPath`）で、行き先も問題結果の枠と同じ資格別 LP（LP の無い資格はトップに `?exam=`）になった。
+資格でないページ（トップ・コラム一覧・学習履歴・about など）は従来どおり `none` でトップ行き。それより前の `header` / `footer` はすべて `none`。
+同じ日から `column_footer` の行き先も、LP の無い資格（賃管士・管業）と旧形式の貸金コラムで資格を引き継ぐ（`exam` パラメータは以前から付いている）。
+
 `studio_click` の `placement` は **`affiliate_click` と同じ語彙**（`question_result` /
 `moshi_result` / `mock_result` / `column_footer` など）にしてある。
 同じ面の A8 と Studio を並べて比べるためで、`utm_content` とは別物。

@@ -19,8 +19,10 @@
  *   LP が揃ったので、本体が問題を持つ資格は全て資格別 LP へ送る (知財 3級/2級・
  *   IT パスポートは既存 LP へ)。マッピングに無い資格 (賃管士・管業・情報セキュリティ
  *   管理士・教員採用・社会福祉士) は従来どおり汎用文言 + トップページのまま。
+ *   2026-10-03 にヘッダー・フッターも、資格のページの上では同じ行き先にした
+ *   (certFromPath と components/StudioNavLink.tsx)。
  */
-import type { ExamSlug } from "./study-progress";
+import { EXAM_LIST, type ExamSlug } from "./study-progress";
 
 const STUDIO_ORIGIN = "https://studio.shikakumon.com";
 
@@ -147,14 +149,64 @@ const GENERIC: Omit<CertCta, "lp"> = {
   linkLabel: "シカクモン Studio を見る",
 };
 
+/** 本体の全資格 ID。`in` だと "constructor" 等の継承プロパティにも当たるので Set で引く */
+const EXAM_SLUGS = new Set<string>(EXAM_LIST.map((e) => e.slug));
+
+/**
+ * 接頭辞の無い旧形式の貸金コラム (サイト初期は貸金だけだったため)。
+ * column/page.tsx の examGroups (貸金) と column/[slug]/page.tsx の
+ * KASHIKIN_LEGACY_SLUGS と同じ 7 本。
+ */
+const KASHIKIN_LEGACY_COLUMN_SLUGS = new Set([
+  "goukakuritsu",
+  "benkyouhou",
+  "osusume-text",
+  "shiken-nittei",
+  "kashikingyou-toha",
+  "benkyou-jikan",
+  "takken-hikaku",
+]);
+
 /**
  * コラムのスラッグから資格を判定する。
  * 既存ページと同じ `<資格>-` 接頭辞の流儀 (chizai2- は chizai と別物なので、
  * 最初のハイフンまでを資格 ID として厳密に取る)。
+ *
+ * 2026-10-03 から資格別 LP の無い資格 (賃管士・管業など) と旧形式の貸金コラムも
+ * 資格として返す。それまでは LP のある資格しか返さず、これらのコラムからの送客は
+ * 資格が落ちていた。LP の有無による行き先・文言の出し分けは studioCtaFor が持つ。
  */
 export function certFromColumnSlug(slug: string): ExamSlug | null {
+  if (KASHIKIN_LEGACY_COLUMN_SLUGS.has(slug)) return "kashikin";
   const head = slug.split("-")[0];
-  return head in CERT_CTA ? (head as ExamSlug) : null;
+  return EXAM_SLUGS.has(head) ? (head as ExamSlug) : null;
+}
+
+/**
+ * 貸金だけが使う、資格名の付かない URL (それぞれの一覧ページを含む)。
+ * /q/<問題>/ は EXAM_LIST の questionPathPrefix。/topic/<論点>/ は貸金の論点まとめ
+ * (topic-hubs.ts の KASHIKIN_TOPIC_HUBS。他資格は /<資格>/topic/ の下にある)。
+ */
+const KASHIKIN_ROOT_PREFIXES = ["/field/", "/exam/", "/topic/"];
+
+/**
+ * ページのパスから資格を判定する。ヘッダー・フッターの Studio リンクの行き先用
+ * (components/StudioNavLink.tsx。layout は server component でパスを知らないため)。
+ *
+ * 資格のページ = EXAM_LIST の topPath / questionPathPrefix の配下 (模試・分野・論点も
+ * `/<資格>/` の下にある)、貸金の旧 URL、資格のコラム (certFromColumnSlug と同じ規則)。
+ * それ以外 (トップ・コラム一覧・学習履歴・about など) は null = 従来どおりトップ行き。
+ * trailingSlash: true だが、末尾の / はあってもなくても同じ結果になるようにしてある。
+ */
+export function certFromPath(pathname: string): ExamSlug | null {
+  const path = pathname.endsWith("/") ? pathname : `${pathname}/`;
+  const column = /^\/column\/([^/]+)\/$/.exec(path);
+  if (column) return certFromColumnSlug(column[1]);
+  const exam = EXAM_LIST.find(
+    (e) => path.startsWith(e.topPath) || path.startsWith(e.questionPathPrefix)
+  );
+  if (exam) return exam.slug;
+  return KASHIKIN_ROOT_PREFIXES.some((p) => path.startsWith(p)) ? "kashikin" : null;
 }
 
 /**

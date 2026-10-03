@@ -51,7 +51,7 @@ export default function StudioLink({
    * 固定されているので動かさない。
    */
   placement: string;
-  /** 資格が確定している面だけ渡す(トップ・フッターなど汎用面は省略) */
+  /** 資格が確定している面だけ渡す(トップなど汎用面は省略。ヘッダー・フッターは資格のページでだけ渡る) */
   exam?: ExamSlug;
   className?: string;
   style?: CSSProperties;

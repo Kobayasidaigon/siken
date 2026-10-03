@@ -14,6 +14,13 @@
  *
  * 見た目・文言は呼び出し側(layout.tsx)が今までどおり持つ。placement と utm_content は
  * 従来と同じ header / footer をそのまま使う。
+ *
+ * layout に常駐するので、ページ内の遷移では作り直されない。資格が変わったら
+ * StudioLink を作り直し(key)、表示計測(studio_cta_impression)を新しい資格で送り直す。
+ *
+ * 既知の制限: 資格のパス配下の存在しない URL(例 /pii/foo/)は事前生成の 404 が返り、
+ * サーバーは /_not-found として行き先をトップで描く一方、ブラウザは /pii/ と判定するので、
+ * 行き先はトップのまま計測だけ exam=pii になる。404 ページに限られるので受け入れる。
  */
 
 import type { CSSProperties, ReactNode } from "react";
@@ -37,6 +44,7 @@ export default function StudioNavLink({
 
   return (
     <StudioLink
+      key={exam ?? "none"}
       href={studioCtaFor(exam, placement).href}
       placement={placement}
       exam={exam ?? undefined}

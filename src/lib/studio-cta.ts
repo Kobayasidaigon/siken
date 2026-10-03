@@ -21,6 +21,7 @@
  *   管理士・教員採用・社会福祉士) は従来どおり汎用文言 + トップページのまま。
  *   2026-10-03 にヘッダー・フッターも、資格のページの上では同じ行き先にした
  *   (certFromPath と components/StudioNavLink.tsx)。
+ *   同日、本番形式テスト・模試の結果画面の文言を点数に連動させた (studioResultCopy)。
  */
 import { EXAM_LIST, type ExamSlug } from "./study-progress";
 
@@ -298,4 +299,92 @@ export function studioMoshiHref(
   const field = (weakField ?? "").trim();
   if (field) params.set("theme", field.slice(0, 40));
   return `${STUDIO_ORIGIN}${path}?${params.toString()}`;
+}
+
+/** 結果画面の Studio 枠の文言 (リンク先は studioMoshiHref が組む) */
+export type StudioResultCopy = Omit<StudioCta, "href">;
+
+export type StudioResultInput = {
+  exam: ExamSlug;
+  /** 間違えた問題数 (未解答を含む) */
+  wrong: number;
+  /**
+   * 合格ライン (目安) に届いたか。画面の判定表示と同じ値を渡す
+   * (ただし総合の不足が残るのに合格と判定される場合は false にする。MoshiExam の注記)
+   */
+  passed: boolean;
+  /**
+   * 合格ラインまでの不足 (unit の単位)。届いていれば 0 以下。
+   * 課題別の基準 (個情保・IT パス) の不足が総合の不足より大きいときは、総合の不足を取り返しても
+   * 合格しないので 0 を渡す (未合格で 0 以下なら「課題別の基準に未達」と書く)
+   */
+  gap: number;
+  /** 問別配点で判定する模試は "点"、それ以外は "問" */
+  unit: "問" | "点";
+  /** 正答率がいちばん低い分野 */
+  weakField: { name: string; correct: number; total: number } | null;
+};
+
+/**
+ * 本番形式テスト (mock_result)・模試 (moshi_result) の結果画面の Studio 枠の文言。
+ * 2026-10-03 (Studio 側の計画 2-9)。それまでは最弱分野だけで文言が決まり、
+ * 合格ラインに届いたか・全問正解かに関係なく「◯◯を、いま10問だけ解く」だった。
+ * 点数を見た直後の人に、合格ラインとの差・間違えた数・最弱分野を添えて出し分ける。
+ *
+ * 行き先 (studioMoshiHref) で本当にできることだけを書く:
+ *   - 本体で間違えた問題は Studio に取り込まれない。「間違えた問題を Studio で復習」とは書かない
+ *     (忘却曲線の再出題は Studio の AI が作った問題の話として書く)。
+ *   - 問題集を作るには無料登録が要る。LP は ?theme= を登録後に引き継がないので、
+ *     「分野が入った状態で開く」とも書かない。
+ *   - 登録なしで解けるのは資格別 LP のサンプル (CERT_CTA の前提)。トップ行きの資格では言わない。
+ */
+export function studioResultCopy(r: StudioResultInput): StudioResultCopy {
+  const lp = CERT_CTA[r.exam];
+  const sample = lp ? "登録なしの1問から試せます。" : "";
+  // 「解いた問題は」だと今回の本体の問題とも読めるので、AI が作った問題の再出題として続ける
+  const review = "忘却曲線に沿って後日また出題します。";
+  const genericLink = lp ? lp.linkLabel : "シカクモン Studio を無料で試す";
+
+  if (r.wrong <= 0) {
+    return {
+      heading: "全問正解。この状態を本番まで保つ",
+      body: `姉妹サービス「シカクモン Studio」なら、無料登録で資格名と分野を選ぶだけでAIが問題を作り、${review}${sample}`,
+      linkLabel: genericLink,
+    };
+  }
+
+  // 本番形式テストは全問正解でも最弱分野を返すので、間違いのある分野だけ使う
+  const weak = r.weakField && r.weakField.correct < r.weakField.total ? r.weakField : null;
+  // 分野名には「いま地球で起きていること」(eco) のような文の形もあり、前後の語とつながって
+  // 読めてしまう (「無料登録していま地球で…」) ので、かぎかっこで区切る (第2回オファーと同じ書き方)
+  const field = weak ? `「${weak.name}」` : "";
+  const studio = weak
+    ? `姉妹サービス「シカクモン Studio」なら、無料登録でこの分野の問題をAIが作り、${review}`
+    : `姉妹サービス「シカクモン Studio」なら、無料登録で資格名と分野を選ぶだけでAIが問題を作り、${review}`;
+  const linkLabel = weak ? `無料登録して${field}の問題を作る` : genericLink;
+
+  if (r.passed) {
+    return {
+      heading: weak ? `合格ラインに到達。あとは${field}を詰める` : `合格ラインに到達。残り${r.wrong}問を詰める`,
+      body:
+        (weak
+          ? `落としたのは${r.wrong}問で、${field}が ${weak.correct}/${weak.total} でした。`
+          : `落としたのは${r.wrong}問でした。`) +
+        studio +
+        sample,
+      linkLabel,
+    };
+  }
+
+  const toPass = r.gap > 0 ? `合格ラインまであと${r.gap}${r.unit}` : "課題別の基準に未達";
+  return {
+    heading: weak ? `${toPass}。${field}から固める` : toPass,
+    body:
+      (weak
+        ? `${field}が ${weak.correct}/${weak.total}、全体で${r.wrong}問を落としました。`
+        : `全体で${r.wrong}問を落としました。`) +
+      studio +
+      sample,
+    linkLabel,
+  };
 }

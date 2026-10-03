@@ -474,12 +474,18 @@ export default function MoshiExam({
     worstCategory: weakest?.[0],
     worstPct: weakest ? Math.round((weakest[1].correct / weakest[1].total) * 100) : undefined,
   };
-  // Studio 枠の文言。合否・合格ラインとの差(第2回オファーと同じ値)・間違えた数・最弱分野で出し分ける
+  // Studio 枠の文言。合否・合格ラインとの差(第2回オファーと同じ値)・間違えた数・最弱分野で出し分ける。
+  // 課題別の不足の合計が総合の不足より大きいと、総合の不足だけ取り返しても合格しない(個情保で課題Ⅰ 19/50・
+  // 総合 69 なら、総合はあと1問でも課題Ⅰはあと16問)。そのときは数字を出さない(gap 0 = 課題別の基準に未達)。
+  // また isPassed は課題別の基準を満たすと総合を見ずに合格にする(IT パスは総合 60 問も要る)ので、
+  // 総合の不足が残る間は合格扱いにしない
+  const sectionGap = sectionStats.reduce((s, sec) => s + Math.max(0, sec.passCount - sec.correct), 0);
   const studioCopy = studioResultCopy({
     exam,
     wrong: questions.length - score,
-    passed,
-    gap: offerResult.gap,
+    passed: passed && offerResult.gap <= 0,
+    gap:
+      sectionGap > 0 && (offerResult.unit === "点" || sectionGap > offerResult.gap) ? 0 : offerResult.gap,
     unit: offerResult.unit,
     weakField: weakest ? { name: weakest[0], ...weakest[1] } : null,
   });

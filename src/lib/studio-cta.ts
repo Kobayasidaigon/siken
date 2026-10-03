@@ -308,11 +308,15 @@ export type StudioResultInput = {
   exam: ExamSlug;
   /** 間違えた問題数 (未解答を含む) */
   wrong: number;
-  /** 合格ライン (目安) に届いたか。画面の判定表示と同じ値を渡す */
+  /**
+   * 合格ライン (目安) に届いたか。画面の判定表示と同じ値を渡す
+   * (ただし総合の不足が残るのに合格と判定される場合は false にする。MoshiExam の注記)
+   */
   passed: boolean;
   /**
    * 合格ラインまでの不足 (unit の単位)。届いていれば 0 以下。
-   * 課題別の基準だけ未達 (個情保など) のときも 0 以下になる
+   * 課題別の基準 (個情保・IT パス) の不足が総合の不足より大きいときは、総合の不足を取り返しても
+   * 合格しないので 0 を渡す (未合格で 0 以下なら「課題別の基準に未達」と書く)
    */
   gap: number;
   /** 問別配点で判定する模試は "点"、それ以外は "問" */
@@ -351,17 +355,20 @@ export function studioResultCopy(r: StudioResultInput): StudioResultCopy {
 
   // 本番形式テストは全問正解でも最弱分野を返すので、間違いのある分野だけ使う
   const weak = r.weakField && r.weakField.correct < r.weakField.total ? r.weakField : null;
+  // 分野名には「いま地球で起きていること」(eco) のような文の形もあり、前後の語とつながって
+  // 読めてしまう (「無料登録していま地球で…」) ので、かぎかっこで区切る (第2回オファーと同じ書き方)
+  const field = weak ? `「${weak.name}」` : "";
   const studio = weak
     ? `姉妹サービス「シカクモン Studio」なら、無料登録でこの分野の問題をAIが作り、${review}`
     : `姉妹サービス「シカクモン Studio」なら、無料登録で資格名と分野を選ぶだけでAIが問題を作り、${review}`;
-  const linkLabel = weak ? `無料登録して${weak.name}の問題を作る` : genericLink;
+  const linkLabel = weak ? `無料登録して${field}の問題を作る` : genericLink;
 
   if (r.passed) {
     return {
-      heading: weak ? `合格ラインに到達。あとは${weak.name}を詰める` : `合格ラインに到達。残り${r.wrong}問を詰める`,
+      heading: weak ? `合格ラインに到達。あとは${field}を詰める` : `合格ラインに到達。残り${r.wrong}問を詰める`,
       body:
         (weak
-          ? `落としたのは${r.wrong}問で、${weak.name}が ${weak.correct}/${weak.total} でした。`
+          ? `落としたのは${r.wrong}問で、${field}が ${weak.correct}/${weak.total} でした。`
           : `落としたのは${r.wrong}問でした。`) +
         studio +
         sample,
@@ -369,12 +376,12 @@ export function studioResultCopy(r: StudioResultInput): StudioResultCopy {
     };
   }
 
-  const toPass = r.gap > 0 ? `合格ラインまであと${r.gap}${r.unit}` : "合格まであと一歩";
+  const toPass = r.gap > 0 ? `合格ラインまであと${r.gap}${r.unit}` : "課題別の基準に未達";
   return {
-    heading: weak ? `${toPass}。${weak.name}から固める` : toPass,
+    heading: weak ? `${toPass}。${field}から固める` : toPass,
     body:
       (weak
-        ? `${weak.name}が ${weak.correct}/${weak.total}、全体で${r.wrong}問を落としました。`
+        ? `${field}が ${weak.correct}/${weak.total}、全体で${r.wrong}問を落としました。`
         : `全体で${r.wrong}問を落としました。`) +
       studio +
       sample,

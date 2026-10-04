@@ -133,7 +133,8 @@ export default async function ColumnPage({ params }: { params: Promise<{ slug: s
   const isChizai2Article = slug.startsWith("chizai2-");
 
   // 福祉住環境コーディネーター2級コラム（fukushi2-*）にユーキャン講座広告を表示
-  // 資格別 LP がある資格は、その LP へ資格ごとの文言で送る (無ければ従来の汎用)
+  // 資格別 LP がある資格は、その LP へ資格ごとの文言で送る (無ければ従来の汎用文言で
+  // トップへ。資格は ?exam= で渡す)
   const studioCta = studioCtaFor(certFromColumnSlug(slug), "column_footer");
 
   const isFukushi2Article = slug.startsWith("fukushi2-");
@@ -734,9 +735,9 @@ export default async function ColumnPage({ params }: { params: Promise<{ slug: s
         <p className="text-xs leading-relaxed mb-2" style={{ color: "var(--c-chizai-ink)" }}>
           {studioCta.body}
         </p>
-        {/* 遷移先の出し分け(資格別LPの有無)は certFromColumnSlug、計測の資格分解は
-            examFromColumnSlug。前者は LP のある2資格しか返さないので、計測にそのまま
-            使うと残りのコラムが資格不明で記録される。役割が違うので使い分ける。 */}
+        {/* 遷移先は certFromColumnSlug + studioCtaFor、計測の資格分解は examFromColumnSlug。
+            2026-10-03 から前者も LP の無い資格・旧形式の貸金コラムで資格を返すので、
+            どちらも同じ資格になる(以前は前者が LP のある資格しか返さなかった)。 */}
         <StudioLink
           href={studioCta.href}
           placement="column_footer"

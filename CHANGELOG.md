@@ -1,5 +1,18 @@
 # 変更履歴
 
+## 2026-10-03 ヘッダー・フッター・コラム末尾の Studio リンクを資格別の行き先に
+
+ヘッダー(PC 表示の「Studio AI」)とフッターの Studio リンクはどのページでも Studio のトップ `/` 行きで、
+資格のページの上でも資格を引き継いでいなかった(28日で header 23・footer 33 クリック)。資格のページ
+(`/<資格>/…`、貸金の `/q/`・`/field/`・`/exam/`・`/topic/`、資格のコラム)では、問題結果の枠と同じ `studioCtaFor` の
+行き先(資格別 LP。LP の無い資格はトップに `?exam=<正式名>`)にした。layout はパスを知らないので、リンクだけを
+`usePathname` で読むクライアント部品 `StudioNavLink` に切り出した(判定は `studio-cta.ts` の `certFromPath`)。
+見た目・文言・`placement`・`utm_content`(header / footer)は従来のまま。`studio_click` / `studio_cta_impression` に `exam` が入る。
+資格でないページ(トップ・コラム一覧・学習履歴・about など)は従来どおりトップ。
+コラム末尾(column_footer)も、LP の無い資格(賃管士・管業)と接頭辞の無い旧形式の貸金コラム 7 本で資格を取るようにした
+(賃管士・管業はトップに `?exam=`、旧形式の貸金コラムは貸金の LP と貸金の文言)。スマホのナビと about 本文のリンクは変えていない。
+Studio 側の計画は shikakumon-studio の `docs/growth/phase0.md` §5 の 2-4。
+
 ## 2026-10-03 Studio 送客リンクの表示計測(studio_cta_impression)
 
 Studio への送客(`studio_click`)は 9/8 から測っているが、表示回数が無く「押されない」のか「見られていない」のかを

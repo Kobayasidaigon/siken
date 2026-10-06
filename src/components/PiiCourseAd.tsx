@@ -8,13 +8,16 @@
 
 import AffiliateLink from "@/components/AffiliateLink";
 import FreeLeadCTA from "@/components/FreeLeadCTA";
+import SmartSetNote from "@/components/SmartSetNote";
 
 interface Props {
   headline?: string;
   body?: string;
+  /** 講座リンクの下に「試験と同時申込で3,300円引き」と金額を出す(資格トップだけ) */
+  setPrice?: boolean;
 }
 
-export default function PiiCourseAd({ headline, body }: Props = {}) {
+export default function PiiCourseAd({ headline, body, setPrice }: Props = {}) {
   const finalHeadline = headline ?? "独学に不安があれば";
   const finalBody = body ?? "個人情報保護士試験を実施している全日本情報学習振興協会では、公式の認定講座「SMART合格講座」を提供しています。試験範囲を体系的に学びたい方は検討してみてください。";
 
@@ -38,6 +41,7 @@ export default function PiiCourseAd({ headline, body }: Props = {}) {
         >
           個人情報保護士のSMART合格講座を見る →
         </AffiliateLink>
+        {setPrice && <SmartSetNote exam="pii" />}
       </div>
       <img
         width={1}

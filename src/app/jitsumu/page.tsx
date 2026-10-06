@@ -113,7 +113,7 @@ export default async function JitsumuPage() {
           どちらも条件を満たさなければ何も出ない */}
       <ExamVoicesSection exam="jitsumu" />
 
-      <JitsumuCourseAd headline={JITSUMU_TOP_AD.headline} body={JITSUMU_TOP_AD.body} />
+      <JitsumuCourseAd headline={JITSUMU_TOP_AD.headline} body={JITSUMU_TOP_AD.body} setPrice />
 
       {/* コラム */}
       {jitsumuColumns.length > 0 && (

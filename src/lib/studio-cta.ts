@@ -206,6 +206,8 @@ export const EXAM_FULL_NAMES: Record<ExamSlug, string> = {
   bijihou2: "ビジネス実務法務検定2級",
   itpass: "ITパスポート試験",
   isec: "情報・サイバーセキュリティ管理士認定試験",
+  isf: "情報・サイバーセキュリティ初級認定試験",
+  dxp: "DXパスポート試験",
   kyoin: "教員採用試験",
   shakai: "社会福祉士国家試験",
   chintai: "賃貸不動産経営管理士",

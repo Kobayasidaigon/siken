@@ -30,7 +30,7 @@ export type PracticeRoute = {
 
 /**
  * /<資格>/mock/ がある資格。全て20問・採点と分野別正答率つき。
- * 2026-09-07 に残り7資格ぶんを追加して全14資格に揃えた。2026-09-08 に isec を追加して15資格。
+ * 2026-09-07 に残り7資格ぶんを追加して全14資格に揃えた。2026-09-08 に isec を追加して15資格。2026-10-06 に isf / dxp を追加して17資格。
  */
 const HAS_MOCK: ExamSlug[] = [
   "kashikin",
@@ -50,6 +50,8 @@ const HAS_MOCK: ExamSlug[] = [
   "isec",
   "kyoin",
   "shakai",
+  "isf",
+  "dxp",
 ];
 
 /** /<資格>/moshi/ がある資格。本試験と同じ問数・時間の第1回模試(無料) */
@@ -73,6 +75,8 @@ const HAS_MOSHI: ExamSlug[] = [
   "isec",
   "kyoin",
   "shakai",
+  "isf",
+  "dxp",
 ];
 
 /**

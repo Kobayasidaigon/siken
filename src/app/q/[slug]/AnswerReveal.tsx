@@ -38,6 +38,9 @@ const RESULT_CTA_EXAMS: ExamSlug[] = [
   "kyoin",
   // 2026-09-09 追加。shakai もアガルート(4B3N6P系)の承認済み提携。
   "shakai",
+  // 2026-10-06 追加。isf / dxp も isec と同じ協会(SMART合格講座・4B1TI0系)。
+  "isf",
+  "dxp",
 ];
 
 const MEDAL_LABEL: Record<Medal, string> = { bronze: "🥉 銅", silver: "🥈 銀", gold: "🥇 金" };

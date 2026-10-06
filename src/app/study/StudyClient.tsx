@@ -46,6 +46,8 @@ export default function StudyClient({
     chintai: null,
     kangyo: null,
     isec: null,
+    isf: null,
+    dxp: null,
     kyoin: null,
     shakai: null,
   });

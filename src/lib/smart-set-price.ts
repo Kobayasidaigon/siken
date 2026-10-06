@@ -65,7 +65,7 @@ export function yen(n: number): string {
   return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
-/** 例: "30,800円" / "1級27,500円・2級23,100円" */
-export function formatPrices(rows: Price[]): string {
-  return rows.map((r) => `${r.grade ?? ""}${yen(r.yen)}円`).join("・");
+/** 例: ["30,800円"] / ["1級27,500円", "2級23,100円"]。画面では「・」でつなぐ */
+export function formatPrices(rows: Price[]): string[] {
+  return rows.map((r) => `${r.grade ?? ""}${yen(r.yen)}円`);
 }

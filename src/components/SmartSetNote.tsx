@@ -21,8 +21,18 @@ export default function SmartSetNote({ exam }: { exam: SmartSetExam }) {
         試験と同時に申し込むと{yen(SMART_SET_DISCOUNT_YEN)}円引き
       </span>
       <br />
-      講座のみ {formatPrices(p.courseOnly)}／講座＋試験 {formatPrices(p.withExam)}
+      講座のみ <Prices rows={formatPrices(p.courseOnly)} />／講座＋試験 <Prices rows={formatPrices(p.withExam)} />
       （税込・{SMART_SET_CHECKED}時点の協会公式ページの表示）
     </p>
   );
+}
+
+/** 「2級」と「23,100円」が行をまたいで分かれないよう、級＋金額の単位で折り返しを止める */
+function Prices({ rows }: { rows: string[] }) {
+  return rows.map((r, i) => (
+    <span key={r}>
+      {i > 0 && "・"}
+      <span className="whitespace-nowrap">{r}</span>
+    </span>
+  ));
 }

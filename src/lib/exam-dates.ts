@@ -97,6 +97,25 @@ export const ISEC_EXAMS: UpcomingExam[] = [
   { date: "2027-03-14", label: "第64回", applyStart: "2026-11-16", applyEnd: "2027-01-28" },
 ];
 
+// 情報・サイバーセキュリティ初級認定試験(旧・情報セキュリティ初級)。2026-10-06 追加。
+// 協会の令和8年度試験日程ページを引用する検索結果から取った(本環境から協会サイトへ到達できず、本文は未照合)。
+//   ・第63回 2026-11-29、申込 2026-07-28〜2026-10-22(JITSUMU_EXAMS 第71回と同じ日程・同じ申込期間)
+//   ・第64回 2027-02-21、申込 2026-10-27〜2027-01-14(JITSUMU_EXAMS 第72回と同じ)
+// TODO(isf): 公開前に協会の試験日程ページで回次・日付・申込期間を照合すること(締切CTAの期限になる)。
+export const ISF_EXAMS: UpcomingExam[] = [
+  { date: "2026-11-29", label: "第63回", applyStart: "2026-07-28", applyEnd: "2026-10-22" },
+  { date: "2027-02-21", label: "第64回", applyStart: "2026-10-27", applyEnd: "2027-01-14" },
+];
+
+// DXパスポート試験。2026-10-06 追加。出典は ISF_EXAMS と同じ(検索結果経由・本文未照合)。
+//   ・第19回 2027-01-31、申込 2026-09-15〜2026-12-24
+//   ・第20回 2027-04-18(申込期間は未確認のため省略。締切カウントダウンは出ない)
+// TODO(dxp): 公開前に協会の DXパスポート試験ページ・試験日程ページで照合すること。
+export const DXP_EXAMS: UpcomingExam[] = [
+  { date: "2027-01-31", label: "第19回", applyStart: "2026-09-15", applyEnd: "2026-12-24" },
+  { date: "2027-04-18", label: "第20回" },
+];
+
 // 出典: 賃貸不動産経営管理士協議会 chintaikanrishi.jp/exam/summary (令和8年度 試験実施要領)。
 // 2026-09-05 に協議会の要領を引用する予備校3社(スタディング・アガルート・伊藤塾)の一致で確認。
 // 申込は WEB 8/3 12:00〜9/30 23:59、郵送 8/3〜9/24 消印有効。applyEnd は WEB の締切を採用
@@ -130,6 +149,8 @@ export const EXAMS_BY_SLUG: Readonly<Record<string, UpcomingExam[]>> = {
   mynumber: MYNUMBER_EXAMS,
   jitsumu: JITSUMU_EXAMS,
   isec: ISEC_EXAMS,
+  isf: ISF_EXAMS,
+  dxp: DXP_EXAMS,
   chintai: CHINTAI_EXAMS,
   kangyo: KANGYO_EXAMS,
 };

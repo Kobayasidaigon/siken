@@ -10,6 +10,9 @@
     "indexnow": "node scripts/indexnow-ping.mjs",
     "stripe:check": "node scripts/check-stripe.mjs"
   },
+  "engines": {
+    "node": "22.x"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",

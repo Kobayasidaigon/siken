@@ -200,6 +200,24 @@ export const EXAM_AFFILIATE: Record<ExamSlug, AffiliateTarget> = {
     applyLabel: "協会公式サイトで申し込む",
     applyPixel: SMART_APPLY_PIXEL,
   },
+  // 情報・サイバーセキュリティ初級認定試験(isf)と DXパスポート試験(dxp)。2026-10-06 追加。
+  //   どちらも isec と同じ全日本情報学習振興協会の試験で、協会の「入口の試験」(A8 の成果条件が広告主新規のため)。
+  //   SMART合格講座は初級・DXとも 17,600円(試験と同時申込で3,300円引き。第三者情報経由・未照合)。
+  //
+  //   【A8リンク待ち】講座(href)と受験申込(applyHref)のリンクは、ユーザーが A8 管理画面で発行してから入れる
+  //     (既存リンクの a8mat から自前で作らない方針)。届くまでは、既存の SMART 無料登録リンク(発行済み)を
+  //     href に置いておく。届いたら href=講座、freeHref=無料登録、applyHref/applyPixel=申込 に入れ替える。
+  //   【要ユーザー確認】初級・DXの講座が A8 の成果報酬対象講座に入っているか(isec と同じく未確認)。
+  isf: {
+    href: "https://px.a8.net/svt/ejp?a8mat=4B1TI0+9T22IA+4LOQ+BW8O2&a8ejpredirect=https%3A%2F%2Fwww.joho-gakushu.jp%2Fsmart%2Fregistfree.php",
+    label: "無料登録してSMART講座を試し見る",
+    course: "isf",
+  },
+  dxp: {
+    href: "https://px.a8.net/svt/ejp?a8mat=4B1TI0+9T22IA+4LOQ+BW8O2&a8ejpredirect=https%3A%2F%2Fwww.joho-gakushu.jp%2Fsmart%2Fregistfree.php",
+    label: "無料登録してSMART講座を試し見る",
+    course: "dxp",
+  },
   // 賃貸不動産経営管理士。貸金業務取扱主任者(kashikin)と同じアガルートの
   //   承認済み提携(4B3N6P系)。アガルートは賃貸不動産経営管理士講座を持つ。
   //   ※LECも同資格の講座を持つため、成果が出ない場合は差し替えを検討できる。
@@ -319,4 +337,6 @@ export const RESULT_CTA_HEADLINE: Record<ExamSlug, string> = {
   shakai: "間違えた論点を体系的に整理するなら",
   chintai: "間違えた論点を体系的に整理するなら",
   kangyo: "間違えた論点を体系的に整理するなら",
+  isf: "間違えた論点を体系的に整理するなら",
+  dxp: "間違えた論点を体系的に整理するなら",
 };

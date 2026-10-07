@@ -110,6 +110,22 @@ const examGroups: ExamGroup[] = [
     matcher: (slug) => slug.startsWith("isec-"),
   },
   {
+    id: "isf",
+    examName: "情報・サイバーセキュリティ初級認定試験",
+    shortName: "情報セキュリティ初級",
+    topPath: "/isf/",
+    themeKey: "pii",
+    matcher: (slug) => slug.startsWith("isf-"),
+  },
+  {
+    id: "dxp",
+    examName: "DXパスポート試験",
+    shortName: "DXパスポート",
+    topPath: "/dxp/",
+    themeKey: "pii",
+    matcher: (slug) => slug.startsWith("dxp-"),
+  },
+  {
     id: "kyoin",
     examName: "教員採用試験（教職教養）",
     shortName: "教員採用試験",

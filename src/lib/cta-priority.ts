@@ -30,6 +30,8 @@ import {
   MYNUMBER_EXAMS,
   JITSUMU_EXAMS,
   ISEC_EXAMS,
+  ISF_EXAMS,
+  DXP_EXAMS,
   CHINTAI_EXAMS,
   KANGYO_EXAMS,
 } from "./exam-dates";
@@ -54,6 +56,9 @@ export const EXAM_SCHEDULES: Record<ExamSlug, UpcomingExam[]> = {
   itpass: [],
   // 情報・サイバーセキュリティ管理士。pii / mynumber / jitsumu と同じ協会の共通日程。
   isec: ISEC_EXAMS,
+  // 情報・サイバーセキュリティ初級・DXパスポート試験。どちらも同じ協会の試験(2026-10-06 追加)。
+  isf: ISF_EXAMS,
+  dxp: DXP_EXAMS,
   // 教員採用試験は都道府県・政令指定都市ごとに実施され、出願期間も試験日も自治体で違う。
   //   全国共通の「次回試験」が存在しないので日程は持たない(空の間はカウントダウンが出ず、
   //   答え合わせ直後CTAは Studio 優先になる)。itpass と同じ扱い。

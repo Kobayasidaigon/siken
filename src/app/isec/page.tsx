@@ -150,7 +150,7 @@ export default async function IsecPage() {
           どちらも条件を満たさなければ何も出ない */}
       <ExamVoicesSection exam="isec" />
 
-      <IsecCourseAd />
+      <IsecCourseAd setPrice />
 
       {/* 姉妹検定。同じ協会が同じ日程で実施する3試験へ内部で送る。
           bijimane / eco の「同じ東商検定を併願する方へ」と同じ役割。 */}

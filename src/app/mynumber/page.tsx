@@ -118,7 +118,7 @@ export default async function MynumberPage() {
           どちらも条件を満たさなければ何も出ない */}
       <ExamVoicesSection exam="mynumber" />
 
-      <MynumberCourseAd headline={MYNUMBER_TOP_AD.headline} body={MYNUMBER_TOP_AD.body} />
+      <MynumberCourseAd headline={MYNUMBER_TOP_AD.headline} body={MYNUMBER_TOP_AD.body} setPrice />
 
       {/* コラム */}
       {mynumberColumns.length > 0 && (

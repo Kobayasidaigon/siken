@@ -154,7 +154,7 @@ export default async function PiiPage() {
           どちらも条件を満たさなければ何も出ない */}
       <ExamVoicesSection exam="pii" />
 
-      <PiiCourseAd headline={PII_TOP_AD.headline} body={PII_TOP_AD.body} />
+      <PiiCourseAd headline={PII_TOP_AD.headline} body={PII_TOP_AD.body} setPrice />
 
       {/* コラム */}
       {piiColumns.length > 0 && (

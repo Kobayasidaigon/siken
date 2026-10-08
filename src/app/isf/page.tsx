@@ -115,7 +115,8 @@ export default async function IsfPage() {
         </div>
       </section>
 
-      {/* TODO(isf): 公開前に協会の試験内容ページで、問題数・時間・合格基準(課題ごとの70%の有無)・受験料を照合する */}
+      {/* 2026-10-07 に協会の /isme/・/isme/naiyou.php と SMART講座ページ(k_isf)で照合済み(80問・60分・受験料・課題名)。
+          合格基準は、協会の試験ページが「70%以上」、講座ページが「I〜IV 各々70%以上」と書いている。下は講座ページの表記。 */}
       <section className="mb-12">
         <h2 className="text-base font-bold text-[color:var(--c-ink)] mb-4 font-serif">試験の概要</h2>
         <div className="card p-5 text-sm text-[color:var(--c-text-sub)] space-y-2">
@@ -124,8 +125,7 @@ export default async function IsfPage() {
           </p>
           <p>
             <span className="font-bold text-[color:var(--c-ink)]">出題範囲</span>
-            　課題Ⅰ 情報セキュリティ総論／課題Ⅱ 脅威と情報セキュリティ対策①（紙媒体・社員・設備機器・モバイル機器）／課題Ⅲ
-            脅威と情報セキュリティ対策②（コンピュータ・インターネット・電子媒体・外部からの攻撃・不正プログラム）／課題Ⅳ
+            　課題Ⅰ 情報セキュリティ総論／課題Ⅱ 脅威と情報セキュリティ対策／課題Ⅲ サイバーセキュリティ対策／課題Ⅳ
             コンピュータの一般知識
           </p>
           <p>

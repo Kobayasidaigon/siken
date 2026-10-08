@@ -29,8 +29,8 @@ export default function IsfCourseAd({ headline, body }: Props = {}) {
       </p>
       <p className="text-xs text-[color:var(--c-text-sub)] mb-3">{finalHeadline}</p>
       <p className="text-sm text-[color:var(--c-text)] leading-relaxed mb-4">{finalBody}</p>
-      {/* isec と同じ並び(講座 → 無料登録)。A8 の講座・申込リンクが届くまでは、href に既存の無料登録リンクが
-          入っていて FreeLeadCTA は何も出さない(affiliate-links.ts の isf / dxp のコメント参照)。 */}
+      {/* isec と同じ並び(講座 → 無料登録)。リンクは affiliate-links.ts の isf / dxp
+          (2026-10-09 に A8 で発行した講座リンクへ差し替え、無料登録は freeHref へ移した)。 */}
       <div className="flex flex-col items-start gap-3">
         <AffiliateLink href={EXAM_AFFILIATE["isf"].href} course="isf" placement="course_ad">
           {EXAM_AFFILIATE["isf"].label} →

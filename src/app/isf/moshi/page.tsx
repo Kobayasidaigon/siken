@@ -50,7 +50,7 @@ export default async function IsfMoshiPage() {
       <div className="card p-5 mb-6 text-sm text-[color:var(--c-text-sub)] space-y-2 max-w-2xl">
         <p>
           <span className="font-bold text-[color:var(--c-ink)]">出題数</span>
-          　80問（課題Ⅰ 情報セキュリティ総論20問・課題Ⅱ 脅威と情報セキュリティ対策①20問・課題Ⅲ 脅威と情報セキュリティ対策②20問・課題Ⅳ コンピュータの一般知識20問／4肢択一）
+          　80問（課題Ⅰ 情報セキュリティ総論20問・課題Ⅱ 脅威と情報セキュリティ対策20問・課題Ⅲ サイバーセキュリティ対策20問・課題Ⅳ コンピュータの一般知識20問／4肢択一）
         </p>
         <p>
           <span className="font-bold text-[color:var(--c-ink)]">制限時間</span>　{ISF_MOSHI_TIME_LIMIT_MIN}
@@ -78,8 +78,8 @@ export default async function IsfMoshiPage() {
         topPath="/isf/"
         sections={[
           { label: "課題Ⅰ（情報セキュリティ総論）", start: 0, count: 20, passCount: 14 },
-          { label: "課題Ⅱ（脅威と対策①）", start: 20, count: 20, passCount: 14 },
-          { label: "課題Ⅲ（脅威と対策②）", start: 40, count: 20, passCount: 14 },
+          { label: "課題Ⅱ（脅威と情報セキュリティ対策）", start: 20, count: 20, passCount: 14 },
+          { label: "課題Ⅲ（サイバーセキュリティ対策）", start: 40, count: 20, passCount: 14 },
           { label: "課題Ⅳ（コンピュータの一般知識）", start: 60, count: 20, passCount: 14 },
         ]}
       />

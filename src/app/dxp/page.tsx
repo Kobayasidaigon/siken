@@ -115,7 +115,8 @@ export default async function DxpPage() {
         </div>
       </section>
 
-      {/* TODO(dxp): 公開前に協会の DXパスポート試験ページで、問題数・時間・2択/4択の内訳・合格基準・受験料を照合する */}
+      {/* 2026-10-07 に協会の dx/dx-passport/ と SMART講座ページ(dx-kentei/dx-passport.php)で照合済み。
+          合格基準はどちらも「70%以上」で、課題ごとの基準は書かれていない。配点は2択問題 計120点・4択問題 計240点(合計360点)。 */}
       <section className="mb-12">
         <h2 className="text-base font-bold text-[color:var(--c-ink)] mb-4 font-serif">試験の概要</h2>
         <div className="card p-5 text-sm text-[color:var(--c-text-sub)] space-y-2">
@@ -128,7 +129,7 @@ export default async function DxpPage() {
           </p>
           <p>
             <span className="font-bold text-[color:var(--c-ink)]">合格基準</span>
-            　各課題とも70%以上（問題の難易度により調整される場合がある）
+            　70%以上の得点（問題の難易度により調整される場合がある）
           </p>
           <p>
             <span className="font-bold text-[color:var(--c-ink)]">受験料</span>　9,350円（税込）

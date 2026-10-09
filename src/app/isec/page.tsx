@@ -115,6 +115,10 @@ export default async function IsecPage() {
         </div>
       </section>
 
+      {/* TODO(isec): 協会の現行の案内(/isme/・SMART講座 k_isme、2026-10-07 確認)では、管理士は
+          3課題(Ⅰ〜Ⅲ)・180問程度・120分。課題Ⅳ(コンピュータの一般知識)は初級だけ。
+          下の「100問」「課題Ⅳ」と、分野定義(isec-fields.ts の課題Ⅳ)・模擬試験(isec-moshi.ts、4課題×25問)は旧形式のまま。
+          作り直すかはユーザー判断待ち(2026-10-09 時点)。 */}
       <section className="mb-12">
         <h2 className="text-base font-bold text-[color:var(--c-ink)] mb-4 font-serif">試験の概要</h2>
         <div className="card p-5 text-sm text-[color:var(--c-text-sub)] space-y-2">
@@ -131,7 +135,7 @@ export default async function IsecPage() {
             　正答率70%（問題の難易度により調整される場合がある）
           </p>
           <p>
-            <span className="font-bold text-[color:var(--c-ink)]">受験料</span>　11,000円（税込）／学生 7,700円（税込）
+            <span className="font-bold text-[color:var(--c-ink)]">受験料</span>　11,000円（税込）／学生 8,800円（税込）
           </p>
           <p>
             <span className="font-bold text-[color:var(--c-ink)]">試験日</span>　年4回実施
@@ -141,7 +145,7 @@ export default async function IsecPage() {
             　一般財団法人 全日本情報学習振興協会
           </p>
           <p className="text-xs pt-2">
-            ※2024年に「情報セキュリティ管理士認定試験」から名称が変わり、課題Ⅲにサイバーセキュリティ対策が加わりました。最新の日程・受験料は必ず協会の公式サイトでご確認ください。
+            ※2026年2月の試験で「情報セキュリティ管理士認定試験」から名称が変わり、課題Ⅲにサイバーセキュリティ対策が加わりました。最新の日程・受験料は必ず協会の公式サイトでご確認ください。
           </p>
         </div>
       </section>

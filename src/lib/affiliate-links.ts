@@ -202,21 +202,41 @@ export const EXAM_AFFILIATE: Record<ExamSlug, AffiliateTarget> = {
   },
   // 情報・サイバーセキュリティ初級認定試験(isf)と DXパスポート試験(dxp)。2026-10-06 追加。
   //   どちらも isec と同じ全日本情報学習振興協会の試験で、協会の「入口の試験」(A8 の成果条件が広告主新規のため)。
-  //   SMART合格講座は初級・DXとも 17,600円(試験と同時申込で3,300円引き。第三者情報経由・未照合)。
+  //   SMART合格講座: 初級 17,600円(試験と同時申込 23,100円)、DX 17,600円(同 23,650円)。2026-10-07 に協会ページで確認。
   //
-  //   【A8リンク待ち】講座(href)と受験申込(applyHref)のリンクは、ユーザーが A8 管理画面で発行してから入れる
-  //     (既存リンクの a8mat から自前で作らない方針)。届くまでは、既存の SMART 無料登録リンク(発行済み)を
-  //     href に置いておく。届いたら href=講座、freeHref=無料登録、applyHref/applyPixel=申込 に入れ替える。
-  //   【要ユーザー確認】初級・DXの講座が A8 の成果報酬対象講座に入っているか(isec と同じく未確認)。
+  //   2026-10-09: 講座(href)と受験申込(applyHref)を、A8 の「商品リンク作成」(掲載サイト=シカクモン)で
+  //     2026-10-07 に発行したリンクへ差し替えた。生成リンクは改変しないこと。無料登録は freeHref へ移した。
+  //     ・初級の申込は協会の /isme/(管理士と初級の共通ページ。/isf/ はここへ転送される)。
+  //     ・DX の講座ページは joho-gakushu.jp/smartinfo/ ではなく joho-gakushu.or.jp/dx-kentei/dx-passport.php。
+  //   【要ユーザー確認】
+  //     ・A8 のプログラム詳細の対応資格一覧に、初級と DXパスポートは載っていない(「すべての講座が成果報酬対象」の注記はある)。
+  //     ・A8 の商品リンクの飛び先は「smartinfo/smart_lineup.php 内」と指定がある。.or.jp への申込リンクは
+  //       pii / jitsumu / mynumber / isec の applyHref と同じ扱い。
+  //     ・協会の /isme/・/dx/dx-passport/・/dx-kentei/dx-passport.php は A8 の計測タグ(a8sales.js)を読み込んでいない
+  //       (2026-10-07 確認)。k_isf と registfree.php は読み込んでいる。
   isf: {
-    href: "https://px.a8.net/svt/ejp?a8mat=4B1TI0+9T22IA+4LOQ+BW8O2&a8ejpredirect=https%3A%2F%2Fwww.joho-gakushu.jp%2Fsmart%2Fregistfree.php",
-    label: "無料登録してSMART講座を試し見る",
+    href: "https://px.a8.net/svt/ejp?a8mat=4B1TI0+9T22IA+4LOQ+BW8O2&a8ejpredirect=https%3A%2F%2Fwww.joho-gakushu.jp%2Fsmartinfo%2Fk_isf%2F",
+    label: "情報・サイバーセキュリティ初級のSMART合格講座を見る",
     course: "isf",
+    freeHref:
+      "https://px.a8.net/svt/ejp?a8mat=4B1TI0+9T22IA+4LOQ+BW8O2&a8ejpredirect=https%3A%2F%2Fwww.joho-gakushu.jp%2Fsmart%2Fregistfree.php",
+    freeLabel: "無料登録してSMART講座を試し見る",
+    applyHref:
+      "https://px.a8.net/svt/ejp?a8mat=4B1TI0+9T22IA+4LOQ+BW8O2&a8ejpredirect=https%3A%2F%2Fwww.joho-gakushu.or.jp%2Fisme%2F",
+    applyLabel: "協会公式サイトで申し込む",
+    applyPixel: SMART_APPLY_PIXEL,
   },
   dxp: {
-    href: "https://px.a8.net/svt/ejp?a8mat=4B1TI0+9T22IA+4LOQ+BW8O2&a8ejpredirect=https%3A%2F%2Fwww.joho-gakushu.jp%2Fsmart%2Fregistfree.php",
-    label: "無料登録してSMART講座を試し見る",
+    href: "https://px.a8.net/svt/ejp?a8mat=4B1TI0+9T22IA+4LOQ+BW8O2&a8ejpredirect=https%3A%2F%2Fwww.joho-gakushu.or.jp%2Fdx-kentei%2Fdx-passport.php",
+    label: "DXパスポートのSMART合格講座を見る",
     course: "dxp",
+    freeHref:
+      "https://px.a8.net/svt/ejp?a8mat=4B1TI0+9T22IA+4LOQ+BW8O2&a8ejpredirect=https%3A%2F%2Fwww.joho-gakushu.jp%2Fsmart%2Fregistfree.php",
+    freeLabel: "無料登録してSMART講座を試し見る",
+    applyHref:
+      "https://px.a8.net/svt/ejp?a8mat=4B1TI0+9T22IA+4LOQ+BW8O2&a8ejpredirect=https%3A%2F%2Fwww.joho-gakushu.or.jp%2Fdx%2Fdx-passport%2F",
+    applyLabel: "協会公式サイトで申し込む",
+    applyPixel: SMART_APPLY_PIXEL,
   },
   // 賃貸不動産経営管理士。貸金業務取扱主任者(kashikin)と同じアガルートの
   //   承認済み提携(4B3N6P系)。アガルートは賃貸不動産経営管理士講座を持つ。

@@ -21,7 +21,7 @@ export default function IsecCourseAd({ headline, body, setPrice }: Props = {}) {
   const finalHeadline = headline ?? "独学に不安があれば";
   const finalBody =
     body ??
-    "情報・サイバーセキュリティ管理士認定試験は、試験を実施している全日本情報学習振興協会自身がSMART合格講座を出しています。4課題のうち「コンピュータの一般知識」は非IT職には範囲が広く、独学だと優先順位をつけにくいところです。";
+    "情報・サイバーセキュリティ管理士認定試験は、試験を実施している全日本情報学習振興協会自身がSMART合格講座を出しています。2026年2月の試験から出題範囲が課題Ⅰ〜Ⅲに見直され、180問を120分で解く形になりました。範囲が変わったばかりなので、新しい範囲で何を優先するかを整理してから進めたいところです。";
 
   return (
     <aside className="theme-pii my-10 p-5 rounded-lg border border-[color:var(--c-border)] bg-[color:var(--c-bg-alt)]">

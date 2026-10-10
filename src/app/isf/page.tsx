@@ -163,7 +163,11 @@ export default async function IsfPage() {
             <a href="/isec/" className="underline hover:no-underline">
               情報・サイバーセキュリティ管理士
             </a>
-            です。出題の柱（情報セキュリティ総論・脅威と対策・コンピュータの一般知識）は共通で、管理士ではサイバー攻撃への対策や関連法規がより深く問われます。
+            です。課題Ⅰ〜Ⅲ（情報セキュリティ総論・脅威と情報セキュリティ対策・サイバーセキュリティ対策）は初級と同じ柱で、管理士には課題Ⅳ（コンピュータの一般知識）が無いかわりに、180問・120分でより深く問われます。違いは
+            <a href="/column/isec-isf-hikaku/" className="underline hover:no-underline">
+              初級と管理士の違い
+            </a>
+            にまとめています。
           </p>
           <p>
             個人情報の扱いまで広げるなら、

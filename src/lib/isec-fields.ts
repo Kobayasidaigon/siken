@@ -5,8 +5,12 @@
  * 同じ分野表を手書きで複製しており、片方だけ直すと分野名がずれる形になっている。
  * この資格では最初から1か所にまとめ、3ページとも同じ配列を読む。
  *
- * task は本試験の課題番号。本試験は4課題構成（協会の試験内容ページ）で、
- * 当サイトは1課題を2分野に割って、1分野あたり25問で並べている。
+ * task は本試験の課題番号。当サイトは1課題を2分野に割って、1分野あたり25問で並べている。
+ *
+ * 2026-10-10: 本試験は 2026年2月の試験から課題Ⅰ〜Ⅲの3課題・180問・120分になった
+ * (協会の /isme/・/isme/naiyou.php。課題Ⅳ「コンピュータの一般知識」は初級だけに残った)。
+ * 旧課題Ⅳの2分野(network / computer)は問題とURLを残し、outOfScope で「参考」として扱う。
+ * 模擬試験・本番形式テストの出題からは外している(isec-moshi.ts、isec/mock)。
  */
 
 export interface IsecField {
@@ -14,9 +18,11 @@ export interface IsecField {
   slug: string;
   /** 問題 md の field と完全一致させる値 */
   name: string;
-  /** 本試験の課題（表示用） */
+  /** 本試験の課題（表示用）。出題範囲外の分野は「参考」 */
   task: string;
   desc: string;
+  /** 2026年2月の試験から出題範囲外になった分野(旧課題Ⅳ)。問題は参考として残す */
+  outOfScope?: boolean;
 }
 
 export const ISEC_FIELDS: IsecField[] = [
@@ -30,7 +36,7 @@ export const ISEC_FIELDS: IsecField[] = [
     slug: "hoki",
     name: "情報セキュリティ関連法規",
     task: "課題Ⅰ",
-    desc: "不正アクセス禁止法、サイバーセキュリティ基本法、個人情報保護法とマイナンバー法、著作権法、不正競争防止法の営業秘密、刑法のウイルス作成罪、電子署名法、プロバイダ責任制限法",
+    desc: "不正アクセス禁止法、サイバーセキュリティ基本法、個人情報保護法とマイナンバー法、著作権法、不正競争防止法の営業秘密、刑法のウイルス作成罪、電子署名法、情報流通プラットフォーム対処法（旧プロバイダ責任制限法）",
   },
   {
     slug: "kyoui",
@@ -59,13 +65,15 @@ export const ISEC_FIELDS: IsecField[] = [
   {
     slug: "network",
     name: "ネットワークの基礎",
-    task: "課題Ⅳ",
+    task: "参考",
+    outOfScope: true,
     desc: "OSI基本参照モデルとTCP/IP、IPアドレスとサブネット、NAT、DNS、ポート番号、TCPとUDP、メールのプロトコルとSPF・DKIM・DMARC、無線LANの暗号化（WPA3）、VPNとプロキシ",
   },
   {
     slug: "computer",
     name: "コンピュータの基礎",
-    task: "課題Ⅳ",
+    task: "参考",
+    outOfScope: true,
     desc: "5大装置とCPU、記憶階層とキャッシュ、記憶容量の単位、2進数・16進数、文字コード、OSとファイル管理、データベースとトランザクション、RAID、MTBF・MTTRと稼働率の計算、仮想化",
   },
 ];
@@ -74,6 +82,12 @@ export const ISEC_FIELDS: IsecField[] = [
 export const ISEC_FIELD_SLUG_BY_NAME: Record<string, string> = Object.fromEntries(
   ISEC_FIELDS.map((f) => [f.name, f.slug])
 );
+
+/** 本試験の出題範囲(課題Ⅰ〜Ⅲ)の分野だけ */
+export const ISEC_SCOPE_FIELDS: IsecField[] = ISEC_FIELDS.filter((f) => !f.outOfScope);
+
+/** 出題範囲の分野名。模擬試験・本番形式テストの絞り込みに使う */
+export const ISEC_SCOPE_FIELD_NAMES: Set<string> = new Set(ISEC_SCOPE_FIELDS.map((f) => f.name));
 
 export function isecFieldBySlug(slug: string): IsecField | undefined {
   return ISEC_FIELDS.find((f) => f.slug === slug);

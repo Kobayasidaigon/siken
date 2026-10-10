@@ -23,6 +23,7 @@ import ChintaiCourseAd from "@/components/ChintaiCourseAd";
 import KangyoCourseAd from "@/components/KangyoCourseAd";
 import Bijihou2CourseAd from "@/components/Bijihou2CourseAd";
 import KashikinCourseAd from "@/components/KashikinCourseAd";
+import IsecCourseAd from "@/components/IsecCourseAd";
 import IsfCourseAd from "@/components/IsfCourseAd";
 import DxpCourseAd from "@/components/DxpCourseAd";
 import TextAffiliateAd from "@/components/TextAffiliateAd";
@@ -70,6 +71,7 @@ import {
   JITSUMU_EXAMS,
   CHINTAI_EXAMS,
   KANGYO_EXAMS,
+  ISEC_EXAMS,
   ISF_EXAMS,
   DXP_EXAMS,
 } from "@/lib/exam-dates";
@@ -162,7 +164,8 @@ export default async function ColumnPage({ params }: { params: Promise<{ slug: s
   const isChintaiArticle = slug.startsWith("chintai-");
   const isKangyoArticle = slug.startsWith("kangyo-");
   const isBijihou2Article = slug.startsWith("bijihou2-");
-  // 初級・DX(2026-10-09 にコラムを追加)。分岐が無いと、講座広告なし+末尾の内部導線が貸金に落ちる。
+  // 管理士(2026-10-10)・初級・DX(2026-10-09)にコラムを追加。分岐が無いと、講座広告なし+末尾の内部導線が貸金に落ちる。
+  const isIsecArticle = slug.startsWith("isec-");
   const isIsfArticle = slug.startsWith("isf-");
   const isDxpArticle = slug.startsWith("dxp-");
   // 横断記事(資格接頭辞なし)。column/page.tsx の "ousan" グループと同じ明示列挙
@@ -206,8 +209,15 @@ export default async function ColumnPage({ params }: { params: Promise<{ slug: s
       href: "https://px.a8.net/svt/ejp?a8mat=4B1TI0+9T22IA+4LOQ+BW8O2&a8ejpredirect=https%3A%2F%2Fwww.joho-gakushu.or.jp%2Fpiip%2F",
       pixel: "https://www11.a8.net/0.gif?a8mat=4B1TI0+9T22IA+4LOQ+BW8O2",
     },
-    // 初級・DX の日程コラム(2026-10-09 追加)。申込リンクは affiliate-links.ts の applyHref を使う
-    // (2026-10-07 に A8 で発行したもの。ここに直書きしない)。
+    // 初級・DX(2026-10-09 追加)・管理士(2026-10-10 追加)の日程コラム。申込リンクは affiliate-links.ts の
+    // applyHref を使う(ここに直書きしない)。
+    "isec-nittei": {
+      course: "isec",
+      body: "情報・サイバーセキュリティ管理士認定試験の申込みは、実施団体(全日本情報学習振興協会)の公式サイトから行います。締切は試験日の5週間ほど前なので、受験する回を決めたら早めに手続きしておきましょう。",
+      linkText: "協会公式サイトで試験日程・申込方法を確認する",
+      href: EXAM_AFFILIATE.isec.applyHref!,
+      pixel: EXAM_AFFILIATE.isec.applyPixel!,
+    },
     "isf-nittei": {
       course: "isf",
       body: "情報・サイバーセキュリティ初級認定試験の申込みは、実施団体(全日本情報学習振興協会)の公式サイトから行います。締切は試験日の5週間ほど前なので、受験する回を決めたら早めに手続きしておきましょう。",
@@ -339,6 +349,7 @@ export default async function ColumnPage({ params }: { params: Promise<{ slug: s
       accent: "var(--c-pii)",
       accentSoft: "var(--c-pii-soft)",
     },
+    "isec-nittei": { exams: ISEC_EXAMS, accent: "var(--c-pii)", accentSoft: "var(--c-pii-soft)" },
     "isf-nittei": { exams: ISF_EXAMS, accent: "var(--c-pii)", accentSoft: "var(--c-pii-soft)" },
     "dxp-nittei": { exams: DXP_EXAMS, accent: "var(--c-pii)", accentSoft: "var(--c-pii-soft)" },
   };
@@ -630,6 +641,15 @@ export default async function ColumnPage({ params }: { params: Promise<{ slug: s
         <Bijihou2CourseAd headline="2級の「あてはめ」を講座で鍛えるなら" />
       )}
 
+      {isIsecArticle && (
+        <IsecCourseAd headline="新しい3課題の範囲を講座で体系的に押さえるなら" />
+      )}
+
+      {/* 初級×管理士の比較記事。初級側の受け皿を併置 */}
+      {slug === "isec-isf-hikaku" && (
+        <IsfCourseAd headline="初級から始めるなら" />
+      )}
+
       {isIsfArticle && (
         <IsfCourseAd headline="4課題を講座で体系的に押さえるなら" />
       )}
@@ -741,6 +761,12 @@ export default async function ColumnPage({ params }: { params: Promise<{ slug: s
               <a href="/bijihou2/q/bijihou2-001/" className="text-sm text-blue-700 no-underline hover:underline">ビジ法2級 全200問を見る →</a>
               <a href="/bijihou2/moshi/" className="text-sm text-slate-500 no-underline hover:underline">模擬試験（50問・90分）を受ける →</a>
               <a href="/bijihou/" className="text-sm text-slate-500 no-underline hover:underline">3級から始める →</a>
+            </>
+          ) : isIsecArticle ? (
+            <>
+              <a href="/isec/q/isec-001/" className="text-sm text-blue-700 no-underline hover:underline">情報セキュリティ管理士の練習問題を見る →</a>
+              <a href="/isec/moshi/" className="text-sm text-slate-500 no-underline hover:underline">模擬試験（90問・60分）を受ける →</a>
+              <a href="/isec/" className="text-sm text-slate-500 no-underline hover:underline">分野別に選ぶ →</a>
             </>
           ) : isIsfArticle ? (
             <>

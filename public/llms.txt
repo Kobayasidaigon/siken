@@ -69,6 +69,8 @@
 - DXパスポートとITパスポートの違い: https://shikakumon.com/column/dxp-itpass-hikaku/
 - 情報・サイバーセキュリティ初級の過去問は手に入るか: https://shikakumon.com/column/isf-kakomon/
 - DXパスポート試験の過去問は公開されているか: https://shikakumon.com/column/dxp-kakomon/
+- 情報・サイバーセキュリティ初級と管理士の違い: https://shikakumon.com/column/isec-isf-hikaku/
+- 情報・サイバーセキュリティ管理士の過去問と旧形式の問題集の注意点: https://shikakumon.com/column/isec-kakomon/
 - 総務・人事が取るべき資格と優先順位: https://shikakumon.com/column/soumu-jinji-shikaku/
 
 ## 姉妹サイト

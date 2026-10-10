@@ -9,7 +9,7 @@
 
 const STORAGE_KEY = "shikakumon-study-v1";
 
-export type ExamSlug = "kashikin" | "pii" | "chizai" | "chizai2" | "mynumber" | "jitsumu" | "bijihou" | "fukushi2" | "bijimane" | "eco" | "bijihou2" | "itpass" | "chintai" | "kangyo" | "isec" | "kyoin" | "shakai" | "isf" | "dxp";
+export type ExamSlug = "kashikin" | "pii" | "chizai" | "chizai2" | "mynumber" | "jitsumu" | "bijihou" | "fukushi2" | "bijimane" | "eco" | "bijihou2" | "itpass" | "chintai" | "kangyo" | "isec" | "kyoin" | "shakai" | "isf" | "dxp" | "had" | "ccm";
 
 export const EXAM_LIST: { slug: ExamSlug; name: string; topPath: string; questionPathPrefix: string }[] = [
   { slug: "kashikin", name: "貸金業務取扱主任者", topPath: "/kashikin/", questionPathPrefix: "/q/" },
@@ -31,6 +31,8 @@ export const EXAM_LIST: { slug: ExamSlug; name: string; topPath: string; questio
   { slug: "shakai", name: "社会福祉士（共通科目）", topPath: "/shakai/", questionPathPrefix: "/shakai/q/" },
   { slug: "isf", name: "情報・サイバーセキュリティ初級", topPath: "/isf/", questionPathPrefix: "/isf/q/" },
   { slug: "dxp", name: "DXパスポート試験", topPath: "/dxp/", questionPathPrefix: "/dxp/q/" },
+  { slug: "had", name: "ハラスメントアドバイザー", topPath: "/had/", questionPathPrefix: "/had/q/" },
+  { slug: "ccm", name: "企業危機・コンプライアンス管理士", topPath: "/ccm/", questionPathPrefix: "/ccm/q/" },
 ];
 
 export type Medal = "bronze" | "silver" | "gold";
@@ -67,6 +69,8 @@ function defaultProgress(): AllProgress {
     shakai: { bookmarks: [], wrong: [], correct: [], medals: {} },
     isf: { bookmarks: [], wrong: [], correct: [], medals: {} },
     dxp: { bookmarks: [], wrong: [], correct: [], medals: {} },
+    had: { bookmarks: [], wrong: [], correct: [], medals: {} },
+    ccm: { bookmarks: [], wrong: [], correct: [], medals: {} },
   };
 }
 

@@ -29,6 +29,8 @@ export const EXAM_THEME: Record<ExamSlug, ExamTheme> = {
   isec: { accent: "var(--c-pii)", soft: "var(--c-pii-soft)", period: false },
   isf: { accent: "var(--c-pii)", soft: "var(--c-pii-soft)", period: false },
   dxp: { accent: "var(--c-pii)", soft: "var(--c-pii-soft)", period: false },
+  had: { accent: "var(--c-pii)", soft: "var(--c-pii-soft)", period: false },
+  ccm: { accent: "var(--c-pii)", soft: "var(--c-pii-soft)", period: false },
   chizai: { accent: "var(--c-chizai)", soft: "var(--c-chizai-soft)", period: false },
   chizai2: { accent: "var(--c-chizai)", soft: "var(--c-chizai-soft)", period: false },
   fukushi2: { accent: "var(--c-fukushi)", soft: "var(--c-fukushi-soft)", period: true },

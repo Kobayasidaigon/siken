@@ -24,6 +24,8 @@ import KangyoCourseAd from "@/components/KangyoCourseAd";
 import Bijihou2CourseAd from "@/components/Bijihou2CourseAd";
 import KashikinCourseAd from "@/components/KashikinCourseAd";
 import IsecCourseAd from "@/components/IsecCourseAd";
+import HadCourseAd from "@/components/HadCourseAd";
+import CcmCourseAd from "@/components/CcmCourseAd";
 import IsfCourseAd from "@/components/IsfCourseAd";
 import DxpCourseAd from "@/components/DxpCourseAd";
 import TextAffiliateAd from "@/components/TextAffiliateAd";
@@ -74,6 +76,8 @@ import {
   ISEC_EXAMS,
   ISF_EXAMS,
   DXP_EXAMS,
+  HAD_EXAMS,
+  CCM_EXAMS,
 } from "@/lib/exam-dates";
 import StudioLink from "@/components/StudioLink";
 
@@ -168,6 +172,9 @@ export default async function ColumnPage({ params }: { params: Promise<{ slug: s
   const isIsecArticle = slug.startsWith("isec-");
   const isIsfArticle = slug.startsWith("isf-");
   const isDxpArticle = slug.startsWith("dxp-");
+  // ハラスメントアドバイザー・企業危機・コンプライアンス管理士(2026-10-10 にコラムを追加)
+  const isHadArticle = slug.startsWith("had-");
+  const isCcmArticle = slug.startsWith("ccm-");
   // 横断記事(資格接頭辞なし)。column/page.tsx の "ousan" グループと同じ明示列挙
   const isSoumuArticle = slug === "soumu-jinji-shikaku";
 
@@ -352,6 +359,9 @@ export default async function ColumnPage({ params }: { params: Promise<{ slug: s
     "isec-nittei": { exams: ISEC_EXAMS, accent: "var(--c-pii)", accentSoft: "var(--c-pii-soft)" },
     "isf-nittei": { exams: ISF_EXAMS, accent: "var(--c-pii)", accentSoft: "var(--c-pii-soft)" },
     "dxp-nittei": { exams: DXP_EXAMS, accent: "var(--c-pii)", accentSoft: "var(--c-pii-soft)" },
+    // had / ccm(2026-10-10)。申込の A8 リンクがまだ無いので、examApplyAds には入れていない(届いたら isf と同じ形で足す)
+    "had-nittei": { exams: HAD_EXAMS, accent: "var(--c-pii)", accentSoft: "var(--c-pii-soft)" },
+    "ccm-nittei": { exams: CCM_EXAMS, accent: "var(--c-pii)", accentSoft: "var(--c-pii-soft)" },
   };
   const niteiCountdown = niteiCountdowns[slug];
 
@@ -663,6 +673,14 @@ export default async function ColumnPage({ params }: { params: Promise<{ slug: s
         <ItpassCourseAd headline="ITパスポートを選ぶ・あわせて受けるなら" />
       )}
 
+      {isHadArticle && (
+        <HadCourseAd headline="法律と指針の範囲を講座で体系的に押さえるなら" />
+      )}
+
+      {isCcmArticle && (
+        <CcmCourseAd headline="広い6課題を講座で体系的に押さえるなら" />
+      )}
+
       {isChizaiGeneralArticle && chizaiAdContent?.secondaryBenrishi && (
         <TextAffiliateAd
           themeClass="theme-chizai"
@@ -761,6 +779,18 @@ export default async function ColumnPage({ params }: { params: Promise<{ slug: s
               <a href="/bijihou2/q/bijihou2-001/" className="text-sm text-blue-700 no-underline hover:underline">ビジ法2級 全200問を見る →</a>
               <a href="/bijihou2/moshi/" className="text-sm text-slate-500 no-underline hover:underline">模擬試験（50問・90分）を受ける →</a>
               <a href="/bijihou/" className="text-sm text-slate-500 no-underline hover:underline">3級から始める →</a>
+            </>
+          ) : isHadArticle ? (
+            <>
+              <a href="/had/q/had-001/" className="text-sm text-blue-700 no-underline hover:underline">ハラスメントアドバイザー 全160問を見る →</a>
+              <a href="/had/moshi/" className="text-sm text-slate-500 no-underline hover:underline">模擬試験（60問・90分）を受ける →</a>
+              <a href="/had/" className="text-sm text-slate-500 no-underline hover:underline">分野別に選ぶ →</a>
+            </>
+          ) : isCcmArticle ? (
+            <>
+              <a href="/ccm/q/ccm-001/" className="text-sm text-blue-700 no-underline hover:underline">企業危機・コンプライアンス管理士 全160問を見る →</a>
+              <a href="/ccm/moshi/" className="text-sm text-slate-500 no-underline hover:underline">模擬試験（80問・120分）を受ける →</a>
+              <a href="/ccm/" className="text-sm text-slate-500 no-underline hover:underline">分野別に選ぶ →</a>
             </>
           ) : isIsecArticle ? (
             <>

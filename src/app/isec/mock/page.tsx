@@ -1,4 +1,5 @@
 import { getAllIsecQuestions } from "@/lib/isec-questions";
+import { ISEC_SCOPE_FIELD_NAMES } from "@/lib/isec-fields";
 import type { Metadata } from "next";
 import { pageMetadata } from "@/lib/page-metadata";
 import MockExam, { type MockQuestion } from "@/app/kashikin/mock/MockExam";
@@ -19,7 +20,8 @@ export const metadata: Metadata = pageMetadata({
 });
 
 export default async function IsecMockPage() {
-  const all = await getAllIsecQuestions();
+  // 2026年2月の試験から出題範囲外になった旧課題Ⅳ(参考の2分野)は出さない
+  const all = (await getAllIsecQuestions()).filter((q) => ISEC_SCOPE_FIELD_NAMES.has(q.field));
   const questions: MockQuestion[] = all.map((q) => ({
     slug: q.slug,
     questionText: q.questionText,
@@ -42,7 +44,7 @@ export default async function IsecMockPage() {
       <div className="w-12 h-1 mb-5" style={{ background: "var(--c-pii)" }}></div>
 
       <p className="text-xs text-[color:var(--c-text-sub)] mb-5">
-        本試験と同じ100問・120分で腕試しするなら
+        本試験と同じペース（1問40秒）で90問・60分を解くなら
         <a href="/isec/moshi/" className="underline hover:no-underline">
           模擬試験 第1回（無料）
         </a>

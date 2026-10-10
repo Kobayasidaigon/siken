@@ -14,7 +14,7 @@ export const metadata: Metadata = pageMetadata({
   path: "/isec/",
   title: "情報・サイバーセキュリティ管理士 練習問題【全200問・無料】",
   description:
-    "情報・サイバーセキュリティ管理士認定試験（旧・情報セキュリティ管理士）のオリジナル練習問題200問を無料公開。情報セキュリティ総論から関連法規、サイバー攻撃対策、コンピュータの一般知識まで4課題を根拠つき解説で演習できます。",
+    "情報・サイバーセキュリティ管理士認定試験（旧・情報セキュリティ管理士）のオリジナル練習問題を無料公開。2026年2月からの新しい出題範囲（課題Ⅰ〜Ⅲ）に沿って、情報セキュリティ総論・関連法規から脅威と対策、サイバー攻撃とインシデント対応までを根拠つき解説で演習できます。",
 });
 
 export default async function IsecPage() {
@@ -24,6 +24,7 @@ export default async function IsecPage() {
   const fieldCounts = await Promise.all(
     ISEC_FIELDS.map(async (f) => (await getIsecQuestionsByField(f.name)).length)
   );
+  const scopeQuestionCount = ISEC_FIELDS.reduce((sum, f, i) => (f.outOfScope ? sum : sum + fieldCounts[i]), 0);
 
   return (
     <div className="theme-pii pb-16">
@@ -45,8 +46,8 @@ export default async function IsecPage() {
         </h1>
         <div className="w-16 h-1 mb-4" style={{ background: "var(--c-pii)" }}></div>
         <p className="text-sm sm:text-base leading-relaxed max-w-lg" style={{ color: "var(--c-pii-ink)" }}>
-          情報セキュリティ総論・関連法規から、脅威と対策、サイバー攻撃、コンピュータの一般知識まで。本試験の4課題に沿った
-          {allQuestions.length}問のオリジナル練習問題集です。
+          情報セキュリティ総論・関連法規から、脅威と対策、サイバー攻撃とインシデント対応まで。本試験の課題Ⅰ〜Ⅲに沿った
+          {scopeQuestionCount}問に、ネットワークとコンピュータの基礎の参考問題{allQuestions.length - scopeQuestionCount}問を加えたオリジナル練習問題集です。
         </p>
         <div className="mt-6 flex flex-wrap gap-3">
           <a href="/isec/q/isec-001/" className="btn-accent">
@@ -57,7 +58,7 @@ export default async function IsecPage() {
             className="inline-flex items-center px-4 py-2 rounded-lg border text-sm font-medium no-underline transition-colors hover:bg-[color:var(--c-pii-soft)]"
             style={{ borderColor: "var(--c-pii)", color: "var(--c-pii-ink)" }}
           >
-            模擬試験を受ける（100問・120分・課題別判定）→
+            模擬試験を受ける（90問・60分・課題別の正答率つき）→
           </a>
           <a
             href="/isec/mock/"
@@ -90,7 +91,7 @@ export default async function IsecPage() {
       <section className="mb-12">
         <h2 className="text-lg font-bold text-[color:var(--c-ink)] mb-5 font-serif">分野から選ぶ</h2>
         <div className="space-y-3">
-          {ISEC_FIELDS.map((f, i) => (
+          {ISEC_FIELDS.map((f, i) => f.outOfScope ? null : (
             <a
               key={f.slug}
               href={`/isec/field/${f.slug}/`}
@@ -113,22 +114,41 @@ export default async function IsecPage() {
             </a>
           ))}
         </div>
+
+        {/* 旧課題Ⅳ。2026年2月の試験から管理士の出題範囲外(初級だけに残った)。問題とURLは参考として残す */}
+        <h3 className="text-sm font-bold text-[color:var(--c-ink)] mt-8 mb-2 font-serif">参考：ネットワークとコンピュータの基礎</h3>
+        <p className="text-xs text-[color:var(--c-text-sub)] mb-3 leading-relaxed">
+          旧課題Ⅳ「コンピュータの一般知識」の分野です。2026年2月の試験から管理士では出題されなくなり、
+          <a href="/isf/" className="underline hover:no-underline">
+            初級
+          </a>
+          だけの範囲になりました。課題Ⅲのサイバー攻撃（DNSやWebへの攻撃など）を理解する土台として残しています。
+        </p>
+        <div className="space-y-2">
+          {ISEC_FIELDS.map((f, i) => !f.outOfScope ? null : (
+            <a
+              key={f.slug}
+              href={`/isec/field/${f.slug}/`}
+              className="card p-4 no-underline group flex items-start justify-between gap-3"
+            >
+              <p className="text-sm font-bold text-[color:var(--c-ink)] font-serif">{f.name}</p>
+              <span className="text-xs text-[color:var(--c-text-sub)] shrink-0">{fieldCounts[i]}問</span>
+            </a>
+          ))}
+        </div>
       </section>
 
-      {/* TODO(isec): 協会の現行の案内(/isme/・SMART講座 k_isme、2026-10-07 確認)では、管理士は
-          3課題(Ⅰ〜Ⅲ)・180問程度・120分。課題Ⅳ(コンピュータの一般知識)は初級だけ。
-          下の「100問」「課題Ⅳ」と、分野定義(isec-fields.ts の課題Ⅳ)・模擬試験(isec-moshi.ts、4課題×25問)は旧形式のまま。
-          作り直すかはユーザー判断待ち(2026-10-09 時点)。 */}
+      {/* 2026-10-10 に現行の形式へ更新。出典は協会の /isme/・/isme/naiyou.php(2026-10-07 に Cowork が照合、
+          10-10 に検索結果でも 180問/120分・課題Ⅰ〜Ⅲ・正答率70% を確認)。課題ごとの基準は案内に無い。 */}
       <section className="mb-12">
         <h2 className="text-base font-bold text-[color:var(--c-ink)] mb-4 font-serif">試験の概要</h2>
         <div className="card p-5 text-sm text-[color:var(--c-text-sub)] space-y-2">
           <p>
-            <span className="font-bold text-[color:var(--c-ink)]">試験形式</span>　四肢択一のマークシート・100問・120分
+            <span className="font-bold text-[color:var(--c-ink)]">試験形式</span>　マークシート・180問・120分
           </p>
           <p>
             <span className="font-bold text-[color:var(--c-ink)]">出題範囲</span>
-            　課題Ⅰ 情報セキュリティ総論／課題Ⅱ 脅威と情報セキュリティ対策／課題Ⅲ サイバーセキュリティ対策／課題Ⅳ
-            コンピュータの一般知識
+            　課題Ⅰ 情報セキュリティ総論／課題Ⅱ 脅威と情報セキュリティ対策／課題Ⅲ サイバーセキュリティ対策
           </p>
           <p>
             <span className="font-bold text-[color:var(--c-ink)]">合格基準</span>
@@ -145,7 +165,7 @@ export default async function IsecPage() {
             　一般財団法人 全日本情報学習振興協会
           </p>
           <p className="text-xs pt-2">
-            ※2026年2月の試験で「情報セキュリティ管理士認定試験」から名称が変わり、課題Ⅲにサイバーセキュリティ対策が加わりました。最新の日程・受験料は必ず協会の公式サイトでご確認ください。
+            ※2026年2月の試験で「情報セキュリティ管理士認定試験」から名称が変わり、出題範囲も課題Ⅰ〜Ⅲに見直されました（課題Ⅳ「コンピュータの一般知識」は初級だけに残りました）。最新の日程・受験料は必ず協会の公式サイトでご確認ください。
           </p>
         </div>
       </section>
@@ -176,11 +196,16 @@ export default async function IsecPage() {
             <a href="/mynumber/" className="underline hover:no-underline">
               マイナンバー実務検定
             </a>
-            も同じ年4回の日程で実施しています。申込先も出題の形式（4肢択一のマークシート・課題別構成）も共通です。
+            も実施しています。申込先は同じ協会です。
+            試験日は、個人情報保護実務検定と
+            <a href="/isf/" className="underline hover:no-underline">
+              初級
+            </a>
+            が管理士と同じ日（2月・5月・8月・11月）、個人情報保護士とマイナンバー実務検定は別の月（3月・6月・9月・12月）です。
           </p>
           <p>
             出題範囲も重なります。本試験の課題Ⅰで問われる情報セキュリティの管理体制・関連法規は、個人情報保護士の課題Ⅱ「情報セキュリティ」とほぼ同じ論点です。
-            個人情報保護法の安全管理措置は3試験すべてで問われます。片方の学習がもう片方の下地になるので、同じ回での併願は現実的な選択肢です。
+            個人情報保護法の安全管理措置は3試験すべてで問われます。片方の学習がもう片方の下地になるので、続けて受ける・併願するのは現実的な選択肢です。
           </p>
         </div>
       </section>

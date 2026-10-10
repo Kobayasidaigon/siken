@@ -17,7 +17,9 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   return pageMetadata({
     path: `/isec/field/${slug}/`,
     title: `情報・サイバーセキュリティ管理士｜${field.name} 練習問題`,
-    description: `情報・サイバーセキュリティ管理士認定試験対策。${field.task}「${field.name}」のオリジナル練習問題と詳細解説。各問に根拠つきの解説があり、弱点分野だけを集中して演習できます。`,
+    description: field.outOfScope
+      ? `情報・サイバーセキュリティ管理士の参考問題「${field.name}」。2026年2月の試験から管理士の出題範囲外になった旧課題Ⅳの分野で、サイバー攻撃の仕組みを理解する土台として残しているオリジナル問題と解説です。`
+      : `情報・サイバーセキュリティ管理士認定試験対策。${field.task}「${field.name}」のオリジナル練習問題と詳細解説。各問に根拠つきの解説があり、弱点分野だけを集中して演習できます。`,
   });
 }
 
@@ -81,7 +83,17 @@ export default async function IsecFieldPage({ params }: { params: Promise<{ slug
 
       <h1 className="text-xl sm:text-2xl font-bold text-[color:var(--c-ink)] mb-2 font-serif">{field.name}</h1>
       <div className="w-12 h-1 mb-3" style={{ background: "var(--c-pii)" }}></div>
-      <p className="text-xs text-[color:var(--c-text-sub)] mb-2">本試験の{field.task}に対応する分野です。</p>
+      {field.outOfScope ? (
+        <p className="text-xs text-[color:var(--c-text-sub)] mb-2 leading-relaxed">
+          旧課題Ⅳ「コンピュータの一般知識」の分野です。2026年2月の試験から管理士の出題範囲は課題Ⅰ〜Ⅲになり、この分野は
+          <a href="/isf/" className="underline hover:no-underline">
+            情報・サイバーセキュリティ初級
+          </a>
+          だけで出題されます。サイバー攻撃の仕組みを理解する土台として、問題は参考に残しています（模擬試験・本番形式テストには出題しません）。
+        </p>
+      ) : (
+        <p className="text-xs text-[color:var(--c-text-sub)] mb-2">本試験の{field.task}に対応する分野です。</p>
+      )}
       <p className="text-sm text-[color:var(--c-text-sub)] mb-6 leading-relaxed">{field.desc}</p>
 
       <div className="grid grid-cols-4 gap-2 mb-8">

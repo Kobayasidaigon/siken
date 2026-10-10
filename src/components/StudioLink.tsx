@@ -23,11 +23,17 @@
  * DOM は 1 要素も足さない。パラメータは studio_click と同じ placement / exam
  * (exam = 資格。カスタムディメンション登録済み)にして、表示→クリック率を
  * placement × exam でそのまま割れるようにする。
+ *
+ * utm_campaign — 2026-10-10 追加:
+ * リンク先 URL の utm_campaign に placement を入れる(lib/studio-campaign.ts)。
+ * Studio の GA4 でカスタム定義 utm_content が空で、どの面から来た人が登録したかを
+ * 見られなかったため。全設置箇所がこの部品を通るので、呼び出し側の URL は変えない。
  */
 
 import { useEffect, useRef, type CSSProperties, type ReactNode } from "react";
 import { sendGAEvent } from "@next/third-parties/google";
 import type { ExamSlug } from "@/lib/study-progress";
+import { withStudioCampaign } from "@/lib/studio-campaign";
 
 export default function StudioLink({
   href,
@@ -84,7 +90,7 @@ export default function StudioLink({
   return (
     <a
       ref={ref}
-      href={href}
+      href={withStudioCampaign(href, placement)}
       target="_blank"
       rel="noopener noreferrer"
       className={className}

@@ -80,6 +80,12 @@ Studio 側の依頼文では資格を `cert` と書いていたが、既存の `
 答え合わせ直後の枠は `utm_content` が `quiz_<資格>` だが `placement` は `question_result`。
 `utm_content` は Studio 側の仕様に固定されているので動かせない。
 
+2026-10-10 から、Studio へのリンクの **`utm_campaign` に `placement` と同じ値**が入る（`StudioLink` が付ける。
+`src/lib/studio-campaign.ts`）。Studio の GA4 でカスタム定義 `utm_content` が空で、どの面から来た人が登録したかを
+Studio 側で見られなかったため（GA4 は utm_* をイベントのパラメータにしない）。Studio の GA4 では
+集客 → トラフィック獲得の「セッションのキャンペーン」で、本体の `studio_click` の `placement` と同じ名前で並ぶ。
+既に `utm_campaign` がある URL はそのまま。
+
 `course` の値域は資格IDとほぼ同じだが、コラムでは `agaroot-*` のような広告主別の値も渡している。
 
 資料請求・無料体験などの低摩擦オファー（`FreeLeadCTA`）は独自イベントを持たない。

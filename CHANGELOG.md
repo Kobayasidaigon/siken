@@ -1,5 +1,14 @@
 # 変更履歴
 
+## 2026-10-10 Studio への送客リンクの utm_campaign に設置面を入れる
+
+Studio の GA4（2026-09-12〜10-09 の調査）で、カスタム定義 `utm_content` の中身が空だった。GA4 は utm_* を
+セッションの流入元の判定に使うだけでイベントのパラメータにしないので、配置を utm_content に載せても
+Studio 側で「どの面から来た人が登録したか」が見られなかった。`StudioLink` が、リンク先の `utm_campaign` に
+`placement`（`studio_click` と同じ値: question_result / mock_result / moshi_result / column_footer / header / footer /
+home_card / about / about_cta）を入れるようにした（`src/lib/studio-campaign.ts`）。Studio の GA4 では標準レポートの
+「セッションのキャンペーン」に出る。見た目・文言・行き先・`utm_content`・イベントは変えていない。
+
 ## 2026-10-09 初級（/isf/）と DX（/dxp/）のコラムを9本追加
 
 10/7 に公開した2試験にコラムが1本も無く、資格トップの「コラム」欄も空だった。流入はコラムが作っているので、

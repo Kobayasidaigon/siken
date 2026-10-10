@@ -190,8 +190,13 @@ function ymdDate(ymd: string): Date {
  * JSTでの「今日0時」のepoch。ローカルTZの setHours(0,0,0,0) だと、UTC等の
  * ビルド環境で日付境界がJSTと最大9時間ずれ、残り日数が1日少なく表示される
  * (formatYmdJaの-1日バグと同族)。UTC+9へ平行移動してから日付を切り出す。
+ *
+ * 2026-10-10: export した。ページはビルド時に静的生成されるので、サーバー側で呼ぶと
+ * 「ビルドした日」になる。閲覧日で計算し直したい部品(ExamCountdownCard)は、
+ * ビルド時の値をサーバーから受け取り、ブラウザでこの関数を呼び直して差し替える。
+ * 下の nextExam / nextApplyDeadline / daysUntilYmd は today を省略すると今の時刻で計算する。
  */
-function todayStart(): number {
+export function todayStart(): number {
   const shifted = new Date(Date.now() + 9 * 3600_000);
   return (
     Date.UTC(shifted.getUTCFullYear(), shifted.getUTCMonth(), shifted.getUTCDate()) -
@@ -200,8 +205,7 @@ function todayStart(): number {
 }
 
 /** 今日以降で最も近い試験を返す。なければ null (カウントダウン非表示)。 */
-export function nextExam(exams: UpcomingExam[]): UpcomingExam | null {
-  const today = todayStart();
+export function nextExam(exams: UpcomingExam[], today: number = todayStart()): UpcomingExam | null {
   for (const e of exams) {
     if (ymdDate(e.date).getTime() >= today) return e;
   }
@@ -212,8 +216,10 @@ export function nextExam(exams: UpcomingExam[]): UpcomingExam | null {
  * 申込受付中(applyStart〜applyEnd)の回のうち、締切が最も近いものを返す。
  * 締切未発表(applyEnd なし)の回・受付開始前の回は対象外。なければ null。
  */
-export function nextApplyDeadline(exams: UpcomingExam[]): UpcomingExam | null {
-  const today = todayStart();
+export function nextApplyDeadline(
+  exams: UpcomingExam[],
+  today: number = todayStart()
+): UpcomingExam | null {
   let best: UpcomingExam | null = null;
   for (const e of exams) {
     if (!e.applyEnd || ymdDate(e.applyEnd).getTime() < today) continue;
@@ -224,8 +230,8 @@ export function nextApplyDeadline(exams: UpcomingExam[]): UpcomingExam | null {
 }
 
 /** 指定日までの残り日数 (当日=0)。 */
-export function daysUntilYmd(ymd: string): number {
-  return Math.max(0, Math.floor((ymdDate(ymd).getTime() - todayStart()) / 86400000));
+export function daysUntilYmd(ymd: string, today: number = todayStart()): number {
+  return Math.max(0, Math.floor((ymdDate(ymd).getTime() - today) / 86400000));
 }
 
 /**

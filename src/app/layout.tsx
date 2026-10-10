@@ -122,6 +122,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                       <span className="w-1 h-4 mr-3 rounded-full" style={{ background: "var(--c-pii)" }}></span>
                       DXパスポート試験
                     </a>
+                    <a href="/had/" className="flex items-center px-4 py-2 text-[color:var(--c-text)] hover:bg-[color:var(--c-bg-alt)] hover:text-[color:var(--c-pii)] no-underline transition-colors">
+                      <span className="w-1 h-4 mr-3 rounded-full" style={{ background: "var(--c-pii)" }}></span>
+                      ハラスメントアドバイザー
+                    </a>
+                    <a href="/ccm/" className="flex items-center px-4 py-2 text-[color:var(--c-text)] hover:bg-[color:var(--c-bg-alt)] hover:text-[color:var(--c-pii)] no-underline transition-colors">
+                      <span className="w-1 h-4 mr-3 rounded-full" style={{ background: "var(--c-pii)" }}></span>
+                      企業危機・コンプライアンス管理士
+                    </a>
                     <a href="/kyoin/" className="flex items-center px-4 py-2 text-[color:var(--c-text)] hover:bg-[color:var(--c-bg-alt)] hover:text-[color:var(--c-fukushi)] no-underline transition-colors">
                       <span className="w-1 h-4 mr-3 rounded-full" style={{ background: "var(--c-fukushi)" }}></span>
                       教員採用試験（教職教養）
@@ -198,6 +206,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                   <li><a href="/isec/" className="text-[color:var(--c-text-sub)] hover:text-[color:var(--c-pii)] no-underline">情報・サイバーセキュリティ管理士</a></li>
                   <li><a href="/isf/" className="text-[color:var(--c-text-sub)] hover:text-[color:var(--c-pii)] no-underline">情報・サイバーセキュリティ初級</a></li>
                   <li><a href="/dxp/" className="text-[color:var(--c-text-sub)] hover:text-[color:var(--c-pii)] no-underline">DXパスポート試験</a></li>
+                  <li><a href="/had/" className="text-[color:var(--c-text-sub)] hover:text-[color:var(--c-pii)] no-underline">ハラスメントアドバイザー</a></li>
+                  <li><a href="/ccm/" className="text-[color:var(--c-text-sub)] hover:text-[color:var(--c-pii)] no-underline">企業危機・コンプライアンス管理士</a></li>
                   <li><a href="/kyoin/" className="text-[color:var(--c-text-sub)] hover:text-[color:var(--c-fukushi)] no-underline">教員採用試験（教職教養）</a></li>
                   <li><a href="/shakai/" className="text-[color:var(--c-text-sub)] hover:text-[color:var(--c-eco)] no-underline">社会福祉士（共通科目）</a></li>
                   <li><a href="/bijihou/" className="text-[color:var(--c-text-sub)] hover:text-[color:var(--c-kashikin)] no-underline">ビジネス実務法務検定3級</a></li>

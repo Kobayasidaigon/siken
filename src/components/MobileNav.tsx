@@ -40,6 +40,8 @@ const SHORT_NAME: Record<ExamSlug, string> = {
   isec: "情報セキュ",
   isf: "セキュ初級",
   dxp: "DXパスポート",
+  had: "ハラスメント",
+  ccm: "危機管理",
   kyoin: "教採",
   shakai: "社福士",
 };

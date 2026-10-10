@@ -237,7 +237,26 @@ export const EXAM_AFFILIATE: Record<ExamSlug, AffiliateTarget> = {
       "https://px.a8.net/svt/ejp?a8mat=4B1TI0+9T22IA+4LOQ+BW8O2&a8ejpredirect=https%3A%2F%2Fwww.joho-gakushu.or.jp%2Fdx%2Fdx-passport%2F",
     applyLabel: "協会公式サイトで申し込む",
     applyPixel: SMART_APPLY_PIXEL,
+  },  // ハラスメントアドバイザー認定試験(had)・企業危機・コンプライアンス管理士認定試験(ccm)。2026-10-10 追加。
+  //   どちらも SMART合格講座(全日本情報学習振興協会)に対策講座がある(had 17,600円、ccm は未確認)。
+  //   【A8リンク待ち】講座(href)と受験申込(applyHref)は、ユーザーが A8 の「商品リンク作成」で発行してから入れる
+  //     (既存リンクの a8mat から自前で作らない方針)。届くまでは、発行済みの SMART 無料登録リンクを href に置く。
+  //     届いたら href=講座、freeHref=無料登録、applyHref/applyPixel=申込 に入れ替える(isf / dxp と同じ手順)。
+  //     講座ページ: had は joho-gakushu.or.jp/harassment-advisor/、ccm は joho-gakushu.jp/smartinfo/k_ccm/。
+  //     申込ページ: had は joho-gakushu.or.jp/nsp/(日本ハラスメントカウンセラー協会の試験。協会サイトで申込)、ccm は /ccm/。
+  //   【要ユーザー確認】had は日本ハラスメントカウンセラー協会の試験なので、試験申込が A8 の成果(試験申込10%)に
+  //     なるかは A8 のプログラム詳細で確認する(講座申込は SMART なので対象のはず)。
+  had: {
+    href: "https://px.a8.net/svt/ejp?a8mat=4B1TI0+9T22IA+4LOQ+BW8O2&a8ejpredirect=https%3A%2F%2Fwww.joho-gakushu.jp%2Fsmart%2Fregistfree.php",
+    label: "無料登録してSMART講座を試し見る",
+    course: "had",
   },
+  ccm: {
+    href: "https://px.a8.net/svt/ejp?a8mat=4B1TI0+9T22IA+4LOQ+BW8O2&a8ejpredirect=https%3A%2F%2Fwww.joho-gakushu.jp%2Fsmart%2Fregistfree.php",
+    label: "無料登録してSMART講座を試し見る",
+    course: "ccm",
+  },
+
   // 賃貸不動産経営管理士。貸金業務取扱主任者(kashikin)と同じアガルートの
   //   承認済み提携(4B3N6P系)。アガルートは賃貸不動産経営管理士講座を持つ。
   //   ※LECも同資格の講座を持つため、成果が出ない場合は差し替えを検討できる。
@@ -359,4 +378,6 @@ export const RESULT_CTA_HEADLINE: Record<ExamSlug, string> = {
   kangyo: "間違えた論点を体系的に整理するなら",
   isf: "間違えた論点を体系的に整理するなら",
   dxp: "間違えた論点を体系的に整理するなら",
+  had: "間違えた論点を体系的に整理するなら",
+  ccm: "間違えた論点を体系的に整理するなら",
 };

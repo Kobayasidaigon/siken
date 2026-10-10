@@ -126,6 +126,22 @@ const examGroups: ExamGroup[] = [
     matcher: (slug) => slug.startsWith("dxp-"),
   },
   {
+    id: "had",
+    examName: "ハラスメントアドバイザー認定試験",
+    shortName: "ハラスメント",
+    topPath: "/had/",
+    themeKey: "pii",
+    matcher: (slug) => slug.startsWith("had-"),
+  },
+  {
+    id: "ccm",
+    examName: "企業危機・コンプライアンス管理士認定試験",
+    shortName: "コンプライアンス管理士",
+    topPath: "/ccm/",
+    themeKey: "pii",
+    matcher: (slug) => slug.startsWith("ccm-"),
+  },
+  {
     id: "kyoin",
     examName: "教員採用試験（教職教養）",
     shortName: "教員採用試験",

@@ -48,6 +48,8 @@ export default function StudyClient({
     isec: null,
     isf: null,
     dxp: null,
+    had: null,
+    ccm: null,
     kyoin: null,
     shakai: null,
   });

@@ -208,6 +208,8 @@ export const EXAM_FULL_NAMES: Record<ExamSlug, string> = {
   isec: "情報・サイバーセキュリティ管理士認定試験",
   isf: "情報・サイバーセキュリティ初級認定試験",
   dxp: "DXパスポート試験",
+  had: "ハラスメントアドバイザー認定試験",
+  ccm: "企業危機・コンプライアンス管理士認定試験",
   kyoin: "教員採用試験",
   shakai: "社会福祉士国家試験",
   chintai: "賃貸不動産経営管理士",

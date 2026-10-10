@@ -60,6 +60,8 @@ const kangyoDir = path.join(__dirname, "../src/content/kangyo");
 const isecDir = path.join(__dirname, "../src/content/isec");
 const isfDir = path.join(__dirname, "../src/content/isf");
 const dxpDir = path.join(__dirname, "../src/content/dxp");
+const hadDir = path.join(__dirname, "../src/content/had");
+const ccmDir = path.join(__dirname, "../src/content/ccm");
 const kyoinDir = path.join(__dirname, "../src/content/kyoin");
 const shakaiDir = path.join(__dirname, "../src/content/shakai");
 const columnsDir = path.join(__dirname, "../src/content/columns");
@@ -120,6 +122,8 @@ const kangyo = collect(kangyoDir);
 const isec = collect(isecDir);
 const isf = collect(isfDir);
 const dxp = collect(dxpDir);
+const had = collect(hadDir);
+const ccm = collect(ccmDir);
 const kyoin = collect(kyoinDir);
 const shakai = collect(shakaiDir);
 const columns = collect(columnsDir);
@@ -142,10 +146,12 @@ const kangyoMax = maxDate(kangyo, todayFallback);
 const isecMax = maxDate(isec, todayFallback);
 const isfMax = maxDate(isf, todayFallback);
 const dxpMax = maxDate(dxp, todayFallback);
+const hadMax = maxDate(had, todayFallback);
+const ccmMax = maxDate(ccm, todayFallback);
 const kyoinMax = maxDate(kyoin, todayFallback);
 const shakaiMax = maxDate(shakai, todayFallback);
 const columnsMax = maxDate(columns, todayFallback);
-const siteMax = [kashikinMax, piiMax, chizaiMax, chizai2Max, mynumberMax, jitsumuMax, bijihouMax, fukushi2Max, bijimaneMax, ecoMax, bijihou2Max, itpassMax, chintaiMax, kangyoMax, isecMax, kyoinMax, shakaiMax, isfMax, dxpMax, columnsMax].sort().at(-1);
+const siteMax = [kashikinMax, piiMax, chizaiMax, chizai2Max, mynumberMax, jitsumuMax, bijihouMax, fukushi2Max, bijimaneMax, ecoMax, bijihou2Max, itpassMax, chintaiMax, kangyoMax, isecMax, kyoinMax, shakaiMax, isfMax, dxpMax, hadMax, ccmMax, columnsMax].sort().at(-1);
 
 // 一覧・ハブページの lastmod は、そのページに表示されるコンテンツ群の最終更新日
 const staticPages = [
@@ -369,6 +375,16 @@ const staticPages = [
   { url: "/dxp/field/iot/", priority: "0.8", freq: "monthly", lastmod: dxpMax },
   { url: "/dxp/field/cloud/", priority: "0.8", freq: "monthly", lastmod: dxpMax },
   { url: "/dxp/field/security/", priority: "0.8", freq: "monthly", lastmod: dxpMax },
+  // ハラスメントアドバイザー
+  { url: "/had/", priority: "0.9", freq: "weekly", lastmod: hadMax },
+  { url: "/had/moshi/", priority: "0.7", freq: "monthly", lastmod: fileDate(path.join(appDir, "had/moshi/page.tsx")) },
+  { url: "/had/mock/", priority: "0.6", freq: "monthly", lastmod: fileDate(path.join(appDir, "had/mock/page.tsx")) },
+  ...["power", "sexual", "liability", "discipline", "measures", "response", "prevention", "consultation"].map((f) => ({ url: `/had/field/${f}/`, priority: "0.8", freq: "monthly", lastmod: hadMax })),
+  // 企業危機・コンプライアンス管理士
+  { url: "/ccm/", priority: "0.9", freq: "weekly", lastmod: ccmMax },
+  { url: "/ccm/moshi/", priority: "0.7", freq: "monthly", lastmod: fileDate(path.join(appDir, "ccm/moshi/page.tsx")) },
+  { url: "/ccm/mock/", priority: "0.6", freq: "monthly", lastmod: fileDate(path.join(appDir, "ccm/mock/page.tsx")) },
+  ...["csr", "governance", "risk", "system", "pr", "misconduct", "incidents", "disaster"].map((f) => ({ url: `/ccm/field/${f}/`, priority: "0.8", freq: "monthly", lastmod: ccmMax })),
   // 教員採用試験（教職教養）
   { url: "/kyoin/", priority: "0.9", freq: "weekly", lastmod: kyoinMax },
   { url: "/kyoin/moshi/", priority: "0.7", freq: "monthly", lastmod: fileDate(path.join(appDir, "kyoin/moshi/page.tsx")) },

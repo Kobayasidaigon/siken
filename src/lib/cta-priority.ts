@@ -31,6 +31,8 @@ import {
   JITSUMU_EXAMS,
   ISEC_EXAMS,
   ISF_EXAMS,
+  HAD_EXAMS,
+  CCM_EXAMS,
   DXP_EXAMS,
   CHINTAI_EXAMS,
   KANGYO_EXAMS,
@@ -59,6 +61,8 @@ export const EXAM_SCHEDULES: Record<ExamSlug, UpcomingExam[]> = {
   // 情報・サイバーセキュリティ初級・DXパスポート試験。どちらも同じ協会の試験(2026-10-06 追加)。
   isf: ISF_EXAMS,
   dxp: DXP_EXAMS,
+  had: HAD_EXAMS,
+  ccm: CCM_EXAMS,
   // 教員採用試験は都道府県・政令指定都市ごとに実施され、出願期間も試験日も自治体で違う。
   //   全国共通の「次回試験」が存在しないので日程は持たない(空の間はカウントダウンが出ず、
   //   答え合わせ直後CTAは Studio 優先になる)。itpass と同じ扱い。

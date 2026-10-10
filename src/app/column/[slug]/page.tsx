@@ -23,6 +23,8 @@ import ChintaiCourseAd from "@/components/ChintaiCourseAd";
 import KangyoCourseAd from "@/components/KangyoCourseAd";
 import Bijihou2CourseAd from "@/components/Bijihou2CourseAd";
 import KashikinCourseAd from "@/components/KashikinCourseAd";
+import IsfCourseAd from "@/components/IsfCourseAd";
+import DxpCourseAd from "@/components/DxpCourseAd";
 import TextAffiliateAd from "@/components/TextAffiliateAd";
 import type { ExamSlug } from "@/lib/study-progress";
 import { EXAM_SCHEDULES, decideCtaPriority } from "@/lib/cta-priority";
@@ -68,6 +70,8 @@ import {
   JITSUMU_EXAMS,
   CHINTAI_EXAMS,
   KANGYO_EXAMS,
+  ISF_EXAMS,
+  DXP_EXAMS,
 } from "@/lib/exam-dates";
 import StudioLink from "@/components/StudioLink";
 
@@ -158,6 +162,9 @@ export default async function ColumnPage({ params }: { params: Promise<{ slug: s
   const isChintaiArticle = slug.startsWith("chintai-");
   const isKangyoArticle = slug.startsWith("kangyo-");
   const isBijihou2Article = slug.startsWith("bijihou2-");
+  // 初級・DX(2026-10-09 にコラムを追加)。分岐が無いと、講座広告なし+末尾の内部導線が貸金に落ちる。
+  const isIsfArticle = slug.startsWith("isf-");
+  const isDxpArticle = slug.startsWith("dxp-");
   // 横断記事(資格接頭辞なし)。column/page.tsx の "ousan" グループと同じ明示列挙
   const isSoumuArticle = slug === "soumu-jinji-shikaku";
 
@@ -198,6 +205,22 @@ export default async function ColumnPage({ params }: { params: Promise<{ slug: s
       linkText: "協会公式サイトで申込方法を確認する",
       href: "https://px.a8.net/svt/ejp?a8mat=4B1TI0+9T22IA+4LOQ+BW8O2&a8ejpredirect=https%3A%2F%2Fwww.joho-gakushu.or.jp%2Fpiip%2F",
       pixel: "https://www11.a8.net/0.gif?a8mat=4B1TI0+9T22IA+4LOQ+BW8O2",
+    },
+    // 初級・DX の日程コラム(2026-10-09 追加)。申込リンクは affiliate-links.ts の applyHref を使う
+    // (2026-10-07 に A8 で発行したもの。ここに直書きしない)。
+    "isf-nittei": {
+      course: "isf",
+      body: "情報・サイバーセキュリティ初級認定試験の申込みは、実施団体(全日本情報学習振興協会)の公式サイトから行います。締切は試験日の5週間ほど前なので、受験する回を決めたら早めに手続きしておきましょう。",
+      linkText: "協会公式サイトで試験日程・申込方法を確認する",
+      href: EXAM_AFFILIATE.isf.applyHref!,
+      pixel: EXAM_AFFILIATE.isf.applyPixel!,
+    },
+    "dxp-nittei": {
+      course: "dxp",
+      body: "DXパスポート試験の申込みは、実施団体(全日本情報学習振興協会)の公式サイトから行います。締切は試験日の5週間ほど前なので、受験する回を決めたら早めに手続きしておきましょう。",
+      linkText: "協会公式サイトで試験日程・申込方法を確認する",
+      href: EXAM_AFFILIATE.dxp.applyHref!,
+      pixel: EXAM_AFFILIATE.dxp.applyPixel!,
     },
   };
   const examApplyAd = examApplyAds[slug];
@@ -316,6 +339,8 @@ export default async function ColumnPage({ params }: { params: Promise<{ slug: s
       accent: "var(--c-pii)",
       accentSoft: "var(--c-pii-soft)",
     },
+    "isf-nittei": { exams: ISF_EXAMS, accent: "var(--c-pii)", accentSoft: "var(--c-pii-soft)" },
+    "dxp-nittei": { exams: DXP_EXAMS, accent: "var(--c-pii)", accentSoft: "var(--c-pii-soft)" },
   };
   const niteiCountdown = niteiCountdowns[slug];
 
@@ -605,6 +630,19 @@ export default async function ColumnPage({ params }: { params: Promise<{ slug: s
         <Bijihou2CourseAd headline="2級の「あてはめ」を講座で鍛えるなら" />
       )}
 
+      {isIsfArticle && (
+        <IsfCourseAd headline="4課題を講座で体系的に押さえるなら" />
+      )}
+
+      {isDxpArticle && (
+        <DxpCourseAd headline="DXの用語と技術を講座で体系的に押さえるなら" />
+      )}
+
+      {/* DX×ITパスポートの比較記事。ITパスポート側(同じ SMART 提携)の受け皿を併置 */}
+      {slug === "dxp-itpass-hikaku" && (
+        <ItpassCourseAd headline="ITパスポートを選ぶ・あわせて受けるなら" />
+      )}
+
       {isChizaiGeneralArticle && chizaiAdContent?.secondaryBenrishi && (
         <TextAffiliateAd
           themeClass="theme-chizai"
@@ -703,6 +741,18 @@ export default async function ColumnPage({ params }: { params: Promise<{ slug: s
               <a href="/bijihou2/q/bijihou2-001/" className="text-sm text-blue-700 no-underline hover:underline">ビジ法2級 全200問を見る →</a>
               <a href="/bijihou2/moshi/" className="text-sm text-slate-500 no-underline hover:underline">模擬試験（50問・90分）を受ける →</a>
               <a href="/bijihou/" className="text-sm text-slate-500 no-underline hover:underline">3級から始める →</a>
+            </>
+          ) : isIsfArticle ? (
+            <>
+              <a href="/isf/q/isf-001/" className="text-sm text-blue-700 no-underline hover:underline">情報セキュリティ初級 全160問を見る →</a>
+              <a href="/isf/moshi/" className="text-sm text-slate-500 no-underline hover:underline">模擬試験（80問・60分）を受ける →</a>
+              <a href="/isf/" className="text-sm text-slate-500 no-underline hover:underline">分野別に選ぶ →</a>
+            </>
+          ) : isDxpArticle ? (
+            <>
+              <a href="/dxp/q/dxp-001/" className="text-sm text-blue-700 no-underline hover:underline">DXパスポート 全160問を見る →</a>
+              <a href="/dxp/moshi/" className="text-sm text-slate-500 no-underline hover:underline">模擬試験（60問・60分）を受ける →</a>
+              <a href="/dxp/" className="text-sm text-slate-500 no-underline hover:underline">分野別に選ぶ →</a>
             </>
           ) : slug.startsWith("chizai-") ? (
             <>

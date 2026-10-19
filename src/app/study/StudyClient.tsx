@@ -50,6 +50,12 @@ export default function StudyClient({
     dxp: null,
     had: null,
     ccm: null,
+    touhan: null,
+    hoikushi: null,
+    gaia: null,
+    dxa: null,
+    aia: null,
+    xray: null,
     kyoin: null,
     shakai: null,
   });

@@ -42,6 +42,12 @@ const SHORT_NAME: Record<ExamSlug, string> = {
   dxp: "DXパスポート",
   had: "ハラスメント",
   ccm: "危機管理",
+  touhan: "登録販売者",
+  hoikushi: "保育士",
+  gaia: "生成AI",
+  dxa: "DX推進",
+  aia: "AI活用",
+  xray: "エックス線",
   kyoin: "教採",
   shakai: "社福士",
 };

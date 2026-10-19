@@ -37,6 +37,11 @@ function explainToHtml(s: string): string {
 
 /** 資格ID → 第2回のデータ。動的 import なので、他資格の問題は読み込まれない。 */
 const LOADERS: Record<string, () => Promise<{ takuitsu: Moshi2Question[]; ox: Moshi2OxQuestion[] }>> = {
+  hoikushi: async () => ({ takuitsu: (await import("./hoikushi-moshi2")).HOIKUSHI_MOSHI_2, ox: [] }),
+  gaia: async () => ({ takuitsu: (await import("./gaia-moshi2")).GAIA_MOSHI_2, ox: [] }),
+  dxa: async () => ({ takuitsu: (await import("./dxa-moshi2")).DXA_MOSHI_2, ox: [] }),
+  aia: async () => ({ takuitsu: (await import("./aia-moshi2")).AIA_MOSHI_2, ox: [] }),
+  xray: async () => ({ takuitsu: (await import("./xray-moshi2")).XRAY_MOSHI_2, ox: [] }),
   pii: async () => ({ takuitsu: (await import("./pii-moshi2")).PII_MOSHI_2, ox: [] }),
   jitsumu: async () => ({ takuitsu: (await import("./jitsumu-moshi2")).JITSUMU_MOSHI_2, ox: [] }),
   bijimane: async () => ({ takuitsu: (await import("./bijimane-moshi2")).BIJIMANE_MOSHI_2, ox: [] }),

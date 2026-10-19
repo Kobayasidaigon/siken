@@ -54,6 +54,11 @@ const HAS_MOCK: ExamSlug[] = [
   "dxp",
   "had",
   "ccm",
+  "xray",
+  "aia",
+  "dxa",
+  "gaia",
+  "hoikushi",
 ];
 
 /** /<資格>/moshi/ がある資格。本試験と同じ問数・時間の第1回模試(無料) */
@@ -81,6 +86,11 @@ const HAS_MOSHI: ExamSlug[] = [
   "dxp",
   "had",
   "ccm",
+  "xray",
+  "aia",
+  "dxa",
+  "gaia",
+  "hoikushi",
 ];
 
 /**

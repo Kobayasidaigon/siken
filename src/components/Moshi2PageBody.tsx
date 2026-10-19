@@ -31,6 +31,11 @@ const THEME: Record<string, string> = {
   chizai2: "theme-chizai",
   eco: "theme-eco",
   fukushi2: "theme-fukushi",
+  hoikushi: "theme-pii",
+  gaia: "theme-pii",
+  dxa: "theme-pii",
+  aia: "theme-pii",
+  xray: "theme-pii",
 };
 
 export default function Moshi2PageBody({ certId }: { certId: ExamSlug }) {

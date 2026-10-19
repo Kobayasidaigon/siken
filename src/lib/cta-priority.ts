@@ -33,6 +33,11 @@ import {
   ISF_EXAMS,
   HAD_EXAMS,
   CCM_EXAMS,
+  HOIKUSHI_EXAMS,
+  GAIA_EXAMS,
+  DXA_EXAMS,
+  AIA_EXAMS,
+  XRAY_EXAMS,
   DXP_EXAMS,
   CHINTAI_EXAMS,
   KANGYO_EXAMS,
@@ -63,6 +68,11 @@ export const EXAM_SCHEDULES: Record<ExamSlug, UpcomingExam[]> = {
   dxp: DXP_EXAMS,
   had: HAD_EXAMS,
   ccm: CCM_EXAMS,
+  hoikushi: HOIKUSHI_EXAMS,
+  gaia: GAIA_EXAMS,
+  dxa: DXA_EXAMS,
+  aia: AIA_EXAMS,
+  xray: XRAY_EXAMS,
   // 教員採用試験は都道府県・政令指定都市ごとに実施され、出願期間も試験日も自治体で違う。
   //   全国共通の「次回試験」が存在しないので日程は持たない(空の間はカウントダウンが出ず、
   //   答え合わせ直後CTAは Studio 優先になる)。itpass と同じ扱い。

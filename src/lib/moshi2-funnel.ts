@@ -14,6 +14,11 @@ import {
   BIJIMANE_EXAMS,
   CHIZAI_EXAMS,
   ECO_EXAMS,
+  HOIKUSHI_EXAMS,
+  GAIA_EXAMS,
+  DXA_EXAMS,
+  AIA_EXAMS,
+  XRAY_EXAMS,
   FUKUSHI2_EXAMS,
   JITSUMU_EXAMS,
   MYNUMBER_EXAMS,
@@ -66,6 +71,11 @@ const EXAMS_BY_SLUG: Partial<Record<ExamSlug, UpcomingExam[]>> = {
   chizai2: CHIZAI_EXAMS,
   eco: ECO_EXAMS,
   fukushi2: FUKUSHI2_EXAMS,
+  hoikushi: HOIKUSHI_EXAMS,
+  gaia: GAIA_EXAMS,
+  dxa: DXA_EXAMS,
+  aia: AIA_EXAMS,
+  xray: XRAY_EXAMS,
 };
 
 /**

@@ -49,6 +49,10 @@ const STRAY_SCRIPT = /[Ѐ-ӿ가-힯฀-๿]/;
 // CVSS・DKIM・IoT のような略語は大文字なので、小文字4字以上の連なりだけを見る。
 // e-Tax / TLS 1.3 のような表記を誤検知しないよう、前後が英字の場合は対象外。
 const STRAY_LATIN = /(?<![A-Za-z])[a-z]{4,}(?![A-Za-z])/;
+// 正当な専門用語(単位・英語名の用語・略語の展開形)は誤検知になるので、判定前に取り除く。
+// 生成崩れの事故は文中に脈絡なく紛れる単語なので、用語として必然のものだけをここに列挙する。
+const STRAY_ALLOW = /kcal|k-means|Pre-trained|(?:[Zz]ero|[Ff]ew|[Oo]ne)-shot|Self-consistency|temperature|Merges with Offline/g;
+const hasStrayLatin = (s) => STRAY_LATIN.test(s.replace(STRAY_ALLOW, " "));
 
 // 監査の対象。**このリストはサイト固有**なので、他サイトからスクリプトを
 // コピーしたときは必ず書き換えること(コピーしたまま放置して、本来の資格を
@@ -63,6 +67,11 @@ const TARGETS = [
   { certId: "fukushi2", name: "福祉住環境コーディネーター2級", expect: 28, ox: 30 },
   { certId: "bijimane", name: "ビジネスマネジャー検定",      expect: 50  },
   { certId: "eco",      name: "eco検定",                     expect: 50  },
+  { certId: "hoikushi", name: "保育士試験（筆記）", expect: 160, choices: 5 },
+  { certId: "gaia", name: "生成AIアドバイザー認定試験", expect: 100 },
+  { certId: "dxa", name: "DX推進アドバイザー認定試験", expect: 100, choicesSet: [2, 4] },
+  { certId: "aia", name: "AI活用アドバイザー認定試験", expect: 100, choicesSet: [2, 4] },
+  { certId: "xray", name: "エックス線作業主任者免許試験", expect: 40, choices: 5 },
 ];
 
 /** *-moshi2.ts をブロック分割して読む(TSを実行せずテキストとして解析)。 */
@@ -213,8 +222,8 @@ for (const t of TARGETS) {
 
   for (const it of paid) {
     const { choices: ch, answer: a } = it;
-    const want = t.choices ?? 4;
-    if (!Array.isArray(ch) || ch.length !== want || !(a >= 1 && a <= ch.length)) {
+    const allowed = t.choicesSet ?? [t.choices ?? 4];
+    if (!Array.isArray(ch) || !allowed.includes(ch.length) || !(a >= 1 && a <= ch.length)) {
       shape++;
       continue;
     }
@@ -227,7 +236,7 @@ for (const t of TARGETS) {
     }
     if (POS_REF.test(it.explain)) posRef++;
     const blob = [it.q, it.explain, ...ch].join(" ");
-    if (STRAY_SCRIPT.test(blob) || STRAY_LATIN.test(blob)) strays.push(it.id);
+    if (STRAY_SCRIPT.test(blob) || hasStrayLatin(blob)) strays.push(it.id);
     // 分野名は第1回・無料問題集と一致していないと弱点分析の集計が割れる
     if (freeFields.size && !freeFields.has(it.field)) badFields.push(`${it.id}: "${it.field}"`);
     if (!["A", "B", "C"].includes(it.difficulty)) badDiff.push(it.id);
@@ -293,7 +302,7 @@ for (const t of TARGETS) {
   const gapPct = pct(overGap.length);
 
   console.log(`  正解肢が${LIMITS.GAP_CHARS}字以上長い: ${overGap.length}問 (${gapPct}%)  [上限 ${LIMITS.GAP_RATIO_PCT}%]`);
-  console.log(`  正解位置の分布     : ${pos.slice(0, t.choices ?? 4).join(" / ")}  (最大 ${maxPosPct}% / 上限 ${t.choices === 3 ? 50 : LIMITS.ANSWER_POS_PCT}%)`);
+  console.log(`  正解位置の分布     : ${pos.slice(0, Math.max(...(t.choicesSet ?? [t.choices ?? 4]))).join(" / ")}  (最大 ${maxPosPct}% / 上限 ${t.choicesSet ? 60 : t.choices === 3 ? 50 : LIMITS.ANSWER_POS_PCT}%)`);
   console.log(`  正解位置の周期性   : ${periodHits.length}件  [上限 0件]`);
   console.log(`  設問文の重複(内部) : ${dupsInside.length}件  [上限 ${LIMITS.DUP_MAX}件]`);
   console.log(`  無料問題と論点が近い: ${nearDups.length}件  [上限 0件]  ※言い換え重複の検出(類似度${Math.round(LIMITS.NEAR_DUP * 100)}%以上)`);
@@ -303,7 +312,7 @@ for (const t of TARGETS) {
   console.log(`  異種文字・英単語混入: ${strays.length}問  [上限 0問]`);
   if (shape) console.log(`  形式不正           : ${shape}件`);
 
-  if (shape > 0) violations.push(`形式不正(${t.choices ?? 4}択でない/正解番号が範囲外)が${shape}件`);
+  if (shape > 0) violations.push(`形式不正(${(t.choicesSet ?? [t.choices ?? 4]).join('/')}択でない/正解番号が範囲外)が${shape}件`);
   if (dupIds.length) violations.push(`IDが重複: ${[...new Set(dupIds)].join(", ")}`);
   if (badDiff.length) violations.push(`difficulty が A/B/C でない問題が${badDiff.length}問 (${badDiff.slice(0, 5).join(", ")})`);
   if (badFields.length)
@@ -313,7 +322,7 @@ for (const t of TARGETS) {
   if (gapPct > LIMITS.GAP_RATIO_PCT)
     violations.push(`正解肢が${LIMITS.GAP_CHARS}字以上長い問題が${overGap.length}問(${gapPct}%) — 内容を知らなくても長い肢が当たる`);
   // 3択は偶然の正答率が33%なので、4択と同じ45%では厳しすぎる。選択肢数に応じて緩める。
-  const posLimit = t.choices === 3 ? 50 : LIMITS.ANSWER_POS_PCT;
+  const posLimit = t.choicesSet ? 60 : t.choices === 3 ? 50 : LIMITS.ANSWER_POS_PCT; // 2択を含む試験は偶然の正答率が高いので緩める
   if (maxPosPct > posLimit) violations.push(`正解位置が${maxPosPct}%に偏っている(上限${posLimit}%)`);
   if (periodHits.length > 0)
     violations.push(`正解位置に周期パターンがある(${periodHits.length}件)\n      ` + periodHits.slice(0, 4).join("\n      "));
@@ -383,7 +392,7 @@ for (const t of TARGETS) {
   const badFOx = ox.filter((x) => fb.fields.size && !fb.fields.has(x.field)).map((x) => `${x.id}: "${x.field}"`);
   const strayOx = ox.filter((x) => {
     const blob = x.statement + x.explain;
-    return STRAY_SCRIPT.test(blob) || STRAY_LATIN.test(blob);
+    return STRAY_SCRIPT.test(blob) || hasStrayLatin(blob);
   }).map((x) => x.id);
   const noExp = ox.filter((x) => !x.explain).map((x) => x.id);
 

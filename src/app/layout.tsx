@@ -130,6 +130,26 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                       <span className="w-1 h-4 mr-3 rounded-full" style={{ background: "var(--c-pii)" }}></span>
                       企業危機・コンプライアンス管理士
                     </a>
+                    <a href="/hoikushi/" className="flex items-center px-4 py-2 text-[color:var(--c-text)] hover:bg-[color:var(--c-bg-alt)] hover:text-[color:var(--c-pii)] no-underline transition-colors">
+                      <span className="w-1 h-4 mr-3 rounded-full" style={{ background: "var(--c-pii)" }}></span>
+                      保育士試験（筆記）
+                    </a>
+                    <a href="/gaia/" className="flex items-center px-4 py-2 text-[color:var(--c-text)] hover:bg-[color:var(--c-bg-alt)] hover:text-[color:var(--c-pii)] no-underline transition-colors">
+                      <span className="w-1 h-4 mr-3 rounded-full" style={{ background: "var(--c-pii)" }}></span>
+                      生成AIアドバイザー
+                    </a>
+                    <a href="/dxa/" className="flex items-center px-4 py-2 text-[color:var(--c-text)] hover:bg-[color:var(--c-bg-alt)] hover:text-[color:var(--c-pii)] no-underline transition-colors">
+                      <span className="w-1 h-4 mr-3 rounded-full" style={{ background: "var(--c-pii)" }}></span>
+                      DX推進アドバイザー
+                    </a>
+                    <a href="/aia/" className="flex items-center px-4 py-2 text-[color:var(--c-text)] hover:bg-[color:var(--c-bg-alt)] hover:text-[color:var(--c-pii)] no-underline transition-colors">
+                      <span className="w-1 h-4 mr-3 rounded-full" style={{ background: "var(--c-pii)" }}></span>
+                      AI活用アドバイザー
+                    </a>
+                    <a href="/xray/" className="flex items-center px-4 py-2 text-[color:var(--c-text)] hover:bg-[color:var(--c-bg-alt)] hover:text-[color:var(--c-pii)] no-underline transition-colors">
+                      <span className="w-1 h-4 mr-3 rounded-full" style={{ background: "var(--c-pii)" }}></span>
+                      エックス線作業主任者
+                    </a>
                     <a href="/kyoin/" className="flex items-center px-4 py-2 text-[color:var(--c-text)] hover:bg-[color:var(--c-bg-alt)] hover:text-[color:var(--c-fukushi)] no-underline transition-colors">
                       <span className="w-1 h-4 mr-3 rounded-full" style={{ background: "var(--c-fukushi)" }}></span>
                       教員採用試験（教職教養）
@@ -208,6 +228,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                   <li><a href="/dxp/" className="text-[color:var(--c-text-sub)] hover:text-[color:var(--c-pii)] no-underline">DXパスポート試験</a></li>
                   <li><a href="/had/" className="text-[color:var(--c-text-sub)] hover:text-[color:var(--c-pii)] no-underline">ハラスメントアドバイザー</a></li>
                   <li><a href="/ccm/" className="text-[color:var(--c-text-sub)] hover:text-[color:var(--c-pii)] no-underline">企業危機・コンプライアンス管理士</a></li>
+                  <li><a href="/hoikushi/" className="text-[color:var(--c-text-sub)] hover:text-[color:var(--c-pii)] no-underline">保育士試験（筆記）</a></li>
+                  <li><a href="/gaia/" className="text-[color:var(--c-text-sub)] hover:text-[color:var(--c-pii)] no-underline">生成AIアドバイザー</a></li>
+                  <li><a href="/dxa/" className="text-[color:var(--c-text-sub)] hover:text-[color:var(--c-pii)] no-underline">DX推進アドバイザー</a></li>
+                  <li><a href="/aia/" className="text-[color:var(--c-text-sub)] hover:text-[color:var(--c-pii)] no-underline">AI活用アドバイザー</a></li>
+                  <li><a href="/xray/" className="text-[color:var(--c-text-sub)] hover:text-[color:var(--c-pii)] no-underline">エックス線作業主任者</a></li>
                   <li><a href="/kyoin/" className="text-[color:var(--c-text-sub)] hover:text-[color:var(--c-fukushi)] no-underline">教員採用試験（教職教養）</a></li>
                   <li><a href="/shakai/" className="text-[color:var(--c-text-sub)] hover:text-[color:var(--c-eco)] no-underline">社会福祉士（共通科目）</a></li>
                   <li><a href="/bijihou/" className="text-[color:var(--c-text-sub)] hover:text-[color:var(--c-kashikin)] no-underline">ビジネス実務法務検定3級</a></li>

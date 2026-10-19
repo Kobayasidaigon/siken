@@ -148,6 +148,57 @@ export const KANGYO_EXAMS: UpcomingExam[] = [
   { date: "2026-12-06", label: "令和8年度", applyStart: "2026-08-03", applyEnd: "2026-09-30" },
 ];
 
+// エックス線作業主任者免許試験。2026-10-19 追加。
+// 出典: 安全衛生技術試験協会の免許試験日程ページ(exam.or.jp/schedule/h_nittei701、2026-10-19確認)。
+// 全センター共通の日はなく、申込は試験日の2か月前〜14日前(日程ページに個別の申込期間の記載なし)。
+// 日付ごとにセンターが違うため label に実施センターを書いた。
+// 申込期間は入れていない。
+export const XRAY_EXAMS: UpcomingExam[] = [
+  { date: "2026-11-20", label: "11月20日回（関東・北海道・中部・大阪・中国四国・九州）" },
+  { date: "2027-01-19", label: "1月19日回（東北・関東・大阪・中国四国・九州）" },
+  { date: "2027-03-03", label: "3月3日回（北海道・東北・関東・中部・近畿・中国四国）" },
+];
+
+// AI活用アドバイザー認定試験。2026-10-19 追加。
+// 出典: 全日本情報学習振興協会 AI活用アドバイザー認定試験ページ(joho-gakushu.or.jp/ai-advisor/、2026-10-19確認)。
+// 第14回(2026-10-18)は終了。
+// 第16回以降は未公表。
+// 受験料は2027年4月開催分から14,300円に改定予定。
+export const AIA_EXAMS: UpcomingExam[] = [
+  { date: "2027-03-14", label: "第15回", applyStart: "2026-11-16", applyEnd: "2027-01-28" },
+];
+
+// DX推進アドバイザー認定試験。2026-10-19 追加。
+// 出典: 全日本情報学習振興協会 DX推進アドバイザー認定試験ページ(joho-gakushu.or.jp/dx/dxa/、2026-10-19確認)。
+// 第21回(2026-09-27)は終了。
+// 受験料は2027年3月開催分(第23回)から14,300円に改定。
+export const DXA_EXAMS: UpcomingExam[] = [
+  { date: "2026-12-13", label: "第22回", applyStart: "2026-08-25", applyEnd: "2026-10-29" },
+  { date: "2027-03-14", label: "第23回", applyStart: "2026-11-16", applyEnd: "2027-01-28" },
+  { date: "2027-06-27", label: "第24回", applyStart: "2027-02-15", applyEnd: "2027-05-13" },
+];
+
+// 生成AIアドバイザー認定試験。2026-10-19 追加。
+// 出典: 全日本情報学習振興協会 生成AIアドバイザー認定試験ページ(joho-gakushu.or.jp/seisei-ai-advisor/、2026-10-19確認)。
+// 第3回(2026-08-30)は終了。
+// 第4回の申込開始日は未確認のため applyStart は入れていない(締切のみ)。
+// 受験料は2027年5月開催分(第6回)から改定。
+export const GAIA_EXAMS: UpcomingExam[] = [
+  { date: "2026-11-29", label: "第4回", applyEnd: "2026-10-22" },
+  { date: "2027-02-21", label: "第5回", applyStart: "2026-10-27", applyEnd: "2027-01-14" },
+  { date: "2027-05-23", label: "第6回", applyStart: "2027-01-19", applyEnd: "2027-04-15" },
+];
+
+// 保育士試験（筆記）。2026-10-19 追加。
+// 出典: 全国保育士養成協議会(hoyokyo.or.jp/exam/、2026-10-19確認)。
+// 令和9年前期の筆記は2027-04-17・18、後期は2027-10-23・24。
+// 令和8年後期(2026-10-24・25)は申請が終了しているため入れていない。
+// 令和9年前期の申請期間は令和8年12月下旬に公表予定のため applyStart/applyEnd は入れていない。
+export const HOIKUSHI_EXAMS: UpcomingExam[] = [
+  { date: "2027-04-17", label: "令和9年前期（筆記）" },
+  { date: "2027-10-23", label: "令和9年後期（筆記）" },
+];
+
 /**
  * 資格スラッグ → 今後の試験日リスト。日程を持つ資格だけ載せる (無い資格は undefined)。
  * 2026-09-22 追加: 模試結果画面のリマインド登録で「試験日」の既定値に使う。
@@ -169,6 +220,11 @@ export const EXAMS_BY_SLUG: Readonly<Record<string, UpcomingExam[]>> = {
   dxp: DXP_EXAMS,
   chintai: CHINTAI_EXAMS,
   kangyo: KANGYO_EXAMS,
+  hoikushi: HOIKUSHI_EXAMS,
+  gaia: GAIA_EXAMS,
+  dxa: DXA_EXAMS,
+  aia: AIA_EXAMS,
+  xray: XRAY_EXAMS,
 };
 
 /**

@@ -31,6 +31,7 @@ const THEME: Record<string, string> = {
   chizai2: "theme-chizai",
   eco: "theme-eco",
   fukushi2: "theme-fukushi",
+  touhan: "theme-pii",
   hoikushi: "theme-pii",
   gaia: "theme-pii",
   dxa: "theme-pii",

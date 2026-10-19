@@ -45,6 +45,7 @@
 - 情報・サイバーセキュリティ管理士認定試験: https://shikakumon.com/isec/
 - ハラスメントアドバイザー認定試験: https://shikakumon.com/had/
 - 企業危機・コンプライアンス管理士認定試験: https://shikakumon.com/ccm/
+- 登録販売者試験: https://shikakumon.com/touhan/
 - 保育士試験（筆記）: https://shikakumon.com/hoikushi/
 - 生成AIアドバイザー認定試験: https://shikakumon.com/gaia/
 - DX推進アドバイザー認定試験: https://shikakumon.com/dxa/

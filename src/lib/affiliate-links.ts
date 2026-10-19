@@ -257,6 +257,18 @@ export const EXAM_AFFILIATE: Record<ExamSlug, AffiliateTarget> = {
     course: "ccm",
   },
 
+  // 登録販売者試験(touhan)。2026-10-19 追加。
+  //   リンクは 2026-10-19 の依頼仕様に従い、既存の SMART 提携(a8mat=4B1TI0 系)の a8mat と飛び先URLから組み立てた。
+  //   A8 の「商品リンク作成」で発行したリンクではないので、A8 側で計測・承認されるかを要確認(広告掲載URL管理への登録時)。
+  touhan: {
+    href: "https://px.a8.net/svt/ejp?a8mat=4B1TI0+9T22IA+4LOQ+BW8O2&a8ejpredirect=https%3A%2F%2Fwww.joho-gakushu.or.jp%2Ftourokuhanbaisya%2F",
+    label: "登録販売者のSMART合格講座を見る",
+    course: "touhan",
+    freeHref:
+      "https://px.a8.net/svt/ejp?a8mat=4B1TI0+9T22IA+4LOQ+BW8O2&a8ejpredirect=https%3A%2F%2Fwww.joho-gakushu.jp%2Fsmart%2Fregistfree.php",
+    freeLabel: "無料登録してSMART講座を試し見る",
+  },
+
   // 保育士試験（筆記）(hoikushi)。2026-10-19 追加。
   //   リンクは 2026-10-19 の依頼仕様に従い、既存の SMART 提携(a8mat=4B1TI0 系)の a8mat と飛び先URLから組み立てた。
   //   A8 の「商品リンク作成」で発行したリンクではないので、A8 側で計測・承認されるかを要確認(広告掲載URL管理への登録時)。
@@ -452,6 +464,7 @@ export const RESULT_CTA_HEADLINE: Record<ExamSlug, string> = {
   dxp: "間違えた論点を体系的に整理するなら",
   had: "間違えた論点を体系的に整理するなら",
   ccm: "間違えた論点を体系的に整理するなら",
+  touhan: "間違えた論点を体系的に整理するなら",
   hoikushi: "間違えた論点を体系的に整理するなら",
   gaia: "間違えた論点を体系的に整理するなら",
   dxa: "間違えた論点を体系的に整理するなら",

@@ -210,6 +210,7 @@ export const EXAM_FULL_NAMES: Record<ExamSlug, string> = {
   dxp: "DXパスポート試験",
   had: "ハラスメントアドバイザー認定試験",
   ccm: "企業危機・コンプライアンス管理士認定試験",
+  touhan: "登録販売者試験",
   hoikushi: "保育士試験（筆記）",
   gaia: "生成AIアドバイザー認定試験",
   dxa: "DX推進アドバイザー認定試験",

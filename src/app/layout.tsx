@@ -130,6 +130,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                       <span className="w-1 h-4 mr-3 rounded-full" style={{ background: "var(--c-pii)" }}></span>
                       企業危機・コンプライアンス管理士
                     </a>
+                    <a href="/touhan/" className="flex items-center px-4 py-2 text-[color:var(--c-text)] hover:bg-[color:var(--c-bg-alt)] hover:text-[color:var(--c-pii)] no-underline transition-colors">
+                      <span className="w-1 h-4 mr-3 rounded-full" style={{ background: "var(--c-pii)" }}></span>
+                      登録販売者
+                    </a>
                     <a href="/hoikushi/" className="flex items-center px-4 py-2 text-[color:var(--c-text)] hover:bg-[color:var(--c-bg-alt)] hover:text-[color:var(--c-pii)] no-underline transition-colors">
                       <span className="w-1 h-4 mr-3 rounded-full" style={{ background: "var(--c-pii)" }}></span>
                       保育士試験（筆記）
@@ -228,6 +232,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                   <li><a href="/dxp/" className="text-[color:var(--c-text-sub)] hover:text-[color:var(--c-pii)] no-underline">DXパスポート試験</a></li>
                   <li><a href="/had/" className="text-[color:var(--c-text-sub)] hover:text-[color:var(--c-pii)] no-underline">ハラスメントアドバイザー</a></li>
                   <li><a href="/ccm/" className="text-[color:var(--c-text-sub)] hover:text-[color:var(--c-pii)] no-underline">企業危機・コンプライアンス管理士</a></li>
+                  <li><a href="/touhan/" className="text-[color:var(--c-text-sub)] hover:text-[color:var(--c-pii)] no-underline">登録販売者</a></li>
                   <li><a href="/hoikushi/" className="text-[color:var(--c-text-sub)] hover:text-[color:var(--c-pii)] no-underline">保育士試験（筆記）</a></li>
                   <li><a href="/gaia/" className="text-[color:var(--c-text-sub)] hover:text-[color:var(--c-pii)] no-underline">生成AIアドバイザー</a></li>
                   <li><a href="/dxa/" className="text-[color:var(--c-text-sub)] hover:text-[color:var(--c-pii)] no-underline">DX推進アドバイザー</a></li>

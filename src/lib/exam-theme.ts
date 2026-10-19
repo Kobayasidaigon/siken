@@ -31,6 +31,7 @@ export const EXAM_THEME: Record<ExamSlug, ExamTheme> = {
   dxp: { accent: "var(--c-pii)", soft: "var(--c-pii-soft)", period: false },
   had: { accent: "var(--c-pii)", soft: "var(--c-pii-soft)", period: false },
   ccm: { accent: "var(--c-pii)", soft: "var(--c-pii-soft)", period: false },
+  touhan: { accent: "var(--c-pii)", soft: "var(--c-pii-soft)", period: true },
   hoikushi: { accent: "var(--c-pii)", soft: "var(--c-pii-soft)", period: true },
   gaia: { accent: "var(--c-pii)", soft: "var(--c-pii-soft)", period: true },
   dxa: { accent: "var(--c-pii)", soft: "var(--c-pii-soft)", period: true },

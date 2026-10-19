@@ -142,6 +142,14 @@ const examGroups: ExamGroup[] = [
     matcher: (slug) => slug.startsWith("ccm-"),
   },
   {
+    id: "touhan",
+    examName: "登録販売者試験",
+    shortName: "登録販売者",
+    topPath: "/touhan/",
+    themeKey: "pii",
+    matcher: (slug) => slug.startsWith("touhan-"),
+  },
+  {
     id: "hoikushi",
     examName: "保育士試験（筆記）",
     shortName: "保育士",

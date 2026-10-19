@@ -9,7 +9,7 @@
 
 const STORAGE_KEY = "shikakumon-study-v1";
 
-export type ExamSlug = "kashikin" | "pii" | "chizai" | "chizai2" | "mynumber" | "jitsumu" | "bijihou" | "fukushi2" | "bijimane" | "eco" | "bijihou2" | "itpass" | "chintai" | "kangyo" | "isec" | "kyoin" | "shakai" | "isf" | "dxp" | "had" | "ccm" | "xray" | "aia" | "dxa" | "gaia" | "hoikushi";
+export type ExamSlug = "kashikin" | "pii" | "chizai" | "chizai2" | "mynumber" | "jitsumu" | "bijihou" | "fukushi2" | "bijimane" | "eco" | "bijihou2" | "itpass" | "chintai" | "kangyo" | "isec" | "kyoin" | "shakai" | "isf" | "dxp" | "had" | "ccm" | "xray" | "aia" | "dxa" | "gaia" | "hoikushi" | "touhan";
 
 export const EXAM_LIST: { slug: ExamSlug; name: string; topPath: string; questionPathPrefix: string }[] = [
   { slug: "kashikin", name: "貸金業務取扱主任者", topPath: "/kashikin/", questionPathPrefix: "/q/" },
@@ -33,6 +33,7 @@ export const EXAM_LIST: { slug: ExamSlug; name: string; topPath: string; questio
   { slug: "dxp", name: "DXパスポート試験", topPath: "/dxp/", questionPathPrefix: "/dxp/q/" },
   { slug: "had", name: "ハラスメントアドバイザー", topPath: "/had/", questionPathPrefix: "/had/q/" },
   { slug: "ccm", name: "企業危機・コンプライアンス管理士", topPath: "/ccm/", questionPathPrefix: "/ccm/q/" },
+  { slug: "touhan", name: "登録販売者", topPath: "/touhan/", questionPathPrefix: "/touhan/q/" },
   { slug: "hoikushi", name: "保育士試験（筆記）", topPath: "/hoikushi/", questionPathPrefix: "/hoikushi/q/" },
   { slug: "gaia", name: "生成AIアドバイザー", topPath: "/gaia/", questionPathPrefix: "/gaia/q/" },
   { slug: "dxa", name: "DX推進アドバイザー", topPath: "/dxa/", questionPathPrefix: "/dxa/q/" },
@@ -76,6 +77,7 @@ function defaultProgress(): AllProgress {
     dxp: { bookmarks: [], wrong: [], correct: [], medals: {} },
     had: { bookmarks: [], wrong: [], correct: [], medals: {} },
     ccm: { bookmarks: [], wrong: [], correct: [], medals: {} },
+    touhan: { bookmarks: [], wrong: [], correct: [], medals: {} },
     hoikushi: { bookmarks: [], wrong: [], correct: [], medals: {} },
     gaia: { bookmarks: [], wrong: [], correct: [], medals: {} },
     dxa: { bookmarks: [], wrong: [], correct: [], medals: {} },

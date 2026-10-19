@@ -243,6 +243,25 @@ export const MOSHI2_PRODUCTS: Partial<Record<ExamSlug, Moshi2Product>> = {
       { label: "保育実習理論", start: 140, count: 20, passCount: 12 },
     ],
   },
+  touhan: {
+    certId: "touhan",
+    name: "登録販売者試験 模擬試験 第2回",
+    priceJpy: 1280,
+    description: "本試験と同じ120問・240分・5肢択一。総合7割と章別3.5割で判定。第1回とは完全に別問題です。",
+    questionCount: 120,
+    oxCount: 0,
+    timeLimitMin: 240,
+    passCount: 84,
+    passLabel: "合計84点以上（7割）かつ各章3.5割以上",
+    choiceLabel: "5肢択一",
+    sections: [
+      { label: "医薬品に共通する特性と基本的な知識", start: 0, count: 20, passCount: 7 },
+      { label: "人体の働きと医薬品", start: 20, count: 20, passCount: 7 },
+      { label: "主な医薬品とその作用", start: 40, count: 40, passCount: 14 },
+      { label: "薬事に関する法規と制度", start: 80, count: 20, passCount: 7 },
+      { label: "医薬品の適正使用と安全対策", start: 100, count: 20, passCount: 7 },
+    ],
+  },
 };
 
 export function moshi2ProductOf(certId: string): Moshi2Product | undefined {

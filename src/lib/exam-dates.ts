@@ -199,6 +199,16 @@ export const HOIKUSHI_EXAMS: UpcomingExam[] = [
   { date: "2027-10-23", label: "令和9年後期（筆記）" },
 ];
 
+// 登録販売者試験。2026-10-19 追加。
+// 出典: 福岡県の令和8年度登録販売者試験案内(pref.fukuoka.lg.jp、2026-10-19確認)。
+// 試験日は都道府県・ブロックごとに異なり、全国共通の日はない。
+// 令和8年度の関西(8/30)・愛知(9/2)・東京(9/6)・中国四国(10/8)は実施済みのため入れていない。
+// 令和9年度の日程は2026-10-19時点で見つからなかったため入れていない。
+// 申込期間(8/17〜8/28)は終了済み。
+export const TOUHAN_EXAMS: UpcomingExam[] = [
+  { date: "2026-12-20", label: "九州・沖縄ブロック（福岡県ほか）12月20日" },
+];
+
 /**
  * 資格スラッグ → 今後の試験日リスト。日程を持つ資格だけ載せる (無い資格は undefined)。
  * 2026-09-22 追加: 模試結果画面のリマインド登録で「試験日」の既定値に使う。
@@ -220,6 +230,7 @@ export const EXAMS_BY_SLUG: Readonly<Record<string, UpcomingExam[]>> = {
   dxp: DXP_EXAMS,
   chintai: CHINTAI_EXAMS,
   kangyo: KANGYO_EXAMS,
+  touhan: TOUHAN_EXAMS,
   hoikushi: HOIKUSHI_EXAMS,
   gaia: GAIA_EXAMS,
   dxa: DXA_EXAMS,

@@ -67,6 +67,7 @@ const TARGETS = [
   { certId: "fukushi2", name: "福祉住環境コーディネーター2級", expect: 28, ox: 30 },
   { certId: "bijimane", name: "ビジネスマネジャー検定",      expect: 50  },
   { certId: "eco",      name: "eco検定",                     expect: 50  },
+  { certId: "touhan", name: "登録販売者試験", expect: 120, choices: 5 },
   { certId: "hoikushi", name: "保育士試験（筆記）", expect: 160, choices: 5 },
   { certId: "gaia", name: "生成AIアドバイザー認定試験", expect: 100 },
   { certId: "dxa", name: "DX推進アドバイザー認定試験", expect: 100, choicesSet: [2, 4] },

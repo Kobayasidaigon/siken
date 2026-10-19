@@ -45,6 +45,8 @@ const RESULT_CTA_EXAMS: ExamSlug[] = [
   "had",
   "ccm",
   // 2026-10-19 追加。SMART合格講座(4B1TI0系)。
+  "touhan",
+  // 2026-10-19 追加。SMART合格講座(4B1TI0系)。
   "hoikushi",
   // 2026-10-19 追加。SMART合格講座(4B1TI0系)。
   "gaia",

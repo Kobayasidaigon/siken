@@ -26,6 +26,7 @@ import KashikinCourseAd from "@/components/KashikinCourseAd";
 import IsecCourseAd from "@/components/IsecCourseAd";
 import HadCourseAd from "@/components/HadCourseAd";
 import CcmCourseAd from "@/components/CcmCourseAd";
+import TouhanCourseAd from "@/components/TouhanCourseAd";
 import HoikushiCourseAd from "@/components/HoikushiCourseAd";
 import GaiaCourseAd from "@/components/GaiaCourseAd";
 import DxaCourseAd from "@/components/DxaCourseAd";
@@ -54,7 +55,7 @@ const KASHIKIN_LEGACY_SLUGS = new Set([
 ]);
 const EXAM_PREFIXES: ExamSlug[] = [
   "pii", "chizai", "chizai2", "mynumber", "jitsumu", "bijihou", "bijihou2",
-  "fukushi2", "bijimane", "eco", "itpass", "chintai", "kangyo", "isec", "kyoin", "shakai", "isf", "dxp", "had", "ccm", "xray", "aia", "dxa", "gaia", "hoikushi",
+  "fukushi2", "bijimane", "eco", "itpass", "chintai", "kangyo", "isec", "kyoin", "shakai", "isf", "dxp", "had", "ccm", "xray", "aia", "dxa", "gaia", "hoikushi", "touhan",
 ];
 function examFromColumnSlug(slug: string): ExamSlug | null {
   if (slug.startsWith("kashikin-") || KASHIKIN_LEGACY_SLUGS.has(slug)) return "kashikin";
@@ -88,6 +89,7 @@ import {
   DXA_EXAMS,
   GAIA_EXAMS,
   HOIKUSHI_EXAMS,
+  TOUHAN_EXAMS,
 } from "@/lib/exam-dates";
 import StudioLink from "@/components/StudioLink";
 
@@ -185,6 +187,7 @@ export default async function ColumnPage({ params }: { params: Promise<{ slug: s
   // ハラスメントアドバイザー・企業危機・コンプライアンス管理士(2026-10-10 にコラムを追加)
   const isHadArticle = slug.startsWith("had-");
   const isCcmArticle = slug.startsWith("ccm-");
+  const isTouhanArticle = slug.startsWith("touhan-");
   const isHoikushiArticle = slug.startsWith("hoikushi-");
   const isGaiaArticle = slug.startsWith("gaia-");
   const isDxaArticle = slug.startsWith("dxa-");
@@ -398,6 +401,7 @@ export default async function ColumnPage({ params }: { params: Promise<{ slug: s
     // had / ccm(2026-10-10)。申込の A8 リンクがまだ無いので、examApplyAds には入れていない(届いたら isf と同じ形で足す)
     "had-nittei": { exams: HAD_EXAMS, accent: "var(--c-pii)", accentSoft: "var(--c-pii-soft)" },
     "ccm-nittei": { exams: CCM_EXAMS, accent: "var(--c-pii)", accentSoft: "var(--c-pii-soft)" },
+    "touhan-nittei": { exams: TOUHAN_EXAMS, accent: "var(--c-pii)", accentSoft: "var(--c-pii-soft)" },
     "hoikushi-nittei": { exams: HOIKUSHI_EXAMS, accent: "var(--c-pii)", accentSoft: "var(--c-pii-soft)" },
     "gaia-nittei": { exams: GAIA_EXAMS, accent: "var(--c-pii)", accentSoft: "var(--c-pii-soft)" },
     "dxa-nittei": { exams: DXA_EXAMS, accent: "var(--c-pii)", accentSoft: "var(--c-pii-soft)" },
@@ -722,6 +726,10 @@ export default async function ColumnPage({ params }: { params: Promise<{ slug: s
         <CcmCourseAd headline="広い6課題を講座で体系的に押さえるなら" />
       )}
 
+      {isTouhanArticle && (
+        <TouhanCourseAd headline="出題範囲を講座で体系的に押さえるなら" />
+      )}
+
       {isHoikushiArticle && (
         <HoikushiCourseAd headline="出題範囲を講座で体系的に押さえるなら" />
       )}
@@ -882,6 +890,12 @@ export default async function ColumnPage({ params }: { params: Promise<{ slug: s
               <a href="/hoikushi/q/hoikushi-001/" className="text-sm text-blue-700 no-underline hover:underline">保育士試験（筆記） 全210問を見る →</a>
               <a href="/hoikushi/moshi/" className="text-sm text-slate-500 no-underline hover:underline">模擬試験（480分）を受ける →</a>
               <a href="/hoikushi/" className="text-sm text-slate-500 no-underline hover:underline">分野別に選ぶ →</a>
+            </>
+          ) : isTouhanArticle ? (
+            <>
+              <a href="/touhan/q/touhan-001/" className="text-sm text-blue-700 no-underline hover:underline">登録販売者 全240問を見る →</a>
+              <a href="/touhan/moshi/" className="text-sm text-slate-500 no-underline hover:underline">模擬試験（240分）を受ける →</a>
+              <a href="/touhan/" className="text-sm text-slate-500 no-underline hover:underline">分野別に選ぶ →</a>
             </>
           ) : isIsecArticle ? (
             <>

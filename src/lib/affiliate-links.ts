@@ -257,6 +257,90 @@ export const EXAM_AFFILIATE: Record<ExamSlug, AffiliateTarget> = {
     course: "ccm",
   },
 
+  // 登録販売者試験(touhan)。2026-10-19 追加。
+  //   リンクは 2026-10-19 の依頼仕様に従い、既存の SMART 提携(a8mat=4B1TI0 系)の a8mat と飛び先URLから組み立てた。
+  //   A8 の「商品リンク作成」で発行したリンクではないので、A8 側で計測・承認されるかを要確認(広告掲載URL管理への登録時)。
+  touhan: {
+    href: "https://px.a8.net/svt/ejp?a8mat=4B1TI0+9T22IA+4LOQ+BW8O2&a8ejpredirect=https%3A%2F%2Fwww.joho-gakushu.or.jp%2Ftourokuhanbaisya%2F",
+    label: "登録販売者のSMART合格講座を見る",
+    course: "touhan",
+    freeHref:
+      "https://px.a8.net/svt/ejp?a8mat=4B1TI0+9T22IA+4LOQ+BW8O2&a8ejpredirect=https%3A%2F%2Fwww.joho-gakushu.jp%2Fsmart%2Fregistfree.php",
+    freeLabel: "無料登録してSMART講座を試し見る",
+  },
+
+  // 保育士試験（筆記）(hoikushi)。2026-10-19 追加。
+  //   リンクは 2026-10-19 の依頼仕様に従い、既存の SMART 提携(a8mat=4B1TI0 系)の a8mat と飛び先URLから組み立てた。
+  //   A8 の「商品リンク作成」で発行したリンクではないので、A8 側で計測・承認されるかを要確認(広告掲載URL管理への登録時)。
+  hoikushi: {
+    href: "https://px.a8.net/svt/ejp?a8mat=4B1TI0+9T22IA+4LOQ+BW8O2&a8ejpredirect=https%3A%2F%2Fwww.joho-gakushu.jp%2Fsmartinfo%2Fk_hoikushi%2F",
+    label: "保育士のSMART合格講座を見る",
+    course: "hoikushi",
+    freeHref:
+      "https://px.a8.net/svt/ejp?a8mat=4B1TI0+9T22IA+4LOQ+BW8O2&a8ejpredirect=https%3A%2F%2Fwww.joho-gakushu.jp%2Fsmart%2Fregistfree.php",
+    freeLabel: "無料登録してSMART講座を試し見る",
+  },
+
+  // 生成AIアドバイザー認定試験(gaia)。2026-10-19 追加。
+  //   リンクは 2026-10-19 の依頼仕様に従い、既存の SMART 提携(a8mat=4B1TI0 系)の a8mat と飛び先URLから組み立てた。
+  //   A8 の「商品リンク作成」で発行したリンクではないので、A8 側で計測・承認されるかを要確認(広告掲載URL管理への登録時)。
+  gaia: {
+    href: "https://px.a8.net/svt/ejp?a8mat=4B1TI0+9T22IA+4LOQ+BW8O2&a8ejpredirect=https%3A%2F%2Fwww.joho-gakushu.or.jp%2Fseisei-ai-advisor-smart%2F",
+    label: "生成AIアドバイザーのSMART教科書講座を見る",
+    course: "gaia",
+    freeHref:
+      "https://px.a8.net/svt/ejp?a8mat=4B1TI0+9T22IA+4LOQ+BW8O2&a8ejpredirect=https%3A%2F%2Fwww.joho-gakushu.jp%2Fsmart%2Fregistfree.php",
+    freeLabel: "無料登録してSMART講座を試し見る",
+    applyHref:
+      "https://px.a8.net/svt/ejp?a8mat=4B1TI0+9T22IA+4LOQ+BW8O2&a8ejpredirect=https%3A%2F%2Fwww.joho-gakushu.or.jp%2Fseisei-ai-advisor%2F",
+    applyLabel: "協会公式サイトで申し込む",
+    applyPixel: SMART_APPLY_PIXEL,
+  },
+
+  // DX推進アドバイザー認定試験(dxa)。2026-10-19 追加。
+  //   リンクは 2026-10-19 の依頼仕様に従い、既存の SMART 提携(a8mat=4B1TI0 系)の a8mat と飛び先URLから組み立てた。
+  //   A8 の「商品リンク作成」で発行したリンクではないので、A8 側で計測・承認されるかを要確認(広告掲載URL管理への登録時)。
+  dxa: {
+    href: "https://px.a8.net/svt/ejp?a8mat=4B1TI0+9T22IA+4LOQ+BW8O2&a8ejpredirect=https%3A%2F%2Fwww.joho-gakushu.or.jp%2Fdx-kentei%2Fdx-advisor.php",
+    label: "DX推進アドバイザーのSMART合格講座を見る",
+    course: "dxa",
+    freeHref:
+      "https://px.a8.net/svt/ejp?a8mat=4B1TI0+9T22IA+4LOQ+BW8O2&a8ejpredirect=https%3A%2F%2Fwww.joho-gakushu.jp%2Fsmart%2Fregistfree.php",
+    freeLabel: "無料登録してSMART講座を試し見る",
+    applyHref:
+      "https://px.a8.net/svt/ejp?a8mat=4B1TI0+9T22IA+4LOQ+BW8O2&a8ejpredirect=https%3A%2F%2Fwww.joho-gakushu.or.jp%2Fdx%2Fdxa%2F",
+    applyLabel: "協会公式サイトで申し込む",
+    applyPixel: SMART_APPLY_PIXEL,
+  },
+
+  // AI活用アドバイザー認定試験(aia)。2026-10-19 追加。
+  //   リンクは 2026-10-19 の依頼仕様に従い、既存の SMART 提携(a8mat=4B1TI0 系)の a8mat と飛び先URLから組み立てた。
+  //   A8 の「商品リンク作成」で発行したリンクではないので、A8 側で計測・承認されるかを要確認(広告掲載URL管理への登録時)。
+  aia: {
+    href: "https://px.a8.net/svt/ejp?a8mat=4B1TI0+9T22IA+4LOQ+BW8O2&a8ejpredirect=https%3A%2F%2Fwww.joho-gakushu.or.jp%2Fai-advisor-smart%2F",
+    label: "AI活用アドバイザーのSMART合格講座を見る",
+    course: "aia",
+    freeHref:
+      "https://px.a8.net/svt/ejp?a8mat=4B1TI0+9T22IA+4LOQ+BW8O2&a8ejpredirect=https%3A%2F%2Fwww.joho-gakushu.jp%2Fsmart%2Fregistfree.php",
+    freeLabel: "無料登録してSMART講座を試し見る",
+    applyHref:
+      "https://px.a8.net/svt/ejp?a8mat=4B1TI0+9T22IA+4LOQ+BW8O2&a8ejpredirect=https%3A%2F%2Fwww.joho-gakushu.or.jp%2Fai-advisor%2F",
+    applyLabel: "協会公式サイトで申し込む",
+    applyPixel: SMART_APPLY_PIXEL,
+  },
+
+  // エックス線作業主任者免許試験(xray)。2026-10-19 追加。
+  //   リンクは 2026-10-19 の依頼仕様に従い、既存の SMART 提携(a8mat=4B1TI0 系)の a8mat と飛び先URLから組み立てた。
+  //   A8 の「商品リンク作成」で発行したリンクではないので、A8 側で計測・承認されるかを要確認(広告掲載URL管理への登録時)。
+  xray: {
+    href: "https://px.a8.net/svt/ejp?a8mat=4B1TI0+9T22IA+4LOQ+BW8O2&a8ejpredirect=https%3A%2F%2Fwww.joho-gakushu.or.jp%2Fxrays-chief%2F",
+    label: "エックス線作業主任者のSMART合格講座を見る",
+    course: "xray",
+    freeHref:
+      "https://px.a8.net/svt/ejp?a8mat=4B1TI0+9T22IA+4LOQ+BW8O2&a8ejpredirect=https%3A%2F%2Fwww.joho-gakushu.jp%2Fsmart%2Fregistfree.php",
+    freeLabel: "無料登録してSMART講座を試し見る",
+  },
+
   // 賃貸不動産経営管理士。貸金業務取扱主任者(kashikin)と同じアガルートの
   //   承認済み提携(4B3N6P系)。アガルートは賃貸不動産経営管理士講座を持つ。
   //   ※LECも同資格の講座を持つため、成果が出ない場合は差し替えを検討できる。
@@ -380,4 +464,10 @@ export const RESULT_CTA_HEADLINE: Record<ExamSlug, string> = {
   dxp: "間違えた論点を体系的に整理するなら",
   had: "間違えた論点を体系的に整理するなら",
   ccm: "間違えた論点を体系的に整理するなら",
+  touhan: "間違えた論点を体系的に整理するなら",
+  hoikushi: "間違えた論点を体系的に整理するなら",
+  gaia: "間違えた論点を体系的に整理するなら",
+  dxa: "間違えた論点を体系的に整理するなら",
+  aia: "間違えた論点を体系的に整理するなら",
+  xray: "間違えた論点を体系的に整理するなら",
 };

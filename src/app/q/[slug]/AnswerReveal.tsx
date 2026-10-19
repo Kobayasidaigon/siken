@@ -44,6 +44,18 @@ const RESULT_CTA_EXAMS: ExamSlug[] = [
   // 2026-10-10 追加。had / ccm も SMART合格講座(4B1TI0系)の無料登録を主導線にしている。
   "had",
   "ccm",
+  // 2026-10-19 追加。SMART合格講座(4B1TI0系)。
+  "touhan",
+  // 2026-10-19 追加。SMART合格講座(4B1TI0系)。
+  "hoikushi",
+  // 2026-10-19 追加。SMART合格講座(4B1TI0系)。
+  "gaia",
+  // 2026-10-19 追加。SMART合格講座(4B1TI0系)。
+  "dxa",
+  // 2026-10-19 追加。SMART合格講座(4B1TI0系)。
+  "aia",
+  // 2026-10-19 追加。SMART合格講座(4B1TI0系)。
+  "xray",
 ];
 
 const MEDAL_LABEL: Record<Medal, string> = { bronze: "🥉 銅", silver: "🥈 銀", gold: "🥇 金" };

@@ -26,6 +26,12 @@ import KashikinCourseAd from "@/components/KashikinCourseAd";
 import IsecCourseAd from "@/components/IsecCourseAd";
 import HadCourseAd from "@/components/HadCourseAd";
 import CcmCourseAd from "@/components/CcmCourseAd";
+import TouhanCourseAd from "@/components/TouhanCourseAd";
+import HoikushiCourseAd from "@/components/HoikushiCourseAd";
+import GaiaCourseAd from "@/components/GaiaCourseAd";
+import DxaCourseAd from "@/components/DxaCourseAd";
+import AiaCourseAd from "@/components/AiaCourseAd";
+import XrayCourseAd from "@/components/XrayCourseAd";
 import IsfCourseAd from "@/components/IsfCourseAd";
 import DxpCourseAd from "@/components/DxpCourseAd";
 import TextAffiliateAd from "@/components/TextAffiliateAd";
@@ -49,7 +55,7 @@ const KASHIKIN_LEGACY_SLUGS = new Set([
 ]);
 const EXAM_PREFIXES: ExamSlug[] = [
   "pii", "chizai", "chizai2", "mynumber", "jitsumu", "bijihou", "bijihou2",
-  "fukushi2", "bijimane", "eco", "itpass", "chintai", "kangyo", "isec", "kyoin", "shakai", "isf", "dxp", "had", "ccm",
+  "fukushi2", "bijimane", "eco", "itpass", "chintai", "kangyo", "isec", "kyoin", "shakai", "isf", "dxp", "had", "ccm", "xray", "aia", "dxa", "gaia", "hoikushi", "touhan",
 ];
 function examFromColumnSlug(slug: string): ExamSlug | null {
   if (slug.startsWith("kashikin-") || KASHIKIN_LEGACY_SLUGS.has(slug)) return "kashikin";
@@ -78,6 +84,12 @@ import {
   DXP_EXAMS,
   HAD_EXAMS,
   CCM_EXAMS,
+  XRAY_EXAMS,
+  AIA_EXAMS,
+  DXA_EXAMS,
+  GAIA_EXAMS,
+  HOIKUSHI_EXAMS,
+  TOUHAN_EXAMS,
 } from "@/lib/exam-dates";
 import StudioLink from "@/components/StudioLink";
 
@@ -175,6 +187,12 @@ export default async function ColumnPage({ params }: { params: Promise<{ slug: s
   // ハラスメントアドバイザー・企業危機・コンプライアンス管理士(2026-10-10 にコラムを追加)
   const isHadArticle = slug.startsWith("had-");
   const isCcmArticle = slug.startsWith("ccm-");
+  const isTouhanArticle = slug.startsWith("touhan-");
+  const isHoikushiArticle = slug.startsWith("hoikushi-");
+  const isGaiaArticle = slug.startsWith("gaia-");
+  const isDxaArticle = slug.startsWith("dxa-");
+  const isAiaArticle = slug.startsWith("aia-");
+  const isXrayArticle = slug.startsWith("xray-");
   // 横断記事(資格接頭辞なし)。column/page.tsx の "ousan" グループと同じ明示列挙
   const isSoumuArticle = slug === "soumu-jinji-shikaku";
 
@@ -238,6 +256,27 @@ export default async function ColumnPage({ params }: { params: Promise<{ slug: s
       linkText: "協会公式サイトで試験日程・申込方法を確認する",
       href: EXAM_AFFILIATE.dxp.applyHref!,
       pixel: EXAM_AFFILIATE.dxp.applyPixel!,
+    },
+    "gaia-nittei": {
+      course: "gaia",
+      body: "生成AIアドバイザー認定試験の申込みは、実施団体(全日本情報学習振興協会)の公式サイトから行います。受験する回を決めたら、締切に余裕をもって手続きしておきましょう。",
+      linkText: "協会公式サイトで試験日程・申込方法を確認する",
+      href: EXAM_AFFILIATE.gaia.applyHref!,
+      pixel: EXAM_AFFILIATE.gaia.applyPixel!,
+    },
+    "dxa-nittei": {
+      course: "dxa",
+      body: "DX推進アドバイザー認定試験の申込みは、実施団体(全日本情報学習振興協会)の公式サイトから行います。受験する回を決めたら、締切に余裕をもって手続きしておきましょう。",
+      linkText: "協会公式サイトで試験日程・申込方法を確認する",
+      href: EXAM_AFFILIATE.dxa.applyHref!,
+      pixel: EXAM_AFFILIATE.dxa.applyPixel!,
+    },
+    "aia-nittei": {
+      course: "aia",
+      body: "AI活用アドバイザー認定試験の申込みは、実施団体(全日本情報学習振興協会)の公式サイトから行います。受験する回を決めたら、締切に余裕をもって手続きしておきましょう。",
+      linkText: "協会公式サイトで試験日程・申込方法を確認する",
+      href: EXAM_AFFILIATE.aia.applyHref!,
+      pixel: EXAM_AFFILIATE.aia.applyPixel!,
     },
   };
   const examApplyAd = examApplyAds[slug];
@@ -362,6 +401,12 @@ export default async function ColumnPage({ params }: { params: Promise<{ slug: s
     // had / ccm(2026-10-10)。申込の A8 リンクがまだ無いので、examApplyAds には入れていない(届いたら isf と同じ形で足す)
     "had-nittei": { exams: HAD_EXAMS, accent: "var(--c-pii)", accentSoft: "var(--c-pii-soft)" },
     "ccm-nittei": { exams: CCM_EXAMS, accent: "var(--c-pii)", accentSoft: "var(--c-pii-soft)" },
+    "touhan-nittei": { exams: TOUHAN_EXAMS, accent: "var(--c-pii)", accentSoft: "var(--c-pii-soft)" },
+    "hoikushi-nittei": { exams: HOIKUSHI_EXAMS, accent: "var(--c-pii)", accentSoft: "var(--c-pii-soft)" },
+    "gaia-nittei": { exams: GAIA_EXAMS, accent: "var(--c-pii)", accentSoft: "var(--c-pii-soft)" },
+    "dxa-nittei": { exams: DXA_EXAMS, accent: "var(--c-pii)", accentSoft: "var(--c-pii-soft)" },
+    "aia-nittei": { exams: AIA_EXAMS, accent: "var(--c-pii)", accentSoft: "var(--c-pii-soft)" },
+    "xray-nittei": { exams: XRAY_EXAMS, accent: "var(--c-pii)", accentSoft: "var(--c-pii-soft)" },
   };
   const niteiCountdown = niteiCountdowns[slug];
 
@@ -681,6 +726,30 @@ export default async function ColumnPage({ params }: { params: Promise<{ slug: s
         <CcmCourseAd headline="広い6課題を講座で体系的に押さえるなら" />
       )}
 
+      {isTouhanArticle && (
+        <TouhanCourseAd headline="出題範囲を講座で体系的に押さえるなら" />
+      )}
+
+      {isHoikushiArticle && (
+        <HoikushiCourseAd headline="出題範囲を講座で体系的に押さえるなら" />
+      )}
+
+      {isGaiaArticle && (
+        <GaiaCourseAd headline="出題範囲を講座で体系的に押さえるなら" />
+      )}
+
+      {isDxaArticle && (
+        <DxaCourseAd headline="出題範囲を講座で体系的に押さえるなら" />
+      )}
+
+      {isAiaArticle && (
+        <AiaCourseAd headline="出題範囲を講座で体系的に押さえるなら" />
+      )}
+
+      {isXrayArticle && (
+        <XrayCourseAd headline="出題範囲を講座で体系的に押さえるなら" />
+      )}
+
       {isChizaiGeneralArticle && chizaiAdContent?.secondaryBenrishi && (
         <TextAffiliateAd
           themeClass="theme-chizai"
@@ -791,6 +860,42 @@ export default async function ColumnPage({ params }: { params: Promise<{ slug: s
               <a href="/ccm/q/ccm-001/" className="text-sm text-blue-700 no-underline hover:underline">企業危機・コンプライアンス管理士 全160問を見る →</a>
               <a href="/ccm/moshi/" className="text-sm text-slate-500 no-underline hover:underline">模擬試験（80問・120分）を受ける →</a>
               <a href="/ccm/" className="text-sm text-slate-500 no-underline hover:underline">分野別に選ぶ →</a>
+            </>
+          ) : isXrayArticle ? (
+            <>
+              <a href="/xray/q/xray-001/" className="text-sm text-blue-700 no-underline hover:underline">エックス線作業主任者 全160問を見る →</a>
+              <a href="/xray/moshi/" className="text-sm text-slate-500 no-underline hover:underline">模擬試験（240分）を受ける →</a>
+              <a href="/xray/" className="text-sm text-slate-500 no-underline hover:underline">分野別に選ぶ →</a>
+            </>
+          ) : isAiaArticle ? (
+            <>
+              <a href="/aia/q/aia-001/" className="text-sm text-blue-700 no-underline hover:underline">AI活用アドバイザー 全144問を見る →</a>
+              <a href="/aia/moshi/" className="text-sm text-slate-500 no-underline hover:underline">模擬試験（105分）を受ける →</a>
+              <a href="/aia/" className="text-sm text-slate-500 no-underline hover:underline">分野別に選ぶ →</a>
+            </>
+          ) : isDxaArticle ? (
+            <>
+              <a href="/dxa/q/dxa-001/" className="text-sm text-blue-700 no-underline hover:underline">DX推進アドバイザー 全136問を見る →</a>
+              <a href="/dxa/moshi/" className="text-sm text-slate-500 no-underline hover:underline">模擬試験（105分）を受ける →</a>
+              <a href="/dxa/" className="text-sm text-slate-500 no-underline hover:underline">分野別に選ぶ →</a>
+            </>
+          ) : isGaiaArticle ? (
+            <>
+              <a href="/gaia/q/gaia-001/" className="text-sm text-blue-700 no-underline hover:underline">生成AIアドバイザー 全172問を見る →</a>
+              <a href="/gaia/moshi/" className="text-sm text-slate-500 no-underline hover:underline">模擬試験（120分）を受ける →</a>
+              <a href="/gaia/" className="text-sm text-slate-500 no-underline hover:underline">分野別に選ぶ →</a>
+            </>
+          ) : isHoikushiArticle ? (
+            <>
+              <a href="/hoikushi/q/hoikushi-001/" className="text-sm text-blue-700 no-underline hover:underline">保育士試験（筆記） 全210問を見る →</a>
+              <a href="/hoikushi/moshi/" className="text-sm text-slate-500 no-underline hover:underline">模擬試験（480分）を受ける →</a>
+              <a href="/hoikushi/" className="text-sm text-slate-500 no-underline hover:underline">分野別に選ぶ →</a>
+            </>
+          ) : isTouhanArticle ? (
+            <>
+              <a href="/touhan/q/touhan-001/" className="text-sm text-blue-700 no-underline hover:underline">登録販売者 全240問を見る →</a>
+              <a href="/touhan/moshi/" className="text-sm text-slate-500 no-underline hover:underline">模擬試験（240分）を受ける →</a>
+              <a href="/touhan/" className="text-sm text-slate-500 no-underline hover:underline">分野別に選ぶ →</a>
             </>
           ) : isIsecArticle ? (
             <>

@@ -62,6 +62,12 @@ const isfDir = path.join(__dirname, "../src/content/isf");
 const dxpDir = path.join(__dirname, "../src/content/dxp");
 const hadDir = path.join(__dirname, "../src/content/had");
 const ccmDir = path.join(__dirname, "../src/content/ccm");
+const touhanDir = path.join(__dirname, "../src/content/touhan");
+const hoikushiDir = path.join(__dirname, "../src/content/hoikushi");
+const gaiaDir = path.join(__dirname, "../src/content/gaia");
+const dxaDir = path.join(__dirname, "../src/content/dxa");
+const aiaDir = path.join(__dirname, "../src/content/aia");
+const xrayDir = path.join(__dirname, "../src/content/xray");
 const kyoinDir = path.join(__dirname, "../src/content/kyoin");
 const shakaiDir = path.join(__dirname, "../src/content/shakai");
 const columnsDir = path.join(__dirname, "../src/content/columns");
@@ -124,6 +130,12 @@ const isf = collect(isfDir);
 const dxp = collect(dxpDir);
 const had = collect(hadDir);
 const ccm = collect(ccmDir);
+const touhan = collect(touhanDir);
+const hoikushi = collect(hoikushiDir);
+const gaia = collect(gaiaDir);
+const dxa = collect(dxaDir);
+const aia = collect(aiaDir);
+const xray = collect(xrayDir);
 const kyoin = collect(kyoinDir);
 const shakai = collect(shakaiDir);
 const columns = collect(columnsDir);
@@ -148,10 +160,16 @@ const isfMax = maxDate(isf, todayFallback);
 const dxpMax = maxDate(dxp, todayFallback);
 const hadMax = maxDate(had, todayFallback);
 const ccmMax = maxDate(ccm, todayFallback);
+const touhanMax = maxDate(touhan, todayFallback);
+const hoikushiMax = maxDate(hoikushi, todayFallback);
+const gaiaMax = maxDate(gaia, todayFallback);
+const dxaMax = maxDate(dxa, todayFallback);
+const aiaMax = maxDate(aia, todayFallback);
+const xrayMax = maxDate(xray, todayFallback);
 const kyoinMax = maxDate(kyoin, todayFallback);
 const shakaiMax = maxDate(shakai, todayFallback);
 const columnsMax = maxDate(columns, todayFallback);
-const siteMax = [kashikinMax, piiMax, chizaiMax, chizai2Max, mynumberMax, jitsumuMax, bijihouMax, fukushi2Max, bijimaneMax, ecoMax, bijihou2Max, itpassMax, chintaiMax, kangyoMax, isecMax, kyoinMax, shakaiMax, isfMax, dxpMax, hadMax, ccmMax, columnsMax].sort().at(-1);
+const siteMax = [kashikinMax, piiMax, chizaiMax, chizai2Max, mynumberMax, jitsumuMax, bijihouMax, fukushi2Max, bijimaneMax, ecoMax, bijihou2Max, itpassMax, chintaiMax, kangyoMax, isecMax, kyoinMax, shakaiMax, isfMax, dxpMax, hadMax, ccmMax, touhanMax, hoikushiMax, gaiaMax, dxaMax, aiaMax, xrayMax, columnsMax].sort().at(-1);
 
 // 一覧・ハブページの lastmod は、そのページに表示されるコンテンツ群の最終更新日
 const staticPages = [
@@ -385,6 +403,43 @@ const staticPages = [
   { url: "/ccm/moshi/", priority: "0.7", freq: "monthly", lastmod: fileDate(path.join(appDir, "ccm/moshi/page.tsx")) },
   { url: "/ccm/mock/", priority: "0.6", freq: "monthly", lastmod: fileDate(path.join(appDir, "ccm/mock/page.tsx")) },
   ...["csr", "governance", "risk", "system", "pr", "misconduct", "incidents", "disaster"].map((f) => ({ url: `/ccm/field/${f}/`, priority: "0.8", freq: "monthly", lastmod: ccmMax })),
+  // 登録販売者試験
+  { url: "/touhan/", priority: "0.9", freq: "weekly", lastmod: touhanMax },
+  { url: "/touhan/moshi/", priority: "0.7", freq: "monthly", lastmod: fileDate(path.join(appDir, "touhan/moshi/page.tsx")) },
+  { url: "/touhan/moshi2/", priority: "0.6", freq: "monthly", lastmod: fileDate(path.join(appDir, "touhan/moshi2/page.tsx")) },
+  { url: "/touhan/mock/", priority: "0.6", freq: "monthly", lastmod: fileDate(path.join(appDir, "touhan/mock/page.tsx")) },
+  ...["ch1", "ch2", "ch3", "ch4", "ch5"].map((f) => ({ url: `/touhan/field/${f}/`, priority: "0.8", freq: "monthly", lastmod: touhanMax })),
+  // 保育士試験（筆記）
+  { url: "/hoikushi/", priority: "0.9", freq: "weekly", lastmod: hoikushiMax },
+  { url: "/hoikushi/moshi/", priority: "0.7", freq: "monthly", lastmod: fileDate(path.join(appDir, "hoikushi/moshi/page.tsx")) },
+  { url: "/hoikushi/moshi2/", priority: "0.6", freq: "monthly", lastmod: fileDate(path.join(appDir, "hoikushi/moshi2/page.tsx")) },
+  { url: "/hoikushi/mock/", priority: "0.6", freq: "monthly", lastmod: fileDate(path.join(appDir, "hoikushi/mock/page.tsx")) },
+  ...["shinri", "genri", "kateifukushi", "shakaifukushi", "kyoiku", "yogo", "hoken", "shokuiku", "jissyu"].map((f) => ({ url: `/hoikushi/field/${f}/`, priority: "0.8", freq: "monthly", lastmod: hoikushiMax })),
+  // 生成AIアドバイザー認定試験
+  { url: "/gaia/", priority: "0.9", freq: "weekly", lastmod: gaiaMax },
+  { url: "/gaia/moshi/", priority: "0.7", freq: "monthly", lastmod: fileDate(path.join(appDir, "gaia/moshi/page.tsx")) },
+  { url: "/gaia/moshi-2kyu/", priority: "0.7", freq: "monthly", lastmod: fileDate(path.join(appDir, "gaia/moshi-2kyu/page.tsx")) },
+  { url: "/gaia/moshi2/", priority: "0.6", freq: "monthly", lastmod: fileDate(path.join(appDir, "gaia/moshi2/page.tsx")) },
+  { url: "/gaia/mock/", priority: "0.6", freq: "monthly", lastmod: fileDate(path.join(appDir, "gaia/mock/page.tsx")) },
+  ...["ai-basics", "genai-basics", "prompt", "cases", "risk-ethics", "human-role", "enterprise", "trends", "guideline"].map((f) => ({ url: `/gaia/field/${f}/`, priority: "0.8", freq: "monthly", lastmod: gaiaMax })),
+  // DX推進アドバイザー認定試験
+  { url: "/dxa/", priority: "0.9", freq: "weekly", lastmod: dxaMax },
+  { url: "/dxa/moshi/", priority: "0.7", freq: "monthly", lastmod: fileDate(path.join(appDir, "dxa/moshi/page.tsx")) },
+  { url: "/dxa/moshi2/", priority: "0.6", freq: "monthly", lastmod: fileDate(path.join(appDir, "dxa/moshi2/page.tsx")) },
+  { url: "/dxa/mock/", priority: "0.6", freq: "monthly", lastmod: fileDate(path.join(appDir, "dxa/mock/page.tsx")) },
+  ...["genjo", "gijutsu", "tenkai"].map((f) => ({ url: `/dxa/field/${f}/`, priority: "0.8", freq: "monthly", lastmod: dxaMax })),
+  // AI活用アドバイザー認定試験
+  { url: "/aia/", priority: "0.9", freq: "weekly", lastmod: aiaMax },
+  { url: "/aia/moshi/", priority: "0.7", freq: "monthly", lastmod: fileDate(path.join(appDir, "aia/moshi/page.tsx")) },
+  { url: "/aia/moshi2/", priority: "0.6", freq: "monthly", lastmod: fileDate(path.join(appDir, "aia/moshi2/page.tsx")) },
+  { url: "/aia/mock/", priority: "0.6", freq: "monthly", lastmod: fileDate(path.join(appDir, "aia/mock/page.tsx")) },
+  ...["basics", "tech", "genai", "project", "cases", "human", "policy"].map((f) => ({ url: `/aia/field/${f}/`, priority: "0.8", freq: "monthly", lastmod: aiaMax })),
+  // エックス線作業主任者免許試験
+  { url: "/xray/", priority: "0.9", freq: "weekly", lastmod: xrayMax },
+  { url: "/xray/moshi/", priority: "0.7", freq: "monthly", lastmod: fileDate(path.join(appDir, "xray/moshi/page.tsx")) },
+  { url: "/xray/moshi2/", priority: "0.6", freq: "monthly", lastmod: fileDate(path.join(appDir, "xray/moshi2/page.tsx")) },
+  { url: "/xray/mock/", priority: "0.6", freq: "monthly", lastmod: fileDate(path.join(appDir, "xray/mock/page.tsx")) },
+  ...["kanri", "hourei", "sokutei", "seitai"].map((f) => ({ url: `/xray/field/${f}/`, priority: "0.8", freq: "monthly", lastmod: xrayMax })),
   // 教員採用試験（教職教養）
   { url: "/kyoin/", priority: "0.9", freq: "weekly", lastmod: kyoinMax },
   { url: "/kyoin/moshi/", priority: "0.7", freq: "monthly", lastmod: fileDate(path.join(appDir, "kyoin/moshi/page.tsx")) },
@@ -464,6 +519,12 @@ const contentPages = [
   { entries: shakai, prefix: "/shakai/q/" },
   { entries: isf, prefix: "/isf/q/" },
   { entries: dxp, prefix: "/dxp/q/" },
+  { entries: touhan, prefix: "/touhan/q/" },
+  { entries: hoikushi, prefix: "/hoikushi/q/" },
+  { entries: gaia, prefix: "/gaia/q/" },
+  { entries: dxa, prefix: "/dxa/q/" },
+  { entries: aia, prefix: "/aia/q/" },
+  { entries: xray, prefix: "/xray/q/" },
 ].flatMap(({ entries, prefix }) =>
   entries.map((e) => ({
     url: `${prefix}${e.slug}/`,

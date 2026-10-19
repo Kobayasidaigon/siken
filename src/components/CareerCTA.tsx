@@ -5,7 +5,7 @@
  * 未設定なら null(安全な no-op)。FreeLeadCTA / BookLeadCTA と同じ設計。
  *
  * variant:
- *   card … コラム末尾。TextAffiliateAd と同じ体裁(導入・本文・ボタン)
+ *   card … コラム末尾。TextAffiliateAd と同じ体裁(導入・本文・サービスの紹介(offer.note)・ボタン)
  *   line … 模試の結果面・合格報告の送信後。1行だけ添える
  *
  * 計測: course="career-<資格 or track>"、placement="<面>_career"(career-links.ts の冒頭を参照)。
@@ -67,6 +67,9 @@ export default function CareerCTA({ exam, track, placement, variant = "card", le
       </p>
       <p className="text-xs text-[color:var(--c-text-sub)] mb-2">{target.headline}</p>
       <p className="text-sm text-[color:var(--c-text)] leading-relaxed mb-4">{target.body}</p>
+      {target.offer.note && (
+        <p className="text-xs text-[color:var(--c-text-sub)] leading-relaxed mb-4">{target.offer.note}</p>
+      )}
       <AffiliateLink href={target.offer.href} course={course} placement={`${placement}_career`}>
         {target.offer.label} →
       </AffiliateLink>

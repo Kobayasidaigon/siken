@@ -35,6 +35,7 @@ import XrayCourseAd from "@/components/XrayCourseAd";
 import IsfCourseAd from "@/components/IsfCourseAd";
 import DxpCourseAd from "@/components/DxpCourseAd";
 import TextAffiliateAd from "@/components/TextAffiliateAd";
+import CareerCTA from "@/components/CareerCTA";
 import type { ExamSlug } from "@/lib/study-progress";
 import { EXAM_SCHEDULES, decideCtaPriority } from "@/lib/cta-priority";
 import { EXAM_AFFILIATE } from "@/lib/affiliate-links";
@@ -195,6 +196,10 @@ export default async function ColumnPage({ params }: { params: Promise<{ slug: s
   const isXrayArticle = slug.startsWith("xray-");
   // 横断記事(資格接頭辞なし)。column/page.tsx の "ousan" グループと同じ明示列挙
   const isSoumuArticle = slug === "soumu-jinji-shikaku";
+
+  // 資格の価値・使い道を扱う記事(〜は意味ない・〜とは・就職/転職・メリット・活用)には、
+  // 講座広告のあとに転職サービスの導線を置く。リンク未設定の間は何も出ない(lib/career-links.ts)。
+  const isCareerArticle = isSoumuArticle || /-(iminai|toha|shukatsu|meritto|katsuyou)$/.test(slug);
 
   // 日程・申込コラム(全日本情報学習振興協会が実施するSMART系資格のみ)には、
   // 講座広告より先に「試験申込」導線を置く。ドリル読者の必然行動(受験申込)が
@@ -759,6 +764,14 @@ export default async function ColumnPage({ params }: { params: Promise<{ slug: s
           linkHref="https://px.a8.net/svt/ejp?a8mat=4B3N6P+AWY41E+44M0+BW8O2&a8ejpredirect=https%3A%2F%2Fwww.agaroot.jp%2Fbenri%2F"
           linkText="アガルートの弁理士試験講座を見る"
           pixelSrc="https://www12.a8.net/0.gif?a8mat=4B3N6P+AWY41E+44M0+BW8O2"
+        />
+      )}
+
+      {isCareerArticle && (
+        <CareerCTA
+          exam={examFromColumnSlug(slug) ?? undefined}
+          track={isSoumuArticle ? "kanri" : undefined}
+          placement="column"
         />
       )}
 

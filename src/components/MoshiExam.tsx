@@ -21,6 +21,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { sendGAEvent } from "@next/third-parties/google";
 import AffiliateLink from "@/components/AffiliateLink";
 import FreeLeadCTA from "@/components/FreeLeadCTA";
+import CareerCTA from "@/components/CareerCTA";
 import { EXAM_AFFILIATE } from "@/lib/affiliate-links";
 import { decideCtaPriority } from "@/lib/cta-priority";
 import { studioMoshiHref } from "@/lib/studio-cta";
@@ -636,6 +637,18 @@ export default function MoshiExam({
               </div>
             )}
         </aside>
+      )}
+
+      {/* 合格圏の人の次の行動は「資格を仕事に活かす」。転職サービスを1行だけ添える
+          (リンク未設定の間は何も出ない。lib/career-links.ts) */}
+      {passed && (
+        <CareerCTA
+          exam={exam}
+          placement="moshi_result"
+          variant="line"
+          lead="本番でも合格したら"
+          className="mb-6 px-1 text-xs text-[color:var(--c-text-sub)]"
+        />
       )}
 
       {/* Studio 送客。弱点分野が出ていれば、その分野を引き継いで送る

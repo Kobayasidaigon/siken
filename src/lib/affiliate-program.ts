@@ -17,6 +17,8 @@ const A8_PROGRAM: Record<string, string> = {
   FFHK1M: "sat", // SAT株式会社(設備ドリルと共通)
   GE0P4Q: "nousen", // 能セン
   G998AI: "denkouseka", // 電光石火(電工技能セット)
+  CONHRM: "takkenjob", // 株式会社ヘイフィールド 宅建Jobエージェント(転職。lib/career-links.ts)
+  D5X2B6: "onecareer", // 株式会社ワンキャリア ワンキャリア転職(転職。lib/career-links.ts)
 };
 
 export function programOf(href: string | undefined): string {

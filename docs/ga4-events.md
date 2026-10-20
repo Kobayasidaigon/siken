@@ -93,6 +93,11 @@ Studio 側で見られなかったため（GA4 は utm_* をイベントのパ�
 `affiliate_click`（例 `question_result_free`）として記録される。
 有料講座への導線と同じイベントで並ぶので、比べるときは `placement` の接尾辞で分ける。
 
+転職サービスへの導線（`CareerCTA`、2026-10-17 追加）も同じ `affiliate_click` / `cta_impression` に乗る。
+`placement` は `column_career` / `moshi_result_career` / `pass_report_career`、
+`course` は `career-<資格ID>`（横断記事は `career-kanri` のような track 名）。
+`course` を資格IDにしないのは、`recent-course` が講座のクリックと取り違えて「前回チェックした講座」を出すため。
+
 ### 有料模試
 
 | イベント | 発火する場所 | パラメータ |

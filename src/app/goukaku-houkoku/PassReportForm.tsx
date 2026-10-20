@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { sendGAEvent } from "@next/third-parties/google";
 import { EXAM_LIST, type ExamSlug } from "@/lib/study-progress";
+import CareerCTA from "@/components/CareerCTA";
 
 /**
  * 合格報告の投稿フォーム。2026-09-05 追加。
@@ -20,6 +21,8 @@ export default function PassReportForm() {
   const [exam, setExam] = useState<ExamSlug | "">("");
   const [status, setStatus] = useState<Status>("idle");
   const [message, setMessage] = useState("");
+  // 送信後に、合格の報告だった人へだけ転職サービスの導線を添えるために覚えておく
+  const [sent, setSent] = useState<{ exam: string; result: string } | null>(null);
 
   useEffect(() => {
     // ?exam=kashikin のように資格が指定されていれば初期選択する
@@ -60,6 +63,7 @@ export default function PassReportForm() {
         setMessage(data.error ?? "送信に失敗しました。時間をおいてお試しください。");
         return;
       }
+      setSent({ exam: payload.exam, result: payload.result });
       setStatus("done");
       try {
         sendGAEvent("event", "pass_report_submit", { exam: payload.exam, result: payload.result });
@@ -84,6 +88,16 @@ export default function PassReportForm() {
           <a href="/voice/" className="underline hover:no-underline mx-0.5">合格報告のページ</a>
           と資格ページに載せます。掲載までに数日いただくことがあります。
         </p>
+        {/* 合格した人の次の行動は「資格を仕事に活かす」。リンク未設定の間は何も出ない(lib/career-links.ts) */}
+        {sent?.result === "pass" && EXAM_LIST.some((e) => e.slug === sent.exam) && (
+          <CareerCTA
+            exam={sent.exam as ExamSlug}
+            placement="pass_report"
+            variant="line"
+            lead="合格おめでとうございます。資格を仕事に活かすなら"
+            className="mt-4 pt-4 border-t border-[color:var(--c-border)] text-xs text-[color:var(--c-text-sub)]"
+          />
+        )}
       </div>
     );
   }

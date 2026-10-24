@@ -155,10 +155,10 @@ export default async function IsecPage() {
             　正答率70%（問題の難易度により調整される場合がある）
           </p>
           <p>
-            <span className="font-bold text-[color:var(--c-ink)]">受験料</span>　11,000円（税込）／学生 8,800円（税込）
+            <span className="font-bold text-[color:var(--c-ink)]">受験料</span>　11,000円（税込）／学生 8,800円（税込）。2027年6月の回から一般 14,300円に改定
           </p>
           <p>
-            <span className="font-bold text-[color:var(--c-ink)]">試験日</span>　年4回実施
+            <span className="font-bold text-[color:var(--c-ink)]">試験日</span>　2027年は2月21日・6月27日・10月17日
           </p>
           <p>
             <span className="font-bold text-[color:var(--c-ink)]">実施機関</span>
@@ -201,7 +201,8 @@ export default async function IsecPage() {
             <a href="/isf/" className="underline hover:no-underline">
               初級
             </a>
-            が管理士と同じ日（2月・5月・8月・11月）、個人情報保護士とマイナンバー実務検定は別の月（3月・6月・9月・12月）です。
+            が管理士と同じ日（2026年は2月・5月・8月・11月）、個人情報保護士とマイナンバー実務検定は別の月（2026年度は3月・6月・9月・12月）です。
+            管理士の2027年の回は2月21日・6月27日・10月17日です。
           </p>
           <p>
             出題範囲も重なります。本試験の課題Ⅰで問われる情報セキュリティの管理体制・関連法規は、個人情報保護士の課題Ⅱ「情報セキュリティ」とほぼ同じ論点です。

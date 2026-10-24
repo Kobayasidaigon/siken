@@ -42,9 +42,9 @@ GA4 の「収益」は **`purchase` イベントの `value` と `currency` か�
 
 | イベント | 発火する場所 | パラメータ |
 |---|---|---|
-| `question_answered` | 問題ページで答え合わせ | `exam`, `result`(correct/wrong/revealed) |
+| `question_answered` | 問題ページで答え合わせ。2026-10-24 からコラム本文中の1問のカード(`InlineQuestion`)でも送る | `exam`, `result`(correct/wrong/revealed), `placement`(カードだけ: column_inline_q。問題ページは送らない) |
 | `next_q_click` | 「次の問題へ」 | `exam` |
-| `practice_link_click` | 問題ページから模試・本番形式テスト・コラムへ | `exam`, `kind`(mock/moshi/column), `placement`(question_mid/question_end) |
+| `practice_link_click` | 問題ページから模試・本番形式テスト・コラムへ。コラムの1問のカードから問題ページへ | `exam`, `kind`(mock/moshi/column。カードは next_question/explanation), `placement`(question_mid/question_end/column_inline_q) |
 | `mock_start` | 本番形式テストの開始（全14資格が共有） | `exam`, `size` |
 | `mock_complete` | 同 採点 | `exam`, `size`, `correct`, `score_bucket`, `passed` |
 | `moshi_start` / `moshi_complete` | 模擬試験。`round` で第1回（無料）と第2回（有料）を区別する | `exam`, `round`, `mode`, `score`, `size`, `score_bucket`, `passed`, `timeout`, `minutes` |

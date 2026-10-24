@@ -116,12 +116,14 @@ export default async function DxpPage() {
       </section>
 
       {/* 2026-10-07 に協会の dx/dx-passport/ と SMART講座ページ(dx-kentei/dx-passport.php)で照合済み。
-          合格基準はどちらも「70%以上」で、課題ごとの基準は書かれていない。配点は2択問題 計120点・4択問題 計240点(合計360点)。 */}
+          合格基準はどちらも「70%以上」で、課題ごとの基準は書かれていない。配点は2択問題 計120点・4択問題 計240点(合計360点)。
+          2026-10-24 に学割と、受験料の改定(2027年5月の回から 12,100円)を足した。
+          試験時間は公式が 10:00〜11:15(説明を含む75分)。ほかの資格と同じく解答時間(60分)を書き、実施時間を添える。 */}
       <section className="mb-12">
         <h2 className="text-base font-bold text-[color:var(--c-ink)] mb-4 font-serif">試験の概要</h2>
         <div className="card p-5 text-sm text-[color:var(--c-text-sub)] space-y-2">
           <p>
-            <span className="font-bold text-[color:var(--c-ink)]">試験形式</span>　2択・4択・60問・60分（各課題30問のうち2択15問・4択15問）
+            <span className="font-bold text-[color:var(--c-ink)]">試験形式</span>　2択・4択・60問・解答60分（各課題30問のうち2択15問・4択15問）。試験は10:00〜11:15（説明の時間を含む75分）
           </p>
           <p>
             <span className="font-bold text-[color:var(--c-ink)]">出題範囲</span>
@@ -132,7 +134,7 @@ export default async function DxpPage() {
             　70%以上の得点（問題の難易度により調整される場合がある）
           </p>
           <p>
-            <span className="font-bold text-[color:var(--c-ink)]">受験料</span>　9,350円（税込）
+            <span className="font-bold text-[color:var(--c-ink)]">受験料</span>　一般 9,350円・学生 7,480円（税込）。2027年5月の回から一般 12,100円に改定
           </p>
           <p>
             <span className="font-bold text-[color:var(--c-ink)]">試験日</span>　年4回実施
@@ -151,7 +153,7 @@ export default async function DxpPage() {
           どちらも条件を満たさなければ何も出ない */}
       <ExamVoicesSection exam="dxp" />
 
-      <DxpCourseAd />
+      <DxpCourseAd setPrice />
 
       {/* 同じ協会の試験。DXの技術(第2課題)の情報セキュリティから先へ進む人向け。 */}
       <section className="mb-12">

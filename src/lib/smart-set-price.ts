@@ -2,7 +2,7 @@
  * SMART合格講座の受講料(税込)。「講座のみ」と「試験と同時申込」の2本立て。2026-10-06 追加。
  *
  * 協会の講座ページに「試験と同時申込する場合は3,300円(税込)の割引が適用されます。」とあり、
- * 同時申込の金額 = 講座のみ + 受験料(公開会場) − 3,300円 になっている(下の4資格すべてで合う)。
+ * 同時申込の金額 = 講座のみ + 受験料(公開会場) − 3,300円 になっている(下の6資格すべてで合う)。
  * A8 の報酬は講座申込 30%・試験申込 10% で、2026年の最大の1件(注文30,800円)は
  * 個人情報保護士の同時申込と金額が一致する(未確定・金額からの推定)。
  * 資格トップの講座広告の下に、この割引と金額を出す(SmartSetNote)。
@@ -10,9 +10,14 @@
  * 金額を変えたら SMART_SET_CHECKED も変える(画面に「◯年◯月時点」と出る)。
  * 出典は各 source の協会ページ。
  * ※2026-10-06 は本環境から協会サイトへ到達できず、金額はユーザーが公式ページで確認した値。
+ * ※2026-10-24: isf / dxp を追加。金額は 10/7 と 10/24 の2回の照合(Cowork)で一致した値。
+ *   isf 17,600 + 受験料 8,800 − 3,300 = 23,100、dxp 17,600 + 9,350 − 3,300 = 23,650 で式とも合う。
+ *   dxp の講座ページは smartinfo/ ではなく協会ドメインにある(affiliate-links.ts の dxp と同じ)。
+ * ※受験料の改定で同時申込の金額も変わる見込み: dxp は 2027年5月の回から 9,350→12,100円、
+ *   isec は 2027年6月の回から 11,000→14,300円、isf は同じく 8,800→12,100円。改定後の講座ページで金額を確かめて直す。
  */
 
-export type SmartSetExam = "pii" | "jitsumu" | "mynumber" | "isec";
+export type SmartSetExam = "pii" | "jitsumu" | "mynumber" | "isec" | "isf" | "dxp";
 
 interface Price {
   grade?: string; // 級で金額が違う資格だけ
@@ -58,6 +63,16 @@ export const SMART_SET_PRICE: Record<SmartSetExam, SmartSetPrice> = {
     courseOnly: [{ yen: 17600 }],
     withExam: [{ yen: 25300 }],
     source: "https://www.joho-gakushu.jp/smartinfo/k_isme/",
+  },
+  isf: {
+    courseOnly: [{ yen: 17600 }],
+    withExam: [{ yen: 23100 }],
+    source: "https://www.joho-gakushu.jp/smartinfo/k_isf/",
+  },
+  dxp: {
+    courseOnly: [{ yen: 17600 }],
+    withExam: [{ yen: 23650 }],
+    source: "https://www.joho-gakushu.or.jp/dx-kentei/dx-passport.php",
   },
 };
 

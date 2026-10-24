@@ -1,6 +1,6 @@
 /**
  * SMART合格講座の「試験と同時申込で3,300円引き」の注記。2026-10-06 追加。
- * 講座広告(Pii/Jitsumu/Mynumber/IsecCourseAd)の講座リンクの直下に、資格トップでだけ出す。
+ * 講座広告(Pii/Jitsumu/Mynumber/Isec/Isf/DxpCourseAd)の講座リンクの直下に、資格トップでだけ出す。
  * 金額と確認時点は lib/smart-set-price.ts が唯一の出典。
  */
 

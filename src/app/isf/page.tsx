@@ -116,12 +116,15 @@ export default async function IsfPage() {
       </section>
 
       {/* 2026-10-07 に協会の /isme/・/isme/naiyou.php と SMART講座ページ(k_isf)で照合済み(80問・60分・受験料・課題名)。
-          合格基準は、協会の試験ページが「70%以上」、講座ページが「I〜IV 各々70%以上」と書いている。下は講座ページの表記。 */}
+          合格基準は、協会の試験ページが「70%以上(難易度により調整あり)」、講座ページが「I〜IV 各々70%以上」と書いている。
+          2026-10-24 の照合でも同じだったので、実施団体である協会の表記を先に出し、講座ページの表記を添える。
+          学割・CBT/IBT の加算額は 10-24 の照合で足した。協会ページには「4肢択一」の語は無く「マークシート方式」とある。
+          ※同じ照合で「2027年6月の回から 12,100円」とあったが、日程(exam-dates.ts)に6月の回が無く食い違うため載せていない。 */}
       <section className="mb-12">
         <h2 className="text-base font-bold text-[color:var(--c-ink)] mb-4 font-serif">試験の概要</h2>
         <div className="card p-5 text-sm text-[color:var(--c-text-sub)] space-y-2">
           <p>
-            <span className="font-bold text-[color:var(--c-ink)]">試験形式</span>　四肢択一・80問・60分
+            <span className="font-bold text-[color:var(--c-ink)]">試験形式</span>　マークシート方式・80問・60分
           </p>
           <p>
             <span className="font-bold text-[color:var(--c-ink)]">出題範囲</span>
@@ -130,10 +133,10 @@ export default async function IsfPage() {
           </p>
           <p>
             <span className="font-bold text-[color:var(--c-ink)]">合格基準</span>
-            　各課題とも70%以上（問題の難易度により調整される場合がある）
+            　70%以上（問題の難易度により調整される場合がある）。SMART合格講座の案内では「課題Ⅰ〜Ⅳ 各々70%以上」
           </p>
           <p>
-            <span className="font-bold text-[color:var(--c-ink)]">受験料</span>　8,800円（税込）
+            <span className="font-bold text-[color:var(--c-ink)]">受験料</span>　一般 8,800円・学生 7,040円／CBT会場 +1,500円／オンラインIBT +3,000円（いずれも税込）
           </p>
           <p>
             <span className="font-bold text-[color:var(--c-ink)]">試験日</span>　年4回実施
@@ -152,7 +155,7 @@ export default async function IsfPage() {
           どちらも条件を満たさなければ何も出ない */}
       <ExamVoicesSection exam="isf" />
 
-      <IsfCourseAd />
+      <IsfCourseAd setPrice />
 
       {/* 次に受ける試験。初級は協会の情報セキュリティ系の入口で、上位が管理士。 */}
       <section className="mb-12">

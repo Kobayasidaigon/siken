@@ -7,14 +7,17 @@
 
 import AffiliateLink from "@/components/AffiliateLink";
 import FreeLeadCTA from "@/components/FreeLeadCTA";
+import SmartSetNote from "@/components/SmartSetNote";
 import { EXAM_AFFILIATE } from "@/lib/affiliate-links";
 
 interface Props {
   headline?: string;
   body?: string;
+  /** 講座リンクの下に「試験と同時申込で3,300円引き」と金額を出す(資格トップだけ) */
+  setPrice?: boolean;
 }
 
-export default function IsfCourseAd({ headline, body }: Props = {}) {
+export default function IsfCourseAd({ headline, body, setPrice }: Props = {}) {
   const finalHeadline = headline ?? "独学に不安があれば";
   const finalBody =
     body ??
@@ -35,6 +38,7 @@ export default function IsfCourseAd({ headline, body }: Props = {}) {
         <AffiliateLink href={EXAM_AFFILIATE["isf"].href} course="isf" placement="course_ad">
           {EXAM_AFFILIATE["isf"].label} →
         </AffiliateLink>
+        {setPrice && <SmartSetNote exam="isf" />}
         <FreeLeadCTA exam="isf" placement="course_ad" withBadge />
       </div>
       <img

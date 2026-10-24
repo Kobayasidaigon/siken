@@ -108,7 +108,8 @@ export default async function MynumberPage() {
         <div className="card p-5 text-sm text-[color:var(--c-text-sub)] space-y-2">
           <p><span className="font-bold text-[color:var(--c-ink)]">試験形式</span>　マークシート 50問・75分</p>
           <p><span className="font-bold text-[color:var(--c-ink)]">合格基準</span>　70%以上</p>
-          <p><span className="font-bold text-[color:var(--c-ink)]">受験料</span>　7,700円（公開会場）／CBT会場 +1,500円／オンラインIBT +3,000円（いずれも税込）</p>
+          {/* 1級・2級の受験料は 2026-10-24 の照合(Cowork・協会ページ)で足した。3級は従来どおり */}
+          <p><span className="font-bold text-[color:var(--c-ink)]">受験料</span>　3級 7,700円（1級 11,000円・2級 8,800円）／CBT会場 +1,500円／オンラインIBT +3,000円（いずれも税込）</p>
           <p><span className="font-bold text-[color:var(--c-ink)]">試験日</span>　年4回（6月・9月・12月・3月頃）　<a href="/column/mynumber-nittei/" className="underline hover:no-underline">詳しい日程・申込方法 →</a></p>
           <p><span className="font-bold text-[color:var(--c-ink)]">実施機関</span>　全日本情報学習振興協会</p>
         </div>

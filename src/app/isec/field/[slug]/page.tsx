@@ -5,6 +5,7 @@ import type { IsecQuestionData } from "@/lib/isec-questions";
 import { pageMetadata } from "@/lib/page-metadata";
 import IsecCourseAd from "@/components/IsecCourseAd";
 import { ISEC_FIELDS, isecFieldBySlug } from "@/lib/isec-fields";
+import MedalMark, { MedalLegend } from "@/components/MedalMark";
 
 export async function generateStaticParams() {
   return ISEC_FIELDS.map((f) => ({ slug: f.slug }));
@@ -47,6 +48,7 @@ function QuestionCard({ q, index }: { q: IsecQuestionData; index: number }) {
         </div>
         <p className="text-sm text-[color:var(--c-text)] line-clamp-1">{q.questionText.slice(0, 60)}...</p>
       </div>
+      <MedalMark exam="isec" slug={q.slug} />
       <svg
         className="w-4 h-4 text-[color:var(--c-text-sub)] flex-shrink-0 ml-2"
         fill="none"
@@ -117,6 +119,7 @@ export default async function IsecFieldPage({ params }: { params: Promise<{ slug
         </div>
       </div>
 
+      <MedalLegend exam="isec" />
       <div className="space-y-2">
         {questions.map((q, i) => (
           <QuestionCard key={q.slug} q={q} index={i + 1} />

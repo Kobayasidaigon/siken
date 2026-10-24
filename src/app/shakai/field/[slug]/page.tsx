@@ -5,6 +5,7 @@ import type { ShakaiQuestionData } from "@/lib/shakai-questions";
 import { pageMetadata } from "@/lib/page-metadata";
 import ShakaiCourseAd from "@/components/ShakaiCourseAd";
 import { SHAKAI_FIELDS, shakaiFieldBySlug } from "@/lib/shakai-fields";
+import MedalMark, { MedalLegend } from "@/components/MedalMark";
 
 export async function generateStaticParams() {
   return SHAKAI_FIELDS.map((f) => ({ slug: f.slug }));
@@ -45,6 +46,7 @@ function QuestionCard({ q, index }: { q: ShakaiQuestionData; index: number }) {
         </div>
         <p className="text-sm text-[color:var(--c-text)] line-clamp-1">{q.questionText.slice(0, 60)}...</p>
       </div>
+      <MedalMark exam="shakai" slug={q.slug} />
       <svg
         className="w-4 h-4 text-[color:var(--c-text-sub)] flex-shrink-0 ml-2"
         fill="none"
@@ -105,6 +107,7 @@ export default async function ShakaiFieldPage({ params }: { params: Promise<{ sl
         </div>
       </div>
 
+      <MedalLegend exam="shakai" />
       <div className="space-y-2">
         {questions.map((q, i) => (
           <QuestionCard key={q.slug} q={q} index={i + 1} />

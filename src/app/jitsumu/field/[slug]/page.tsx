@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import type { JitsumuQuestionData } from "@/lib/jitsumu-questions";
 import { pageMetadata } from "@/lib/page-metadata";
 import JitsumuCourseAd from "@/components/JitsumuCourseAd";
+import MedalMark, { MedalLegend } from "@/components/MedalMark";
 
 const fieldMap: Record<string, { name: string; desc: string }> = {
   "basic": { name: "個人情報保護法の基礎", desc: "目的・定義、個人情報・個人データ・保有個人データの違い、要配慮個人情報、事業者の義務" },
@@ -39,6 +40,7 @@ function QuestionCard({ q, index }: { q: JitsumuQuestionData; index: number }) {
         </div>
         <p className="text-sm text-[color:var(--c-text)] line-clamp-1">{q.questionText.slice(0, 60)}...</p>
       </div>
+      <MedalMark exam="jitsumu" slug={q.slug} />
       <svg className="w-4 h-4 text-[color:var(--c-text-sub)] flex-shrink-0 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
       </svg>
@@ -73,6 +75,7 @@ export default async function JitsumuFieldPage({ params }: { params: Promise<{ s
         <div className="card p-3 text-center"><p className="text-lg font-bold text-amber-700 font-serif">{diffCounts.B}</p><p className="text-xs text-[color:var(--c-text-sub)] mt-1">標準 B</p></div>
         <div className="card p-3 text-center"><p className="text-lg font-bold text-red-700 font-serif">{diffCounts.C}</p><p className="text-xs text-[color:var(--c-text-sub)] mt-1">応用 C</p></div>
       </div>
+      <MedalLegend exam="jitsumu" />
       <div className="space-y-2">{questions.map((q, i) => <QuestionCard key={q.slug} q={q} index={i + 1} />)}</div>
 
       <JitsumuCourseAd headline={`「${field.name}」でつまずくなら`} />

@@ -5,6 +5,7 @@ import type { Chizai2QuestionData } from "@/lib/chizai2-questions";
 import { pageMetadata } from "@/lib/page-metadata";
 // 2026-09-05: 3級用の ChizaiCourseAd から、2級のLEC講座(Chizai2CourseAd)へそろえる(q ページと同じ理由)
 import Chizai2CourseAd from "@/components/Chizai2CourseAd";
+import MedalMark, { MedalLegend } from "@/components/MedalMark";
 
 const fieldMap: Record<string, { name: string; desc: string }> = {
   "patent": { name: "特許法", desc: "発明の定義、特許要件、出願・審査手続、権利化、侵害と救済、実施権・ライセンスなど" },
@@ -53,6 +54,7 @@ function QuestionCard({ q, index }: { q: Chizai2QuestionData; index: number }) {
         </div>
         <p className="text-sm text-[color:var(--c-text)] line-clamp-1">{q.questionText.slice(0, 60)}...</p>
       </div>
+      <MedalMark exam="chizai2" slug={q.slug} />
       <svg className="w-4 h-4 text-[color:var(--c-text-sub)] flex-shrink-0 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
       </svg>
@@ -103,6 +105,7 @@ export default async function Chizai2FieldPage({ params }: { params: Promise<{ s
         </div>
       </div>
 
+      <MedalLegend exam="chizai2" />
       <div className="space-y-2">
         {questions.map((q, i) => <QuestionCard key={q.slug} q={q} index={i + 1} />)}
       </div>

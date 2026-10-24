@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import type { ChintaiQuestionData } from "@/lib/chintai-questions";
 import { pageMetadata } from "@/lib/page-metadata";
 import ChintaiCourseAd from "@/components/ChintaiCourseAd";
+import MedalMark, { MedalLegend } from "@/components/MedalMark";
 
 const fieldMap: Record<string, { name: string; desc: string }> = {
   "gyouhou": { name: "賃貸住宅管理業法と登録制度", desc: "登録が必要な事業者と管理戸数200戸の基準、登録の有効期間5年、業務管理者の選任義務、再委託の制限、分別管理、定期報告、国土交通大臣の監督と罰則" },
@@ -44,6 +45,7 @@ function QuestionCard({ q, index }: { q: ChintaiQuestionData; index: number }) {
         </div>
         <p className="text-sm text-[color:var(--c-text)] line-clamp-1">{q.questionText.slice(0, 60)}...</p>
       </div>
+      <MedalMark exam="chintai" slug={q.slug} />
       <svg className="w-4 h-4 text-[color:var(--c-text-sub)] flex-shrink-0 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
       </svg>
@@ -94,6 +96,7 @@ export default async function ChintaiFieldPage({ params }: { params: Promise<{ s
         </div>
       </div>
 
+      <MedalLegend exam="chintai" />
       <div className="space-y-2">
         {questions.map((q, i) => <QuestionCard key={q.slug} q={q} index={i + 1} />)}
       </div>

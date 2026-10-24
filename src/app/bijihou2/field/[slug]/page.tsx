@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import type { Bijihou2QuestionData } from "@/lib/bijihou2-questions";
 import { pageMetadata } from "@/lib/page-metadata";
 import Bijihou2CourseAd from "@/components/Bijihou2CourseAd";
+import MedalMark, { MedalLegend } from "@/components/MedalMark";
 
 const fieldMap: Record<string, { name: string; desc: string }> = {
   "torihiki": { name: "企業取引・契約の法務", desc: "契約の成立と意思表示の瑕疵、代理と表見代理、債務不履行と契約不適合責任、解除、典型契約、定型約款、消滅時効（公式テキスト第1章）" },
@@ -44,6 +45,7 @@ function QuestionCard({ q, index }: { q: Bijihou2QuestionData; index: number }) 
         </div>
         <p className="text-sm text-[color:var(--c-text)] line-clamp-1">{q.questionText.slice(0, 60)}...</p>
       </div>
+      <MedalMark exam="bijihou2" slug={q.slug} />
       <svg className="w-4 h-4 text-[color:var(--c-text-sub)] flex-shrink-0 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
       </svg>
@@ -94,6 +96,7 @@ export default async function Bijihou2FieldPage({ params }: { params: Promise<{ 
         </div>
       </div>
 
+      <MedalLegend exam="bijihou2" />
       <div className="space-y-2">
         {questions.map((q, i) => <QuestionCard key={q.slug} q={q} index={i + 1} />)}
       </div>

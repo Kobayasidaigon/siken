@@ -5,6 +5,7 @@ import type { KyoinQuestionData } from "@/lib/kyoin-questions";
 import { pageMetadata } from "@/lib/page-metadata";
 import KyoinCourseAd from "@/components/KyoinCourseAd";
 import { KYOIN_FIELDS, kyoinFieldBySlug } from "@/lib/kyoin-fields";
+import MedalMark, { MedalLegend } from "@/components/MedalMark";
 
 export async function generateStaticParams() {
   return KYOIN_FIELDS.map((f) => ({ slug: f.slug }));
@@ -45,6 +46,7 @@ function QuestionCard({ q, index }: { q: KyoinQuestionData; index: number }) {
         </div>
         <p className="text-sm text-[color:var(--c-text)] line-clamp-1">{q.questionText.slice(0, 60)}...</p>
       </div>
+      <MedalMark exam="kyoin" slug={q.slug} />
       <svg
         className="w-4 h-4 text-[color:var(--c-text-sub)] flex-shrink-0 ml-2"
         fill="none"
@@ -105,6 +107,7 @@ export default async function KyoinFieldPage({ params }: { params: Promise<{ slu
         </div>
       </div>
 
+      <MedalLegend exam="kyoin" />
       <div className="space-y-2">
         {questions.map((q, i) => (
           <QuestionCard key={q.slug} q={q} index={i + 1} />

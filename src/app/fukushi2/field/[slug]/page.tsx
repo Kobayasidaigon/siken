@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import type { Fukushi2QuestionData } from "@/lib/fukushi2-questions";
 import { pageMetadata } from "@/lib/page-metadata";
 import Fukushi2CourseAd from "@/components/Fukushi2CourseAd";
+import MedalMark, { MedalLegend } from "@/components/MedalMark";
 
 const fieldMap: Record<string, { name: string; desc: string }> = {
   "society": { name: "高齢社会と住環境整備", desc: "超高齢社会の現状、住環境整備の意義、地域包括ケアシステム、高齢者住宅施策の流れなど" },
@@ -52,6 +53,7 @@ function QuestionCard({ q, index }: { q: Fukushi2QuestionData; index: number }) 
         </div>
         <p className="text-sm text-[color:var(--c-text)] line-clamp-1">{q.questionText.slice(0, 60)}...</p>
       </div>
+      <MedalMark exam="fukushi2" slug={q.slug} />
       <svg className="w-4 h-4 text-[color:var(--c-text-sub)] flex-shrink-0 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
       </svg>
@@ -102,6 +104,7 @@ export default async function Fukushi2FieldPage({ params }: { params: Promise<{ 
         </div>
       </div>
 
+      <MedalLegend exam="fukushi2" />
       <div className="space-y-2">
         {questions.map((q, i) => <QuestionCard key={q.slug} q={q} index={i + 1} />)}
       </div>

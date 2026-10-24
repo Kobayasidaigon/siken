@@ -93,6 +93,8 @@ import {
   TOUHAN_EXAMS,
 } from "@/lib/exam-dates";
 import StudioLink from "@/components/StudioLink";
+import InlineQuestion from "@/components/InlineQuestion";
+import { getInlineQuestion } from "@/lib/inline-questions";
 
 export async function generateStaticParams() {
   return getAllColumnSlugs().map((slug) => ({ slug }));
@@ -157,7 +159,12 @@ export default async function ColumnPage({ params }: { params: Promise<{ slug: s
 
   // 福祉住環境コーディネーター2級コラム（fukushi2-*）にユーキャン講座広告を表示
   // 資格別 LP がある資格は、その LP へ資格ごとの文言で送る (無ければ従来の汎用)
-  const studioCta = studioCtaFor(certFromColumnSlug(slug), "column_footer");
+  const inlineQuestion = await getInlineQuestion(slug);
+  const baseStudioCta = studioCtaFor(certFromColumnSlug(slug), "column_footer");
+  // 本文中の1問のカードを置いたページは、Studio 導線の「〜を1問解いてみる」がカードと名前がかぶるので差し替える
+  const studioCta = inlineQuestion
+    ? { ...baseStudioCta, linkLabel: inlineQuestion.studioLinkLabel }
+    : baseStudioCta;
 
   const isFukushi2Article = slug.startsWith("fukushi2-");
 
@@ -522,7 +529,12 @@ export default async function ColumnPage({ params }: { params: Promise<{ slug: s
         />
       )}
 
-      <section className="prose max-w-none" dangerouslySetInnerHTML={{ __html: col.content }} />
+      {/* 本文中の1問のカード(lib/inline-questions.ts)。最初の見出しの前、最初の段落のすぐ下に置く */}
+      {inlineQuestion ? (
+        <InlineQuestionBody html={col.content} q={inlineQuestion} />
+      ) : (
+        <section className="prose max-w-none" dangerouslySetInnerHTML={{ __html: col.content }} />
+      )}
 
       {/* 試験申込導線(日程コラムのみ)。読者の申込意図に最短で応えるため講座広告より上に置く */}
       {examApplyAd && (
@@ -979,5 +991,25 @@ export default async function ColumnPage({ params }: { params: Promise<{ slug: s
         <a href="/column/" className="text-sm text-slate-500 no-underline hover:underline">← コラム一覧に戻る</a>
       </nav>
     </article>
+  );
+}
+
+/** 本文を最初の h2 の前で分け、その間に1問のカードを置く。h2 が無ければ本文の後ろに置く */
+function InlineQuestionBody({
+  html,
+  q,
+}: {
+  html: string;
+  q: NonNullable<Awaited<ReturnType<typeof getInlineQuestion>>>;
+}) {
+  const at = html.indexOf("<h2");
+  const head = at > 0 ? html.slice(0, at) : html;
+  const rest = at > 0 ? html.slice(at) : "";
+  return (
+    <>
+      <section className="prose max-w-none" dangerouslySetInnerHTML={{ __html: head }} />
+      <InlineQuestion q={q} />
+      {rest && <section className="prose max-w-none" dangerouslySetInnerHTML={{ __html: rest }} />}
+    </>
   );
 }

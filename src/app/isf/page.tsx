@@ -119,7 +119,7 @@ export default async function IsfPage() {
           合格基準は、協会の試験ページが「70%以上(難易度により調整あり)」、講座ページが「I〜IV 各々70%以上」と書いている。
           2026-10-24 の照合でも同じだったので、実施団体である協会の表記を先に出し、講座ページの表記を添える。
           学割・CBT/IBT の加算額は 10-24 の照合で足した。協会ページには「4肢択一」の語は無く「マークシート方式」とある。
-          ※同じ照合で「2027年6月の回から 12,100円」とあったが、日程(exam-dates.ts)に6月の回が無く食い違うため載せていない。 */}
+          受験料の改定(2027年6月の回から 8,800→12,100円)と、2027年の日程(2/21・6/27・10/17)は、ユーザーが協会の公式ページで照合。 */}
       <section className="mb-12">
         <h2 className="text-base font-bold text-[color:var(--c-ink)] mb-4 font-serif">試験の概要</h2>
         <div className="card p-5 text-sm text-[color:var(--c-text-sub)] space-y-2">
@@ -136,10 +136,10 @@ export default async function IsfPage() {
             　70%以上（問題の難易度により調整される場合がある）。SMART合格講座の案内では「課題Ⅰ〜Ⅳ 各々70%以上」
           </p>
           <p>
-            <span className="font-bold text-[color:var(--c-ink)]">受験料</span>　一般 8,800円・学生 7,040円／CBT会場 +1,500円／オンラインIBT +3,000円（いずれも税込）
+            <span className="font-bold text-[color:var(--c-ink)]">受験料</span>　一般 8,800円・学生 7,040円／CBT会場 +1,500円／オンラインIBT +3,000円（いずれも税込）。2027年6月の回から一般 12,100円に改定
           </p>
           <p>
-            <span className="font-bold text-[color:var(--c-ink)]">試験日</span>　年4回実施
+            <span className="font-bold text-[color:var(--c-ink)]">試験日</span>　2027年は2月21日・6月27日・10月17日（管理士と同じ日）
           </p>
           <p>
             <span className="font-bold text-[color:var(--c-ink)]">実施機関</span>

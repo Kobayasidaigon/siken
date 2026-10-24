@@ -7,8 +7,8 @@
 // 判明したため applyStart/applyEnd を追加。申込期間中は資格トップの
 // カウントダウンが「申込締切まであとN日」に切り替わる (ExamCountdown.tsx)。
 //
-// ※ static export のため new Date() はビルド時に評価される。
-//   デプロイ頻度が下がると誤差が出るが、日単位の表示なので実用上問題ない。
+// ※ サーバーで描くページでは new Date() はページを生成した時点で評価される。
+//   ビルドしたきりだと日数が止まるので、app/layout.tsx の revalidate で1時間ごとに作り直している(2026-10-24〜)。
 
 export interface UpcomingExam {
   date: string; // "2026-11-15" (JSTでの試験日。東商IBT/CBTは試験期間の初日)

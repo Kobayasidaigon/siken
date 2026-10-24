@@ -809,7 +809,7 @@ export default async function ColumnPage({ params }: { params: Promise<{ slug: s
             </>
           ) : isFukushi2Article ? (
             <>
-              <a href="/fukushi2/" className="text-sm text-blue-700 no-underline hover:underline">福祉住環境2級 全200問を見る →</a>
+              <a href="/fukushi2/" className="text-sm text-blue-700 no-underline hover:underline">福祉住環境2級 全230問を見る →</a>
               <a href="/fukushi2/mock/" className="text-sm text-slate-500 no-underline hover:underline">本番形式で腕試し →</a>
               <a href="/fukushi2/field/kaigohoken/" className="text-sm text-slate-500 no-underline hover:underline">介護保険と住宅改修の問題から始める →</a>
             </>

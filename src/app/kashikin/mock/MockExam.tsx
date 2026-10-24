@@ -9,7 +9,7 @@
  * 採点後の正誤は study-progress（/study）にも記録され、弱点が積み上がる。
  */
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { sendGAEvent } from "@next/third-parties/google";
 import AffiliateLink from "@/components/AffiliateLink";
 import FreeLeadCTA from "@/components/FreeLeadCTA";
@@ -85,8 +85,21 @@ export default function MockExam({
 
   const count = Math.min(size, questions.length);
 
+  // このページで出した問題。「もう一度（別の20問）」で前の回と重ならないよう、出していない問題から選ぶ。
+  // 2026-10-25 追加: 以前は毎回全問から選び直していたので、200問の資格では前の回と1問以上重なる確率が約9割あった
+  // (docs/self-data-features-research.md「提案とは別に直すべき点」)。出していない問題が足りなくなったら記録を空にして補う。
+  const usedRef = useRef<Set<string>>(new Set());
+
   function start() {
-    const picked = shuffle(questions).slice(0, count);
+    const used = usedRef.current;
+    let picked = shuffle(questions.filter((q) => !used.has(q.slug))).slice(0, count);
+    if (picked.length < count) {
+      const short = count - picked.length;
+      const pickedSlugs = new Set(picked.map((q) => q.slug));
+      picked = [...picked, ...shuffle(questions.filter((q) => !pickedSlugs.has(q.slug))).slice(0, short)];
+      used.clear();
+    }
+    picked.forEach((q) => used.add(q.slug));
     setPool(picked);
     setAnswers(new Array(picked.length).fill(null));
     setIdx(0);

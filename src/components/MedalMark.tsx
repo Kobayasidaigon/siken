@@ -9,7 +9,7 @@
  * - 印は端末内の学習履歴(study-progress)から計算する。サーバーにも GA4 にも何も送らない。
  * - ページはサーバーで描くので、初めの HTML には印が無い。表示のあとで入れる。カードの幅が変わらないよう枠は先に確保する。
  * - 未挑戦の問題には何も出さない(一覧が「未」で埋まるのを避ける)。
- * - medals を持たない古いデータは、不正解を銅・正解を銀とみなす(study-progress.ts の読み込みと同じ規則)。
+ * - medals を持たない古いデータは、loadProgress が不正解を銅・正解を銀として補ってから返す。
  * - 問題ページから戻る操作(bfcache)や別のタブでの回答でも古い印が残らないよう、pageshow と storage で読み直す。
  */
 import { useSyncExternalStore } from "react";
@@ -54,11 +54,7 @@ function useProgress(): AllProgress | null {
 function medalOf(progress: AllProgress | null, exam: ExamSlug, slug: string): Medal | null {
   const p = progress?.[exam];
   if (!p) return null;
-  const m = p.medals?.[slug];
-  if (m) return m;
-  if (p.wrong.includes(slug)) return "bronze";
-  if (p.correct.includes(slug)) return "silver";
-  return null;
+  return p.medals?.[slug] ?? null;
 }
 
 const LABEL: Record<Medal, { text: string; aria: string; className: string }> = {
@@ -87,14 +83,14 @@ export default function MedalMark({ exam, slug }: { exam: ExamSlug; slug: string
   );
 }
 
-/** 一覧の上の説明。この資格で1問でも記録がある人にだけ出す */
-export function MedalLegend({ exam }: { exam: ExamSlug }) {
-  const p = useProgress()?.[exam];
-  const has = !!p && (p.correct.length > 0 || p.wrong.length > 0);
-  if (!has) return null;
+/**
+ * 一覧の上の説明。サーバーの HTML に含めて全員に出す。
+ * 記録がある人にだけ出す作りだと、表示のあとで行が増えて一覧全体が下にずれるため(2026-10-25 の見直しで指摘)。
+ */
+export function MedalLegend() {
   return (
     <p className="text-xs text-[color:var(--c-text-sub)] mb-2 leading-relaxed">
-      このブラウザで解いた問題に、前回の結果の印を付けています（銅＝前回不正解、銀＝前回正解、金＝2回続けて正解）。
+      解いた問題には、このブラウザに残る前回の結果の印が付きます（銅＝前回不正解、銀＝前回正解、金＝2回続けて正解）。
     </p>
   );
 }

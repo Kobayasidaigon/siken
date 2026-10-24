@@ -107,7 +107,7 @@ export default async function GaiaFieldPage({ params }: { params: Promise<{ slug
         </div>
       </div>
 
-      <MedalLegend exam="gaia" />
+      <MedalLegend />
       <div className="space-y-2">
         {questions.map((q, i) => (
           <QuestionCard key={q.slug} q={q} index={i + 1} />

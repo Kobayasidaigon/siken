@@ -96,12 +96,20 @@ export function loadProgress(): AllProgress {
     for (const key of Object.keys(merged) as ExamSlug[]) {
       const part = parsed[key];
       if (part) {
+        const wrong = Array.isArray(part.wrong) ? part.wrong : [];
+        const correct = Array.isArray(part.correct) ? part.correct : [];
+        // medals が入る前(2026-06-24 より前)に解いた問題は、不正解を銅・正解を銀として補う(importProgress と同じ規則)。
+        // 2026-10-25 まではここで補っておらず、分野ページの印(銀)と記録の側(未挑戦扱いで、続けて正解しても金にならない)・
+        // 復習ドリル・/study/ の枚数が食い違っていた。
+        const medals: Record<string, Medal> =
+          part.medals && typeof part.medals === "object" ? { ...part.medals } : {};
+        for (const s of wrong) if (!medals[s]) medals[s] = "bronze";
+        for (const s of correct) if (!medals[s]) medals[s] = "silver";
         merged[key] = {
           bookmarks: Array.isArray(part.bookmarks) ? part.bookmarks : [],
-          wrong: Array.isArray(part.wrong) ? part.wrong : [],
-          correct: Array.isArray(part.correct) ? part.correct : [],
-          // 旧データに medals が無くても安全に補完（後方互換）
-          medals: part.medals && typeof part.medals === "object" ? part.medals : {},
+          wrong,
+          correct,
+          medals,
         };
       }
     }

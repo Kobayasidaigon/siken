@@ -75,7 +75,7 @@ export default async function JitsumuFieldPage({ params }: { params: Promise<{ s
         <div className="card p-3 text-center"><p className="text-lg font-bold text-amber-700 font-serif">{diffCounts.B}</p><p className="text-xs text-[color:var(--c-text-sub)] mt-1">標準 B</p></div>
         <div className="card p-3 text-center"><p className="text-lg font-bold text-red-700 font-serif">{diffCounts.C}</p><p className="text-xs text-[color:var(--c-text-sub)] mt-1">応用 C</p></div>
       </div>
-      <MedalLegend exam="jitsumu" />
+      <MedalLegend />
       <div className="space-y-2">{questions.map((q, i) => <QuestionCard key={q.slug} q={q} index={i + 1} />)}</div>
 
       <JitsumuCourseAd headline={`「${field.name}」でつまずくなら`} />

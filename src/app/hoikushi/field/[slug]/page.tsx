@@ -107,7 +107,7 @@ export default async function HoikushiFieldPage({ params }: { params: Promise<{ 
         </div>
       </div>
 
-      <MedalLegend exam="hoikushi" />
+      <MedalLegend />
       <div className="space-y-2">
         {questions.map((q, i) => (
           <QuestionCard key={q.slug} q={q} index={i + 1} />

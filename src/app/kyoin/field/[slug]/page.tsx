@@ -107,7 +107,7 @@ export default async function KyoinFieldPage({ params }: { params: Promise<{ slu
         </div>
       </div>
 
-      <MedalLegend exam="kyoin" />
+      <MedalLegend />
       <div className="space-y-2">
         {questions.map((q, i) => (
           <QuestionCard key={q.slug} q={q} index={i + 1} />

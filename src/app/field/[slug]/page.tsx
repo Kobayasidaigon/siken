@@ -73,7 +73,7 @@ export default async function FieldPage({ params }: { params: Promise<{ slug: st
       </div>
 
       {/* Question List */}
-      <MedalLegend exam="kashikin" />
+      <MedalLegend />
       <div className="space-y-2">
         {questions.map((q, i) => {
           const diffColor = { A: "bg-green-100 text-green-800", B: "bg-amber-100 text-amber-800", C: "bg-red-100 text-red-800" }[q.difficulty];

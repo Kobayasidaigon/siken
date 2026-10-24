@@ -96,7 +96,7 @@ export default async function ChintaiFieldPage({ params }: { params: Promise<{ s
         </div>
       </div>
 
-      <MedalLegend exam="chintai" />
+      <MedalLegend />
       <div className="space-y-2">
         {questions.map((q, i) => <QuestionCard key={q.slug} q={q} index={i + 1} />)}
       </div>

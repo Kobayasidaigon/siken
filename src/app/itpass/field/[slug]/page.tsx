@@ -96,7 +96,7 @@ export default async function ItpassFieldPage({ params }: { params: Promise<{ sl
         </div>
       </div>
 
-      <MedalLegend exam="itpass" />
+      <MedalLegend />
       <div className="space-y-2">
         {questions.map((q, i) => <QuestionCard key={q.slug} q={q} index={i + 1} />)}
       </div>

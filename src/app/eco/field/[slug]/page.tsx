@@ -106,7 +106,7 @@ export default async function EcoFieldPage({ params }: { params: Promise<{ slug:
         </div>
       </div>
 
-      <MedalLegend exam="eco" />
+      <MedalLegend />
       <div className="space-y-2">
         {questions.map((q, i) => <QuestionCard key={q.slug} q={q} index={i + 1} />)}
       </div>

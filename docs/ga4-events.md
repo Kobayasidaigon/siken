@@ -54,7 +54,7 @@ GA4 の「収益」は **`purchase` イベントの `value` と `currency` か�
 | `mock_start` | 本番形式テストの開始（全14資格が共有） | `exam`, `size` |
 | `mock_complete` | 同 採点 | `exam`, `size`, `correct`, `score_bucket`, `passed` |
 | `moshi_start` / `moshi_complete` | 模擬試験。`round` で第1回（無料）と第2回（有料）を区別する | `exam`, `round`, `mode`, `score`, `size`, `score_bucket`, `passed`, `timeout`, `minutes` |
-| `drill_start` | 復習ドリルの開始 | `exam`, `size`, `bronze`, `silver` |
+| `drill_start` | 復習ドリルの開始 | `exam`, `size`, `bronze`, `silver`（出題した中の銅・銀の数。2026-10-24 まではその資格の銅・銀の総数を送っていた） |
 | `drill_next` | ドリルの次の問題へ | `exam` |
 | `drill_complete` | ドリルを解き終えた | `exam`, `size` |
 | `progress_export` / `progress_import` | 学習履歴の書き出し・読み込み | `mode`(merge/replace) |

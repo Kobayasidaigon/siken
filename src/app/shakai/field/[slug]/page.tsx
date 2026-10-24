@@ -107,7 +107,7 @@ export default async function ShakaiFieldPage({ params }: { params: Promise<{ sl
         </div>
       </div>
 
-      <MedalLegend exam="shakai" />
+      <MedalLegend />
       <div className="space-y-2">
         {questions.map((q, i) => (
           <QuestionCard key={q.slug} q={q} index={i + 1} />

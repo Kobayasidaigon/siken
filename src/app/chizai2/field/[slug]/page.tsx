@@ -105,7 +105,7 @@ export default async function Chizai2FieldPage({ params }: { params: Promise<{ s
         </div>
       </div>
 
-      <MedalLegend exam="chizai2" />
+      <MedalLegend />
       <div className="space-y-2">
         {questions.map((q, i) => <QuestionCard key={q.slug} q={q} index={i + 1} />)}
       </div>

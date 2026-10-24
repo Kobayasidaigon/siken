@@ -91,7 +91,7 @@ export default async function BijihouFieldPage({ params }: { params: Promise<{ s
         </div>
       </div>
 
-      <MedalLegend exam="bijihou" />
+      <MedalLegend />
       <div className="space-y-2">
         {questions.map((q, i) => <QuestionCard key={q.slug} q={q} index={i + 1} />)}
       </div>

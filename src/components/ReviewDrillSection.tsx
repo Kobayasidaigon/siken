@@ -52,11 +52,15 @@ export default function ReviewDrillSection({
     }
     startDrill(exam, queue);
     try {
+      // bronze / silver は、出題した queue の中の銅・銀の数。2026-10-25 まではその資格の銅・銀の総数(学習履歴から
+      // 数えた値)を送っていて、「学習履歴そのものは送らない」とするプライバシーポリシーと合わなかった。
+      const bronzeSet = new Set(c.bronze);
+      const silverSet = new Set(c.silver);
       sendGAEvent("event", "drill_start", {
         exam,
         size: queue.length,
-        bronze: c.bronze.length,
-        silver: c.silver.length,
+        bronze: queue.filter((s) => bronzeSet.has(s)).length,
+        silver: queue.filter((s) => silverSet.has(s)).length,
       });
     } catch {
       /* GA未ロードでもドリルは始められる */

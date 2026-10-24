@@ -107,7 +107,7 @@ export default async function CcmFieldPage({ params }: { params: Promise<{ slug:
         </div>
       </div>
 
-      <MedalLegend exam="ccm" />
+      <MedalLegend />
       <div className="space-y-2">
         {questions.map((q, i) => (
           <QuestionCard key={q.slug} q={q} index={i + 1} />

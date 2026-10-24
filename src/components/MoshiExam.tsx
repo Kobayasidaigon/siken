@@ -151,16 +151,41 @@ export default function MoshiExam({
   const submittedRef = useRef(false);
 
   // 中断セッションの検出(intro 表示用)。期限切れは破棄して注記だけ出す
-  useEffect(() => {
+  const detectResumable = useCallback(() => {
     const saved = loadSession(sessionKey);
-    if (!saved) return;
+    if (!saved) {
+      setResumable(null);
+      return;
+    }
     if (Date.now() - saved.startedAt < limitMs) {
       setResumable(saved);
     } else {
       clearSession(sessionKey);
+      setResumable(null);
       setExpiredNote(true);
     }
   }, [sessionKey, limitMs]);
+
+  useEffect(() => {
+    detectResumable();
+  }, [detectResumable]);
+
+  // 2026-10-25 追加: /study/ で学習履歴を削除すると途中保存も消える(lib/clear-learning-data.ts)。
+  // 戻る操作(bfcache)や別のタブで intro を開いたままだと、消える前の「続きから再開」が残り、押すと解答を書き戻していた。
+  // intro の間だけ読み直す(解いている最中に読み直すと、別のタブの内容で自分の解答を上書きしてしまう)。
+  useEffect(() => {
+    if (phase !== "intro") return;
+    const onPageShow = () => detectResumable();
+    const onStorage = (e: StorageEvent) => {
+      if (e.key === sessionKey || e.key === null) detectResumable();
+    };
+    window.addEventListener("pageshow", onPageShow);
+    window.addEventListener("storage", onStorage);
+    return () => {
+      window.removeEventListener("pageshow", onPageShow);
+      window.removeEventListener("storage", onStorage);
+    };
+  }, [phase, sessionKey, detectResumable]);
 
   const isPassed = useCallback(
     (ans: (number | null)[]) => {
@@ -242,10 +267,16 @@ export default function MoshiExam({
 
   function start(mode: "new" | "resume") {
     const now = Date.now();
-    if (mode === "resume" && resumable) {
-      setAnswers(questions.map((_, i) => resumable.answers[i] ?? null));
-      setStartedAt(resumable.startedAt);
-      const firstBlank = resumable.answers.findIndex((a) => a == null);
+    // 再開は、画面に覚えている内容ではなく保存を読み直して使う。消えていたら(学習履歴の削除・期限切れ)再開しない
+    const saved = mode === "resume" ? loadSession(sessionKey) : null;
+    if (mode === "resume" && (!saved || now - saved.startedAt >= limitMs)) {
+      setResumable(null);
+      return;
+    }
+    if (mode === "resume" && saved) {
+      setAnswers(questions.map((_, i) => saved.answers[i] ?? null));
+      setStartedAt(saved.startedAt);
+      const firstBlank = saved.answers.findIndex((a) => a == null);
       setIdx(firstBlank >= 0 && firstBlank < questions.length ? firstBlank : 0);
     } else {
       const blank = new Array(questions.length).fill(null) as (number | null)[];

@@ -91,7 +91,7 @@ export default async function MynumberFieldPage({ params }: { params: Promise<{ 
         </div>
       </div>
 
-      <MedalLegend exam="mynumber" />
+      <MedalLegend />
       <div className="space-y-2">
         {questions.map((q, i) => <QuestionCard key={q.slug} q={q} index={i + 1} />)}
       </div>

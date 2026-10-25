@@ -106,14 +106,14 @@ export default function StudyClient({
       .sort((a, b) => progress[b.slug].wrong.length - progress[a.slug].wrong.length)[0]?.slug ?? null;
 
   const handleClearAll = () => {
-    if (confirm("すべての学習履歴を削除します。復習ドリルと、途中まで解いた模擬試験の解答も消えます。よろしいですか？")) {
+    if (confirm("すべての学習履歴を削除します。復習ドリル、途中まで解いた模擬試験の解答、試験前の10問の結果も消えます。よろしいですか？")) {
       clearLearningData();
       setProgress(loadProgress());
     }
   };
 
   const handleClearExam = (exam: ExamSlug, examName: string) => {
-    if (confirm(`${examName}の学習履歴を削除します。この資格の復習ドリルと、途中まで解いた模擬試験の解答も消えます。よろしいですか？`)) {
+    if (confirm(`${examName}の学習履歴を削除します。この資格の復習ドリル、途中まで解いた模擬試験の解答、試験前の10問の結果も消えます。よろしいですか？`)) {
       clearLearningData(exam);
       setProgress(loadProgress());
     }

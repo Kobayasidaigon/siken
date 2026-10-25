@@ -94,6 +94,7 @@ import {
 } from "@/lib/exam-dates";
 import StudioLink from "@/components/StudioLink";
 import InlineQuestion from "@/components/InlineQuestion";
+import ShikenmaeEntry from "@/components/ShikenmaeEntry";
 import { getInlineQuestion } from "@/lib/inline-questions";
 
 export async function generateStaticParams() {
@@ -527,6 +528,11 @@ export default async function ColumnPage({ params }: { params: Promise<{ slug: s
           lead={urgentCountdown}
           leadPlacement="column_urgent_lead"
         />
+      )}
+
+      {/* 直前対策コラムには「試験前の10問」の入口(窓の間だけ。lib/shikenmae.ts) */}
+      {(slug === "chintai-chokuzen" || slug === "kangyo-chokuzen") && (
+        <ShikenmaeEntry exam={slug.replace("-chokuzen", "")} placement="column" />
       )}
 
       {/* 本文中の1問のカード(lib/inline-questions.ts)。最初の見出しの前、最初の段落のすぐ下に置く */}

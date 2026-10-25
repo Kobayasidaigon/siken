@@ -1,0 +1,16 @@
+[
+  {
+    "exam": "chintai",
+    "examName": "賃貸不動産経営管理士",
+    "date": "2026-11-15",
+    "next": {
+      "exam": "kangyo",
+      "date": "2026-12-06"
+    }
+  },
+  {
+    "exam": "kangyo",
+    "examName": "管理業務主任者",
+    "date": "2026-12-06"
+  }
+]

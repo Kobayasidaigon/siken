@@ -6,6 +6,7 @@ import ChintaiCourseAd from "@/components/ChintaiCourseAd";
 import { pageMetadata } from "@/lib/page-metadata";
 import { CHINTAI_EXAMS } from "@/lib/exam-dates";
 import ExamCountdown from "@/components/ExamCountdown";
+import ShikenmaeEntry from "@/components/ShikenmaeEntry";
 import ExamVoicesSection from "@/components/ExamVoicesSection";
 
 export const metadata: Metadata = pageMetadata({
@@ -75,6 +76,7 @@ export default async function ChintaiPage() {
 
       {/* カウントダウン: 申込期間中(8/3〜9/30)は「申込締切まで」を優先表示。A8の成果は締切直前に集中する */}
       <ExamCountdown exams={CHINTAI_EXAMS} accent="var(--c-kashikin)" accentSoft="var(--c-kashikin-soft)" lead="chintai" calendar={{ examName: "賃貸不動産経営管理士", path: "/chintai/" }} />
+      <ShikenmaeEntry exam="chintai" placement="cert_top" />
 
       <section className="mb-12">
         <h2 className="text-lg font-bold text-[color:var(--c-ink)] mb-5 font-serif">分野から選ぶ</h2>

@@ -5,6 +5,7 @@ import type { CcmQuestionData } from "@/lib/ccm-questions";
 import { pageMetadata } from "@/lib/page-metadata";
 import CcmCourseAd from "@/components/CcmCourseAd";
 import { CCM_FIELDS, ccmFieldBySlug } from "@/lib/ccm-fields";
+import MedalMark, { MedalLegend } from "@/components/MedalMark";
 
 export async function generateStaticParams() {
   return CCM_FIELDS.map((f) => ({ slug: f.slug }));
@@ -45,6 +46,7 @@ function QuestionCard({ q, index }: { q: CcmQuestionData; index: number }) {
         </div>
         <p className="text-sm text-[color:var(--c-text)] line-clamp-1">{q.questionText.slice(0, 60)}...</p>
       </div>
+      <MedalMark exam="ccm" slug={q.slug} />
       <svg
         className="w-4 h-4 text-[color:var(--c-text-sub)] flex-shrink-0 ml-2"
         fill="none"
@@ -105,6 +107,7 @@ export default async function CcmFieldPage({ params }: { params: Promise<{ slug:
         </div>
       </div>
 
+      <MedalLegend />
       <div className="space-y-2">
         {questions.map((q, i) => (
           <QuestionCard key={q.slug} q={q} index={i + 1} />

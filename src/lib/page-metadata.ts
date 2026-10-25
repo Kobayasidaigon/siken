@@ -13,13 +13,15 @@ export function pageMetadata(opts: {
   title: string;
   description: string;
   noindex?: boolean;
+  /** false で canonical を出さない(点ごとの着地ページなど、正規の URL を示したくないページ) */
+  canonical?: boolean;
+  /** OG 画像。省略時は /og-default.png */
+  image?: { url: string; alt: string };
 }): Metadata {
   return {
     title: opts.title,
     description: opts.description,
-    alternates: {
-      canonical: opts.path,
-    },
+    ...(opts.canonical === false ? {} : { alternates: { canonical: opts.path } }),
     ...(opts.noindex ? { robots: { index: false, follow: true } } : {}),
     openGraph: {
       type: "website",
@@ -28,7 +30,11 @@ export function pageMetadata(opts: {
       url: opts.path,
       title: opts.title,
       description: opts.description,
-      images: [{ url: "/og-default.png", width: 1200, height: 630, alt: "シカクモン - 資格試験の練習問題" }],
+      images: [
+        opts.image
+          ? { url: opts.image.url, width: 1200, height: 630, alt: opts.image.alt }
+          : { url: "/og-default.png", width: 1200, height: 630, alt: "シカクモン - 資格試験の練習問題" },
+      ],
     },
   };
 }

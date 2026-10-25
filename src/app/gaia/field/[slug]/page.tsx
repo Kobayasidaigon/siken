@@ -5,6 +5,7 @@ import type { GaiaQuestionData } from "@/lib/gaia-questions";
 import { pageMetadata } from "@/lib/page-metadata";
 import GaiaCourseAd from "@/components/GaiaCourseAd";
 import { GAIA_FIELDS, gaiaFieldBySlug } from "@/lib/gaia-fields";
+import MedalMark, { MedalLegend } from "@/components/MedalMark";
 
 export async function generateStaticParams() {
   return GAIA_FIELDS.map((f) => ({ slug: f.slug }));
@@ -45,6 +46,7 @@ function QuestionCard({ q, index }: { q: GaiaQuestionData; index: number }) {
         </div>
         <p className="text-sm text-[color:var(--c-text)] line-clamp-1">{q.questionText.slice(0, 60)}...</p>
       </div>
+      <MedalMark exam="gaia" slug={q.slug} />
       <svg
         className="w-4 h-4 text-[color:var(--c-text-sub)] flex-shrink-0 ml-2"
         fill="none"
@@ -105,6 +107,7 @@ export default async function GaiaFieldPage({ params }: { params: Promise<{ slug
         </div>
       </div>
 
+      <MedalLegend />
       <div className="space-y-2">
         {questions.map((q, i) => (
           <QuestionCard key={q.slug} q={q} index={i + 1} />

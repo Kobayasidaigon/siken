@@ -6,6 +6,7 @@ import KangyoCourseAd from "@/components/KangyoCourseAd";
 import { pageMetadata } from "@/lib/page-metadata";
 import { KANGYO_EXAMS } from "@/lib/exam-dates";
 import ExamCountdown from "@/components/ExamCountdown";
+import ShikenmaeEntry from "@/components/ShikenmaeEntry";
 import ExamVoicesSection from "@/components/ExamVoicesSection";
 
 export const metadata: Metadata = pageMetadata({
@@ -75,6 +76,7 @@ export default async function KangyoPage() {
 
       {/* カウントダウン: 申込期間中(8/3〜9/30)は「申込締切まで」を優先表示。A8の成果は締切直前に集中する */}
       <ExamCountdown exams={KANGYO_EXAMS} accent="var(--c-kashikin)" accentSoft="var(--c-kashikin-soft)" lead="kangyo" calendar={{ examName: "管理業務主任者", path: "/kangyo/" }} />
+      <ShikenmaeEntry exam="kangyo" placement="cert_top" />
 
       <section className="mb-12">
         <h2 className="text-lg font-bold text-[color:var(--c-ink)] mb-5 font-serif">分野から選ぶ</h2>

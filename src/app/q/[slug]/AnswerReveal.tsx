@@ -8,6 +8,8 @@ import StudioLink from "@/components/StudioLink";
 import { studioCtaFor } from "@/lib/studio-cta";
 import { decideCtaPriority } from "@/lib/cta-priority";
 import { practiceRoutesFor } from "@/lib/practice-routes";
+import { openShikenmaeFor, mdJa, mdSlash, shikenmaePath } from "@/lib/shikenmae";
+import ShikenmaeEntryLink from "@/components/ShikenmaeEntryLink";
 import { drillPositionOf, endDrill, loadDrill, type DrillState } from "@/lib/review-drill";
 import FreeLeadCTA from "@/components/FreeLeadCTA";
 import { EXAM_AFFILIATE, RESULT_CTA_HEADLINE } from "@/lib/affiliate-links";
@@ -123,6 +125,9 @@ export default function AnswerReveal({
 
   // 通しで解く面(本番形式テスト・模試)。この資格に用意がある分だけ出る
   const practiceRoutes = practiceRoutesFor(exam);
+  // 「試験前の10問」の窓が開いている資格だけ、通しで解く面の先頭に入口を足す(lib/shikenmae.ts)。
+  // 答えたあとにしか描かないので、ブラウザの時刻で判定してもサーバーの HTML と食い違わない。
+  const shikenmae = revealed ? openShikenmaeFor(exam) : null;
 
   // 進行中の復習ドリル。localStorage を読むので、初期HTMLでは必ず null にする
   // (サーバでの描画結果と食い違うと hydration が壊れる)。
@@ -375,6 +380,16 @@ export default function AnswerReveal({
             (nextHref ? (
               <p className="mt-4 text-xs text-[color:var(--c-text-sub)] flex flex-wrap items-baseline gap-x-3 gap-y-1">
                 <span>まとめて解くなら</span>
+                {shikenmae && (
+                  <ShikenmaeEntryLink
+                    href={shikenmaePath(shikenmae)}
+                    exam={shikenmae.exam}
+                    placement="question_mid"
+                    className="text-[color:var(--c-accent,var(--c-ink))] hover:underline"
+                  >
+                    試験前の10問（{mdSlash(shikenmae.date)} 試験）→
+                  </ShikenmaeEntryLink>
+                )}
                 {practiceRoutes.map((r) => (
                   <a
                     key={r.href}
@@ -395,6 +410,21 @@ export default function AnswerReveal({
                   通しで解くと、時間配分と、分野ごとの取りこぼしが分かります。
                 </p>
                 <ul className="space-y-3">
+                  {shikenmae && (
+                    <li>
+                      <ShikenmaeEntryLink
+                        href={shikenmaePath(shikenmae)}
+                        exam={shikenmae.exam}
+                        placement="question_end"
+                        className="text-sm font-bold text-[color:var(--c-accent,var(--c-ink))] hover:underline no-underline"
+                      >
+                        試験前の10問 →
+                      </ShikenmaeEntryLink>
+                      <span className="block text-xs text-[color:var(--c-text-sub)] mt-0.5">
+                        {mdJa(shikenmae.date)}の試験の前の7日間だけ。全員が同じ10問を1回だけ解きます
+                      </span>
+                    </li>
+                  )}
                   {practiceRoutes.map((r) => (
                     <li key={r.href}>
                       <a

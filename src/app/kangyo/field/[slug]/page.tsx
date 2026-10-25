@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import type { KangyoQuestionData } from "@/lib/kangyo-questions";
 import { pageMetadata } from "@/lib/page-metadata";
 import KangyoCourseAd from "@/components/KangyoCourseAd";
+import MedalMark, { MedalLegend } from "@/components/MedalMark";
 
 const fieldMap: Record<string, { name: string; desc: string }> = {
   "kubun1": { name: "区分所有法（専有部分・共用部分・敷地・管理者）", desc: "区分所有権の成立、共用部分の持分と管理、分離処分の禁止、敷地利用権、先取特権と特定承継人の責任、管理者の権限、管理組合法人、区分所有者の責務と管理不全対策（2026年施行の改正法対応）" },
@@ -44,6 +45,7 @@ function QuestionCard({ q, index }: { q: KangyoQuestionData; index: number }) {
         </div>
         <p className="text-sm text-[color:var(--c-text)] line-clamp-1">{q.questionText.slice(0, 60)}...</p>
       </div>
+      <MedalMark exam="kangyo" slug={q.slug} />
       <svg className="w-4 h-4 text-[color:var(--c-text-sub)] flex-shrink-0 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
       </svg>
@@ -94,6 +96,7 @@ export default async function KangyoFieldPage({ params }: { params: Promise<{ sl
         </div>
       </div>
 
+      <MedalLegend />
       <div className="space-y-2">
         {questions.map((q, i) => <QuestionCard key={q.slug} q={q} index={i + 1} />)}
       </div>

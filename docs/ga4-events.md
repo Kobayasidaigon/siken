@@ -8,6 +8,12 @@
 実際、Studio への送客は6箇所すべてで1件も測れておらず、「問題を解いた」という中核行動も
 無計測のまま数か月動いていた（`docs/affiliate-growth-audit.md` §5.2 の E・F）。
 
+**送る値を足すときは、プライバシーポリシー（`src/app/privacy/page.tsx` の「学習進捗データ」）とそろえること。**
+ポリシーは「学習履歴そのもの（解いた問題の一覧・正誤・ブックマーク・メダル）は送らない。問題に答えたこと（資格と正誤）、
+模試・本番形式テスト・試験前の10問の得点、模試の合否とかかった時間、復習ドリルの出題数と内訳、ボタンを押したことなどの操作は GA4 に送る。ページの URL も一緒に届く。試験前の10問の点はリンクの URL に入る」と
+書いている（2026-10-25 改訂）。これに無い種類の値（例: 学習履歴から数えた解いた数・網羅率、問題ごとのメダルの変化）を送るなら、
+先にポリシーを書き換える。
+
 ## 先に済ませること（コードでは直せない）
 
 パラメータは、GA4 側でカスタムディメンションとして登録しないとレポートに出ない。
@@ -48,11 +54,15 @@ GA4 の「収益」は **`purchase` イベントの `value` と `currency` か�
 | `mock_start` | 本番形式テストの開始（全14資格が共有） | `exam`, `size` |
 | `mock_complete` | 同 採点 | `exam`, `size`, `correct`, `score_bucket`, `passed` |
 | `moshi_start` / `moshi_complete` | 模擬試験。`round` で第1回（無料）と第2回（有料）を区別する | `exam`, `round`, `mode`, `score`, `size`, `score_bucket`, `passed`, `timeout`, `minutes` |
-| `drill_start` | 復習ドリルの開始 | `exam`, `size`, `bronze`, `silver` |
+| `drill_start` | 復習ドリルの開始 | `exam`, `size`, `bronze`, `silver`（出題した中の銅・銀の数。2026-10-24 まではその資格の銅・銀の総数を送っていた） |
 | `drill_next` | ドリルの次の問題へ | `exam` |
 | `drill_complete` | ドリルを解き終えた | `exam`, `size` |
 | `progress_export` / `progress_import` | 学習履歴の書き出し・読み込み | `mode`(merge/replace) |
-| `share_click` | 模試結果の共有 | `exam`, `channel`, `place` |
+| `share_click` | 結果の共有（模試・本番形式テスト・試験前の10問） | `exam`, `channel`(x/line/share/copy), `place`(模試だけ。過去との連続のため), `placement`(moshi_result/mock_result/shikenmae_result), `with_score`・`shared`(試験前の10問だけ。1/0) |
+| `shikenmae_entry_click` | 「試験前の10問」への入口（2026-10-25〜。`lib/shikenmae.ts`） | `exam`, `placement`(cert_top/column/question_mid/question_end) |
+| `shikenmae_view` | 試験前の10問のページを開いた | `exam`, `placement`(event/shared/archive。URL と日付で決まる) |
+| `shikenmae_start` | 1問目に答えた（窓の間の2回目は送らない） | `exam` |
+| `shikenmae_complete` | 採点した（窓の間の2回目は送らない） | `exam`, `size`, `correct`, `score_bucket`, `mode`(window/archive), `shared`(点つきの着地ページで解いたら1) |
 
 `place` と `placement` が別名で併存している。`place` は模試の共有ボタンだけが使う古い名前で、
 収集済みデータとの連続性のために残してある。新しいイベントでは `placement` を使うこと。
@@ -155,3 +165,9 @@ GA4 は「見た人のうち何割が登録したか」を資格・判定別に�
   出題数が資格ごとに違うので、素点だけでは資格をまたいだ比較ができない。
 - イベント名は動詞を含むスネークケース（`affiliate_click`, `question_answered`）。
 - 既存イベントの名前とパラメータ名は、収集済みデータが切れるので変えない。足すのはよい。
+
+## 試験前の10問（2026-10-25〜）で、管理画面に登録が要るもの
+
+- カスタムディメンション（範囲: イベント）に `channel`・`with_score`・`shared` を登録する。`channel` は既存の `share_click` でも未登録。
+- 送るのは URL・日付・押した操作から決まる値だけ。端末の記録から作った値（この端末にその回の結果があるか、など）と、問題ごとの正誤は送らない。
+- 投稿文には問題ごとの○×が入るので、X・LINE へのボタンは a 要素ではなく button＋window.open にしてある（拡張計測の「離脱クリック」が投稿文を拾わないように）。

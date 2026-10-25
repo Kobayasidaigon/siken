@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
-import { loadProgress, clearProgress, medalCounts, EXAM_LIST, type AllProgress, type ExamSlug } from "@/lib/study-progress";
+import { loadProgress, medalCounts, EXAM_LIST, type AllProgress, type ExamSlug } from "@/lib/study-progress";
+import { clearLearningData } from "@/lib/clear-learning-data";
 import AffiliateLink from "@/components/AffiliateLink";
 import FreeLeadCTA from "@/components/FreeLeadCTA";
 import { EXAM_AFFILIATE } from "@/lib/affiliate-links";
@@ -105,15 +106,15 @@ export default function StudyClient({
       .sort((a, b) => progress[b.slug].wrong.length - progress[a.slug].wrong.length)[0]?.slug ?? null;
 
   const handleClearAll = () => {
-    if (confirm("すべての学習履歴を削除します。よろしいですか？")) {
-      clearProgress();
+    if (confirm("すべての学習履歴を削除します。復習ドリル、途中まで解いた模擬試験の解答、試験前の10問の結果も消えます。よろしいですか？")) {
+      clearLearningData();
       setProgress(loadProgress());
     }
   };
 
   const handleClearExam = (exam: ExamSlug, examName: string) => {
-    if (confirm(`${examName}の学習履歴を削除します。よろしいですか？`)) {
-      clearProgress(exam);
+    if (confirm(`${examName}の学習履歴を削除します。この資格の復習ドリル、途中まで解いた模擬試験の解答、試験前の10問の結果も消えます。よろしいですか？`)) {
+      clearLearningData(exam);
       setProgress(loadProgress());
     }
   };

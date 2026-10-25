@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import type { BijimaneQuestionData } from "@/lib/bijimane-questions";
 import { pageMetadata } from "@/lib/page-metadata";
 import BijimaneCourseAd from "@/components/BijimaneCourseAd";
+import MedalMark, { MedalLegend } from "@/components/MedalMark";
 
 // 公式テキスト〈5th edition〉の部・章立てに対応した分野区分。
 const fieldMap: Record<string, { name: string; desc: string }> = {
@@ -54,6 +55,7 @@ function QuestionCard({ q, index }: { q: BijimaneQuestionData; index: number }) 
         </div>
         <p className="text-sm text-[color:var(--c-text)] line-clamp-1">{q.questionText.slice(0, 60)}...</p>
       </div>
+      <MedalMark exam="bijimane" slug={q.slug} />
       <svg className="w-4 h-4 text-[color:var(--c-text-sub)] flex-shrink-0 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
       </svg>
@@ -104,6 +106,7 @@ export default async function BijimaneFieldPage({ params }: { params: Promise<{ 
         </div>
       </div>
 
+      <MedalLegend />
       <div className="space-y-2">
         {questions.map((q, i) => <QuestionCard key={q.slug} q={q} index={i + 1} />)}
       </div>

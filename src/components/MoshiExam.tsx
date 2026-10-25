@@ -33,6 +33,7 @@ import MoshiReminderForm from "@/components/MoshiReminderForm";
 import { nextExamYmd } from "@/lib/exam-dates";
 import { moshi2ProductOf } from "@/lib/moshi2-products";
 import StudioLink from "@/components/StudioLink";
+import { SHARE_HASHTAGS } from "@/lib/share-hashtags";
 
 export interface MoshiQuestion {
   slug: string;
@@ -66,6 +67,9 @@ interface Props {
   sections?: MoshiSection[];
   pointsPerQuestion?: number;
   passPoints?: number; // 指定時は問別配点の合計点で合否判定(100点満点70点合格など)
+  /** 結果の投稿のリンク先と名前。省略時は topPath + "moshi/" と資格名(生成AIの2級形式のように別ページの模試で使う) */
+  sharePath?: string;
+  shareName?: string;
 }
 
 interface SavedSession {
@@ -134,6 +138,8 @@ export default function MoshiExam({
   choiceLabel,
   questionPathPrefix,
   topPath,
+  sharePath,
+  shareName,
   sections,
   pointsPerQuestion,
   passPoints,
@@ -151,16 +157,41 @@ export default function MoshiExam({
   const submittedRef = useRef(false);
 
   // 中断セッションの検出(intro 表示用)。期限切れは破棄して注記だけ出す
-  useEffect(() => {
+  const detectResumable = useCallback(() => {
     const saved = loadSession(sessionKey);
-    if (!saved) return;
+    if (!saved) {
+      setResumable(null);
+      return;
+    }
     if (Date.now() - saved.startedAt < limitMs) {
       setResumable(saved);
     } else {
       clearSession(sessionKey);
+      setResumable(null);
       setExpiredNote(true);
     }
   }, [sessionKey, limitMs]);
+
+  useEffect(() => {
+    detectResumable();
+  }, [detectResumable]);
+
+  // 2026-10-25 追加: /study/ で学習履歴を削除すると途中保存も消える(lib/clear-learning-data.ts)。
+  // 戻る操作(bfcache)や別のタブで intro を開いたままだと、消える前の「続きから再開」が残り、押すと解答を書き戻していた。
+  // intro の間だけ読み直す(解いている最中に読み直すと、別のタブの内容で自分の解答を上書きしてしまう)。
+  useEffect(() => {
+    if (phase !== "intro") return;
+    const onPageShow = () => detectResumable();
+    const onStorage = (e: StorageEvent) => {
+      if (e.key === sessionKey || e.key === null) detectResumable();
+    };
+    window.addEventListener("pageshow", onPageShow);
+    window.addEventListener("storage", onStorage);
+    return () => {
+      window.removeEventListener("pageshow", onPageShow);
+      window.removeEventListener("storage", onStorage);
+    };
+  }, [phase, sessionKey, detectResumable]);
 
   const isPassed = useCallback(
     (ans: (number | null)[]) => {
@@ -242,10 +273,16 @@ export default function MoshiExam({
 
   function start(mode: "new" | "resume") {
     const now = Date.now();
-    if (mode === "resume" && resumable) {
-      setAnswers(questions.map((_, i) => resumable.answers[i] ?? null));
-      setStartedAt(resumable.startedAt);
-      const firstBlank = resumable.answers.findIndex((a) => a == null);
+    // 再開は、画面に覚えている内容ではなく保存を読み直して使う。消えていたら(学習履歴の削除・期限切れ)再開しない
+    const saved = mode === "resume" ? loadSession(sessionKey) : null;
+    if (mode === "resume" && (!saved || now - saved.startedAt >= limitMs)) {
+      setResumable(null);
+      return;
+    }
+    if (mode === "resume" && saved) {
+      setAnswers(questions.map((_, i) => saved.answers[i] ?? null));
+      setStartedAt(saved.startedAt);
+      const firstBlank = saved.answers.findIndex((a) => a == null);
       setIdx(firstBlank >= 0 && firstBlank < questions.length ? firstBlank : 0);
     } else {
       const blank = new Array(questions.length).fill(null) as (number | null)[];
@@ -507,15 +544,25 @@ export default function MoshiExam({
           合格基準は{passLabel}。所要時間 約{result?.elapsedMin ?? timeLimitMin}分。
           ※この判定はオリジナル問題による目安です。
         </p>
-        {/* 結果のシェア(テキストのみ) */}
+        {/* 結果画面のスクショが広がったときの入口(2026-10-25 追加) */}
+        <p className="text-[11px] text-[color:var(--c-text-sub)] mt-2">シカクモン shikakumon.com{sharePath ?? `${topPath}moshi/`}</p>
+        {/* 結果のシェア(テキストのみ)。2026-10-25: 宣伝の言い回し(「無料受験中」)と判定の言葉(「合格圏」)を外し、
+            資格名を先に書いてサイト名は括弧に下げ、utm を付けた(docs/share-campaign-design.md 案2 の段階0)。
+            第2回の結果も同じ文面で、リンク先は第1回(無料)のまま。 */}
         <div className="mt-4">
           <a
             href={`https://x.com/intent/post?text=${encodeURIComponent(
-              `${EXAM_LIST.find((e) => e.slug === exam)?.name ?? ""}の模擬試験(第${round}回)で${score}/${questions.length}問正解(${pct}%)${passed ? "・合格圏" : ""}でした。シカクモンで無料受験中`
-            )}&url=${encodeURIComponent(`https://shikakumon.com${topPath}moshi/`)}`}
+              [
+                `${shareName ?? EXAM_LIST.find((e) => e.slug === exam)?.name ?? ""} 模擬試験 第${round}回（シカクモン）`,
+                `${questions.length}問中${score}問正解（${pct}%）`,
+                ...(SHARE_HASHTAGS[exam] ? [SHARE_HASHTAGS[exam]] : []),
+              ].join("\n")
+            )}&url=${encodeURIComponent(
+              `https://shikakumon.com${sharePath ?? `${topPath}moshi/`}?utm_source=x&utm_medium=social&utm_campaign=moshi_share&utm_content=${exam}`
+            )}`}
             target="_blank"
             rel="noopener noreferrer"
-            onClick={() => track("share_click", { exam, channel: "x", place: "moshi" })}
+            onClick={() => track("share_click", { exam, channel: "x", place: "moshi", placement: "moshi_result" })}
             className="inline-block text-xs font-bold border rounded-md px-3 py-1.5 no-underline transition hover:opacity-80"
             style={{ color: "var(--c-accent)", borderColor: "var(--c-accent)" }}
           >

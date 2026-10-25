@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import type { PiiQuestionData } from "@/lib/pii-questions";
 import { pageMetadata } from "@/lib/page-metadata";
 import PiiCourseAd from "@/components/PiiCourseAd";
+import MedalMark, { MedalLegend } from "@/components/MedalMark";
 
 const fieldMap: Record<string, { name: string; desc: string }> = {
   "hogo-law": { name: "個人情報保護法", desc: "個人情報の定義、利用目的、安全管理措置、第三者提供、開示請求、仮名加工情報、匿名加工情報など" },
@@ -46,6 +47,7 @@ function QuestionCard({ q, index }: { q: PiiQuestionData; index: number }) {
         </div>
         <p className="text-sm text-[color:var(--c-text)] line-clamp-1">{q.questionText.slice(0, 60)}...</p>
       </div>
+      <MedalMark exam="pii" slug={q.slug} />
       <svg className="w-4 h-4 text-[color:var(--c-text-sub)] flex-shrink-0 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
       </svg>
@@ -96,6 +98,7 @@ export default async function PiiFieldPage({ params }: { params: Promise<{ slug:
         </div>
       </div>
 
+      <MedalLegend />
       <div className="space-y-2">
         {questions.map((q, i) => <QuestionCard key={q.slug} q={q} index={i + 1} />)}
       </div>

@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { pageMetadata } from "@/lib/page-metadata";
 import KashikinCourseAd from "@/components/KashikinCourseAd";
+import MedalMark, { MedalLegend } from "@/components/MedalMark";
 
 const fieldMap: Record<string, { name: string; desc: string }> = {
   kashikingyouhou: { name: "貸金業法", desc: "登録制度、業務規制、帳簿管理、取立て行為の規制、書面交付義務、総量規制など" },
@@ -72,6 +73,7 @@ export default async function FieldPage({ params }: { params: Promise<{ slug: st
       </div>
 
       {/* Question List */}
+      <MedalLegend />
       <div className="space-y-2">
         {questions.map((q, i) => {
           const diffColor = { A: "bg-green-100 text-green-800", B: "bg-amber-100 text-amber-800", C: "bg-red-100 text-red-800" }[q.difficulty];
@@ -98,6 +100,7 @@ export default async function FieldPage({ params }: { params: Promise<{ slug: st
                   {q.questionText.slice(0, 60)}...
                 </p>
               </div>
+              <MedalMark exam="kashikin" slug={q.slug} />
               <svg className="w-4 h-4 text-[color:var(--c-text-sub)] flex-shrink-0 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
               </svg>

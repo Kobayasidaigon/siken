@@ -57,6 +57,8 @@ export default async function GaiaMoshi2kyuPage() {
         choiceLabel="○×・4択"
         questionPathPrefix="/gaia/q/"
         topPath="/gaia/"
+        sharePath="/gaia/moshi-2kyu/"
+        shareName="生成AIアドバイザー 2級形式"
       />
 
       <p className="text-xs text-[color:var(--c-text-sub)] mt-8 max-w-2xl leading-relaxed">

@@ -18,6 +18,7 @@ import { decideCtaPriority } from "@/lib/cta-priority";
 import { recordResult, type ExamSlug } from "@/lib/study-progress";
 import { studioMoshiHref } from "@/lib/studio-cta";
 import StudioLink from "@/components/StudioLink";
+import { SHARE_HASHTAGS } from "@/lib/share-hashtags";
 
 export interface MockQuestion {
   slug: string;
@@ -262,6 +263,29 @@ export default function MockExam({
               ? `合格ラインの目安（約${passPct}%）は超えています。弱点を詰めましょう。`
               : `合格ラインの目安（約${passPct}%）まであと一歩。苦手分野から固めましょう。`}
         </p>
+        <p className="text-[11px] text-[color:var(--c-text-sub)] mt-2">シカクモン shikakumon.com/{exam}/mock/</p>
+        {/* 結果のシェア(テキストのみ)。2026-10-25 追加(docs/share-campaign-design.md 案2 の段階0)。
+            文面は模試と同じ形: 資格名を先に、サイト名は括弧に。判定の言葉と宣伝の言い回しは入れない。 */}
+        <div className="mt-4">
+          <a
+            href={`https://x.com/intent/post?text=${encodeURIComponent(
+              [
+                `${examLabel} 本番形式テスト（シカクモン）`,
+                `${pool.length}問中${correctCount}問正解（${pct}%）`,
+                ...(SHARE_HASHTAGS[exam] ? [SHARE_HASHTAGS[exam]] : []),
+              ].join("\n"),
+            )}&url=${encodeURIComponent(
+              `https://shikakumon.com/${exam}/mock/?utm_source=x&utm_medium=social&utm_campaign=mock_share&utm_content=${exam}`,
+            )}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => track("share_click", { exam, channel: "x", placement: "mock_result" })}
+            className="inline-block text-xs font-bold border rounded-md px-3 py-1.5 no-underline transition hover:opacity-80"
+            style={{ color: "var(--c-accent)", borderColor: "var(--c-accent)" }}
+          >
+            この結果をXに投稿する
+          </a>
+        </div>
       </section>
 
       {/* 分野別の正答率 */}

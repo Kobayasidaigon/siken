@@ -6,6 +6,7 @@ import fs from "fs";
 import path from "path";
 import { getChintaiQuestion } from "./chintai-questions";
 import { getKangyoQuestion } from "./kangyo-questions";
+import { getChizaiQuestion } from "./chizai-questions";
 import { dateKey, SHIKENMAE_SIZE, type ShikenmaeEvent } from "./shikenmae";
 
 export interface ShikenmaeQuestion {
@@ -31,6 +32,7 @@ type Loader = (slug: string) => Promise<{
 const LOADERS: Record<string, Loader> = {
   chintai: getChintaiQuestion,
   kangyo: getKangyoQuestion,
+  chizai: getChizaiQuestion,
 };
 
 /** 10問のセット(slug の配列)。無ければ null */

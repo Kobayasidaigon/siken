@@ -6,6 +6,7 @@ import ChizaiCourseAd from "@/components/ChizaiCourseAd";
 import { pageMetadata } from "@/lib/page-metadata";
 import { CHIZAI_EXAMS } from "@/lib/exam-dates";
 import ExamCountdown from "@/components/ExamCountdown";
+import ShikenmaeEntry from "@/components/ShikenmaeEntry";
 import Moshi2TopLink from "@/components/Moshi2TopLink";
 import ExamVoicesSection from "@/components/ExamVoicesSection";
 
@@ -85,6 +86,7 @@ export default async function ChizaiPage() {
 
       {/* カウントダウン: 申込期間中は「申込締切まで」を優先表示 */}
       <ExamCountdown exams={CHIZAI_EXAMS} accent="var(--c-chizai)" accentSoft="var(--c-chizai-soft)" lead="chizai" calendar={{ examName: "知的財産管理技能検定3級", path: "/chizai/" }} />
+      <ShikenmaeEntry exam="chizai" placement="cert_top" />
 
       {/* 分野 - タグクラウド風 */}
       <section className="mb-12">

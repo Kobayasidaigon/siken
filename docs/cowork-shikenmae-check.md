@@ -1,6 +1,6 @@
 # Cowork に渡すプロンプト（試験前の10問の公開前の確認）
 
-2026-10-25 作成。PR #28 の「試験前の10問」（`docs/share-campaign-design.md` の MVP）を公開する前に、
+2026-10-25 作成。「試験前の10問」(PR #28 で本番に反映済み)（`docs/share-campaign-design.md` の MVP）を公開する前に、
 開発環境から確かめられなかったことを Cowork に頼む。GA4 の数字と設定は別のプロンプト（`docs/cowork-shikenmae-ga4.md`）。
 下の枠の中をそのまま Cowork に貼る。結果を開発側に貼れば、問題の差し替え・ハッシュタグ・日程を直す。
 
@@ -22,7 +22,7 @@
 
 ## B. 20問の中身の確認
 問題は GitHub で読めます（リポジトリは公開）。各問題のページ:
-https://github.com/Kobayasidaigon/siken/blob/claude/loving-tesla-khe7af/src/content/<資格>/<問題>.md
+https://github.com/Kobayasidaigon/siken/blob/main/src/content/<資格>/<問題>.md
 （例: …/src/content/chintai/chintai-003.md）。ファイルの上に問題文・選択肢・正解の番号（correctAnswer）、下に解説があります。
 
 賃貸不動産経営管理士（chintai）:
@@ -51,16 +51,15 @@ X の検索（「最新」タブ）で、直近1か月ぐらいの投稿の多�
 - 「#管理業務主任者」と「#管業」
 どちらが多いか、勉強している人の投稿が多いのはどちらか、を書く。
 
-## D. プレビューでの見え方（パソコンの Chrome で）
-プレビューの URL: https://siken-git-claude-loving-tesla-khe7af-daigos-projects-9e5bfa76.vercel.app
-（Vercel のログインを求められたら、ログインしてから開く）
+## D. 本番での見え方（パソコンの Chrome で）
+サイトの URL: https://shikakumon.com
 1. /shikenmae/chintai/20261115/ と /shikenmae/kangyo/20261206/ を開く。いまは窓の前なので「11月8日（日）から解けます」
    「11月29日（日）から解けます」と出るはず。出たものを書く。
 2. /shikenmae/chintai/20261115/8/ を開く。最初に「投稿した人の結果（自己採点）: 10問中8問」と出るか。
 3. /shikenmae/chintai/20261115/11/ を開く。404（ページが無い）になるか。
-4. X の投稿画面（https://x.com/compose/post）に、https://shikakumon.com/ ではなくプレビューの URL
-   （上の 2. の URL）を貼り、リンクのカード（画像つき）が出るかを見る。出たら画像の中身（資格名・「試験前の10問」・日付）を書く。
-   見たら投稿せずに閉じる。カードが出なくても、それを書けばよい（プレビューは認証が要るので出ないことがある）。
+4. X の投稿画面（https://x.com/compose/post）に https://shikakumon.com/shikenmae/chintai/20261115/8/ を貼り、
+   リンクのカード（画像つき）が出るかを見る。出たら画像の中身（資格名・「試験前の10問」・日付）を書く。
+   見たら投稿せずに閉じる。カードが出なくても、それを書けばよい。
 5. /chintai/ と /kangyo/ の模擬試験（/chintai/moshi/ など）は解かなくてよい。
 
 ## 報告の形
@@ -72,4 +71,4 @@ A〜D の見出しごとに表で。最後に、「要修正」「期待値と�
 - B で「要修正」の問題は、問題そのものを直すか、`scripts/make-shikenmae-set.mjs` で同じ分野の別の問題に差し替える。
   公開後はセットを変えない。
 - C の結果で `src/lib/share-hashtags.ts` を決める（模試・本番形式テストの投稿にも使う）。
-- D-4 でカードが出なければ、本番に出てから本番の URL で同じことを確かめる。
+- D-4 でカードが出なければ、OG 画像のパスと metadata を確かめる。

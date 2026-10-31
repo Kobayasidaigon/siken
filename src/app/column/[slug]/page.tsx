@@ -242,7 +242,7 @@ export default async function ColumnPage({ params }: { params: Promise<{ slug: s
     // 申込リンクが計測なしの直リンクだったため、日程コラムと同じ協会申込のA8導線を添える。
     "pii-chokuzen": {
       course: "pii",
-      body: "第85回の申込は10月29日までです。まだの場合は、直前対策の前に実施団体(全日本情報学習振興協会)の公式サイトで受験方式(公開会場・CBT・オンラインIBT)を選んで申込を済ませておきましょう。",
+      body: "第85回の申込は11月12日まで延長されています。まだの場合は、直前対策の前に実施団体(全日本情報学習振興協会)の公式サイトで受験方式(公開会場・CBT・オンラインIBT)を選んで申込を済ませておきましょう。",
       linkText: "協会公式サイトで申込方法を確認する",
       href: "https://px.a8.net/svt/ejp?a8mat=4B1TI0+9T22IA+4LOQ+BW8O2&a8ejpredirect=https%3A%2F%2Fwww.joho-gakushu.or.jp%2Fpiip%2F",
       pixel: "https://www11.a8.net/0.gif?a8mat=4B1TI0+9T22IA+4LOQ+BW8O2",

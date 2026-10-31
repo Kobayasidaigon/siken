@@ -62,7 +62,7 @@ export default async function CacPage() {
                 className="inline-flex items-center px-4 py-2 rounded-lg border text-sm font-medium no-underline transition-colors hover:bg-[color:var(--c-pii-soft)]"
                 style={{ borderColor: "var(--c-pii)", color: "var(--c-pii-ink)" }}
               >
-                模擬試験を受ける（60問・165分）→
+                模擬試験を受ける（60問・150分）→
               </a>
               <a
                 href="/cac/mock/"
@@ -142,7 +142,7 @@ export default async function CacPage() {
         <h2 className="text-base font-bold text-[color:var(--c-ink)] mb-4 font-serif">試験の概要</h2>
         <div className="card p-5 text-sm text-[color:var(--c-text-sub)] space-y-2">
           <p>
-            <span className="font-bold text-[color:var(--c-ink)]">試験形式</span>　60問・10:00〜12:45
+            <span className="font-bold text-[color:var(--c-ink)]">試験形式</span>　60問・150分（10:00〜12:45）
           </p>
           <p>
             <span className="font-bold text-[color:var(--c-ink)]">出題範囲</span>　会社法の第1編 総則、第2編 株式会社（設立〜清算）、第3編 持分会社、第4編 社債、第5編 組織変更・合併・会社分割・株式交換・株式移転・株式交付、第6編 外国会社、第7編 雑則（第8編 罰則は出題なし）

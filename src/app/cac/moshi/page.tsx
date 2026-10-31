@@ -9,9 +9,9 @@ import MoshiExam, { type MoshiQuestion } from "@/components/MoshiExam";
 
 export const metadata: Metadata = pageMetadata({
   path: "/cac/moshi/",
-  title: "会社法法務士 模擬試験 第1回（無料）｜本番形式60問・165分",
+  title: "会社法法務士 模擬試験 第1回（無料）｜本番形式60問・150分",
   description:
-    "会社法法務士認定試験の無料模擬試験。本試験と同じ60問・165分・4肢択一で、設立・株式・機関・計算から組織再編・持分会社・清算までの8分野から出題し、正答率70%の基準で判定します。分野ごとの弱点分析つき。",
+    "会社法法務士認定試験の無料模擬試験。本試験と同じ60問・150分・4肢択一で、設立・株式・機関・計算から組織再編・持分会社・清算までの8分野から出題し、正答率70%の基準で判定します。分野ごとの弱点分析つき。",
 });
 
 export default async function CacMoshiPage() {
@@ -41,7 +41,7 @@ export default async function CacMoshiPage() {
       <div className="w-12 h-1 mb-5" style={{ background: "var(--c-accent)" }}></div>
 
       <p className="text-sm text-[color:var(--c-text)] leading-relaxed mb-5 max-w-2xl">
-        本試験と同じ<strong>60問・165分（10:00〜12:45）・4肢択一</strong>で受験できる無料の模擬試験です。会社法の条文構成に沿った<strong>8分野から6〜8問ずつ</strong>出題し、合否は本試験と同じ<strong>正答率70%（42問）以上</strong>で判定します。
+        本試験と同じ<strong>60問・150分（10:00〜12:45）・4肢択一</strong>で受験できる無料の模擬試験です。会社法の条文構成に沿った<strong>8分野から6〜8問ずつ</strong>出題し、合否は本試験と同じ<strong>正答率70%（42問）以上</strong>で判定します。
         全員が同じ問題を同じ順序で解く固定問題なので、本番前の実力測定にそのまま使えます。
       </p>
 

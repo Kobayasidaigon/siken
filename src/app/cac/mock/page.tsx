@@ -40,7 +40,7 @@ export default async function CacMockPage() {
       <div className="w-12 h-1 mb-5" style={{ background: "var(--c-pii)" }}></div>
 
       <p className="text-xs text-[color:var(--c-text-sub)] mb-5">
-        本試験と同じ60問・165分で腕試しするなら
+        本試験と同じ60問・150分で腕試しするなら
         <a href="/cac/moshi/" className="underline hover:no-underline">
           模擬試験 第1回（無料）
         </a>

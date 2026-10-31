@@ -12,12 +12,16 @@
 - **姉妹の数を直した**(2026-10-31 に各リポジトリのデータを数えた値)。
   - 衛生管理者ドリル: 第一種・第二種、1,000問(eisei-shikaku の QUESTIONS。第二種600・第一種400)。変更なし。
   - 設備資格ドリル: 「ビルメン系9資格、2,162問」「ビルメン4点セット」→「設備・電気・環境系の16試験、2,828問」
-    (setsubi-shikaku の CERTS 16件・QUESTIONS 2,828問)。setsubi の llms.txt と CHANGELOG 2026-10-19 は「15試験区分」と書いていて
-    CERTS と1つ合わない。本体は CERTS(site.ts の説明文の `CERTS.length` と同じ)に合わせた。
+    (setsubi-shikaku の CERTS 16件・QUESTIONS 2,828問)。setsubi の llms.txt と CHANGELOG 2026-10-19 にあった「15試験区分」は
+    CERTS と1つ合わなかったが、設備側のブランチ claude/sister-traffic-growth の 8052e7f で16試験区分に直り、CHANGELOG に誤記の注記が入った。
+    本体は CERTS(site.ts の説明文の `CERTS.length` と同じ)に合わせた。
   - 筋トレ資格ドリル: 7資格に問題数 1,101問を足した(kintore-shikaku の CERTS 7件・QUESTIONS)。
-  - 施工管理ドリル: 「土木・建築・電気工事・管工事…8試験1,960問」→「…電気通信工事…と技術士第一次試験、13試験2,635問」
+  - 施工管理ドリル: 「土木・建築・電気工事・管工事…8試験1,960問」→「…電気通信工事…と技術士第一次試験（基礎・適性・建設部門の専門）、13試験2,635問」
     (sekokan/data/exams.json 13件・data/<試験>/*.json の合計。README の「13試験 2,635問」と一致)。llms.txt に施工管理ドリルの行を足した。
-- **本体自身の数を直した**: 27資格・5,672問(`src/app/page.tsx` の exams の件数と count の合計。`src/content/<資格>/*.md` の数と一致)、コラム165本。
+    技術士第一次試験の専門科目は建設部門だけなので、トップ・フッター・コラム一覧・llms.txt のどれにも「建設部門」まで書いた
+    (sekokan/data/site.ts の description「技術士第一次試験（基礎・適性・専門(建設)）」と同じ範囲)。
+- **本体自身の数を直した**: 27資格・5,672問(`src/app/page.tsx` の exams の件数と count の合計。`src/content/<資格>/*.md` の数と一致。
+  貸金業務取扱主任者だけは `src/content/questions/` の504件)、コラム165本(llms.txt には「2026年10月31日時点で165本」と時点つきで書いた)。
   直した場所: トップの meta description と og:description、`layout.tsx` の既定の description(ページ固有の description を持たないページに出る)、
   about の2か所、llms.txt(冒頭・見出し・コンテンツ。対応資格の一覧に足りなかった13資格を足し、リンクに教員採用試験・社会福祉士を足し、
   「四肢択一」を「択一式」に直した。エックス線作業主任者は五肢択一のため)。資格の説明は各資格トップの説明と分野名から書き、新しい事実は足していない。
@@ -26,17 +30,24 @@
   衛生管理者(第一種・第二種)と二級ボイラー技士への案内に書き換え、リンク先を https://eisei.shikakumon.com/ と https://setsubi.shikakumon.com/boiler2/ にした。
 - **本体から衛生管理者ドリルの記事への文脈リンク**(新しい事実は足さず、リンクと1文だけ)。
   - `soumu-jinji-shikaku.md`: 選任の表の後 → `/columns/eisei-shokumu/`、第一種・第二種の段落 → `/columns/eisei-dochira/`、
-    「50人を超える前に」の段落 → `/columns/eisei-suishinsha/`。updatedAt を 2026-10-31 に。
-  - `xray-kakomon.md`: 公表問題の入手先の節の最後 → `/columns/eisei1-kakomon/`。updatedAt 2026-10-31 を足した。
-  - `xray-nittei.md`: 申込期間の確認の段落の後 → `/columns/eisei-nittei/`。updatedAt 2026-10-31 を足した。
+    「50人を超える前に」の段落 → `/columns/eisei-suishinsha/`。
+  - `xray-kakomon.md`: 公表問題の入手先の節の最後 → `/columns/eisei1-kakomon/`。
+  - `xray-nittei.md`: 申込期間の確認の段落の後 → `/columns/eisei-nittei/`。
+  - この3本の updatedAt は変えていない(soumu-jinji-shikaku は 2026-09-03 のまま、xray-kakomon・xray-nittei は updatedAt なし)。
+    コラムのテンプレートは updatedAt を「更新:」の表示・JSON-LD の dateModified・末尾の「本記事は…時点の法令・試験制度に基づいて作成」に使う。
+    今回はリンクと1文を足しただけで、日程や制度を確かめ直してはいないので、日付を上げるとこの断り書きの裏づけが無くなる。
+    (一度 2026-10-31 に上げたが、レビューを受けて戻した。sitemap の lastmod は git のコミット日なので 2026-10-31 のまま)
     (監査の案は「実施団体は安全衛生技術試験協会です。」の直後だったが、その段落は直後の日程表へつながっているので、表と注記の後に置いた)
   - `src/app/had/page.tsx` の「あわせて学ぶと役に立つ試験」に衛生管理者の1段落(「常時50人以上の…事業場で選任」は soumu-jinji-shikaku.md の記述と同じ)。
   - トップの「人事・総務・コンプライアンス」と「国家資格・公的資格」の説明文の末尾に、衛生管理者ドリル・設備資格ドリル(二級ボイラー技士)への1文。
+    国家資格の側は「エックス線作業主任者と同じ労働安全衛生法の免許試験のうち、…」と、何と同じかを書いた。
   - リンク先のスラッグは eisei-shikaku/src/data/columns*.ts で実在を確かめた。アンカーテキストは記事の主題で書いたので、
     衛生側で title を変えても直さなくてよい。スラッグが変わったときだけ直す。
 - **コラム一覧(/column/)に「ほかの分野のコラム（姉妹サイト）」の節**を足した。4サイトのコラム一覧へ1行ずつ
   (施工管理ドリルだけ `/column/`、ほかは `/columns/`)。説明は各サイトに実在するコラムの主題から書いた。
 - `public/sitemap.xml` を再生成した(lastmod は git の最終コミット日)。
+  `/xray/`・`/had/` は `page.tsx` を変えただけなので、sitemap の lastmod は変わらない(資格トップの lastmod はコンテンツのディレクトリの
+  最終更新日から作る生成方針どおり。/xray/ は 2026-10-19、/had/ は 2026-10-10 のまま)。
 
 確認した事実と出典:
 
@@ -44,6 +55,8 @@
   eisei-shikaku/src/data/certs.ts(eisei1・eisei2)と setsubi-shikaku/src/data/certs.ts(boiler2)の authority「公益財団法人 安全衛生技術試験協会」、
   協会の「【公表試験問題】労働安全衛生法に基づく免許試験」https://www.exam.or.jp/lckohyo/ と「統計」https://www.exam.or.jp/h_gokakuritsu/ 。
   確認日 2026-10-31・照合方法は公式ドメイン(exam.or.jp)に絞った検索の抜粋(この環境から exam.or.jp への直接取得はできなかった)。
+  統計の URL(h_gokakuritsu/)は eisei-shikaku・setsubi-shikaku でも合格率の出典に使っている協会のページだが、独立レビューでは
+  取得も検索もできず、パスが生きているかは本文で確かめていない。ブラウザで開いて確かめ、404 ならここと `src/app/xray/page.tsx` のコメントから外す。
 - 電験・電工の実施団体が電気技術者試験センターであること: setsubi-shikaku/src/data/certs.ts の denko2・denko1・denken3・denken2 の authority(サイトのデータ)。
 - 姉妹の数: 上に書いた各リポジトリのデータ(jiti で評価して数えた)。
 
@@ -58,8 +71,10 @@ description を変えたページ: `/`(meta description・og:description)と、`
   その肩書きが事実かをユーザーに確かめてもらう前に、本体の運営者情報で裏づけないため。
 - 筋トレ資格ドリル・施工管理ドリルへの本文中の文脈リンクは作っていない。本体には運動・健康や建設の施工管理を扱う資格もコラムも無いため。
   この2サイトへの経路は、トップ・フッター・コラム一覧・llms.txt の常設リンクと紹介文を正確にすることにとどめた。
-- 設備資格ドリル側の「15試験区分」の表記(setsubi の llms.txt・CHANGELOG)は、設備のリポジトリの担当なので本体からは直していない。
+- 設備資格ドリル側の「15試験区分」の表記は、本体からは直していない(設備のリポジトリの担当)。設備側のブランチの 8052e7f で16にそろった。
+- `docs/sister-traffic-prompt.md` が結果の置き場として挙げる `docs/sister-traffic-audit.md` は、このブランチにまだ無い(ワークフローの最後の記録の手順で書く)。
 - 姉妹側で資格・問題を足したら、`src/lib/sister-sites.ts` と `public/llms.txt` の「姉妹サイト」の節を一緒に直す(自動集計はしない)。
+  本体でコラムを足したら、`public/llms.txt` の「コラム記事(…時点で165本)」の本数と日付も直す。
 
 ## 2026-10-25 試験前の10問: Cowork の確認を受けて問題を直し、ハッシュタグを決めた
 

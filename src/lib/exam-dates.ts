@@ -108,7 +108,8 @@ export const JITSUMU_EXAMS: UpcomingExam[] = [
 export const ISEC_EXAMS: UpcomingExam[] = [
   { date: "2026-11-29", label: "第63回", applyStart: "2026-07-28", applyEnd: "2026-10-22" },
   { date: "2027-02-21", label: "第64回", applyStart: "2026-11-02", applyEnd: "2027-01-14" },
-  { date: "2027-06-27", label: "第65回" },
+  // ※2026-10-31: 第65回の申込は 2027-01-19〜05-13(日程一覧)。
+  { date: "2027-06-27", label: "第65回", applyStart: "2027-01-19", applyEnd: "2027-05-13" },
   { date: "2027-10-17", label: "第66回" },
 ];
 
@@ -123,7 +124,7 @@ export const ISEC_EXAMS: UpcomingExam[] = [
 export const ISF_EXAMS: UpcomingExam[] = [
   { date: "2026-11-29", label: "第64回", applyStart: "2026-07-28", applyEnd: "2026-10-22" },
   { date: "2027-02-21", label: "第65回", applyStart: "2026-11-02", applyEnd: "2027-01-14" },
-  { date: "2027-06-27", label: "第66回" },
+  { date: "2027-06-27", label: "第66回", applyStart: "2027-01-19", applyEnd: "2027-05-13" },
   { date: "2027-10-17", label: "第67回" },
 ];
 
@@ -134,7 +135,8 @@ export const ISF_EXAMS: UpcomingExam[] = [
 //   TODO(dxp): 申込開始日が分かったら applyStart と applyEnd(2027-04-15)を入れる。
 export const DXP_EXAMS: UpcomingExam[] = [
   { date: "2027-01-31", label: "第19回", applyStart: "2026-09-15", applyEnd: "2026-12-24" },
-  { date: "2027-05-23", label: "第20回" },
+  // ※2026-10-31: 第20回の申込開始は 2026-12-29(日程一覧)。
+  { date: "2027-05-23", label: "第20回", applyStart: "2026-12-29", applyEnd: "2027-04-15" },
 ];
 
 // ハラスメントアドバイザー認定試験。2026-10-10 追加。年4回(1月・4月・7月・10月)。
@@ -145,7 +147,9 @@ export const DXP_EXAMS: UpcomingExam[] = [
 // TODO(had): 公開前に協会の日程ページで照合し、第15回の申込開始日が決まったら applyStart/applyEnd を入れる。
 export const HAD_EXAMS: UpcomingExam[] = [
   { date: "2027-01-31", label: "第14回", applyStart: "2026-09-15", applyEnd: "2026-12-24" },
-  { date: "2027-04-18", label: "第15回" },
+  // ※2026-10-31: 第15回は 4/18 ではなく 2027-05-23(日)、申込は 12/29〜4/15(日程一覧と /nsp/ で一致)。
+  { date: "2027-05-23", label: "第15回", applyStart: "2026-12-29", applyEnd: "2027-04-15" },
+  { date: "2027-09-19", label: "第16回" },
 ];
 
 // 企業危機・コンプライアンス管理士認定試験。2026-10-10 追加。
@@ -156,7 +160,9 @@ export const HAD_EXAMS: UpcomingExam[] = [
 // TODO(ccm): 公開前に協会の日程ページで、第30回の申込開始日と第31回の申込期間を照合する。
 export const CCM_EXAMS: UpcomingExam[] = [
   { date: "2027-01-31", label: "第30回", applyStart: "2026-09-15", applyEnd: "2026-12-24" },
-  { date: "2027-06-27", label: "第31回" },
+  // ※2026-10-31: 第31回は 6/27 ではなく 2027-04-18(日)、申込は 12/29〜3/11(日程一覧と /ccm/ で一致)。
+  { date: "2027-04-18", label: "第31回", applyStart: "2026-12-29", applyEnd: "2027-03-11" },
+  { date: "2027-08-08", label: "第32回" },
 ];
 
 // 出典: 賃貸不動産経営管理士協議会 chintaikanrishi.jp/exam/summary (令和8年度 試験実施要領)。
@@ -191,8 +197,10 @@ export const XRAY_EXAMS: UpcomingExam[] = [
 // 第14回(2026-10-18)は終了。
 // 第16回以降は未公表。
 // 受験料は2027年4月開催分から14,300円に改定予定。
+// ※2026-10-31 修正: 協会の令和8年〜9年試験日程(schedule/2026.php)と各試験のページを照合(WebFetch)。
+//   第15回は 3/14 ではなく 2027-04-18(日)、申込は 11/2〜3/11。4月の回なので受験料は 14,300円(改定後)。
 export const AIA_EXAMS: UpcomingExam[] = [
-  { date: "2027-03-14", label: "第15回", applyStart: "2026-11-16", applyEnd: "2027-01-28" },
+  { date: "2027-04-18", label: "第15回", applyStart: "2026-11-02", applyEnd: "2027-03-11" },
 ];
 
 // DX推進アドバイザー認定試験。2026-10-19 追加。
@@ -200,8 +208,9 @@ export const AIA_EXAMS: UpcomingExam[] = [
 // 第21回(2026-09-27)は終了。
 // 受験料は2027年3月開催分(第23回)から14,300円に改定。
 export const DXA_EXAMS: UpcomingExam[] = [
-  { date: "2026-12-13", label: "第22回", applyStart: "2026-08-25", applyEnd: "2026-10-29" },
-  { date: "2027-03-14", label: "第23回", applyStart: "2026-11-16", applyEnd: "2027-01-28" },
+  // ※2026-10-31: 第22回の締切は 11/12 に延長(日程一覧。dxa のページは 10/29 のまま)、第23回の申込開始は 11/20。
+  { date: "2026-12-13", label: "第22回", applyStart: "2026-08-25", applyEnd: "2026-11-12" },
+  { date: "2027-03-14", label: "第23回", applyStart: "2026-11-20", applyEnd: "2027-01-28" },
   { date: "2027-06-27", label: "第24回", applyStart: "2027-02-15", applyEnd: "2027-05-13" },
 ];
 
@@ -211,8 +220,9 @@ export const DXA_EXAMS: UpcomingExam[] = [
 // 第4回の申込開始日は未確認のため applyStart は入れていない(締切のみ)。
 // 受験料は2027年5月開催分(第6回)から改定。
 export const GAIA_EXAMS: UpcomingExam[] = [
-  { date: "2026-11-29", label: "第4回", applyEnd: "2026-10-22" },
-  { date: "2027-02-21", label: "第5回", applyStart: "2026-10-27", applyEnd: "2027-01-14" },
+  // ※2026-10-31: 第4回の締切は 10/27(延長)、第5回の申込開始は 11/2(日程一覧)。
+  { date: "2026-11-29", label: "第4回", applyEnd: "2026-10-27" },
+  { date: "2027-02-21", label: "第5回", applyStart: "2026-11-02", applyEnd: "2027-01-14" },
   { date: "2027-05-23", label: "第6回", applyStart: "2027-01-19", applyEnd: "2027-04-15" },
 ];
 

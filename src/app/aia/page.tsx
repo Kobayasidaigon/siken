@@ -131,10 +131,10 @@ export default async function AiaPage() {
             <span className="font-bold text-[color:var(--c-ink)]">合格基準</span>　70%以上（107点以上）。問題の難易度により調整される場合がある。課題別の最低点の記載なし
           </p>
           <p>
-            <span className="font-bold text-[color:var(--c-ink)]">受験料</span>　11,000円（学割8,800円・税込）。CBTは会場費1,500円、オンラインIBTはカメラ送料3,000円が別途。2027年4月開催分から14,300円に改定予定
+            <span className="font-bold text-[color:var(--c-ink)]">受験料</span>　11,000円（学割8,800円・税込）。CBTは会場費1,500円、オンラインIBTはカメラ送料3,000円が別途。2027年4月開催分（第15回）から14,300円に改定
           </p>
           <p>
-            <span className="font-bold text-[color:var(--c-ink)]">試験日</span>　年2回。第14回は2026年10月18日に実施済み。次は第15回 2027年3月14日（申込は2026年11月16日〜2027年1月28日）
+            <span className="font-bold text-[color:var(--c-ink)]">試験日</span>　年2回。第14回は2026年10月18日に実施済み。次は第15回 2027年4月18日（申込は2026年11月2日〜2027年3月11日）
           </p>
           <p>
             <span className="font-bold text-[color:var(--c-ink)]">受験者数・合格率</span>　協会の公式ページに掲載なし

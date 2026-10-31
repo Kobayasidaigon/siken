@@ -135,7 +135,7 @@ export default async function HadPage() {
             <span className="font-bold text-[color:var(--c-ink)]">受験料</span>　11,000円（税込）／学生 8,800円（税込）
           </p>
           <p>
-            <span className="font-bold text-[color:var(--c-ink)]">試験日</span>　年4回（1月・4月・7月・10月）
+            <span className="font-bold text-[color:var(--c-ink)]">試験日</span>　年3〜4回（2027年は1月31日・5月23日・9月19日）
           </p>
           <p>
             <span className="font-bold text-[color:var(--c-ink)]">実施機関</span>

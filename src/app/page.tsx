@@ -21,6 +21,7 @@ import {
   AIA_EXAMS,
   XRAY_EXAMS,
   CCC_EXAMS,
+  LLC_EXAMS,
 } from "@/lib/exam-dates";
 import StudioLink from "@/components/StudioLink";
 
@@ -264,6 +265,16 @@ export default function Home() {
       softVar: "var(--c-pii-soft)",
     },
     {
+      name: "労働法務士",
+      slug: "llc",
+      count: 160,
+      fieldCount: 8,
+      desc: "労働契約・労働時間と賃金・安全衛生から、労働組合法、雇用保障、労働紛争の解決まで。全日本情報学習振興協会の認定試験に沿ったオリジナル練習問題集です。",
+      date: nextExamDateLabel(LLC_EXAMS, { fallback: "年4回実施" }),
+      themeVar: "var(--c-pii)",
+      softVar: "var(--c-pii-soft)",
+    },
+    {
       name: "エックス線作業主任者",
       slug: "xray",
       count: 160,
@@ -395,7 +406,7 @@ export default function Home() {
       key: "jinji",
       title: "人事・総務・コンプライアンス",
       lead: "ハラスメント対策や企業の危機管理など、人事・総務・法務の実務に直結する試験。上の個人情報の検定と同じく、全日本情報学習振興協会のサイトで申し込みます。",
-      slugs: ["had", "ccm"],
+      slugs: ["had", "ccm", "llc"],
     },
     {
       key: "kokka",

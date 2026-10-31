@@ -12,7 +12,7 @@ import { EXAM_AFFILIATE } from "@/lib/affiliate-links";
 
 export const metadata: Metadata = pageMetadata({
   path: "/dxo/",
-  title: "DXオフィサー 練習問題・試験日程【無料】",
+  title: "DXオフィサー 練習問題【全160問・無料】",
   description:
     "DXオフィサー認定試験のオリジナル練習問題と試験日程・申込締切をまとめたページ。DXの現状と業種別の事例、AI・ビッグデータ・IoT・クラウドなどの技術、DX人材と制度まで。",
 });
@@ -62,7 +62,7 @@ export default async function DxoPage() {
                 className="inline-flex items-center px-4 py-2 rounded-lg border text-sm font-medium no-underline transition-colors hover:bg-[color:var(--c-pii-soft)]"
                 style={{ borderColor: "var(--c-pii)", color: "var(--c-pii-ink)" }}
               >
-                模擬試験を受ける（100問）→
+                模擬試験を受ける（100問・135分）→
               </a>
               <a
                 href="/dxo/mock/"

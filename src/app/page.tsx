@@ -24,6 +24,7 @@ import {
   LLC_EXAMS,
   CAC_EXAMS,
   IBD_EXAMS,
+  DXO_EXAMS,
 } from "@/lib/exam-dates";
 import StudioLink from "@/components/StudioLink";
 
@@ -297,6 +298,16 @@ export default function Home() {
       softVar: "var(--c-pii-soft)",
     },
     {
+      name: "DXオフィサー",
+      slug: "dxo",
+      count: 160,
+      fieldCount: 8,
+      desc: "DXの現状と業種別の事例、AI・ビッグデータ・IoT・クラウドなどの技術、DX人材と制度まで。DX推進アドバイザーの上位にあたる認定試験のオリジナル練習問題集です。",
+      date: nextExamDateLabel(DXO_EXAMS, { fallback: "年3回実施" }),
+      themeVar: "var(--c-pii)",
+      softVar: "var(--c-pii-soft)",
+    },
+    {
       name: "エックス線作業主任者",
       slug: "xray",
       count: 160,
@@ -440,7 +451,7 @@ export default function Home() {
       key: "ai-dx",
       title: "AI・DXの認定試験",
       lead: "DX推進アドバイザー・AI活用アドバイザー・生成AIアドバイザーは、いずれも全日本情報学習振興協会の認定試験で、AIとDXの用語・事例・制度を2択と4択で問われます。",
-      slugs: ["dxa", "aia", "gaia"],
+      slugs: ["dxa", "aia", "gaia", "dxo"],
     },
     {
       key: "kankou",

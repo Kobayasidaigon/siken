@@ -109,6 +109,7 @@ export default function ExamCountdown({
             placement="top_countdown_apply"
           />
         )}
+        {calendar && <CalendarHubLink />}
       </section>
     );
   }
@@ -139,7 +140,22 @@ export default function ExamCountdown({
           placement="top_countdown_exam"
         />
       )}
+      {calendar && <CalendarHubLink />}
     </section>
+  );
+}
+
+/**
+ * 他の資格も含めた試験カレンダー(/calendar/)への1行。2026-11-01 追加。
+ * calendar を渡す資格トップにだけ出す(コラムには出さない)。
+ */
+function CalendarHubLink() {
+  return (
+    <p className="mt-2 text-xs">
+      <a href="/calendar/" className="text-blue-700 hover:underline">
+        ほかの資格の試験日・申込締切をカレンダーで見る →
+      </a>
+    </p>
   );
 }
 

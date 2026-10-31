@@ -553,7 +553,12 @@ export default function Home() {
 
       {/* Exams */}
       <section className="mb-12">
-        <h2 className="text-lg font-bold text-[color:var(--c-ink)] mb-5 font-serif">いま解ける試験</h2>
+        <h2 className="text-lg font-bold text-[color:var(--c-ink)] mb-2 font-serif">いま解ける試験</h2>
+        <p className="text-sm text-[color:var(--c-text-sub)] mb-5">
+          申込締切を見落とさないように、全資格の日程を
+          <a href="/calendar/" className="text-[color:var(--c-ink)] underline hover:no-underline mx-1">試験カレンダー</a>
+          にまとめています。
+        </p>
         {groups.map((group) => (
         <div key={group.key} className="mb-9 last:mb-0">
           <h3 className="text-sm font-bold text-[color:var(--c-ink)] mb-1">{group.title}</h3>

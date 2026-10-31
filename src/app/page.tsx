@@ -22,6 +22,7 @@ import {
   XRAY_EXAMS,
   CCC_EXAMS,
   LLC_EXAMS,
+  CAC_EXAMS,
 } from "@/lib/exam-dates";
 import StudioLink from "@/components/StudioLink";
 
@@ -275,6 +276,16 @@ export default function Home() {
       softVar: "var(--c-pii-soft)",
     },
     {
+      name: "会社法法務士",
+      slug: "cac",
+      count: 160,
+      fieldCount: 8,
+      desc: "会社の設立・株式・株主総会と役員・計算から組織再編・持分会社まで、会社法の条文構成に沿って問う全日本情報学習振興協会の認定試験のオリジナル練習問題集です。",
+      date: nextExamDateLabel(CAC_EXAMS, { fallback: "年2回程度実施" }),
+      themeVar: "var(--c-pii)",
+      softVar: "var(--c-pii-soft)",
+    },
+    {
       name: "エックス線作業主任者",
       slug: "xray",
       count: 160,
@@ -394,7 +405,7 @@ export default function Home() {
       key: "houmu",
       title: "法務・知的財産",
       lead: "契約や権利関係を扱う資格。条文の要件をそのまま問われるため、根拠つきの演習が効きます。貸金業・賃貸管理・マンション管理は受験者層が重なります。",
-      slugs: ["kashikin", "chintai", "kangyo", "chizai", "chizai2", "ccc"],
+      slugs: ["kashikin", "chintai", "kangyo", "chizai", "chizai2", "ccc", "cac"],
     },
     {
       key: "joho",

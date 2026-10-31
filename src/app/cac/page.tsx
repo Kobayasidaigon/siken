@@ -12,7 +12,7 @@ import { EXAM_AFFILIATE } from "@/lib/affiliate-links";
 
 export const metadata: Metadata = pageMetadata({
   path: "/cac/",
-  title: "会社法法務士 練習問題・試験日程【無料】",
+  title: "会社法法務士 練習問題【全160問・無料】",
   description:
     "会社法法務士認定試験のオリジナル練習問題と試験日程・申込締切をまとめたページ。会社の設立・株式・株主総会と役員・計算から、組織再編・持分会社・社債まで。",
 });
@@ -62,7 +62,7 @@ export default async function CacPage() {
                 className="inline-flex items-center px-4 py-2 rounded-lg border text-sm font-medium no-underline transition-colors hover:bg-[color:var(--c-pii-soft)]"
                 style={{ borderColor: "var(--c-pii)", color: "var(--c-pii-ink)" }}
               >
-                模擬試験を受ける（60問）→
+                模擬試験を受ける（60問・165分）→
               </a>
               <a
                 href="/cac/mock/"

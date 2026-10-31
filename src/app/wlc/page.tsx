@@ -12,7 +12,7 @@ import { EXAM_AFFILIATE } from "@/lib/affiliate-links";
 
 export const metadata: Metadata = pageMetadata({
   path: "/wlc/",
-  title: "ワークライフ・コーディネーター 練習問題・試験日程【無料】",
+  title: "ワークライフ・コーディネーター 練習問題【全160問・無料】",
   description:
     "ワークライフ・コーディネーター認定試験のオリジナル練習問題と試験日程・申込締切をまとめたページ。ワークライフバランスの考え方から、治療・子育て・介護と仕事の両立、働き方に関する労働法、社会保障と税まで。",
 });
@@ -62,7 +62,7 @@ export default async function WlcPage() {
                 className="inline-flex items-center px-4 py-2 rounded-lg border text-sm font-medium no-underline transition-colors hover:bg-[color:var(--c-pii-soft)]"
                 style={{ borderColor: "var(--c-pii)", color: "var(--c-pii-ink)" }}
               >
-                模擬試験を受ける（60問）→
+                模擬試験を受ける（60問・105分）→
               </a>
               <a
                 href="/wlc/mock/"

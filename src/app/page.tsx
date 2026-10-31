@@ -25,6 +25,7 @@ import {
   CAC_EXAMS,
   IBD_EXAMS,
   DXO_EXAMS,
+  WLC_EXAMS,
 } from "@/lib/exam-dates";
 import StudioLink from "@/components/StudioLink";
 
@@ -308,6 +309,16 @@ export default function Home() {
       softVar: "var(--c-pii-soft)",
     },
     {
+      name: "ワークライフ・コーディネーター",
+      slug: "wlc",
+      count: 160,
+      fieldCount: 8,
+      desc: "ワークライフバランスの考え方から、治療・子育て・介護と仕事の両立、働き方に関する労働法、社会保障と税まで。全日本情報学習振興協会の認定試験のオリジナル練習問題集です。",
+      date: nextExamDateLabel(WLC_EXAMS, { fallback: "年3回実施" }),
+      themeVar: "var(--c-pii)",
+      softVar: "var(--c-pii-soft)",
+    },
+    {
       name: "エックス線作業主任者",
       slug: "xray",
       count: 160,
@@ -439,7 +450,7 @@ export default function Home() {
       key: "jinji",
       title: "人事・総務・コンプライアンス",
       lead: "ハラスメント対策や企業の危機管理など、人事・総務・法務の実務に直結する試験。上の個人情報の検定と同じく、全日本情報学習振興協会のサイトで申し込みます。",
-      slugs: ["had", "ccm", "llc"],
+      slugs: ["had", "ccm", "llc", "wlc"],
     },
     {
       key: "kokka",

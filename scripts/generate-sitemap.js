@@ -75,6 +75,7 @@ const llcDir = path.join(__dirname, "../src/content/llc");
 const cacDir = path.join(__dirname, "../src/content/cac");
 const ibdDir = path.join(__dirname, "../src/content/ibd");
 const dxoDir = path.join(__dirname, "../src/content/dxo");
+const wlcDir = path.join(__dirname, "../src/content/wlc");
 const columnsDir = path.join(__dirname, "../src/content/columns");
 const appDir = path.join(__dirname, "../src/app");
 const outputPath = path.join(__dirname, "../public/sitemap.xml");
@@ -148,6 +149,7 @@ const llc = collect(llcDir);
 const cac = collect(cacDir);
 const ibd = collect(ibdDir);
 const dxo = collect(dxoDir);
+const wlc = collect(wlcDir);
 const columns = collect(columnsDir);
 
 const todayFallback = toDate(Date.now());
@@ -183,8 +185,9 @@ const llcMax = maxDate(llc, todayFallback);
 const cacMax = maxDate(cac, todayFallback);
 const ibdMax = maxDate(ibd, todayFallback);
 const dxoMax = maxDate(dxo, todayFallback);
+const wlcMax = maxDate(wlc, todayFallback);
 const columnsMax = maxDate(columns, todayFallback);
-const siteMax = [kashikinMax, piiMax, chizaiMax, chizai2Max, mynumberMax, jitsumuMax, bijihouMax, fukushi2Max, bijimaneMax, ecoMax, bijihou2Max, itpassMax, chintaiMax, kangyoMax, isecMax, kyoinMax, shakaiMax, isfMax, dxpMax, hadMax, ccmMax, touhanMax, hoikushiMax, gaiaMax, dxaMax, aiaMax, xrayMax, cccMax, llcMax, cacMax, ibdMax, dxoMax, columnsMax].sort().at(-1);
+const siteMax = [kashikinMax, piiMax, chizaiMax, chizai2Max, mynumberMax, jitsumuMax, bijihouMax, fukushi2Max, bijimaneMax, ecoMax, bijihou2Max, itpassMax, chintaiMax, kangyoMax, isecMax, kyoinMax, shakaiMax, isfMax, dxpMax, hadMax, ccmMax, touhanMax, hoikushiMax, gaiaMax, dxaMax, aiaMax, xrayMax, cccMax, llcMax, cacMax, ibdMax, dxoMax, wlcMax, columnsMax].sort().at(-1);
 
 // 一覧・ハブページの lastmod は、そのページに表示されるコンテンツ群の最終更新日
 const staticPages = [
@@ -474,8 +477,11 @@ const staticPages = [
   { url: "/dxo/moshi/", priority: "0.7", freq: "monthly", lastmod: fileDate(path.join(appDir, "dxo/moshi/page.tsx")) },
   { url: "/dxo/mock/", priority: "0.6", freq: "monthly", lastmod: fileDate(path.join(appDir, "dxo/mock/page.tsx")) },
   ...["souron", "gyoushu", "ai", "data", "cloud", "marketing", "security", "tenkai"].map((f) => ({ url: `/dxo/field/${f}/`, priority: "0.8", freq: "monthly", lastmod: dxoMax })),
-  // ワークライフ・コーディネーター認定試験(2026-10-31 追加。問題・模試を足したら field / mock / moshi もここに足す)
-  { url: "/wlc/", priority: "0.9", freq: "weekly", lastmod: fileDate(path.join(appDir, "wlc/page.tsx")) },
+  // ワークライフ・コーディネーター認定試験(2026-10-31 追加)
+  { url: "/wlc/", priority: "0.9", freq: "weekly", lastmod: wlcMax },
+  { url: "/wlc/moshi/", priority: "0.7", freq: "monthly", lastmod: fileDate(path.join(appDir, "wlc/moshi/page.tsx")) },
+  { url: "/wlc/mock/", priority: "0.6", freq: "monthly", lastmod: fileDate(path.join(appDir, "wlc/mock/page.tsx")) },
+  ...["kiso", "theme1", "theme2", "chiryo", "ikuji", "roudouhou", "koyou", "shakaihosho"].map((f) => ({ url: `/wlc/field/${f}/`, priority: "0.8", freq: "monthly", lastmod: wlcMax })),
   // エックス線作業主任者免許試験
   { url: "/xray/", priority: "0.9", freq: "weekly", lastmod: xrayMax },
   { url: "/xray/moshi/", priority: "0.7", freq: "monthly", lastmod: fileDate(path.join(appDir, "xray/moshi/page.tsx")) },

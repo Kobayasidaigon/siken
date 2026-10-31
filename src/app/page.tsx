@@ -22,10 +22,13 @@ import {
   XRAY_EXAMS,
 } from "@/lib/exam-dates";
 import StudioLink from "@/components/StudioLink";
+import { SISTER_SITES, sisterSite } from "@/lib/sister-sites";
 
+// description の資格数・問題数は、下の exams の件数と count の合計(自動集計はしていない)。
+// 資格や問題を増やしたら、ここと layout.tsx・about/page.tsx・public/llms.txt を一緒に直す。2026-10-31 時点=27資格5,672問
 export const metadata: Metadata = {
   title: { absolute: "シカクモン｜資格試験のオリジナル練習問題を無料で提供" },
-  description: "シカクモンは資格試験のオリジナル練習問題を無料で提供するサイトです。貸金業務取扱主任者・個人情報保護士・知的財産管理技能検定3級/2級・マイナンバー実務検定3級・個人情報保護実務検定・ビジネス実務法務検定3級/2級・ITパスポート・賃貸不動産経営管理士・管理業務主任者・福祉住環境コーディネーター2級・ビジネスマネジャー検定・eco検定、合計3,370問。全問に根拠を含む詳細解説付き。",
+  description: "シカクモンは資格試験のオリジナル練習問題を無料で提供するサイトです。貸金業務取扱主任者・賃貸不動産経営管理士・管理業務主任者・個人情報保護士・知的財産管理技能検定・ビジネス実務法務検定・ITパスポート・登録販売者・保育士・エックス線作業主任者など27資格、合計5,672問。全問に根拠を含む詳細解説付き。",
   alternates: { canonical: "/" },
   // openGraphはトップレベルの浅いマージのため、部分指定するとlayout側の
   // siteName/locale/type/imagesが丸ごと消える(page-metadata.tsと同じ理由でフル指定)
@@ -35,7 +38,7 @@ export const metadata: Metadata = {
     siteName: "シカクモン",
     url: "/",
     title: "シカクモン｜資格試験のオリジナル練習問題を無料で提供",
-    description: "貸金業務取扱主任者・個人情報保護士・知財3級/2級・マイナンバー3級・個情保実務・ビジ法3級/2級・ITパスポート・賃管士・管業・福祉住環境2級・ビジマネ・eco検定・情報サイバーセキュリティ管理士・教員採用試験・社会福祉士の17資格、合計3,970問のオリジナル練習問題を無料公開。",
+    description: "貸金業務取扱主任者・賃管士・管業・個人情報保護士・知財3級/2級・ビジ法3級/2級・ITパスポート・登録販売者・保育士・エックス線作業主任者など27資格、合計5,672問のオリジナル練習問題を無料公開。",
     images: [{ url: "/og-default.png", width: 1200, height: 630, alt: "シカクモン - 資格試験の練習問題" }],
   },
 };
@@ -336,36 +339,12 @@ export default function Home() {
   };
 
   // 姉妹サイト。フッターのリンクだけでは本文からの導線が無く、検索からも見つかりにくいため
-  // トップの本文中で各サイトの中身を1行ずつ紹介する。
-  const sisterSites = [
-    {
-      name: "衛生管理者ドリル",
-      href: "https://eisei.shikakumon.com/",
-      color: "var(--c-kashikin)",
-      desc: "第一種・第二種衛生管理者の練習問題1,000問と本番形式の模擬試験。総務・人事で選任される方向け。",
-    },
-    {
-      name: "設備資格ドリル",
-      href: "https://setsubi.shikakumon.com/",
-      color: "var(--c-chizai)",
-      desc: "第二種電気工事士・危険物乙4・ビル管・冷凍3種などビルメン系9資格、2,162問。",
-    },
-    {
-      name: "筋トレ資格ドリル",
-      href: "https://kintore.shikakumon.com/",
-      color: "var(--c-pii)",
-      desc: "NSCA-CPT・NESTA-PFT・健康運動指導士などトレーナー系7資格の練習問題と模試。",
-    },
-    {
-      name: "施工管理ドリル",
-      href: "https://sekokan.shikakumon.com/",
-      color: "var(--c-eco)",
-      desc: "土木・建築・電気工事・管工事の1級・2級 施工管理技士 第一次検定、8試験1,960問と本試験形式の模擬試験。",
-    },
-  ];
+  // トップの本文中で各サイトの中身を1行ずつ紹介する。紹介文と数は lib/sister-sites.ts にまとめた(フッターと共有)。
+  const eisei = sisterSite("eisei");
+  const setsubi = sisterSite("setsubi");
 
   // 資格を実施団体・領域ごとにまとめて並べる。
-  // 17資格を平坦に並べると雑多に見えるが、実際は実施団体で4つの塊になっており、
+  // 資格を平坦に並べると雑多に見えるが、実際は実施団体で4つの塊になっており、
   // 同じ団体の検定は受験者層と併願パターンが重なる。その関係を見せるための区分。
   const groups = [
     {
@@ -383,13 +362,30 @@ export default function Home() {
     {
       key: "jinji",
       title: "人事・総務・コンプライアンス",
-      lead: "ハラスメント対策や企業の危機管理など、人事・総務・法務の実務に直結する試験。上の個人情報の検定と同じく、全日本情報学習振興協会のサイトで申し込みます。",
+      lead: (
+        <>
+          ハラスメント対策や企業の危機管理など、人事・総務・法務の実務に直結する試験。上の個人情報の検定と同じく、全日本情報学習振興協会のサイトで申し込みます。常時50人以上の事業場で選任が必要な衛生管理者は、姉妹サイトの
+          <a href={eisei.href} className="underline hover:no-underline">{eisei.name}</a>
+          で扱っています。
+        </>
+      ),
       slugs: ["had", "ccm"],
     },
     {
       key: "kokka",
       title: "国家資格・公的資格",
-      lead: "労働安全衛生・薬事・児童福祉の法令を土台にした、免許・登録・国家資格の筆記試験です。科目ごとの合格基準があるため、分野別の演習から進められます。",
+      // エックス線作業主任者と同じく安全衛生技術試験協会が実施する労働安全衛生法の免許試験(衛生管理者・二級ボイラー技士)は姉妹サイトにある。
+      // 実施団体は eisei-shikaku・setsubi-shikaku の certs.ts の authority と、協会の「【公表試験問題】労働安全衛生法に基づく免許試験」
+      // (https://www.exam.or.jp/lckohyo/。2026-10-31 確認・公式ドメインの検索抜粋で照合)で確かめた。
+      lead: (
+        <>
+          労働安全衛生・薬事・児童福祉の法令を土台にした、免許・登録・国家資格の筆記試験です。科目ごとの合格基準があるため、分野別の演習から進められます。同じ労働安全衛生法の免許試験のうち、衛生管理者は
+          <a href={eisei.href} className="underline hover:no-underline">{eisei.name}</a>
+          、二級ボイラー技士は
+          <a href={`${setsubi.href}boiler2/`} className="underline hover:no-underline">{setsubi.name}</a>
+          （いずれも姉妹サイト）にあります。
+        </>
+      ),
       slugs: ["xray", "hoikushi", "touhan"].filter(Boolean),
     },
     {
@@ -558,7 +554,7 @@ export default function Home() {
           シカクモンに無い分野は、同じ作りの専門サイトで公開しています。
         </p>
         <div className="grid sm:grid-cols-2 gap-4">
-          {sisterSites.map((site) => (
+          {SISTER_SITES.map((site) => (
             <a
               key={site.href}
               href={site.href}
@@ -566,7 +562,7 @@ export default function Home() {
               style={{ borderLeft: `4px solid ${site.color}` }}
             >
               <p className="font-bold text-[color:var(--c-ink)] mb-1">{site.name}</p>
-              <p className="text-xs text-[color:var(--c-text-sub)] leading-relaxed">{site.desc}</p>
+              <p className="text-xs text-[color:var(--c-text-sub)] leading-relaxed">{site.homeDesc}</p>
             </a>
           ))}
         </div>

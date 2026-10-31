@@ -26,6 +26,7 @@ import { SISTER_SITES, sisterSite } from "@/lib/sister-sites";
 
 // description の資格数・問題数は、下の exams の件数と count の合計(自動集計はしていない)。
 // 資格や問題を増やしたら、ここと layout.tsx・about/page.tsx・public/llms.txt を一緒に直す。2026-10-31 時点=27資格5,672問
+// コラムを足したときは public/llms.txt の「コラム記事(…時点で165本)」の本数と日付も直す(src/content/columns/*.md の数。2026-10-31 時点=165本)
 export const metadata: Metadata = {
   title: { absolute: "シカクモン｜資格試験のオリジナル練習問題を無料で提供" },
   description: "シカクモンは資格試験のオリジナル練習問題を無料で提供するサイトです。貸金業務取扱主任者・賃貸不動産経営管理士・管理業務主任者・個人情報保護士・知的財産管理技能検定・ビジネス実務法務検定・ITパスポート・登録販売者・保育士・エックス線作業主任者など27資格、合計5,672問。全問に根拠を含む詳細解説付き。",
@@ -379,7 +380,7 @@ export default function Home() {
       // (https://www.exam.or.jp/lckohyo/。2026-10-31 確認・公式ドメインの検索抜粋で照合)で確かめた。
       lead: (
         <>
-          労働安全衛生・薬事・児童福祉の法令を土台にした、免許・登録・国家資格の筆記試験です。科目ごとの合格基準があるため、分野別の演習から進められます。同じ労働安全衛生法の免許試験のうち、衛生管理者は
+          労働安全衛生・薬事・児童福祉の法令を土台にした、免許・登録・国家資格の筆記試験です。科目ごとの合格基準があるため、分野別の演習から進められます。エックス線作業主任者と同じ労働安全衛生法の免許試験のうち、衛生管理者は
           <a href={eisei.href} className="underline hover:no-underline">{eisei.name}</a>
           、二級ボイラー技士は
           <a href={`${setsubi.href}boiler2/`} className="underline hover:no-underline">{setsubi.name}</a>

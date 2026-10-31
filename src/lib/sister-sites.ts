@@ -10,9 +10,11 @@
  * 姉妹側で資格・問題を足したら、ここと public/llms.txt の「姉妹サイト」の節を一緒に直し、checkedAt を更新する。
  *   - 衛生管理者ドリル: eisei-shikaku/src/data/questions.ts の QUESTIONS 1,000問(第二種600・第一種400)
  *   - 設備資格ドリル: setsubi-shikaku/src/data/certs.ts の CERTS 16件・questions.ts の QUESTIONS 2,828問
- *     (setsubi の llms.txt・CHANGELOG 2026-10-19 は「15試験区分」と書いているが、CERTS は16件。site.ts の説明文も CERTS.length)
+ *     (setsubi の llms.txt・CHANGELOG 2026-10-19 にあった「15試験区分」は、設備側のブランチ claude/sister-traffic-growth の
+ *      8052e7f で16試験区分に直り、CHANGELOG に誤記の注記が入った。CERTS は16件、site.ts の説明文も CERTS.length)
  *   - 筋トレ資格ドリル: kintore-shikaku/src/data/certs.ts の CERTS 7件・QUESTIONS 1,101問
- *   - 施工管理ドリル: sekokan/data/exams.json の13件・data/<試験>/*.json の合計2,635問(README.md の「13試験 2,635問」と一致)
+ *   - 施工管理ドリル: sekokan/data/exams.json の13件・data/<試験>/*.json の合計2,635問(README.md の「13試験 2,635問」と一致)。
+ *     13件の内訳は、施工管理技士 第一次検定の10件と、技術士第一次試験の基礎・適性・専門(建設部門)の3件
  */
 
 export type SisterSiteId = "eisei" | "setsubi" | "kintore" | "sekokan";
@@ -75,9 +77,11 @@ export const SISTER_SITES: SisterSite[] = [
     name: "施工管理ドリル",
     href: "https://sekokan.shikakumon.com/",
     columnsHref: "https://sekokan.shikakumon.com/column/",
-    homeDesc: "土木・建築・電気工事・管工事・電気通信工事の1級・2級 施工管理技士 第一次検定と技術士第一次試験、13試験2,635問と本試験形式の模擬試験。",
-    footerDesc: "施工管理技士（土木・建築・電気・管・電気通信）と技術士第一次試験の無料練習問題",
-    columnsDesc: "施工管理技士 第一次検定・技術士第一次試験の過去問の公開先、級の選び方、勉強の進め方。",
+    // 技術士第一次試験は基礎・適性と、専門は建設部門だけ(sekokan/data/exams.json の gijutsushi-kiso・gijutsushi-tekisei・gijutsushi-senmon、
+    // sekokan/data/site.ts の description「技術士第一次試験（基礎・適性・専門(建設)）」)。ほかの部門の専門科目もあると読めないよう、部門まで書く。
+    homeDesc: "土木・建築・電気工事・管工事・電気通信工事の1級・2級 施工管理技士 第一次検定と技術士第一次試験（基礎・適性・建設部門の専門）、13試験2,635問と本試験形式の模擬試験。",
+    footerDesc: "施工管理技士（土木・建築・電気・管・電気通信）と技術士第一次試験（建設部門）の無料練習問題",
+    columnsDesc: "施工管理技士 第一次検定・技術士第一次試験（建設部門）の過去問の公開先、級の選び方、勉強の進め方。",
     color: "var(--c-eco)",
     checkedAt: "2026-10-31",
   },

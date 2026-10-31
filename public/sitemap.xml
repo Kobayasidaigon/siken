@@ -1699,6 +1699,42 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://shikakumon.com/ccc/</loc>
+    <lastmod>2026-10-31</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://shikakumon.com/llc/</loc>
+    <lastmod>2026-10-31</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://shikakumon.com/cac/</loc>
+    <lastmod>2026-10-31</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://shikakumon.com/ibd/</loc>
+    <lastmod>2026-10-31</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://shikakumon.com/dxo/</loc>
+    <lastmod>2026-10-31</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://shikakumon.com/wlc/</loc>
+    <lastmod>2026-10-31</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
     <loc>https://shikakumon.com/xray/</loc>
     <lastmod>2026-10-19</lastmod>
     <changefreq>weekly</changefreq>
@@ -2072,7 +2108,7 @@
   </url>
   <url>
     <loc>https://shikakumon.com/column/aia-benkyouhou/</loc>
-    <lastmod>2026-10-19</lastmod>
+    <lastmod>2026-10-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -2084,13 +2120,13 @@
   </url>
   <url>
     <loc>https://shikakumon.com/column/aia-nittei/</loc>
-    <lastmod>2026-10-19</lastmod>
+    <lastmod>2026-10-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://shikakumon.com/column/aia-toha/</loc>
-    <lastmod>2026-10-19</lastmod>
+    <lastmod>2026-10-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -2233,6 +2269,18 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://shikakumon.com/column/cac-nittei/</loc>
+    <lastmod>2026-10-31</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://shikakumon.com/column/ccc-nittei/</loc>
+    <lastmod>2026-10-31</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://shikakumon.com/column/ccm-benkyouhou/</loc>
     <lastmod>2026-10-10</lastmod>
     <changefreq>monthly</changefreq>
@@ -2246,7 +2294,7 @@
   </url>
   <url>
     <loc>https://shikakumon.com/column/ccm-nittei/</loc>
-    <lastmod>2026-10-10</lastmod>
+    <lastmod>2026-10-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -2408,13 +2456,19 @@
   </url>
   <url>
     <loc>https://shikakumon.com/column/dxa-nittei/</loc>
-    <lastmod>2026-10-19</lastmod>
+    <lastmod>2026-10-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://shikakumon.com/column/dxa-toha/</loc>
     <lastmod>2026-10-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://shikakumon.com/column/dxo-nittei/</loc>
+    <lastmod>2026-10-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -2438,7 +2492,7 @@
   </url>
   <url>
     <loc>https://shikakumon.com/column/dxp-nittei/</loc>
-    <lastmod>2026-10-24</lastmod>
+    <lastmod>2026-10-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -2582,7 +2636,7 @@
   </url>
   <url>
     <loc>https://shikakumon.com/column/gaia-nittei/</loc>
-    <lastmod>2026-10-19</lastmod>
+    <lastmod>2026-10-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -2612,13 +2666,13 @@
   </url>
   <url>
     <loc>https://shikakumon.com/column/had-nittei/</loc>
-    <lastmod>2026-10-10</lastmod>
+    <lastmod>2026-10-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://shikakumon.com/column/had-toha/</loc>
-    <lastmod>2026-10-10</lastmod>
+    <lastmod>2026-10-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -2643,6 +2697,12 @@
   <url>
     <loc>https://shikakumon.com/column/hoikushi-toha/</loc>
     <lastmod>2026-10-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://shikakumon.com/column/ibd-nittei/</loc>
+    <lastmod>2026-10-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -2857,6 +2917,12 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://shikakumon.com/column/llc-nittei/</loc>
+    <lastmod>2026-10-31</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://shikakumon.com/column/mynumber-benkyou-jikan/</loc>
     <lastmod>2026-09-03</lastmod>
     <changefreq>monthly</changefreq>
@@ -3033,6 +3099,12 @@
   <url>
     <loc>https://shikakumon.com/column/touhan-toha/</loc>
     <lastmod>2026-10-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://shikakumon.com/column/wlc-nittei/</loc>
+    <lastmod>2026-10-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>

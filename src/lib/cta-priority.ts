@@ -39,6 +39,12 @@ import {
   DXA_EXAMS,
   AIA_EXAMS,
   XRAY_EXAMS,
+  CCC_EXAMS,
+  LLC_EXAMS,
+  CAC_EXAMS,
+  IBD_EXAMS,
+  DXO_EXAMS,
+  WLC_EXAMS,
   DXP_EXAMS,
   CHINTAI_EXAMS,
   KANGYO_EXAMS,
@@ -75,6 +81,13 @@ export const EXAM_SCHEDULES: Record<ExamSlug, UpcomingExam[]> = {
   dxa: DXA_EXAMS,
   aia: AIA_EXAMS,
   xray: XRAY_EXAMS,
+  // 2026-10-31 追加の協会6資格
+  ccc: CCC_EXAMS,
+  llc: LLC_EXAMS,
+  cac: CAC_EXAMS,
+  ibd: IBD_EXAMS,
+  dxo: DXO_EXAMS,
+  wlc: WLC_EXAMS,
   // 教員採用試験は都道府県・政令指定都市ごとに実施され、出願期間も試験日も自治体で違う。
   //   全国共通の「次回試験」が存在しないので日程は持たない(空の間はカウントダウンが出ず、
   //   答え合わせ直後CTAは Studio 優先になる)。itpass と同じ扱い。

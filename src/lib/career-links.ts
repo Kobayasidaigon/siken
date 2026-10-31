@@ -124,6 +124,13 @@ export const EXAM_CAREER: Record<ExamSlug, CareerTrack> = {
   touhan: "general",
   xray: "general",
   hoikushi: "general",
+  // 2026-10-31 追加の協会6資格。法務3資格とワークライフは管理部門、DXオフィサーは IT、インバウンドは合う層が無く general。
+  ccc: "kanri",
+  llc: "kanri",
+  cac: "kanri",
+  ibd: "general",
+  dxo: "it",
+  wlc: "kanri",
 };
 
 /**

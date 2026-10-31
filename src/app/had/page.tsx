@@ -175,6 +175,9 @@ export default async function HadPage() {
             </a>
             の範囲とも重なります。
           </p>
+          <p>
+            働き方の法律を広く学ぶなら<a href="/llc/" className="underline hover:no-underline">労働法務士</a>、育児・介護・治療と仕事の両立支援なら<a href="/wlc/" className="underline hover:no-underline">ワークライフ・コーディネーター</a>も、同じ協会の試験です。
+          </p>
         </div>
       </section>
 

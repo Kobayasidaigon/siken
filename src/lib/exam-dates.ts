@@ -63,17 +63,22 @@ export const ECO_EXAMS: UpcomingExam[] = [
 // (2026-08-06確認)。申込開始日は 2026-09-05 に日程コラム(pii-nittei.md 等・協会公表値)から補った。
 // applyStart が無いと、前の回の締切を過ぎた瞬間に次の回の「申込締切まで」+協会申込リンクが
 // 受付開始前から出てしまう(第84回締切 8/6 → 第85回受付開始 8/31 の間など)。
+// ※2026-10-31 修正(ユーザーが協会のトップページと日程一覧で確認): 第85回の締切は 10/29 → 11/12(木)に延長。
+//   第86回の申込開始は 11/16 ではなく 11/20。受験料は第86回(2027年3月)から 11,000円 → 14,300円。
 export const PII_EXAMS: UpcomingExam[] = [
   { date: "2026-09-27", label: "第84回", applyStart: "2026-05-25", applyEnd: "2026-08-06" },
-  { date: "2026-12-13", label: "第85回", applyStart: "2026-08-31", applyEnd: "2026-10-29" },
-  { date: "2027-03-14", label: "第86回", applyStart: "2026-11-16", applyEnd: "2027-01-28" },
+  { date: "2026-12-13", label: "第85回", applyStart: "2026-08-31", applyEnd: "2026-11-12" },
+  { date: "2027-03-14", label: "第86回", applyStart: "2026-11-20", applyEnd: "2027-01-28" },
 ];
 
 // 出典: 同上 (2026-08-06確認、申込開始日は mynumber-nittei.md から 2026-09-05 補完)
+// ※2026-10-31 修正(同上): 第48回の締切は 10/29 → 11/12(木)に延長、第49回の申込開始は 11/20。
+//   協会のマイナンバー実務検定のページは 10/31 時点でまだ「10/29締切」だが、トップと日程一覧は 11/12。
+//   受験料は 2027年6月の回から改定(金額は未確認)。
 export const MYNUMBER_EXAMS: UpcomingExam[] = [
   { date: "2026-09-27", label: "第47回", applyStart: "2026-05-25", applyEnd: "2026-08-06" },
-  { date: "2026-12-13", label: "第48回", applyStart: "2026-08-31", applyEnd: "2026-10-29" },
-  { date: "2027-03-14", label: "第49回", applyStart: "2026-11-16", applyEnd: "2027-01-28" },
+  { date: "2026-12-13", label: "第48回", applyStart: "2026-08-31", applyEnd: "2026-11-12" },
+  { date: "2027-03-14", label: "第49回", applyStart: "2026-11-20", applyEnd: "2027-01-28" },
 ];
 
 // 出典: 同上 (2026-08-06確認、申込開始日は jitsumu-nittei.md から 2026-09-05 補完)
@@ -81,9 +86,11 @@ export const MYNUMBER_EXAMS: UpcomingExam[] = [
 //   (個人情報保護実務検定・管理士・初級)。検索結果に残る協会ページの写しは 10/22 のままで、
 //   10/27 は次の回(2/21)の申込開始日として載っている。隣の行の読み違えの可能性があるため、
 //   協会サイトで延長の告知を確かめるまで 10/22 のままにしている(docs/isf-dxp-review.md)。
+// ※2026-10-31 修正(ユーザーが協会の日程一覧で確認): 第71回の申込は 10/27 で終了(延長は本当だった)。
+//   第72回の申込は 11/2〜1/14(10/27 開始は誤り)。受験料は 2027年5月の回から 1級14,300円・2級12,100円。
 export const JITSUMU_EXAMS: UpcomingExam[] = [
-  { date: "2026-11-29", label: "第71回", applyStart: "2026-07-28", applyEnd: "2026-10-22" },
-  { date: "2027-02-21", label: "第72回", applyStart: "2026-10-27", applyEnd: "2027-01-14" },
+  { date: "2026-11-29", label: "第71回", applyStart: "2026-07-28", applyEnd: "2026-10-27" },
+  { date: "2027-02-21", label: "第72回", applyStart: "2026-11-02", applyEnd: "2027-01-14" },
 ];
 
 // 情報・サイバーセキュリティ管理士認定試験。2026年は年4回(2月・5月・8月・11月)、2027年は 2/21・6/27・10/17。
@@ -97,10 +104,12 @@ export const JITSUMU_EXAMS: UpcomingExam[] = [
 //   6/27 と 10/17 の回は申込開始日が分からないので、HAD_EXAMS の第15回と同じく試験日だけを入れている。
 //   applyEnd だけ入れると、前の回の締切の翌日から受付開始前の回の締切カウントダウンと協会申込リンクが出る。
 //   TODO(isec): 申込開始日が分かったら applyStart と applyEnd(5/13・9/9)を入れる。
+// ※2026-10-31 修正(ユーザーが協会の日程一覧で確認): 第64回の申込は 11/2〜1/14(10/27 開始は誤り)。
 export const ISEC_EXAMS: UpcomingExam[] = [
   { date: "2026-11-29", label: "第63回", applyStart: "2026-07-28", applyEnd: "2026-10-22" },
-  { date: "2027-02-21", label: "第64回", applyStart: "2026-10-27", applyEnd: "2027-01-14" },
-  { date: "2027-06-27", label: "第65回" },
+  { date: "2027-02-21", label: "第64回", applyStart: "2026-11-02", applyEnd: "2027-01-14" },
+  // ※2026-10-31: 第65回の申込は 2027-01-19〜05-13(日程一覧)。
+  { date: "2027-06-27", label: "第65回", applyStart: "2027-01-19", applyEnd: "2027-05-13" },
   { date: "2027-10-17", label: "第66回" },
 ];
 
@@ -110,10 +119,12 @@ export const ISEC_EXAMS: UpcomingExam[] = [
 // ※2026-10-24 修正: 2027年の回は管理士と同じ 2/21・6/27(締切 5/13)・10/17(締切 9/9)。5/23 の回は無い。
 //   6/27・10/17 の扱いは ISEC_EXAMS と同じ(申込開始日が分かるまで試験日だけ)。
 //   TODO(isf): 申込開始日が分かったら applyStart と applyEnd(5/13・9/9)を入れる。
+// ※2026-10-31 修正: 管理士の第64回が 11/2 開始と確認できたので、同じ日程の初級 第65回も 11/2 にした
+//   (初級のページ自体は未照合。要確認)。
 export const ISF_EXAMS: UpcomingExam[] = [
   { date: "2026-11-29", label: "第64回", applyStart: "2026-07-28", applyEnd: "2026-10-22" },
-  { date: "2027-02-21", label: "第65回", applyStart: "2026-10-27", applyEnd: "2027-01-14" },
-  { date: "2027-06-27", label: "第66回" },
+  { date: "2027-02-21", label: "第65回", applyStart: "2026-11-02", applyEnd: "2027-01-14" },
+  { date: "2027-06-27", label: "第66回", applyStart: "2027-01-19", applyEnd: "2027-05-13" },
   { date: "2027-10-17", label: "第67回" },
 ];
 
@@ -124,7 +135,8 @@ export const ISF_EXAMS: UpcomingExam[] = [
 //   TODO(dxp): 申込開始日が分かったら applyStart と applyEnd(2027-04-15)を入れる。
 export const DXP_EXAMS: UpcomingExam[] = [
   { date: "2027-01-31", label: "第19回", applyStart: "2026-09-15", applyEnd: "2026-12-24" },
-  { date: "2027-05-23", label: "第20回" },
+  // ※2026-10-31: 第20回の申込開始は 2026-12-29(日程一覧)。
+  { date: "2027-05-23", label: "第20回", applyStart: "2026-12-29", applyEnd: "2027-04-15" },
 ];
 
 // ハラスメントアドバイザー認定試験。2026-10-10 追加。年4回(1月・4月・7月・10月)。
@@ -135,7 +147,9 @@ export const DXP_EXAMS: UpcomingExam[] = [
 // TODO(had): 公開前に協会の日程ページで照合し、第15回の申込開始日が決まったら applyStart/applyEnd を入れる。
 export const HAD_EXAMS: UpcomingExam[] = [
   { date: "2027-01-31", label: "第14回", applyStart: "2026-09-15", applyEnd: "2026-12-24" },
-  { date: "2027-04-18", label: "第15回" },
+  // ※2026-10-31: 第15回は 4/18 ではなく 2027-05-23(日)、申込は 12/29〜4/15(日程一覧と /nsp/ で一致)。
+  { date: "2027-05-23", label: "第15回", applyStart: "2026-12-29", applyEnd: "2027-04-15" },
+  { date: "2027-09-19", label: "第16回" },
 ];
 
 // 企業危機・コンプライアンス管理士認定試験。2026-10-10 追加。
@@ -146,7 +160,9 @@ export const HAD_EXAMS: UpcomingExam[] = [
 // TODO(ccm): 公開前に協会の日程ページで、第30回の申込開始日と第31回の申込期間を照合する。
 export const CCM_EXAMS: UpcomingExam[] = [
   { date: "2027-01-31", label: "第30回", applyStart: "2026-09-15", applyEnd: "2026-12-24" },
-  { date: "2027-06-27", label: "第31回" },
+  // ※2026-10-31: 第31回は 6/27 ではなく 2027-04-18(日)、申込は 12/29〜3/11(日程一覧と /ccm/ で一致)。
+  { date: "2027-04-18", label: "第31回", applyStart: "2026-12-29", applyEnd: "2027-03-11" },
+  { date: "2027-08-08", label: "第32回" },
 ];
 
 // 出典: 賃貸不動産経営管理士協議会 chintaikanrishi.jp/exam/summary (令和8年度 試験実施要領)。
@@ -181,8 +197,10 @@ export const XRAY_EXAMS: UpcomingExam[] = [
 // 第14回(2026-10-18)は終了。
 // 第16回以降は未公表。
 // 受験料は2027年4月開催分から14,300円に改定予定。
+// ※2026-10-31 修正: 協会の令和8年〜9年試験日程(schedule/2026.php)と各試験のページを照合(WebFetch)。
+//   第15回は 3/14 ではなく 2027-04-18(日)、申込は 11/2〜3/11。4月の回なので受験料は 14,300円(改定後)。
 export const AIA_EXAMS: UpcomingExam[] = [
-  { date: "2027-03-14", label: "第15回", applyStart: "2026-11-16", applyEnd: "2027-01-28" },
+  { date: "2027-04-18", label: "第15回", applyStart: "2026-11-02", applyEnd: "2027-03-11" },
 ];
 
 // DX推進アドバイザー認定試験。2026-10-19 追加。
@@ -190,8 +208,9 @@ export const AIA_EXAMS: UpcomingExam[] = [
 // 第21回(2026-09-27)は終了。
 // 受験料は2027年3月開催分(第23回)から14,300円に改定。
 export const DXA_EXAMS: UpcomingExam[] = [
-  { date: "2026-12-13", label: "第22回", applyStart: "2026-08-25", applyEnd: "2026-10-29" },
-  { date: "2027-03-14", label: "第23回", applyStart: "2026-11-16", applyEnd: "2027-01-28" },
+  // ※2026-10-31: 第22回の締切は 11/12 に延長(日程一覧。dxa のページは 10/29 のまま)、第23回の申込開始は 11/20。
+  { date: "2026-12-13", label: "第22回", applyStart: "2026-08-25", applyEnd: "2026-11-12" },
+  { date: "2027-03-14", label: "第23回", applyStart: "2026-11-20", applyEnd: "2027-01-28" },
   { date: "2027-06-27", label: "第24回", applyStart: "2027-02-15", applyEnd: "2027-05-13" },
 ];
 
@@ -201,8 +220,9 @@ export const DXA_EXAMS: UpcomingExam[] = [
 // 第4回の申込開始日は未確認のため applyStart は入れていない(締切のみ)。
 // 受験料は2027年5月開催分(第6回)から改定。
 export const GAIA_EXAMS: UpcomingExam[] = [
-  { date: "2026-11-29", label: "第4回", applyEnd: "2026-10-22" },
-  { date: "2027-02-21", label: "第5回", applyStart: "2026-10-27", applyEnd: "2027-01-14" },
+  // ※2026-10-31: 第4回の締切は 10/27(延長)、第5回の申込開始は 11/2(日程一覧)。
+  { date: "2026-11-29", label: "第4回", applyEnd: "2026-10-27" },
+  { date: "2027-02-21", label: "第5回", applyStart: "2026-11-02", applyEnd: "2027-01-14" },
   { date: "2027-05-23", label: "第6回", applyStart: "2027-01-19", applyEnd: "2027-04-15" },
 ];
 

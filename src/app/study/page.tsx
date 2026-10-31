@@ -26,6 +26,12 @@ import { getAllTouhanQuestions } from "@/lib/touhan-questions";
 import { getAllHoikushiQuestions } from "@/lib/hoikushi-questions";
 import { getAllGaiaQuestions } from "@/lib/gaia-questions";
 import { getAllDxaQuestions } from "@/lib/dxa-questions";
+import { getAllCccQuestions } from "@/lib/ccc-questions";
+import { getAllLlcQuestions } from "@/lib/llc-questions";
+import { getAllCacQuestions } from "@/lib/cac-questions";
+import { getAllIbdQuestions } from "@/lib/ibd-questions";
+import { getAllDxoQuestions } from "@/lib/dxo-questions";
+import { getAllWlcQuestions } from "@/lib/wlc-questions";
 import { getAllAiaQuestions } from "@/lib/aia-questions";
 import { getAllXrayQuestions } from "@/lib/xray-questions";
 import type { ExamSlug } from "@/lib/study-progress";
@@ -47,7 +53,7 @@ function extractTopic(title: string): string {
 }
 
 export default async function StudyPage() {
-  const [kashikin, pii, chizai, chizai2, mynumber, jitsumu, bijihou, fukushi2, bijimane, eco, bijihou2, itpass, chintai, kangyo, isec, kyoin, shakai, isf, dxp, had, ccm, xray, aia, dxa, gaia, hoikushi, touhan] = await Promise.all([
+  const [kashikin, pii, chizai, chizai2, mynumber, jitsumu, bijihou, fukushi2, bijimane, eco, bijihou2, itpass, chintai, kangyo, isec, kyoin, shakai, isf, dxp, had, ccm, xray, aia, dxa, gaia, hoikushi, touhan, ccc, llc, cac, ibd, dxo, wlc] = await Promise.all([
     getAllQuestions(),
     getAllPiiQuestions(),
     getAllChizaiQuestions(),
@@ -75,6 +81,12 @@ export default async function StudyPage() {
     getAllGaiaQuestions(),
     getAllHoikushiQuestions(),
     getAllTouhanQuestions(),
+    getAllCccQuestions(),
+    getAllLlcQuestions(),
+    getAllCacQuestions(),
+    getAllIbdQuestions(),
+    getAllDxoQuestions(),
+    getAllWlcQuestions(),
   ]);
 
   const buildMap = (questions: { slug: string; questionNumber: number; field: string; title: string }[]): Record<string, QuestionMeta> => {
@@ -117,6 +129,12 @@ export default async function StudyPage() {
     gaia: buildMap(gaia),
     hoikushi: buildMap(hoikushi),
     touhan: buildMap(touhan),
+    ccc: buildMap(ccc),
+    llc: buildMap(llc),
+    cac: buildMap(cac),
+    ibd: buildMap(ibd),
+    dxo: buildMap(dxo),
+    wlc: buildMap(wlc),
   };
 
   return <StudyClient questionMeta={questionMeta} />;

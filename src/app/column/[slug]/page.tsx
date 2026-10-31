@@ -30,6 +30,12 @@ import TouhanCourseAd from "@/components/TouhanCourseAd";
 import HoikushiCourseAd from "@/components/HoikushiCourseAd";
 import GaiaCourseAd from "@/components/GaiaCourseAd";
 import DxaCourseAd from "@/components/DxaCourseAd";
+import CccCourseAd from "@/components/CccCourseAd";
+import LlcCourseAd from "@/components/LlcCourseAd";
+import CacCourseAd from "@/components/CacCourseAd";
+import IbdCourseAd from "@/components/IbdCourseAd";
+import DxoCourseAd from "@/components/DxoCourseAd";
+import WlcCourseAd from "@/components/WlcCourseAd";
 import AiaCourseAd from "@/components/AiaCourseAd";
 import XrayCourseAd from "@/components/XrayCourseAd";
 import IsfCourseAd from "@/components/IsfCourseAd";
@@ -57,6 +63,7 @@ const KASHIKIN_LEGACY_SLUGS = new Set([
 const EXAM_PREFIXES: ExamSlug[] = [
   "pii", "chizai", "chizai2", "mynumber", "jitsumu", "bijihou", "bijihou2",
   "fukushi2", "bijimane", "eco", "itpass", "chintai", "kangyo", "isec", "kyoin", "shakai", "isf", "dxp", "had", "ccm", "xray", "aia", "dxa", "gaia", "hoikushi", "touhan",
+  "ccc", "llc", "cac", "ibd", "dxo", "wlc",
 ];
 function examFromColumnSlug(slug: string): ExamSlug | null {
   if (slug.startsWith("kashikin-") || KASHIKIN_LEGACY_SLUGS.has(slug)) return "kashikin";
@@ -88,6 +95,12 @@ import {
   XRAY_EXAMS,
   AIA_EXAMS,
   DXA_EXAMS,
+  CCC_EXAMS,
+  LLC_EXAMS,
+  CAC_EXAMS,
+  IBD_EXAMS,
+  DXO_EXAMS,
+  WLC_EXAMS,
   GAIA_EXAMS,
   HOIKUSHI_EXAMS,
   TOUHAN_EXAMS,
@@ -202,6 +215,13 @@ export default async function ColumnPage({ params }: { params: Promise<{ slug: s
   const isDxaArticle = slug.startsWith("dxa-");
   const isAiaArticle = slug.startsWith("aia-");
   const isXrayArticle = slug.startsWith("xray-");
+  // 協会の6資格(2026-10-31 追加)
+  const isCccArticle = slug.startsWith("ccc-");
+  const isLlcArticle = slug.startsWith("llc-");
+  const isCacArticle = slug.startsWith("cac-");
+  const isIbdArticle = slug.startsWith("ibd-");
+  const isDxoArticle = slug.startsWith("dxo-");
+  const isWlcArticle = slug.startsWith("wlc-");
   // 横断記事(資格接頭辞なし)。column/page.tsx の "ousan" グループと同じ明示列挙
   const isSoumuArticle = slug === "soumu-jinji-shikaku";
 
@@ -290,6 +310,49 @@ export default async function ColumnPage({ params }: { params: Promise<{ slug: s
       linkText: "協会公式サイトで試験日程・申込方法を確認する",
       href: EXAM_AFFILIATE.aia.applyHref!,
       pixel: EXAM_AFFILIATE.aia.applyPixel!,
+    },
+    // 協会の6資格(2026-10-31 追加)
+    "ccc-nittei": {
+      course: "ccc",
+      body: "民法法務士認定試験の申込みは、実施団体(全日本情報学習振興協会)の公式サイトから行います。締切は試験日の5週間ほど前なので、受験する回を決めたら早めに手続きしておきましょう。",
+      linkText: "協会公式サイトで試験日程・申込方法を確認する",
+      href: EXAM_AFFILIATE.ccc.applyHref!,
+      pixel: EXAM_AFFILIATE.ccc.applyPixel!,
+    },
+    "llc-nittei": {
+      course: "llc",
+      body: "労働法務士認定試験の申込みは、実施団体(全日本情報学習振興協会)の公式サイトから行います。締切は試験日の5週間ほど前なので、受験する回を決めたら早めに手続きしておきましょう。",
+      linkText: "協会公式サイトで試験日程・申込方法を確認する",
+      href: EXAM_AFFILIATE.llc.applyHref!,
+      pixel: EXAM_AFFILIATE.llc.applyPixel!,
+    },
+    "cac-nittei": {
+      course: "cac",
+      body: "会社法法務士認定試験の申込みは、実施団体(全日本情報学習振興協会)の公式サイトから行います。締切は試験日の5週間ほど前なので、受験する回を決めたら早めに手続きしておきましょう。",
+      linkText: "協会公式サイトで試験日程・申込方法を確認する",
+      href: EXAM_AFFILIATE.cac.applyHref!,
+      pixel: EXAM_AFFILIATE.cac.applyPixel!,
+    },
+    "ibd-nittei": {
+      course: "ibd",
+      body: "インバウンド実務主任者認定試験の申込みは、実施団体(全日本情報学習振興協会)の公式サイトから行います。締切は試験日の5週間ほど前なので、受験する回を決めたら早めに手続きしておきましょう。",
+      linkText: "協会公式サイトで試験日程・申込方法を確認する",
+      href: EXAM_AFFILIATE.ibd.applyHref!,
+      pixel: EXAM_AFFILIATE.ibd.applyPixel!,
+    },
+    "dxo-nittei": {
+      course: "dxo",
+      body: "DXオフィサー認定試験の申込みは、実施団体(全日本情報学習振興協会)の公式サイトから行います。締切は試験日の5週間ほど前なので、受験する回を決めたら早めに手続きしておきましょう。",
+      linkText: "協会公式サイトで試験日程・申込方法を確認する",
+      href: EXAM_AFFILIATE.dxo.applyHref!,
+      pixel: EXAM_AFFILIATE.dxo.applyPixel!,
+    },
+    "wlc-nittei": {
+      course: "wlc",
+      body: "ワークライフ・コーディネーター認定試験の申込みは、実施団体(全日本情報学習振興協会)の公式サイトから行います。締切は試験日の5週間ほど前なので、受験する回を決めたら早めに手続きしておきましょう。",
+      linkText: "協会公式サイトで試験日程・申込方法を確認する",
+      href: EXAM_AFFILIATE.wlc.applyHref!,
+      pixel: EXAM_AFFILIATE.wlc.applyPixel!,
     },
   };
   const examApplyAd = examApplyAds[slug];
@@ -420,6 +483,12 @@ export default async function ColumnPage({ params }: { params: Promise<{ slug: s
     "dxa-nittei": { exams: DXA_EXAMS, accent: "var(--c-pii)", accentSoft: "var(--c-pii-soft)" },
     "aia-nittei": { exams: AIA_EXAMS, accent: "var(--c-pii)", accentSoft: "var(--c-pii-soft)" },
     "xray-nittei": { exams: XRAY_EXAMS, accent: "var(--c-pii)", accentSoft: "var(--c-pii-soft)" },
+    "ccc-nittei": { exams: CCC_EXAMS, accent: "var(--c-pii)", accentSoft: "var(--c-pii-soft)" },
+    "llc-nittei": { exams: LLC_EXAMS, accent: "var(--c-pii)", accentSoft: "var(--c-pii-soft)" },
+    "cac-nittei": { exams: CAC_EXAMS, accent: "var(--c-pii)", accentSoft: "var(--c-pii-soft)" },
+    "ibd-nittei": { exams: IBD_EXAMS, accent: "var(--c-pii)", accentSoft: "var(--c-pii-soft)" },
+    "dxo-nittei": { exams: DXO_EXAMS, accent: "var(--c-pii)", accentSoft: "var(--c-pii-soft)" },
+    "wlc-nittei": { exams: WLC_EXAMS, accent: "var(--c-pii)", accentSoft: "var(--c-pii-soft)" },
   };
   const niteiCountdown = niteiCountdowns[slug];
 
@@ -769,6 +838,30 @@ export default async function ColumnPage({ params }: { params: Promise<{ slug: s
         <AiaCourseAd headline="出題範囲を講座で体系的に押さえるなら" />
       )}
 
+      {isCccArticle && (
+        <CccCourseAd headline="出題範囲を講座で体系的に押さえるなら" />
+      )}
+
+      {isLlcArticle && (
+        <LlcCourseAd headline="出題範囲を講座で体系的に押さえるなら" />
+      )}
+
+      {isCacArticle && (
+        <CacCourseAd headline="出題範囲を講座で体系的に押さえるなら" />
+      )}
+
+      {isIbdArticle && (
+        <IbdCourseAd headline="出題範囲を講座で体系的に押さえるなら" />
+      )}
+
+      {isDxoArticle && (
+        <DxoCourseAd headline="出題範囲を講座で体系的に押さえるなら" />
+      )}
+
+      {isWlcArticle && (
+        <WlcCourseAd headline="出題範囲を講座で体系的に押さえるなら" />
+      )}
+
       {isXrayArticle && (
         <XrayCourseAd headline="出題範囲を講座で体系的に押さえるなら" />
       )}
@@ -891,6 +984,36 @@ export default async function ColumnPage({ params }: { params: Promise<{ slug: s
               <a href="/ccm/q/ccm-001/" className="text-sm text-blue-700 no-underline hover:underline">企業危機・コンプライアンス管理士 全160問を見る →</a>
               <a href="/ccm/moshi/" className="text-sm text-slate-500 no-underline hover:underline">模擬試験（80問・120分）を受ける →</a>
               <a href="/ccm/" className="text-sm text-slate-500 no-underline hover:underline">分野別に選ぶ →</a>
+            </>
+          ) : isCccArticle ? (
+            <>
+              <a href="/ccc/" className="text-sm text-blue-700 no-underline hover:underline">民法法務士の練習問題・試験の概要 →</a>
+              <a href="/column/ccc-nittei/" className="text-sm text-slate-500 no-underline hover:underline">試験日程・申込締切を見る →</a>
+            </>
+          ) : isLlcArticle ? (
+            <>
+              <a href="/llc/" className="text-sm text-blue-700 no-underline hover:underline">労働法務士の練習問題・試験の概要 →</a>
+              <a href="/column/llc-nittei/" className="text-sm text-slate-500 no-underline hover:underline">試験日程・申込締切を見る →</a>
+            </>
+          ) : isCacArticle ? (
+            <>
+              <a href="/cac/" className="text-sm text-blue-700 no-underline hover:underline">会社法法務士の練習問題・試験の概要 →</a>
+              <a href="/column/cac-nittei/" className="text-sm text-slate-500 no-underline hover:underline">試験日程・申込締切を見る →</a>
+            </>
+          ) : isIbdArticle ? (
+            <>
+              <a href="/ibd/" className="text-sm text-blue-700 no-underline hover:underline">インバウンド実務主任者の練習問題・試験の概要 →</a>
+              <a href="/column/ibd-nittei/" className="text-sm text-slate-500 no-underline hover:underline">試験日程・申込締切を見る →</a>
+            </>
+          ) : isDxoArticle ? (
+            <>
+              <a href="/dxo/" className="text-sm text-blue-700 no-underline hover:underline">DXオフィサーの練習問題・試験の概要 →</a>
+              <a href="/column/dxo-nittei/" className="text-sm text-slate-500 no-underline hover:underline">試験日程・申込締切を見る →</a>
+            </>
+          ) : isWlcArticle ? (
+            <>
+              <a href="/wlc/" className="text-sm text-blue-700 no-underline hover:underline">ワークライフ・コーディネーターの練習問題・試験の概要 →</a>
+              <a href="/column/wlc-nittei/" className="text-sm text-slate-500 no-underline hover:underline">試験日程・申込締切を見る →</a>
             </>
           ) : isXrayArticle ? (
             <>

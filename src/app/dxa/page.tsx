@@ -155,6 +155,9 @@ export default async function DxaPage() {
           <p>
             同じ協会の<a href="/dxp/" className="underline hover:no-underline">DXパスポート試験</a>は入門の位置づけです。AIの分野は<a href="/aia/" className="underline hover:no-underline">AI活用アドバイザー</a>・<a href="/gaia/" className="underline hover:no-underline">生成AIアドバイザー</a>の範囲とも重なります。
           </p>
+          <p>
+            合格後の次の一歩は、上位の<a href="/dxo/" className="underline hover:no-underline">DXオフィサー</a>です。DX推進アドバイザーの合格者は、DXオフィサーの受験料が20%割引になります（協会の案内による）。
+          </p>
         </div>
       </section>
 

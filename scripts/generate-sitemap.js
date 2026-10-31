@@ -434,6 +434,18 @@ const staticPages = [
   { url: "/aia/moshi2/", priority: "0.6", freq: "monthly", lastmod: fileDate(path.join(appDir, "aia/moshi2/page.tsx")) },
   { url: "/aia/mock/", priority: "0.6", freq: "monthly", lastmod: fileDate(path.join(appDir, "aia/mock/page.tsx")) },
   ...["basics", "tech", "genai", "project", "cases", "human", "policy"].map((f) => ({ url: `/aia/field/${f}/`, priority: "0.8", freq: "monthly", lastmod: aiaMax })),
+  // 民法法務士認定試験(2026-10-31 追加。問題・模試を足したら field / mock / moshi もここに足す)
+  { url: "/ccc/", priority: "0.9", freq: "weekly", lastmod: fileDate(path.join(appDir, "ccc/page.tsx")) },
+  // 労働法務士認定試験(2026-10-31 追加。問題・模試を足したら field / mock / moshi もここに足す)
+  { url: "/llc/", priority: "0.9", freq: "weekly", lastmod: fileDate(path.join(appDir, "llc/page.tsx")) },
+  // 会社法法務士認定試験(2026-10-31 追加。問題・模試を足したら field / mock / moshi もここに足す)
+  { url: "/cac/", priority: "0.9", freq: "weekly", lastmod: fileDate(path.join(appDir, "cac/page.tsx")) },
+  // インバウンド実務主任者認定試験(2026-10-31 追加。問題・模試を足したら field / mock / moshi もここに足す)
+  { url: "/ibd/", priority: "0.9", freq: "weekly", lastmod: fileDate(path.join(appDir, "ibd/page.tsx")) },
+  // DXオフィサー認定試験(2026-10-31 追加。問題・模試を足したら field / mock / moshi もここに足す)
+  { url: "/dxo/", priority: "0.9", freq: "weekly", lastmod: fileDate(path.join(appDir, "dxo/page.tsx")) },
+  // ワークライフ・コーディネーター認定試験(2026-10-31 追加。問題・模試を足したら field / mock / moshi もここに足す)
+  { url: "/wlc/", priority: "0.9", freq: "weekly", lastmod: fileDate(path.join(appDir, "wlc/page.tsx")) },
   // エックス線作業主任者免許試験
   { url: "/xray/", priority: "0.9", freq: "weekly", lastmod: xrayMax },
   { url: "/xray/moshi/", priority: "0.7", freq: "monthly", lastmod: fileDate(path.join(appDir, "xray/moshi/page.tsx")) },

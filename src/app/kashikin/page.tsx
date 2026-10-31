@@ -110,6 +110,16 @@ export default async function KashikinPage() {
         body="貸金業務取扱主任者は市販の問題集が少なく、独学で進めにくい試験です。通信講座のアガルートアカデミーは貸金業務取扱主任者講座を提供しており、頻出論点と法改正への対応を体系的に押さえられます。"
       />
 
+      {/* 協会の関連試験(2026-10-31 追加) */}
+      <section className="mb-12">
+        <h2 className="text-base font-bold text-[color:var(--c-ink)] mb-4 font-serif">あわせて学ぶと役に立つ試験</h2>
+        <div className="card p-5 text-sm text-[color:var(--c-text-sub)] leading-relaxed space-y-2">
+          <p>
+            貸付契約や保証の土台になる民法を、総則から相続まで通して学ぶなら<a href="/ccc/" className="underline hover:no-underline">民法法務士</a>（全日本情報学習振興協会）も選択肢になります。
+          </p>
+        </div>
+      </section>
+
       {/* コラム（貸金関連のみ） */}
       {(() => {
         const kashikinSlugSet = new Set([

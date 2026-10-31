@@ -50,6 +50,12 @@
 - 生成AIアドバイザー認定試験: https://shikakumon.com/gaia/
 - DX推進アドバイザー認定試験: https://shikakumon.com/dxa/
 - AI活用アドバイザー認定試験: https://shikakumon.com/aia/
+- 民法法務士認定試験: https://shikakumon.com/ccc/
+- 労働法務士認定試験: https://shikakumon.com/llc/
+- 会社法法務士認定試験: https://shikakumon.com/cac/
+- インバウンド実務主任者認定試験: https://shikakumon.com/ibd/
+- DXオフィサー認定試験: https://shikakumon.com/dxo/
+- ワークライフ・コーディネーター認定試験: https://shikakumon.com/wlc/
 - エックス線作業主任者免許試験: https://shikakumon.com/xray/
 - 賃貸不動産経営管理士: https://shikakumon.com/chintai/
 - 管理業務主任者: https://shikakumon.com/kangyo/

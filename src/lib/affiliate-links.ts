@@ -437,6 +437,82 @@ export const EXAM_AFFILIATE: Record<ExamSlug, AffiliateTarget> = {
     label: "東商の公式サイトで公式テキスト・学習方法を見る",
     course: "eco",
   },
+
+  // 協会の6資格(ccc / llc / cac / ibd / dxo / wlc)。2026-10-31 追加。
+  //   pii / jitsumu と同じ a8mat で、a8ejpredirect だけを各資格の公式ページ(申込)と SMART 講座ページにしている。
+  //   A8 の広告掲載URL管理に各ページを登録すること。
+  ccc: {
+    href: "https://px.a8.net/svt/ejp?a8mat=4B1TI0+9T22IA+4LOQ+BW8O2&a8ejpredirect=https%3A%2F%2Fwww.joho-gakushu.jp%2Fsmartinfo%2Fk_ccc%2F",
+    label: "民法法務士のSMART合格講座を見る",
+    course: "ccc",
+    freeHref:
+      "https://px.a8.net/svt/ejp?a8mat=4B1TI0+9T22IA+4LOQ+BW8O2&a8ejpredirect=https%3A%2F%2Fwww.joho-gakushu.jp%2Fsmart%2Fregistfree.php",
+    freeLabel: "無料登録してSMART講座を試し見る",
+    applyHref:
+      "https://px.a8.net/svt/ejp?a8mat=4B1TI0+9T22IA+4LOQ+BW8O2&a8ejpredirect=https%3A%2F%2Fwww.joho-gakushu.or.jp%2Fccc%2F",
+    applyLabel: "協会公式サイトで申し込む",
+    applyPixel: SMART_APPLY_PIXEL,
+  },
+  llc: {
+    href: "https://px.a8.net/svt/ejp?a8mat=4B1TI0+9T22IA+4LOQ+BW8O2&a8ejpredirect=https%3A%2F%2Fwww.joho-gakushu.jp%2Fsmartinfo%2Fk_llc%2F",
+    label: "労働法務士のSMART合格講座を見る",
+    course: "llc",
+    freeHref:
+      "https://px.a8.net/svt/ejp?a8mat=4B1TI0+9T22IA+4LOQ+BW8O2&a8ejpredirect=https%3A%2F%2Fwww.joho-gakushu.jp%2Fsmart%2Fregistfree.php",
+    freeLabel: "無料登録してSMART講座を試し見る",
+    applyHref:
+      "https://px.a8.net/svt/ejp?a8mat=4B1TI0+9T22IA+4LOQ+BW8O2&a8ejpredirect=https%3A%2F%2Fwww.joho-gakushu.or.jp%2Fllc%2F",
+    applyLabel: "協会公式サイトで申し込む",
+    applyPixel: SMART_APPLY_PIXEL,
+  },
+  cac: {
+    href: "https://px.a8.net/svt/ejp?a8mat=4B1TI0+9T22IA+4LOQ+BW8O2&a8ejpredirect=https%3A%2F%2Fwww.joho-gakushu.jp%2Fsmartinfo%2Fk_cac%2F",
+    label: "会社法法務士のSMART合格講座を見る",
+    course: "cac",
+    freeHref:
+      "https://px.a8.net/svt/ejp?a8mat=4B1TI0+9T22IA+4LOQ+BW8O2&a8ejpredirect=https%3A%2F%2Fwww.joho-gakushu.jp%2Fsmart%2Fregistfree.php",
+    freeLabel: "無料登録してSMART講座を試し見る",
+    applyHref:
+      "https://px.a8.net/svt/ejp?a8mat=4B1TI0+9T22IA+4LOQ+BW8O2&a8ejpredirect=https%3A%2F%2Fwww.joho-gakushu.or.jp%2Fcac%2F",
+    applyLabel: "協会公式サイトで申し込む",
+    applyPixel: SMART_APPLY_PIXEL,
+  },
+  ibd: {
+    href: "https://px.a8.net/svt/ejp?a8mat=4B1TI0+9T22IA+4LOQ+BW8O2&a8ejpredirect=https%3A%2F%2Fwww.joho-gakushu.jp%2Fsmartinfo%2Fk_ibd%2F",
+    label: "インバウンド実務主任者のSMART合格講座を見る",
+    course: "ibd",
+    freeHref:
+      "https://px.a8.net/svt/ejp?a8mat=4B1TI0+9T22IA+4LOQ+BW8O2&a8ejpredirect=https%3A%2F%2Fwww.joho-gakushu.jp%2Fsmart%2Fregistfree.php",
+    freeLabel: "無料登録してSMART講座を試し見る",
+    applyHref:
+      "https://px.a8.net/svt/ejp?a8mat=4B1TI0+9T22IA+4LOQ+BW8O2&a8ejpredirect=https%3A%2F%2Fwww.joho-gakushu.or.jp%2Fibd%2F",
+    applyLabel: "協会公式サイトで申し込む",
+    applyPixel: SMART_APPLY_PIXEL,
+  },
+  dxo: {
+    href: "https://px.a8.net/svt/ejp?a8mat=4B1TI0+9T22IA+4LOQ+BW8O2&a8ejpredirect=https%3A%2F%2Fwww.joho-gakushu.or.jp%2Fdx-kentei%2Fdx-officer.php",
+    label: "DXオフィサーのSMART合格講座を見る",
+    course: "dxo",
+    freeHref:
+      "https://px.a8.net/svt/ejp?a8mat=4B1TI0+9T22IA+4LOQ+BW8O2&a8ejpredirect=https%3A%2F%2Fwww.joho-gakushu.jp%2Fsmart%2Fregistfree.php",
+    freeLabel: "無料登録してSMART講座を試し見る",
+    applyHref:
+      "https://px.a8.net/svt/ejp?a8mat=4B1TI0+9T22IA+4LOQ+BW8O2&a8ejpredirect=https%3A%2F%2Fwww.joho-gakushu.or.jp%2Fdx%2Fdxo%2F",
+    applyLabel: "協会公式サイトで申し込む",
+    applyPixel: SMART_APPLY_PIXEL,
+  },
+  wlc: {
+    href: "https://px.a8.net/svt/ejp?a8mat=4B1TI0+9T22IA+4LOQ+BW8O2&a8ejpredirect=https%3A%2F%2Fwww.joho-gakushu.jp%2Fsmartinfo%2Fk_wlc%2F",
+    label: "ワークライフ・コーディネーターのSMART合格講座を見る",
+    course: "wlc",
+    freeHref:
+      "https://px.a8.net/svt/ejp?a8mat=4B1TI0+9T22IA+4LOQ+BW8O2&a8ejpredirect=https%3A%2F%2Fwww.joho-gakushu.jp%2Fsmart%2Fregistfree.php",
+    freeLabel: "無料登録してSMART講座を試し見る",
+    applyHref:
+      "https://px.a8.net/svt/ejp?a8mat=4B1TI0+9T22IA+4LOQ+BW8O2&a8ejpredirect=https%3A%2F%2Fwww.joho-gakushu.or.jp%2Fwlc%2F",
+    applyLabel: "協会公式サイトで申し込む",
+    applyPixel: SMART_APPLY_PIXEL,
+  },
 };
 
 /**
@@ -470,4 +546,10 @@ export const RESULT_CTA_HEADLINE: Record<ExamSlug, string> = {
   dxa: "間違えた論点を体系的に整理するなら",
   aia: "間違えた論点を体系的に整理するなら",
   xray: "間違えた論点を体系的に整理するなら",
+  ccc: "間違えた論点を体系的に整理するなら",
+  llc: "間違えた論点を体系的に整理するなら",
+  cac: "間違えた論点を体系的に整理するなら",
+  ibd: "間違えた論点を体系的に整理するなら",
+  dxo: "間違えた論点を体系的に整理するなら",
+  wlc: "間違えた論点を体系的に整理するなら",
 };

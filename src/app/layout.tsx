@@ -158,6 +158,30 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                       <span className="w-1 h-4 mr-3 rounded-full" style={{ background: "var(--c-pii)" }}></span>
                       AI活用アドバイザー
                     </a>
+                    <a href="/ccc/" className="flex items-center px-4 py-2 text-[color:var(--c-text)] hover:bg-[color:var(--c-bg-alt)] hover:text-[color:var(--c-pii)] no-underline transition-colors">
+                      <span className="w-1 h-4 mr-3 rounded-full" style={{ background: "var(--c-pii)" }}></span>
+                      民法法務士
+                    </a>
+                    <a href="/llc/" className="flex items-center px-4 py-2 text-[color:var(--c-text)] hover:bg-[color:var(--c-bg-alt)] hover:text-[color:var(--c-pii)] no-underline transition-colors">
+                      <span className="w-1 h-4 mr-3 rounded-full" style={{ background: "var(--c-pii)" }}></span>
+                      労働法務士
+                    </a>
+                    <a href="/cac/" className="flex items-center px-4 py-2 text-[color:var(--c-text)] hover:bg-[color:var(--c-bg-alt)] hover:text-[color:var(--c-pii)] no-underline transition-colors">
+                      <span className="w-1 h-4 mr-3 rounded-full" style={{ background: "var(--c-pii)" }}></span>
+                      会社法法務士
+                    </a>
+                    <a href="/ibd/" className="flex items-center px-4 py-2 text-[color:var(--c-text)] hover:bg-[color:var(--c-bg-alt)] hover:text-[color:var(--c-pii)] no-underline transition-colors">
+                      <span className="w-1 h-4 mr-3 rounded-full" style={{ background: "var(--c-pii)" }}></span>
+                      インバウンド実務主任者
+                    </a>
+                    <a href="/dxo/" className="flex items-center px-4 py-2 text-[color:var(--c-text)] hover:bg-[color:var(--c-bg-alt)] hover:text-[color:var(--c-pii)] no-underline transition-colors">
+                      <span className="w-1 h-4 mr-3 rounded-full" style={{ background: "var(--c-pii)" }}></span>
+                      DXオフィサー
+                    </a>
+                    <a href="/wlc/" className="flex items-center px-4 py-2 text-[color:var(--c-text)] hover:bg-[color:var(--c-bg-alt)] hover:text-[color:var(--c-pii)] no-underline transition-colors">
+                      <span className="w-1 h-4 mr-3 rounded-full" style={{ background: "var(--c-pii)" }}></span>
+                      ワークライフ・コーディネーター
+                    </a>
                     <a href="/xray/" className="flex items-center px-4 py-2 text-[color:var(--c-text)] hover:bg-[color:var(--c-bg-alt)] hover:text-[color:var(--c-pii)] no-underline transition-colors">
                       <span className="w-1 h-4 mr-3 rounded-full" style={{ background: "var(--c-pii)" }}></span>
                       エックス線作業主任者
@@ -245,6 +269,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                   <li><a href="/gaia/" className="text-[color:var(--c-text-sub)] hover:text-[color:var(--c-pii)] no-underline">生成AIアドバイザー</a></li>
                   <li><a href="/dxa/" className="text-[color:var(--c-text-sub)] hover:text-[color:var(--c-pii)] no-underline">DX推進アドバイザー</a></li>
                   <li><a href="/aia/" className="text-[color:var(--c-text-sub)] hover:text-[color:var(--c-pii)] no-underline">AI活用アドバイザー</a></li>
+                  <li><a href="/ccc/" className="text-[color:var(--c-text-sub)] hover:text-[color:var(--c-pii)] no-underline">民法法務士</a></li>
+                  <li><a href="/llc/" className="text-[color:var(--c-text-sub)] hover:text-[color:var(--c-pii)] no-underline">労働法務士</a></li>
+                  <li><a href="/cac/" className="text-[color:var(--c-text-sub)] hover:text-[color:var(--c-pii)] no-underline">会社法法務士</a></li>
+                  <li><a href="/ibd/" className="text-[color:var(--c-text-sub)] hover:text-[color:var(--c-pii)] no-underline">インバウンド実務主任者</a></li>
+                  <li><a href="/dxo/" className="text-[color:var(--c-text-sub)] hover:text-[color:var(--c-pii)] no-underline">DXオフィサー</a></li>
+                  <li><a href="/wlc/" className="text-[color:var(--c-text-sub)] hover:text-[color:var(--c-pii)] no-underline">ワークライフ・コーディネーター</a></li>
                   <li><a href="/xray/" className="text-[color:var(--c-text-sub)] hover:text-[color:var(--c-pii)] no-underline">エックス線作業主任者</a></li>
                   <li><a href="/kyoin/" className="text-[color:var(--c-text-sub)] hover:text-[color:var(--c-fukushi)] no-underline">教員採用試験（教職教養）</a></li>
                   <li><a href="/shakai/" className="text-[color:var(--c-text-sub)] hover:text-[color:var(--c-eco)] no-underline">社会福祉士（共通科目）</a></li>

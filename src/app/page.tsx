@@ -23,6 +23,7 @@ import {
   CCC_EXAMS,
   LLC_EXAMS,
   CAC_EXAMS,
+  IBD_EXAMS,
 } from "@/lib/exam-dates";
 import StudioLink from "@/components/StudioLink";
 
@@ -286,6 +287,16 @@ export default function Home() {
       softVar: "var(--c-pii-soft)",
     },
     {
+      name: "インバウンド実務主任者",
+      slug: "ibd",
+      count: 160,
+      fieldCount: 8,
+      desc: "観光とインバウンドの基礎から、訪日外国人の理解と対応、集客、まちづくりまで。全13課題に沿ったオリジナル練習問題集です。",
+      date: nextExamDateLabel(IBD_EXAMS, { fallback: "年4回実施" }),
+      themeVar: "var(--c-pii)",
+      softVar: "var(--c-pii-soft)",
+    },
+    {
       name: "エックス線作業主任者",
       slug: "xray",
       count: 160,
@@ -430,6 +441,12 @@ export default function Home() {
       title: "AI・DXの認定試験",
       lead: "DX推進アドバイザー・AI活用アドバイザー・生成AIアドバイザーは、いずれも全日本情報学習振興協会の認定試験で、AIとDXの用語・事例・制度を2択と4択で問われます。",
       slugs: ["dxa", "aia", "gaia"],
+    },
+    {
+      key: "kankou",
+      title: "観光・インバウンド",
+      lead: "訪日外国人の動向と受入れ、集客、まちづくりまでを問う全日本情報学習振興協会の認定試験です。",
+      slugs: ["ibd"],
     },
     {
       key: "tokyo-cci",

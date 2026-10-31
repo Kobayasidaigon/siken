@@ -12,7 +12,7 @@ import { EXAM_AFFILIATE } from "@/lib/affiliate-links";
 
 export const metadata: Metadata = pageMetadata({
   path: "/ibd/",
-  title: "インバウンド実務主任者 練習問題・試験日程【無料】",
+  title: "インバウンド実務主任者 練習問題【全160問・無料】",
   description:
     "インバウンド実務主任者認定試験のオリジナル練習問題と試験日程・申込締切をまとめたページ。観光とインバウンドの基礎から、訪日外国人の理解と対応、集客、まちづくりまで。",
 });
@@ -62,7 +62,7 @@ export default async function IbdPage() {
                 className="inline-flex items-center px-4 py-2 rounded-lg border text-sm font-medium no-underline transition-colors hover:bg-[color:var(--c-pii-soft)]"
                 style={{ borderColor: "var(--c-pii)", color: "var(--c-pii-ink)" }}
               >
-                模擬試験を受ける（87問）→
+                模擬試験を受ける（87問・120分）→
               </a>
               <a
                 href="/ibd/mock/"

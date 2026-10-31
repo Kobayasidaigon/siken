@@ -12,7 +12,7 @@ import { EXAM_AFFILIATE } from "@/lib/affiliate-links";
 
 export const metadata: Metadata = pageMetadata({
   path: "/ccc/",
-  title: "民法法務士 練習問題・試験日程【無料】",
+  title: "民法法務士 練習問題【全160問・無料】",
   description:
     "民法法務士認定試験のオリジナル練習問題と試験日程・申込締切をまとめたページ。民法総則・物権・債権総論・債権各論・親族・相続まで、民法の全体を問う認定試験。",
 });
@@ -62,7 +62,7 @@ export default async function CccPage() {
                 className="inline-flex items-center px-4 py-2 rounded-lg border text-sm font-medium no-underline transition-colors hover:bg-[color:var(--c-pii-soft)]"
                 style={{ borderColor: "var(--c-pii)", color: "var(--c-pii-ink)" }}
               >
-                模擬試験を受ける（70問）→
+                模擬試験を受ける（70問・150分）→
               </a>
               <a
                 href="/ccc/mock/"

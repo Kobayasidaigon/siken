@@ -20,6 +20,7 @@ import {
   DXA_EXAMS,
   AIA_EXAMS,
   XRAY_EXAMS,
+  CCC_EXAMS,
 } from "@/lib/exam-dates";
 import StudioLink from "@/components/StudioLink";
 
@@ -253,6 +254,16 @@ export default function Home() {
       softVar: "var(--c-pii-soft)",
     },
     {
+      name: "民法法務士",
+      slug: "ccc",
+      count: 160,
+      fieldCount: 8,
+      desc: "民法総則・物権・債権総論・債権各論・親族・相続まで、民法の全体を問う全日本情報学習振興協会の認定試験。2020年の債権法改正以降の現行法に沿ったオリジナル練習問題集です。",
+      date: nextExamDateLabel(CCC_EXAMS, { fallback: "年3回実施" }),
+      themeVar: "var(--c-pii)",
+      softVar: "var(--c-pii-soft)",
+    },
+    {
       name: "エックス線作業主任者",
       slug: "xray",
       count: 160,
@@ -372,7 +383,7 @@ export default function Home() {
       key: "houmu",
       title: "法務・知的財産",
       lead: "契約や権利関係を扱う資格。条文の要件をそのまま問われるため、根拠つきの演習が効きます。貸金業・賃貸管理・マンション管理は受験者層が重なります。",
-      slugs: ["kashikin", "chintai", "kangyo", "chizai", "chizai2"],
+      slugs: ["kashikin", "chintai", "kangyo", "chizai", "chizai2", "ccc"],
     },
     {
       key: "joho",

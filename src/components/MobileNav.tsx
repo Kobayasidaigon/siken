@@ -48,6 +48,12 @@ const SHORT_NAME: Record<ExamSlug, string> = {
   dxa: "DX推進",
   aia: "AI活用",
   xray: "エックス線",
+  ccc: "民法法務士",
+  llc: "労働法務士",
+  cac: "会社法法務士",
+  ibd: "インバウンド",
+  dxo: "DXオフィサー",
+  wlc: "ワークライフ",
   kyoin: "教採",
   shakai: "社福士",
 };

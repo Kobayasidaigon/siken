@@ -176,6 +176,9 @@ export default async function CcmPage() {
             </a>
             も選択肢になります。
           </p>
+          <p>
+            取締役の責任や株主総会など、ガバナンスの土台になる会社法を深めるなら<a href="/cac/" className="underline hover:no-underline">会社法法務士</a>、労務トラブルへの備えなら<a href="/llc/" className="underline hover:no-underline">労働法務士</a>が、同じ協会の試験です。
+          </p>
         </div>
       </section>
 

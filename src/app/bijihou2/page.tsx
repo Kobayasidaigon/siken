@@ -109,6 +109,16 @@ export default async function Bijihou2Page() {
 
       <Bijihou2CourseAd />
 
+      {/* 協会の関連試験(2026-10-31 追加) */}
+      <section className="mb-12">
+        <h2 className="text-base font-bold text-[color:var(--c-ink)] mb-4 font-serif">あわせて学ぶと役に立つ試験</h2>
+        <div className="card p-5 text-sm text-[color:var(--c-text-sub)] leading-relaxed space-y-2">
+          <p>
+            民法と会社法を条文単位で深めるなら、全日本情報学習振興協会の<a href="/ccc/" className="underline hover:no-underline">民法法務士</a>・<a href="/cac/" className="underline hover:no-underline">会社法法務士</a>が次の選択肢になります。
+          </p>
+        </div>
+      </section>
+
       {/* コラム */}
       {bijihouColumns.length > 0 && (
         <section className="border-t border-[color:var(--c-border)] pt-8 mt-8">

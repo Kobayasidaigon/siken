@@ -9,7 +9,7 @@
 
 const STORAGE_KEY = "shikakumon-study-v1";
 
-export type ExamSlug = "kashikin" | "pii" | "chizai" | "chizai2" | "mynumber" | "jitsumu" | "bijihou" | "fukushi2" | "bijimane" | "eco" | "bijihou2" | "itpass" | "chintai" | "kangyo" | "isec" | "kyoin" | "shakai" | "isf" | "dxp" | "had" | "ccm" | "xray" | "aia" | "dxa" | "gaia" | "hoikushi" | "touhan";
+export type ExamSlug = "kashikin" | "pii" | "chizai" | "chizai2" | "mynumber" | "jitsumu" | "bijihou" | "fukushi2" | "bijimane" | "eco" | "bijihou2" | "itpass" | "chintai" | "kangyo" | "isec" | "kyoin" | "shakai" | "isf" | "dxp" | "had" | "ccm" | "xray" | "aia" | "dxa" | "gaia" | "hoikushi" | "touhan" | "ccc" | "llc" | "cac" | "ibd" | "dxo" | "wlc";
 
 export const EXAM_LIST: { slug: ExamSlug; name: string; topPath: string; questionPathPrefix: string }[] = [
   { slug: "kashikin", name: "貸金業務取扱主任者", topPath: "/kashikin/", questionPathPrefix: "/q/" },
@@ -39,6 +39,12 @@ export const EXAM_LIST: { slug: ExamSlug; name: string; topPath: string; questio
   { slug: "dxa", name: "DX推進アドバイザー", topPath: "/dxa/", questionPathPrefix: "/dxa/q/" },
   { slug: "aia", name: "AI活用アドバイザー", topPath: "/aia/", questionPathPrefix: "/aia/q/" },
   { slug: "xray", name: "エックス線作業主任者", topPath: "/xray/", questionPathPrefix: "/xray/q/" },
+  { slug: "ccc", name: "民法法務士", topPath: "/ccc/", questionPathPrefix: "/ccc/q/" },
+  { slug: "llc", name: "労働法務士", topPath: "/llc/", questionPathPrefix: "/llc/q/" },
+  { slug: "cac", name: "会社法法務士", topPath: "/cac/", questionPathPrefix: "/cac/q/" },
+  { slug: "ibd", name: "インバウンド実務主任者", topPath: "/ibd/", questionPathPrefix: "/ibd/q/" },
+  { slug: "dxo", name: "DXオフィサー", topPath: "/dxo/", questionPathPrefix: "/dxo/q/" },
+  { slug: "wlc", name: "ワークライフ・コーディネーター", topPath: "/wlc/", questionPathPrefix: "/wlc/q/" },
 ];
 
 export type Medal = "bronze" | "silver" | "gold";
@@ -83,6 +89,12 @@ function defaultProgress(): AllProgress {
     dxa: { bookmarks: [], wrong: [], correct: [], medals: {} },
     aia: { bookmarks: [], wrong: [], correct: [], medals: {} },
     xray: { bookmarks: [], wrong: [], correct: [], medals: {} },
+    ccc: { bookmarks: [], wrong: [], correct: [], medals: {} },
+    llc: { bookmarks: [], wrong: [], correct: [], medals: {} },
+    cac: { bookmarks: [], wrong: [], correct: [], medals: {} },
+    ibd: { bookmarks: [], wrong: [], correct: [], medals: {} },
+    dxo: { bookmarks: [], wrong: [], correct: [], medals: {} },
+    wlc: { bookmarks: [], wrong: [], correct: [], medals: {} },
   };
 }
 

@@ -58,6 +58,13 @@ const RESULT_CTA_EXAMS: ExamSlug[] = [
   "aia",
   // 2026-10-19 追加。SMART合格講座(4B1TI0系)。
   "xray",
+  // 2026-10-31 追加の協会6資格。SMART合格講座(4B1TI0系)。
+  "ccc",
+  "llc",
+  "cac",
+  "ibd",
+  "dxo",
+  "wlc",
 ];
 
 const MEDAL_LABEL: Record<Medal, string> = { bronze: "🥉 銅", silver: "🥈 銀", gold: "🥇 金" };

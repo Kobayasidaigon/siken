@@ -246,6 +246,43 @@ export const TOUHAN_EXAMS: UpcomingExam[] = [
   { date: "2026-12-20", label: "九州・沖縄ブロック（福岡県ほか）12月20日" },
 ];
 
+// 2026-10-31 追加: 協会の6資格。出典は各試験のページと試験日程の一覧(https://www.joho-gakushu.or.jp/schedule/2026.php)。
+// 申込開始が載っていない回は applyStart/applyEnd を持たない(締切カウントダウンが早く出すぎるため)。
+// 民法法務士 第14回の締切は一覧で「4月14日」と「4月15日」の両方の記載があり、早いほうを入れている(要確認)。
+export const CCC_EXAMS: UpcomingExam[] = [
+  { date: "2027-01-31", label: "第13回 1月31日", applyStart: "2026-09-15", applyEnd: "2026-12-24" },
+  { date: "2027-05-23", label: "第14回 5月23日", applyStart: "2026-12-29", applyEnd: "2027-04-14" },
+];
+
+export const LLC_EXAMS: UpcomingExam[] = [
+  // 第23回の締切は 10/29 から 11/12 に延長(協会の日程一覧、2026-10-31 確認)
+  { date: "2026-12-13", label: "第23回 12月13日", applyStart: "2026-08-25", applyEnd: "2026-11-12" },
+  { date: "2027-03-14", label: "第24回 3月14日", applyStart: "2026-11-20", applyEnd: "2027-01-28" },
+  { date: "2027-07-18", label: "第25回 7月18日" },
+];
+
+// 会社法法務士の第18回は、試験のページでは「2027年2月21日(申込 10/27〜1/14)」、
+// 試験日程の一覧では「2027年6月27日(申込 1/19〜5/13)」と食い違っている(2026-10-31 確認)。
+// どちらか確かめるまでカウントダウンは出さない(誤った締切を出すほうが害が大きい)。
+export const CAC_EXAMS: UpcomingExam[] = [];
+
+export const IBD_EXAMS: UpcomingExam[] = [
+  { date: "2027-01-31", label: "第27回 1月31日", applyStart: "2026-09-15", applyEnd: "2026-12-24" },
+  { date: "2027-04-18", label: "第28回 4月18日", applyStart: "2026-12-29", applyEnd: "2027-03-11" },
+  { date: "2027-08-08", label: "第29回 8月8日" },
+];
+
+export const DXO_EXAMS: UpcomingExam[] = [
+  { date: "2027-01-31", label: "第17回 1月31日", applyStart: "2026-09-15", applyEnd: "2026-12-24" },
+  { date: "2027-05-23", label: "第18回 5月23日", applyStart: "2026-12-29", applyEnd: "2027-04-15" },
+  { date: "2027-10-17", label: "第19回 10月17日" },
+];
+
+// 第11回は締切(2027-06-10)だけが載っていて申込開始は未掲載
+export const WLC_EXAMS: UpcomingExam[] = [
+  { date: "2027-07-18", label: "第11回 7月18日" },
+];
+
 /**
  * 資格スラッグ → 今後の試験日リスト。日程を持つ資格だけ載せる (無い資格は undefined)。
  * 2026-09-22 追加: 模試結果画面のリマインド登録で「試験日」の既定値に使う。
@@ -268,6 +305,12 @@ export const EXAMS_BY_SLUG: Readonly<Record<string, UpcomingExam[]>> = {
   chintai: CHINTAI_EXAMS,
   kangyo: KANGYO_EXAMS,
   touhan: TOUHAN_EXAMS,
+  ccc: CCC_EXAMS,
+  llc: LLC_EXAMS,
+  cac: CAC_EXAMS,
+  ibd: IBD_EXAMS,
+  dxo: DXO_EXAMS,
+  wlc: WLC_EXAMS,
   hoikushi: HOIKUSHI_EXAMS,
   gaia: GAIA_EXAMS,
   dxa: DXA_EXAMS,

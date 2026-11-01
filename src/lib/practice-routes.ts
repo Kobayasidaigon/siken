@@ -60,6 +60,12 @@ const HAS_MOCK: ExamSlug[] = [
   "gaia",
   "hoikushi",
   "touhan",
+  "ccc",
+  "llc",
+  "cac",
+  "ibd",
+  "dxo",
+  "wlc",
 ];
 
 /** /<資格>/moshi/ がある資格。本試験と同じ問数・時間の第1回模試(無料) */
@@ -93,6 +99,12 @@ const HAS_MOSHI: ExamSlug[] = [
   "gaia",
   "hoikushi",
   "touhan",
+  "ccc",
+  "llc",
+  "cac",
+  "ibd",
+  "dxo",
+  "wlc",
 ];
 
 /**

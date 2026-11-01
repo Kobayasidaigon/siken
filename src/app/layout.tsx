@@ -41,8 +41,8 @@ export const metadata: Metadata = {
   },
   // 資格を増やしたらここの資格名と問題数も更新すること(自動集計はしていない)。
   // 正しい数は src/app/page.tsx の exams の件数と count の合計(src/content/<資格>/*.md の数と一致。貸金業務取扱主任者だけは
-  // src/content/kashikin/ ではなく src/content/questions/ の504件)。2026-10-31時点=27資格5,672問
-  description: "シカクモンは資格試験のオリジナル練習問題を無料で提供するサイトです。貸金業務取扱主任者・賃貸不動産経営管理士・管理業務主任者・個人情報保護士・知的財産管理技能検定・ビジネス実務法務検定・ITパスポート・登録販売者・保育士・エックス線作業主任者など27資格、合計5,672問。全問に根拠法令を含む詳細解説付き。",
+  // src/content/kashikin/ ではなく src/content/questions/ の504件)。2026-11-01時点=33資格6,632問
+  description: "シカクモンは資格試験のオリジナル練習問題を無料で提供するサイトです。貸金業務取扱主任者・賃貸不動産経営管理士・管理業務主任者・個人情報保護士・知的財産管理技能検定・ビジネス実務法務検定・ITパスポート・登録販売者・保育士・エックス線作業主任者など33資格、合計6,632問。全問に根拠法令を含む詳細解説付き。",
   icons: {
     icon: "/favicon.svg",
   },
@@ -160,6 +160,30 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                       <span className="w-1 h-4 mr-3 rounded-full" style={{ background: "var(--c-pii)" }}></span>
                       AI活用アドバイザー
                     </a>
+                    <a href="/ccc/" className="flex items-center px-4 py-2 text-[color:var(--c-text)] hover:bg-[color:var(--c-bg-alt)] hover:text-[color:var(--c-pii)] no-underline transition-colors">
+                      <span className="w-1 h-4 mr-3 rounded-full" style={{ background: "var(--c-pii)" }}></span>
+                      民法法務士
+                    </a>
+                    <a href="/llc/" className="flex items-center px-4 py-2 text-[color:var(--c-text)] hover:bg-[color:var(--c-bg-alt)] hover:text-[color:var(--c-pii)] no-underline transition-colors">
+                      <span className="w-1 h-4 mr-3 rounded-full" style={{ background: "var(--c-pii)" }}></span>
+                      労働法務士
+                    </a>
+                    <a href="/cac/" className="flex items-center px-4 py-2 text-[color:var(--c-text)] hover:bg-[color:var(--c-bg-alt)] hover:text-[color:var(--c-pii)] no-underline transition-colors">
+                      <span className="w-1 h-4 mr-3 rounded-full" style={{ background: "var(--c-pii)" }}></span>
+                      会社法法務士
+                    </a>
+                    <a href="/ibd/" className="flex items-center px-4 py-2 text-[color:var(--c-text)] hover:bg-[color:var(--c-bg-alt)] hover:text-[color:var(--c-pii)] no-underline transition-colors">
+                      <span className="w-1 h-4 mr-3 rounded-full" style={{ background: "var(--c-pii)" }}></span>
+                      インバウンド実務主任者
+                    </a>
+                    <a href="/dxo/" className="flex items-center px-4 py-2 text-[color:var(--c-text)] hover:bg-[color:var(--c-bg-alt)] hover:text-[color:var(--c-pii)] no-underline transition-colors">
+                      <span className="w-1 h-4 mr-3 rounded-full" style={{ background: "var(--c-pii)" }}></span>
+                      DXオフィサー
+                    </a>
+                    <a href="/wlc/" className="flex items-center px-4 py-2 text-[color:var(--c-text)] hover:bg-[color:var(--c-bg-alt)] hover:text-[color:var(--c-pii)] no-underline transition-colors">
+                      <span className="w-1 h-4 mr-3 rounded-full" style={{ background: "var(--c-pii)" }}></span>
+                      ワークライフ・コーディネーター
+                    </a>
                     <a href="/xray/" className="flex items-center px-4 py-2 text-[color:var(--c-text)] hover:bg-[color:var(--c-bg-alt)] hover:text-[color:var(--c-pii)] no-underline transition-colors">
                       <span className="w-1 h-4 mr-3 rounded-full" style={{ background: "var(--c-pii)" }}></span>
                       エックス線作業主任者
@@ -247,6 +271,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                   <li><a href="/gaia/" className="text-[color:var(--c-text-sub)] hover:text-[color:var(--c-pii)] no-underline">生成AIアドバイザー</a></li>
                   <li><a href="/dxa/" className="text-[color:var(--c-text-sub)] hover:text-[color:var(--c-pii)] no-underline">DX推進アドバイザー</a></li>
                   <li><a href="/aia/" className="text-[color:var(--c-text-sub)] hover:text-[color:var(--c-pii)] no-underline">AI活用アドバイザー</a></li>
+                  <li><a href="/ccc/" className="text-[color:var(--c-text-sub)] hover:text-[color:var(--c-pii)] no-underline">民法法務士</a></li>
+                  <li><a href="/llc/" className="text-[color:var(--c-text-sub)] hover:text-[color:var(--c-pii)] no-underline">労働法務士</a></li>
+                  <li><a href="/cac/" className="text-[color:var(--c-text-sub)] hover:text-[color:var(--c-pii)] no-underline">会社法法務士</a></li>
+                  <li><a href="/ibd/" className="text-[color:var(--c-text-sub)] hover:text-[color:var(--c-pii)] no-underline">インバウンド実務主任者</a></li>
+                  <li><a href="/dxo/" className="text-[color:var(--c-text-sub)] hover:text-[color:var(--c-pii)] no-underline">DXオフィサー</a></li>
+                  <li><a href="/wlc/" className="text-[color:var(--c-text-sub)] hover:text-[color:var(--c-pii)] no-underline">ワークライフ・コーディネーター</a></li>
                   <li><a href="/xray/" className="text-[color:var(--c-text-sub)] hover:text-[color:var(--c-pii)] no-underline">エックス線作業主任者</a></li>
                   <li><a href="/kyoin/" className="text-[color:var(--c-text-sub)] hover:text-[color:var(--c-fukushi)] no-underline">教員採用試験（教職教養）</a></li>
                   <li><a href="/shakai/" className="text-[color:var(--c-text-sub)] hover:text-[color:var(--c-eco)] no-underline">社会福祉士（共通科目）</a></li>

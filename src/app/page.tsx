@@ -20,16 +20,22 @@ import {
   DXA_EXAMS,
   AIA_EXAMS,
   XRAY_EXAMS,
+  CCC_EXAMS,
+  LLC_EXAMS,
+  CAC_EXAMS,
+  IBD_EXAMS,
+  DXO_EXAMS,
+  WLC_EXAMS,
 } from "@/lib/exam-dates";
 import StudioLink from "@/components/StudioLink";
 import { SISTER_SITES, sisterSite } from "@/lib/sister-sites";
 
 // description の資格数・問題数は、下の exams の件数と count の合計(自動集計はしていない)。
-// 資格や問題を増やしたら、ここと layout.tsx・about/page.tsx・public/llms.txt を一緒に直す。2026-10-31 時点=27資格5,672問
+// 資格や問題を増やしたら、ここと layout.tsx・about/page.tsx・public/llms.txt を一緒に直す。2026-11-01 時点=33資格6,632問
 // コラムを足したときは public/llms.txt の「コラム記事(…時点で165本)」の本数と日付も直す(src/content/columns/*.md の数。2026-10-31 時点=165本)
 export const metadata: Metadata = {
   title: { absolute: "シカクモン｜資格試験のオリジナル練習問題を無料で提供" },
-  description: "シカクモンは資格試験のオリジナル練習問題を無料で提供するサイトです。貸金業務取扱主任者・賃貸不動産経営管理士・管理業務主任者・個人情報保護士・知的財産管理技能検定・ビジネス実務法務検定・ITパスポート・登録販売者・保育士・エックス線作業主任者など27資格、合計5,672問。全問に根拠を含む詳細解説付き。",
+  description: "シカクモンは資格試験のオリジナル練習問題を無料で提供するサイトです。貸金業務取扱主任者・賃貸不動産経営管理士・管理業務主任者・個人情報保護士・知的財産管理技能検定・ビジネス実務法務検定・ITパスポート・登録販売者・保育士・エックス線作業主任者など33資格、合計6,632問。全問に根拠を含む詳細解説付き。",
   alternates: { canonical: "/" },
   // openGraphはトップレベルの浅いマージのため、部分指定するとlayout側の
   // siteName/locale/type/imagesが丸ごと消える(page-metadata.tsと同じ理由でフル指定)
@@ -39,7 +45,7 @@ export const metadata: Metadata = {
     siteName: "シカクモン",
     url: "/",
     title: "シカクモン｜資格試験のオリジナル練習問題を無料で提供",
-    description: "貸金業務取扱主任者・賃管士・管業・個人情報保護士・知財3級/2級・ビジ法3級/2級・ITパスポート・登録販売者・保育士・エックス線作業主任者など27資格、合計5,672問のオリジナル練習問題を無料公開。",
+    description: "貸金業務取扱主任者・賃管士・管業・個人情報保護士・知財3級/2級・ビジ法3級/2級・ITパスポート・登録販売者・保育士・エックス線作業主任者など33資格、合計6,632問のオリジナル練習問題を無料公開。",
     images: [{ url: "/og-default.png", width: 1200, height: 630, alt: "シカクモン - 資格試験の練習問題" }],
   },
 };
@@ -257,6 +263,66 @@ export default function Home() {
       softVar: "var(--c-pii-soft)",
     },
     {
+      name: "民法法務士",
+      slug: "ccc",
+      count: 160,
+      fieldCount: 8,
+      desc: "民法総則・物権・債権総論・債権各論・親族・相続まで、民法の全体を問う全日本情報学習振興協会の認定試験。2020年の債権法改正以降の現行法に沿ったオリジナル練習問題集です。",
+      date: nextExamDateLabel(CCC_EXAMS, { fallback: "年3回実施" }),
+      themeVar: "var(--c-pii)",
+      softVar: "var(--c-pii-soft)",
+    },
+    {
+      name: "労働法務士",
+      slug: "llc",
+      count: 160,
+      fieldCount: 8,
+      desc: "労働契約・労働時間と賃金・安全衛生から、労働組合法、雇用保障、労働紛争の解決まで。全日本情報学習振興協会の認定試験に沿ったオリジナル練習問題集です。",
+      date: nextExamDateLabel(LLC_EXAMS, { fallback: "年4回実施" }),
+      themeVar: "var(--c-pii)",
+      softVar: "var(--c-pii-soft)",
+    },
+    {
+      name: "会社法法務士",
+      slug: "cac",
+      count: 160,
+      fieldCount: 8,
+      desc: "会社の設立・株式・株主総会と役員・計算から組織再編・持分会社まで、会社法の条文構成に沿って問う全日本情報学習振興協会の認定試験のオリジナル練習問題集です。",
+      date: nextExamDateLabel(CAC_EXAMS, { fallback: "年2回程度実施" }),
+      themeVar: "var(--c-pii)",
+      softVar: "var(--c-pii-soft)",
+    },
+    {
+      name: "インバウンド実務主任者",
+      slug: "ibd",
+      count: 160,
+      fieldCount: 8,
+      desc: "観光とインバウンドの基礎から、訪日外国人の理解と対応、集客、まちづくりまで。全13課題に沿ったオリジナル練習問題集です。",
+      date: nextExamDateLabel(IBD_EXAMS, { fallback: "年4回実施" }),
+      themeVar: "var(--c-pii)",
+      softVar: "var(--c-pii-soft)",
+    },
+    {
+      name: "DXオフィサー",
+      slug: "dxo",
+      count: 160,
+      fieldCount: 8,
+      desc: "DXの現状と業種別の事例、AI・ビッグデータ・IoT・クラウドなどの技術、DX人材と制度まで。DX推進アドバイザーの上位にあたる認定試験のオリジナル練習問題集です。",
+      date: nextExamDateLabel(DXO_EXAMS, { fallback: "年3回実施" }),
+      themeVar: "var(--c-pii)",
+      softVar: "var(--c-pii-soft)",
+    },
+    {
+      name: "ワークライフ・コーディネーター",
+      slug: "wlc",
+      count: 160,
+      fieldCount: 8,
+      desc: "ワークライフバランスの考え方から、治療・子育て・介護と仕事の両立、働き方に関する労働法、社会保障と税まで。全日本情報学習振興協会の認定試験のオリジナル練習問題集です。",
+      date: nextExamDateLabel(WLC_EXAMS, { fallback: "年3回実施" }),
+      themeVar: "var(--c-pii)",
+      softVar: "var(--c-pii-soft)",
+    },
+    {
       name: "エックス線作業主任者",
       slug: "xray",
       count: 160,
@@ -352,7 +418,7 @@ export default function Home() {
       key: "houmu",
       title: "法務・知的財産",
       lead: "契約や権利関係を扱う資格。条文の要件をそのまま問われるため、根拠つきの演習が効きます。貸金業・賃貸管理・マンション管理は受験者層が重なります。",
-      slugs: ["kashikin", "chintai", "kangyo", "chizai", "chizai2"],
+      slugs: ["kashikin", "chintai", "kangyo", "chizai", "chizai2", "ccc", "cac"],
     },
     {
       key: "joho",
@@ -370,7 +436,7 @@ export default function Home() {
           で扱っています。
         </>
       ),
-      slugs: ["had", "ccm"],
+      slugs: ["had", "ccm", "llc", "wlc"],
     },
     {
       key: "kokka",
@@ -393,7 +459,13 @@ export default function Home() {
       key: "ai-dx",
       title: "AI・DXの認定試験",
       lead: "DX推進アドバイザー・AI活用アドバイザー・生成AIアドバイザーは、いずれも全日本情報学習振興協会の認定試験で、AIとDXの用語・事例・制度を2択と4択で問われます。",
-      slugs: ["dxa", "aia", "gaia"],
+      slugs: ["dxa", "aia", "gaia", "dxo"],
+    },
+    {
+      key: "kankou",
+      title: "観光・インバウンド",
+      lead: "訪日外国人の動向と受入れ、集客、まちづくりまでを問う全日本情報学習振興協会の認定試験です。",
+      slugs: ["ibd"],
     },
     {
       key: "tokyo-cci",

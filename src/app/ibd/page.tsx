@@ -151,6 +151,9 @@ export default async function IbdPage() {
             <span className="font-bold text-[color:var(--c-ink)]">合格基準</span>　90点満点中72点以上（正答率80%相当）
           </p>
           <p>
+            <span className="font-bold text-[color:var(--c-ink)]">外国語検定の加点</span>　協会が指定する外国語検定（英検2級以上、TOEIC L&amp;R 600点以上、中国語検定3級以上など）を持っていれば、申請により総合点に6点加算。申込のときに申請し、申込締切の翌日10時までに証明書を送る必要がある
+          </p>
+          <p>
             <span className="font-bold text-[color:var(--c-ink)]">受験料</span>　一般 11,000円／学割 8,800円（税込）。CBTは会場費1,500円、オンラインIBTはカメラ送料3,000円が別途。2027年4月の回から一般14,300円に改定
           </p>
           <p>

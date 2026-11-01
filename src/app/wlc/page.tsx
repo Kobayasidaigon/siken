@@ -160,7 +160,7 @@ export default async function WlcPage() {
             </a>
           </p>
           <p>
-            <span className="font-bold text-[color:var(--c-ink)]">受験方式</span>　公開会場（マークシート）・CBT・オンラインIBT
+            <span className="font-bold text-[color:var(--c-ink)]">受験方式</span>　公開会場（マークシート。東京・名古屋・大阪のみ）・CBT（全国のテストセンター）・オンラインIBT（自宅や会社から受験可）
           </p>
           <p>
             <span className="font-bold text-[color:var(--c-ink)]">実施機関</span>　一般財団法人 全日本情報学習振興協会

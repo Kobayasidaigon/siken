@@ -2,6 +2,7 @@ import { getAllColumns } from "@/lib/columns";
 import type { Metadata } from "next";
 import ColumnFilter from "./ColumnFilter";
 import { pageMetadata } from "@/lib/page-metadata";
+import { SISTER_SITES } from "@/lib/sister-sites";
 
 export const metadata: Metadata = pageMetadata({
   path: "/column/",
@@ -340,6 +341,25 @@ export default async function ColumnIndexPage() {
       </section>
 
       <ColumnFilter groups={groups} totalCount={totalCount} />
+
+      {/* 姉妹サイトのコラム一覧へ(2026-10-31 追加)。本体のコラムから姉妹のコラムへの経路が
+          soumu-jinji-shikaku など数本の文中リンクしか無かったため。紹介文は lib/sister-sites.ts */}
+      <section className="mt-12 border-t border-[color:var(--c-border)] pt-8">
+        <h2 className="text-base font-bold text-[color:var(--c-ink)] mb-2 font-serif">ほかの分野のコラム（姉妹サイト）</h2>
+        <p className="text-sm text-[color:var(--c-text-sub)] leading-relaxed mb-4">
+          シカクモンで扱っていない資格のコラムは、姉妹サイトに載せています。
+        </p>
+        <ul className="space-y-3">
+          {SISTER_SITES.map((site) => (
+            <li key={site.id} className="text-sm leading-relaxed">
+              <a href={site.columnsHref} className="font-bold text-[color:var(--c-ink)] underline hover:no-underline">
+                {site.name}のコラム
+              </a>
+              <span className="block text-xs text-[color:var(--c-text-sub)] mt-0.5">{site.columnsDesc}</span>
+            </li>
+          ))}
+        </ul>
+      </section>
     </div>
   );
 }

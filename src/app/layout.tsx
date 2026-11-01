@@ -6,6 +6,7 @@ import "./globals.css";
 import StudioLink from "@/components/StudioLink";
 import MobileNav from "@/components/MobileNav";
 import { ADSENSE_CLIENT } from "@/lib/adsense";
+import { SISTER_SITES } from "@/lib/sister-sites";
 
 const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
 
@@ -39,8 +40,9 @@ export const metadata: Metadata = {
     template: "%s｜シカクモン",
   },
   // 資格を増やしたらここの資格名と問題数も更新すること(自動集計はしていない)。
-  // 正しい数は night-batch/index/matrix.json で確認できる。2026-09-09時点=17資格3,970問
-  description: "シカクモンは資格試験のオリジナル練習問題を無料で提供するサイトです。貸金業務取扱主任者・個人情報保護士・知的財産管理技能検定3級/2級・マイナンバー実務検定3級・個人情報保護実務検定・ビジネス実務法務検定3級/2級・ITパスポート・賃貸不動産経営管理士・管理業務主任者・福祉住環境コーディネーター2級・ビジネスマネジャー検定・eco検定・情報サイバーセキュリティ管理士・教員採用試験・社会福祉士、合計3,970問。全問に根拠法令を含む詳細解説付き。",
+  // 正しい数は src/app/page.tsx の exams の件数と count の合計(src/content/<資格>/*.md の数と一致。貸金業務取扱主任者だけは
+  // src/content/kashikin/ ではなく src/content/questions/ の504件)。2026-10-31時点=27資格5,672問
+  description: "シカクモンは資格試験のオリジナル練習問題を無料で提供するサイトです。貸金業務取扱主任者・賃貸不動産経営管理士・管理業務主任者・個人情報保護士・知的財産管理技能検定・ビジネス実務法務検定・ITパスポート・登録販売者・保育士・エックス線作業主任者など27資格、合計5,672問。全問に根拠法令を含む詳細解説付き。",
   icons: {
     icon: "/favicon.svg",
   },
@@ -282,51 +284,21 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                   </li>
                 </ul>
                 <h4 className="text-[color:var(--c-ink)] font-bold mt-6 mb-3 text-xs font-serif">姉妹サイト</h4>
+                {/* 紹介文は lib/sister-sites.ts(トップ本文と共有) */}
                 <ul className="space-y-2">
-                  <li>
-                    <a
-                      href="https://setsubi.shikakumon.com/"
-                      className="text-[color:var(--c-text-sub)] hover:text-[color:var(--c-ink)] no-underline"
-                    >
-                      設備資格ドリル
-                    </a>
-                    <p className="text-[11px] text-[color:var(--c-text-sub)] mt-0.5 leading-relaxed">
-                      電気工事士などビルメン4点セットの無料練習問題
-                    </p>
-                  </li>
-                  <li>
-                    <a
-                      href="https://kintore.shikakumon.com/"
-                      className="text-[color:var(--c-text-sub)] hover:text-[color:var(--c-ink)] no-underline"
-                    >
-                      筋トレ資格ドリル
-                    </a>
-                    <p className="text-[11px] text-[color:var(--c-text-sub)] mt-0.5 leading-relaxed">
-                      NSCA-CPTなど筋トレ資格の無料練習問題
-                    </p>
-                  </li>
-                  <li>
-                    <a
-                      href="https://eisei.shikakumon.com/"
-                      className="text-[color:var(--c-text-sub)] hover:text-[color:var(--c-ink)] no-underline"
-                    >
-                      衛生管理者ドリル
-                    </a>
-                    <p className="text-[11px] text-[color:var(--c-text-sub)] mt-0.5 leading-relaxed">
-                      第一種・第二種衛生管理者の無料練習問題と模擬試験
-                    </p>
-                  </li>
-                  <li>
-                    <a
-                      href="https://sekokan.shikakumon.com/"
-                      className="text-[color:var(--c-text-sub)] hover:text-[color:var(--c-ink)] no-underline"
-                    >
-                      施工管理ドリル
-                    </a>
-                    <p className="text-[11px] text-[color:var(--c-text-sub)] mt-0.5 leading-relaxed">
-                      土木・建築・電気工事・管工事 施工管理技士 第一次検定の無料練習問題
-                    </p>
-                  </li>
+                  {SISTER_SITES.map((site) => (
+                    <li key={site.id}>
+                      <a
+                        href={site.href}
+                        className="text-[color:var(--c-text-sub)] hover:text-[color:var(--c-ink)] no-underline"
+                      >
+                        {site.name}
+                      </a>
+                      <p className="text-[11px] text-[color:var(--c-text-sub)] mt-0.5 leading-relaxed">
+                        {site.footerDesc}
+                      </p>
+                    </li>
+                  ))}
                 </ul>
               </div>
               <div>

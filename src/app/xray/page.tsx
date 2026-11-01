@@ -10,6 +10,7 @@ import { XRAY_FIELDS } from "@/lib/xray-fields";
 import ExamCountdown from "@/components/ExamCountdown";
 import { XRAY_EXAMS } from "@/lib/exam-dates";
 import { EXAM_AFFILIATE } from "@/lib/affiliate-links";
+import { sisterSite } from "@/lib/sister-sites";
 
 export const metadata: Metadata = pageMetadata({
   path: "/xray/",
@@ -25,6 +26,8 @@ export default async function XrayPage() {
     XRAY_FIELDS.map(async (f) => (await getXrayQuestionsByField(f.name)).length)
   );
   const aff = EXAM_AFFILIATE.xray;
+  const eisei = sisterSite("eisei");
+  const setsubi = sisterSite("setsubi");
 
   return (
     <div className="theme-pii pb-16">
@@ -150,12 +153,23 @@ export default async function XrayPage() {
 
       <XrayCourseAd />
 
-      {/* 関連する試験 */}
+      {/* 関連する試験。
+          2026-10-31: 以前は「同じ労働安全衛生分野の国家資格は、設備資格ドリルの電験・電工などの問題集と合わせて学べます」と
+          書いていたが、電験・電工は電気技術者試験センターの試験で、労働安全衛生法の免許ではない(setsubi-shikaku/src/data/certs.ts の
+          denko2・denken3 の authority)。同じ協会の免許試験である衛生管理者・二級ボイラー技士への案内に直した。
+          実施団体の確認: eisei-shikaku/src/data/certs.ts(eisei1・eisei2)と setsubi-shikaku/src/data/certs.ts(boiler2)の authority
+          「公益財団法人 安全衛生技術試験協会」。協会の「【公表試験問題】労働安全衛生法に基づく免許試験」
+          (https://www.exam.or.jp/lckohyo/)と「統計」(https://www.exam.or.jp/h_gokakuritsu/)に、第一種・第二種衛生管理者・
+          二級ボイラー技士・エックス線作業主任者が並んでいることを、2026-10-31 に公式ドメインの検索抜粋で照合(exam.or.jp への直接取得は不可)。 */}
       <section className="mb-12">
         <h2 className="text-base font-bold text-[color:var(--c-ink)] mb-4 font-serif">あわせて学ぶと役に立つ試験</h2>
         <div className="card p-5 text-sm text-[color:var(--c-text-sub)] leading-relaxed space-y-2">
           <p>
-            管理区域や被ばく限度、作業主任者の選任は、労働安全衛生法令の理解が土台です。同じ労働安全衛生分野の国家資格は、設備資格ドリルの<a href="https://setsubi.shikakumon.com/" className="underline hover:no-underline">電験・電工などの問題集</a>と合わせて学べます（姉妹サイト）。
+            管理区域や被ばく限度、作業主任者の選任は、労働安全衛生法令の理解が土台です。同じ安全衛生技術試験協会が実施する労働安全衛生法の免許試験には、衛生管理者（第一種・第二種）や二級ボイラー技士があります。姉妹サイトの
+            <a href={eisei.href} className="underline hover:no-underline">{eisei.name}</a>
+            ・
+            <a href={`${setsubi.href}boiler2/`} className="underline hover:no-underline">{setsubi.name}（二級ボイラー技士）</a>
+            で練習問題を公開しています。
           </p>
         </div>
       </section>

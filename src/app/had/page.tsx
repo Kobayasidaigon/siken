@@ -9,6 +9,7 @@ import { HAD_FIELDS } from "@/lib/had-fields";
 import ExamCountdown from "@/components/ExamCountdown";
 import { HAD_EXAMS } from "@/lib/exam-dates";
 import { EXAM_AFFILIATE } from "@/lib/affiliate-links";
+import { sisterSite } from "@/lib/sister-sites";
 
 export const metadata: Metadata = pageMetadata({
   path: "/had/",
@@ -21,6 +22,7 @@ export default async function HadPage() {
   const allQuestions = await getAllHadQuestions();
   const allColumns = await getAllColumns();
   const hadColumns = allColumns.filter((c) => c.slug.startsWith("had-"));
+  const eisei = sisterSite("eisei");
   const fieldCounts = await Promise.all(
     HAD_FIELDS.map(async (f) => (await getHadQuestionsByField(f.name)).length)
   );
@@ -153,7 +155,8 @@ export default async function HadPage() {
 
       <HadCourseAd />
 
-      {/* 同じ人事・総務の読者に向けた、協会の関連試験 */}
+      {/* 同じ人事・総務の読者に向けた、協会の関連試験と、姉妹サイトの衛生管理者(2026-10-31 追加。
+          「常時50人以上の事業場で選任」は column/soumu-jinji-shikaku.md の1位の節と同じ記述で、新しい事実は足していない) */}
       <section className="mb-12">
         <h2 className="text-base font-bold text-[color:var(--c-ink)] mb-4 font-serif">あわせて学ぶと役に立つ試験</h2>
         <div className="card p-5 text-sm text-[color:var(--c-text-sub)] leading-relaxed space-y-2">
@@ -177,6 +180,13 @@ export default async function HadPage() {
           </p>
           <p>
             働き方の法律を広く学ぶなら<a href="/llc/" className="underline hover:no-underline">労働法務士</a>、育児・介護・治療と仕事の両立支援なら<a href="/wlc/" className="underline hover:no-underline">ワークライフ・コーディネーター</a>も、同じ協会の試験です。
+          </p>
+          <p>
+            常時50人以上の労働者を使用する事業場で選任が必要な衛生管理者も、人事・総務が担当することの多い資格です。第一種・第二種の練習問題は、姉妹サイトの
+            <a href={eisei.href} className="underline hover:no-underline">
+              {eisei.name}
+            </a>
+            で公開しています。
           </p>
         </div>
       </section>

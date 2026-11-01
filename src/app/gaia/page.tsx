@@ -141,7 +141,7 @@ export default async function GaiaPage() {
             <span className="font-bold text-[color:var(--c-ink)]">受験料</span>　1級11,000円（学割8,800円）、2級8,800円（学割7,040円）・税込。CBTは会場費1,500円、オンラインIBTはカメラ送料3,000円が別途。2027年5月開催分から1級14,300円・2級12,100円に改定
           </p>
           <p>
-            <span className="font-bold text-[color:var(--c-ink)]">試験日</span>　年4回ペース。次は第4回 2026年11月29日（申込は2026年10月22日まで）、第5回 2027年2月21日（申込は2026年10月27日〜2027年1月14日）、第6回 2027年5月23日
+            <span className="font-bold text-[color:var(--c-ink)]">試験日</span>　年4回ペース。第4回 2026年11月29日（申込は10月27日で終了）、次に申し込めるのは第5回 2027年2月21日（申込は2026年11月2日〜2027年1月14日）、第6回 2027年5月23日
           </p>
           <p>
             <span className="font-bold text-[color:var(--c-ink)]">受験者数・合格率</span>　協会の公式ページに掲載なし

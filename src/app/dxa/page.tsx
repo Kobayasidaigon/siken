@@ -131,7 +131,7 @@ export default async function DxaPage() {
             <span className="font-bold text-[color:var(--c-ink)]">受験料</span>　11,000円（学割8,800円・税込）。CBTは会場費1,500円、オンラインIBTはカメラ送料3,000円が別途。2027年3月開催分から14,300円に改定
           </p>
           <p>
-            <span className="font-bold text-[color:var(--c-ink)]">試験日</span>　年4回ペース。次は第22回 2026年12月13日（申込は2026年10月29日まで）、第23回 2027年3月14日、第24回 2027年6月27日
+            <span className="font-bold text-[color:var(--c-ink)]">試験日</span>　年4回ペース。次は第22回 2026年12月13日（申込は2026年11月12日まで・延長）、第23回 2027年3月14日、第24回 2027年6月27日
           </p>
           <p>
             <span className="font-bold text-[color:var(--c-ink)]">受験者数・合格率</span>　協会の公式ページに掲載なし

@@ -1,7 +1,7 @@
 "use client";
 
 /**
- * 第1回模試の結果画面に置く、第2回(有料)への購入導線カード。
+ * 第1回模試の結果画面に置く、第2回への導線カード(2026-11-08 に無料化)。
  *
  * 【2026-09-20 改修】判定別に出し分ける。それまでは全員に同じ「もう1回分、別問題で
  *   本番形式を通す」+価格入りボタンを見せていて、28日間で表示118人→クリック6人。
@@ -118,10 +118,10 @@ export default function Moshi2Offer({
             onClick={() => trackMoshi2("moshi2_offer_click", params)}
             className="bg-ink text-paper rounded-[8px] px-4 py-2.5 text-[13px] no-underline hover:bg-[color:var(--c-accent,var(--c-ink))] transition-colors"
           >
-            第2回模試の内容を見る →
+            第2回模試を受ける(無料)→
           </Link>
           <span className="text-[11px] text-ink-faint">
-            ¥{product.priceJpy.toLocaleString()}・買い切り・登録不要・全問解説つき
+            無料・登録不要・全問解説つき
           </span>
         </div>
         <Link

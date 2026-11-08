@@ -3,14 +3,14 @@ import { pageMetadata } from "@/lib/page-metadata";
 import Moshi2Print from "@/components/Moshi2Print";
 
 /**
- * 第2回模試の印刷用紙面。中身は購入者だけが /api/moshi2/[cert] から受け取る。
+ * 第2回模試の印刷用紙面。中身は /api/moshi2/[cert] から受け取る(2026-11-08 から無料)。
  * 検索結果に出す面ではないので noindex。
  */
 export const metadata: Metadata = pageMetadata({
   path: "/aia/moshi2/print/",
   title: "AI活用アドバイザー認定試験 模擬試験 第2回｜印刷用",
   description:
-    "AI活用アドバイザー認定試験の模擬試験 第2回を、問題・解答用紙・解説の順に A4 で印刷できます。ご購入者向けのページです。",
+    "AI活用アドバイザー認定試験の模擬試験 第2回を、問題・解答用紙・解説の順に A4 で印刷できます。無料でご利用いただけます。",
   noindex: true,
 });
 

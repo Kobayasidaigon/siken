@@ -1,5 +1,5 @@
 /**
- * 第2回模試(有料)の商品ページ本体。資格ごとのページはこれを呼ぶだけにしてある。
+ * 第2回模試の商品ページ本体(2026-11-08 に無料化。それまでは Stripe で有料販売)。資格ごとのページはこれを呼ぶだけにしてある。
  *
  * このファイル自体に有料の問題データは入らない。受験画面(Moshi2Gate)が購入者
  * 判定を通った API から取りに行くので、ページは通常どおり静的生成でき、検索にも
@@ -69,7 +69,7 @@ export default function Moshi2PageBody({ certId }: { certId: ExamSlug }) {
           <li>全{total}問の解説。正解の根拠だけでなく、誤りの選択肢がなぜ誤りかまで</li>
           <li>分野別正答率と弱点診断。間違えた問題は練習問題の復習に自動で反映</li>
           <li>印刷用 A4 紙面（問題・解答用紙・解説、PDF 保存可）</li>
-          <li>買い切り・登録不要・サブスクなし</li>
+          <li>無料・登録不要</li>
         </ul>
       </section>
 
@@ -103,9 +103,9 @@ export default function Moshi2PageBody({ certId }: { certId: ExamSlug }) {
       <div className="w-12 h-1 mb-5" style={{ background: "var(--c-accent)" }}></div>
 
       <p className="text-sm text-[color:var(--c-text)] leading-relaxed mb-6 max-w-2xl">
-        第1回（無料）で出た弱点は、本当に埋まりましたか？
+        第1回で出た弱点は、本当に埋まりましたか？
         第1回と1問も重複しない初見の<strong>{total}問</strong>で、本試験と同じ
-        <strong>{p.timeLimitMin}分・{p.passLabel}</strong>の条件をもう一度通す1回分です。
+        <strong>{p.timeLimitMin}分・{p.passLabel}</strong>の条件をもう一度通す1回分です。<strong>無料・登録不要</strong>で、このまま受けられます。
       </p>
 
       <Moshi2Gate certId={certId} pitch={pitch} />

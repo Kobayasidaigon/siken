@@ -1,5 +1,14 @@
 # 変更履歴
 
+## 2026-11-08 第2回模擬試験を無料にする
+
+- 15資格の第2回模試(/<資格>/moshi2/)を、購入なしで誰でも受けられるようにした。販売開始から購入が0件だったため。
+  第1回の結果画面・資格トップの案内は「無料・登録不要」に変え、価格の表示をすべて外した。
+- 決済まわり(/api/checkout・unlock・restore・stripe-webhook、署名 cookie の src/lib/access.ts・redemptions.ts、
+  scripts/check-stripe.mjs、stripe パッケージ)を削除した。/api/moshi2/[cert] は購入確認なしで問題を返し、CDN に1日キャッシュする。
+- 特定商取引法に基づく表記は「販売している商品はない」旨だけにして noindex にし、フッターのリンクを外した。運営方針(about)とプライバシーの文面も合わせた。
+- Vercel の環境変数 STRIPE_SECRET_KEY・STRIPE_WEBHOOK_SECRET・ACCESS_SECRET と、Stripe ダッシュボードの webhook は不要になった(消すのは手作業)。
+
 ## 2026-11-08 Next.js などの依存パッケージを更新して、既知の脆弱性を解消する
 
 - next 16.2.1→16.4.5、react/react-dom 19.3.1、tailwindcss 4.3.5、postcss 8.5.32 ほか。`npm audit` の7件（critical 1・high 5・moderate 1）が0件になった。

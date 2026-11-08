@@ -1,7 +1,7 @@
 "use client";
 
 /**
- * 資格トップに置く第2回(有料)への導線。
+ * 資格トップに置く第2回への導線(2026-11-08 に無料化)。
  *
  * ページもAPIも動くのに、どこからもリンクしていなければ誰にも見つからない。
  * 設備サイトで実際にその状態のまま公開直前まで気づかなかったため、第1回の
@@ -55,7 +55,7 @@ export default function Moshi2TopLink({ certId, place = "cert_top" }: { certId: 
         第2回模試（本番前の最終確認）→
       </a>
       <span className="text-[11px] text-[color:var(--c-text-sub)] pl-1">
-        ¥{p.priceJpy.toLocaleString()}・買い切り
+        無料・登録不要
       </span>
     </span>
   );

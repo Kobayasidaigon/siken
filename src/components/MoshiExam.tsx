@@ -117,7 +117,7 @@ function formatRemaining(sec: number): string {
  * submit() の GA 送信は submittedRef を立てた後、setResult / clearSession /
  * setPhase("done") より前にある。ここで例外が出ると、採点結果が画面に出ないまま
  * submittedRef だけが立ち、採点ボタンも二度と効かなくなる。
- * この画面は Moshi2Gate 経由で有料の第2回模試にも使われるので、
+ * この画面は Moshi2Gate 経由で第2回模試にも使われるので、
  * 計測のために答案を落とすことは許容できない。
  */
 function track(name: string, params: Record<string, unknown>) {
@@ -574,7 +574,7 @@ export default function MoshiExam({
       {/* 本試験経験者への形式アンケート(出題形式の一次情報収集) */}
       <MoshiFormatFeedback exam={exam} round={round} />
 
-      {/* 第2回の案内。販売中なら購入導線、未販売なら制作判断用のフェイクドア。
+      {/* 第2回の案内。第2回がある資格なら受験への導線(2026-11-08 に無料化)、無い資格なら制作判断用のフェイクドア。
           第2回そのものを受けている画面では出さない(round === 1 の条件)。 */}
       {round === 1 &&
         (moshi2ProductOf(exam) ? (

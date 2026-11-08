@@ -32,6 +32,10 @@ const LIMITS = {
   ANSWER_POS_PCT: 45,
   // 設問文の重複件数の上限
   DUP_MAX: 0,
+  // 正解が最長の選択肢である割合の上限(%)。4択の理論値は25%。
+  // 2026-11-08 時点で37.3%。いきなり下げられないので、これ以上悪化させない歯止めとして置き、
+  // 問題を直すたびに下げていく(ラチェット)。
+  LONGEST_PCT: 37.5,
 };
 
 function readMarkdownQuestions(root) {
@@ -75,6 +79,7 @@ let longest = 0;
 const overGap = [];
 const seen = new Map();
 const dups = [];
+const byExam = {};
 let shape = 0;
 
 for (const it of items) {
@@ -85,8 +90,11 @@ for (const it of items) {
   }
   if (a < pos.length) pos[a]++;
   const lens = ch.map((c) => String(c).length);
+  const ex = (byExam[it.exam] ??= { n: 0, longest: 0 });
+  ex.n++;
   if (lens[a] === Math.max(...lens)) {
     longest++;
+    ex.longest++;
     const gap = lens[a] - Math.max(...lens.filter((_, i) => i !== a));
     if (gap >= LIMITS.GAP_CHARS) overGap.push({ id: it.id, gap });
   }
@@ -109,12 +117,21 @@ console.log(`  正解肢が${LIMITS.GAP_CHARS}字以上長い: ${overGap.length}
 console.log(`  正解位置の最大偏り : ${maxPosPct}%  [上限 ${LIMITS.ANSWER_POS_PCT}%]`);
 console.log(`  設問文の重複(同資格内): ${dups.length}件  [上限 ${LIMITS.DUP_MAX}件]`);
 if (shape) console.log(`  形式不正           : ${shape}件`);
+if (process.argv.includes("--by-exam")) {
+  console.log("\n  資格別の 最長肢=正解 の割合(高い順):");
+  Object.entries(byExam)
+    .map(([k, v]) => [k, v.n, Math.round((v.longest / v.n) * 1000) / 10])
+    .sort((a, b) => b[2] - a[2])
+    .forEach(([k, n, r]) => console.log(`    ${String(k).padEnd(12)} ${String(r).padStart(5)}%  (${n}問)`));
+}
 
 if (shape > 0) violations.push(`形式不正が${shape}件`);
 if (gapPct > LIMITS.GAP_RATIO_PCT)
   violations.push(`正解肢が${LIMITS.GAP_CHARS}字以上長い問題が${overGap.length}問(${gapPct}%) — 上限${LIMITS.GAP_RATIO_PCT}%`);
 if (maxPosPct > LIMITS.ANSWER_POS_PCT)
   violations.push(`正解位置が${maxPosPct}%に偏っている — 上限${LIMITS.ANSWER_POS_PCT}%`);
+if (pct(longest) > LIMITS.LONGEST_PCT)
+  violations.push(`正解=最長肢が${pct(longest)}% — 上限${LIMITS.LONGEST_PCT}%(長さで当たる問題を増やさないこと)`);
 if (dups.length > LIMITS.DUP_MAX)
   violations.push(`設問文の重複が${dups.length}件 — 上限${LIMITS.DUP_MAX}件`);
 

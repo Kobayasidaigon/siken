@@ -189,6 +189,28 @@ const wlcMax = maxDate(wlc, todayFallback);
 const columnsMax = maxDate(columns, todayFallback);
 const siteMax = [kashikinMax, piiMax, chizaiMax, chizai2Max, mynumberMax, jitsumuMax, bijihouMax, fukushi2Max, bijimaneMax, ecoMax, bijihou2Max, itpassMax, chintaiMax, kangyoMax, isecMax, kyoinMax, shakaiMax, isfMax, dxpMax, hadMax, ccmMax, touhanMax, hoikushiMax, gaiaMax, dxaMax, aiaMax, xrayMax, cccMax, llcMax, cacMax, ibdMax, dxoMax, wlcMax, columnsMax].sort().at(-1);
 
+// 試験カレンダーの月。exam-dates.ts の date / applyStart / applyEnd に出てくる年月を拾う。
+// TS を読み込めないので文字列から拾う(exam-calendar.ts の calendarMonths() と同じ集合になる)。
+const examDatesPath = path.join(__dirname, "../src/lib/exam-dates.ts");
+const calendarMonths = (() => {
+  const src = fs.readFileSync(examDatesPath, "utf-8");
+  const set = new Set();
+  for (const m of src.matchAll(/\b(?:date|applyStart|applyEnd):\s*"(\d{4}-\d{2})-\d{2}"/g)) set.add(m[1]);
+  return [...set].sort();
+})();
+// exam-dates.ts の日程リストがカレンダー(exam-calendar.ts)に載っているか確かめる。
+// 載っていないと、その資格の日付の月が sitemap にだけ出て、月別ページは 404 になりうる。
+{
+  const datesSrc = fs.readFileSync(examDatesPath, "utf-8");
+  const calSrc = fs.readFileSync(path.join(__dirname, "../src/lib/exam-calendar.ts"), "utf-8");
+  const lists = [...datesSrc.matchAll(/export const (\w+_EXAMS)\b/g)].map((m) => m[1]);
+  const missing = lists.filter((name) => !new RegExp(`\\b${name}\\b`).test(calSrc));
+  if (missing.length) {
+    console.error(`src/lib/exam-calendar.ts の CALENDAR_EXAMS に日程リストが足りません: ${missing.join(", ")}`);
+    process.exit(1);
+  }
+}
+
 // 一覧・ハブページの lastmod は、そのページに表示されるコンテンツ群の最終更新日
 const staticPages = [
   { url: "/", priority: "1.0", freq: "weekly", lastmod: siteMax },
@@ -538,6 +560,10 @@ const staticPages = [
   { url: "/kangyo/field/hozen/", priority: "0.8", freq: "monthly", lastmod: kangyoMax },
   { url: "/kangyo/field/setsubi/", priority: "0.8", freq: "monthly", lastmod: kangyoMax },
   { url: "/kangyo/field/kenchiku/", priority: "0.8", freq: "monthly", lastmod: kangyoMax },
+  // 資格試験カレンダー(2026-11-01 追加)。月別ページは exam-dates.ts に日付がある月だけ作られる
+  // (src/app/calendar/[ym]/page.tsx の generateStaticParams)。同じファイルから月を拾って揃える。
+  { url: "/calendar/", priority: "0.8", freq: "weekly", lastmod: fileDate(examDatesPath) },
+  ...calendarMonths.map((ym) => ({ url: `/calendar/${ym}/`, priority: "0.6", freq: "monthly", lastmod: fileDate(examDatesPath) })),
   // その他 (/study/ は localStorage 依存の個人ページで noindex のため sitemap から除外)
   { url: "/guide/", priority: "0.6", freq: "monthly", lastmod: fileDate(path.join(appDir, "guide/page.tsx")) },
   { url: "/goukaku-houkoku/", priority: "0.4", freq: "monthly", lastmod: fileDate(path.join(appDir, "goukaku-houkoku/page.tsx")) },

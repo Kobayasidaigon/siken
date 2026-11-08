@@ -15,7 +15,7 @@ import { getAllCcmQuestions, type CcmQuestionData } from "./ccm-questions";
 export const CCM_MOSHI_TIME_LIMIT_MIN = 120;
 export const CCM_MOSHI_PASS_COUNT = 56;
 
-export const CCM_MOSHI_1_SLUGS: string[] = [
+const CCM_MOSHI_1_SLUGS: string[] = [
   // 第1課題 企業の社会的責任（16問）
   "ccm-002", // 企業の社会的責任とESG B 地域社会というステークホルダー
   "ccm-022", // コーポレートガバナンスと内部統制 A ソフトローとしてのコードの性格

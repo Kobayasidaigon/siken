@@ -19,7 +19,7 @@ import type { ExamSlug } from "./study-progress";
  * (実例が Moshi2TopLink.tsx の冒頭コメントに残っている)。
  */
 
-export type PracticeRoute = {
+type PracticeRoute = {
   href: string;
   label: string;
   /** リンクの下に出す一行。何をする面なのかを、煽らずに説明する */

@@ -68,19 +68,3 @@ export async function getPiiQuestionsByField(field: string): Promise<PiiQuestion
     .filter((q) => q.field === field)
     .sort((a, b) => a.questionNumber - b.questionNumber);
 }
-
-/**
- * 指定slugの問題が、同じ分野内で何番目の問題かを返す（1始まり）。
- */
-export async function getPiiFieldIndex(slug: string): Promise<{ index: number; total: number; field: string } | null> {
-  const q = await getPiiQuestion(slug);
-  if (!q || !q.field) return null;
-  const fieldQuestions = await getPiiQuestionsByField(q.field);
-  const index = fieldQuestions.findIndex((x) => x.slug === slug);
-  if (index === -1) return null;
-  return { index: index + 1, total: fieldQuestions.length, field: q.field };
-}
-
-export function getPiiFields(): string[] {
-  return ["個人情報保護法", "マイナンバー法", "情報セキュリティ"];
-}

@@ -1,3 +1,4 @@
+import SiteLink from "@/components/SiteLink";
 import { getAllChintaiQuestions, getChintaiQuestionsByField } from "@/lib/chintai-questions";
 import RecentCourseReminder from "@/components/RecentCourseReminder";
 import { getAllColumns } from "@/lib/columns";
@@ -43,7 +44,7 @@ export default async function ChintaiPage() {
     <div className="theme-kashikin pb-16">
       <section className="-mx-4 px-4 py-10 sm:py-14 border-y mb-10" style={{ background: "var(--c-kashikin-soft)", borderColor: "var(--c-border)" }}>
         <nav className="text-xs text-[color:var(--c-text-sub)] mb-4">
-          <a href="/" className="no-underline hover:underline">ホーム</a> / <span>賃貸不動産経営管理士</span>
+          <SiteLink href="/" className="no-underline hover:underline">ホーム</SiteLink> / <span>賃貸不動産経営管理士</span>
         </nav>
         <h1 className="text-2xl sm:text-3xl font-bold mb-3 font-serif leading-tight" style={{ color: "var(--c-kashikin-ink)" }}>
           賃貸不動産経営管理士
@@ -53,21 +54,21 @@ export default async function ChintaiPage() {
           賃貸住宅管理業法とサブリース規制、借地借家法、建物設備、原状回復まで10分野。{allQuestions.length}問のオリジナル練習問題集です。
         </p>
         <div className="mt-6 flex flex-wrap gap-3">
-          <a href="/chintai/q/chintai-001/" className="btn-accent">問題を解き始める →</a>
-          <a
+          <SiteLink href="/chintai/q/chintai-001/" className="btn-accent">問題を解き始める →</SiteLink>
+          <SiteLink
             href="/chintai/moshi/"
             className="inline-flex items-center px-4 py-2 rounded-lg border text-sm font-medium no-underline transition-colors hover:bg-[color:var(--c-kashikin-soft)]"
             style={{ borderColor: "var(--c-kashikin)", color: "var(--c-kashikin-ink)" }}
           >
             模擬試験を受ける（50問・120分・合格点判定）→
-          </a>
-          <a
+          </SiteLink>
+          <SiteLink
             href="/chintai/mock/"
             className="inline-flex items-center px-4 py-2 rounded-lg border text-sm font-medium no-underline transition-colors hover:bg-[color:var(--c-kashikin-soft)]"
             style={{ borderColor: "var(--c-kashikin)", color: "var(--c-kashikin-ink)" }}
           >
             本番形式で腕試し（20問・採点）→
-          </a>
+          </SiteLink>
         </div>
       </section>
 
@@ -82,13 +83,13 @@ export default async function ChintaiPage() {
         <h2 className="text-lg font-bold text-[color:var(--c-ink)] mb-5 font-serif">分野から選ぶ</h2>
         <div className="space-y-3">
           {fields.map((f, i) => (
-            <a key={f.slug} href={`/chintai/field/${f.slug}/`} className="card p-5 no-underline group block" style={{ borderLeft: "3px solid var(--c-kashikin)" }}>
+            <SiteLink key={f.slug} href={`/chintai/field/${f.slug}/`} className="card p-5 no-underline group block" style={{ borderLeft: "3px solid var(--c-kashikin)" }}>
               <div className="flex items-start justify-between mb-1 gap-3">
                 <p className="text-base font-bold text-[color:var(--c-ink)] font-serif">{f.name}</p>
                 <span className="text-xs text-[color:var(--c-text-sub)] shrink-0">{fieldCounts[i]}問</span>
               </div>
               <p className="text-sm text-[color:var(--c-text-sub)] mt-2 leading-relaxed">{f.desc}</p>
-            </a>
+            </SiteLink>
           ))}
         </div>
       </section>
@@ -99,7 +100,7 @@ export default async function ChintaiPage() {
           {/* 2026-09-05: ITパスポートの雛形(東商IBT/CBT・70点合格)が残ったままの誤記を、
               協議会の令和8年度実施要領(予備校3社の転載で確認)に合わせて修正 */}
           <p><span className="font-bold text-[color:var(--c-ink)]">試験形式</span>　四肢択一・50問・120分（賃貸不動産経営管理士講習の修了者は5問免除・45問・110分）</p>
-          <p><span className="font-bold text-[color:var(--c-ink)]">合格基準</span>　年度ごとに決定（令和7年度は50問中38点・合格率29.5%）　<a href="/column/chintai-chokuzen/" className="underline hover:no-underline">直前対策と合格点の推移 →</a></p>
+          <p><span className="font-bold text-[color:var(--c-ink)]">合格基準</span>　年度ごとに決定（令和7年度は50問中38点・合格率29.5%）　<SiteLink href="/column/chintai-chokuzen/" className="underline hover:no-underline">直前対策と合格点の推移 →</SiteLink></p>
           <p><span className="font-bold text-[color:var(--c-ink)]">受験料</span>　12,000円（税込）</p>
           <p><span className="font-bold text-[color:var(--c-ink)]">試験日</span>　年1回・11月（令和8年度は11月15日、申込は8月3日〜9月30日）</p>
           <p><span className="font-bold text-[color:var(--c-ink)]">実施機関</span>　一般社団法人賃貸不動産経営管理士協議会</p>
@@ -117,7 +118,7 @@ export default async function ChintaiPage() {
         <h2 className="text-base font-bold text-[color:var(--c-ink)] mb-4 font-serif">あわせて学ぶと役に立つ試験</h2>
         <div className="card p-5 text-sm text-[color:var(--c-text-sub)] leading-relaxed space-y-2">
           <p>
-            賃貸借や契約の土台になる民法を、総則から相続まで通して学ぶなら<a href="/ccc/" className="underline hover:no-underline">民法法務士</a>（全日本情報学習振興協会）も選択肢になります。
+            賃貸借や契約の土台になる民法を、総則から相続まで通して学ぶなら<SiteLink href="/ccc/" className="underline hover:no-underline">民法法務士</SiteLink>（全日本情報学習振興協会）も選択肢になります。
           </p>
         </div>
       </section>
@@ -128,19 +129,19 @@ export default async function ChintaiPage() {
           <h2 className="text-base font-bold text-[color:var(--c-ink)] mb-4 font-serif">コラム</h2>
           <div className="space-y-2">
             {chintaiColumns.slice(0, 6).map((col) => (
-              <a
+              <SiteLink
                 key={col.slug}
                 href={`/column/${col.slug}/`}
                 className="block py-2 text-sm text-[color:var(--c-text)] no-underline hover:text-[color:var(--c-kashikin)] border-b border-[color:var(--c-border)] last:border-b-0"
               >
                 {col.title}
-              </a>
+              </SiteLink>
             ))}
           </div>
           {chintaiColumns.length > 6 && (
-            <a href="/column/#chintai" className="inline-block mt-4 text-sm text-[color:var(--c-text-sub)] no-underline hover:text-[color:var(--c-kashikin)] underline">
+            <SiteLink href="/column/#chintai" className="inline-block mt-4 text-sm text-[color:var(--c-text-sub)] no-underline hover:text-[color:var(--c-kashikin)] underline">
               賃貸不動産経営管理士のコラムをすべて見る →
-            </a>
+            </SiteLink>
           )}
         </section>
       )}

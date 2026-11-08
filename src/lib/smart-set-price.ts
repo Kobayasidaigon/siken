@@ -24,7 +24,7 @@ interface Price {
   yen: number;
 }
 
-export interface SmartSetPrice {
+interface SmartSetPrice {
   courseOnly: Price[];
   withExam: Price[];
   source: string;

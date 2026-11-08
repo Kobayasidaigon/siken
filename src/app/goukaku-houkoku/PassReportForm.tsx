@@ -1,5 +1,6 @@
 "use client";
 
+import SiteLink from "@/components/SiteLink";
 import { useEffect, useState } from "react";
 import { sendGAEvent } from "@next/third-parties/google";
 import { EXAM_LIST, type ExamSlug } from "@/lib/study-progress";
@@ -85,7 +86,7 @@ export default function PassReportForm() {
         <p className="text-sm text-[color:var(--c-text-sub)] leading-relaxed">
           いただいた内容は問題と解説の見直しに使わせていただきます。
           掲載する場合は、内容を変えずにそのまま
-          <a href="/voice/" className="underline hover:no-underline mx-0.5">合格報告のページ</a>
+          <SiteLink href="/voice/" className="underline hover:no-underline mx-0.5">合格報告のページ</SiteLink>
           と資格ページに載せます。掲載までに数日いただくことがあります。
         </p>
         {/* 合格した人の次の行動は「資格を仕事に活かす」。リンク未設定の間は何も出ない(lib/career-links.ts) */}

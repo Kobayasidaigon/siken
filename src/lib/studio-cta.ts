@@ -24,7 +24,7 @@ import type { ExamSlug } from "./study-progress";
 
 const STUDIO_ORIGIN = "https://studio.shikakumon.com";
 
-export type StudioCta = {
+type StudioCta = {
   /** utm 付きの遷移先 URL */
   href: string;
   /** 枠の見出し */
@@ -192,7 +192,7 @@ export function studioCtaFor(
  * Studio 側 lib/referral-exam-names.ts の SHIKAKUMON_EXAM_NAMES と同じ値を保つこと
  * (向こうは utm_content — 旧リンクでは utm_medium — から引く用、こちらは URL に載せる用)。
  */
-export const EXAM_FULL_NAMES: Record<ExamSlug, string> = {
+const EXAM_FULL_NAMES: Record<ExamSlug, string> = {
   kashikin: "貸金業務取扱主任者",
   pii: "個人情報保護士",
   chizai: "知的財産管理技能検定",

@@ -20,9 +20,9 @@ const PRODUCTION_ENDPOINT = "https://studio.shikakumon.com/api/moshi-reminder/su
 const LOCAL_ENDPOINT = "http://localhost:3500/api/moshi-reminder/subscribe";
 
 /** Studio 側で Origin から判定するサイト名 (localhost のときだけ本文で申告する) */
-export const MOSHI_REMINDER_SITE = "shikakumon";
+const MOSHI_REMINDER_SITE = "shikakumon";
 
-export function moshiReminderEndpoint(): string {
+function moshiReminderEndpoint(): string {
   const env = process.env.NEXT_PUBLIC_MOSHI_REMINDER_ENDPOINT;
   if (env) return env;
   if (typeof window !== "undefined" && window.location.hostname === "localhost") {
@@ -31,7 +31,7 @@ export function moshiReminderEndpoint(): string {
   return PRODUCTION_ENDPOINT;
 }
 
-export type MoshiReminderPayload = {
+type MoshiReminderPayload = {
   email: string;
   cert: string;
   certName: string;
@@ -46,7 +46,7 @@ export type MoshiReminderPayload = {
   website: string;
 };
 
-export type MoshiReminderOutcome = { ok: true; mailed: boolean } | { ok: false; error: string };
+type MoshiReminderOutcome = { ok: true; mailed: boolean } | { ok: false; error: string };
 
 /** Studio の登録 API に送る。ネットワーク不通・非 2xx は ok:false で返す (投げない) */
 export async function submitMoshiReminder(p: MoshiReminderPayload): Promise<MoshiReminderOutcome> {

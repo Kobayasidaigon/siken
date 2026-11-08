@@ -1,3 +1,4 @@
+import SiteLink from "@/components/SiteLink";
 import type { Metadata } from "next";
 import { pageMetadata } from "@/lib/page-metadata";
 import { getGaiaMoshi1Questions, GAIA_MOSHI_PASS_COUNT, GAIA_MOSHI_TIME_LIMIT_MIN } from "@/lib/gaia-moshi";
@@ -24,8 +25,8 @@ export default async function GaiaMoshiPage() {
   return (
     <div className="theme-pii pb-16">
       <nav className="breadcrumb text-xs text-[color:var(--c-text-sub)] mb-4 flex gap-1">
-        <a href="/">ホーム</a><span>/</span>
-        <a href="/gaia/">生成AIアドバイザー</a><span>/</span>
+        <SiteLink href="/">ホーム</SiteLink><span>/</span>
+        <SiteLink href="/gaia/">生成AIアドバイザー</SiteLink><span>/</span>
         <span className="text-[color:var(--c-ink)]">模擬試験 第1回（1級形式）</span>
       </nav>
 
@@ -60,8 +61,8 @@ export default async function GaiaMoshiPage() {
       />
 
       <p className="text-xs text-[color:var(--c-text-sub)] mt-8 max-w-2xl leading-relaxed">
-        ※本模試は当サイト編集部が作成したオリジナル問題で構成しており、公式問題・サンプル問題の転載ではありません。課題ごとの問題数・配点は協会が公表していないため、均等配点・総合70%で判定します。協会は難易度により合格基準を調整する場合があると案内しています。2級の形式を試したい方は<a href="/gaia/moshi-2kyu/" className="underline hover:no-underline">2級形式の模擬試験（50問・60分）</a>へ。
-        1問ずつじっくり学びたい方は<a href="/gaia/" className="underline hover:no-underline">練習問題</a>へ。
+        ※本模試は当サイト編集部が作成したオリジナル問題で構成しており、公式問題・サンプル問題の転載ではありません。課題ごとの問題数・配点は協会が公表していないため、均等配点・総合70%で判定します。協会は難易度により合格基準を調整する場合があると案内しています。2級の形式を試したい方は<SiteLink href="/gaia/moshi-2kyu/" className="underline hover:no-underline">2級形式の模擬試験（50問・60分）</SiteLink>へ。
+        1問ずつじっくり学びたい方は<SiteLink href="/gaia/" className="underline hover:no-underline">練習問題</SiteLink>へ。
       </p>
     </div>
   );

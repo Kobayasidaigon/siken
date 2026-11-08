@@ -5,7 +5,7 @@
 // answer: true=正しい記述(○) / false=誤った記述(×)。
 // =============================================================================
 
-export type OxQuestion = {
+type OxQuestion = {
   id: string;
   field: string;
   statement: string;

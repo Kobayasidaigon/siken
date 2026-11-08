@@ -1,3 +1,4 @@
+import SiteLink from "@/components/SiteLink";
 import type { Metadata } from "next";
 import { pageMetadata } from "@/lib/page-metadata";
 import { getBijihou2Moshi1Questions, BIJIHOU2_MOSHI_PASS_COUNT, BIJIHOU2_MOSHI_TIME_LIMIT_MIN } from "@/lib/bijihou2-moshi";
@@ -26,8 +27,8 @@ export default async function Bijihou2MoshiPage() {
   return (
     <div className="theme-kashikin pb-16">
       <nav className="breadcrumb text-xs text-[color:var(--c-text-sub)] mb-4 flex gap-1">
-        <a href="/">ホーム</a><span>/</span>
-        <a href="/bijihou2/">ビジネス実務法務検定2級</a><span>/</span>
+        <SiteLink href="/">ホーム</SiteLink><span>/</span>
+        <SiteLink href="/bijihou2/">ビジネス実務法務検定2級</SiteLink><span>/</span>
         <span className="text-[color:var(--c-ink)]">模擬試験 第1回</span>
       </nav>
 
@@ -70,8 +71,8 @@ export default async function Bijihou2MoshiPage() {
         採点基準（100点満点・70点合格）に準拠しつつ、50問構成（均等2点）としています。
         当サイト編集部が作成したオリジナル問題で、実際の過去問題の転載ではありません。
         合格判定はあくまで学習の目安です。1問ずつじっくり学びたい方は
-        <a href="/bijihou2/" className="underline hover:no-underline">練習問題200問</a>へ、
-        3級から固めたい方は<a href="/bijihou/moshi/" className="underline hover:no-underline">3級の模擬試験</a>へ。
+        <SiteLink href="/bijihou2/" className="underline hover:no-underline">練習問題200問</SiteLink>へ、
+        3級から固めたい方は<SiteLink href="/bijihou/moshi/" className="underline hover:no-underline">3級の模擬試験</SiteLink>へ。
       </p>
     </div>
   );

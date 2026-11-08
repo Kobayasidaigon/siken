@@ -1,3 +1,4 @@
+import SiteLink from "@/components/SiteLink";
 import { getAllPiiQuestions, getPiiQuestionsByField } from "@/lib/pii-questions";
 import RecentCourseReminder from "@/components/RecentCourseReminder";
 import { getAllColumns } from "@/lib/columns";
@@ -58,7 +59,7 @@ export default async function PiiPage() {
         style={{ background: "var(--c-pii-soft)", borderColor: "var(--c-border)" }}
       >
         <nav className="text-xs text-[color:var(--c-text-sub)] mb-4">
-          <a href="/" className="no-underline hover:underline">ホーム</a> / <span>個人情報保護士</span>
+          <SiteLink href="/" className="no-underline hover:underline">ホーム</SiteLink> / <span>個人情報保護士</span>
         </nav>
         <h1 className="text-2xl sm:text-3xl font-bold mb-3 font-serif leading-tight" style={{ color: "var(--c-pii-ink)" }}>
           個人情報保護士
@@ -69,22 +70,22 @@ export default async function PiiPage() {
           法律と情報セキュリティ、両方の知識が問われる認定試験です。
         </p>
         <div className="mt-6 flex flex-wrap gap-3">
-          <a href="/pii/q/pii-001/" className="btn-accent">問題を解き始める →</a>
-          <a
+          <SiteLink href="/pii/q/pii-001/" className="btn-accent">問題を解き始める →</SiteLink>
+          <SiteLink
             href="/pii/moshi/"
             className="inline-flex items-center px-4 py-2 rounded-lg border text-sm font-medium no-underline transition-colors hover:bg-[color:var(--c-pii-soft)]"
             style={{ borderColor: "var(--c-pii)", color: "var(--c-pii-ink)" }}
           >
             模擬試験を受ける（100問・150分・課題別判定）→
-          </a>
+          </SiteLink>
           <Moshi2TopLink certId="pii" />
-          <a
+          <SiteLink
             href="/pii/mock/"
             className="inline-flex items-center px-4 py-2 rounded-lg border text-sm font-medium no-underline transition-colors hover:bg-[color:var(--c-pii-soft)]"
             style={{ borderColor: "var(--c-pii)", color: "var(--c-pii-ink)" }}
           >
             本番形式で腕試し（20問・採点）→
-          </a>
+          </SiteLink>
         </div>
       </section>
 
@@ -109,7 +110,7 @@ export default async function PiiPage() {
         <h2 className="text-lg font-bold text-[color:var(--c-ink)] mb-5 font-serif">分野から選ぶ</h2>
         <div className="space-y-3">
           {fields.map((f, i) => (
-            <a
+            <SiteLink
               key={f.slug}
               href={`/pii/field/${f.slug}/`}
               className="card p-5 no-underline group block"
@@ -123,7 +124,7 @@ export default async function PiiPage() {
                 <span className="text-xs text-[color:var(--c-text-sub)] shrink-0">{fieldCounts[i]}問</span>
               </div>
               <p className="text-sm text-[color:var(--c-text-sub)] mt-2 leading-relaxed">{f.desc}</p>
-            </a>
+            </SiteLink>
           ))}
         </div>
       </section>
@@ -141,7 +142,7 @@ export default async function PiiPage() {
       <section className="mb-12">
         <h2 className="text-base font-bold text-[color:var(--c-ink)] mb-4 font-serif">試験の概要</h2>
         <div className="card p-5 text-sm text-[color:var(--c-text-sub)] space-y-2">
-          <p><span className="font-bold text-[color:var(--c-ink)]">試験日</span>　年4回（6月・9月・12月・3月頃）　<a href="/column/pii-nittei/" className="underline hover:no-underline">詳しい日程・申込方法 →</a></p>
+          <p><span className="font-bold text-[color:var(--c-ink)]">試験日</span>　年4回（6月・9月・12月・3月頃）　<SiteLink href="/column/pii-nittei/" className="underline hover:no-underline">詳しい日程・申込方法 →</SiteLink></p>
           <p><span className="font-bold text-[color:var(--c-ink)]">試験形式</span>　マークシート 100問（課題Ⅰ 50問 + 課題Ⅱ 50問）</p>
           <p><span className="font-bold text-[color:var(--c-ink)]">試験時間</span>　150分</p>
           <p><span className="font-bold text-[color:var(--c-ink)]">合格基準</span>　各課題70%以上</p>
@@ -162,19 +163,19 @@ export default async function PiiPage() {
           <h2 className="text-base font-bold text-[color:var(--c-ink)] mb-4 font-serif">コラム</h2>
           <div className="space-y-2">
             {piiColumns.slice(0, 6).map((col) => (
-              <a
+              <SiteLink
                 key={col.slug}
                 href={`/column/${col.slug}/`}
                 className="block py-2 text-sm text-[color:var(--c-text)] no-underline hover:text-[color:var(--c-pii)] border-b border-[color:var(--c-border)] last:border-b-0"
               >
                 {col.title}
-              </a>
+              </SiteLink>
             ))}
           </div>
           {piiColumns.length > 6 && (
-            <a href="/column/#pii" className="inline-block mt-4 text-sm text-[color:var(--c-text-sub)] no-underline hover:text-[color:var(--c-pii)] underline">
+            <SiteLink href="/column/#pii" className="inline-block mt-4 text-sm text-[color:var(--c-text-sub)] no-underline hover:text-[color:var(--c-pii)] underline">
               個人情報保護士のコラムをすべて見る →
-            </a>
+            </SiteLink>
           )}
         </section>
       )}

@@ -1,3 +1,4 @@
+import SiteLink from "@/components/SiteLink";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { pageMetadata } from "@/lib/page-metadata";
@@ -62,9 +63,9 @@ export default async function CalendarMonthPage({ params }: { params: Promise<{ 
 
   const monthNav = (
     <nav className="flex justify-between text-sm my-8">
-      {prev ? <a href={`/calendar/${prev}/`} className="hover:underline">← {formatYmJa(prev)}</a> : <span />}
-      <a href="/calendar/" className="hover:underline">年度一覧</a>
-      {next ? <a href={`/calendar/${next}/`} className="hover:underline">{formatYmJa(next)} →</a> : <span />}
+      {prev ? <SiteLink href={`/calendar/${prev}/`} className="hover:underline">← {formatYmJa(prev)}</SiteLink> : <span />}
+      <SiteLink href="/calendar/" className="hover:underline">年度一覧</SiteLink>
+      {next ? <SiteLink href={`/calendar/${next}/`} className="hover:underline">{formatYmJa(next)} →</SiteLink> : <span />}
     </nav>
   );
 
@@ -72,8 +73,8 @@ export default async function CalendarMonthPage({ params }: { params: Promise<{ 
     <div className="pb-16">
       <JsonLd data={jsonLd} />
       <nav className="text-xs text-[color:var(--c-text-sub)] mb-4">
-        <a href="/" className="hover:underline">ホーム</a> ›{" "}
-        <a href="/calendar/" className="hover:underline">資格試験カレンダー</a> › {formatYmJa(ym)}
+        <SiteLink href="/" className="hover:underline">ホーム</SiteLink> ›{" "}
+        <SiteLink href="/calendar/" className="hover:underline">資格試験カレンダー</SiteLink> › {formatYmJa(ym)}
       </nav>
 
       <h1 className="text-2xl sm:text-3xl font-bold text-[color:var(--c-ink)] font-serif mb-3">{title}</h1>
@@ -101,7 +102,7 @@ export default async function CalendarMonthPage({ params }: { params: Promise<{ 
                 key={`${exam.slug}-${round.date}`}
                 className={`py-3 text-sm ${round.applyEnd! < today ? "opacity-60" : ""}`}
               >
-                <a href={exam.topPath} className="text-[color:var(--c-ink)] hover:underline">{exam.name}</a>
+                <SiteLink href={exam.topPath} className="text-[color:var(--c-ink)] hover:underline">{exam.name}</SiteLink>
                 <span className="text-xs text-[color:var(--c-text-sub)] ml-2">{round.label}</span>
                 <span className="block text-xs text-[color:var(--c-text-sub)] mt-0.5">
                   申込 {formatYmdJa(round.applyStart!)}〜{formatYmdJa(round.applyEnd!)}／試験 {formatYmdJa(round.date)}

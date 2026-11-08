@@ -1,3 +1,4 @@
+import SiteLink from "@/components/SiteLink";
 import { getAllIbdQuestions, getIbdQuestionsByField } from "@/lib/ibd-questions";
 import RecentCourseReminder from "@/components/RecentCourseReminder";
 import { getAllColumns } from "@/lib/columns";
@@ -35,9 +36,9 @@ export default async function IbdPage() {
         style={{ background: "var(--c-pii-soft)", borderColor: "var(--c-border)" }}
       >
         <nav className="text-xs text-[color:var(--c-text-sub)] mb-4">
-          <a href="/" className="no-underline hover:underline">
+          <SiteLink href="/" className="no-underline hover:underline">
             ホーム
-          </a>{" "}
+          </SiteLink>{" "}
           / <span>インバウンド実務主任者</span>
         </nav>
         <h1
@@ -54,28 +55,28 @@ export default async function IbdPage() {
         <div className="mt-6 flex flex-wrap gap-3">
           {ready ? (
             <>
-              <a href="/ibd/q/ibd-001/" className="btn-accent">
+              <SiteLink href="/ibd/q/ibd-001/" className="btn-accent">
                 問題を解き始める →
-              </a>
-              <a
+              </SiteLink>
+              <SiteLink
                 href="/ibd/moshi/"
                 className="inline-flex items-center px-4 py-2 rounded-lg border text-sm font-medium no-underline transition-colors hover:bg-[color:var(--c-pii-soft)]"
                 style={{ borderColor: "var(--c-pii)", color: "var(--c-pii-ink)" }}
               >
                 模擬試験を受ける（87問・120分）→
-              </a>
-              <a
+              </SiteLink>
+              <SiteLink
                 href="/ibd/mock/"
                 className="inline-flex items-center px-4 py-2 rounded-lg border text-sm font-medium no-underline transition-colors hover:bg-[color:var(--c-pii-soft)]"
                 style={{ borderColor: "var(--c-pii)", color: "var(--c-pii-ink)" }}
               >
                 本番形式で腕試し（20問・採点）→
-              </a>
+              </SiteLink>
             </>
           ) : (
-            <a href="/column/ibd-nittei/" className="btn-accent">
+            <SiteLink href="/column/ibd-nittei/" className="btn-accent">
               試験日程と申込締切を見る →
-            </a>
+            </SiteLink>
           )}
         </div>
       </section>
@@ -120,14 +121,14 @@ export default async function IbdPage() {
               </>
             );
             return fieldCounts[i] > 0 ? (
-              <a
+              <SiteLink
                 key={f.slug}
                 href={`/ibd/field/${f.slug}/`}
                 className="card p-5 no-underline group block"
                 style={{ borderLeft: "3px solid var(--c-pii)" }}
               >
                 {body}
-              </a>
+              </SiteLink>
             ) : (
               <div key={f.slug} className="card p-5 block" style={{ borderLeft: "3px solid var(--c-border)" }}>
                 {body}
@@ -158,9 +159,9 @@ export default async function IbdPage() {
           </p>
           <p>
             <span className="font-bold text-[color:var(--c-ink)]">試験日</span>　年4回（1月・4月・8月・12月ごろ）。
-            <a href="/column/ibd-nittei/" className="underline hover:no-underline">
+            <SiteLink href="/column/ibd-nittei/" className="underline hover:no-underline">
               詳しい日程・申込方法
-            </a>
+            </SiteLink>
           </p>
           <p>
             <span className="font-bold text-[color:var(--c-ink)]">受験方式</span>　公開会場（マークシート）・CBT・オンラインIBT
@@ -182,8 +183,8 @@ export default async function IbdPage() {
         <div className="card p-5 text-sm text-[color:var(--c-text-sub)] leading-relaxed">
           <p>
             インバウンド実務主任者は、宿泊・飲食・小売・交通・観光業で訪日客に接する方、自治体や観光協会の担当者に向いた試験です。関連する試験の問題集もあります:{" "}
-            <a href="/bijimane/" className="underline hover:no-underline">ビジネスマネジャー検定</a>・
-            <a href="/dxo/" className="underline hover:no-underline">DXオフィサー</a>
+            <SiteLink href="/bijimane/" className="underline hover:no-underline">ビジネスマネジャー検定</SiteLink>・
+            <SiteLink href="/dxo/" className="underline hover:no-underline">DXオフィサー</SiteLink>
           </p>
         </div>
       </section>
@@ -194,13 +195,13 @@ export default async function IbdPage() {
           <h2 className="text-base font-bold text-[color:var(--c-ink)] mb-4 font-serif">コラム</h2>
           <div className="space-y-2">
             {ibdColumns.slice(0, 6).map((col) => (
-              <a
+              <SiteLink
                 key={col.slug}
                 href={`/column/${col.slug}/`}
                 className="block py-2 text-sm text-[color:var(--c-text)] no-underline hover:text-[color:var(--c-pii)] border-b border-[color:var(--c-border)] last:border-b-0"
               >
                 {col.title}
-              </a>
+              </SiteLink>
             ))}
           </div>
         </section>

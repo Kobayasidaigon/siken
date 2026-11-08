@@ -1,3 +1,4 @@
+import SiteLink from "@/components/SiteLink";
 import { getAllMynumberQuestions, getMynumberQuestionsByField } from "@/lib/mynumber-questions";
 import RecentCourseReminder from "@/components/RecentCourseReminder";
 import { getAllColumns } from "@/lib/columns";
@@ -43,7 +44,7 @@ export default async function MynumberPage() {
         style={{ background: "var(--c-pii-soft)", borderColor: "var(--c-border)" }}
       >
         <nav className="text-xs text-[color:var(--c-text-sub)] mb-4">
-          <a href="/" className="no-underline hover:underline">ホーム</a> / <span>マイナンバー実務検定3級</span>
+          <SiteLink href="/" className="no-underline hover:underline">ホーム</SiteLink> / <span>マイナンバー実務検定3級</span>
         </nav>
         <h1 className="text-2xl sm:text-3xl font-bold mb-3 font-serif leading-tight" style={{ color: "var(--c-pii-ink)" }}>
           マイナンバー実務検定3級
@@ -53,22 +54,22 @@ export default async function MynumberPage() {
           番号法と個人番号の基本知識を問う、{allQuestions.length}問のオリジナル練習問題集です。
         </p>
         <div className="mt-6 flex flex-wrap gap-3">
-          <a href="/mynumber/q/mynumber-001/" className="btn-accent">問題を解き始める →</a>
-          <a
+          <SiteLink href="/mynumber/q/mynumber-001/" className="btn-accent">問題を解き始める →</SiteLink>
+          <SiteLink
             href="/mynumber/moshi/"
             className="inline-flex items-center px-4 py-2 rounded-lg border text-sm font-medium no-underline transition-colors hover:bg-[color:var(--c-pii-soft)]"
             style={{ borderColor: "var(--c-pii)", color: "var(--c-pii-ink)" }}
           >
             模擬試験を受ける（50問・75分・合否判定）→
-          </a>
+          </SiteLink>
           <Moshi2TopLink certId="mynumber" />
-          <a
+          <SiteLink
             href="/mynumber/mock/"
             className="inline-flex items-center px-4 py-2 rounded-lg border text-sm font-medium no-underline transition-colors hover:bg-[color:var(--c-pii-soft)]"
             style={{ borderColor: "var(--c-pii)", color: "var(--c-pii-ink)" }}
           >
             本番形式で腕試し（20問・採点）→
-          </a>
+          </SiteLink>
         </div>
       </section>
 
@@ -92,13 +93,13 @@ export default async function MynumberPage() {
         <h2 className="text-lg font-bold text-[color:var(--c-ink)] mb-5 font-serif">分野から選ぶ</h2>
         <div className="space-y-3">
           {fields.map((f, i) => (
-            <a key={f.slug} href={`/mynumber/field/${f.slug}/`} className="card p-5 no-underline group block" style={{ borderLeft: "3px solid var(--c-pii)" }}>
+            <SiteLink key={f.slug} href={`/mynumber/field/${f.slug}/`} className="card p-5 no-underline group block" style={{ borderLeft: "3px solid var(--c-pii)" }}>
               <div className="flex items-start justify-between mb-1 gap-3">
                 <p className="text-base font-bold text-[color:var(--c-ink)] font-serif">{f.name}</p>
                 <span className="text-xs text-[color:var(--c-text-sub)] shrink-0">{fieldCounts[i]}問</span>
               </div>
               <p className="text-sm text-[color:var(--c-text-sub)] mt-2 leading-relaxed">{f.desc}</p>
-            </a>
+            </SiteLink>
           ))}
         </div>
       </section>
@@ -110,7 +111,7 @@ export default async function MynumberPage() {
           <p><span className="font-bold text-[color:var(--c-ink)]">合格基準</span>　70%以上</p>
           {/* 1級・2級の受験料は 2026-10-24 の照合(Cowork・協会ページ)で足した。3級は従来どおり */}
           <p><span className="font-bold text-[color:var(--c-ink)]">受験料</span>　3級 7,700円（1級 11,000円・2級 8,800円）／CBT会場 +1,500円／オンラインIBT +3,000円（いずれも税込）</p>
-          <p><span className="font-bold text-[color:var(--c-ink)]">試験日</span>　年4回（6月・9月・12月・3月頃）　<a href="/column/mynumber-nittei/" className="underline hover:no-underline">詳しい日程・申込方法 →</a></p>
+          <p><span className="font-bold text-[color:var(--c-ink)]">試験日</span>　年4回（6月・9月・12月・3月頃）　<SiteLink href="/column/mynumber-nittei/" className="underline hover:no-underline">詳しい日程・申込方法 →</SiteLink></p>
           <p><span className="font-bold text-[color:var(--c-ink)]">実施機関</span>　全日本情報学習振興協会</p>
         </div>
       </section>
@@ -127,19 +128,19 @@ export default async function MynumberPage() {
           <h2 className="text-base font-bold text-[color:var(--c-ink)] mb-4 font-serif">コラム</h2>
           <div className="space-y-2">
             {mynumberColumns.slice(0, 6).map((col) => (
-              <a
+              <SiteLink
                 key={col.slug}
                 href={`/column/${col.slug}/`}
                 className="block py-2 text-sm text-[color:var(--c-text)] no-underline hover:text-[color:var(--c-pii)] border-b border-[color:var(--c-border)] last:border-b-0"
               >
                 {col.title}
-              </a>
+              </SiteLink>
             ))}
           </div>
           {mynumberColumns.length > 6 && (
-            <a href="/column/#mynumber" className="inline-block mt-4 text-sm text-[color:var(--c-text-sub)] no-underline hover:text-[color:var(--c-pii)] underline">
+            <SiteLink href="/column/#mynumber" className="inline-block mt-4 text-sm text-[color:var(--c-text-sub)] no-underline hover:text-[color:var(--c-pii)] underline">
               マイナンバー実務検定3級のコラムをすべて見る →
-            </a>
+            </SiteLink>
           )}
         </section>
       )}

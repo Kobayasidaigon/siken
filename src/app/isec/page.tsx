@@ -1,3 +1,4 @@
+import SiteLink from "@/components/SiteLink";
 import { getAllIsecQuestions, getIsecQuestionsByField } from "@/lib/isec-questions";
 import RecentCourseReminder from "@/components/RecentCourseReminder";
 import { getAllColumns } from "@/lib/columns";
@@ -33,9 +34,9 @@ export default async function IsecPage() {
         style={{ background: "var(--c-pii-soft)", borderColor: "var(--c-border)" }}
       >
         <nav className="text-xs text-[color:var(--c-text-sub)] mb-4">
-          <a href="/" className="no-underline hover:underline">
+          <SiteLink href="/" className="no-underline hover:underline">
             ホーム
-          </a>{" "}
+          </SiteLink>{" "}
           / <span>情報・サイバーセキュリティ管理士</span>
         </nav>
         <h1
@@ -50,23 +51,23 @@ export default async function IsecPage() {
           {scopeQuestionCount}問に、ネットワークとコンピュータの基礎の参考問題{allQuestions.length - scopeQuestionCount}問を加えたオリジナル練習問題集です。
         </p>
         <div className="mt-6 flex flex-wrap gap-3">
-          <a href="/isec/q/isec-001/" className="btn-accent">
+          <SiteLink href="/isec/q/isec-001/" className="btn-accent">
             問題を解き始める →
-          </a>
-          <a
+          </SiteLink>
+          <SiteLink
             href="/isec/moshi/"
             className="inline-flex items-center px-4 py-2 rounded-lg border text-sm font-medium no-underline transition-colors hover:bg-[color:var(--c-pii-soft)]"
             style={{ borderColor: "var(--c-pii)", color: "var(--c-pii-ink)" }}
           >
             模擬試験を受ける（90問・60分・課題別の正答率つき）→
-          </a>
-          <a
+          </SiteLink>
+          <SiteLink
             href="/isec/mock/"
             className="inline-flex items-center px-4 py-2 rounded-lg border text-sm font-medium no-underline transition-colors hover:bg-[color:var(--c-pii-soft)]"
             style={{ borderColor: "var(--c-pii)", color: "var(--c-pii-ink)" }}
           >
             本番形式で腕試し（20問・採点）→
-          </a>
+          </SiteLink>
         </div>
       </section>
 
@@ -92,7 +93,7 @@ export default async function IsecPage() {
         <h2 className="text-lg font-bold text-[color:var(--c-ink)] mb-5 font-serif">分野から選ぶ</h2>
         <div className="space-y-3">
           {ISEC_FIELDS.map((f, i) => f.outOfScope ? null : (
-            <a
+            <SiteLink
               key={f.slug}
               href={`/isec/field/${f.slug}/`}
               className="card p-5 no-underline group block"
@@ -111,7 +112,7 @@ export default async function IsecPage() {
                 <span className="text-xs text-[color:var(--c-text-sub)] shrink-0">{fieldCounts[i]}問</span>
               </div>
               <p className="text-sm text-[color:var(--c-text-sub)] mt-2 leading-relaxed">{f.desc}</p>
-            </a>
+            </SiteLink>
           ))}
         </div>
 
@@ -119,21 +120,21 @@ export default async function IsecPage() {
         <h3 className="text-sm font-bold text-[color:var(--c-ink)] mt-8 mb-2 font-serif">参考：ネットワークとコンピュータの基礎</h3>
         <p className="text-xs text-[color:var(--c-text-sub)] mb-3 leading-relaxed">
           旧課題Ⅳ「コンピュータの一般知識」の分野です。2026年2月の試験から管理士では出題されなくなり、
-          <a href="/isf/" className="underline hover:no-underline">
+          <SiteLink href="/isf/" className="underline hover:no-underline">
             初級
-          </a>
+          </SiteLink>
           だけの範囲になりました。課題Ⅲのサイバー攻撃（DNSやWebへの攻撃など）を理解する土台として残しています。
         </p>
         <div className="space-y-2">
           {ISEC_FIELDS.map((f, i) => !f.outOfScope ? null : (
-            <a
+            <SiteLink
               key={f.slug}
               href={`/isec/field/${f.slug}/`}
               className="card p-4 no-underline group flex items-start justify-between gap-3"
             >
               <p className="text-sm font-bold text-[color:var(--c-ink)] font-serif">{f.name}</p>
               <span className="text-xs text-[color:var(--c-text-sub)] shrink-0">{fieldCounts[i]}問</span>
-            </a>
+            </SiteLink>
           ))}
         </div>
       </section>
@@ -185,22 +186,22 @@ export default async function IsecPage() {
         <div className="card p-5 text-sm text-[color:var(--c-text-sub)] leading-relaxed space-y-2">
           <p>
             情報・サイバーセキュリティ管理士を実施している全日本情報学習振興協会は、
-            <a href="/pii/" className="underline hover:no-underline">
+            <SiteLink href="/pii/" className="underline hover:no-underline">
               個人情報保護士
-            </a>
+            </SiteLink>
             ・
-            <a href="/jitsumu/" className="underline hover:no-underline">
+            <SiteLink href="/jitsumu/" className="underline hover:no-underline">
               個人情報保護実務検定
-            </a>
+            </SiteLink>
             ・
-            <a href="/mynumber/" className="underline hover:no-underline">
+            <SiteLink href="/mynumber/" className="underline hover:no-underline">
               マイナンバー実務検定
-            </a>
+            </SiteLink>
             も実施しています。申込先は同じ協会です。
             試験日は、個人情報保護実務検定と
-            <a href="/isf/" className="underline hover:no-underline">
+            <SiteLink href="/isf/" className="underline hover:no-underline">
               初級
-            </a>
+            </SiteLink>
             が管理士と同じ日（2026年は2月・5月・8月・11月）、個人情報保護士とマイナンバー実務検定は別の月（2026年度は3月・6月・9月・12月）です。
             管理士の2027年の回は2月21日・6月27日・10月17日です。
           </p>
@@ -217,13 +218,13 @@ export default async function IsecPage() {
           <h2 className="text-base font-bold text-[color:var(--c-ink)] mb-4 font-serif">コラム</h2>
           <div className="space-y-2">
             {isecColumns.slice(0, 6).map((col) => (
-              <a
+              <SiteLink
                 key={col.slug}
                 href={`/column/${col.slug}/`}
                 className="block py-2 text-sm text-[color:var(--c-text)] no-underline hover:text-[color:var(--c-pii)] border-b border-[color:var(--c-border)] last:border-b-0"
               >
                 {col.title}
-              </a>
+              </SiteLink>
             ))}
           </div>
         </section>

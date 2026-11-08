@@ -1,3 +1,4 @@
+import SiteLink from "@/components/SiteLink";
 import { getAllQuestions } from "@/lib/questions";
 import type { Metadata } from "next";
 import { pageMetadata } from "@/lib/page-metadata";
@@ -14,7 +15,7 @@ export default async function ExamIndexPage() {
   return (
     <div className="pb-16">
       <h1 className="text-xl sm:text-2xl font-bold text-slate-900 mb-6">問題一覧</h1>
-      <a href="/exam/0/" className="card p-6 hover:shadow-md transition-shadow no-underline group block mb-6">
+      <SiteLink href="/exam/0/" className="card p-6 hover:shadow-md transition-shadow no-underline group block mb-6">
         <div className="flex items-center justify-between">
           <div>
             <p className="text-lg font-bold text-blue-800 group-hover:text-blue-600">オリジナル練習問題</p>
@@ -25,7 +26,7 @@ export default async function ExamIndexPage() {
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
           </svg>
         </div>
-      </a>
+      </SiteLink>
     </div>
   );
 }

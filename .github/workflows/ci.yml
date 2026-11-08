@@ -1,0 +1,31 @@
+# プルリクエストと main への push で、型チェック・lint・テスト・問題データの監査を回す。
+# ビルドそのものは Vercel のプレビューで確かめているので、ここでは速く終わるものだけを見る。
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: 型チェック
+        run: npm run typecheck
+      - name: lint
+        run: npm run lint
+      - name: テスト
+        run: npm test
+      - name: 問題データの監査
+        run: node scripts/audit-questions.mjs && node scripts/audit-moshi2.mjs && node scripts/audit-practice-routes.mjs && node scripts/audit-shikenmae.mjs

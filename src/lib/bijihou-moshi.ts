@@ -10,7 +10,7 @@ import { getAllBijihouQuestions, type BijihouQuestionData } from "./bijihou-ques
 export const BIJIHOU_MOSHI_TIME_LIMIT_MIN = 90;
 export const BIJIHOU_MOSHI_PASS_COUNT = 35;
 
-export const BIJIHOU_MOSHI_1_SLUGS: string[] = [
+const BIJIHOU_MOSHI_1_SLUGS: string[] = [
   "bijihou-001", // 法体系・取引の基礎 A 法体系における公法と私法の区別
   "bijihou-081", // 民法（物権・担保・相続） A 所有権の取得
   "bijihou-121", // 商法・会社法 A 株式会社の特徴

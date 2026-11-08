@@ -1,3 +1,4 @@
+import SiteLink from "@/components/SiteLink";
 import { getAllGaiaQuestions, getGaiaQuestionsByField } from "@/lib/gaia-questions";
 import RecentCourseReminder from "@/components/RecentCourseReminder";
 import { getAllColumns } from "@/lib/columns";
@@ -33,9 +34,9 @@ export default async function GaiaPage() {
         style={{ background: "var(--c-pii-soft)", borderColor: "var(--c-border)" }}
       >
         <nav className="text-xs text-[color:var(--c-text-sub)] mb-4">
-          <a href="/" className="no-underline hover:underline">
+          <SiteLink href="/" className="no-underline hover:underline">
             ホーム
-          </a>{" "}
+          </SiteLink>{" "}
           / <span>生成AIアドバイザー</span>
         </nav>
         <h1
@@ -49,31 +50,31 @@ export default async function GaiaPage() {
           生成AIの仕組みとプロンプト、活用ケース、リスク・著作権・情報管理、企業の導入課題までを問う全日本情報学習振興協会の認定試験。8課題に沿った{allQuestions.length}問のオリジナル練習問題集です（1級・2級共通の範囲）。
         </p>
         <div className="mt-6 flex flex-wrap gap-3">
-          <a href="/gaia/q/gaia-001/" className="btn-accent">
+          <SiteLink href="/gaia/q/gaia-001/" className="btn-accent">
             問題を解き始める →
-          </a>
-          <a
+          </SiteLink>
+          <SiteLink
             href="/gaia/moshi/"
             className="inline-flex items-center px-4 py-2 rounded-lg border text-sm font-medium no-underline transition-colors hover:bg-[color:var(--c-pii-soft)]"
             style={{ borderColor: "var(--c-pii)", color: "var(--c-pii-ink)" }}
           >
             1級形式の模擬試験（100問・120分）→
-          </a>
-          <a
+          </SiteLink>
+          <SiteLink
             href="/gaia/moshi-2kyu/"
             className="inline-flex items-center px-4 py-2 rounded-lg border text-sm font-medium no-underline transition-colors hover:bg-[color:var(--c-pii-soft)]"
             style={{ borderColor: "var(--c-pii)", color: "var(--c-pii-ink)" }}
           >
             2級形式の模擬試験（50問・60分）→
-          </a>
+          </SiteLink>
           <Moshi2TopLink certId="gaia" />
-          <a
+          <SiteLink
             href="/gaia/mock/"
             className="inline-flex items-center px-4 py-2 rounded-lg border text-sm font-medium no-underline transition-colors hover:bg-[color:var(--c-pii-soft)]"
             style={{ borderColor: "var(--c-pii)", color: "var(--c-pii-ink)" }}
           >
             本番形式で腕試し（20問・採点）→
-          </a>
+          </SiteLink>
         </div>
       </section>
 
@@ -97,7 +98,7 @@ export default async function GaiaPage() {
         <h2 className="text-lg font-bold text-[color:var(--c-ink)] mb-5 font-serif">分野から選ぶ</h2>
         <div className="space-y-3">
           {GAIA_FIELDS.map((f, i) => (
-            <a
+            <SiteLink
               key={f.slug}
               href={`/gaia/field/${f.slug}/`}
               className="card p-5 no-underline group block"
@@ -116,7 +117,7 @@ export default async function GaiaPage() {
                 <span className="text-xs text-[color:var(--c-text-sub)] shrink-0">{fieldCounts[i]}問</span>
               </div>
               <p className="text-sm text-[color:var(--c-text-sub)] mt-2 leading-relaxed">{f.desc}</p>
-            </a>
+            </SiteLink>
           ))}
         </div>
       </section>
@@ -163,7 +164,7 @@ export default async function GaiaPage() {
         <h2 className="text-base font-bold text-[color:var(--c-ink)] mb-4 font-serif">あわせて学ぶと役に立つ試験</h2>
         <div className="card p-5 text-sm text-[color:var(--c-text-sub)] leading-relaxed space-y-2">
           <p>
-            AIの基礎から押さえるなら<a href="/aia/" className="underline hover:no-underline">AI活用アドバイザー</a>、DXの文脈は<a href="/dxa/" className="underline hover:no-underline">DX推進アドバイザー</a>が同じ協会の試験です。
+            AIの基礎から押さえるなら<SiteLink href="/aia/" className="underline hover:no-underline">AI活用アドバイザー</SiteLink>、DXの文脈は<SiteLink href="/dxa/" className="underline hover:no-underline">DX推進アドバイザー</SiteLink>が同じ協会の試験です。
           </p>
         </div>
       </section>
@@ -174,13 +175,13 @@ export default async function GaiaPage() {
           <h2 className="text-base font-bold text-[color:var(--c-ink)] mb-4 font-serif">コラム</h2>
           <div className="space-y-2">
             {gaiaColumns.slice(0, 6).map((col) => (
-              <a
+              <SiteLink
                 key={col.slug}
                 href={`/column/${col.slug}/`}
                 className="block py-2 text-sm text-[color:var(--c-text)] no-underline hover:text-[color:var(--c-pii)] border-b border-[color:var(--c-border)] last:border-b-0"
               >
                 {col.title}
-              </a>
+              </SiteLink>
             ))}
           </div>
         </section>

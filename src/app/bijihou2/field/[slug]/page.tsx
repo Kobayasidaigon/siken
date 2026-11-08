@@ -1,3 +1,4 @@
+import SiteLink from "@/components/SiteLink";
 import { getBijihou2QuestionsByField } from "@/lib/bijihou2-questions";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
@@ -37,7 +38,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 function QuestionCard({ q, index }: { q: Bijihou2QuestionData; index: number }) {
   const diffColor = { A: "bg-green-100 text-green-800", B: "bg-amber-100 text-amber-800", C: "bg-red-100 text-red-800" }[q.difficulty];
   return (
-    <a href={`/bijihou2/q/${q.slug}/`} className="card p-4 flex justify-between items-center no-underline group" style={{ borderLeft: "3px solid var(--c-kashikin)" }}>
+    <SiteLink href={`/bijihou2/q/${q.slug}/`} className="card p-4 flex justify-between items-center no-underline group" style={{ borderLeft: "3px solid var(--c-kashikin)" }}>
       <div className="flex-1">
         <div className="flex items-center gap-2 mb-1">
           <span className="text-xs font-bold px-2 py-0.5 rounded" style={{ background: "var(--c-kashikin-soft)", color: "var(--c-kashikin-ink)" }}>問{index}</span>
@@ -49,7 +50,7 @@ function QuestionCard({ q, index }: { q: Bijihou2QuestionData; index: number }) 
       <svg className="w-4 h-4 text-[color:var(--c-text-sub)] flex-shrink-0 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
       </svg>
-    </a>
+    </SiteLink>
   );
 }
 
@@ -68,8 +69,8 @@ export default async function Bijihou2FieldPage({ params }: { params: Promise<{ 
   return (
     <div className="theme-kashikin pb-16">
       <nav className="breadcrumb text-xs text-[color:var(--c-text-sub)] mb-4 flex gap-1">
-        <a href="/">ホーム</a><span>/</span>
-        <a href="/bijihou2/">ビジネス実務法務検定2級</a><span>/</span>
+        <SiteLink href="/">ホーム</SiteLink><span>/</span>
+        <SiteLink href="/bijihou2/">ビジネス実務法務検定2級</SiteLink><span>/</span>
         <span className="text-[color:var(--c-ink)]">{field.name}</span>
       </nav>
 

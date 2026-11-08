@@ -1,3 +1,4 @@
+import SiteLink from "@/components/SiteLink";
 import type { Metadata } from "next";
 import { pageMetadata } from "@/lib/page-metadata";
 import JsonLd from "@/components/JsonLd";
@@ -57,7 +58,7 @@ export default function CalendarPage() {
     <div className="pb-16">
       <JsonLd data={jsonLd} />
       <nav className="text-xs text-[color:var(--c-text-sub)] mb-4">
-        <a href="/" className="hover:underline">ホーム</a> › 資格試験カレンダー
+        <SiteLink href="/" className="hover:underline">ホーム</SiteLink> › 資格試験カレンダー
       </nav>
 
       <h1 className="text-2xl sm:text-3xl font-bold text-[color:var(--c-ink)] font-serif mb-3">
@@ -97,7 +98,7 @@ export default function CalendarPage() {
                 const isCurrent = ym === currentYm;
                 const past = ym < currentYm;
                 return (
-                  <a
+                  <SiteLink
                     key={ym}
                     href={`/calendar/${ym}/`}
                     className={`card p-3 no-underline block ${past ? "opacity-60" : ""}`}
@@ -111,7 +112,7 @@ export default function CalendarPage() {
                       締切 {deadlines}・試験 {exams}
                       {starts > 0 && `・受付開始 ${starts}`}
                     </p>
-                  </a>
+                  </SiteLink>
                 );
               })}
             </div>
@@ -136,11 +137,11 @@ export default function CalendarPage() {
                 return (
                   <tr key={exam.slug} className="border-b border-[color:var(--c-border)] align-top">
                     <td className="py-3 pr-3">
-                      <a href={exam.topPath} className="text-[color:var(--c-ink)] hover:underline">{exam.name}</a>
+                      <SiteLink href={exam.topPath} className="text-[color:var(--c-ink)] hover:underline">{exam.name}</SiteLink>
                       {exam.nitteiPath && (
-                        <a href={exam.nitteiPath} className="block text-xs text-[color:var(--c-text-sub)] hover:underline mt-0.5">
+                        <SiteLink href={exam.nitteiPath} className="block text-xs text-[color:var(--c-text-sub)] hover:underline mt-0.5">
                           日程の詳しい解説 →
-                        </a>
+                        </SiteLink>
                       )}
                     </td>
                     <td className="py-3 pr-3 whitespace-nowrap">

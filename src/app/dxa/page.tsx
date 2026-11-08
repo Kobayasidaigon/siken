@@ -1,3 +1,4 @@
+import SiteLink from "@/components/SiteLink";
 import { getAllDxaQuestions, getDxaQuestionsByField } from "@/lib/dxa-questions";
 import RecentCourseReminder from "@/components/RecentCourseReminder";
 import { getAllColumns } from "@/lib/columns";
@@ -33,9 +34,9 @@ export default async function DxaPage() {
         style={{ background: "var(--c-pii-soft)", borderColor: "var(--c-border)" }}
       >
         <nav className="text-xs text-[color:var(--c-text-sub)] mb-4">
-          <a href="/" className="no-underline hover:underline">
+          <SiteLink href="/" className="no-underline hover:underline">
             ホーム
-          </a>{" "}
+          </SiteLink>{" "}
           / <span>DX推進アドバイザー</span>
         </nav>
         <h1
@@ -49,24 +50,24 @@ export default async function DxaPage() {
           DXの現状から技術、人材・制度までを問う全日本情報学習振興協会の認定試験。本試験の3課題に沿った{allQuestions.length}問のオリジナル練習問題集です（2択と4択を本試験と同じ比率で出題）。
         </p>
         <div className="mt-6 flex flex-wrap gap-3">
-          <a href="/dxa/q/dxa-001/" className="btn-accent">
+          <SiteLink href="/dxa/q/dxa-001/" className="btn-accent">
             問題を解き始める →
-          </a>
-          <a
+          </SiteLink>
+          <SiteLink
             href="/dxa/moshi/"
             className="inline-flex items-center px-4 py-2 rounded-lg border text-sm font-medium no-underline transition-colors hover:bg-[color:var(--c-pii-soft)]"
             style={{ borderColor: "var(--c-pii)", color: "var(--c-pii-ink)" }}
           >
             模擬試験を受ける（100問・105分）→
-          </a>
+          </SiteLink>
           <Moshi2TopLink certId="dxa" />
-          <a
+          <SiteLink
             href="/dxa/mock/"
             className="inline-flex items-center px-4 py-2 rounded-lg border text-sm font-medium no-underline transition-colors hover:bg-[color:var(--c-pii-soft)]"
             style={{ borderColor: "var(--c-pii)", color: "var(--c-pii-ink)" }}
           >
             本番形式で腕試し（20問・採点）→
-          </a>
+          </SiteLink>
         </div>
       </section>
 
@@ -90,7 +91,7 @@ export default async function DxaPage() {
         <h2 className="text-lg font-bold text-[color:var(--c-ink)] mb-5 font-serif">分野から選ぶ</h2>
         <div className="space-y-3">
           {DXA_FIELDS.map((f, i) => (
-            <a
+            <SiteLink
               key={f.slug}
               href={`/dxa/field/${f.slug}/`}
               className="card p-5 no-underline group block"
@@ -109,7 +110,7 @@ export default async function DxaPage() {
                 <span className="text-xs text-[color:var(--c-text-sub)] shrink-0">{fieldCounts[i]}問</span>
               </div>
               <p className="text-sm text-[color:var(--c-text-sub)] mt-2 leading-relaxed">{f.desc}</p>
-            </a>
+            </SiteLink>
           ))}
         </div>
       </section>
@@ -153,10 +154,10 @@ export default async function DxaPage() {
         <h2 className="text-base font-bold text-[color:var(--c-ink)] mb-4 font-serif">あわせて学ぶと役に立つ試験</h2>
         <div className="card p-5 text-sm text-[color:var(--c-text-sub)] leading-relaxed space-y-2">
           <p>
-            同じ協会の<a href="/dxp/" className="underline hover:no-underline">DXパスポート試験</a>は入門の位置づけです。AIの分野は<a href="/aia/" className="underline hover:no-underline">AI活用アドバイザー</a>・<a href="/gaia/" className="underline hover:no-underline">生成AIアドバイザー</a>の範囲とも重なります。
+            同じ協会の<SiteLink href="/dxp/" className="underline hover:no-underline">DXパスポート試験</SiteLink>は入門の位置づけです。AIの分野は<SiteLink href="/aia/" className="underline hover:no-underline">AI活用アドバイザー</SiteLink>・<SiteLink href="/gaia/" className="underline hover:no-underline">生成AIアドバイザー</SiteLink>の範囲とも重なります。
           </p>
           <p>
-            合格後の次の一歩は、上位の<a href="/dxo/" className="underline hover:no-underline">DXオフィサー</a>です。DX推進アドバイザーの合格者は、DXオフィサーの受験料が20%割引になります（協会の案内による）。
+            合格後の次の一歩は、上位の<SiteLink href="/dxo/" className="underline hover:no-underline">DXオフィサー</SiteLink>です。DX推進アドバイザーの合格者は、DXオフィサーの受験料が20%割引になります（協会の案内による）。
           </p>
         </div>
       </section>
@@ -167,13 +168,13 @@ export default async function DxaPage() {
           <h2 className="text-base font-bold text-[color:var(--c-ink)] mb-4 font-serif">コラム</h2>
           <div className="space-y-2">
             {dxaColumns.slice(0, 6).map((col) => (
-              <a
+              <SiteLink
                 key={col.slug}
                 href={`/column/${col.slug}/`}
                 className="block py-2 text-sm text-[color:var(--c-text)] no-underline hover:text-[color:var(--c-pii)] border-b border-[color:var(--c-border)] last:border-b-0"
               >
                 {col.title}
-              </a>
+              </SiteLink>
             ))}
           </div>
         </section>

@@ -39,7 +39,7 @@ export default async function Moshi2Sample({ certId }: { certId: ExamSlug }) {
       <h2 className="text-base font-bold text-[color:var(--c-ink)] mb-1 font-serif">サンプル問題</h2>
       <p className="text-sm text-[color:var(--c-text)] leading-relaxed mb-3">
         実際に出題される{paper.length}問のうち2問を、解説までそのまま出します。
-        買う前に、問題の難しさと解説の細かさを見てください。
+        受ける前に、問題の難しさと解説の細かさを見てください。
       </p>
 
       <div className="space-y-3">

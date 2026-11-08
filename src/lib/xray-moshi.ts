@@ -10,7 +10,7 @@ import { getAllXrayQuestions, type XrayQuestionData } from "./xray-questions";
 export const XRAY_MOSHI_TIME_LIMIT_MIN = 240;
 export const XRAY_MOSHI_PASS_COUNT = 24;
 
-export const XRAY_MOSHI_1_SLUGS: string[] = [
+const XRAY_MOSHI_1_SLUGS: string[] = [
   "xray-003", // エックス線の管理 A 5択 写真作用・蛍光作用・電離作用
   "xray-007", // エックス線の管理 B 5択 実焦点と実効焦点の関係
   "xray-011", // エックス線の管理 C 5択 全強度と管電流・管電圧の比例関係
@@ -80,8 +80,6 @@ export const XRAY_MOSHI_SECTIONS = [
     "passCount": 4
   }
 ];
-
-export const XRAY_MOSHI_PASS_POINTS = 60;
 
 export async function getXrayMoshi1Questions(): Promise<XrayQuestionData[]> {
   const all = await getAllXrayQuestions();

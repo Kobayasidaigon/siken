@@ -7,7 +7,7 @@
  * 当サイトは第1課題と第5課題を2分野ずつ、ほかを1分野ずつに割り、1分野20問で並べている。
  */
 
-export interface CcmField {
+interface CcmField {
   /** URL に使う分野スラッグ。/ccm/field/<slug>/ */
   slug: string;
   /** 問題 md の field と完全一致させる値 */

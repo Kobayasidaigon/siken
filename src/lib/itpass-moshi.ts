@@ -18,7 +18,7 @@ export const ITPASS_MOSHI_SECTIONS = [
   { label: "テクノロジ系", start: 55, count: 45, passCount: 14 },
 ];
 
-export const ITPASS_MOSHI_1_SLUGS: string[] = [
+const ITPASS_MOSHI_1_SLUGS: string[] = [
   "itpass-001",    // 企業活動と法務 A 企業理念とCSR・SDGs
   "itpass-027",    // 経営戦略とビジネスインダストリ B PPMによる事業の位置づけ
   "itpass-052",    // システム戦略とシステム企画 B 業務プロセスのモデリング技法

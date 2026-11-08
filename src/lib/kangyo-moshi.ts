@@ -11,7 +11,7 @@ import { getAllKangyoQuestions, type KangyoQuestionData } from "./kangyo-questio
 export const KANGYO_MOSHI_TIME_LIMIT_MIN = 120;
 export const KANGYO_MOSHI_PASS_COUNT = 36;
 
-export const KANGYO_MOSHI_1_SLUGS: string[] = [
+const KANGYO_MOSHI_1_SLUGS: string[] = [
   "kangyo-003",    // 区分所有法（専有部分・共用部分・敷地・管理者） B 持分割合と床面積の算定
   "kangyo-023",    // 区分所有法（集会・規約・義務違反・復旧建替え） B 集会で決議できる事項の範囲
   "kangyo-042",    // マンション標準管理規約 B 専有部分の範囲

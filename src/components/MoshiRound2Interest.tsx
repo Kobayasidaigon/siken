@@ -50,7 +50,7 @@ export default function MoshiRound2Interest({ exam, round }: { exam: string; rou
         <>
           <h3 className="text-sm font-bold mb-1.5 text-[color:var(--c-ink)]">第2回模試について</h3>
           <p className="text-xs text-[color:var(--c-text-sub)] leading-relaxed mb-3">
-            同じ本試験形式・別問題の「第2回」の制作を検討しています(有料・1,000円前後を想定)。
+            同じ本試験形式・別問題の「第2回」の制作を検討しています。
             公開されたら受けてみたいですか?
           </p>
           <div className="flex flex-wrap gap-2">

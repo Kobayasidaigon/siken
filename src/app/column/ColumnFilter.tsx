@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useState, useMemo } from "react";
 
 interface ColumnItem {
@@ -131,22 +132,22 @@ export default function ColumnFilter({ groups, totalCount }: Props) {
 
           return (
             <section key={g.id} id={g.id} className="scroll-mt-32">
-              <div className="flex items-baseline gap-3 mb-5">
+              <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1 mb-5">
                 <div className="w-1 h-5 rounded-full" style={{ background: g.themeMain }}></div>
-                <h2 className="text-lg font-bold font-serif" style={{ color: g.themeInk }}>
+                <h2 className="text-lg font-bold font-serif min-w-0" style={{ color: g.themeInk }}>
                   {g.examName}
                 </h2>
                 <span className="text-xs text-[color:var(--c-text-sub)]">{g.items.length}本</span>
                 <a
                   href={g.topPath}
-                  className="text-xs text-[color:var(--c-text-sub)] hover:underline ml-auto no-underline"
+                  className="text-xs text-[color:var(--c-text-sub)] hover:underline ml-auto no-underline whitespace-nowrap"
                 >
                   試験ページへ →
                 </a>
               </div>
 
               {/* フィーチャー記事 */}
-              <a
+              <Link
                 href={`/column/${featured.slug}/`}
                 className="card no-underline group block mb-3 overflow-hidden"
                 style={{ borderLeft: `4px solid ${g.themeMain}` }}
@@ -168,13 +169,13 @@ export default function ColumnFilter({ groups, totalCount }: Props) {
                     {featured.publishedAt}
                   </p>
                 </div>
-              </a>
+              </Link>
 
               {/* 残りの記事 */}
               {rest.length > 0 && (
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                   {rest.map((col) => (
-                    <a
+                    <Link
                       key={col.slug}
                       href={`/column/${col.slug}/`}
                       className="card p-3 no-underline group block transition-transform hover:-translate-y-0.5"
@@ -186,7 +187,7 @@ export default function ColumnFilter({ groups, totalCount }: Props) {
                       <p className="text-[11px] text-[color:var(--c-text-sub)] line-clamp-1">
                         {col.description}
                       </p>
-                    </a>
+                    </Link>
                   ))}
                 </div>
               )}

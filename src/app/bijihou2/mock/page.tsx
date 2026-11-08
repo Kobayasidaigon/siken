@@ -1,3 +1,4 @@
+import SiteLink from "@/components/SiteLink";
 import { getAllBijihou2Questions } from "@/lib/bijihou2-questions";
 import type { Metadata } from "next";
 import { pageMetadata } from "@/lib/page-metadata";
@@ -35,8 +36,8 @@ export default async function Bijihou2MockPage() {
   return (
     <div className="theme-kashikin pb-16">
       <nav className="breadcrumb text-xs text-[color:var(--c-text-sub)] mb-4 flex gap-1">
-        <a href="/">ホーム</a><span>/</span>
-        <a href="/bijihou2/">ビジネス実務法務検定2級</a><span>/</span>
+        <SiteLink href="/">ホーム</SiteLink><span>/</span>
+        <SiteLink href="/bijihou2/">ビジネス実務法務検定2級</SiteLink><span>/</span>
         <span className="text-[color:var(--c-ink)]">本番形式テスト</span>
       </nav>
 
@@ -45,7 +46,7 @@ export default async function Bijihou2MockPage() {
 
       <p className="text-xs text-[color:var(--c-text-sub)] mb-5">
         本試験と同じ90分・100点満点70点合格の条件で腕試しするなら
-        <a href="/bijihou2/moshi/" className="underline hover:no-underline">模擬試験 第1回（無料）</a>へ。
+        <SiteLink href="/bijihou2/moshi/" className="underline hover:no-underline">模擬試験 第1回（無料）</SiteLink>へ。
       </p>
 
       <MockExam

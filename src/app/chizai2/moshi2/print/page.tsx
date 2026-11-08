@@ -1,16 +1,17 @@
+import SiteLink from "@/components/SiteLink";
 import type { Metadata } from "next";
 import { pageMetadata } from "@/lib/page-metadata";
 import Moshi2Print from "@/components/Moshi2Print";
 
 /**
- * 第2回模試の印刷用紙面。中身は購入者だけが /api/moshi2/[cert] から受け取る。
+ * 第2回模試の印刷用紙面。中身は /api/moshi2/[cert] から受け取る(2026-11-08 から無料)。
  * 検索結果に出す面ではないので noindex。
  */
 export const metadata: Metadata = pageMetadata({
   path: "/chizai2/moshi2/print/",
   title: "知的財産管理技能検定2級 模擬試験 第2回｜印刷用",
   description:
-    "知的財産管理技能検定2級の模擬試験 第2回を、問題・解答用紙・解説の順に A4 で印刷できます。ご購入者向けのページです。",
+    "知的財産管理技能検定2級の模擬試験 第2回を、問題・解答用紙・解説の順に A4 で印刷できます。無料でご利用いただけます。",
   noindex: true,
 });
 
@@ -18,11 +19,11 @@ export default function Page() {
   return (
     <div className="pb-16">
       <nav className="breadcrumb text-xs text-[color:var(--c-text-sub)] mb-4 flex gap-1">
-        <a href="/">ホーム</a>
+        <SiteLink href="/">ホーム</SiteLink>
         <span>/</span>
-        <a href="/chizai2/">知的財産管理技能検定2級</a>
+        <SiteLink href="/chizai2/">知的財産管理技能検定2級</SiteLink>
         <span>/</span>
-        <a href="/chizai2/moshi2/">模擬試験 第2回</a>
+        <SiteLink href="/chizai2/moshi2/">模擬試験 第2回</SiteLink>
         <span>/</span>
         <span className="text-[color:var(--c-ink)]">印刷用</span>
       </nav>

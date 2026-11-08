@@ -10,7 +10,7 @@ import { getAllHoikushiQuestions, type HoikushiQuestionData } from "./hoikushi-q
 export const HOIKUSHI_MOSHI_TIME_LIMIT_MIN = 480;
 export const HOIKUSHI_MOSHI_PASS_COUNT = 96;
 
-export const HOIKUSHI_MOSHI_1_SLUGS: string[] = [
+const HOIKUSHI_MOSHI_1_SLUGS: string[] = [
   "hoikushi-001", // 保育の心理学 A 5択 発達の方向性と一般的原則
   "hoikushi-002", // 保育の心理学 B 5択 遺伝と環境をめぐる諸学説
   "hoikushi-004", // 保育の心理学 B 5択 ヴィゴツキーの発達の最近接領域

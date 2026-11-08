@@ -13,23 +13,6 @@ export interface QuestionData {
   content: string;       // 解説本文 (HTML)
 }
 
-export interface ExamSummary {
-  examNumber: number;
-  year: string;
-  date: string;          // "2024年11月17日"
-  applicants: number;
-  passRate: string;      // "32.5%"
-  passingScore: string;  // "30/50"
-  questionCount: number;
-}
-
-export interface FieldInfo {
-  slug: string;          // "kashikingyouhou"
-  name: string;          // "貸金業法"
-  description: string;
-  questionCount: number;
-}
-
 export interface ColumnData {
   slug: string;
   title: string;

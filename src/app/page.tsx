@@ -1,3 +1,4 @@
+import SiteLink from "@/components/SiteLink";
 import type { Metadata } from "next";
 import StudyResumeCard from "@/components/StudyResumeCard";
 import RecentCourseReminder from "@/components/RecentCourseReminder";
@@ -556,7 +557,7 @@ export default function Home() {
         <h2 className="text-lg font-bold text-[color:var(--c-ink)] mb-2 font-serif">いま解ける試験</h2>
         <p className="text-sm text-[color:var(--c-text-sub)] mb-5">
           申込締切を見落とさないように、全資格の日程を
-          <a href="/calendar/" className="text-[color:var(--c-ink)] underline hover:no-underline mx-1">試験カレンダー</a>
+          <SiteLink href="/calendar/" className="text-[color:var(--c-ink)] underline hover:no-underline mx-1">試験カレンダー</SiteLink>
           にまとめています。
         </p>
         {groups.map((group) => (
@@ -565,7 +566,7 @@ export default function Home() {
           <p className="text-xs text-[color:var(--c-text-sub)] leading-relaxed mb-4">{group.lead}</p>
           <div className="space-y-4">
           {group.slugs.map((slug) => bySlug[slug]).filter(Boolean).map((exam) => (
-            <a
+            <SiteLink
               key={exam.slug}
               href={`/${exam.slug}/`}
               className="card p-5 no-underline group block"
@@ -582,7 +583,7 @@ export default function Home() {
               </div>
               <p className="text-sm text-[color:var(--c-text-sub)] leading-relaxed">{exam.desc}</p>
               <p className="text-xs text-[color:var(--c-text-sub)] mt-3">次回試験：{exam.date}</p>
-            </a>
+            </SiteLink>
           ))}
           </div>
         </div>
@@ -654,9 +655,9 @@ export default function Home() {
           それならと、自分で問題と解説を書いて公開したのがこのサイトです。
           すべて無料で使えます。誤りに気づかれたら、お問い合わせから教えてください。すぐ直します。
         </p>
-        <a href="/about/" className="text-sm text-[color:var(--c-ink)] mt-3 inline-block no-underline hover:underline">
+        <SiteLink href="/about/" className="text-sm text-[color:var(--c-ink)] mt-3 inline-block no-underline hover:underline">
           運営者について →
-        </a>
+        </SiteLink>
       </section>
     </div>
   );

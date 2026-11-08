@@ -208,9 +208,9 @@ export function medalCounts(progress: ExamProgress): { bronze: number; silver: n
  * 履歴を、後から送信先のあるものに変えるべきではない)。持ち出しと復元だけを、
  * 利用者の手元のファイルで完結させる。
  */
-export const PROGRESS_EXPORT_VERSION = 1;
+const PROGRESS_EXPORT_VERSION = 1;
 
-export interface ProgressExport {
+interface ProgressExport {
   app: "shikakumon";
   kind: "study-progress";
   version: number;
@@ -234,7 +234,7 @@ const MEDAL_RANK: Record<Medal, number> = { bronze: 1, silver: 2, gold: 3 };
 
 export type ImportMode = "merge" | "replace";
 
-export interface ImportResult {
+interface ImportResult {
   ok: boolean;
   /** 失敗したときだけ入る。利用者にそのまま見せる文言 */
   error?: string;

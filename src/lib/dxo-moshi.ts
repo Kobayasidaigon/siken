@@ -12,7 +12,7 @@ import { getAllDxoQuestions, type DxoQuestionData } from "./dxo-questions";
 export const DXO_MOSHI_TIME_LIMIT_MIN = 135;
 export const DXO_MOSHI_PASS_COUNT = 70;
 
-export const DXO_MOSHI_1_SLUGS: string[] = [
+const DXO_MOSHI_1_SLUGS: string[] = [
   // DX総論（15問）
   "dxo-001", // A DXの定義(デジタルガバナンス・コード)
   "dxo-002", // A デジタイゼーションとデジタライゼーション

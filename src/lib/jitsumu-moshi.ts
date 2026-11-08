@@ -10,7 +10,7 @@ import { getAllJitsumuQuestions, type JitsumuQuestionData } from "./jitsumu-ques
 export const JITSUMU_MOSHI_TIME_LIMIT_MIN = 90;
 export const JITSUMU_MOSHI_PASS_COUNT = 56;
 
-export const JITSUMU_MOSHI_1_SLUGS: string[] = [
+const JITSUMU_MOSHI_1_SLUGS: string[] = [
   "jitsumu-001", // 個人情報保護法の基礎 A 個人情報保護法の目的
   "jitsumu-041", // 取得・利用 A 利用目的の特定
   "jitsumu-081", // 安全管理・第三者提供 A 安全管理措置の4類型

@@ -1,3 +1,4 @@
+import SiteLink from "@/components/SiteLink";
 import { formatYmdJa, daysUntilYmd } from "@/lib/exam-dates";
 import { type CalendarEvent, kindLabel, todayJst } from "@/lib/exam-calendar";
 
@@ -37,9 +38,9 @@ export default function CalendarEventList({ events, showYear = false }: { events
               >
                 {kindLabel(e)}
               </span>
-              <a href={e.exam.topPath} className="text-sm text-[color:var(--c-ink)] hover:underline">
+              <SiteLink href={e.exam.topPath} className="text-sm text-[color:var(--c-ink)] hover:underline">
                 {e.exam.name}
-              </a>
+              </SiteLink>
               <span className="text-xs text-[color:var(--c-text-sub)] ml-2">{e.round.label}</span>
             </span>
             <span className="text-xs text-[color:var(--c-text-sub)] shrink-0 sm:w-20 sm:text-right">

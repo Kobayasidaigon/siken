@@ -7,7 +7,7 @@
  * 各分野の20問は、本試験の比率に合わせて2択10問・4択10問。
  */
 
-export interface DxpField {
+interface DxpField {
   /** URL に使う分野スラッグ。/dxp/field/<slug>/ */
   slug: string;
   /** 問題 md の field と完全一致させる値 */

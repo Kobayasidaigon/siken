@@ -1,3 +1,4 @@
+import SiteLink from "@/components/SiteLink";
 import { getShakaiQuestionsByField } from "@/lib/shakai-questions";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
@@ -29,7 +30,7 @@ function QuestionCard({ q, index }: { q: ShakaiQuestionData; index: number }) {
     C: "bg-red-100 text-red-800",
   }[q.difficulty];
   return (
-    <a
+    <SiteLink
       href={`/shakai/q/${q.slug}/`}
       className="card p-4 flex justify-between items-center no-underline group"
       style={{ borderLeft: "3px solid var(--c-eco)" }}
@@ -55,7 +56,7 @@ function QuestionCard({ q, index }: { q: ShakaiQuestionData; index: number }) {
       >
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
       </svg>
-    </a>
+    </SiteLink>
   );
 }
 
@@ -74,9 +75,9 @@ export default async function ShakaiFieldPage({ params }: { params: Promise<{ sl
   return (
     <div className="theme-eco pb-16">
       <nav className="breadcrumb text-xs text-[color:var(--c-text-sub)] mb-4 flex gap-1">
-        <a href="/">ホーム</a>
+        <SiteLink href="/">ホーム</SiteLink>
         <span>/</span>
-        <a href="/shakai/">社会福祉士</a>
+        <SiteLink href="/shakai/">社会福祉士</SiteLink>
         <span>/</span>
         <span className="text-[color:var(--c-ink)]">{field.name}</span>
       </nav>

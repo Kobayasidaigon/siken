@@ -11,7 +11,7 @@ import { getAllIsfQuestions, type IsfQuestionData } from "./isf-questions";
 export const ISF_MOSHI_TIME_LIMIT_MIN = 60;
 export const ISF_MOSHI_PASS_COUNT = 56;
 
-export const ISF_MOSHI_1_SLUGS: string[] = [
+const ISF_MOSHI_1_SLUGS: string[] = [
   // 課題Ⅰ 情報セキュリティ総論（20問）
   "isf-002", // 情報セキュリティの基礎とリスク管理 A 可用性が損なわれる事例
   "isf-022", // 情報セキュリティ関連法規 B フィッシング行為の禁止

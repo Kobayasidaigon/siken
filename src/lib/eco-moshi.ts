@@ -17,9 +17,9 @@ import { getAllEcoQuestions, type EcoQuestionData } from "./eco-questions";
 export const ECO_MOSHI_TIME_LIMIT_MIN = 90;
 export const ECO_MOSHI_PASS_COUNT = 35;
 export const ECO_MOSHI_PASS_POINTS = 70;
-export const ECO_MOSHI_POINTS_PER_QUESTION = 2;
+const ECO_MOSHI_POINTS_PER_QUESTION = 2;
 
-export const ECO_MOSHI_1_SLUGS: string[] = [
+const ECO_MOSHI_1_SLUGS: string[] = [
   "eco-003", // 持続可能な社会と環境問題の歴史 A 熊本で発生した公害病
   "eco-023", // 地球の基礎知識と生態系 B 水の循環のしくみ
   "eco-041", // いま地球で起きていること B 世界の食料事情
@@ -72,7 +72,7 @@ export const ECO_MOSHI_1_SLUGS: string[] = [
   "eco-079", // 気候変動とエネルギー C トップランナー制度とZEH・ZEB
 ];
 
-export interface EcoMoshiQuestion extends EcoQuestionData {
+interface EcoMoshiQuestion extends EcoQuestionData {
   points: number;
 }
 

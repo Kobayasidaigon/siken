@@ -1,3 +1,4 @@
+import SiteLink from "@/components/SiteLink";
 import type { UpcomingExam } from "@/lib/exam-dates";
 import { nextExam, nextApplyDeadline, daysUntilYmd, formatYmdJa } from "@/lib/exam-dates";
 import AffiliateLink from "@/components/AffiliateLink";
@@ -152,9 +153,9 @@ export default function ExamCountdown({
 function CalendarHubLink() {
   return (
     <p className="mt-2 text-xs">
-      <a href="/calendar/" className="text-blue-700 hover:underline">
+      <SiteLink href="/calendar/" className="text-blue-700 hover:underline">
         ほかの資格の試験日・申込締切をカレンダーで見る →
-      </a>
+      </SiteLink>
     </p>
   );
 }

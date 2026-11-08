@@ -1,3 +1,4 @@
+import SiteLink from "@/components/SiteLink";
 import { getAllQuestions } from "@/lib/questions";
 import type { QuestionData } from "@/lib/types";
 import { notFound } from "next/navigation";
@@ -77,9 +78,9 @@ export default async function KashikinTopicPage({ params }: { params: Promise<{ 
       <JsonLd data={jsonLd} />
 
       <nav className="breadcrumb text-xs text-[color:var(--c-text-sub)] mb-4 flex flex-wrap gap-1">
-        <a href="/">ホーム</a><span>/</span>
-        <a href="/kashikin/">貸金業務取扱主任者</a><span>/</span>
-        {fieldSlug && <><a href={`/field/${fieldSlug}/`}>{hub.field}</a><span>/</span></>}
+        <SiteLink href="/">ホーム</SiteLink><span>/</span>
+        <SiteLink href="/kashikin/">貸金業務取扱主任者</SiteLink><span>/</span>
+        {fieldSlug && <><SiteLink href={`/field/${fieldSlug}/`}>{hub.field}</SiteLink><span>/</span></>}
         <span className="text-[color:var(--c-ink)]">{hub.topic}</span>
       </nav>
 
@@ -118,7 +119,7 @@ export default async function KashikinTopicPage({ params }: { params: Promise<{ 
           const diffColor = { A: "bg-green-100 text-green-800", B: "bg-amber-100 text-amber-800", C: "bg-red-100 text-red-800" }[q.difficulty];
           return (
             <li key={q.slug}>
-              <a
+              <SiteLink
                 href={`/q/${q.slug}/`}
                 className="card p-4 flex justify-between items-center no-underline group"
                 style={{ borderLeft: "3px solid var(--c-kashikin)" }}
@@ -141,7 +142,7 @@ export default async function KashikinTopicPage({ params }: { params: Promise<{ 
                 <svg className="w-4 h-4 text-[color:var(--c-text-sub)] flex-shrink-0 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                 </svg>
-              </a>
+              </SiteLink>
             </li>
           );
         })}
@@ -149,13 +150,13 @@ export default async function KashikinTopicPage({ params }: { params: Promise<{ 
 
       <nav className="mb-8 text-sm flex flex-wrap gap-x-5 gap-y-2">
         {fieldSlug && (
-          <a href={`/field/${fieldSlug}/`} className="text-blue-700 hover:underline">
+          <SiteLink href={`/field/${fieldSlug}/`} className="text-blue-700 hover:underline">
             {hub.field}の問題をすべて見る →
-          </a>
+          </SiteLink>
         )}
-        <a href="/kashikin/mock/" className="text-blue-700 hover:underline">
+        <SiteLink href="/kashikin/mock/" className="text-blue-700 hover:underline">
           本番形式テストで力試しする →
-        </a>
+        </SiteLink>
       </nav>
 
       <ExamVoicesSection exam="kashikin" />

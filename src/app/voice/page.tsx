@@ -1,3 +1,4 @@
+import SiteLink from "@/components/SiteLink";
 import type { Metadata } from "next";
 import { pageMetadata } from "@/lib/page-metadata";
 import { getAllVoices } from "@/lib/voices";
@@ -45,7 +46,7 @@ export default async function VoiceIndexPage() {
     <div className="pb-16">
       <section className="-mx-4 px-4 py-10 sm:py-12 mb-8 border-b border-[color:var(--c-border)] bg-[color:var(--c-bg-alt)]">
         <nav className="text-xs text-[color:var(--c-text-sub)] mb-4">
-          <a href="/" className="no-underline hover:underline">ホーム</a> / <span>合格報告</span>
+          <SiteLink href="/" className="no-underline hover:underline">ホーム</SiteLink> / <span>合格報告</span>
         </nav>
         <h1 className="text-2xl sm:text-3xl font-bold text-[color:var(--c-ink)] mb-3 font-serif leading-tight">
           合格報告
@@ -73,7 +74,7 @@ export default async function VoiceIndexPage() {
             まだ掲載できる報告が届いていません。当サイトの問題で学習して受験された方は、
             結果と手ごたえを教えてください。合格・不合格どちらの報告も歓迎します。
           </p>
-          <a href="/goukaku-houkoku/" className="btn-accent">受験の結果を報告する →</a>
+          <SiteLink href="/goukaku-houkoku/" className="btn-accent">受験の結果を報告する →</SiteLink>
         </section>
       ) : (
         <>
@@ -125,9 +126,9 @@ export default async function VoiceIndexPage() {
               出題の傾向や、当サイトの問題が本試験とどれくらい近かったかを教えてください。
               これから受ける方のための情報になります。
             </p>
-            <a href="/goukaku-houkoku/" className="text-sm font-medium text-[color:var(--c-accent-ink)] no-underline hover:underline">
+            <SiteLink href="/goukaku-houkoku/" className="text-sm font-medium text-[color:var(--c-accent-ink)] no-underline hover:underline">
               受験の結果を報告する →
-            </a>
+            </SiteLink>
           </section>
         </>
       )}

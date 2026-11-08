@@ -10,7 +10,7 @@ import { getAllDxaQuestions, type DxaQuestionData } from "./dxa-questions";
 export const DXA_MOSHI_TIME_LIMIT_MIN = 105;
 export const DXA_MOSHI_PASS_COUNT = 70;
 
-export const DXA_MOSHI_1_SLUGS: string[] = [
+const DXA_MOSHI_1_SLUGS: string[] = [
   "dxa-001", // DXの現状 A 4択 DXの由来（ストルターマン）
   "dxa-003", // DXの現状 A 4択 DX関連文書の年表
   "dxa-004", // DXの現状 B 4択 提唱時と経産省の定義の比較
@@ -112,8 +112,6 @@ export const DXA_MOSHI_1_SLUGS: string[] = [
   "dxa-134", // DXの展開 A 4択 マナビDXと人材育成の支援施策
   "dxa-136", // DXの展開 C 4択 デジタル社会の重点計画の構成
 ];
-
-export const DXA_MOSHI_PASS_POINTS = 462;
 
 export async function getDxaMoshi1Questions(): Promise<DxaQuestionData[]> {
   const all = await getAllDxaQuestions();

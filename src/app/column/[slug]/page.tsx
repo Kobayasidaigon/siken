@@ -1,3 +1,4 @@
+import SiteLink from "@/components/SiteLink";
 import { getAllColumnSlugs, getColumn } from "@/lib/columns";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
@@ -537,8 +538,8 @@ export default async function ColumnPage({ params }: { params: Promise<{ slug: s
       <JsonLd data={jsonLd} />
 
       <nav className="breadcrumb text-xs text-slate-400 mb-4 flex flex-wrap gap-1">
-        <a href="/">ホーム</a><span>/</span>
-        <a href="/column/">コラム</a><span>/</span>
+        <SiteLink href="/">ホーム</SiteLink><span>/</span>
+        <SiteLink href="/column/">コラム</SiteLink><span>/</span>
         <span className="text-slate-600">{col.title}</span>
       </nav>
 
@@ -899,187 +900,187 @@ export default async function ColumnPage({ params }: { params: Promise<{ slug: s
         <div className="flex flex-wrap gap-3">
           {isPiiArticle ? (
             <>
-              <a href="/pii/q/pii-001/" className="text-sm text-blue-700 no-underline hover:underline">個情保 全300問を見る →</a>
-              <a href="/pii/mock/" className="text-sm text-slate-500 no-underline hover:underline">本番形式で腕試し →</a>
-              <a href="/pii/" className="text-sm text-slate-500 no-underline hover:underline">分野別に選ぶ →</a>
+              <SiteLink href="/pii/q/pii-001/" className="text-sm text-blue-700 no-underline hover:underline">個情保 全300問を見る →</SiteLink>
+              <SiteLink href="/pii/mock/" className="text-sm text-slate-500 no-underline hover:underline">本番形式で腕試し →</SiteLink>
+              <SiteLink href="/pii/" className="text-sm text-slate-500 no-underline hover:underline">分野別に選ぶ →</SiteLink>
             </>
           ) : isMynumberArticle ? (
             <>
-              <a href="/mynumber/q/mynumber-001/" className="text-sm text-blue-700 no-underline hover:underline">マイナンバー 全200問を見る →</a>
-              <a href="/mynumber/" className="text-sm text-slate-500 no-underline hover:underline">分野別に選ぶ →</a>
+              <SiteLink href="/mynumber/q/mynumber-001/" className="text-sm text-blue-700 no-underline hover:underline">マイナンバー 全200問を見る →</SiteLink>
+              <SiteLink href="/mynumber/" className="text-sm text-slate-500 no-underline hover:underline">分野別に選ぶ →</SiteLink>
             </>
           ) : isJitsumuArticle ? (
             <>
-              <a href="/jitsumu/q/jitsumu-001/" className="text-sm text-blue-700 no-underline hover:underline">個情保実務 全200問を見る →</a>
-              <a href="/jitsumu/" className="text-sm text-slate-500 no-underline hover:underline">分野別に選ぶ →</a>
+              <SiteLink href="/jitsumu/q/jitsumu-001/" className="text-sm text-blue-700 no-underline hover:underline">個情保実務 全200問を見る →</SiteLink>
+              <SiteLink href="/jitsumu/" className="text-sm text-slate-500 no-underline hover:underline">分野別に選ぶ →</SiteLink>
             </>
           ) : isBijihouArticle ? (
             <>
-              <a href="/bijihou/q/bijihou-001/" className="text-sm text-blue-700 no-underline hover:underline">ビジ法 全200問を見る →</a>
-              <a href="/bijihou/" className="text-sm text-slate-500 no-underline hover:underline">分野別に選ぶ →</a>
+              <SiteLink href="/bijihou/q/bijihou-001/" className="text-sm text-blue-700 no-underline hover:underline">ビジ法 全200問を見る →</SiteLink>
+              <SiteLink href="/bijihou/" className="text-sm text-slate-500 no-underline hover:underline">分野別に選ぶ →</SiteLink>
             </>
           ) : isFukushi2Article ? (
             <>
-              <a href="/fukushi2/" className="text-sm text-blue-700 no-underline hover:underline">福祉住環境2級 全230問を見る →</a>
-              <a href="/fukushi2/mock/" className="text-sm text-slate-500 no-underline hover:underline">本番形式で腕試し →</a>
-              <a href="/fukushi2/field/kaigohoken/" className="text-sm text-slate-500 no-underline hover:underline">介護保険と住宅改修の問題から始める →</a>
+              <SiteLink href="/fukushi2/" className="text-sm text-blue-700 no-underline hover:underline">福祉住環境2級 全230問を見る →</SiteLink>
+              <SiteLink href="/fukushi2/mock/" className="text-sm text-slate-500 no-underline hover:underline">本番形式で腕試し →</SiteLink>
+              <SiteLink href="/fukushi2/field/kaigohoken/" className="text-sm text-slate-500 no-underline hover:underline">介護保険と住宅改修の問題から始める →</SiteLink>
             </>
           ) : isEcoArticle ? (
             <>
-              <a href="/eco/" className="text-sm text-blue-700 no-underline hover:underline">eco検定 全200問を見る →</a>
-              <a href="/eco/mock/" className="text-sm text-slate-500 no-underline hover:underline">本番形式で腕試し →</a>
-              <a href="/eco/field/climate/" className="text-sm text-slate-500 no-underline hover:underline">気候変動とエネルギーの問題から始める →</a>
+              <SiteLink href="/eco/" className="text-sm text-blue-700 no-underline hover:underline">eco検定 全200問を見る →</SiteLink>
+              <SiteLink href="/eco/mock/" className="text-sm text-slate-500 no-underline hover:underline">本番形式で腕試し →</SiteLink>
+              <SiteLink href="/eco/field/climate/" className="text-sm text-slate-500 no-underline hover:underline">気候変動とエネルギーの問題から始める →</SiteLink>
             </>
           ) : isBijimaneArticle ? (
             <>
-              <a href="/bijimane/" className="text-sm text-blue-700 no-underline hover:underline">ビジマネ 全200問を見る →</a>
-              <a href="/bijimane/mock/" className="text-sm text-slate-500 no-underline hover:underline">本番形式で腕試し →</a>
-              <a href="/bijimane/field/leadership/" className="text-sm text-slate-500 no-underline hover:underline">部下のマネジメントの問題から始める →</a>
+              <SiteLink href="/bijimane/" className="text-sm text-blue-700 no-underline hover:underline">ビジマネ 全200問を見る →</SiteLink>
+              <SiteLink href="/bijimane/mock/" className="text-sm text-slate-500 no-underline hover:underline">本番形式で腕試し →</SiteLink>
+              <SiteLink href="/bijimane/field/leadership/" className="text-sm text-slate-500 no-underline hover:underline">部下のマネジメントの問題から始める →</SiteLink>
             </>
           ) : slug.startsWith("chizai2-") ? (
             <>
-              <a href="/chizai2/" className="text-sm text-blue-700 no-underline hover:underline">知財2級の練習問題を見る →</a>
-              <a href="/chizai2/mock/" className="text-sm text-slate-500 no-underline hover:underline">本番形式で腕試し →</a>
-              <a href="/chizai/" className="text-sm text-slate-500 no-underline hover:underline">3級から始める →</a>
+              <SiteLink href="/chizai2/" className="text-sm text-blue-700 no-underline hover:underline">知財2級の練習問題を見る →</SiteLink>
+              <SiteLink href="/chizai2/mock/" className="text-sm text-slate-500 no-underline hover:underline">本番形式で腕試し →</SiteLink>
+              <SiteLink href="/chizai/" className="text-sm text-slate-500 no-underline hover:underline">3級から始める →</SiteLink>
             </>
           ) : isSoumuArticle ? (
             <>
-              <a href="/pii/" className="text-sm text-blue-700 no-underline hover:underline">個人情報保護士 全337問を見る →</a>
-              <a href="/mynumber/" className="text-sm text-slate-500 no-underline hover:underline">マイナンバー実務検定 →</a>
-              <a href="/bijihou/" className="text-sm text-slate-500 no-underline hover:underline">ビジネス実務法務検定3級 →</a>
+              <SiteLink href="/pii/" className="text-sm text-blue-700 no-underline hover:underline">個人情報保護士 全337問を見る →</SiteLink>
+              <SiteLink href="/mynumber/" className="text-sm text-slate-500 no-underline hover:underline">マイナンバー実務検定 →</SiteLink>
+              <SiteLink href="/bijihou/" className="text-sm text-slate-500 no-underline hover:underline">ビジネス実務法務検定3級 →</SiteLink>
               <a href="https://eisei.shikakumon.com/" className="text-sm text-slate-500 no-underline hover:underline">衛生管理者ドリル（姉妹サイト） →</a>
             </>
           ) : isItpassArticle ? (
             <>
-              <a href="/itpass/q/itpass-001/" className="text-sm text-blue-700 no-underline hover:underline">ITパスポート 全200問を見る →</a>
-              <a href="/itpass/moshi/" className="text-sm text-slate-500 no-underline hover:underline">模擬試験（100問・120分）を受ける →</a>
-              <a href="/itpass/" className="text-sm text-slate-500 no-underline hover:underline">分野別に選ぶ →</a>
+              <SiteLink href="/itpass/q/itpass-001/" className="text-sm text-blue-700 no-underline hover:underline">ITパスポート 全200問を見る →</SiteLink>
+              <SiteLink href="/itpass/moshi/" className="text-sm text-slate-500 no-underline hover:underline">模擬試験（100問・120分）を受ける →</SiteLink>
+              <SiteLink href="/itpass/" className="text-sm text-slate-500 no-underline hover:underline">分野別に選ぶ →</SiteLink>
             </>
           ) : isChintaiArticle ? (
             <>
-              <a href="/chintai/q/chintai-001/" className="text-sm text-blue-700 no-underline hover:underline">賃管士 全200問を見る →</a>
-              <a href="/chintai/moshi/" className="text-sm text-slate-500 no-underline hover:underline">模擬試験（50問・120分）を受ける →</a>
-              <a href="/chintai/" className="text-sm text-slate-500 no-underline hover:underline">分野別に選ぶ →</a>
+              <SiteLink href="/chintai/q/chintai-001/" className="text-sm text-blue-700 no-underline hover:underline">賃管士 全200問を見る →</SiteLink>
+              <SiteLink href="/chintai/moshi/" className="text-sm text-slate-500 no-underline hover:underline">模擬試験（50問・120分）を受ける →</SiteLink>
+              <SiteLink href="/chintai/" className="text-sm text-slate-500 no-underline hover:underline">分野別に選ぶ →</SiteLink>
             </>
           ) : isKangyoArticle ? (
             <>
-              <a href="/kangyo/q/kangyo-001/" className="text-sm text-blue-700 no-underline hover:underline">管業 全200問を見る →</a>
-              <a href="/kangyo/moshi/" className="text-sm text-slate-500 no-underline hover:underline">模擬試験（50問・120分）を受ける →</a>
-              <a href="/kangyo/" className="text-sm text-slate-500 no-underline hover:underline">分野別に選ぶ →</a>
+              <SiteLink href="/kangyo/q/kangyo-001/" className="text-sm text-blue-700 no-underline hover:underline">管業 全200問を見る →</SiteLink>
+              <SiteLink href="/kangyo/moshi/" className="text-sm text-slate-500 no-underline hover:underline">模擬試験（50問・120分）を受ける →</SiteLink>
+              <SiteLink href="/kangyo/" className="text-sm text-slate-500 no-underline hover:underline">分野別に選ぶ →</SiteLink>
             </>
           ) : isBijihou2Article ? (
             <>
-              <a href="/bijihou2/q/bijihou2-001/" className="text-sm text-blue-700 no-underline hover:underline">ビジ法2級 全200問を見る →</a>
-              <a href="/bijihou2/moshi/" className="text-sm text-slate-500 no-underline hover:underline">模擬試験（50問・90分）を受ける →</a>
-              <a href="/bijihou/" className="text-sm text-slate-500 no-underline hover:underline">3級から始める →</a>
+              <SiteLink href="/bijihou2/q/bijihou2-001/" className="text-sm text-blue-700 no-underline hover:underline">ビジ法2級 全200問を見る →</SiteLink>
+              <SiteLink href="/bijihou2/moshi/" className="text-sm text-slate-500 no-underline hover:underline">模擬試験（50問・90分）を受ける →</SiteLink>
+              <SiteLink href="/bijihou/" className="text-sm text-slate-500 no-underline hover:underline">3級から始める →</SiteLink>
             </>
           ) : isHadArticle ? (
             <>
-              <a href="/had/q/had-001/" className="text-sm text-blue-700 no-underline hover:underline">ハラスメントアドバイザー 全160問を見る →</a>
-              <a href="/had/moshi/" className="text-sm text-slate-500 no-underline hover:underline">模擬試験（60問・90分）を受ける →</a>
-              <a href="/had/" className="text-sm text-slate-500 no-underline hover:underline">分野別に選ぶ →</a>
+              <SiteLink href="/had/q/had-001/" className="text-sm text-blue-700 no-underline hover:underline">ハラスメントアドバイザー 全160問を見る →</SiteLink>
+              <SiteLink href="/had/moshi/" className="text-sm text-slate-500 no-underline hover:underline">模擬試験（60問・90分）を受ける →</SiteLink>
+              <SiteLink href="/had/" className="text-sm text-slate-500 no-underline hover:underline">分野別に選ぶ →</SiteLink>
             </>
           ) : isCcmArticle ? (
             <>
-              <a href="/ccm/q/ccm-001/" className="text-sm text-blue-700 no-underline hover:underline">企業危機・コンプライアンス管理士 全160問を見る →</a>
-              <a href="/ccm/moshi/" className="text-sm text-slate-500 no-underline hover:underline">模擬試験（80問・120分）を受ける →</a>
-              <a href="/ccm/" className="text-sm text-slate-500 no-underline hover:underline">分野別に選ぶ →</a>
+              <SiteLink href="/ccm/q/ccm-001/" className="text-sm text-blue-700 no-underline hover:underline">企業危機・コンプライアンス管理士 全160問を見る →</SiteLink>
+              <SiteLink href="/ccm/moshi/" className="text-sm text-slate-500 no-underline hover:underline">模擬試験（80問・120分）を受ける →</SiteLink>
+              <SiteLink href="/ccm/" className="text-sm text-slate-500 no-underline hover:underline">分野別に選ぶ →</SiteLink>
             </>
           ) : isCccArticle ? (
             <>
-              <a href="/ccc/" className="text-sm text-blue-700 no-underline hover:underline">民法法務士の練習問題・試験の概要 →</a>
-              <a href="/column/ccc-nittei/" className="text-sm text-slate-500 no-underline hover:underline">試験日程・申込締切を見る →</a>
+              <SiteLink href="/ccc/" className="text-sm text-blue-700 no-underline hover:underline">民法法務士の練習問題・試験の概要 →</SiteLink>
+              <SiteLink href="/column/ccc-nittei/" className="text-sm text-slate-500 no-underline hover:underline">試験日程・申込締切を見る →</SiteLink>
             </>
           ) : isLlcArticle ? (
             <>
-              <a href="/llc/" className="text-sm text-blue-700 no-underline hover:underline">労働法務士の練習問題・試験の概要 →</a>
-              <a href="/column/llc-nittei/" className="text-sm text-slate-500 no-underline hover:underline">試験日程・申込締切を見る →</a>
+              <SiteLink href="/llc/" className="text-sm text-blue-700 no-underline hover:underline">労働法務士の練習問題・試験の概要 →</SiteLink>
+              <SiteLink href="/column/llc-nittei/" className="text-sm text-slate-500 no-underline hover:underline">試験日程・申込締切を見る →</SiteLink>
             </>
           ) : isCacArticle ? (
             <>
-              <a href="/cac/" className="text-sm text-blue-700 no-underline hover:underline">会社法法務士の練習問題・試験の概要 →</a>
-              <a href="/column/cac-nittei/" className="text-sm text-slate-500 no-underline hover:underline">試験日程・申込締切を見る →</a>
+              <SiteLink href="/cac/" className="text-sm text-blue-700 no-underline hover:underline">会社法法務士の練習問題・試験の概要 →</SiteLink>
+              <SiteLink href="/column/cac-nittei/" className="text-sm text-slate-500 no-underline hover:underline">試験日程・申込締切を見る →</SiteLink>
             </>
           ) : isIbdArticle ? (
             <>
-              <a href="/ibd/" className="text-sm text-blue-700 no-underline hover:underline">インバウンド実務主任者の練習問題・試験の概要 →</a>
-              <a href="/column/ibd-nittei/" className="text-sm text-slate-500 no-underline hover:underline">試験日程・申込締切を見る →</a>
+              <SiteLink href="/ibd/" className="text-sm text-blue-700 no-underline hover:underline">インバウンド実務主任者の練習問題・試験の概要 →</SiteLink>
+              <SiteLink href="/column/ibd-nittei/" className="text-sm text-slate-500 no-underline hover:underline">試験日程・申込締切を見る →</SiteLink>
             </>
           ) : isDxoArticle ? (
             <>
-              <a href="/dxo/" className="text-sm text-blue-700 no-underline hover:underline">DXオフィサーの練習問題・試験の概要 →</a>
-              <a href="/column/dxo-nittei/" className="text-sm text-slate-500 no-underline hover:underline">試験日程・申込締切を見る →</a>
+              <SiteLink href="/dxo/" className="text-sm text-blue-700 no-underline hover:underline">DXオフィサーの練習問題・試験の概要 →</SiteLink>
+              <SiteLink href="/column/dxo-nittei/" className="text-sm text-slate-500 no-underline hover:underline">試験日程・申込締切を見る →</SiteLink>
             </>
           ) : isWlcArticle ? (
             <>
-              <a href="/wlc/" className="text-sm text-blue-700 no-underline hover:underline">ワークライフ・コーディネーターの練習問題・試験の概要 →</a>
-              <a href="/column/wlc-nittei/" className="text-sm text-slate-500 no-underline hover:underline">試験日程・申込締切を見る →</a>
+              <SiteLink href="/wlc/" className="text-sm text-blue-700 no-underline hover:underline">ワークライフ・コーディネーターの練習問題・試験の概要 →</SiteLink>
+              <SiteLink href="/column/wlc-nittei/" className="text-sm text-slate-500 no-underline hover:underline">試験日程・申込締切を見る →</SiteLink>
             </>
           ) : isXrayArticle ? (
             <>
-              <a href="/xray/q/xray-001/" className="text-sm text-blue-700 no-underline hover:underline">エックス線作業主任者 全160問を見る →</a>
-              <a href="/xray/moshi/" className="text-sm text-slate-500 no-underline hover:underline">模擬試験（240分）を受ける →</a>
-              <a href="/xray/" className="text-sm text-slate-500 no-underline hover:underline">分野別に選ぶ →</a>
+              <SiteLink href="/xray/q/xray-001/" className="text-sm text-blue-700 no-underline hover:underline">エックス線作業主任者 全160問を見る →</SiteLink>
+              <SiteLink href="/xray/moshi/" className="text-sm text-slate-500 no-underline hover:underline">模擬試験（240分）を受ける →</SiteLink>
+              <SiteLink href="/xray/" className="text-sm text-slate-500 no-underline hover:underline">分野別に選ぶ →</SiteLink>
             </>
           ) : isAiaArticle ? (
             <>
-              <a href="/aia/q/aia-001/" className="text-sm text-blue-700 no-underline hover:underline">AI活用アドバイザー 全144問を見る →</a>
-              <a href="/aia/moshi/" className="text-sm text-slate-500 no-underline hover:underline">模擬試験（105分）を受ける →</a>
-              <a href="/aia/" className="text-sm text-slate-500 no-underline hover:underline">分野別に選ぶ →</a>
+              <SiteLink href="/aia/q/aia-001/" className="text-sm text-blue-700 no-underline hover:underline">AI活用アドバイザー 全144問を見る →</SiteLink>
+              <SiteLink href="/aia/moshi/" className="text-sm text-slate-500 no-underline hover:underline">模擬試験（105分）を受ける →</SiteLink>
+              <SiteLink href="/aia/" className="text-sm text-slate-500 no-underline hover:underline">分野別に選ぶ →</SiteLink>
             </>
           ) : isDxaArticle ? (
             <>
-              <a href="/dxa/q/dxa-001/" className="text-sm text-blue-700 no-underline hover:underline">DX推進アドバイザー 全136問を見る →</a>
-              <a href="/dxa/moshi/" className="text-sm text-slate-500 no-underline hover:underline">模擬試験（105分）を受ける →</a>
-              <a href="/dxa/" className="text-sm text-slate-500 no-underline hover:underline">分野別に選ぶ →</a>
+              <SiteLink href="/dxa/q/dxa-001/" className="text-sm text-blue-700 no-underline hover:underline">DX推進アドバイザー 全136問を見る →</SiteLink>
+              <SiteLink href="/dxa/moshi/" className="text-sm text-slate-500 no-underline hover:underline">模擬試験（105分）を受ける →</SiteLink>
+              <SiteLink href="/dxa/" className="text-sm text-slate-500 no-underline hover:underline">分野別に選ぶ →</SiteLink>
             </>
           ) : isGaiaArticle ? (
             <>
-              <a href="/gaia/q/gaia-001/" className="text-sm text-blue-700 no-underline hover:underline">生成AIアドバイザー 全172問を見る →</a>
-              <a href="/gaia/moshi/" className="text-sm text-slate-500 no-underline hover:underline">模擬試験（120分）を受ける →</a>
-              <a href="/gaia/" className="text-sm text-slate-500 no-underline hover:underline">分野別に選ぶ →</a>
+              <SiteLink href="/gaia/q/gaia-001/" className="text-sm text-blue-700 no-underline hover:underline">生成AIアドバイザー 全172問を見る →</SiteLink>
+              <SiteLink href="/gaia/moshi/" className="text-sm text-slate-500 no-underline hover:underline">模擬試験（120分）を受ける →</SiteLink>
+              <SiteLink href="/gaia/" className="text-sm text-slate-500 no-underline hover:underline">分野別に選ぶ →</SiteLink>
             </>
           ) : isHoikushiArticle ? (
             <>
-              <a href="/hoikushi/q/hoikushi-001/" className="text-sm text-blue-700 no-underline hover:underline">保育士試験（筆記） 全210問を見る →</a>
-              <a href="/hoikushi/moshi/" className="text-sm text-slate-500 no-underline hover:underline">模擬試験（480分）を受ける →</a>
-              <a href="/hoikushi/" className="text-sm text-slate-500 no-underline hover:underline">分野別に選ぶ →</a>
+              <SiteLink href="/hoikushi/q/hoikushi-001/" className="text-sm text-blue-700 no-underline hover:underline">保育士試験（筆記） 全210問を見る →</SiteLink>
+              <SiteLink href="/hoikushi/moshi/" className="text-sm text-slate-500 no-underline hover:underline">模擬試験（480分）を受ける →</SiteLink>
+              <SiteLink href="/hoikushi/" className="text-sm text-slate-500 no-underline hover:underline">分野別に選ぶ →</SiteLink>
             </>
           ) : isTouhanArticle ? (
             <>
-              <a href="/touhan/q/touhan-001/" className="text-sm text-blue-700 no-underline hover:underline">登録販売者 全240問を見る →</a>
-              <a href="/touhan/moshi/" className="text-sm text-slate-500 no-underline hover:underline">模擬試験（240分）を受ける →</a>
-              <a href="/touhan/" className="text-sm text-slate-500 no-underline hover:underline">分野別に選ぶ →</a>
+              <SiteLink href="/touhan/q/touhan-001/" className="text-sm text-blue-700 no-underline hover:underline">登録販売者 全240問を見る →</SiteLink>
+              <SiteLink href="/touhan/moshi/" className="text-sm text-slate-500 no-underline hover:underline">模擬試験（240分）を受ける →</SiteLink>
+              <SiteLink href="/touhan/" className="text-sm text-slate-500 no-underline hover:underline">分野別に選ぶ →</SiteLink>
             </>
           ) : isIsecArticle ? (
             <>
-              <a href="/isec/q/isec-001/" className="text-sm text-blue-700 no-underline hover:underline">情報セキュリティ管理士の練習問題を見る →</a>
-              <a href="/isec/moshi/" className="text-sm text-slate-500 no-underline hover:underline">模擬試験（90問・60分）を受ける →</a>
-              <a href="/isec/" className="text-sm text-slate-500 no-underline hover:underline">分野別に選ぶ →</a>
+              <SiteLink href="/isec/q/isec-001/" className="text-sm text-blue-700 no-underline hover:underline">情報セキュリティ管理士の練習問題を見る →</SiteLink>
+              <SiteLink href="/isec/moshi/" className="text-sm text-slate-500 no-underline hover:underline">模擬試験（90問・60分）を受ける →</SiteLink>
+              <SiteLink href="/isec/" className="text-sm text-slate-500 no-underline hover:underline">分野別に選ぶ →</SiteLink>
             </>
           ) : isIsfArticle ? (
             <>
-              <a href="/isf/q/isf-001/" className="text-sm text-blue-700 no-underline hover:underline">情報セキュリティ初級 全160問を見る →</a>
-              <a href="/isf/moshi/" className="text-sm text-slate-500 no-underline hover:underline">模擬試験（80問・60分）を受ける →</a>
-              <a href="/isf/" className="text-sm text-slate-500 no-underline hover:underline">分野別に選ぶ →</a>
+              <SiteLink href="/isf/q/isf-001/" className="text-sm text-blue-700 no-underline hover:underline">情報セキュリティ初級 全160問を見る →</SiteLink>
+              <SiteLink href="/isf/moshi/" className="text-sm text-slate-500 no-underline hover:underline">模擬試験（80問・60分）を受ける →</SiteLink>
+              <SiteLink href="/isf/" className="text-sm text-slate-500 no-underline hover:underline">分野別に選ぶ →</SiteLink>
             </>
           ) : isDxpArticle ? (
             <>
-              <a href="/dxp/q/dxp-001/" className="text-sm text-blue-700 no-underline hover:underline">DXパスポート 全160問を見る →</a>
-              <a href="/dxp/moshi/" className="text-sm text-slate-500 no-underline hover:underline">模擬試験（60問・60分）を受ける →</a>
-              <a href="/dxp/" className="text-sm text-slate-500 no-underline hover:underline">分野別に選ぶ →</a>
+              <SiteLink href="/dxp/q/dxp-001/" className="text-sm text-blue-700 no-underline hover:underline">DXパスポート 全160問を見る →</SiteLink>
+              <SiteLink href="/dxp/moshi/" className="text-sm text-slate-500 no-underline hover:underline">模擬試験（60問・60分）を受ける →</SiteLink>
+              <SiteLink href="/dxp/" className="text-sm text-slate-500 no-underline hover:underline">分野別に選ぶ →</SiteLink>
             </>
           ) : slug.startsWith("chizai-") ? (
             <>
-              <a href="/chizai/" className="text-sm text-blue-700 no-underline hover:underline">知財3級の練習問題を見る →</a>
-              <a href="/chizai/mock/" className="text-sm text-slate-500 no-underline hover:underline">本番形式で腕試し →</a>
-              <a href="/chizai/field/patent/" className="text-sm text-slate-500 no-underline hover:underline">特許法の問題から始める →</a>
+              <SiteLink href="/chizai/" className="text-sm text-blue-700 no-underline hover:underline">知財3級の練習問題を見る →</SiteLink>
+              <SiteLink href="/chizai/mock/" className="text-sm text-slate-500 no-underline hover:underline">本番形式で腕試し →</SiteLink>
+              <SiteLink href="/chizai/field/patent/" className="text-sm text-slate-500 no-underline hover:underline">特許法の問題から始める →</SiteLink>
             </>
           ) : (
             <>
-              <a href="/exam/0/" className="text-sm text-blue-700 no-underline hover:underline">全504問を見る →</a>
-              <a href="/kashikin/mock/" className="text-sm text-slate-500 no-underline hover:underline">本番形式で腕試し →</a>
-              <a href="/field/" className="text-sm text-slate-500 no-underline hover:underline">分野別に選ぶ →</a>
+              <SiteLink href="/exam/0/" className="text-sm text-blue-700 no-underline hover:underline">全504問を見る →</SiteLink>
+              <SiteLink href="/kashikin/mock/" className="text-sm text-slate-500 no-underline hover:underline">本番形式で腕試し →</SiteLink>
+              <SiteLink href="/field/" className="text-sm text-slate-500 no-underline hover:underline">分野別に選ぶ →</SiteLink>
             </>
           )}
         </div>
@@ -1117,7 +1118,7 @@ export default async function ColumnPage({ params }: { params: Promise<{ slug: s
       </aside>
 
       <nav className="mt-6">
-        <a href="/column/" className="text-sm text-slate-500 no-underline hover:underline">← コラム一覧に戻る</a>
+        <SiteLink href="/column/" className="text-sm text-slate-500 no-underline hover:underline">← コラム一覧に戻る</SiteLink>
       </nav>
     </article>
   );

@@ -19,7 +19,7 @@
  */
 import type { ExamSlug } from "./study-progress";
 
-export interface TopicHub {
+interface TopicHub {
   /** URL に使う。既存の分野スラッグと同じヘボン式ローマ字 */
   slug: string;
   /** 問題の title の「｜」より後ろと完全に一致させること。ここが照合キー */
@@ -77,7 +77,7 @@ const BY_EXAM: Partial<Record<ExamSlug, TopicHub[]>> = {
 };
 
 /** 資格ごとのハブ一覧。無い資格は空配列 */
-export function topicHubsFor(exam: ExamSlug): TopicHub[] {
+function topicHubsFor(exam: ExamSlug): TopicHub[] {
   return BY_EXAM[exam] ?? [];
 }
 

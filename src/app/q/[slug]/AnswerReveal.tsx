@@ -1,4 +1,5 @@
 "use client";
+import SiteLink from "@/components/SiteLink";
 import { useEffect, useRef, useState } from "react";
 import type { ReactNode } from "react";
 import { sendGAEvent } from "@next/third-parties/google";
@@ -248,7 +249,7 @@ export default function AnswerReveal({
                     この問題：{MEDAL_LABEL[medal]}
                   </p>
                   <p className="text-xs text-[color:var(--c-text-sub)] mt-1">
-                    {MEDAL_NEXT[medal]}（<a href="/study/" className="underline">学習履歴を見る</a>）
+                    {MEDAL_NEXT[medal]}（<SiteLink href="/study/" className="underline">学習履歴を見る</SiteLink>）
                   </p>
                 </>
               )}
@@ -326,7 +327,7 @@ export default function AnswerReveal({
                   <p className="text-xs text-[color:var(--c-text-sub)] leading-relaxed mb-3">
                     {drillPos.total}問を解き終えました。メダルの変化は学習履歴で確認できます。
                   </p>
-                  <a
+                  <SiteLink
                     href="/study/"
                     onClick={() => {
                       endDrill();
@@ -342,7 +343,7 @@ export default function AnswerReveal({
                     className="text-sm font-bold text-[color:var(--c-accent,var(--c-ink))] hover:underline no-underline"
                   >
                     学習履歴を見る →
-                  </a>
+                  </SiteLink>
                 </div>
               )}
               <button
@@ -451,13 +452,13 @@ export default function AnswerReveal({
                     連続演習が続いている inline 版には出さない(読み物へ逸らさない)。 */}
                 {exam && (
                   <p className="mt-4 pt-3 border-t border-[color:var(--c-border)] text-xs">
-                    <a
+                    <SiteLink
                       href={`/column/#${exam}`}
                       onClick={() => trackPractice("column", "question_end")}
                       className="text-[color:var(--c-accent,var(--c-ink))] hover:underline"
                     >
                       勉強法・試験日程のコラムを読む →
-                    </a>
+                    </SiteLink>
                   </p>
                 )}
               </section>

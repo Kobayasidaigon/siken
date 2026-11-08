@@ -1,3 +1,4 @@
+import SiteLink from "@/components/SiteLink";
 import { getAllIsecSlugs, getIsecQuestion, getIsecQuestionsByField } from "@/lib/isec-questions";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
@@ -63,13 +64,13 @@ export default async function IsecQuestionPage({ params }: { params: Promise<{ s
       <JsonLd data={jsonLd} />
 
       <nav className="breadcrumb text-xs text-[color:var(--c-text-sub)] mb-4 flex flex-wrap gap-1">
-        <a href="/">ホーム</a>
+        <SiteLink href="/">ホーム</SiteLink>
         <span>/</span>
-        <a href="/isec/">{EXAM_NAME}</a>
+        <SiteLink href="/isec/">{EXAM_NAME}</SiteLink>
         <span>/</span>
         {fieldSlug && (
           <>
-            <a href={`/isec/field/${fieldSlug}/`}>{q.field}</a>
+            <SiteLink href={`/isec/field/${fieldSlug}/`}>{q.field}</SiteLink>
             <span>/</span>
           </>
         )}
@@ -112,30 +113,30 @@ export default async function IsecQuestionPage({ params }: { params: Promise<{ s
 
       <nav className="mt-8 flex justify-between items-center pt-4 border-t border-[color:var(--c-border)]">
         {prevQ ? (
-          <a
+          <SiteLink
             href={`/isec/q/${prevQ.slug}/`}
             className="text-sm text-[color:var(--c-text-sub)] no-underline hover:text-[color:var(--c-pii)]"
           >
             ← 問{idx}
-          </a>
+          </SiteLink>
         ) : (
           <span />
         )}
         {fieldSlug && (
-          <a
+          <SiteLink
             href={`/isec/field/${fieldSlug}/`}
             className="text-sm text-[color:var(--c-text-sub)] no-underline hover:text-[color:var(--c-pii)]"
           >
             {q.field}の一覧
-          </a>
+          </SiteLink>
         )}
         {nextQ ? (
-          <a
+          <SiteLink
             href={`/isec/q/${nextQ.slug}/`}
             className="text-sm text-[color:var(--c-text-sub)] no-underline hover:text-[color:var(--c-pii)]"
           >
             問{idx + 2} →
-          </a>
+          </SiteLink>
         ) : (
           <span />
         )}

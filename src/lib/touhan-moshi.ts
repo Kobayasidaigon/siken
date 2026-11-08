@@ -10,7 +10,7 @@ import { getAllTouhanQuestions, type TouhanQuestionData } from "./touhan-questio
 export const TOUHAN_MOSHI_TIME_LIMIT_MIN = 240;
 export const TOUHAN_MOSHI_PASS_COUNT = 84;
 
-export const TOUHAN_MOSHI_1_SLUGS: string[] = [
+const TOUHAN_MOSHI_1_SLUGS: string[] = [
   "touhan-002", // 医薬品に共通する特性と基本的な知識 A 5択 適正使用情報の伝達と専門家の役割
   "touhan-004", // 医薬品に共通する特性と基本的な知識 B 5択 製造物責任法と不良品の販売禁止
   "touhan-006", // 医薬品に共通する特性と基本的な知識 A 5択 LD50の意味

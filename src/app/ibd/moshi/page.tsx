@@ -1,3 +1,4 @@
+import SiteLink from "@/components/SiteLink";
 import type { Metadata } from "next";
 import { pageMetadata } from "@/lib/page-metadata";
 import {
@@ -28,9 +29,9 @@ export default async function IbdMoshiPage() {
   return (
     <div className="theme-pii pb-16">
       <nav className="breadcrumb text-xs text-[color:var(--c-text-sub)] mb-4 flex gap-1">
-        <a href="/">ホーム</a>
+        <SiteLink href="/">ホーム</SiteLink>
         <span>/</span>
-        <a href="/ibd/">インバウンド実務主任者</a>
+        <SiteLink href="/ibd/">インバウンド実務主任者</SiteLink>
         <span>/</span>
         <span className="text-[color:var(--c-ink)]">模擬試験 第1回</span>
       </nav>
@@ -79,9 +80,9 @@ export default async function IbdMoshiPage() {
       <p className="text-xs text-[color:var(--c-text-sub)] mt-8 max-w-2xl leading-relaxed">
         ※本試験は課題13の3問が各2点の90点満点（合格72点以上）ですが、本模試は全問1点で採点しています。課題ごとの問題数も公表されていないため、当サイトの8分野からほぼ均等に出題しています。判定は学習の目安としてお使いください。当サイトが作成したオリジナル問題で構成しており、実際の過去問題の転載ではありません。
         1問ずつじっくり学びたい方は
-        <a href="/ibd/" className="underline hover:no-underline">
+        <SiteLink href="/ibd/" className="underline hover:no-underline">
           練習問題160問
-        </a>
+        </SiteLink>
         へ。
       </p>
     </div>

@@ -28,7 +28,7 @@ import type { QuestionData } from "./types";
 export const KASHIKIN_MOSHI_TIME_LIMIT_MIN = 120;
 export const KASHIKIN_MOSHI_PASS_COUNT = 30;
 
-export const KASHIKIN_MOSHI_1_SLUGS: string[] = [
+const KASHIKIN_MOSHI_1_SLUGS: string[] = [
   "0-001", // 貸金業法 A 貸金業の登録制度の基本
   "0-307", // 民法・民事訴訟法 A 契約の成立要件
   "0-215", // 利息制限法・出資法 A 利息の上限金利

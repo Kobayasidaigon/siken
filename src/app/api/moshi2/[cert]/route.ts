@@ -1,13 +1,12 @@
 // =============================================================================
-// 第2回模試(有料)の配信。購入者の署名 cookie を検証してからペーパーを返す。
+// 第2回模試の配信。2026-11-08 に無料化し、購入者の確認(署名 cookie)を外した。
 //
-// 未購入は 402 を返す。受験画面はこのステータスを見て「購入」と「受験」を
-// 出し分けるので、有料の問題データが未購入者のバンドルに載ることはない。
+// 問題はページの HTML に入れず、受験画面(Moshi2Gate)と印刷用紙面(Moshi2Print)が
+// ここから取りに行く。100問超の問題と解説を静的 HTML に入れると第2回のページだけ
+// 極端に重くなるため、この形を残している。
 // =============================================================================
 
-import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
-import { accessCookieName, isDevUnlockEnabled, verifyAccess } from "@/lib/access";
 import { loadMoshi2 } from "@/lib/moshi2-load";
 import { moshi2ProductOf } from "@/lib/moshi2-products";
 
@@ -19,18 +18,6 @@ export async function GET(_request: Request, { params }: { params: Promise<{ cer
     return NextResponse.json({ error: "not_found" }, { status: 404 });
   }
 
-  // 開発時のみ、決済を通さずに中身を確認できる(本番では必ず false)
-  const devUnlocked = isDevUnlockEnabled();
-  const jar = await cookies();
-  const token = jar.get(accessCookieName(cert))?.value;
-  if (!devUnlocked && !verifyAccess(token, cert)) {
-    // 未購入。商品情報だけ返して購入画面を描けるようにする。
-    return NextResponse.json(
-      { error: "payment_required", product: { name: product.name, priceJpy: product.priceJpy } },
-      { status: 402 }
-    );
-  }
-
   const questions = await loadMoshi2(cert);
   if (!questions) {
     return NextResponse.json({ error: "not_ready" }, { status: 503 });
@@ -38,8 +25,6 @@ export async function GET(_request: Request, { params }: { params: Promise<{ cer
 
   return NextResponse.json(
     {
-      // 画面側に「決済を通さず開いている」と出すための印。本番では常に undefined
-      dev: devUnlocked ? true : undefined,
       def: {
         round: 2,
         timeLimitMin: product.timeLimitMin,
@@ -52,7 +37,7 @@ export async function GET(_request: Request, { params }: { params: Promise<{ cer
       },
       questions,
     },
-    // 購入者ごとの内容。CDN にもブラウザにも残さない。
-    { headers: { "Cache-Control": "private, no-store" } }
+    // 誰が取っても同じ内容なので CDN に1日置いてよい。問題を直したときは再デプロイで入れ替わる。
+    { headers: { "Cache-Control": "public, s-maxage=86400, stale-while-revalidate=604800" } }
   );
 }

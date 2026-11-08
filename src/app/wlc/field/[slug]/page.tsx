@@ -1,3 +1,4 @@
+import SiteLink from "@/components/SiteLink";
 import { getWlcQuestionsByField } from "@/lib/wlc-questions";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
@@ -29,7 +30,7 @@ function QuestionCard({ q, index }: { q: WlcQuestionData; index: number }) {
     C: "bg-red-100 text-red-800",
   }[q.difficulty];
   return (
-    <a
+    <SiteLink
       href={`/wlc/q/${q.slug}/`}
       className="card p-4 flex justify-between items-center no-underline group"
       style={{ borderLeft: "3px solid var(--c-pii)" }}
@@ -55,7 +56,7 @@ function QuestionCard({ q, index }: { q: WlcQuestionData; index: number }) {
       >
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
       </svg>
-    </a>
+    </SiteLink>
   );
 }
 
@@ -74,9 +75,9 @@ export default async function WlcFieldPage({ params }: { params: Promise<{ slug:
   return (
     <div className="theme-pii pb-16">
       <nav className="breadcrumb text-xs text-[color:var(--c-text-sub)] mb-4 flex gap-1">
-        <a href="/">ホーム</a>
+        <SiteLink href="/">ホーム</SiteLink>
         <span>/</span>
-        <a href="/wlc/">ワークライフ・コーディネーター</a>
+        <SiteLink href="/wlc/">ワークライフ・コーディネーター</SiteLink>
         <span>/</span>
         <span className="text-[color:var(--c-ink)]">{field.name}</span>
       </nav>

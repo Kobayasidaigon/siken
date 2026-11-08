@@ -1,3 +1,4 @@
+import SiteLink from "@/components/SiteLink";
 import type { Metadata } from "next";
 import { pageMetadata } from "@/lib/page-metadata";
 import { getKangyoMoshi1Questions, KANGYO_MOSHI_PASS_COUNT, KANGYO_MOSHI_TIME_LIMIT_MIN } from "@/lib/kangyo-moshi";
@@ -26,8 +27,8 @@ export default async function KangyoMoshiPage() {
   return (
     <div className="theme-kashikin pb-16">
       <nav className="breadcrumb text-xs text-[color:var(--c-text-sub)] mb-4 flex gap-1">
-        <a href="/">ホーム</a><span>/</span>
-        <a href="/kangyo/">管理業務主任者</a><span>/</span>
+        <SiteLink href="/">ホーム</SiteLink><span>/</span>
+        <SiteLink href="/kangyo/">管理業務主任者</SiteLink><span>/</span>
         <span className="text-[color:var(--c-ink)]">模擬試験 第1回</span>
       </nav>
 
@@ -68,8 +69,8 @@ export default async function KangyoMoshiPage() {
         ※本模試は当サイト編集部が作成したオリジナル問題で構成しており、実際の過去問題の転載ではありません。
         本試験の合格基準点は年度ごとに決定され（令和7年度36点・令和6年度38点）、マンション管理士試験の合格者は45問・110分での受験になります。
         合否判定はあくまで学習の目安です。1問ずつじっくり学びたい方は
-        <a href="/kangyo/" className="underline hover:no-underline">練習問題200問</a>へ、
-        試験直前の進め方は<a href="/column/kangyo-chokuzen/" className="underline hover:no-underline">直前対策コラム</a>へ。
+        <SiteLink href="/kangyo/" className="underline hover:no-underline">練習問題200問</SiteLink>へ、
+        試験直前の進め方は<SiteLink href="/column/kangyo-chokuzen/" className="underline hover:no-underline">直前対策コラム</SiteLink>へ。
       </p>
     </div>
   );

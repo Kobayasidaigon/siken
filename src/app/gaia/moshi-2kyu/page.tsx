@@ -1,3 +1,4 @@
+import SiteLink from "@/components/SiteLink";
 import type { Metadata } from "next";
 import { pageMetadata } from "@/lib/page-metadata";
 import { getGaiaMoshi2kyuQuestions, GAIA_MOSHI_2KYU_TIME_LIMIT_MIN, GAIA_MOSHI_2KYU_PASS_COUNT } from "@/lib/gaia-moshi-2kyu";
@@ -24,8 +25,8 @@ export default async function GaiaMoshi2kyuPage() {
   return (
     <div className="theme-pii pb-16">
       <nav className="breadcrumb text-xs text-[color:var(--c-text-sub)] mb-4 flex gap-1">
-        <a href="/">ホーム</a><span>/</span>
-        <a href="/gaia/">生成AIアドバイザー</a><span>/</span>
+        <SiteLink href="/">ホーム</SiteLink><span>/</span>
+        <SiteLink href="/gaia/">生成AIアドバイザー</SiteLink><span>/</span>
         <span className="text-[color:var(--c-ink)]">模擬試験（2級形式）</span>
       </nav>
 
@@ -62,8 +63,8 @@ export default async function GaiaMoshi2kyuPage() {
       />
 
       <p className="text-xs text-[color:var(--c-text-sub)] mt-8 max-w-2xl leading-relaxed">
-        ※本模試は当サイト編集部が作成したオリジナル問題で、公式のサンプル問題の転載ではありません。○×は1つ目の選択肢が「○ 正しい」、2つ目が「× 誤り」です。1級形式（100問・120分）は<a href="/gaia/moshi/" className="underline hover:no-underline">こちら</a>。
-        1問ずつじっくり学びたい方は<a href="/gaia/" className="underline hover:no-underline">練習問題</a>へ。
+        ※本模試は当サイト編集部が作成したオリジナル問題で、公式のサンプル問題の転載ではありません。○×は1つ目の選択肢が「○ 正しい」、2つ目が「× 誤り」です。1級形式（100問・120分）は<SiteLink href="/gaia/moshi/" className="underline hover:no-underline">こちら</SiteLink>。
+        1問ずつじっくり学びたい方は<SiteLink href="/gaia/" className="underline hover:no-underline">練習問題</SiteLink>へ。
       </p>
     </div>
   );

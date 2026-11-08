@@ -12,7 +12,7 @@ import { getAllWlcQuestions, type WlcQuestionData } from "./wlc-questions";
 export const WLC_MOSHI_TIME_LIMIT_MIN = 105;
 export const WLC_MOSHI_PASS_COUNT = 42;
 
-export const WLC_MOSHI_1_SLUGS: string[] = [
+const WLC_MOSHI_1_SLUGS: string[] = [
   // 労働の基礎知識とワークライフバランス（8問）
   "wlc-001", // A 仕事と生活の調和が実現した社会の定義
   "wlc-003", // B 憲章の策定経緯と行動指針

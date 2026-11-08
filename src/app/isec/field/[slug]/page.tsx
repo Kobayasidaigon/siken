@@ -1,3 +1,4 @@
+import SiteLink from "@/components/SiteLink";
 import { getIsecQuestionsByField } from "@/lib/isec-questions";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
@@ -31,7 +32,7 @@ function QuestionCard({ q, index }: { q: IsecQuestionData; index: number }) {
     C: "bg-red-100 text-red-800",
   }[q.difficulty];
   return (
-    <a
+    <SiteLink
       href={`/isec/q/${q.slug}/`}
       className="card p-4 flex justify-between items-center no-underline group"
       style={{ borderLeft: "3px solid var(--c-pii)" }}
@@ -57,7 +58,7 @@ function QuestionCard({ q, index }: { q: IsecQuestionData; index: number }) {
       >
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
       </svg>
-    </a>
+    </SiteLink>
   );
 }
 
@@ -76,9 +77,9 @@ export default async function IsecFieldPage({ params }: { params: Promise<{ slug
   return (
     <div className="theme-pii pb-16">
       <nav className="breadcrumb text-xs text-[color:var(--c-text-sub)] mb-4 flex gap-1">
-        <a href="/">ホーム</a>
+        <SiteLink href="/">ホーム</SiteLink>
         <span>/</span>
-        <a href="/isec/">情報・サイバーセキュリティ管理士</a>
+        <SiteLink href="/isec/">情報・サイバーセキュリティ管理士</SiteLink>
         <span>/</span>
         <span className="text-[color:var(--c-ink)]">{field.name}</span>
       </nav>
@@ -88,9 +89,9 @@ export default async function IsecFieldPage({ params }: { params: Promise<{ slug
       {field.outOfScope ? (
         <p className="text-xs text-[color:var(--c-text-sub)] mb-2 leading-relaxed">
           旧課題Ⅳ「コンピュータの一般知識」の分野です。2026年2月の試験から管理士の出題範囲は課題Ⅰ〜Ⅲになり、この分野は
-          <a href="/isf/" className="underline hover:no-underline">
+          <SiteLink href="/isf/" className="underline hover:no-underline">
             情報・サイバーセキュリティ初級
-          </a>
+          </SiteLink>
           だけで出題されます。サイバー攻撃の仕組みを理解する土台として、問題は参考に残しています（模擬試験・本番形式テストには出題しません）。
         </p>
       ) : (

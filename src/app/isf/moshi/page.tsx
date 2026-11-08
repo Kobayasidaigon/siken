@@ -1,3 +1,4 @@
+import SiteLink from "@/components/SiteLink";
 import type { Metadata } from "next";
 import { pageMetadata } from "@/lib/page-metadata";
 import {
@@ -28,9 +29,9 @@ export default async function IsfMoshiPage() {
   return (
     <div className="theme-pii pb-16">
       <nav className="breadcrumb text-xs text-[color:var(--c-text-sub)] mb-4 flex gap-1">
-        <a href="/">ホーム</a>
+        <SiteLink href="/">ホーム</SiteLink>
         <span>/</span>
-        <a href="/isf/">情報・サイバーセキュリティ初級</a>
+        <SiteLink href="/isf/">情報・サイバーセキュリティ初級</SiteLink>
         <span>/</span>
         <span className="text-[color:var(--c-ink)]">模擬試験 第1回</span>
       </nav>
@@ -88,9 +89,9 @@ export default async function IsfMoshiPage() {
         ※本試験では、問題の難易度により正答率70%未満でも合格となる場合があると案内されています。本模試は調整を行わない素点判定なので、
         判定は学習の目安としてお使いください。当サイト編集部が作成したオリジナル問題で構成しており、実際の過去問題の転載ではありません。
         1問ずつじっくり学びたい方は
-        <a href="/isf/" className="underline hover:no-underline">
+        <SiteLink href="/isf/" className="underline hover:no-underline">
           練習問題160問
-        </a>
+        </SiteLink>
         へ。
       </p>
     </div>

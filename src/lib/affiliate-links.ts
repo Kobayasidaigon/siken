@@ -10,7 +10,7 @@
 
 import type { ExamSlug } from "./study-progress";
 
-export interface AffiliateTarget {
+interface AffiliateTarget {
   href: string;     // A8の計測付きリンク（有料講座）
   label: string;    // アンカーテキスト
   course: string;   // GA4計測用の識別子

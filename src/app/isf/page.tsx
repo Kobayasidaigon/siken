@@ -1,3 +1,4 @@
+import SiteLink from "@/components/SiteLink";
 import { getAllIsfQuestions, getIsfQuestionsByField } from "@/lib/isf-questions";
 import RecentCourseReminder from "@/components/RecentCourseReminder";
 import { getAllColumns } from "@/lib/columns";
@@ -33,9 +34,9 @@ export default async function IsfPage() {
         style={{ background: "var(--c-pii-soft)", borderColor: "var(--c-border)" }}
       >
         <nav className="text-xs text-[color:var(--c-text-sub)] mb-4">
-          <a href="/" className="no-underline hover:underline">
+          <SiteLink href="/" className="no-underline hover:underline">
             ホーム
-          </a>{" "}
+          </SiteLink>{" "}
           / <span>情報・サイバーセキュリティ初級</span>
         </nav>
         <h1
@@ -50,23 +51,23 @@ export default async function IsfPage() {
           {allQuestions.length}問のオリジナル練習問題集です。
         </p>
         <div className="mt-6 flex flex-wrap gap-3">
-          <a href="/isf/q/isf-001/" className="btn-accent">
+          <SiteLink href="/isf/q/isf-001/" className="btn-accent">
             問題を解き始める →
-          </a>
-          <a
+          </SiteLink>
+          <SiteLink
             href="/isf/moshi/"
             className="inline-flex items-center px-4 py-2 rounded-lg border text-sm font-medium no-underline transition-colors hover:bg-[color:var(--c-pii-soft)]"
             style={{ borderColor: "var(--c-pii)", color: "var(--c-pii-ink)" }}
           >
             模擬試験を受ける（80問・60分・課題別判定）→
-          </a>
-          <a
+          </SiteLink>
+          <SiteLink
             href="/isf/mock/"
             className="inline-flex items-center px-4 py-2 rounded-lg border text-sm font-medium no-underline transition-colors hover:bg-[color:var(--c-pii-soft)]"
             style={{ borderColor: "var(--c-pii)", color: "var(--c-pii-ink)" }}
           >
             本番形式で腕試し（20問・採点）→
-          </a>
+          </SiteLink>
         </div>
       </section>
 
@@ -91,7 +92,7 @@ export default async function IsfPage() {
         <h2 className="text-lg font-bold text-[color:var(--c-ink)] mb-5 font-serif">分野から選ぶ</h2>
         <div className="space-y-3">
           {ISF_FIELDS.map((f, i) => (
-            <a
+            <SiteLink
               key={f.slug}
               href={`/isf/field/${f.slug}/`}
               className="card p-5 no-underline group block"
@@ -110,7 +111,7 @@ export default async function IsfPage() {
                 <span className="text-xs text-[color:var(--c-text-sub)] shrink-0">{fieldCounts[i]}問</span>
               </div>
               <p className="text-sm text-[color:var(--c-text-sub)] mt-2 leading-relaxed">{f.desc}</p>
-            </a>
+            </SiteLink>
           ))}
         </div>
       </section>
@@ -163,24 +164,24 @@ export default async function IsfPage() {
         <div className="card p-5 text-sm text-[color:var(--c-text-sub)] leading-relaxed space-y-2">
           <p>
             初級の上位にあたるのが、同じ協会の
-            <a href="/isec/" className="underline hover:no-underline">
+            <SiteLink href="/isec/" className="underline hover:no-underline">
               情報・サイバーセキュリティ管理士
-            </a>
+            </SiteLink>
             です。課題Ⅰ〜Ⅲ（情報セキュリティ総論・脅威と情報セキュリティ対策・サイバーセキュリティ対策）は初級と同じ柱で、管理士には課題Ⅳ（コンピュータの一般知識）が無いかわりに、180問・120分でより深く問われます。違いは
-            <a href="/column/isec-isf-hikaku/" className="underline hover:no-underline">
+            <SiteLink href="/column/isec-isf-hikaku/" className="underline hover:no-underline">
               初級と管理士の違い
-            </a>
+            </SiteLink>
             にまとめています。
           </p>
           <p>
             個人情報の扱いまで広げるなら、
-            <a href="/pii/" className="underline hover:no-underline">
+            <SiteLink href="/pii/" className="underline hover:no-underline">
               個人情報保護士
-            </a>
+            </SiteLink>
             ・
-            <a href="/mynumber/" className="underline hover:no-underline">
+            <SiteLink href="/mynumber/" className="underline hover:no-underline">
               マイナンバー実務検定
-            </a>
+            </SiteLink>
             も同じ協会が実施しています。
           </p>
         </div>
@@ -192,13 +193,13 @@ export default async function IsfPage() {
           <h2 className="text-base font-bold text-[color:var(--c-ink)] mb-4 font-serif">コラム</h2>
           <div className="space-y-2">
             {isfColumns.slice(0, 6).map((col) => (
-              <a
+              <SiteLink
                 key={col.slug}
                 href={`/column/${col.slug}/`}
                 className="block py-2 text-sm text-[color:var(--c-text)] no-underline hover:text-[color:var(--c-pii)] border-b border-[color:var(--c-border)] last:border-b-0"
               >
                 {col.title}
-              </a>
+              </SiteLink>
             ))}
           </div>
         </section>

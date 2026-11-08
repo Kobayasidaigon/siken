@@ -1,3 +1,4 @@
+import SiteLink from "@/components/SiteLink";
 import type { Metadata } from "next";
 import { pageMetadata } from "@/lib/page-metadata";
 import StudioLink from "@/components/StudioLink";
@@ -57,11 +58,10 @@ export default function AboutPage() {
       <ul>
         <li>問題と解説は記事公開時の最新法令に基づき、改正を把握次第更新します。各記事末尾に基準日を記載しています。</li>
         <li>
-          練習問題・模擬試験 第1回・コラムは、これからも無料で公開し続けます。ユーザー登録も不要です。
-          有料でご用意しているのは、模擬試験 第2回（買い切り・一部の資格のみ）と、外部サービスの
-          シカクモン Studio だけです。無料の範囲を狭めて有料に振り替えることはしません。
+          練習問題・模擬試験（第1回・第2回）・コラムは、これからも無料で公開し続けます。ユーザー登録も不要です。
+          有料でご用意しているのは、外部サービスのシカクモン Studio だけです。無料の範囲を狭めて有料に振り替えることはしません。
         </li>
-        <li>誤りを見つけられたら、<a href="/contact/">お問い合わせフォーム</a>からご指摘ください。確認のうえ速やかに修正します。</li>
+        <li>誤りを見つけられたら、<SiteLink href="/contact/">お問い合わせフォーム</SiteLink>からご指摘ください。確認のうえ速やかに修正します。</li>
         <li>広告は学習の邪魔にならない位置に最小限のみ設置しています。アフィリエイト広告にはその旨を明示しています。</li>
         <li>合格体験談を装ったコンテンツは作りません。受験経験がない試験についても、その立ち位置を明示します。</li>
       </ul>
@@ -71,7 +71,7 @@ export default function AboutPage() {
         <li><strong>ペンネーム</strong>：熊太郎</li>
         <li><strong>サイト</strong>：シカクモン（<a href="https://shikakumon.com">https://shikakumon.com</a>）</li>
         <li><strong>運営開始</strong>：2025年</li>
-        <li><strong>連絡先</strong>：<a href="/contact/">お問い合わせフォーム</a></li>
+        <li><strong>連絡先</strong>：<SiteLink href="/contact/">お問い合わせフォーム</SiteLink></li>
       </ul>
 
       <h2>関連サービス：シカクモン Studio</h2>

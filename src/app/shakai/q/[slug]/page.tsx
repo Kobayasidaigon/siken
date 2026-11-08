@@ -1,3 +1,4 @@
+import SiteLink from "@/components/SiteLink";
 import { getAllShakaiSlugs, getShakaiQuestion, getShakaiQuestionsByField } from "@/lib/shakai-questions";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
@@ -63,13 +64,13 @@ export default async function ShakaiQuestionPage({ params }: { params: Promise<{
       <JsonLd data={jsonLd} />
 
       <nav className="breadcrumb text-xs text-[color:var(--c-text-sub)] mb-4 flex flex-wrap gap-1">
-        <a href="/">ホーム</a>
+        <SiteLink href="/">ホーム</SiteLink>
         <span>/</span>
-        <a href="/shakai/">{EXAM_NAME}</a>
+        <SiteLink href="/shakai/">{EXAM_NAME}</SiteLink>
         <span>/</span>
         {fieldSlug && (
           <>
-            <a href={`/shakai/field/${fieldSlug}/`}>{q.field}</a>
+            <SiteLink href={`/shakai/field/${fieldSlug}/`}>{q.field}</SiteLink>
             <span>/</span>
           </>
         )}
@@ -112,30 +113,30 @@ export default async function ShakaiQuestionPage({ params }: { params: Promise<{
 
       <nav className="mt-8 flex justify-between items-center pt-4 border-t border-[color:var(--c-border)]">
         {prevQ ? (
-          <a
+          <SiteLink
             href={`/shakai/q/${prevQ.slug}/`}
             className="text-sm text-[color:var(--c-text-sub)] no-underline hover:text-[color:var(--c-eco)]"
           >
             ← 問{idx}
-          </a>
+          </SiteLink>
         ) : (
           <span />
         )}
         {fieldSlug && (
-          <a
+          <SiteLink
             href={`/shakai/field/${fieldSlug}/`}
             className="text-sm text-[color:var(--c-text-sub)] no-underline hover:text-[color:var(--c-eco)]"
           >
             {q.field}の一覧
-          </a>
+          </SiteLink>
         )}
         {nextQ ? (
-          <a
+          <SiteLink
             href={`/shakai/q/${nextQ.slug}/`}
             className="text-sm text-[color:var(--c-text-sub)] no-underline hover:text-[color:var(--c-eco)]"
           >
             問{idx + 2} →
-          </a>
+          </SiteLink>
         ) : (
           <span />
         )}

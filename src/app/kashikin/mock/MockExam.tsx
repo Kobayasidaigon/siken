@@ -1,5 +1,6 @@
 "use client";
 
+import SiteLink from "@/components/SiteLink";
 /**
  * 本番形式テスト（採点・苦手分野判定つき）。
  *
@@ -148,7 +149,7 @@ export default function MockExam({
           解答中は正解を表示しません。最後に<strong>得点と苦手分野</strong>を判定します。
         </p>
         <p className="text-xs text-[color:var(--c-text-sub)] leading-relaxed mb-5">
-          採点後、間違えた問題は学習履歴（<a href="/study/" className="underline">/study</a>）に自動で記録されます。
+          採点後、間違えた問題は学習履歴（<SiteLink href="/study/" className="underline">/study</SiteLink>）に自動で記録されます。
         </p>
         <button onClick={start} className="btn-accent">
           {count}問に挑戦する →
@@ -400,9 +401,9 @@ export default function MockExam({
         <button type="button" onClick={start} className="btn-accent">
           もう一度（別の{count}問）→
         </button>
-        <a href="/study/" className="inline-flex items-center text-sm text-[color:var(--c-text-sub)] no-underline hover:text-[color:var(--c-accent)]">
+        <SiteLink href="/study/" className="inline-flex items-center text-sm text-[color:var(--c-text-sub)] no-underline hover:text-[color:var(--c-accent)]">
           学習履歴を見る →
-        </a>
+        </SiteLink>
       </div>
     </div>
   );

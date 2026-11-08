@@ -17,7 +17,7 @@ import { SHARE_HASHTAGS } from "./share-hashtags";
 
 export const SHIKENMAE_SIZE = 10;
 /** 窓は試験日の何日前から開くか(試験日を含めて8日間) */
-export const SHIKENMAE_WINDOW_DAYS = 7;
+const SHIKENMAE_WINDOW_DAYS = 7;
 
 export interface ShikenmaeEvent {
   exam: ExamSlug;
@@ -46,7 +46,7 @@ export function shikenmaePath(e: ShikenmaeEvent, score?: number): string {
 }
 
 /** 日本時間の今日 "YYYY-MM-DD" */
-export function todayJst(nowMs: number = Date.now()): string {
+function todayJst(nowMs: number = Date.now()): string {
   return new Date(nowMs + 9 * 3600_000).toISOString().slice(0, 10);
 }
 
@@ -75,7 +75,7 @@ export function openShikenmaeFor(exam: string | undefined, nowMs: number = Date.
 }
 
 /** 試験日まであと何日か(当日は0) */
-export function daysToExam(e: ShikenmaeEvent, nowMs: number = Date.now()): number {
+function daysToExam(e: ShikenmaeEvent, nowMs: number = Date.now()): number {
   const a = Date.parse(`${todayJst(nowMs)}T00:00:00Z`);
   const b = Date.parse(`${e.date}T00:00:00Z`);
   return Math.round((b - a) / 86400000);
@@ -144,7 +144,7 @@ export function shareText(
 }
 
 /** 端末内の記録(1回目だけ)。キーは "<資格>/<YYYYMMDD>" */
-export const SHIKENMAE_STORAGE_KEY = "shikakumon-shikenmae-v1";
+const SHIKENMAE_STORAGE_KEY = "shikakumon-shikenmae-v1";
 
 export interface ShikenmaeRecord {
   bits: string;

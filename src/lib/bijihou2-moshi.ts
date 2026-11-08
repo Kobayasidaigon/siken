@@ -11,7 +11,7 @@ import { getAllBijihou2Questions, type Bijihou2QuestionData } from "./bijihou2-q
 export const BIJIHOU2_MOSHI_TIME_LIMIT_MIN = 90;
 export const BIJIHOU2_MOSHI_PASS_COUNT = 35;
 
-export const BIJIHOU2_MOSHI_1_SLUGS: string[] = [
+const BIJIHOU2_MOSHI_1_SLUGS: string[] = [
   "bijihou2-003",  // 企業取引・契約の法務 B 顕名と自己契約・双方代理の規律
   "bijihou2-023",  // 企業財産の管理と法務 C 不動産登記の効力と中間省略登記
   "bijihou2-043",  // 企業間取引の法規制 B 不当な取引制限の成立要件

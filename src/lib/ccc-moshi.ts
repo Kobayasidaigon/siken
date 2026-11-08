@@ -12,7 +12,7 @@ import { getAllCccQuestions, type CccQuestionData } from "./ccc-questions";
 export const CCC_MOSHI_TIME_LIMIT_MIN = 150;
 export const CCC_MOSHI_PASS_COUNT = 49;
 
-export const CCC_MOSHI_1_SLUGS: string[] = [
+const CCC_MOSHI_1_SLUGS: string[] = [
   // 民法総則①（人・法律行為・意思表示）（9問）
   "ccc-001", // A 権利能力の始期と胎児
   "ccc-003", // A 成年年齢と未成年者の法律行為

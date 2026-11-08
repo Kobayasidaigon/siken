@@ -1,3 +1,4 @@
+import SiteLink from "@/components/SiteLink";
 import { getVoicesByExam } from "@/lib/voices";
 import type { ExamSlug } from "@/lib/study-progress";
 
@@ -68,13 +69,13 @@ export default async function ExamVoices({
       </div>
       <div className="mt-4 flex flex-wrap gap-4">
         {voices.length > limit && (
-          <a href="/voice/" className="text-sm text-[color:var(--c-text-sub)] no-underline hover:underline">
+          <SiteLink href="/voice/" className="text-sm text-[color:var(--c-text-sub)] no-underline hover:underline">
             合格報告をすべて見る（{voices.length}件） →
-          </a>
+          </SiteLink>
         )}
-        <a href="/goukaku-houkoku/" className="text-sm text-[color:var(--c-text-sub)] no-underline hover:underline">
+        <SiteLink href="/goukaku-houkoku/" className="text-sm text-[color:var(--c-text-sub)] no-underline hover:underline">
           受験された方は結果を教えてください →
-        </a>
+        </SiteLink>
       </div>
     </section>
   );

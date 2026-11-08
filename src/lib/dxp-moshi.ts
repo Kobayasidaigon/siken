@@ -12,7 +12,7 @@ import { getAllDxpQuestions, type DxpQuestionData } from "./dxp-questions";
 export const DXP_MOSHI_TIME_LIMIT_MIN = 60;
 export const DXP_MOSHI_PASS_COUNT = 42;
 
-export const DXP_MOSHI_1_SLUGS: string[] = [
+const DXP_MOSHI_1_SLUGS: string[] = [
   // 第1課題 DXの現状（30問: 2択15問 → 4択15問）
   "dxp-006", // DX総論 A 2択 DX認定制度の仕組み
   "dxp-023", // 業種別DXビジネスの現状 A 2択 ブロックチェーンの仕組み

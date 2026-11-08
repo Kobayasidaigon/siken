@@ -1,3 +1,4 @@
+import SiteLink from "@/components/SiteLink";
 import { getAllDxoQuestions, getDxoQuestionsByField } from "@/lib/dxo-questions";
 import RecentCourseReminder from "@/components/RecentCourseReminder";
 import { getAllColumns } from "@/lib/columns";
@@ -35,9 +36,9 @@ export default async function DxoPage() {
         style={{ background: "var(--c-pii-soft)", borderColor: "var(--c-border)" }}
       >
         <nav className="text-xs text-[color:var(--c-text-sub)] mb-4">
-          <a href="/" className="no-underline hover:underline">
+          <SiteLink href="/" className="no-underline hover:underline">
             ホーム
-          </a>{" "}
+          </SiteLink>{" "}
           / <span>DXオフィサー</span>
         </nav>
         <h1
@@ -54,28 +55,28 @@ export default async function DxoPage() {
         <div className="mt-6 flex flex-wrap gap-3">
           {ready ? (
             <>
-              <a href="/dxo/q/dxo-001/" className="btn-accent">
+              <SiteLink href="/dxo/q/dxo-001/" className="btn-accent">
                 問題を解き始める →
-              </a>
-              <a
+              </SiteLink>
+              <SiteLink
                 href="/dxo/moshi/"
                 className="inline-flex items-center px-4 py-2 rounded-lg border text-sm font-medium no-underline transition-colors hover:bg-[color:var(--c-pii-soft)]"
                 style={{ borderColor: "var(--c-pii)", color: "var(--c-pii-ink)" }}
               >
                 模擬試験を受ける（100問・135分）→
-              </a>
-              <a
+              </SiteLink>
+              <SiteLink
                 href="/dxo/mock/"
                 className="inline-flex items-center px-4 py-2 rounded-lg border text-sm font-medium no-underline transition-colors hover:bg-[color:var(--c-pii-soft)]"
                 style={{ borderColor: "var(--c-pii)", color: "var(--c-pii-ink)" }}
               >
                 本番形式で腕試し（20問・採点）→
-              </a>
+              </SiteLink>
             </>
           ) : (
-            <a href="/column/dxo-nittei/" className="btn-accent">
+            <SiteLink href="/column/dxo-nittei/" className="btn-accent">
               試験日程と申込締切を見る →
-            </a>
+            </SiteLink>
           )}
         </div>
       </section>
@@ -120,14 +121,14 @@ export default async function DxoPage() {
               </>
             );
             return fieldCounts[i] > 0 ? (
-              <a
+              <SiteLink
                 key={f.slug}
                 href={`/dxo/field/${f.slug}/`}
                 className="card p-5 no-underline group block"
                 style={{ borderLeft: "3px solid var(--c-pii)" }}
               >
                 {body}
-              </a>
+              </SiteLink>
             ) : (
               <div key={f.slug} className="card p-5 block" style={{ borderLeft: "3px solid var(--c-border)" }}>
                 {body}
@@ -155,9 +156,9 @@ export default async function DxoPage() {
           </p>
           <p>
             <span className="font-bold text-[color:var(--c-ink)]">試験日</span>　年3回（1月・5月・10月ごろ）。
-            <a href="/column/dxo-nittei/" className="underline hover:no-underline">
+            <SiteLink href="/column/dxo-nittei/" className="underline hover:no-underline">
               詳しい日程・申込方法
-            </a>
+            </SiteLink>
           </p>
           <p>
             <span className="font-bold text-[color:var(--c-ink)]">受験方式</span>　公開会場（マークシート）・CBT・オンラインIBT
@@ -179,10 +180,10 @@ export default async function DxoPage() {
         <div className="card p-5 text-sm text-[color:var(--c-text-sub)] leading-relaxed">
           <p>
             DXオフィサーは、DX推進の担当者・管理職、DX推進アドバイザーの次の資格を考えている方に向いた試験です。関連する試験の問題集もあります:{" "}
-            <a href="/dxa/" className="underline hover:no-underline">DX推進アドバイザー</a>・
-            <a href="/aia/" className="underline hover:no-underline">AI活用アドバイザー</a>・
-            <a href="/gaia/" className="underline hover:no-underline">生成AIアドバイザー</a>・
-            <a href="/isec/" className="underline hover:no-underline">情報・サイバーセキュリティ管理士</a>
+            <SiteLink href="/dxa/" className="underline hover:no-underline">DX推進アドバイザー</SiteLink>・
+            <SiteLink href="/aia/" className="underline hover:no-underline">AI活用アドバイザー</SiteLink>・
+            <SiteLink href="/gaia/" className="underline hover:no-underline">生成AIアドバイザー</SiteLink>・
+            <SiteLink href="/isec/" className="underline hover:no-underline">情報・サイバーセキュリティ管理士</SiteLink>
           </p>
         </div>
       </section>
@@ -193,13 +194,13 @@ export default async function DxoPage() {
           <h2 className="text-base font-bold text-[color:var(--c-ink)] mb-4 font-serif">コラム</h2>
           <div className="space-y-2">
             {dxoColumns.slice(0, 6).map((col) => (
-              <a
+              <SiteLink
                 key={col.slug}
                 href={`/column/${col.slug}/`}
                 className="block py-2 text-sm text-[color:var(--c-text)] no-underline hover:text-[color:var(--c-pii)] border-b border-[color:var(--c-border)] last:border-b-0"
               >
                 {col.title}
-              </a>
+              </SiteLink>
             ))}
           </div>
         </section>

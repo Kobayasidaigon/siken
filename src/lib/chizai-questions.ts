@@ -68,19 +68,3 @@ export async function getChizaiQuestionsByField(field: string): Promise<ChizaiQu
     .filter((q) => q.field === field)
     .sort((a, b) => a.questionNumber - b.questionNumber);
 }
-
-/**
- * 指定slugの問題が、同じ分野内で何番目の問題かを返す（1始まり）。
- */
-export async function getChizaiFieldIndex(slug: string): Promise<{ index: number; total: number; field: string } | null> {
-  const q = await getChizaiQuestion(slug);
-  if (!q || !q.field) return null;
-  const fieldQuestions = await getChizaiQuestionsByField(q.field);
-  const index = fieldQuestions.findIndex((x) => x.slug === slug);
-  if (index === -1) return null;
-  return { index: index + 1, total: fieldQuestions.length, field: q.field };
-}
-
-export function getChizaiFields(): string[] {
-  return ["特許法", "著作権法", "意匠法", "商標法", "不正競争防止法", "関連法規", "実用新案法・種苗法", "国際条約", "知財実務"];
-}

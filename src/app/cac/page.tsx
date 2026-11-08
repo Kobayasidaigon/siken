@@ -1,3 +1,4 @@
+import SiteLink from "@/components/SiteLink";
 import { getAllCacQuestions, getCacQuestionsByField } from "@/lib/cac-questions";
 import RecentCourseReminder from "@/components/RecentCourseReminder";
 import { getAllColumns } from "@/lib/columns";
@@ -35,9 +36,9 @@ export default async function CacPage() {
         style={{ background: "var(--c-pii-soft)", borderColor: "var(--c-border)" }}
       >
         <nav className="text-xs text-[color:var(--c-text-sub)] mb-4">
-          <a href="/" className="no-underline hover:underline">
+          <SiteLink href="/" className="no-underline hover:underline">
             ホーム
-          </a>{" "}
+          </SiteLink>{" "}
           / <span>会社法法務士</span>
         </nav>
         <h1
@@ -54,28 +55,28 @@ export default async function CacPage() {
         <div className="mt-6 flex flex-wrap gap-3">
           {ready ? (
             <>
-              <a href="/cac/q/cac-001/" className="btn-accent">
+              <SiteLink href="/cac/q/cac-001/" className="btn-accent">
                 問題を解き始める →
-              </a>
-              <a
+              </SiteLink>
+              <SiteLink
                 href="/cac/moshi/"
                 className="inline-flex items-center px-4 py-2 rounded-lg border text-sm font-medium no-underline transition-colors hover:bg-[color:var(--c-pii-soft)]"
                 style={{ borderColor: "var(--c-pii)", color: "var(--c-pii-ink)" }}
               >
                 模擬試験を受ける（60問・150分）→
-              </a>
-              <a
+              </SiteLink>
+              <SiteLink
                 href="/cac/mock/"
                 className="inline-flex items-center px-4 py-2 rounded-lg border text-sm font-medium no-underline transition-colors hover:bg-[color:var(--c-pii-soft)]"
                 style={{ borderColor: "var(--c-pii)", color: "var(--c-pii-ink)" }}
               >
                 本番形式で腕試し（20問・採点）→
-              </a>
+              </SiteLink>
             </>
           ) : (
-            <a href="/column/cac-nittei/" className="btn-accent">
+            <SiteLink href="/column/cac-nittei/" className="btn-accent">
               試験日程と申込締切を見る →
-            </a>
+            </SiteLink>
           )}
         </div>
       </section>
@@ -120,14 +121,14 @@ export default async function CacPage() {
               </>
             );
             return fieldCounts[i] > 0 ? (
-              <a
+              <SiteLink
                 key={f.slug}
                 href={`/cac/field/${f.slug}/`}
                 className="card p-5 no-underline group block"
                 style={{ borderLeft: "3px solid var(--c-pii)" }}
               >
                 {body}
-              </a>
+              </SiteLink>
             ) : (
               <div key={f.slug} className="card p-5 block" style={{ borderLeft: "3px solid var(--c-border)" }}>
                 {body}
@@ -155,9 +156,9 @@ export default async function CacPage() {
           </p>
           <p>
             <span className="font-bold text-[color:var(--c-ink)]">試験日</span>　年2回程度。
-            <a href="/column/cac-nittei/" className="underline hover:no-underline">
+            <SiteLink href="/column/cac-nittei/" className="underline hover:no-underline">
               詳しい日程・申込方法
-            </a>
+            </SiteLink>
           </p>
           <p>
             <span className="font-bold text-[color:var(--c-ink)]">受験方式</span>　公開会場（マークシート）・CBT・オンラインIBT
@@ -179,10 +180,10 @@ export default async function CacPage() {
         <div className="card p-5 text-sm text-[color:var(--c-text-sub)] leading-relaxed">
           <p>
             会社法法務士は、総務・法務・経営企画の担当者、経営者、起業を考えている方に向いた試験です。関連する試験の問題集もあります:{" "}
-            <a href="/ccm/" className="underline hover:no-underline">企業危機・コンプライアンス管理士</a>・
-            <a href="/bijihou2/" className="underline hover:no-underline">ビジネス実務法務検定2級</a>・
-            <a href="/ccc/" className="underline hover:no-underline">民法法務士</a>・
-            <a href="/llc/" className="underline hover:no-underline">労働法務士</a>
+            <SiteLink href="/ccm/" className="underline hover:no-underline">企業危機・コンプライアンス管理士</SiteLink>・
+            <SiteLink href="/bijihou2/" className="underline hover:no-underline">ビジネス実務法務検定2級</SiteLink>・
+            <SiteLink href="/ccc/" className="underline hover:no-underline">民法法務士</SiteLink>・
+            <SiteLink href="/llc/" className="underline hover:no-underline">労働法務士</SiteLink>
           </p>
         </div>
       </section>
@@ -193,13 +194,13 @@ export default async function CacPage() {
           <h2 className="text-base font-bold text-[color:var(--c-ink)] mb-4 font-serif">コラム</h2>
           <div className="space-y-2">
             {cacColumns.slice(0, 6).map((col) => (
-              <a
+              <SiteLink
                 key={col.slug}
                 href={`/column/${col.slug}/`}
                 className="block py-2 text-sm text-[color:var(--c-text)] no-underline hover:text-[color:var(--c-pii)] border-b border-[color:var(--c-border)] last:border-b-0"
               >
                 {col.title}
-              </a>
+              </SiteLink>
             ))}
           </div>
         </section>

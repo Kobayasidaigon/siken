@@ -1,3 +1,4 @@
+import SiteLink from "@/components/SiteLink";
 import type { Metadata } from "next";
 import { pageMetadata } from "@/lib/page-metadata";
 import { getKyoinMoshi1Questions, KYOIN_MOSHI_PASS_COUNT, KYOIN_MOSHI_TIME_LIMIT_MIN } from "@/lib/kyoin-moshi";
@@ -24,9 +25,9 @@ export default async function KyoinMoshiPage() {
   return (
     <div className="theme-fukushi pb-16">
       <nav className="breadcrumb text-xs text-[color:var(--c-text-sub)] mb-4 flex gap-1">
-        <a href="/">ホーム</a>
+        <SiteLink href="/">ホーム</SiteLink>
         <span>/</span>
-        <a href="/kyoin/">教員採用試験</a>
+        <SiteLink href="/kyoin/">教員採用試験</SiteLink>
         <span>/</span>
         <span className="text-[color:var(--c-ink)]">模擬試験 第1回</span>
       </nav>
@@ -78,9 +79,9 @@ export default async function KyoinMoshiPage() {
         特定の自治体の試験形式や合格ラインを再現したものではありません。
         当サイト編集部が作成したオリジナル問題で構成しており、実際の過去問題の転載ではありません。
         1問ずつじっくり学びたい方は
-        <a href="/kyoin/" className="underline hover:no-underline">
+        <SiteLink href="/kyoin/" className="underline hover:no-underline">
           練習問題200問
-        </a>
+        </SiteLink>
         へ。
       </p>
     </div>

@@ -1,3 +1,4 @@
+import SiteLink from "@/components/SiteLink";
 import type { Metadata } from "next";
 import { pageMetadata } from "@/lib/page-metadata";
 
@@ -60,7 +61,7 @@ export default function GuidePage() {
       <h3>Step 3：弱点を潰す（2〜4週間）</h3>
       <p>
         間違えた問題を分野別に分類し、苦手分野を集中的に復習します。
-        当サイトの<a href="/field/">分野別ページ</a>を活用してください。
+        当サイトの<SiteLink href="/field/">分野別ページ</SiteLink>を活用してください。
       </p>
 
       <h3>Step 4：直前対策（1〜2週間）</h3>
@@ -84,9 +85,9 @@ export default function GuidePage() {
       <div className="not-prose card p-6 bg-blue-50 border border-blue-200 text-center mt-8">
         <p className="text-base font-bold text-blue-900 mb-2">練習問題を解き始める</p>
         <p className="text-sm text-slate-600 mb-4">全504問のオリジナル練習問題に挑戦しましょう</p>
-        <a href="/exam/0/" className="inline-block bg-blue-700 text-white px-6 py-2.5 rounded-lg text-sm font-medium no-underline hover:bg-blue-600">
+        <SiteLink href="/exam/0/" className="inline-block bg-blue-700 text-white px-6 py-2.5 rounded-lg text-sm font-medium no-underline hover:bg-blue-600">
           オリジナル問題を見る
-        </a>
+        </SiteLink>
       </div>
     </div>
   );

@@ -11,7 +11,7 @@ import { getAllChintaiQuestions, type ChintaiQuestionData } from "./chintai-ques
 export const CHINTAI_MOSHI_TIME_LIMIT_MIN = 120;
 export const CHINTAI_MOSHI_PASS_COUNT = 38;
 
-export const CHINTAI_MOSHI_1_SLUGS: string[] = [
+const CHINTAI_MOSHI_1_SLUGS: string[] = [
   "chintai-002",   // 賃貸住宅管理業法と登録制度 B 賃貸住宅に該当する家屋の範囲
   "chintai-028",   // 管理受託契約 B 委任契約における受任者の義務と解除
   "chintai-048",   // サブリースと特定賃貸借契約 B 特定転貸事業者と勧誘者の範囲

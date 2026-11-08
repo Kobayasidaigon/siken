@@ -1,3 +1,4 @@
+import SiteLink from "@/components/SiteLink";
 import type { Metadata } from "next";
 import { pageMetadata } from "@/lib/page-metadata";
 import { ADSENSE_CLIENT } from "@/lib/adsense";
@@ -58,7 +59,7 @@ export default function PrivacyPage() {
         Cookieとは別に、お使いのブラウザのローカルストレージに保存します。
         学習履歴そのものはお使いの端末内にだけ保存し、当サイトのサーバーにも Google Analytics にも送信しません。
         別の端末やシークレットモードには引き継がれず、ブラウザのデータを削除すると消去されます。
-        学習履歴は「<a href="/study/">学習履歴</a>」ページからいつでも削除できます
+        学習履歴は「<SiteLink href="/study/">学習履歴</SiteLink>」ページからいつでも削除できます
         （復習ドリル、途中まで解いた模擬試験の解答、試験前の10問の結果も一緒に消えます）。
       </p>
       <p>
@@ -78,7 +79,7 @@ export default function PrivacyPage() {
 
       <h2>合格報告フォームでお預かりする情報について</h2>
       <p>
-        「<a href="/goukaku-houkoku/">合格報告フォーム</a>」からお送りいただいた内容は、
+        「<SiteLink href="/goukaku-houkoku/">合格報告フォーム</SiteLink>」からお送りいただいた内容は、
         当サイトのサーバーやデータベースには保存せず、運営者宛のメールに転送するのみです。
       </p>
       <ul>
@@ -92,7 +93,7 @@ export default function PrivacyPage() {
         </li>
         <li>
           <strong>削除のご依頼</strong>：掲載後であっても、
-          <a href="/contact/">お問い合わせ</a>からご連絡いただければ削除いたします。
+          <SiteLink href="/contact/">お問い合わせ</SiteLink>からご連絡いただければ削除いたします。
         </li>
       </ul>
       <p>
@@ -110,7 +111,7 @@ export default function PrivacyPage() {
         </li>
         <li>
           <strong>利用目的</strong>：結果のまとめのメール送付と、試験日から逆算した学習リマインド（最大6通）の送付。
-          メールには当サイトの練習問題・模擬試験（有料の第2回を含む）と姉妹サービス「シカクモン Studio」の案内を含みます。
+          メールには当サイトの練習問題・模擬試験と姉妹サービス「シカクモン Studio」の案内を含みます。
           これ以外の目的には利用せず、第三者に提供しません。
         </li>
         <li>
@@ -119,7 +120,7 @@ export default function PrivacyPage() {
         </li>
         <li>
           <strong>配信停止・削除</strong>：各メールの末尾にある配信停止リンクからいつでも停止できます。
-          登録情報の削除は<a href="/contact/">お問い合わせ</a>からご依頼ください。
+          登録情報の削除は<SiteLink href="/contact/">お問い合わせ</SiteLink>からご依頼ください。
         </li>
       </ul>
 
@@ -175,7 +176,7 @@ export default function PrivacyPage() {
       <h2>お問い合わせ</h2>
       <p>
         プライバシーポリシーに関するお問い合わせは、
-        <a href="/contact/">お問い合わせフォーム</a>よりお願いいたします。
+        <SiteLink href="/contact/">お問い合わせフォーム</SiteLink>よりお願いいたします。
       </p>
 
       <p className="text-sm text-slate-400 mt-8">制定日：2026年3月30日／最終改訂：2026年10月25日</p>

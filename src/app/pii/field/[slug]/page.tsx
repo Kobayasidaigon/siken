@@ -1,3 +1,4 @@
+import SiteLink from "@/components/SiteLink";
 import { getPiiQuestionsByField } from "@/lib/pii-questions";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
@@ -30,7 +31,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 function QuestionCard({ q, index }: { q: PiiQuestionData; index: number }) {
   const diffColor = { A: "bg-green-100 text-green-800", B: "bg-amber-100 text-amber-800", C: "bg-red-100 text-red-800" }[q.difficulty];
   return (
-    <a
+    <SiteLink
       href={`/pii/q/${q.slug}/`}
       className="card p-4 flex justify-between items-center no-underline group"
       style={{ borderLeft: "3px solid var(--c-pii)" }}
@@ -51,7 +52,7 @@ function QuestionCard({ q, index }: { q: PiiQuestionData; index: number }) {
       <svg className="w-4 h-4 text-[color:var(--c-text-sub)] flex-shrink-0 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
       </svg>
-    </a>
+    </SiteLink>
   );
 }
 
@@ -70,8 +71,8 @@ export default async function PiiFieldPage({ params }: { params: Promise<{ slug:
   return (
     <div className="theme-pii pb-16">
       <nav className="breadcrumb text-xs text-[color:var(--c-text-sub)] mb-4 flex gap-1">
-        <a href="/">ホーム</a><span>/</span>
-        <a href="/pii/">個人情報保護士</a><span>/</span>
+        <SiteLink href="/">ホーム</SiteLink><span>/</span>
+        <SiteLink href="/pii/">個人情報保護士</SiteLink><span>/</span>
         <span className="text-[color:var(--c-ink)]">{field.name}</span>
       </nav>
 

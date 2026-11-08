@@ -1,3 +1,4 @@
+import SiteLink from "@/components/SiteLink";
 import { getAllEcoQuestions, getEcoQuestionsByField } from "@/lib/eco-questions";
 import RecentCourseReminder from "@/components/RecentCourseReminder";
 import { getAllColumns } from "@/lib/columns";
@@ -48,7 +49,7 @@ export default async function EcoPage() {
         style={{ background: "var(--c-eco-soft)", borderColor: "var(--c-border)" }}
       >
         <nav className="text-xs text-[color:var(--c-text-sub)] mb-4">
-          <a href="/" className="no-underline hover:underline">ホーム</a> / <span>eco検定</span>
+          <SiteLink href="/" className="no-underline hover:underline">ホーム</SiteLink> / <span>eco検定</span>
         </nav>
         <h1 className="text-2xl sm:text-3xl font-bold mb-3 font-serif leading-tight" style={{ color: "var(--c-eco-ink)" }}>
           eco検定（環境社会検定試験）
@@ -59,22 +60,22 @@ export default async function EcoPage() {
           公害の歴史から気候変動、生物多様性、リサイクル、環境法まで、範囲の全体を{allQuestions.length}問で通します。
         </p>
         <div className="mt-6 flex flex-wrap gap-3">
-          <a href="/eco/q/eco-001/" className="btn-accent">問題を解き始める →</a>
-          <a
+          <SiteLink href="/eco/q/eco-001/" className="btn-accent">問題を解き始める →</SiteLink>
+          <SiteLink
             href="/eco/moshi/"
             className="inline-flex items-center px-4 py-2 rounded-lg border text-sm font-medium no-underline transition-colors hover:bg-[color:var(--c-eco-soft)]"
             style={{ borderColor: "var(--c-eco)", color: "var(--c-eco-ink)" }}
           >
             模擬試験を受ける（90分・70点合格判定）→
-          </a>
+          </SiteLink>
           <Moshi2TopLink certId="eco" />
-          <a
+          <SiteLink
             href="/eco/mock/"
             className="inline-flex items-center px-4 py-2 rounded-lg border text-sm font-medium no-underline transition-colors hover:bg-[color:var(--c-eco-soft)]"
             style={{ borderColor: "var(--c-eco)", color: "var(--c-eco-ink)" }}
           >
             本番形式で腕試し（20問・採点）→
-          </a>
+          </SiteLink>
         </div>
       </section>
 
@@ -89,7 +90,7 @@ export default async function EcoPage() {
         <h2 className="text-lg font-bold text-[color:var(--c-ink)] mb-5 font-serif">分野から選ぶ</h2>
         <div className="flex flex-wrap gap-3">
           {fields.map((f, i) => (
-            <a key={f.slug} href={`/eco/field/${f.slug}/`} className="no-underline group">
+            <SiteLink key={f.slug} href={`/eco/field/${f.slug}/`} className="no-underline group">
               <span
                 className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium border transition-all group-hover:shadow-sm"
                 style={{ background: "var(--c-surface)", color: "var(--c-eco-ink)", borderColor: "var(--c-eco-soft)" }}
@@ -99,7 +100,7 @@ export default async function EcoPage() {
                   {fieldCounts[i]}
                 </span>
               </span>
-            </a>
+            </SiteLink>
           ))}
         </div>
       </section>
@@ -154,7 +155,7 @@ export default async function EcoPage() {
       <section className="mb-12">
         <h2 className="text-base font-bold text-[color:var(--c-ink)] mb-4 font-serif">試験の概要</h2>
         <div className="card p-5 text-sm text-[color:var(--c-text-sub)] space-y-2">
-          <p><span className="font-bold text-[color:var(--c-ink)]">試験日</span>　年2シーズン（各期間中に希望日を選んで受験）　<a href="/column/eco-nittei/" className="underline hover:no-underline">詳しい日程・申込方法 →</a></p>
+          <p><span className="font-bold text-[color:var(--c-ink)]">試験日</span>　年2シーズン（各期間中に希望日を選んで受験）　<SiteLink href="/column/eco-nittei/" className="underline hover:no-underline">詳しい日程・申込方法 →</SiteLink></p>
           <p><span className="font-bold text-[color:var(--c-ink)]">試験方式</span>　IBT（自宅等のパソコンで受験）または CBT（各地テストセンターで受験）の多肢選択式・90分</p>
           <p><span className="font-bold text-[color:var(--c-ink)]">合格基準</span>　100点満点中70点以上</p>
           <p><span className="font-bold text-[color:var(--c-ink)]">受験料</span>　5,500円（税込）。CBT方式は別途テストセンター利用料2,200円（税込）</p>
@@ -176,8 +177,8 @@ export default async function EcoPage() {
         <h2 className="text-base font-bold text-[color:var(--c-ink)] mb-4 font-serif">同じ東商検定を併願する方へ</h2>
         <div className="card p-5 text-sm text-[color:var(--c-text-sub)] leading-relaxed space-y-2">
           {/* 日付は exam-dates.ts から組み立てる(以前は 2026年度第2シーズンの日付を直書きしており、締切後に腐っていた) */}
-          <p>eco検定と<a href="/fukushi2/" className="underline hover:no-underline">福祉住環境コーディネーター2級</a>は、どちらも東京商工会議所がIBT・CBTで実施する検定で、試験期間も申込期間も同じ枠です{seasonLabel(ECO_EXAMS) ? `（${seasonLabel(ECO_EXAMS)}）` : ""}。1回の申込で2つ受けるという組み方ができます。</p>
-          <p>同じ東商検定でも、<a href="/bijihou/" className="underline hover:no-underline">ビジネス実務法務検定3級</a>と<a href="/bijimane/" className="underline hover:no-underline">ビジネスマネジャー検定</a>は1つ前のシーズン{seasonLabel(BIJIHOU_EXAMS) ? `（${seasonLabel(BIJIHOU_EXAMS)}）` : ""}です。締切が別なので、まとめて受けるつもりなら申込期間を取り違えないよう注意してください。</p>
+          <p>eco検定と<SiteLink href="/fukushi2/" className="underline hover:no-underline">福祉住環境コーディネーター2級</SiteLink>は、どちらも東京商工会議所がIBT・CBTで実施する検定で、試験期間も申込期間も同じ枠です{seasonLabel(ECO_EXAMS) ? `（${seasonLabel(ECO_EXAMS)}）` : ""}。1回の申込で2つ受けるという組み方ができます。</p>
+          <p>同じ東商検定でも、<SiteLink href="/bijihou/" className="underline hover:no-underline">ビジネス実務法務検定3級</SiteLink>と<SiteLink href="/bijimane/" className="underline hover:no-underline">ビジネスマネジャー検定</SiteLink>は1つ前のシーズン{seasonLabel(BIJIHOU_EXAMS) ? `（${seasonLabel(BIJIHOU_EXAMS)}）` : ""}です。締切が別なので、まとめて受けるつもりなら申込期間を取り違えないよう注意してください。</p>
         </div>
       </section>
 
@@ -187,13 +188,13 @@ export default async function EcoPage() {
           <h2 className="text-base font-bold text-[color:var(--c-ink)] mb-4 font-serif">コラム</h2>
           <div className="space-y-2">
             {ecoColumns.slice(0, 6).map((col) => (
-              <a
+              <SiteLink
                 key={col.slug}
                 href={`/column/${col.slug}/`}
                 className="block py-2 text-sm text-[color:var(--c-text)] no-underline hover:text-[color:var(--c-eco)] border-b border-[color:var(--c-border)] last:border-b-0"
               >
                 {col.title}
-              </a>
+              </SiteLink>
             ))}
           </div>
         </section>

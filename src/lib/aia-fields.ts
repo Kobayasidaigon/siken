@@ -4,7 +4,7 @@
  * task は本試験の科目・課題との対応(表示用)。仕様の出典と確認日は docs/new-certs-2026-10-review.md を参照。
  */
 
-export interface AiaField {
+interface AiaField {
   /** URL に使う分野スラッグ。/aia/field/<slug>/ */
   slug: string;
   /** 問題 md の field と完全一致させる値 */

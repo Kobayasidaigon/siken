@@ -13,7 +13,7 @@ import type { Moshi2OxQuestion, Moshi2Question } from "./moshi2-types";
 import { moshi2ProductOf } from "./moshi2-products";
 
 /** 受験画面が受け取る形。MoshiExam の MoshiQuestion と同じ。 */
-export type Moshi2Paper = {
+type Moshi2Paper = {
   slug: string;
   questionText: string;
   choices: string[];

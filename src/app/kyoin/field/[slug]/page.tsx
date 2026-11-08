@@ -1,3 +1,4 @@
+import SiteLink from "@/components/SiteLink";
 import { getKyoinQuestionsByField } from "@/lib/kyoin-questions";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
@@ -29,7 +30,7 @@ function QuestionCard({ q, index }: { q: KyoinQuestionData; index: number }) {
     C: "bg-red-100 text-red-800",
   }[q.difficulty];
   return (
-    <a
+    <SiteLink
       href={`/kyoin/q/${q.slug}/`}
       className="card p-4 flex justify-between items-center no-underline group"
       style={{ borderLeft: "3px solid var(--c-fukushi)" }}
@@ -55,7 +56,7 @@ function QuestionCard({ q, index }: { q: KyoinQuestionData; index: number }) {
       >
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
       </svg>
-    </a>
+    </SiteLink>
   );
 }
 
@@ -74,9 +75,9 @@ export default async function KyoinFieldPage({ params }: { params: Promise<{ slu
   return (
     <div className="theme-fukushi pb-16">
       <nav className="breadcrumb text-xs text-[color:var(--c-text-sub)] mb-4 flex gap-1">
-        <a href="/">ホーム</a>
+        <SiteLink href="/">ホーム</SiteLink>
         <span>/</span>
-        <a href="/kyoin/">教員採用試験</a>
+        <SiteLink href="/kyoin/">教員採用試験</SiteLink>
         <span>/</span>
         <span className="text-[color:var(--c-ink)]">{field.name}</span>
       </nav>

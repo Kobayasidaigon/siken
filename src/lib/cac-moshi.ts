@@ -12,7 +12,7 @@ import { getAllCacQuestions, type CacQuestionData } from "./cac-questions";
 export const CAC_MOSHI_TIME_LIMIT_MIN = 150;
 export const CAC_MOSHI_PASS_COUNT = 42;
 
-export const CAC_MOSHI_1_SLUGS: string[] = [
+const CAC_MOSHI_1_SLUGS: string[] = [
   // 総則・設立（7問）
   "cac-001", // A 会社の種類と商号の文字
   "cac-004", // B 支配人の権限と表見支配人

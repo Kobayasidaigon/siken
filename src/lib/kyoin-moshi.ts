@@ -23,7 +23,7 @@ import { getAllKyoinQuestions, type KyoinQuestionData } from "./kyoin-questions"
 export const KYOIN_MOSHI_TIME_LIMIT_MIN = 60;
 export const KYOIN_MOSHI_PASS_COUNT = 42;
 
-export const KYOIN_MOSHI_1_SLUGS: string[] = [
+const KYOIN_MOSHI_1_SLUGS: string[] = [
   "kyoin-001", // 教育法規（憲法・教育基本法・学校教育法） A 日本国憲法26条 教育を受ける権利
   "kyoin-026", // 教育法規（教職員の身分・服務・学校運営） A 服務の根本基準
   "kyoin-051", // 教育原理（学習指導要領と教育課程） A 学習指導要領の法的性格と教育課程の編成主体

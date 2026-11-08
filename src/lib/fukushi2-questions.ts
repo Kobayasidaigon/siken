@@ -68,7 +68,3 @@ export async function getFukushi2QuestionsByField(field: string): Promise<Fukush
     .filter((q) => q.field === field)
     .sort((a, b) => a.questionNumber - b.questionNumber);
 }
-
-export function getFukushi2Fields(): string[] {
-  return ["高齢社会と住環境整備", "相談援助と連携", "障害とリハビリテーション", "疾患・障害別の特性", "住環境整備の基本技術", "場所別の住環境整備", "福祉用具", "介護保険と住宅改修", "関連法制度・施策"];
-}

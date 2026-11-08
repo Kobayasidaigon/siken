@@ -1,3 +1,4 @@
+import SiteLink from "@/components/SiteLink";
 import { getAllLlcQuestions } from "@/lib/llc-questions";
 import type { Metadata } from "next";
 import { pageMetadata } from "@/lib/page-metadata";
@@ -29,9 +30,9 @@ export default async function LlcMockPage() {
   return (
     <div className="theme-pii pb-16">
       <nav className="breadcrumb text-xs text-[color:var(--c-text-sub)] mb-4 flex gap-1">
-        <a href="/">ホーム</a>
+        <SiteLink href="/">ホーム</SiteLink>
         <span>/</span>
-        <a href="/llc/">労働法務士</a>
+        <SiteLink href="/llc/">労働法務士</SiteLink>
         <span>/</span>
         <span className="text-[color:var(--c-ink)]">本番形式テスト</span>
       </nav>
@@ -41,9 +42,9 @@ export default async function LlcMockPage() {
 
       <p className="text-xs text-[color:var(--c-text-sub)] mb-5">
         本試験と同じ60問・150分で腕試しするなら
-        <a href="/llc/moshi/" className="underline hover:no-underline">
+        <SiteLink href="/llc/moshi/" className="underline hover:no-underline">
           模擬試験 第1回（無料）
-        </a>
+        </SiteLink>
         へ。
       </p>
 

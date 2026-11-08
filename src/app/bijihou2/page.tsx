@@ -1,3 +1,4 @@
+import SiteLink from "@/components/SiteLink";
 import { getAllBijihou2Questions, getBijihou2QuestionsByField } from "@/lib/bijihou2-questions";
 import RecentCourseReminder from "@/components/RecentCourseReminder";
 import { getAllColumns } from "@/lib/columns";
@@ -42,7 +43,7 @@ export default async function Bijihou2Page() {
     <div className="theme-kashikin pb-16">
       <section className="-mx-4 px-4 py-10 sm:py-14 border-y mb-10" style={{ background: "var(--c-kashikin-soft)", borderColor: "var(--c-border)" }}>
         <nav className="text-xs text-[color:var(--c-text-sub)] mb-4">
-          <a href="/" className="no-underline hover:underline">ホーム</a> / <span>ビジネス実務法務検定2級</span>
+          <SiteLink href="/" className="no-underline hover:underline">ホーム</SiteLink> / <span>ビジネス実務法務検定2級</span>
         </nav>
         <h1 className="text-2xl sm:text-3xl font-bold mb-3 font-serif leading-tight" style={{ color: "var(--c-kashikin-ink)" }}>
           ビジネス実務法務検定2級
@@ -52,21 +53,21 @@ export default async function Bijihou2Page() {
           民法・会社法・関連法規を扱う、{allQuestions.length}問のオリジナル練習問題集です。
         </p>
         <div className="mt-6 flex flex-wrap gap-3">
-          <a href="/bijihou2/q/bijihou2-001/" className="btn-accent">問題を解き始める →</a>
-          <a
+          <SiteLink href="/bijihou2/q/bijihou2-001/" className="btn-accent">問題を解き始める →</SiteLink>
+          <SiteLink
             href="/bijihou2/moshi/"
             className="inline-flex items-center px-4 py-2 rounded-lg border text-sm font-medium no-underline transition-colors hover:bg-[color:var(--c-kashikin-soft)]"
             style={{ borderColor: "var(--c-kashikin)", color: "var(--c-kashikin-ink)" }}
           >
             模擬試験を受ける（90分・70点合格判定）→
-          </a>
-          <a
+          </SiteLink>
+          <SiteLink
             href="/bijihou2/mock/"
             className="inline-flex items-center px-4 py-2 rounded-lg border text-sm font-medium no-underline transition-colors hover:bg-[color:var(--c-kashikin-soft)]"
             style={{ borderColor: "var(--c-kashikin)", color: "var(--c-kashikin-ink)" }}
           >
             本番形式で腕試し（20問・採点）→
-          </a>
+          </SiteLink>
         </div>
       </section>
 
@@ -80,13 +81,13 @@ export default async function Bijihou2Page() {
         <h2 className="text-lg font-bold text-[color:var(--c-ink)] mb-5 font-serif">分野から選ぶ</h2>
         <div className="space-y-3">
           {fields.map((f, i) => (
-            <a key={f.slug} href={`/bijihou2/field/${f.slug}/`} className="card p-5 no-underline group block" style={{ borderLeft: "3px solid var(--c-kashikin)" }}>
+            <SiteLink key={f.slug} href={`/bijihou2/field/${f.slug}/`} className="card p-5 no-underline group block" style={{ borderLeft: "3px solid var(--c-kashikin)" }}>
               <div className="flex items-start justify-between mb-1 gap-3">
                 <p className="text-base font-bold text-[color:var(--c-ink)] font-serif">{f.name}</p>
                 <span className="text-xs text-[color:var(--c-text-sub)] shrink-0">{fieldCounts[i]}問</span>
               </div>
               <p className="text-sm text-[color:var(--c-text-sub)] mt-2 leading-relaxed">{f.desc}</p>
-            </a>
+            </SiteLink>
           ))}
         </div>
       </section>
@@ -98,7 +99,7 @@ export default async function Bijihou2Page() {
           <p><span className="font-bold text-[color:var(--c-ink)]">合格基準</span>　70点以上</p>
           {/* 2026-09-05: 3級の受験料(5,500/7,700円)が残っていた誤記を2級の額に修正。CBTは利用料2,200円込み */}
           <p><span className="font-bold text-[color:var(--c-ink)]">受験料</span>　IBT方式 7,700円／CBT方式 9,900円（CBT利用料2,200円を含む・いずれも税込）</p>
-          <p><span className="font-bold text-[color:var(--c-ink)]">試験日</span>　年2回（6〜7月、10〜11月）　<a href="/column/bijihou-nittei/" className="underline hover:no-underline">詳しい日程・申込方法 →</a></p>
+          <p><span className="font-bold text-[color:var(--c-ink)]">試験日</span>　年2回（6〜7月、10〜11月）　<SiteLink href="/column/bijihou-nittei/" className="underline hover:no-underline">詳しい日程・申込方法 →</SiteLink></p>
           <p><span className="font-bold text-[color:var(--c-ink)]">実施機関</span>　東京商工会議所</p>
         </div>
       </section>
@@ -114,7 +115,7 @@ export default async function Bijihou2Page() {
         <h2 className="text-base font-bold text-[color:var(--c-ink)] mb-4 font-serif">あわせて学ぶと役に立つ試験</h2>
         <div className="card p-5 text-sm text-[color:var(--c-text-sub)] leading-relaxed space-y-2">
           <p>
-            民法と会社法を条文単位で深めるなら、全日本情報学習振興協会の<a href="/ccc/" className="underline hover:no-underline">民法法務士</a>・<a href="/cac/" className="underline hover:no-underline">会社法法務士</a>が次の選択肢になります。
+            民法と会社法を条文単位で深めるなら、全日本情報学習振興協会の<SiteLink href="/ccc/" className="underline hover:no-underline">民法法務士</SiteLink>・<SiteLink href="/cac/" className="underline hover:no-underline">会社法法務士</SiteLink>が次の選択肢になります。
           </p>
         </div>
       </section>
@@ -125,19 +126,19 @@ export default async function Bijihou2Page() {
           <h2 className="text-base font-bold text-[color:var(--c-ink)] mb-4 font-serif">コラム</h2>
           <div className="space-y-2">
             {bijihouColumns.slice(0, 6).map((col) => (
-              <a
+              <SiteLink
                 key={col.slug}
                 href={`/column/${col.slug}/`}
                 className="block py-2 text-sm text-[color:var(--c-text)] no-underline hover:text-[color:var(--c-kashikin)] border-b border-[color:var(--c-border)] last:border-b-0"
               >
                 {col.title}
-              </a>
+              </SiteLink>
             ))}
           </div>
           {bijihouColumns.length > 6 && (
-            <a href="/column/#bijihou2" className="inline-block mt-4 text-sm text-[color:var(--c-text-sub)] no-underline hover:text-[color:var(--c-kashikin)] underline">
+            <SiteLink href="/column/#bijihou2" className="inline-block mt-4 text-sm text-[color:var(--c-text-sub)] no-underline hover:text-[color:var(--c-kashikin)] underline">
               ビジネス実務法務検定2級のコラムをすべて見る →
-            </a>
+            </SiteLink>
           )}
         </section>
       )}

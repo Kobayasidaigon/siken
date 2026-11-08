@@ -25,7 +25,7 @@ export const ISEC_MOSHI_TIME_LIMIT_MIN = 60;
 export const ISEC_MOSHI_QUESTION_COUNT = 90;
 export const ISEC_MOSHI_PASS_COUNT = 63;
 
-export const ISEC_MOSHI_1_SLUGS: string[] = [
+const ISEC_MOSHI_1_SLUGS: string[] = [
   // 課題Ⅰ 情報セキュリティ総論（30問）
   "isec-001", // 情報セキュリティの基礎と管理 A 情報セキュリティの3要素
   "isec-026", // 情報セキュリティ関連法規 A 不正アクセス禁止法の禁止行為

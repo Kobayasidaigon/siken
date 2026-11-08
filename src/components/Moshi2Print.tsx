@@ -1,7 +1,7 @@
 "use client";
 
 /**
- * 第2回模試(有料)の印刷用紙面。2026-09-09 新設。
+ * 第2回模試の印刷用紙面。2026-09-09 新設(2026-11-08 に無料化)。
  *
  * 【なぜ必要だったか】
  * Moshi2Gate の商品説明が「問題・解答用紙・解説を A4 に組んだ印刷用の紙面つき」と
@@ -9,10 +9,9 @@
  * 存在しなかった。購入者がリンクを踏むと 404 になっていた。約束した機能が無いのは
  * 特商法・景表法の観点でも不味いので、説明文を削るのではなく実装して合わせる。
  *
- * 【安全性】
- * 問題データは Moshi2Gate と同じ /api/moshi2/[cert] からしか取らない。未購入なら
- * API が 402 を返すのでこの画面にも何も出ない。ページ自体は静的生成のままで、
- * HTML にもバンドルにも問題文は載らない。SEO 上も購入者以外には空のページに見える。
+ * 【データの取り方】
+ * 問題データは Moshi2Gate と同じ /api/moshi2/[cert] から取る。ページ自体は静的生成のままで、
+ * HTML にもバンドルにも問題文は載らない(印刷用なので noindex)。
  *
  * 【紙面の構成】
  *   1枚目〜  問題（解答欄なし。番号と設問文と選択肢だけ）
@@ -42,7 +41,7 @@ type Paper = {
   dev?: boolean;
 };
 
-type Status = "loading" | "locked" | "ready" | "notReady" | "error";
+type Status = "loading" | "ready" | "notReady" | "error";
 
 export default function Moshi2Print({ certId }: { certId: ExamSlug }) {
   const product = moshi2ProductOf(certId);
@@ -53,7 +52,6 @@ export default function Moshi2Print({ certId }: { certId: ExamSlug }) {
   const load = useCallback(async () => {
     try {
       const res = await fetch(`/api/moshi2/${certId}/`, { cache: "no-store" });
-      if (res.status === 402) return setStatus("locked");
       if (res.status === 503) return setStatus("notReady");
       if (!res.ok) return setStatus("error");
       setPaper((await res.json()) as Paper);
@@ -71,20 +69,6 @@ export default function Moshi2Print({ certId }: { certId: ExamSlug }) {
 
   if (status === "loading") {
     return <p className="text-sm text-[color:var(--c-text-sub)]">読み込んでいます…</p>;
-  }
-
-  if (status === "locked") {
-    return (
-      <div className="card p-5 text-sm leading-relaxed">
-        <p className="text-[color:var(--c-ink)] font-bold mb-2">この紙面は購入者向けです</p>
-        <p className="text-[color:var(--c-text-sub)] mb-4">
-          {product.name}をご購入いただくと、問題・解答用紙・解説を A4 に組んだ紙面を印刷できます。
-        </p>
-        <Link href={`/${certId}/moshi2/`} className="btn-accent no-underline">
-          商品ページへ →
-        </Link>
-      </div>
-    );
   }
 
   if (status === "notReady") {
@@ -122,7 +106,7 @@ export default function Moshi2Print({ certId }: { certId: ExamSlug }) {
           {paper.def.passLabel}
         </p>
         <p className="text-xs text-[color:var(--c-text-sub)] mt-1">
-          シカクモン（shikakumon.com）／購入者ご本人の学習用です。複製・再配布はご遠慮ください。
+          シカクモン（shikakumon.com）／個人の学習用です。複製・再配布はご遠慮ください。
         </p>
       </header>
 

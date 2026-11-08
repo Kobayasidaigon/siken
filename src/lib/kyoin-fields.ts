@@ -15,7 +15,7 @@
  * task は本試験の科目区分(表示用)。
  */
 
-export interface KyoinField {
+interface KyoinField {
   slug: string;
   /** 問題 md の field と完全一致させる値 */
   name: string;

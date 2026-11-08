@@ -8,7 +8,7 @@
  * 1分野20問で並べている。
  */
 
-export interface HadField {
+interface HadField {
   /** URL に使う分野スラッグ。/had/field/<slug>/ */
   slug: string;
   /** 問題 md の field と完全一致させる値 */

@@ -10,7 +10,7 @@ import { getAllMynumberQuestions, type MynumberQuestionData } from "./mynumber-q
 export const MYNUMBER_MOSHI_TIME_LIMIT_MIN = 75;
 export const MYNUMBER_MOSHI_PASS_COUNT = 35;
 
-export const MYNUMBER_MOSHI_1_SLUGS: string[] = [
+const MYNUMBER_MOSHI_1_SLUGS: string[] = [
   "mynumber-001", // 番号法の概要 A 番号法の目的
   "mynumber-081", // 特定個人情報保護 A 特定個人情報の提供制限
   "mynumber-041", // 個人番号カード・利用 A 個人番号カードの基本記載事項

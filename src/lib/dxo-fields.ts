@@ -6,7 +6,7 @@
  * 当サイトで8分野に分けた（1分野20問の予定）。
  */
 
-export interface DxoField {
+interface DxoField {
   /** URL に使う分野スラッグ。/dxo/field/<slug>/ */
   slug: string;
   /** 問題 md の field と完全一致させる値 */

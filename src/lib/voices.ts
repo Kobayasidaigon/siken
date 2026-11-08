@@ -33,7 +33,7 @@ import type { ExamSlug } from "./study-progress";
 
 const VOICES_DIR = path.join(process.cwd(), "src/content/voices");
 
-export interface Voice {
+interface Voice {
   slug: string;
   exam: ExamSlug;
   examPeriod: string;
@@ -90,9 +90,4 @@ export async function getAllVoices(): Promise<Voice[]> {
 /** その資格の合格報告だけを新しい順に返す */
 export async function getVoicesByExam(exam: ExamSlug): Promise<Voice[]> {
   return (await getAllVoices()).filter((v) => v.exam === exam);
-}
-
-/** 掲載済みの報告が1件でもあるか(一覧ページを sitemap に載せるかの判定にも使う) */
-export function hasVoices(): boolean {
-  return getAllSlugs().length > 0;
 }

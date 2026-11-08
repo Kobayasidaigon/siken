@@ -4,7 +4,7 @@ import { getAllGaiaQuestions, type GaiaQuestionData } from "./gaia-questions";
 export const GAIA_MOSHI_2KYU_TIME_LIMIT_MIN = 60;
 export const GAIA_MOSHI_2KYU_PASS_COUNT = 35;
 
-export const GAIA_MOSHI_2KYU_SLUGS: string[] = [
+const GAIA_MOSHI_2KYU_SLUGS: string[] = [
   "gaia-013", // AIの基礎理解 A ○× ラベルなしデータからの構造発見
   "gaia-015", // AIの基礎理解 B ○× 重みの調整による学習
   "gaia-017", // AIの基礎理解 B ○× 機械学習の予測の確率的性質

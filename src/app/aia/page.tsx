@@ -1,3 +1,4 @@
+import SiteLink from "@/components/SiteLink";
 import { getAllAiaQuestions, getAiaQuestionsByField } from "@/lib/aia-questions";
 import RecentCourseReminder from "@/components/RecentCourseReminder";
 import { getAllColumns } from "@/lib/columns";
@@ -33,9 +34,9 @@ export default async function AiaPage() {
         style={{ background: "var(--c-pii-soft)", borderColor: "var(--c-border)" }}
       >
         <nav className="text-xs text-[color:var(--c-text-sub)] mb-4">
-          <a href="/" className="no-underline hover:underline">
+          <SiteLink href="/" className="no-underline hover:underline">
             ホーム
-          </a>{" "}
+          </SiteLink>{" "}
           / <span>AI活用アドバイザー</span>
         </nav>
         <h1
@@ -49,24 +50,24 @@ export default async function AiaPage() {
           AIの基礎から生成AI、企業の導入事例、人材・制度の動向までを問う全日本情報学習振興協会の認定試験。本試験の7課題に沿った{allQuestions.length}問のオリジナル練習問題集です。
         </p>
         <div className="mt-6 flex flex-wrap gap-3">
-          <a href="/aia/q/aia-001/" className="btn-accent">
+          <SiteLink href="/aia/q/aia-001/" className="btn-accent">
             問題を解き始める →
-          </a>
-          <a
+          </SiteLink>
+          <SiteLink
             href="/aia/moshi/"
             className="inline-flex items-center px-4 py-2 rounded-lg border text-sm font-medium no-underline transition-colors hover:bg-[color:var(--c-pii-soft)]"
             style={{ borderColor: "var(--c-pii)", color: "var(--c-pii-ink)" }}
           >
             模擬試験を受ける（100問・105分）→
-          </a>
+          </SiteLink>
           <Moshi2TopLink certId="aia" />
-          <a
+          <SiteLink
             href="/aia/mock/"
             className="inline-flex items-center px-4 py-2 rounded-lg border text-sm font-medium no-underline transition-colors hover:bg-[color:var(--c-pii-soft)]"
             style={{ borderColor: "var(--c-pii)", color: "var(--c-pii-ink)" }}
           >
             本番形式で腕試し（20問・採点）→
-          </a>
+          </SiteLink>
         </div>
       </section>
 
@@ -90,7 +91,7 @@ export default async function AiaPage() {
         <h2 className="text-lg font-bold text-[color:var(--c-ink)] mb-5 font-serif">分野から選ぶ</h2>
         <div className="space-y-3">
           {AIA_FIELDS.map((f, i) => (
-            <a
+            <SiteLink
               key={f.slug}
               href={`/aia/field/${f.slug}/`}
               className="card p-5 no-underline group block"
@@ -109,7 +110,7 @@ export default async function AiaPage() {
                 <span className="text-xs text-[color:var(--c-text-sub)] shrink-0">{fieldCounts[i]}問</span>
               </div>
               <p className="text-sm text-[color:var(--c-text-sub)] mt-2 leading-relaxed">{f.desc}</p>
-            </a>
+            </SiteLink>
           ))}
         </div>
       </section>
@@ -156,7 +157,7 @@ export default async function AiaPage() {
         <h2 className="text-base font-bold text-[color:var(--c-ink)] mb-4 font-serif">あわせて学ぶと役に立つ試験</h2>
         <div className="card p-5 text-sm text-[color:var(--c-text-sub)] leading-relaxed space-y-2">
           <p>
-            AIの周辺は、<a href="/gaia/" className="underline hover:no-underline">生成AIアドバイザー</a>と<a href="/dxa/" className="underline hover:no-underline">DX推進アドバイザー</a>の範囲とも重なります。
+            AIの周辺は、<SiteLink href="/gaia/" className="underline hover:no-underline">生成AIアドバイザー</SiteLink>と<SiteLink href="/dxa/" className="underline hover:no-underline">DX推進アドバイザー</SiteLink>の範囲とも重なります。
           </p>
         </div>
       </section>
@@ -167,13 +168,13 @@ export default async function AiaPage() {
           <h2 className="text-base font-bold text-[color:var(--c-ink)] mb-4 font-serif">コラム</h2>
           <div className="space-y-2">
             {aiaColumns.slice(0, 6).map((col) => (
-              <a
+              <SiteLink
                 key={col.slug}
                 href={`/column/${col.slug}/`}
                 className="block py-2 text-sm text-[color:var(--c-text)] no-underline hover:text-[color:var(--c-pii)] border-b border-[color:var(--c-border)] last:border-b-0"
               >
                 {col.title}
-              </a>
+              </SiteLink>
             ))}
           </div>
         </section>

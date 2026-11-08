@@ -12,7 +12,7 @@ import { getAllIbdQuestions, type IbdQuestionData } from "./ibd-questions";
 export const IBD_MOSHI_TIME_LIMIT_MIN = 120;
 export const IBD_MOSHI_PASS_COUNT = 70;
 
-export const IBD_MOSHI_1_SLUGS: string[] = [
+const IBD_MOSHI_1_SLUGS: string[] = [
   // 観光総論・インバウンド総論（11問）
   "ibd-001", // A 観光の定義（観光政策審議会答申）
   "ibd-003", // B 観光立国推進基本法の基本理念

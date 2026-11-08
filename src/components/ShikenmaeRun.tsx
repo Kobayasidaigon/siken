@@ -1,4 +1,5 @@
 "use client";
+import SiteLink from "@/components/SiteLink";
 /**
  * 「試験前の10問」の受験画面。2026-10-25 追加。設計は docs/share-campaign-design.md の MVP、仕組みは lib/shikenmae.ts。
  *
@@ -392,9 +393,9 @@ function Result({
                   })}
                 </ol>
                 <div className="prose prose-sm max-w-none mt-3" dangerouslySetInnerHTML={{ __html: q.explanationHtml }} />
-                <a href={`/${event.exam}/q/${q.slug}/`} className="inline-block text-xs underline mt-2">
+                <SiteLink href={`/${event.exam}/q/${q.slug}/`} className="inline-block text-xs underline mt-2">
                   この問題のページで復習する →
-                </a>
+                </SiteLink>
               </details>
             );
           })}

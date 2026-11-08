@@ -21,7 +21,7 @@ type QuizQuestion = {
   content?: string; // 解説本文(HTML)
 };
 
-export function stripHtml(html: string): string {
+function stripHtml(html: string): string {
   return html
     .replace(/<[^>]+>/g, " ")
     .replace(/&amp;/g, "&")

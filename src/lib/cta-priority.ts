@@ -113,7 +113,7 @@ export const EXAM_SCHEDULES: Record<ExamSlug, UpcomingExam[]> = {
  */
 export const APPLY_URGENT_DAYS = 10;
 
-export type CtaPhase =
+type CtaPhase =
   /** 申込受付中で締切が迫っている (アフィリ優先) */
   | "apply_urgent"
   /** 申込受付中だが締切までまだ余裕がある */
@@ -125,7 +125,7 @@ export type CtaPhase =
   /** 日程データが無い / 予定が尽きた */
   | "unknown";
 
-export type CtaPriority = {
+type CtaPriority = {
   /** 上に出す CTA */
   primary: "apply" | "studio";
   phase: CtaPhase;

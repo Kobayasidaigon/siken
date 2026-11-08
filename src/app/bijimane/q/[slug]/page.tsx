@@ -1,3 +1,4 @@
+import SiteLink from "@/components/SiteLink";
 import { getAllBijimaneSlugs, getBijimaneQuestion, getBijimaneQuestionsByField } from "@/lib/bijimane-questions";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
@@ -71,9 +72,9 @@ export default async function BijimaneQuestionPage({ params }: { params: Promise
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
 
       <nav className="breadcrumb text-xs text-[color:var(--c-text-sub)] mb-4 flex flex-wrap gap-1">
-        <a href="/">ホーム</a><span>/</span>
-        <a href="/bijimane/">ビジネスマネジャー検定</a><span>/</span>
-        {fieldSlug && <><a href={`/bijimane/field/${fieldSlug}/`}>{q.field}</a><span>/</span></>}
+        <SiteLink href="/">ホーム</SiteLink><span>/</span>
+        <SiteLink href="/bijimane/">ビジネスマネジャー検定</SiteLink><span>/</span>
+        {fieldSlug && <><SiteLink href={`/bijimane/field/${fieldSlug}/`}>{q.field}</SiteLink><span>/</span></>}
         <span className="text-[color:var(--c-ink)]">問{fieldIndex}</span>
       </nav>
 
@@ -100,15 +101,15 @@ export default async function BijimaneQuestionPage({ params }: { params: Promise
 
       <nav className="mt-8 flex justify-between items-center pt-4 border-t border-[color:var(--c-border)]">
         {prevQ ? (
-          <a href={`/bijimane/q/${prevQ.slug}/`} className="text-sm text-[color:var(--c-text-sub)] no-underline hover:text-[color:var(--c-bijimane)]">← 問{idx}</a>
+          <SiteLink href={`/bijimane/q/${prevQ.slug}/`} className="text-sm text-[color:var(--c-text-sub)] no-underline hover:text-[color:var(--c-bijimane)]">← 問{idx}</SiteLink>
         ) : <span />}
         {fieldSlug && (
-          <a href={`/bijimane/field/${fieldSlug}/`} className="text-sm text-[color:var(--c-text-sub)] no-underline hover:text-[color:var(--c-bijimane)]">
+          <SiteLink href={`/bijimane/field/${fieldSlug}/`} className="text-sm text-[color:var(--c-text-sub)] no-underline hover:text-[color:var(--c-bijimane)]">
             {q.field}の一覧
-          </a>
+          </SiteLink>
         )}
         {nextQ ? (
-          <a href={`/bijimane/q/${nextQ.slug}/`} className="text-sm text-[color:var(--c-text-sub)] no-underline hover:text-[color:var(--c-bijimane)]">問{idx + 2} →</a>
+          <SiteLink href={`/bijimane/q/${nextQ.slug}/`} className="text-sm text-[color:var(--c-text-sub)] no-underline hover:text-[color:var(--c-bijimane)]">問{idx + 2} →</SiteLink>
         ) : <span />}
       </nav>
     </article>

@@ -1,3 +1,4 @@
+import SiteLink from "@/components/SiteLink";
 import type { Metadata } from "next";
 import { pageMetadata } from "@/lib/page-metadata";
 import { getPiiMoshi1Questions, PII_MOSHI_PASS_COUNT, PII_MOSHI_TIME_LIMIT_MIN } from "@/lib/pii-moshi";
@@ -24,8 +25,8 @@ export default async function PiiMoshiPage() {
   return (
     <div className="theme-pii pb-16">
       <nav className="breadcrumb text-xs text-[color:var(--c-text-sub)] mb-4 flex gap-1">
-        <a href="/">ホーム</a><span>/</span>
-        <a href="/pii/">個人情報保護士</a><span>/</span>
+        <SiteLink href="/">ホーム</SiteLink><span>/</span>
+        <SiteLink href="/pii/">個人情報保護士</SiteLink><span>/</span>
         <span className="text-[color:var(--c-ink)]">模擬試験 第1回</span>
       </nav>
 
@@ -69,8 +70,8 @@ export default async function PiiMoshiPage() {
         ※本模試は当サイト編集部が作成したオリジナル問題で構成しており、実際の過去問題の転載ではありません。
         本試験では、問題の難易度により正答率70%未満でも合格となる場合があると公式に案内されています(本模試は70%固定で判定)。
         合否判定はあくまで学習の目安です。時間を計らずに力試しをしたい方は
-        <a href="/pii/mock/" className="underline hover:no-underline">本番形式テスト（ランダム20問）</a>へ、
-        1問ずつじっくり学びたい方は<a href="/pii/" className="underline hover:no-underline">練習問題300問</a>へ。
+        <SiteLink href="/pii/mock/" className="underline hover:no-underline">本番形式テスト（ランダム20問）</SiteLink>へ、
+        1問ずつじっくり学びたい方は<SiteLink href="/pii/" className="underline hover:no-underline">練習問題300問</SiteLink>へ。
       </p>
     </div>
   );

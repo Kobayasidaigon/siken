@@ -68,7 +68,3 @@ export async function getMynumberQuestionsByField(field: string): Promise<Mynumb
     .filter((q) => q.field === field)
     .sort((a, b) => a.questionNumber - b.questionNumber);
 }
-
-export function getMynumberFields(): string[] {
-  return ["番号法の概要", "個人番号カード・利用", "特定個人情報保護", "事業者の取扱い", "法人番号・罰則・実務"];
-}

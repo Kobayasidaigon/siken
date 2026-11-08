@@ -64,30 +64,8 @@ export async function getQuestionsByField(field: string): Promise<QuestionData[]
     .sort((a, b) => a.questionNumber - b.questionNumber);
 }
 
-/**
- * 指定slugの問題が、同じ分野内で何番目の問題かを返す（1始まり）。
- * 該当なしの場合は null。
- */
-export async function getFieldIndex(slug: string): Promise<{ index: number; total: number; field: string } | null> {
-  const q = await getQuestion(slug);
-  if (!q || !q.field) return null;
-  const fieldQuestions = await getQuestionsByField(q.field);
-  const index = fieldQuestions.findIndex((x) => x.slug === slug);
-  if (index === -1) return null;
-  return { index: index + 1, total: fieldQuestions.length, field: q.field };
-}
-
 export function getExamNumbers(): number[] {
   const slugs = getAllQuestionSlugs();
   const exams = new Set(slugs.map((s) => parseInt(s.split("-")[0])));
   return Array.from(exams).sort((a, b) => b - a);
-}
-
-export function getFields(): string[] {
-  return [
-    "貸金業法",
-    "利息制限法・出資法",
-    "民法・民事訴訟法",
-    "資金需要者等の保護",
-  ];
 }

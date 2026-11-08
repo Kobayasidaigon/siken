@@ -22,7 +22,7 @@ import type { ExamSlug } from "./study-progress";
 
 export type CareerTrack = "kanri" | "fudosan" | "kinyu" | "fukushi" | "it" | "kyoin" | "general";
 
-export interface CareerOffer {
+interface CareerOffer {
   href: string;   // ASP 発行の計測付きリンク
   label: string;  // アンカーテキスト(サービス名を入れる。例「MS Agentで管理部門の求人を見る」)。
                   // 対象の条件(正社員経験など)はここに書く。1行表示(variant="line")でも必ず見えるため
@@ -30,14 +30,14 @@ export interface CareerOffer {
   note?: string;  // サービスの紹介(カード表示のみ)。自分の言葉で短く。広告主サイトの文章は転載しない
 }
 
-export interface CareerTrackInfo {
+interface CareerTrackInfo {
   name: string;     // 読者層の名前(docs・コメント用)
   headline: string; // カードの導入(1行)
   body: string;     // カードの本文。特定サービスの効果をうたわない
   offer?: CareerOffer;
 }
 
-export const CAREER_TRACKS: Record<CareerTrack, CareerTrackInfo> = {
+const CAREER_TRACKS: Record<CareerTrack, CareerTrackInfo> = {
   kanri: {
     name: "管理部門(総務・人事・法務・コンプライアンス・知財)",
     headline: "資格を活かして管理部門で働くなら",

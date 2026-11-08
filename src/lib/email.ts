@@ -20,7 +20,7 @@ import { MOSHI2_CONFIG } from "@/lib/moshi2-config";
 const MAIL_FROM_DEFAULT = MOSHI2_CONFIG.mailFrom;
 const TIMEOUT_MS = 5000;
 
-export type SendMailParams = {
+type SendMailParams = {
   to: string;
   subject: string;
   /** プレーンテキスト本文(必須。HTMLを読めない環境向け) */

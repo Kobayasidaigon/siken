@@ -1,3 +1,4 @@
+import SiteLink from "@/components/SiteLink";
 import type { Metadata } from "next";
 import { pageMetadata } from "@/lib/page-metadata";
 import {
@@ -30,8 +31,8 @@ export default async function BijimaneMoshiPage() {
   return (
     <div className="theme-bijimane pb-16">
       <nav className="breadcrumb text-xs text-[color:var(--c-text-sub)] mb-4 flex gap-1">
-        <a href="/">ホーム</a><span>/</span>
-        <a href="/bijimane/">ビジネスマネジャー検定</a><span>/</span>
+        <SiteLink href="/">ホーム</SiteLink><span>/</span>
+        <SiteLink href="/bijimane/">ビジネスマネジャー検定</SiteLink><span>/</span>
         <span className="text-[color:var(--c-ink)]">模擬試験 第1回</span>
       </nav>
 
@@ -75,8 +76,8 @@ export default async function BijimaneMoshiPage() {
         また本試験には時事問題が含まれる場合がありますが、本模試には含まれません。
         問題はすべて当サイト編集部が作成したオリジナルで、実際の試験問題の転載ではありません。合格判定はあくまで学習の目安です。
         時間を計らずに力試しをしたい方は
-        <a href="/bijimane/mock/" className="underline hover:no-underline">本番形式テスト（ランダム20問）</a>へ、
-        1問ずつじっくり学びたい方は<a href="/bijimane/" className="underline hover:no-underline">練習問題200問</a>へ。
+        <SiteLink href="/bijimane/mock/" className="underline hover:no-underline">本番形式テスト（ランダム20問）</SiteLink>へ、
+        1問ずつじっくり学びたい方は<SiteLink href="/bijimane/" className="underline hover:no-underline">練習問題200問</SiteLink>へ。
       </p>
     </div>
   );

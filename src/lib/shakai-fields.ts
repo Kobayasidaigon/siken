@@ -16,7 +16,7 @@
  * field の値は問題 md と完全一致させること（分野ページの絞り込みキーになる）。
  */
 
-export interface ShakaiField {
+interface ShakaiField {
   slug: string;
   /** 問題 md の field と完全一致させる値 */
   name: string;

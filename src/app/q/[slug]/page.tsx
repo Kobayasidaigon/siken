@@ -1,3 +1,4 @@
+import SiteLink from "@/components/SiteLink";
 import { getAllQuestionSlugs, getQuestion, getQuestionsByField } from "@/lib/questions";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
@@ -69,9 +70,9 @@ export default async function QuestionPage({ params }: { params: Promise<{ slug:
     <article className="theme-kashikin pb-16">
       <JsonLd data={jsonLd} />
       <nav className="breadcrumb text-xs text-[color:var(--c-text-sub)] mb-4 flex flex-wrap gap-1">
-        <a href="/">ホーム</a><span>/</span>
-        <a href="/kashikin/">貸金業務取扱主任者</a><span>/</span>
-        {fieldSlug && <><a href={`/field/${fieldSlug}/`}>{q.field}</a><span>/</span></>}
+        <SiteLink href="/">ホーム</SiteLink><span>/</span>
+        <SiteLink href="/kashikin/">貸金業務取扱主任者</SiteLink><span>/</span>
+        {fieldSlug && <><SiteLink href={`/field/${fieldSlug}/`}>{q.field}</SiteLink><span>/</span></>}
         {hub && <><a href={topicHubPath("kashikin", hub.slug)}>{hub.topic}</a><span>/</span></>}
         <span className="text-[color:var(--c-ink)]">問{fieldIndex}</span>
       </nav>
@@ -112,19 +113,19 @@ export default async function QuestionPage({ params }: { params: Promise<{ slug:
 
       <nav className="mt-8 flex justify-between items-center pt-4 border-t border-[color:var(--c-border)]">
         {prevQ ? (
-          <a href={`/q/${prevQ.slug}/`} className="text-sm text-[color:var(--c-text-sub)] no-underline hover:text-[color:var(--c-kashikin)]">
+          <SiteLink href={`/q/${prevQ.slug}/`} className="text-sm text-[color:var(--c-text-sub)] no-underline hover:text-[color:var(--c-kashikin)]">
             ← 問{idx}
-          </a>
+          </SiteLink>
         ) : <span />}
         {fieldSlug && (
-          <a href={`/field/${fieldSlug}/`} className="text-sm text-[color:var(--c-text-sub)] no-underline hover:text-[color:var(--c-kashikin)]">
+          <SiteLink href={`/field/${fieldSlug}/`} className="text-sm text-[color:var(--c-text-sub)] no-underline hover:text-[color:var(--c-kashikin)]">
             {q.field}の一覧
-          </a>
+          </SiteLink>
         )}
         {nextQ ? (
-          <a href={`/q/${nextQ.slug}/`} className="text-sm text-[color:var(--c-text-sub)] no-underline hover:text-[color:var(--c-kashikin)]">
+          <SiteLink href={`/q/${nextQ.slug}/`} className="text-sm text-[color:var(--c-text-sub)] no-underline hover:text-[color:var(--c-kashikin)]">
             問{idx + 2} →
-          </a>
+          </SiteLink>
         ) : <span />}
       </nav>
     </article>

@@ -1,3 +1,4 @@
+import SiteLink from "@/components/SiteLink";
 import type { Metadata } from "next";
 import { pageMetadata } from "@/lib/page-metadata";
 import PassReportForm from "./PassReportForm";
@@ -13,7 +14,7 @@ export default function PassReportPage() {
   return (
     <div className="pb-16">
       <nav className="breadcrumb text-xs text-[color:var(--c-text-sub)] mb-4 flex flex-wrap gap-1">
-        <a href="/">ホーム</a><span>/</span>
+        <SiteLink href="/">ホーム</SiteLink><span>/</span>
         <span className="text-[color:var(--c-ink)]">合格報告</span>
       </nav>
 
@@ -29,7 +30,7 @@ export default function PassReportPage() {
         </p>
         <p>
           いただいた内容は、掲載可の方の分だけ、文章を変えずにそのまま
-          <a href="/voice/">合格報告のページ</a>と各資格のページに載せます。
+          <SiteLink href="/voice/">合格報告のページ</SiteLink>と各資格のページに載せます。
           合格・不合格どちらの報告も歓迎します。
         </p>
       </div>
@@ -65,9 +66,9 @@ export default function PassReportPage() {
 
       <p className="mt-8 text-xs text-[color:var(--c-text-sub)] leading-relaxed">
         フォームがうまく動かない場合は、
-        <a href="/contact/" className="underline hover:no-underline mx-0.5">お問い合わせ</a>
+        <SiteLink href="/contact/" className="underline hover:no-underline mx-0.5">お問い合わせ</SiteLink>
         のメールアドレス宛に同じ内容をお送りください。個人情報の取り扱いは
-        <a href="/privacy/" className="underline hover:no-underline mx-0.5">プライバシーポリシー</a>
+        <SiteLink href="/privacy/" className="underline hover:no-underline mx-0.5">プライバシーポリシー</SiteLink>
         に記載しています。
       </p>
     </div>

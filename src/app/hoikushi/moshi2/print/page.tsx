@@ -1,3 +1,4 @@
+import SiteLink from "@/components/SiteLink";
 import type { Metadata } from "next";
 import { pageMetadata } from "@/lib/page-metadata";
 import Moshi2Print from "@/components/Moshi2Print";
@@ -18,11 +19,11 @@ export default function Page() {
   return (
     <div className="pb-16">
       <nav className="breadcrumb text-xs text-[color:var(--c-text-sub)] mb-4 flex gap-1">
-        <a href="/">ホーム</a>
+        <SiteLink href="/">ホーム</SiteLink>
         <span>/</span>
-        <a href="/hoikushi/">保育士試験（筆記）</a>
+        <SiteLink href="/hoikushi/">保育士試験（筆記）</SiteLink>
         <span>/</span>
-        <a href="/hoikushi/moshi2/">模擬試験 第2回</a>
+        <SiteLink href="/hoikushi/moshi2/">模擬試験 第2回</SiteLink>
         <span>/</span>
         <span className="text-[color:var(--c-ink)]">印刷用</span>
       </nav>

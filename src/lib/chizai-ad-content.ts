@@ -8,20 +8,14 @@
  * 低単価オンスクに偏った知財流入の単価ミックスを底上げする。
  */
 
-export interface ChizaiAdContent {
+interface ChizaiAdContent {
   headline: string;
   body: string;
   secondaryBenrishi?: boolean; // アガルート弁理士の二段CTAを併置するか
 }
 
-// 知財トップページ用
-export const CHIZAI_TOP_AD: ChizaiAdContent = {
-  headline: "9分野を効率よく対策するなら",
-  body: "知的財産管理技能検定は出題範囲が9分野と広く、市販教材も限られる試験です。月額制のオンライン講座オンスク.JPは知財検定3級講座を提供しており、スキマ時間で全分野を体系的に押さえられます。",
-};
-
 // コラム記事 slug → 訴求文 のマッピング
-export const CHIZAI_AD_BY_SLUG: Record<string, ChizaiAdContent> = {
+const CHIZAI_AD_BY_SLUG: Record<string, ChizaiAdContent> = {
   "chizai-benkyou-jikan": {
     headline: "限られた勉強時間で効率よく仕上げるなら",
     body: "9分野を独学で順に追うと時間が読めません。月額制のオンスク.JPの知財検定3級講座は、出題範囲を講義で整理してくれるので、限られた時間でも全分野をムラなく一巡しやすくなります。",

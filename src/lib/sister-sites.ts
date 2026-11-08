@@ -17,9 +17,9 @@
  *     13件の内訳は、施工管理技士 第一次検定の10件と、技術士第一次試験の基礎・適性・専門(建設部門)の3件
  */
 
-export type SisterSiteId = "eisei" | "setsubi" | "kintore" | "sekokan";
+type SisterSiteId = "eisei" | "setsubi" | "kintore" | "sekokan";
 
-export interface SisterSite {
+interface SisterSite {
   id: SisterSiteId;
   name: string;
   /** サイトのトップ(末尾スラッシュつき。姉妹はどれも trailingSlash: true) */

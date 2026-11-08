@@ -7,7 +7,7 @@
  */
 import type { ExamSlug } from "./study-progress";
 
-export interface ExamTheme {
+interface ExamTheme {
   /** 主色。例 "var(--c-kashikin)" */
   accent: string;
   /** 淡色。締切間近の強調背景に使う */

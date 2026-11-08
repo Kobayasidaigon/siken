@@ -1,3 +1,4 @@
+import SiteLink from "@/components/SiteLink";
 import { getAllCcmQuestions, getCcmQuestionsByField } from "@/lib/ccm-questions";
 import RecentCourseReminder from "@/components/RecentCourseReminder";
 import { getAllColumns } from "@/lib/columns";
@@ -33,9 +34,9 @@ export default async function CcmPage() {
         style={{ background: "var(--c-pii-soft)", borderColor: "var(--c-border)" }}
       >
         <nav className="text-xs text-[color:var(--c-text-sub)] mb-4">
-          <a href="/" className="no-underline hover:underline">
+          <SiteLink href="/" className="no-underline hover:underline">
             ホーム
-          </a>{" "}
+          </SiteLink>{" "}
           / <span>企業危機・コンプライアンス管理士</span>
         </nav>
         <h1
@@ -50,23 +51,23 @@ export default async function CcmPage() {
           {allQuestions.length}問のオリジナル練習問題集です。
         </p>
         <div className="mt-6 flex flex-wrap gap-3">
-          <a href="/ccm/q/ccm-001/" className="btn-accent">
+          <SiteLink href="/ccm/q/ccm-001/" className="btn-accent">
             問題を解き始める →
-          </a>
-          <a
+          </SiteLink>
+          <SiteLink
             href="/ccm/moshi/"
             className="inline-flex items-center px-4 py-2 rounded-lg border text-sm font-medium no-underline transition-colors hover:bg-[color:var(--c-pii-soft)]"
             style={{ borderColor: "var(--c-pii)", color: "var(--c-pii-ink)" }}
           >
             模擬試験を受ける（80問・120分）→
-          </a>
-          <a
+          </SiteLink>
+          <SiteLink
             href="/ccm/mock/"
             className="inline-flex items-center px-4 py-2 rounded-lg border text-sm font-medium no-underline transition-colors hover:bg-[color:var(--c-pii-soft)]"
             style={{ borderColor: "var(--c-pii)", color: "var(--c-pii-ink)" }}
           >
             本番形式で腕試し（20問・採点）→
-          </a>
+          </SiteLink>
         </div>
       </section>
 
@@ -91,7 +92,7 @@ export default async function CcmPage() {
         <h2 className="text-lg font-bold text-[color:var(--c-ink)] mb-5 font-serif">分野から選ぶ</h2>
         <div className="space-y-3">
           {CCM_FIELDS.map((f, i) => (
-            <a
+            <SiteLink
               key={f.slug}
               href={`/ccm/field/${f.slug}/`}
               className="card p-5 no-underline group block"
@@ -110,7 +111,7 @@ export default async function CcmPage() {
                 <span className="text-xs text-[color:var(--c-text-sub)] shrink-0">{fieldCounts[i]}問</span>
               </div>
               <p className="text-sm text-[color:var(--c-text-sub)] mt-2 leading-relaxed">{f.desc}</p>
-            </a>
+            </SiteLink>
           ))}
         </div>
       </section>
@@ -156,28 +157,28 @@ export default async function CcmPage() {
         <div className="card p-5 text-sm text-[color:var(--c-text-sub)] leading-relaxed space-y-2">
           <p>
             第5課題「企業危機各論」で問われる不祥事のうち、ハラスメントを深く学ぶなら
-            <a href="/had/" className="underline hover:no-underline">
+            <SiteLink href="/had/" className="underline hover:no-underline">
               ハラスメントアドバイザー
-            </a>
+            </SiteLink>
             、情報漏えいなら
-            <a href="/pii/" className="underline hover:no-underline">
+            <SiteLink href="/pii/" className="underline hover:no-underline">
               個人情報保護士
-            </a>
+            </SiteLink>
             や
-            <a href="/isec/" className="underline hover:no-underline">
+            <SiteLink href="/isec/" className="underline hover:no-underline">
               情報・サイバーセキュリティ管理士
-            </a>
+            </SiteLink>
             が、同じ協会の関連する試験です。
           </p>
           <p>
             契約や会社法など、企業法務の基礎から固めたい場合は
-            <a href="/bijihou/" className="underline hover:no-underline">
+            <SiteLink href="/bijihou/" className="underline hover:no-underline">
               ビジネス実務法務検定
-            </a>
+            </SiteLink>
             も選択肢になります。
           </p>
           <p>
-            取締役の責任や株主総会など、ガバナンスの土台になる会社法を深めるなら<a href="/cac/" className="underline hover:no-underline">会社法法務士</a>、労務トラブルへの備えなら<a href="/llc/" className="underline hover:no-underline">労働法務士</a>が、同じ協会の試験です。
+            取締役の責任や株主総会など、ガバナンスの土台になる会社法を深めるなら<SiteLink href="/cac/" className="underline hover:no-underline">会社法法務士</SiteLink>、労務トラブルへの備えなら<SiteLink href="/llc/" className="underline hover:no-underline">労働法務士</SiteLink>が、同じ協会の試験です。
           </p>
         </div>
       </section>
@@ -188,13 +189,13 @@ export default async function CcmPage() {
           <h2 className="text-base font-bold text-[color:var(--c-ink)] mb-4 font-serif">コラム</h2>
           <div className="space-y-2">
             {ccmColumns.slice(0, 6).map((col) => (
-              <a
+              <SiteLink
                 key={col.slug}
                 href={`/column/${col.slug}/`}
                 className="block py-2 text-sm text-[color:var(--c-text)] no-underline hover:text-[color:var(--c-pii)] border-b border-[color:var(--c-border)] last:border-b-0"
               >
                 {col.title}
-              </a>
+              </SiteLink>
             ))}
           </div>
         </section>

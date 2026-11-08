@@ -1,4 +1,4 @@
-export interface JitsumuAdContent {
+interface JitsumuAdContent {
   headline: string;
   body: string;
 }
@@ -8,7 +8,7 @@ export const JITSUMU_TOP_AD: JitsumuAdContent = {
   body: "試験を実施している全日本情報学習振興協会の公式講座です。改正法対応の論点も、講師の解説で押さえられます。",
 };
 
-export const JITSUMU_AD_BY_SLUG: Record<string, JitsumuAdContent> = {
+const JITSUMU_AD_BY_SLUG: Record<string, JitsumuAdContent> = {
   "jitsumu-goukakuritsu": {
     headline: "合格率を上げる近道は",
     body: "合格率は準備の質次第で変わります。試験を実施している協会の公式講座は、出題傾向を踏まえた構成なので、独学よりも合格圏に近づきやすいです。",

@@ -1,3 +1,4 @@
+import SiteLink from "@/components/SiteLink";
 import { getAllBijihou2Slugs, getBijihou2Question, getBijihou2QuestionsByField } from "@/lib/bijihou2-questions";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
@@ -69,9 +70,9 @@ export default async function Bijihou2QuestionPage({ params }: { params: Promise
       <JsonLd data={jsonLd} />
 
       <nav className="breadcrumb text-xs text-[color:var(--c-text-sub)] mb-4 flex flex-wrap gap-1">
-        <a href="/">ホーム</a><span>/</span>
-        <a href="/bijihou2/">ビジネス実務法務検定2級</a><span>/</span>
-        {fieldSlug && <><a href={`/bijihou2/field/${fieldSlug}/`}>{q.field}</a><span>/</span></>}
+        <SiteLink href="/">ホーム</SiteLink><span>/</span>
+        <SiteLink href="/bijihou2/">ビジネス実務法務検定2級</SiteLink><span>/</span>
+        {fieldSlug && <><SiteLink href={`/bijihou2/field/${fieldSlug}/`}>{q.field}</SiteLink><span>/</span></>}
         <span className="text-[color:var(--c-ink)]">問{fieldIndex}</span>
       </nav>
 
@@ -95,15 +96,15 @@ export default async function Bijihou2QuestionPage({ params }: { params: Promise
 
       <nav className="mt-8 flex justify-between items-center pt-4 border-t border-[color:var(--c-border)]">
         {prevQ ? (
-          <a href={`/bijihou2/q/${prevQ.slug}/`} className="text-sm text-[color:var(--c-text-sub)] no-underline hover:text-[color:var(--c-kashikin)]">← 問{idx}</a>
+          <SiteLink href={`/bijihou2/q/${prevQ.slug}/`} className="text-sm text-[color:var(--c-text-sub)] no-underline hover:text-[color:var(--c-kashikin)]">← 問{idx}</SiteLink>
         ) : <span />}
         {fieldSlug && (
-          <a href={`/bijihou2/field/${fieldSlug}/`} className="text-sm text-[color:var(--c-text-sub)] no-underline hover:text-[color:var(--c-kashikin)]">
+          <SiteLink href={`/bijihou2/field/${fieldSlug}/`} className="text-sm text-[color:var(--c-text-sub)] no-underline hover:text-[color:var(--c-kashikin)]">
             {q.field}の一覧
-          </a>
+          </SiteLink>
         )}
         {nextQ ? (
-          <a href={`/bijihou2/q/${nextQ.slug}/`} className="text-sm text-[color:var(--c-text-sub)] no-underline hover:text-[color:var(--c-kashikin)]">問{idx + 2} →</a>
+          <SiteLink href={`/bijihou2/q/${nextQ.slug}/`} className="text-sm text-[color:var(--c-text-sub)] no-underline hover:text-[color:var(--c-kashikin)]">問{idx + 2} →</SiteLink>
         ) : <span />}
       </nav>
     </article>

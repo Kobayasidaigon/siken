@@ -1,3 +1,4 @@
+import SiteLink from "@/components/SiteLink";
 import { getAllXrayQuestions, getXrayQuestionsByField } from "@/lib/xray-questions";
 import RecentCourseReminder from "@/components/RecentCourseReminder";
 import { getAllColumns } from "@/lib/columns";
@@ -9,7 +10,6 @@ import Moshi2TopLink from "@/components/Moshi2TopLink";
 import { XRAY_FIELDS } from "@/lib/xray-fields";
 import ExamCountdown from "@/components/ExamCountdown";
 import { XRAY_EXAMS } from "@/lib/exam-dates";
-import { EXAM_AFFILIATE } from "@/lib/affiliate-links";
 import { sisterSite } from "@/lib/sister-sites";
 
 export const metadata: Metadata = pageMetadata({
@@ -25,7 +25,6 @@ export default async function XrayPage() {
   const fieldCounts = await Promise.all(
     XRAY_FIELDS.map(async (f) => (await getXrayQuestionsByField(f.name)).length)
   );
-  const aff = EXAM_AFFILIATE.xray;
   const eisei = sisterSite("eisei");
   const setsubi = sisterSite("setsubi");
 
@@ -36,9 +35,9 @@ export default async function XrayPage() {
         style={{ background: "var(--c-pii-soft)", borderColor: "var(--c-border)" }}
       >
         <nav className="text-xs text-[color:var(--c-text-sub)] mb-4">
-          <a href="/" className="no-underline hover:underline">
+          <SiteLink href="/" className="no-underline hover:underline">
             ホーム
-          </a>{" "}
+          </SiteLink>{" "}
           / <span>エックス線作業主任者</span>
         </nav>
         <h1
@@ -52,24 +51,24 @@ export default async function XrayPage() {
           エックス線装置を使う作業の管理者に必要な国家資格（労働安全衛生法に基づく免許）。本試験の4科目に沿った{allQuestions.length}問のオリジナル練習問題集です。
         </p>
         <div className="mt-6 flex flex-wrap gap-3">
-          <a href="/xray/q/xray-001/" className="btn-accent">
+          <SiteLink href="/xray/q/xray-001/" className="btn-accent">
             問題を解き始める →
-          </a>
-          <a
+          </SiteLink>
+          <SiteLink
             href="/xray/moshi/"
             className="inline-flex items-center px-4 py-2 rounded-lg border text-sm font-medium no-underline transition-colors hover:bg-[color:var(--c-pii-soft)]"
             style={{ borderColor: "var(--c-pii)", color: "var(--c-pii-ink)" }}
           >
             模擬試験を受ける（40問・240分）→
-          </a>
+          </SiteLink>
           <Moshi2TopLink certId="xray" />
-          <a
+          <SiteLink
             href="/xray/mock/"
             className="inline-flex items-center px-4 py-2 rounded-lg border text-sm font-medium no-underline transition-colors hover:bg-[color:var(--c-pii-soft)]"
             style={{ borderColor: "var(--c-pii)", color: "var(--c-pii-ink)" }}
           >
             本番形式で腕試し（20問・採点）→
-          </a>
+          </SiteLink>
         </div>
       </section>
 
@@ -89,7 +88,7 @@ export default async function XrayPage() {
         <h2 className="text-lg font-bold text-[color:var(--c-ink)] mb-5 font-serif">分野から選ぶ</h2>
         <div className="space-y-3">
           {XRAY_FIELDS.map((f, i) => (
-            <a
+            <SiteLink
               key={f.slug}
               href={`/xray/field/${f.slug}/`}
               className="card p-5 no-underline group block"
@@ -108,7 +107,7 @@ export default async function XrayPage() {
                 <span className="text-xs text-[color:var(--c-text-sub)] shrink-0">{fieldCounts[i]}問</span>
               </div>
               <p className="text-sm text-[color:var(--c-text-sub)] mt-2 leading-relaxed">{f.desc}</p>
-            </a>
+            </SiteLink>
           ))}
         </div>
       </section>
@@ -180,13 +179,13 @@ export default async function XrayPage() {
           <h2 className="text-base font-bold text-[color:var(--c-ink)] mb-4 font-serif">コラム</h2>
           <div className="space-y-2">
             {xrayColumns.slice(0, 6).map((col) => (
-              <a
+              <SiteLink
                 key={col.slug}
                 href={`/column/${col.slug}/`}
                 className="block py-2 text-sm text-[color:var(--c-text)] no-underline hover:text-[color:var(--c-pii)] border-b border-[color:var(--c-border)] last:border-b-0"
               >
                 {col.title}
-              </a>
+              </SiteLink>
             ))}
           </div>
         </section>

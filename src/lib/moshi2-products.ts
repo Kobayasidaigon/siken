@@ -10,7 +10,7 @@ import type { ExamSlug } from "./study-progress";
  * 試験仕様(時間・合格基準・形式)は第1回と揃える。第1回と条件が違うと、
  * 「本試験の再現」という商品の前提が崩れるため。
  */
-export type Moshi2Product = {
+type Moshi2Product = {
   certId: ExamSlug;
   /** 表示名(Stripe の明細にもこの名前が出る) */
   name: string;
@@ -38,7 +38,7 @@ export type Moshi2Product = {
   sections?: { label: string; start: number; count: number; passCount: number }[];
 };
 
-export const MOSHI2_PRODUCTS: Partial<Record<ExamSlug, Moshi2Product>> = {
+const MOSHI2_PRODUCTS: Partial<Record<ExamSlug, Moshi2Product>> = {
   pii: {
     certId: "pii",
     name: "個人情報保護士 模擬試験 第2回",

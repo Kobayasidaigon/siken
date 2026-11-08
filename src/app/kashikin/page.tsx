@@ -1,3 +1,4 @@
+import SiteLink from "@/components/SiteLink";
 import { getAllQuestions } from "@/lib/questions";
 import RecentCourseReminder from "@/components/RecentCourseReminder";
 import { getAllColumns } from "@/lib/columns";
@@ -34,7 +35,7 @@ export default async function KashikinPage() {
         style={{ background: "var(--c-kashikin-soft)", borderColor: "var(--c-border)" }}
       >
         <nav className="text-xs text-[color:var(--c-text-sub)] mb-4">
-          <a href="/" className="no-underline hover:underline">ホーム</a> / <span>貸金業務取扱主任者</span>
+          <SiteLink href="/" className="no-underline hover:underline">ホーム</SiteLink> / <span>貸金業務取扱主任者</span>
         </nav>
         <h1 className="text-2xl sm:text-3xl font-bold mb-3 font-serif leading-tight" style={{ color: "var(--c-kashikin-ink)" }}>
           貸金業務取扱主任者
@@ -44,21 +45,21 @@ export default async function KashikinPage() {
           {totalQuestions}問、4分野。年1回の本試験まで逆算して解く、オリジナル練習問題集です。
         </p>
         <div className="mt-6 flex flex-wrap gap-3">
-          <a href="/exam/0/" className="btn-accent">問題を解き始める →</a>
-          <a
+          <SiteLink href="/exam/0/" className="btn-accent">問題を解き始める →</SiteLink>
+          <SiteLink
             href="/kashikin/moshi/"
             className="inline-flex items-center px-4 py-2 rounded-lg border text-sm font-medium no-underline transition-colors hover:bg-[color:var(--c-kashikin-soft)]"
             style={{ borderColor: "var(--c-kashikin)", color: "var(--c-kashikin-ink)" }}
           >
             模擬試験を受ける（50問・120分）→
-          </a>
-          <a
+          </SiteLink>
+          <SiteLink
             href="/kashikin/mock/"
             className="inline-flex items-center px-4 py-2 rounded-lg border text-sm font-medium no-underline transition-colors hover:bg-[color:var(--c-kashikin-soft)]"
             style={{ borderColor: "var(--c-kashikin)", color: "var(--c-kashikin-ink)" }}
           >
             本番形式で腕試し（20問・採点）→
-          </a>
+          </SiteLink>
         </div>
       </section>
 
@@ -73,7 +74,7 @@ export default async function KashikinPage() {
         <h2 className="text-lg font-bold text-[color:var(--c-ink)] mb-5 font-serif">分野から選ぶ</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           {fields.map((f) => (
-            <a
+            <SiteLink
               key={f.slug}
               href={`/field/${f.slug}/`}
               className="card p-4 no-underline group block"
@@ -84,7 +85,7 @@ export default async function KashikinPage() {
                 <span className="text-xs text-[color:var(--c-text-sub)]">{f.count}問</span>
               </div>
               <p className="text-xs text-[color:var(--c-text-sub)]">{f.topic}</p>
-            </a>
+            </SiteLink>
           ))}
         </div>
       </section>
@@ -93,7 +94,7 @@ export default async function KashikinPage() {
       <section className="mb-12">
         <h2 className="text-base font-bold text-[color:var(--c-ink)] mb-4 font-serif">試験の概要</h2>
         <div className="card p-5 text-sm text-[color:var(--c-text-sub)] space-y-2">
-          <p><span className="font-bold text-[color:var(--c-ink)]">試験日</span>　毎年11月第3日曜日（年1回）　<a href="/column/shiken-nittei/" className="underline hover:no-underline">詳しい日程・申込方法 →</a></p>
+          <p><span className="font-bold text-[color:var(--c-ink)]">試験日</span>　毎年11月第3日曜日（年1回）　<SiteLink href="/column/shiken-nittei/" className="underline hover:no-underline">詳しい日程・申込方法 →</SiteLink></p>
           <p><span className="font-bold text-[color:var(--c-ink)]">試験形式</span>　四肢択一 50問・2時間</p>
           <p><span className="font-bold text-[color:var(--c-ink)]">合格基準</span>　概ね30/50点以上</p>
           <p><span className="font-bold text-[color:var(--c-ink)]">受験料</span>　8,500円</p>
@@ -115,7 +116,7 @@ export default async function KashikinPage() {
         <h2 className="text-base font-bold text-[color:var(--c-ink)] mb-4 font-serif">あわせて学ぶと役に立つ試験</h2>
         <div className="card p-5 text-sm text-[color:var(--c-text-sub)] leading-relaxed space-y-2">
           <p>
-            貸付契約や保証の土台になる民法を、総則から相続まで通して学ぶなら<a href="/ccc/" className="underline hover:no-underline">民法法務士</a>（全日本情報学習振興協会）も選択肢になります。
+            貸付契約や保証の土台になる民法を、総則から相続まで通して学ぶなら<SiteLink href="/ccc/" className="underline hover:no-underline">民法法務士</SiteLink>（全日本情報学習振興協会）も選択肢になります。
           </p>
         </div>
       </section>
@@ -135,19 +136,19 @@ export default async function KashikinPage() {
             <h2 className="text-base font-bold text-[color:var(--c-ink)] mb-4 font-serif">コラム</h2>
             <div className="space-y-2">
               {kashikinColumns.slice(0, 6).map((col) => (
-                <a
+                <SiteLink
                   key={col.slug}
                   href={`/column/${col.slug}/`}
                   className="block py-2 text-sm text-[color:var(--c-text)] no-underline hover:text-[color:var(--c-kashikin)] border-b border-[color:var(--c-border)] last:border-b-0"
                 >
                   {col.title}
-                </a>
+                </SiteLink>
               ))}
             </div>
             {kashikinColumns.length > 6 && (
-              <a href="/column/#kashikin" className="inline-block mt-4 text-sm text-[color:var(--c-text-sub)] no-underline hover:text-[color:var(--c-kashikin)] underline">
+              <SiteLink href="/column/#kashikin" className="inline-block mt-4 text-sm text-[color:var(--c-text-sub)] no-underline hover:text-[color:var(--c-kashikin)] underline">
                 貸金業務取扱主任者のコラムをすべて見る →
-              </a>
+              </SiteLink>
             )}
           </section>
         );

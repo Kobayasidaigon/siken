@@ -10,7 +10,7 @@ import { getAllChizai2Questions, type Chizai2QuestionData } from "./chizai2-ques
 export const CHIZAI2_MOSHI_TIME_LIMIT_MIN = 60;
 export const CHIZAI2_MOSHI_PASS_COUNT = 32;
 
-export const CHIZAI2_MOSHI_1_SLUGS: string[] = [
+const CHIZAI2_MOSHI_1_SLUGS: string[] = [
   "chizai2-001", // 特許法 C 特許要件(産業上利用可能性)
   "chizai2-041", // 著作権法 C 著作物性
   "chizai2-005", // 特許法 B 先願主義

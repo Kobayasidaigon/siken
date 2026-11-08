@@ -1,3 +1,4 @@
+import SiteLink from "@/components/SiteLink";
 import { getAllIsecQuestions } from "@/lib/isec-questions";
 import { ISEC_SCOPE_FIELD_NAMES } from "@/lib/isec-fields";
 import type { Metadata } from "next";
@@ -33,9 +34,9 @@ export default async function IsecMockPage() {
   return (
     <div className="theme-pii pb-16">
       <nav className="breadcrumb text-xs text-[color:var(--c-text-sub)] mb-4 flex gap-1">
-        <a href="/">ホーム</a>
+        <SiteLink href="/">ホーム</SiteLink>
         <span>/</span>
-        <a href="/isec/">情報・サイバーセキュリティ管理士</a>
+        <SiteLink href="/isec/">情報・サイバーセキュリティ管理士</SiteLink>
         <span>/</span>
         <span className="text-[color:var(--c-ink)]">本番形式テスト</span>
       </nav>
@@ -45,9 +46,9 @@ export default async function IsecMockPage() {
 
       <p className="text-xs text-[color:var(--c-text-sub)] mb-5">
         本試験と同じペース（1問40秒）で90問・60分を解くなら
-        <a href="/isec/moshi/" className="underline hover:no-underline">
+        <SiteLink href="/isec/moshi/" className="underline hover:no-underline">
           模擬試験 第1回（無料）
-        </a>
+        </SiteLink>
         へ。
       </p>
 

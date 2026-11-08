@@ -1,3 +1,4 @@
+import SiteLink from "@/components/SiteLink";
 import { getAllKyoinQuestions, getKyoinQuestionsByField } from "@/lib/kyoin-questions";
 import RecentCourseReminder from "@/components/RecentCourseReminder";
 import { getAllColumns } from "@/lib/columns";
@@ -29,9 +30,9 @@ export default async function KyoinPage() {
         style={{ background: "var(--c-fukushi-soft)", borderColor: "var(--c-border)" }}
       >
         <nav className="text-xs text-[color:var(--c-text-sub)] mb-4">
-          <a href="/" className="no-underline hover:underline">
+          <SiteLink href="/" className="no-underline hover:underline">
             ホーム
-          </a>{" "}
+          </SiteLink>{" "}
           / <span>教員採用試験</span>
         </nav>
         <h1
@@ -46,23 +47,23 @@ export default async function KyoinPage() {
           {allQuestions.length}問のオリジナル練習問題集です。自治体をまたいで共通する論点だけを扱っているので、志望自治体を問わず使えます。
         </p>
         <div className="mt-6 flex flex-wrap gap-3">
-          <a href="/kyoin/q/kyoin-001/" className="btn-accent">
+          <SiteLink href="/kyoin/q/kyoin-001/" className="btn-accent">
             問題を解き始める →
-          </a>
-          <a
+          </SiteLink>
+          <SiteLink
             href="/kyoin/moshi/"
             className="inline-flex items-center px-4 py-2 rounded-lg border text-sm font-medium no-underline transition-colors hover:bg-[color:var(--c-fukushi-soft)]"
             style={{ borderColor: "var(--c-fukushi)", color: "var(--c-fukushi-ink)" }}
           >
             模擬試験を受ける（60問・60分・分野別判定）→
-          </a>
-          <a
+          </SiteLink>
+          <SiteLink
             href="/kyoin/mock/"
             className="inline-flex items-center px-4 py-2 rounded-lg border text-sm font-medium no-underline transition-colors hover:bg-[color:var(--c-fukushi-soft)]"
             style={{ borderColor: "var(--c-fukushi)", color: "var(--c-fukushi-ink)" }}
           >
             本番形式で腕試し（20問・採点）→
-          </a>
+          </SiteLink>
         </div>
       </section>
 
@@ -76,7 +77,7 @@ export default async function KyoinPage() {
         <h2 className="text-lg font-bold text-[color:var(--c-ink)] mb-5 font-serif">分野から選ぶ</h2>
         <div className="space-y-3">
           {KYOIN_FIELDS.map((f, i) => (
-            <a
+            <SiteLink
               key={f.slug}
               href={`/kyoin/field/${f.slug}/`}
               className="card p-5 no-underline group block"
@@ -95,7 +96,7 @@ export default async function KyoinPage() {
                 <span className="text-xs text-[color:var(--c-text-sub)] shrink-0">{fieldCounts[i]}問</span>
               </div>
               <p className="text-sm text-[color:var(--c-text-sub)] mt-2 leading-relaxed">{f.desc}</p>
-            </a>
+            </SiteLink>
           ))}
         </div>
       </section>
@@ -141,13 +142,13 @@ export default async function KyoinPage() {
           <h2 className="text-base font-bold text-[color:var(--c-ink)] mb-4 font-serif">コラム</h2>
           <div className="space-y-2">
             {kyoinColumns.slice(0, 6).map((col) => (
-              <a
+              <SiteLink
                 key={col.slug}
                 href={`/column/${col.slug}/`}
                 className="block py-2 text-sm text-[color:var(--c-text)] no-underline hover:text-[color:var(--c-fukushi)] border-b border-[color:var(--c-border)] last:border-b-0"
               >
                 {col.title}
-              </a>
+              </SiteLink>
             ))}
           </div>
         </section>

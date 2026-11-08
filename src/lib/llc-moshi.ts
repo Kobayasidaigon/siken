@@ -12,7 +12,7 @@ import { getAllLlcQuestions, type LlcQuestionData } from "./llc-questions";
 export const LLC_MOSHI_TIME_LIMIT_MIN = 150;
 export const LLC_MOSHI_PASS_COUNT = 42;
 
-export const LLC_MOSHI_1_SLUGS: string[] = [
+const LLC_MOSHI_1_SLUGS: string[] = [
   // 労働法総論（7問）
   "llc-001", // A 憲法27条と勤労条件の法定
   "llc-004", // A 労働条件の原則（労基法1条）

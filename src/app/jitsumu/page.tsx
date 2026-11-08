@@ -1,3 +1,4 @@
+import SiteLink from "@/components/SiteLink";
 import { getAllJitsumuQuestions, getJitsumuQuestionsByField } from "@/lib/jitsumu-questions";
 import RecentCourseReminder from "@/components/RecentCourseReminder";
 import { getAllColumns } from "@/lib/columns";
@@ -34,7 +35,7 @@ export default async function JitsumuPage() {
     <div className="theme-pii pb-16">
       <section className="-mx-4 px-4 py-10 sm:py-14 border-y mb-10" style={{ background: "var(--c-pii-soft)", borderColor: "var(--c-border)" }}>
         <nav className="text-xs text-[color:var(--c-text-sub)] mb-4">
-          <a href="/" className="no-underline hover:underline">ホーム</a> / <span>個人情報保護実務検定</span>
+          <SiteLink href="/" className="no-underline hover:underline">ホーム</SiteLink> / <span>個人情報保護実務検定</span>
         </nav>
         <h1 className="text-2xl sm:text-3xl font-bold mb-3 font-serif leading-tight" style={{ color: "var(--c-pii-ink)" }}>
           個人情報保護実務検定
@@ -44,22 +45,22 @@ export default async function JitsumuPage() {
           個人情報保護法の実務知識を問う、{allQuestions.length}問のオリジナル練習問題集です。
         </p>
         <div className="mt-6 flex flex-wrap gap-3">
-          <a href="/jitsumu/q/jitsumu-001/" className="btn-accent">問題を解き始める →</a>
-          <a
+          <SiteLink href="/jitsumu/q/jitsumu-001/" className="btn-accent">問題を解き始める →</SiteLink>
+          <SiteLink
             href="/jitsumu/moshi/"
             className="inline-flex items-center px-4 py-2 rounded-lg border text-sm font-medium no-underline transition-colors hover:bg-[color:var(--c-pii-soft)]"
             style={{ borderColor: "var(--c-pii)", color: "var(--c-pii-ink)" }}
           >
             模擬試験を受ける（2級形式80問・90分）→
-          </a>
+          </SiteLink>
           <Moshi2TopLink certId="jitsumu" />
-          <a
+          <SiteLink
             href="/jitsumu/mock/"
             className="inline-flex items-center px-4 py-2 rounded-lg border text-sm font-medium no-underline transition-colors hover:bg-[color:var(--c-pii-soft)]"
             style={{ borderColor: "var(--c-pii)", color: "var(--c-pii-ink)" }}
           >
             本番形式で腕試し（20問・採点）→
-          </a>
+          </SiteLink>
         </div>
       </section>
 
@@ -83,13 +84,13 @@ export default async function JitsumuPage() {
         <h2 className="text-lg font-bold text-[color:var(--c-ink)] mb-5 font-serif">分野から選ぶ</h2>
         <div className="space-y-3">
           {fields.map((f, i) => (
-            <a key={f.slug} href={`/jitsumu/field/${f.slug}/`} className="card p-5 no-underline group block" style={{ borderLeft: "3px solid var(--c-pii)" }}>
+            <SiteLink key={f.slug} href={`/jitsumu/field/${f.slug}/`} className="card p-5 no-underline group block" style={{ borderLeft: "3px solid var(--c-pii)" }}>
               <div className="flex items-start justify-between mb-1 gap-3">
                 <p className="text-base font-bold text-[color:var(--c-ink)] font-serif">{f.name}</p>
                 <span className="text-xs text-[color:var(--c-text-sub)] shrink-0">{fieldCounts[i]}問</span>
               </div>
               <p className="text-sm text-[color:var(--c-text-sub)] mt-2 leading-relaxed">{f.desc}</p>
-            </a>
+            </SiteLink>
           ))}
         </div>
       </section>
@@ -101,7 +102,7 @@ export default async function JitsumuPage() {
           <p><span className="font-bold text-[color:var(--c-ink)]">試験形式</span>　1級 100問・120分／2級 80問・90分</p>
           <p><span className="font-bold text-[color:var(--c-ink)]">合格基準</span>　正答率70%以上</p>
           <p><span className="font-bold text-[color:var(--c-ink)]">受験料</span>　1級 11,000円／2級 8,800円（税込）</p>
-          <p><span className="font-bold text-[color:var(--c-ink)]">試験日</span>　年4回（5月・8月・11月・2月頃）　<a href="/column/jitsumu-nittei/" className="underline hover:no-underline">詳しい日程・申込方法 →</a></p>
+          <p><span className="font-bold text-[color:var(--c-ink)]">試験日</span>　年4回（5月・8月・11月・2月頃）　<SiteLink href="/column/jitsumu-nittei/" className="underline hover:no-underline">詳しい日程・申込方法 →</SiteLink></p>
           <p><span className="font-bold text-[color:var(--c-ink)]">実施機関</span>　全日本情報学習振興協会</p>
         </div>
         <p className="text-xs text-[color:var(--c-text-sub)] mt-3 leading-relaxed">
@@ -121,19 +122,19 @@ export default async function JitsumuPage() {
           <h2 className="text-base font-bold text-[color:var(--c-ink)] mb-4 font-serif">コラム</h2>
           <div className="space-y-2">
             {jitsumuColumns.slice(0, 6).map((col) => (
-              <a
+              <SiteLink
                 key={col.slug}
                 href={`/column/${col.slug}/`}
                 className="block py-2 text-sm text-[color:var(--c-text)] no-underline hover:text-[color:var(--c-pii)] border-b border-[color:var(--c-border)] last:border-b-0"
               >
                 {col.title}
-              </a>
+              </SiteLink>
             ))}
           </div>
           {jitsumuColumns.length > 6 && (
-            <a href="/column/#jitsumu" className="inline-block mt-4 text-sm text-[color:var(--c-text-sub)] no-underline hover:text-[color:var(--c-pii)] underline">
+            <SiteLink href="/column/#jitsumu" className="inline-block mt-4 text-sm text-[color:var(--c-text-sub)] no-underline hover:text-[color:var(--c-pii)] underline">
               個人情報保護実務検定のコラムをすべて見る →
-            </a>
+            </SiteLink>
           )}
         </section>
       )}

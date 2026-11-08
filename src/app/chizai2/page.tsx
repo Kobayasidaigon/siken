@@ -1,3 +1,4 @@
+import SiteLink from "@/components/SiteLink";
 import { getAllChizai2Questions, getChizai2QuestionsByField } from "@/lib/chizai2-questions";
 import RecentCourseReminder from "@/components/RecentCourseReminder";
 import { getAllColumns } from "@/lib/columns";
@@ -47,7 +48,7 @@ export default async function Chizai2Page() {
         style={{ background: "var(--c-chizai-soft)", borderColor: "var(--c-border)" }}
       >
         <nav className="text-xs text-[color:var(--c-text-sub)] mb-4">
-          <a href="/" className="no-underline hover:underline">ホーム</a> / <span>知的財産管理技能検定2級</span>
+          <SiteLink href="/" className="no-underline hover:underline">ホーム</SiteLink> / <span>知的財産管理技能検定2級</span>
         </nav>
         <h1 className="text-2xl sm:text-3xl font-bold mb-3 font-serif leading-tight" style={{ color: "var(--c-chizai-ink)" }}>
           知的財産管理技能検定 2級
@@ -58,25 +59,25 @@ export default async function Chizai2Page() {
           特許・著作権・商標などを、事例に沿ってより深く問う{allQuestions.length}問です。
         </p>
         <div className="mt-6 flex flex-wrap gap-3">
-          <a href="/chizai2/q/chizai2-001/" className="btn-accent">問題を解き始める →</a>
-          <a
+          <SiteLink href="/chizai2/q/chizai2-001/" className="btn-accent">問題を解き始める →</SiteLink>
+          <SiteLink
             href="/chizai2/moshi/"
             className="inline-flex items-center px-4 py-2 rounded-lg border text-sm font-medium no-underline transition-colors hover:bg-[color:var(--c-chizai-soft)]"
             style={{ borderColor: "var(--c-chizai)", color: "var(--c-chizai-ink)" }}
           >
             模擬試験を受ける（40問・60分・合否判定）→
-          </a>
+          </SiteLink>
           <Moshi2TopLink certId="chizai2" />
-          <a
+          <SiteLink
             href="/chizai2/mock/"
             className="inline-flex items-center px-4 py-2 rounded-lg border text-sm font-medium no-underline transition-colors hover:bg-[color:var(--c-chizai-soft)]"
             style={{ borderColor: "var(--c-chizai)", color: "var(--c-chizai-ink)" }}
           >
             本番形式で腕試し（20問・採点）→
-          </a>
+          </SiteLink>
         </div>
         <p className="mt-4 text-xs text-[color:var(--c-text-sub)]">
-          まず3級から、という方は <a href="/chizai/" className="underline hover:no-underline" style={{ color: "var(--c-chizai-ink)" }}>知的財産管理技能検定3級の練習問題</a> へ。
+          まず3級から、という方は <SiteLink href="/chizai/" className="underline hover:no-underline" style={{ color: "var(--c-chizai-ink)" }}>知的財産管理技能検定3級の練習問題</SiteLink> へ。
         </p>
       </section>
 
@@ -91,7 +92,7 @@ export default async function Chizai2Page() {
         <h2 className="text-lg font-bold text-[color:var(--c-ink)] mb-5 font-serif">分野から選ぶ</h2>
         <div className="flex flex-wrap gap-3">
           {fields.map((f, i) => (
-            <a key={f.slug} href={`/chizai2/field/${f.slug}/`} className="no-underline group">
+            <SiteLink key={f.slug} href={`/chizai2/field/${f.slug}/`} className="no-underline group">
               <span
                 className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium border transition-all group-hover:shadow-sm"
                 style={{ background: "var(--c-surface)", color: "var(--c-chizai-ink)", borderColor: "var(--c-chizai-soft)" }}
@@ -101,7 +102,7 @@ export default async function Chizai2Page() {
                   {fieldCounts[i]}
                 </span>
               </span>
-            </a>
+            </SiteLink>
           ))}
         </div>
       </section>
@@ -119,7 +120,7 @@ export default async function Chizai2Page() {
       <section className="mb-12">
         <h2 className="text-base font-bold text-[color:var(--c-ink)] mb-4 font-serif">試験の概要</h2>
         <div className="card p-5 text-sm text-[color:var(--c-text-sub)] space-y-2">
-          <p><span className="font-bold text-[color:var(--c-ink)]">試験日</span>　年3回（3月・7月・11月）　3級と同日　<a href="/column/chizai2-nittei/" className="underline hover:no-underline">詳しい日程・受検資格 →</a></p>
+          <p><span className="font-bold text-[color:var(--c-ink)]">試験日</span>　年3回（3月・7月・11月）　3級と同日　<SiteLink href="/column/chizai2-nittei/" className="underline hover:no-underline">詳しい日程・受検資格 →</SiteLink></p>
           <p><span className="font-bold text-[color:var(--c-ink)]">試験区分</span>　学科試験と実技試験（それぞれに合格すると2級技能士に認定）</p>
           <p><span className="font-bold text-[color:var(--c-ink)]">受験資格</span>　3級技能検定の合格者、知的財産に関する業務に2年以上従事した方 など（＝誰でも受けられる3級と異なり、受験資格が必要）</p>
           <p><span className="font-bold text-[color:var(--c-ink)]">実施機関</span>　知的財産教育協会</p>
@@ -142,13 +143,13 @@ export default async function Chizai2Page() {
           <h2 className="text-base font-bold text-[color:var(--c-ink)] mb-4 font-serif">コラム</h2>
           <div className="space-y-2">
             {chizai2Columns.slice(0, 6).map((col) => (
-              <a
+              <SiteLink
                 key={col.slug}
                 href={`/column/${col.slug}/`}
                 className="block py-2 text-sm text-[color:var(--c-text)] no-underline hover:text-[color:var(--c-chizai)] border-b border-[color:var(--c-border)] last:border-b-0"
               >
                 {col.title}
-              </a>
+              </SiteLink>
             ))}
           </div>
         </section>

@@ -34,7 +34,7 @@ const LOADERS: Record<string, Loader> = {
 };
 
 /** 10問のセット(slug の配列)。無ければ null */
-export function shikenmaeSlugs(e: ShikenmaeEvent): string[] | null {
+function shikenmaeSlugs(e: ShikenmaeEvent): string[] | null {
   const file = path.join(process.cwd(), "src/data/shikenmae", `${e.exam}-${dateKey(e.date)}.json`);
   if (!fs.existsSync(file)) return null;
   const slugs = JSON.parse(fs.readFileSync(file, "utf-8"));

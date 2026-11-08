@@ -1,5 +1,6 @@
 "use client";
 
+import SiteLink from "@/components/SiteLink";
 /**
  * 模擬試験の受験画面(全資格共通)。
  *
@@ -788,9 +789,9 @@ export default function MoshiExam({
         <button type="button" onClick={() => start("new")} className="btn-accent">
           もう一度受験する →
         </button>
-        <a href="/study/" className="inline-flex items-center text-sm text-[color:var(--c-text-sub)] no-underline hover:text-[color:var(--c-accent)]">
+        <SiteLink href="/study/" className="inline-flex items-center text-sm text-[color:var(--c-text-sub)] no-underline hover:text-[color:var(--c-accent)]">
           学習履歴を見る →
-        </a>
+        </SiteLink>
         <a href={topPath} className="inline-flex items-center text-sm text-[color:var(--c-text-sub)] no-underline hover:text-[color:var(--c-accent)]">
           資格トップへ →
         </a>

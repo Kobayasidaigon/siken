@@ -1,5 +1,6 @@
 "use client";
 
+import SiteLink from "@/components/SiteLink";
 /**
  * モバイルのボトムナビ。2026-09-07 に固定4枠から動的に変更。
  *
@@ -19,6 +20,7 @@
  */
 
 import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 import { EXAM_LIST, loadProgress, type ExamSlug } from "@/lib/study-progress";
 
 /** ボトムナビに入る短い呼び名。正式名称は長すぎて 1 枠に収まらない */
@@ -69,6 +71,9 @@ export default function MobileNav() {
     label: "はじめに",
   });
 
+  // ページ移動はクライアント側の遷移なので、移動のたびに学習中の資格を選び直す
+  const pathname = usePathname();
+
   useEffect(() => {
     try {
       const p = loadProgress();
@@ -83,35 +88,35 @@ export default function MobileNav() {
     } catch {
       /* localStorage が読めない環境では既定のまま */
     }
-  }, []);
+  }, [pathname]);
 
   return (
     <nav className="sm:hidden fixed bottom-0 left-0 right-0 bg-[color:var(--c-surface)] border-t border-[color:var(--c-border)] z-50">
       <div className="flex justify-around h-14 items-center text-xs">
-        <a href="/" className={LINK}>
+        <SiteLink href="/" className={LINK}>
           <svg className={ICON} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-4 0h4" />
           </svg>
           ホーム
-        </a>
+        </SiteLink>
         <a href={current.href} className={LINK}>
           <svg className={ICON} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
           </svg>
           {current.label}
         </a>
-        <a href="/column/" className={LINK}>
+        <SiteLink href="/column/" className={LINK}>
           <svg className={ICON} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
           </svg>
           コラム
-        </a>
-        <a href="/study/" className={LINK}>
+        </SiteLink>
+        <SiteLink href="/study/" className={LINK}>
           <svg className={ICON} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
           </svg>
           学習履歴
-        </a>
+        </SiteLink>
       </div>
     </nav>
   );

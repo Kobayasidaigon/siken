@@ -1,3 +1,4 @@
+import SiteLink from "@/components/SiteLink";
 import type { Metadata } from "next";
 import { pageMetadata } from "@/lib/page-metadata";
 import { getJitsumuMoshi1Questions, JITSUMU_MOSHI_PASS_COUNT, JITSUMU_MOSHI_TIME_LIMIT_MIN } from "@/lib/jitsumu-moshi";
@@ -24,8 +25,8 @@ export default async function JitsumuMoshiPage() {
   return (
     <div className="theme-pii pb-16">
       <nav className="breadcrumb text-xs text-[color:var(--c-text-sub)] mb-4 flex gap-1">
-        <a href="/">ホーム</a><span>/</span>
-        <a href="/jitsumu/">個人情報保護実務検定</a><span>/</span>
+        <SiteLink href="/">ホーム</SiteLink><span>/</span>
+        <SiteLink href="/jitsumu/">個人情報保護実務検定</SiteLink><span>/</span>
         <span className="text-[color:var(--c-ink)]">模擬試験 第1回</span>
       </nav>
 
@@ -66,8 +67,8 @@ export default async function JitsumuMoshiPage() {
         本試験(2級)は課題Ⅰ60問:課題Ⅱ20問の配分で、70%以上の得点で合格です(課題ごとの基準はありません。配点は非公表のため本模試は均等配点・総合70%で判定)。
         また、問題の難易度により正答率70%未満でも合格となる場合があると公式に案内されています。
         合否判定はあくまで学習の目安です。1問ずつじっくり学びたい方は
-        <a href="/jitsumu/" className="underline hover:no-underline">練習問題200問</a>へ。
-        上位資格を目指す方は<a href="/pii/moshi/" className="underline hover:no-underline">個人情報保護士の模擬試験</a>も。
+        <SiteLink href="/jitsumu/" className="underline hover:no-underline">練習問題200問</SiteLink>へ。
+        上位資格を目指す方は<SiteLink href="/pii/moshi/" className="underline hover:no-underline">個人情報保護士の模擬試験</SiteLink>も。
       </p>
     </div>
   );

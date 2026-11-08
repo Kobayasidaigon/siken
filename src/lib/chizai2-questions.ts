@@ -68,7 +68,3 @@ export async function getChizai2QuestionsByField(field: string): Promise<Chizai2
     .filter((q) => q.field === field)
     .sort((a, b) => a.questionNumber - b.questionNumber);
 }
-
-export function getChizai2Fields(): string[] {
-  return ["特許法", "著作権法", "意匠法", "商標法", "不正競争防止法", "関連法規", "実用新案法・種苗法", "国際条約", "知財実務"];
-}

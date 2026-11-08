@@ -1,3 +1,4 @@
+import SiteLink from "@/components/SiteLink";
 import type { Metadata } from "next";
 import { pageMetadata } from "@/lib/page-metadata";
 
@@ -27,7 +28,7 @@ export default function Page() {
       </p>
       <p className="text-sm text-[color:var(--c-text)] leading-relaxed">
         以前に第2回模擬試験をご購入いただいた方で、ご不明な点がある場合は
-        <a href="/contact/" className="underline hover:no-underline">お問い合わせフォーム</a>
+        <SiteLink href="/contact/" className="underline hover:no-underline">お問い合わせフォーム</SiteLink>
         よりご連絡ください。
       </p>
     </div>

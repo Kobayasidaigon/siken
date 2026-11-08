@@ -1,3 +1,4 @@
+import SiteLink from "@/components/SiteLink";
 import { getAllAiaQuestions } from "@/lib/aia-questions";
 import type { Metadata } from "next";
 import { pageMetadata } from "@/lib/page-metadata";
@@ -29,8 +30,8 @@ export default async function AiaMockPage() {
   return (
     <div className="theme-pii pb-16">
       <nav className="breadcrumb text-xs text-[color:var(--c-text-sub)] mb-4 flex gap-1">
-        <a href="/">ホーム</a><span>/</span>
-        <a href="/aia/">AI活用アドバイザー</a><span>/</span>
+        <SiteLink href="/">ホーム</SiteLink><span>/</span>
+        <SiteLink href="/aia/">AI活用アドバイザー</SiteLink><span>/</span>
         <span className="text-[color:var(--c-ink)]">本番形式テスト</span>
       </nav>
 
@@ -39,7 +40,7 @@ export default async function AiaMockPage() {
 
       <p className="text-xs text-[color:var(--c-text-sub)] mb-5">
         本試験の問題数・時間で腕試しするなら
-        <a href="/aia/moshi/" className="underline hover:no-underline">模擬試験 第1回（無料）</a>
+        <SiteLink href="/aia/moshi/" className="underline hover:no-underline">模擬試験 第1回（無料）</SiteLink>
         へ。
       </p>
 

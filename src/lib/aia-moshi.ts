@@ -10,7 +10,7 @@ import { getAllAiaQuestions, type AiaQuestionData } from "./aia-questions";
 export const AIA_MOSHI_TIME_LIMIT_MIN = 105;
 export const AIA_MOSHI_PASS_COUNT = 70;
 
-export const AIA_MOSHI_1_SLUGS: string[] = [
+const AIA_MOSHI_1_SLUGS: string[] = [
   "aia-001", // AIの基礎知識・用語 A 4択 エキスパートシステムの時代
   "aia-003", // AIの基礎知識・用語 B 4択 過学習の見分け方
   "aia-004", // AIの基礎知識・用語 B 4択 訓練・検証・テストデータの役割
@@ -112,8 +112,6 @@ export const AIA_MOSHI_1_SLUGS: string[] = [
   "aia-143", // AIの制度・政策動向 B 2択 AIの定義の扱い
   "aia-144", // AIの制度・政策動向 A 2択 経営層の役割とAIガバナンス
 ];
-
-export const AIA_MOSHI_PASS_POINTS = 107;
 
 export async function getAiaMoshi1Questions(): Promise<AiaQuestionData[]> {
   const all = await getAllAiaQuestions();

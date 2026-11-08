@@ -1,3 +1,4 @@
+import SiteLink from "@/components/SiteLink";
 import { getAllEcoSlugs, getEcoQuestion, getEcoQuestionsByField } from "@/lib/eco-questions";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
@@ -71,9 +72,9 @@ export default async function EcoQuestionPage({ params }: { params: Promise<{ sl
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
 
       <nav className="breadcrumb text-xs text-[color:var(--c-text-sub)] mb-4 flex flex-wrap gap-1">
-        <a href="/">ホーム</a><span>/</span>
-        <a href="/eco/">eco検定</a><span>/</span>
-        {fieldSlug && <><a href={`/eco/field/${fieldSlug}/`}>{q.field}</a><span>/</span></>}
+        <SiteLink href="/">ホーム</SiteLink><span>/</span>
+        <SiteLink href="/eco/">eco検定</SiteLink><span>/</span>
+        {fieldSlug && <><SiteLink href={`/eco/field/${fieldSlug}/`}>{q.field}</SiteLink><span>/</span></>}
         <span className="text-[color:var(--c-ink)]">問{fieldIndex}</span>
       </nav>
 
@@ -100,15 +101,15 @@ export default async function EcoQuestionPage({ params }: { params: Promise<{ sl
 
       <nav className="mt-8 flex justify-between items-center pt-4 border-t border-[color:var(--c-border)]">
         {prevQ ? (
-          <a href={`/eco/q/${prevQ.slug}/`} className="text-sm text-[color:var(--c-text-sub)] no-underline hover:text-[color:var(--c-eco)]">← 問{idx}</a>
+          <SiteLink href={`/eco/q/${prevQ.slug}/`} className="text-sm text-[color:var(--c-text-sub)] no-underline hover:text-[color:var(--c-eco)]">← 問{idx}</SiteLink>
         ) : <span />}
         {fieldSlug && (
-          <a href={`/eco/field/${fieldSlug}/`} className="text-sm text-[color:var(--c-text-sub)] no-underline hover:text-[color:var(--c-eco)]">
+          <SiteLink href={`/eco/field/${fieldSlug}/`} className="text-sm text-[color:var(--c-text-sub)] no-underline hover:text-[color:var(--c-eco)]">
             {q.field}の一覧
-          </a>
+          </SiteLink>
         )}
         {nextQ ? (
-          <a href={`/eco/q/${nextQ.slug}/`} className="text-sm text-[color:var(--c-text-sub)] no-underline hover:text-[color:var(--c-eco)]">問{idx + 2} →</a>
+          <SiteLink href={`/eco/q/${nextQ.slug}/`} className="text-sm text-[color:var(--c-text-sub)] no-underline hover:text-[color:var(--c-eco)]">問{idx + 2} →</SiteLink>
         ) : <span />}
       </nav>
     </article>

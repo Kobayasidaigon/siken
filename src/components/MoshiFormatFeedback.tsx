@@ -1,5 +1,6 @@
 "use client";
 
+import SiteLink from "@/components/SiteLink";
 import { useEffect, useState } from "react";
 import { sendGAEvent } from "@next/third-parties/google";
 
@@ -50,9 +51,9 @@ export default function MoshiFormatFeedback({ exam, round }: { exam: string; rou
             <>
               {" "}
               よろしければ、どこが違ったか(問題数・出題形式・時間など)を
-              <a href="/contact/" className="underline underline-offset-2 mx-0.5">
+              <SiteLink href="/contact/" className="underline underline-offset-2 mx-0.5">
                 お問い合わせ
-              </a>
+              </SiteLink>
               から一言お寄せください。
             </>
           )}

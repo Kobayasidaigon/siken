@@ -16,9 +16,9 @@ import { getAllBijimaneQuestions, type BijimaneQuestionData } from "./bijimane-q
 export const BIJIMANE_MOSHI_TIME_LIMIT_MIN = 90;
 export const BIJIMANE_MOSHI_PASS_COUNT = 35;
 export const BIJIMANE_MOSHI_PASS_POINTS = 70;
-export const BIJIMANE_MOSHI_POINTS_PER_QUESTION = 2;
+const BIJIMANE_MOSHI_POINTS_PER_QUESTION = 2;
 
-export const BIJIMANE_MOSHI_1_SLUGS: string[] = [
+const BIJIMANE_MOSHI_1_SLUGS: string[] = [
   "bijimane-003", // マネジャーの役割と心構え A マネジャーの部下育成の役割
   "bijimane-022", // マネジャー自身のマネジメントとコミュニケーション A 業務の優先順位づけ
   "bijimane-049", // 部下のマネジメントとリーダーシップ A 部下との信頼関係と期待の伝え方
@@ -71,7 +71,7 @@ export const BIJIMANE_MOSHI_1_SLUGS: string[] = [
   "bijimane-045", // マネジャー自身のマネジメントとコミュニケーション C 社外との交渉に臨む姿勢
 ];
 
-export interface BijimaneMoshiQuestion extends BijimaneQuestionData {
+interface BijimaneMoshiQuestion extends BijimaneQuestionData {
   points: number;
 }
 

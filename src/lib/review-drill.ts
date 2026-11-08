@@ -41,7 +41,7 @@ export interface DrillState {
 /** 開始から この日数 を過ぎたドリルは無かったことにする */
 const DRILL_TTL_DAYS = 7;
 
-export interface DrillCandidates {
+interface DrillCandidates {
   bronze: string[];
   silver: string[];
   unseen: string[];
@@ -137,7 +137,7 @@ export function questionHref(exam: ExamSlug, slug: string): string {
   return `${prefix}${slug}/`;
 }
 
-export interface DrillPosition {
+interface DrillPosition {
   /** 1始まりの現在位置 */
   position: number;
   total: number;

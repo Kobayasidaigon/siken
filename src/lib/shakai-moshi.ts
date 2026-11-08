@@ -22,7 +22,7 @@ import { getAllShakaiQuestions, type ShakaiQuestionData } from "./shakai-questio
 export const SHAKAI_MOSHI_TIME_LIMIT_MIN = 75;
 export const SHAKAI_MOSHI_PASS_COUNT = 36;
 
-export const SHAKAI_MOSHI_1_SLUGS: string[] = [
+const SHAKAI_MOSHI_1_SLUGS: string[] = [
   "shakai-001", // 社会福祉の原理と政策 A 社会福祉の概念 ウェルフェアとウェルビーイング
   "shakai-026", // 社会保障 A 社会保障の定義と機能
   "shakai-051", // 権利擁護を支える法制度 A 日本国憲法13条 幸福追求権と個人の尊重

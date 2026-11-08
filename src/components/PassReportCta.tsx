@@ -1,5 +1,6 @@
 "use client";
 
+import SiteLink from "@/components/SiteLink";
 import { useEffect, useState } from "react";
 import { sendGAEvent } from "@next/third-parties/google";
 import { EXAM_SCHEDULES } from "@/lib/cta-priority";
@@ -56,7 +57,7 @@ export default function PassReportCta({
         出題の傾向や、当サイトの問題が実際の試験とどれくらい近かったかを教えてください。
         いただいた内容は、問題の見直しと、これから受ける方への情報として掲載します（掲載可の方のみ）。
       </p>
-      <a
+      <SiteLink
         href={`/goukaku-houkoku/?exam=${exam}`}
         onClick={() => {
           try {
@@ -69,7 +70,7 @@ export default function PassReportCta({
         style={{ color: accent }}
       >
         受験の結果を報告する →
-      </a>
+      </SiteLink>
     </section>
   );
 }

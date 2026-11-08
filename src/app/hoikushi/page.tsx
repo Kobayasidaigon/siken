@@ -1,3 +1,4 @@
+import SiteLink from "@/components/SiteLink";
 import { getAllHoikushiQuestions, getHoikushiQuestionsByField } from "@/lib/hoikushi-questions";
 import RecentCourseReminder from "@/components/RecentCourseReminder";
 import { getAllColumns } from "@/lib/columns";
@@ -9,7 +10,6 @@ import Moshi2TopLink from "@/components/Moshi2TopLink";
 import { HOIKUSHI_FIELDS } from "@/lib/hoikushi-fields";
 import ExamCountdown from "@/components/ExamCountdown";
 import { HOIKUSHI_EXAMS } from "@/lib/exam-dates";
-import { EXAM_AFFILIATE } from "@/lib/affiliate-links";
 
 export const metadata: Metadata = pageMetadata({
   path: "/hoikushi/",
@@ -24,7 +24,6 @@ export default async function HoikushiPage() {
   const fieldCounts = await Promise.all(
     HOIKUSHI_FIELDS.map(async (f) => (await getHoikushiQuestionsByField(f.name)).length)
   );
-  const aff = EXAM_AFFILIATE.hoikushi;
 
   return (
     <div className="theme-pii pb-16">
@@ -33,9 +32,9 @@ export default async function HoikushiPage() {
         style={{ background: "var(--c-pii-soft)", borderColor: "var(--c-border)" }}
       >
         <nav className="text-xs text-[color:var(--c-text-sub)] mb-4">
-          <a href="/" className="no-underline hover:underline">
+          <SiteLink href="/" className="no-underline hover:underline">
             ホーム
-          </a>{" "}
+          </SiteLink>{" "}
           / <span>保育士試験（筆記）</span>
         </nav>
         <h1
@@ -49,24 +48,24 @@ export default async function HoikushiPage() {
           保育所や児童福祉施設で子どもの保育と保護者支援を行う国家資格「保育士」の筆記試験。9科目に沿った{allQuestions.length}問のオリジナル練習問題集です。
         </p>
         <div className="mt-6 flex flex-wrap gap-3">
-          <a href="/hoikushi/q/hoikushi-001/" className="btn-accent">
+          <SiteLink href="/hoikushi/q/hoikushi-001/" className="btn-accent">
             問題を解き始める →
-          </a>
-          <a
+          </SiteLink>
+          <SiteLink
             href="/hoikushi/moshi/"
             className="inline-flex items-center px-4 py-2 rounded-lg border text-sm font-medium no-underline transition-colors hover:bg-[color:var(--c-pii-soft)]"
             style={{ borderColor: "var(--c-pii)", color: "var(--c-pii-ink)" }}
           >
             模擬試験を受ける（9科目160問）→
-          </a>
+          </SiteLink>
           <Moshi2TopLink certId="hoikushi" />
-          <a
+          <SiteLink
             href="/hoikushi/mock/"
             className="inline-flex items-center px-4 py-2 rounded-lg border text-sm font-medium no-underline transition-colors hover:bg-[color:var(--c-pii-soft)]"
             style={{ borderColor: "var(--c-pii)", color: "var(--c-pii-ink)" }}
           >
             本番形式で腕試し（20問・採点）→
-          </a>
+          </SiteLink>
         </div>
       </section>
 
@@ -86,7 +85,7 @@ export default async function HoikushiPage() {
         <h2 className="text-lg font-bold text-[color:var(--c-ink)] mb-5 font-serif">分野から選ぶ</h2>
         <div className="space-y-3">
           {HOIKUSHI_FIELDS.map((f, i) => (
-            <a
+            <SiteLink
               key={f.slug}
               href={`/hoikushi/field/${f.slug}/`}
               className="card p-5 no-underline group block"
@@ -105,7 +104,7 @@ export default async function HoikushiPage() {
                 <span className="text-xs text-[color:var(--c-text-sub)] shrink-0">{fieldCounts[i]}問</span>
               </div>
               <p className="text-sm text-[color:var(--c-text-sub)] mt-2 leading-relaxed">{f.desc}</p>
-            </a>
+            </SiteLink>
           ))}
         </div>
       </section>
@@ -156,13 +155,13 @@ export default async function HoikushiPage() {
           <h2 className="text-base font-bold text-[color:var(--c-ink)] mb-4 font-serif">コラム</h2>
           <div className="space-y-2">
             {hoikushiColumns.slice(0, 6).map((col) => (
-              <a
+              <SiteLink
                 key={col.slug}
                 href={`/column/${col.slug}/`}
                 className="block py-2 text-sm text-[color:var(--c-text)] no-underline hover:text-[color:var(--c-pii)] border-b border-[color:var(--c-border)] last:border-b-0"
               >
                 {col.title}
-              </a>
+              </SiteLink>
             ))}
           </div>
         </section>

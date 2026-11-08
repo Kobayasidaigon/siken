@@ -13,7 +13,7 @@
  * 模擬試験・本番形式テストの出題からは外している(isec-moshi.ts、isec/mock)。
  */
 
-export interface IsecField {
+interface IsecField {
   /** URL に使う分野スラッグ。/isec/field/<slug>/ */
   slug: string;
   /** 問題 md の field と完全一致させる値 */
@@ -84,7 +84,7 @@ export const ISEC_FIELD_SLUG_BY_NAME: Record<string, string> = Object.fromEntrie
 );
 
 /** 本試験の出題範囲(課題Ⅰ〜Ⅲ)の分野だけ */
-export const ISEC_SCOPE_FIELDS: IsecField[] = ISEC_FIELDS.filter((f) => !f.outOfScope);
+const ISEC_SCOPE_FIELDS: IsecField[] = ISEC_FIELDS.filter((f) => !f.outOfScope);
 
 /** 出題範囲の分野名。模擬試験・本番形式テストの絞り込みに使う */
 export const ISEC_SCOPE_FIELD_NAMES: Set<string> = new Set(ISEC_SCOPE_FIELDS.map((f) => f.name));

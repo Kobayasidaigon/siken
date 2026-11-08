@@ -1,3 +1,4 @@
+import SiteLink from "@/components/SiteLink";
 import type { Metadata } from "next";
 import { pageMetadata } from "@/lib/page-metadata";
 import {
@@ -31,8 +32,8 @@ export default async function ItpassMoshiPage() {
   return (
     <div className="theme-pii pb-16">
       <nav className="breadcrumb text-xs text-[color:var(--c-text-sub)] mb-4 flex gap-1">
-        <a href="/">ホーム</a><span>/</span>
-        <a href="/itpass/">ITパスポート</a><span>/</span>
+        <SiteLink href="/">ホーム</SiteLink><span>/</span>
+        <SiteLink href="/itpass/">ITパスポート</SiteLink><span>/</span>
         <span className="text-[color:var(--c-ink)]">模擬試験 第1回</span>
       </nav>
 
@@ -75,7 +76,7 @@ export default async function ItpassMoshiPage() {
         本模試は正答数による近似判定で、総合600点を60問、分野別300点を各分野の30%として扱っています。
         当サイト編集部が作成したオリジナル問題で構成しており、実際の過去問題の転載ではありません。
         合否判定はあくまで学習の目安です。1問ずつじっくり学びたい方は
-        <a href="/itpass/" className="underline hover:no-underline">練習問題200問</a>へ。
+        <SiteLink href="/itpass/" className="underline hover:no-underline">練習問題200問</SiteLink>へ。
       </p>
     </div>
   );

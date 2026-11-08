@@ -1,3 +1,4 @@
+import SiteLink from "@/components/SiteLink";
 import type { Metadata } from "next";
 import { pageMetadata } from "@/lib/page-metadata";
 import { getAiaMoshi1Questions, AIA_MOSHI_PASS_COUNT, AIA_MOSHI_TIME_LIMIT_MIN } from "@/lib/aia-moshi";
@@ -28,8 +29,8 @@ export default async function AiaMoshiPage() {
   return (
     <div className="theme-pii pb-16">
       <nav className="breadcrumb text-xs text-[color:var(--c-text-sub)] mb-4 flex gap-1">
-        <a href="/">ホーム</a><span>/</span>
-        <a href="/aia/">AI活用アドバイザー</a><span>/</span>
+        <SiteLink href="/">ホーム</SiteLink><span>/</span>
+        <SiteLink href="/aia/">AI活用アドバイザー</SiteLink><span>/</span>
         <span className="text-[color:var(--c-ink)]">模擬試験 第1回</span>
       </nav>
 
@@ -67,7 +68,7 @@ export default async function AiaMoshiPage() {
 
       <p className="text-xs text-[color:var(--c-text-sub)] mt-8 max-w-2xl leading-relaxed">
         ※公式の課題別問題数は、第1・第2課題を合わせて30問、第6・第7課題を合わせて20問としか読み取れず、この模試の内訳（15＋15、10＋10）は当サイトの想定です。本模試は当サイト編集部が作成したオリジナル問題で、公式問題の転載ではありません。AIの制度・事例は変化が早いため、解説の年月時点の記載を確認してください。
-        1問ずつじっくり学びたい方は<a href="/aia/" className="underline hover:no-underline">練習問題</a>へ。
+        1問ずつじっくり学びたい方は<SiteLink href="/aia/" className="underline hover:no-underline">練習問題</SiteLink>へ。
       </p>
     </div>
   );

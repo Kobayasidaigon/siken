@@ -1,3 +1,4 @@
+import SiteLink from "@/components/SiteLink";
 import { getAllQuestions } from "@/lib/questions";
 import type { Metadata } from "next";
 import { pageMetadata } from "@/lib/page-metadata";
@@ -24,8 +25,8 @@ export default async function KashikinMockPage() {
   return (
     <div className="theme-kashikin pb-16">
       <nav className="breadcrumb text-xs text-[color:var(--c-text-sub)] mb-4 flex gap-1">
-        <a href="/">ホーム</a><span>/</span>
-        <a href="/kashikin/">貸金業務取扱主任者</a><span>/</span>
+        <SiteLink href="/">ホーム</SiteLink><span>/</span>
+        <SiteLink href="/kashikin/">貸金業務取扱主任者</SiteLink><span>/</span>
         <span className="text-[color:var(--c-ink)]">本番形式テスト</span>
       </nav>
 

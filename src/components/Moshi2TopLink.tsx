@@ -1,5 +1,6 @@
 "use client";
 
+import SiteLink from "@/components/SiteLink";
 /**
  * 資格トップに置く第2回への導線(2026-11-08 に無料化)。
  *
@@ -46,14 +47,14 @@ export default function Moshi2TopLink({ certId, place = "cert_top" }: { certId: 
 
   return (
     <span ref={ref} className="inline-flex flex-col items-start gap-1">
-      <a
+      <SiteLink
         href={`/${certId}/moshi2/?src=landing`}
         onClick={() => trackMoshi2("moshi2_offer_click", { cert: certId, place })}
         className="inline-flex items-center px-4 py-2 rounded-lg border text-sm font-medium no-underline transition-colors hover:bg-[color:var(--c-accent-soft)]"
         style={{ borderColor: "var(--c-border)", color: "var(--c-text)" }}
       >
         第2回模試（本番前の最終確認）→
-      </a>
+      </SiteLink>
       <span className="text-[11px] text-[color:var(--c-text-sub)] pl-1">
         無料・登録不要
       </span>

@@ -6,7 +6,7 @@
  * 当サイトは1課題を2分野に割って、1分野あたり20問で並べている。
  */
 
-export interface IsfField {
+interface IsfField {
   /** URL に使う分野スラッグ。/isf/field/<slug>/ */
   slug: string;
   /** 問題 md の field と完全一致させる値 */

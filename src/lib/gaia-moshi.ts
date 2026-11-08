@@ -10,7 +10,7 @@ import { getAllGaiaQuestions, type GaiaQuestionData } from "./gaia-questions";
 export const GAIA_MOSHI_TIME_LIMIT_MIN = 120;
 export const GAIA_MOSHI_PASS_COUNT = 70;
 
-export const GAIA_MOSHI_1_SLUGS: string[] = [
+const GAIA_MOSHI_1_SLUGS: string[] = [
   "gaia-001", // AIの基礎理解 A 4択 AI・機械学習・深層学習の包含関係
   "gaia-002", // AIの基礎理解 B 4択 購買傾向によるグループ分けと学習の種類
   "gaia-004", // AIの基礎理解 A 4択 訓練データへの過剰適合と汎化性能

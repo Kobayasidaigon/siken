@@ -1,3 +1,4 @@
+import SiteLink from "@/components/SiteLink";
 import { getAllChizai2Slugs, getChizai2Question, getChizai2QuestionsByField } from "@/lib/chizai2-questions";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
@@ -73,9 +74,9 @@ export default async function Chizai2QuestionPage({ params }: { params: Promise<
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
 
       <nav className="breadcrumb text-xs text-[color:var(--c-text-sub)] mb-4 flex flex-wrap gap-1">
-        <a href="/">ホーム</a><span>/</span>
-        <a href="/chizai2/">知的財産管理技能検定2級</a><span>/</span>
-        {fieldSlug && <><a href={`/chizai2/field/${fieldSlug}/`}>{q.field}</a><span>/</span></>}
+        <SiteLink href="/">ホーム</SiteLink><span>/</span>
+        <SiteLink href="/chizai2/">知的財産管理技能検定2級</SiteLink><span>/</span>
+        {fieldSlug && <><SiteLink href={`/chizai2/field/${fieldSlug}/`}>{q.field}</SiteLink><span>/</span></>}
         <span className="text-[color:var(--c-ink)]">問{fieldIndex}</span>
       </nav>
 
@@ -102,15 +103,15 @@ export default async function Chizai2QuestionPage({ params }: { params: Promise<
 
       <nav className="mt-8 flex justify-between items-center pt-4 border-t border-[color:var(--c-border)]">
         {prevQ ? (
-          <a href={`/chizai2/q/${prevQ.slug}/`} className="text-sm text-[color:var(--c-text-sub)] no-underline hover:text-[color:var(--c-chizai)]">← 問{idx}</a>
+          <SiteLink href={`/chizai2/q/${prevQ.slug}/`} className="text-sm text-[color:var(--c-text-sub)] no-underline hover:text-[color:var(--c-chizai)]">← 問{idx}</SiteLink>
         ) : <span />}
         {fieldSlug && (
-          <a href={`/chizai2/field/${fieldSlug}/`} className="text-sm text-[color:var(--c-text-sub)] no-underline hover:text-[color:var(--c-chizai)]">
+          <SiteLink href={`/chizai2/field/${fieldSlug}/`} className="text-sm text-[color:var(--c-text-sub)] no-underline hover:text-[color:var(--c-chizai)]">
             {q.field}の一覧
-          </a>
+          </SiteLink>
         )}
         {nextQ ? (
-          <a href={`/chizai2/q/${nextQ.slug}/`} className="text-sm text-[color:var(--c-text-sub)] no-underline hover:text-[color:var(--c-chizai)]">問{idx + 2} →</a>
+          <SiteLink href={`/chizai2/q/${nextQ.slug}/`} className="text-sm text-[color:var(--c-text-sub)] no-underline hover:text-[color:var(--c-chizai)]">問{idx + 2} →</SiteLink>
         ) : <span />}
       </nav>
     </article>

@@ -1,3 +1,4 @@
+import SiteLink from "@/components/SiteLink";
 import { getAllHadQuestions, getHadQuestionsByField } from "@/lib/had-questions";
 import RecentCourseReminder from "@/components/RecentCourseReminder";
 import { getAllColumns } from "@/lib/columns";
@@ -35,9 +36,9 @@ export default async function HadPage() {
         style={{ background: "var(--c-pii-soft)", borderColor: "var(--c-border)" }}
       >
         <nav className="text-xs text-[color:var(--c-text-sub)] mb-4">
-          <a href="/" className="no-underline hover:underline">
+          <SiteLink href="/" className="no-underline hover:underline">
             ホーム
-          </a>{" "}
+          </SiteLink>{" "}
           / <span>ハラスメントアドバイザー</span>
         </nav>
         <h1
@@ -52,23 +53,23 @@ export default async function HadPage() {
           {allQuestions.length}問のオリジナル練習問題集です。
         </p>
         <div className="mt-6 flex flex-wrap gap-3">
-          <a href="/had/q/had-001/" className="btn-accent">
+          <SiteLink href="/had/q/had-001/" className="btn-accent">
             問題を解き始める →
-          </a>
-          <a
+          </SiteLink>
+          <SiteLink
             href="/had/moshi/"
             className="inline-flex items-center px-4 py-2 rounded-lg border text-sm font-medium no-underline transition-colors hover:bg-[color:var(--c-pii-soft)]"
             style={{ borderColor: "var(--c-pii)", color: "var(--c-pii-ink)" }}
           >
             模擬試験を受ける（60問・90分）→
-          </a>
-          <a
+          </SiteLink>
+          <SiteLink
             href="/had/mock/"
             className="inline-flex items-center px-4 py-2 rounded-lg border text-sm font-medium no-underline transition-colors hover:bg-[color:var(--c-pii-soft)]"
             style={{ borderColor: "var(--c-pii)", color: "var(--c-pii-ink)" }}
           >
             本番形式で腕試し（20問・採点）→
-          </a>
+          </SiteLink>
         </div>
       </section>
 
@@ -93,7 +94,7 @@ export default async function HadPage() {
         <h2 className="text-lg font-bold text-[color:var(--c-ink)] mb-5 font-serif">分野から選ぶ</h2>
         <div className="space-y-3">
           {HAD_FIELDS.map((f, i) => (
-            <a
+            <SiteLink
               key={f.slug}
               href={`/had/field/${f.slug}/`}
               className="card p-5 no-underline group block"
@@ -112,7 +113,7 @@ export default async function HadPage() {
                 <span className="text-xs text-[color:var(--c-text-sub)] shrink-0">{fieldCounts[i]}問</span>
               </div>
               <p className="text-sm text-[color:var(--c-text-sub)] mt-2 leading-relaxed">{f.desc}</p>
-            </a>
+            </SiteLink>
           ))}
         </div>
       </section>
@@ -162,24 +163,24 @@ export default async function HadPage() {
         <div className="card p-5 text-sm text-[color:var(--c-text-sub)] leading-relaxed space-y-2">
           <p>
             ハラスメントは、企業の不祥事やコンプライアンス違反の代表的な原因のひとつです。会社全体の危機管理まで広げて学ぶなら、全日本情報学習振興協会の
-            <a href="/ccm/" className="underline hover:no-underline">
+            <SiteLink href="/ccm/" className="underline hover:no-underline">
               企業危機・コンプライアンス管理士
-            </a>
+            </SiteLink>
             が次の一歩になります。
           </p>
           <p>
             相談の記録や社員の情報の扱いは、
-            <a href="/pii/" className="underline hover:no-underline">
+            <SiteLink href="/pii/" className="underline hover:no-underline">
               個人情報保護士
-            </a>
+            </SiteLink>
             ・
-            <a href="/jitsumu/" className="underline hover:no-underline">
+            <SiteLink href="/jitsumu/" className="underline hover:no-underline">
               個人情報保護実務検定
-            </a>
+            </SiteLink>
             の範囲とも重なります。
           </p>
           <p>
-            働き方の法律を広く学ぶなら<a href="/llc/" className="underline hover:no-underline">労働法務士</a>、育児・介護・治療と仕事の両立支援なら<a href="/wlc/" className="underline hover:no-underline">ワークライフ・コーディネーター</a>も、同じ協会の試験です。
+            働き方の法律を広く学ぶなら<SiteLink href="/llc/" className="underline hover:no-underline">労働法務士</SiteLink>、育児・介護・治療と仕事の両立支援なら<SiteLink href="/wlc/" className="underline hover:no-underline">ワークライフ・コーディネーター</SiteLink>も、同じ協会の試験です。
           </p>
           <p>
             常時50人以上の労働者を使用する事業場で選任が必要な衛生管理者も、人事・総務が担当することの多い資格です。第一種・第二種の練習問題は、姉妹サイトの
@@ -197,13 +198,13 @@ export default async function HadPage() {
           <h2 className="text-base font-bold text-[color:var(--c-ink)] mb-4 font-serif">コラム</h2>
           <div className="space-y-2">
             {hadColumns.slice(0, 6).map((col) => (
-              <a
+              <SiteLink
                 key={col.slug}
                 href={`/column/${col.slug}/`}
                 className="block py-2 text-sm text-[color:var(--c-text)] no-underline hover:text-[color:var(--c-pii)] border-b border-[color:var(--c-border)] last:border-b-0"
               >
                 {col.title}
-              </a>
+              </SiteLink>
             ))}
           </div>
         </section>

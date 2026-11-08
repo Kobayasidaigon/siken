@@ -1,3 +1,4 @@
+import SiteLink from "@/components/SiteLink";
 import type { Metadata } from "next";
 import { pageMetadata } from "@/lib/page-metadata";
 import {
@@ -28,9 +29,9 @@ export default async function ShakaiMoshiPage() {
   return (
     <div className="theme-eco pb-16">
       <nav className="breadcrumb text-xs text-[color:var(--c-text-sub)] mb-4 flex gap-1">
-        <a href="/">ホーム</a>
+        <SiteLink href="/">ホーム</SiteLink>
         <span>/</span>
-        <a href="/shakai/">社会福祉士</a>
+        <SiteLink href="/shakai/">社会福祉士</SiteLink>
         <span>/</span>
         <span className="text-[color:var(--c-ink)]">模擬試験 第1回</span>
       </nav>
@@ -85,9 +86,9 @@ export default async function ShakaiMoshiPage() {
         要件になります。ここでの6割判定は素点だけを見た学習の目安です。
         当サイト編集部が作成したオリジナル問題で構成しており、実際の過去問題の転載ではありません。
         1問ずつじっくり学びたい方は
-        <a href="/shakai/" className="underline hover:no-underline">
+        <SiteLink href="/shakai/" className="underline hover:no-underline">
           練習問題200問
-        </a>
+        </SiteLink>
         へ。
       </p>
     </div>

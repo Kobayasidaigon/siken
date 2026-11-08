@@ -1,3 +1,4 @@
+import SiteLink from "@/components/SiteLink";
 import { getAllJitsumuSlugs, getJitsumuQuestion, getJitsumuQuestionsByField } from "@/lib/jitsumu-questions";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
@@ -64,9 +65,9 @@ export default async function JitsumuQuestionPage({ params }: { params: Promise<
       <JsonLd data={jsonLd} />
 
       <nav className="breadcrumb text-xs text-[color:var(--c-text-sub)] mb-4 flex flex-wrap gap-1">
-        <a href="/">ホーム</a><span>/</span>
-        <a href="/jitsumu/">個人情報保護実務検定</a><span>/</span>
-        {fieldSlug && <><a href={`/jitsumu/field/${fieldSlug}/`}>{q.field}</a><span>/</span></>}
+        <SiteLink href="/">ホーム</SiteLink><span>/</span>
+        <SiteLink href="/jitsumu/">個人情報保護実務検定</SiteLink><span>/</span>
+        {fieldSlug && <><SiteLink href={`/jitsumu/field/${fieldSlug}/`}>{q.field}</SiteLink><span>/</span></>}
         <span className="text-[color:var(--c-ink)]">問{fieldIndex}</span>
       </nav>
 
@@ -89,9 +90,9 @@ export default async function JitsumuQuestionPage({ params }: { params: Promise<
       <AnswerReveal nextHref={nextQ ? `/jitsumu/q/${nextQ.slug}/` : undefined} nextLabel={nextQ ? `次の問題（問${idx + 2}）へ` : undefined} choices={q.choices} correctAnswer={q.correctAnswer} explanationHtml={q.content} exam="jitsumu" questionSlug={slug} courseAd={<JitsumuCourseAd />} />
 
       <nav className="mt-8 flex justify-between items-center pt-4 border-t border-[color:var(--c-border)]">
-        {prevQ ? (<a href={`/jitsumu/q/${prevQ.slug}/`} className="text-sm text-[color:var(--c-text-sub)] no-underline hover:text-[color:var(--c-pii)]">← 問{idx}</a>) : <span />}
-        {fieldSlug && (<a href={`/jitsumu/field/${fieldSlug}/`} className="text-sm text-[color:var(--c-text-sub)] no-underline hover:text-[color:var(--c-pii)]">{q.field}の一覧</a>)}
-        {nextQ ? (<a href={`/jitsumu/q/${nextQ.slug}/`} className="text-sm text-[color:var(--c-text-sub)] no-underline hover:text-[color:var(--c-pii)]">問{idx + 2} →</a>) : <span />}
+        {prevQ ? (<SiteLink href={`/jitsumu/q/${prevQ.slug}/`} className="text-sm text-[color:var(--c-text-sub)] no-underline hover:text-[color:var(--c-pii)]">← 問{idx}</SiteLink>) : <span />}
+        {fieldSlug && (<SiteLink href={`/jitsumu/field/${fieldSlug}/`} className="text-sm text-[color:var(--c-text-sub)] no-underline hover:text-[color:var(--c-pii)]">{q.field}の一覧</SiteLink>)}
+        {nextQ ? (<SiteLink href={`/jitsumu/q/${nextQ.slug}/`} className="text-sm text-[color:var(--c-text-sub)] no-underline hover:text-[color:var(--c-pii)]">問{idx + 2} →</SiteLink>) : <span />}
       </nav>
     </article>
   );

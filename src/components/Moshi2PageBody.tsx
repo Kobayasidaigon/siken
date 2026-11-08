@@ -1,3 +1,4 @@
+import SiteLink from "@/components/SiteLink";
 /**
  * 第2回模試の商品ページ本体(2026-11-08 に無料化。それまでは Stripe で有料販売)。資格ごとのページはこれを呼ぶだけにしてある。
  *
@@ -82,7 +83,7 @@ export default function Moshi2PageBody({ certId }: { certId: ExamSlug }) {
         <p className="text-sm text-[color:var(--c-text)] leading-relaxed">
           本試験の出題範囲・形式に合わせて編集部がオリジナルで作成しています。公式問題の転載ではありません。
           法改正・最新テキストに合わせて随時更新します。
-          <a href="/about/" className="underline underline-offset-2 ml-1">運営者情報</a>
+          <SiteLink href="/about/" className="underline underline-offset-2 ml-1">運営者情報</SiteLink>
         </p>
       </section>
     </>
@@ -91,7 +92,7 @@ export default function Moshi2PageBody({ certId }: { certId: ExamSlug }) {
   return (
     <div className={`${THEME[certId] ?? ""} pb-16`}>
       <nav className="breadcrumb text-xs text-[color:var(--c-text-sub)] mb-4 flex gap-1">
-        <a href="/">ホーム</a><span>/</span>
+        <SiteLink href="/">ホーム</SiteLink><span>/</span>
         <a href={exam.topPath}>{exam.name}</a><span>/</span>
         <span className="text-[color:var(--c-ink)]">模擬試験 第2回</span>
       </nav>

@@ -1,3 +1,4 @@
+import SiteLink from "@/components/SiteLink";
 import { getAllGaiaSlugs, getGaiaQuestion, getGaiaQuestionsByField } from "@/lib/gaia-questions";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
@@ -63,13 +64,13 @@ export default async function GaiaQuestionPage({ params }: { params: Promise<{ s
       <JsonLd data={jsonLd} />
 
       <nav className="breadcrumb text-xs text-[color:var(--c-text-sub)] mb-4 flex flex-wrap gap-1">
-        <a href="/">ホーム</a>
+        <SiteLink href="/">ホーム</SiteLink>
         <span>/</span>
-        <a href="/gaia/">{EXAM_NAME}</a>
+        <SiteLink href="/gaia/">{EXAM_NAME}</SiteLink>
         <span>/</span>
         {fieldSlug && (
           <>
-            <a href={`/gaia/field/${fieldSlug}/`}>{q.field}</a>
+            <SiteLink href={`/gaia/field/${fieldSlug}/`}>{q.field}</SiteLink>
             <span>/</span>
           </>
         )}
@@ -112,30 +113,30 @@ export default async function GaiaQuestionPage({ params }: { params: Promise<{ s
 
       <nav className="mt-8 flex justify-between items-center pt-4 border-t border-[color:var(--c-border)]">
         {prevQ ? (
-          <a
+          <SiteLink
             href={`/gaia/q/${prevQ.slug}/`}
             className="text-sm text-[color:var(--c-text-sub)] no-underline hover:text-[color:var(--c-pii)]"
           >
             ← 問{idx}
-          </a>
+          </SiteLink>
         ) : (
           <span />
         )}
         {fieldSlug && (
-          <a
+          <SiteLink
             href={`/gaia/field/${fieldSlug}/`}
             className="text-sm text-[color:var(--c-text-sub)] no-underline hover:text-[color:var(--c-pii)]"
           >
             {q.field}の一覧
-          </a>
+          </SiteLink>
         )}
         {nextQ ? (
-          <a
+          <SiteLink
             href={`/gaia/q/${nextQ.slug}/`}
             className="text-sm text-[color:var(--c-text-sub)] no-underline hover:text-[color:var(--c-pii)]"
           >
             問{idx + 2} →
-          </a>
+          </SiteLink>
         ) : (
           <span />
         )}

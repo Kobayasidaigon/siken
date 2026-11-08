@@ -1,3 +1,4 @@
+import SiteLink from "@/components/SiteLink";
 import { getAllPiiSlugs, getPiiQuestion, getPiiQuestionsByField } from "@/lib/pii-questions";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
@@ -68,9 +69,9 @@ export default async function PiiQuestionPage({ params }: { params: Promise<{ sl
       <JsonLd data={jsonLd} />
 
       <nav className="breadcrumb text-xs text-[color:var(--c-text-sub)] mb-4 flex flex-wrap gap-1">
-        <a href="/">ホーム</a><span>/</span>
-        <a href="/pii/">個人情報保護士</a><span>/</span>
-        {fieldSlug && <><a href={`/pii/field/${fieldSlug}/`}>{q.field}</a><span>/</span></>}
+        <SiteLink href="/">ホーム</SiteLink><span>/</span>
+        <SiteLink href="/pii/">個人情報保護士</SiteLink><span>/</span>
+        {fieldSlug && <><SiteLink href={`/pii/field/${fieldSlug}/`}>{q.field}</SiteLink><span>/</span></>}
         {hub && <><a href={topicHubPath("pii", hub.slug)}>{hub.topic}</a><span>/</span></>}
         <span className="text-[color:var(--c-ink)]">問{fieldIndex}</span>
       </nav>
@@ -98,15 +99,15 @@ export default async function PiiQuestionPage({ params }: { params: Promise<{ sl
 
       <nav className="mt-8 flex justify-between items-center pt-4 border-t border-[color:var(--c-border)]">
         {prevQ ? (
-          <a href={`/pii/q/${prevQ.slug}/`} className="text-sm text-[color:var(--c-text-sub)] no-underline hover:text-[color:var(--c-pii)]">← 問{idx}</a>
+          <SiteLink href={`/pii/q/${prevQ.slug}/`} className="text-sm text-[color:var(--c-text-sub)] no-underline hover:text-[color:var(--c-pii)]">← 問{idx}</SiteLink>
         ) : <span />}
         {fieldSlug && (
-          <a href={`/pii/field/${fieldSlug}/`} className="text-sm text-[color:var(--c-text-sub)] no-underline hover:text-[color:var(--c-pii)]">
+          <SiteLink href={`/pii/field/${fieldSlug}/`} className="text-sm text-[color:var(--c-text-sub)] no-underline hover:text-[color:var(--c-pii)]">
             {q.field}の一覧
-          </a>
+          </SiteLink>
         )}
         {nextQ ? (
-          <a href={`/pii/q/${nextQ.slug}/`} className="text-sm text-[color:var(--c-text-sub)] no-underline hover:text-[color:var(--c-pii)]">問{idx + 2} →</a>
+          <SiteLink href={`/pii/q/${nextQ.slug}/`} className="text-sm text-[color:var(--c-text-sub)] no-underline hover:text-[color:var(--c-pii)]">問{idx + 2} →</SiteLink>
         ) : <span />}
       </nav>
     </article>

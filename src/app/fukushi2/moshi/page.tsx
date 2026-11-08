@@ -1,3 +1,4 @@
+import SiteLink from "@/components/SiteLink";
 import type { Metadata } from "next";
 import { pageMetadata } from "@/lib/page-metadata";
 import {
@@ -46,8 +47,8 @@ export default async function Fukushi2MoshiPage() {
   return (
     <div className="theme-fukushi pb-16">
       <nav className="breadcrumb text-xs text-[color:var(--c-text-sub)] mb-4 flex gap-1">
-        <a href="/">ホーム</a><span>/</span>
-        <a href="/fukushi2/">福祉住環境コーディネーター2級</a><span>/</span>
+        <SiteLink href="/">ホーム</SiteLink><span>/</span>
+        <SiteLink href="/fukushi2/">福祉住環境コーディネーター2級</SiteLink><span>/</span>
         <span className="text-[color:var(--c-ink)]">模擬試験 第1回</span>
       </nav>
 
@@ -91,8 +92,8 @@ export default async function Fukushi2MoshiPage() {
         基づく本試験型の推定構成で、実際の試験と異なる場合があります（本試験に含まれることがある図面を使った問題・
         穴埋め問題は対象外です）。当サイト編集部が作成したオリジナル問題で、実際の試験問題の転載ではありません。
         合格判定はあくまで学習の目安です。時間を計らずに力試しをしたい方は
-        <a href="/fukushi2/mock/" className="underline hover:no-underline">本番形式テスト（ランダム20問）</a>へ、
-        1問ずつじっくり学びたい方は<a href="/fukushi2/" className="underline hover:no-underline">練習問題230問</a>へ。
+        <SiteLink href="/fukushi2/mock/" className="underline hover:no-underline">本番形式テスト（ランダム20問）</SiteLink>へ、
+        1問ずつじっくり学びたい方は<SiteLink href="/fukushi2/" className="underline hover:no-underline">練習問題230問</SiteLink>へ。
       </p>
     </div>
   );

@@ -1,3 +1,4 @@
+import SiteLink from "@/components/SiteLink";
 /**
  * 「試験前の10問」のページ本体(イベントのページと、点つきの着地ページで共通)。lib/shikenmae.ts を参照。
  */
@@ -41,8 +42,8 @@ export default async function ShikenmaePage({ exam, date, score }: { exam: strin
   return (
     <div className="pb-16">
       <nav className="breadcrumb text-xs text-[color:var(--c-text-sub)] mb-4 flex gap-1">
-        <a href="/">ホーム</a><span>/</span>
-        <a href={`/${e.exam}/`}>{e.examName}</a><span>/</span>
+        <SiteLink href="/">ホーム</SiteLink><span>/</span>
+        <SiteLink href={`/${e.exam}/`}>{e.examName}</SiteLink><span>/</span>
         <span className="text-[color:var(--c-ink)]">試験前の10問</span>
       </nav>
 

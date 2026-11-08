@@ -1,3 +1,4 @@
+import SiteLink from "@/components/SiteLink";
 import { getAllItpassQuestions, getItpassQuestionsByField } from "@/lib/itpass-questions";
 import RecentCourseReminder from "@/components/RecentCourseReminder";
 import { getAllColumns } from "@/lib/columns";
@@ -40,7 +41,7 @@ export default async function ItpassPage() {
     <div className="theme-pii pb-16">
       <section className="-mx-4 px-4 py-10 sm:py-14 border-y mb-10" style={{ background: "var(--c-pii-soft)", borderColor: "var(--c-border)" }}>
         <nav className="text-xs text-[color:var(--c-text-sub)] mb-4">
-          <a href="/" className="no-underline hover:underline">ホーム</a> / <span>ITパスポート</span>
+          <SiteLink href="/" className="no-underline hover:underline">ホーム</SiteLink> / <span>ITパスポート</span>
         </nav>
         <h1 className="text-2xl sm:text-3xl font-bold mb-3 font-serif leading-tight" style={{ color: "var(--c-pii-ink)" }}>
           ITパスポート
@@ -50,21 +51,21 @@ export default async function ItpassPage() {
           経営戦略・法務からセキュリティ・ネットワークまで、シラバスVer.6.5準拠の10分野。{allQuestions.length}問のオリジナル練習問題集です。
         </p>
         <div className="mt-6 flex flex-wrap gap-3">
-          <a href="/itpass/q/itpass-001/" className="btn-accent">問題を解き始める →</a>
-          <a
+          <SiteLink href="/itpass/q/itpass-001/" className="btn-accent">問題を解き始める →</SiteLink>
+          <SiteLink
             href="/itpass/moshi/"
             className="inline-flex items-center px-4 py-2 rounded-lg border text-sm font-medium no-underline transition-colors hover:bg-[color:var(--c-pii-soft)]"
             style={{ borderColor: "var(--c-pii)", color: "var(--c-pii-ink)" }}
           >
             模擬試験を受ける（100問・120分・分野別判定）→
-          </a>
-          <a
+          </SiteLink>
+          <SiteLink
             href="/itpass/mock/"
             className="inline-flex items-center px-4 py-2 rounded-lg border text-sm font-medium no-underline transition-colors hover:bg-[color:var(--c-pii-soft)]"
             style={{ borderColor: "var(--c-pii)", color: "var(--c-pii-ink)" }}
           >
             本番形式で腕試し（20問・採点）→
-          </a>
+          </SiteLink>
         </div>
       </section>
 
@@ -77,13 +78,13 @@ export default async function ItpassPage() {
         <h2 className="text-lg font-bold text-[color:var(--c-ink)] mb-5 font-serif">分野から選ぶ</h2>
         <div className="space-y-3">
           {fields.map((f, i) => (
-            <a key={f.slug} href={`/itpass/field/${f.slug}/`} className="card p-5 no-underline group block" style={{ borderLeft: "3px solid var(--c-pii)" }}>
+            <SiteLink key={f.slug} href={`/itpass/field/${f.slug}/`} className="card p-5 no-underline group block" style={{ borderLeft: "3px solid var(--c-pii)" }}>
               <div className="flex items-start justify-between mb-1 gap-3">
                 <p className="text-base font-bold text-[color:var(--c-ink)] font-serif">{f.name}</p>
                 <span className="text-xs text-[color:var(--c-text-sub)] shrink-0">{fieldCounts[i]}問</span>
               </div>
               <p className="text-sm text-[color:var(--c-text-sub)] mt-2 leading-relaxed">{f.desc}</p>
-            </a>
+            </SiteLink>
           ))}
         </div>
       </section>
@@ -112,19 +113,19 @@ export default async function ItpassPage() {
           <h2 className="text-base font-bold text-[color:var(--c-ink)] mb-4 font-serif">コラム</h2>
           <div className="space-y-2">
             {itpassColumns.slice(0, 6).map((col) => (
-              <a
+              <SiteLink
                 key={col.slug}
                 href={`/column/${col.slug}/`}
                 className="block py-2 text-sm text-[color:var(--c-text)] no-underline hover:text-[color:var(--c-pii)] border-b border-[color:var(--c-border)] last:border-b-0"
               >
                 {col.title}
-              </a>
+              </SiteLink>
             ))}
           </div>
           {itpassColumns.length > 6 && (
-            <a href="/column/#itpass" className="inline-block mt-4 text-sm text-[color:var(--c-text-sub)] no-underline hover:text-[color:var(--c-pii)] underline">
+            <SiteLink href="/column/#itpass" className="inline-block mt-4 text-sm text-[color:var(--c-text-sub)] no-underline hover:text-[color:var(--c-pii)] underline">
               ITパスポートのコラムをすべて見る →
-            </a>
+            </SiteLink>
           )}
         </section>
       )}

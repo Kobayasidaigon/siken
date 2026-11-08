@@ -1,3 +1,4 @@
+import SiteLink from "@/components/SiteLink";
 import type { Metadata } from "next";
 import { pageMetadata } from "@/lib/page-metadata";
 import { getMoshi1Questions, MOSHI_PASS_COUNT, MOSHI_TIME_LIMIT_MIN } from "@/lib/chizai-moshi";
@@ -24,8 +25,8 @@ export default async function ChizaiMoshiPage() {
   return (
     <div className="theme-chizai pb-16">
       <nav className="breadcrumb text-xs text-[color:var(--c-text-sub)] mb-4 flex gap-1">
-        <a href="/">ホーム</a><span>/</span>
-        <a href="/chizai/">知的財産管理技能検定3級</a><span>/</span>
+        <SiteLink href="/">ホーム</SiteLink><span>/</span>
+        <SiteLink href="/chizai/">知的財産管理技能検定3級</SiteLink><span>/</span>
         <span className="text-[color:var(--c-ink)]">模擬試験 第1回</span>
       </nav>
 
@@ -64,8 +65,8 @@ export default async function ChizaiMoshiPage() {
       <p className="text-xs text-[color:var(--c-text-sub)] mt-8 max-w-2xl leading-relaxed">
         ※本模試は当サイト編集部が作成したオリジナル問題で構成しており、実際の過去問題の転載ではありません。
         合否判定はあくまで学習の目安です。時間を計らずに力試しをしたい方は
-        <a href="/chizai/mock/" className="underline hover:no-underline">本番形式テスト（ランダム20問）</a>へ、
-        1問ずつじっくり学びたい方は<a href="/chizai/" className="underline hover:no-underline">練習問題200問</a>へ。
+        <SiteLink href="/chizai/mock/" className="underline hover:no-underline">本番形式テスト（ランダム20問）</SiteLink>へ、
+        1問ずつじっくり学びたい方は<SiteLink href="/chizai/" className="underline hover:no-underline">練習問題200問</SiteLink>へ。
       </p>
     </div>
   );

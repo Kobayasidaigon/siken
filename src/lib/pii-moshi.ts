@@ -10,7 +10,7 @@ import { getAllPiiQuestions, type PiiQuestionData } from "./pii-questions";
 export const PII_MOSHI_TIME_LIMIT_MIN = 150;
 export const PII_MOSHI_PASS_COUNT = 70;
 
-export const PII_MOSHI_1_SLUGS: string[] = [
+const PII_MOSHI_1_SLUGS: string[] = [
   "pii-001", // 個人情報保護法 A 個人情報保護法の目的
   "pii-171", // マイナンバー法 A マイナンバー法の基礎
   "pii-005", // 個人情報保護法 B 法の目的と権利利益の保護

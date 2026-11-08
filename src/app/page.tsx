@@ -1,3 +1,4 @@
+import SiteLink from "@/components/SiteLink";
 import type { Metadata } from "next";
 import StudyResumeCard from "@/components/StudyResumeCard";
 import RecentCourseReminder from "@/components/RecentCourseReminder";
@@ -560,7 +561,7 @@ export default function Home() {
           <p className="text-xs text-[color:var(--c-text-sub)] leading-relaxed mb-4">{group.lead}</p>
           <div className="space-y-4">
           {group.slugs.map((slug) => bySlug[slug]).filter(Boolean).map((exam) => (
-            <a
+            <SiteLink
               key={exam.slug}
               href={`/${exam.slug}/`}
               className="card p-5 no-underline group block"
@@ -577,7 +578,7 @@ export default function Home() {
               </div>
               <p className="text-sm text-[color:var(--c-text-sub)] leading-relaxed">{exam.desc}</p>
               <p className="text-xs text-[color:var(--c-text-sub)] mt-3">次回試験：{exam.date}</p>
-            </a>
+            </SiteLink>
           ))}
           </div>
         </div>
@@ -649,9 +650,9 @@ export default function Home() {
           それならと、自分で問題と解説を書いて公開したのがこのサイトです。
           すべて無料で使えます。誤りに気づかれたら、お問い合わせから教えてください。すぐ直します。
         </p>
-        <a href="/about/" className="text-sm text-[color:var(--c-ink)] mt-3 inline-block no-underline hover:underline">
+        <SiteLink href="/about/" className="text-sm text-[color:var(--c-ink)] mt-3 inline-block no-underline hover:underline">
           運営者について →
-        </a>
+        </SiteLink>
       </section>
     </div>
   );

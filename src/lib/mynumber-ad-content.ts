@@ -3,7 +3,7 @@
  * 各ページの読者心理に合わせた文言を定義
  */
 
-export interface MynumberAdContent {
+interface MynumberAdContent {
   headline: string;
   body: string;
 }
@@ -15,7 +15,7 @@ export const MYNUMBER_TOP_AD: MynumberAdContent = {
 };
 
 // コラム記事 slug → 訴求文 のマッピング
-export const MYNUMBER_AD_BY_SLUG: Record<string, MynumberAdContent> = {
+const MYNUMBER_AD_BY_SLUG: Record<string, MynumberAdContent> = {
   "mynumber-goukakuritsu": {
     headline: "合格率を上げる近道は",
     body: "合格率は準備の質で大きく変わります。試験を実施している協会の公式講座は、出題傾向を踏まえた構成なので、独学よりも合格圏に近づきやすいです。",

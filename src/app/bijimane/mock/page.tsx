@@ -1,3 +1,4 @@
+import SiteLink from "@/components/SiteLink";
 import { getAllBijimaneQuestions } from "@/lib/bijimane-questions";
 import type { Metadata } from "next";
 import { pageMetadata } from "@/lib/page-metadata";
@@ -23,8 +24,8 @@ export default async function BijimaneMockPage() {
   return (
     <div className="theme-bijimane pb-16">
       <nav className="breadcrumb text-xs text-[color:var(--c-text-sub)] mb-4 flex gap-1">
-        <a href="/">ホーム</a><span>/</span>
-        <a href="/bijimane/">ビジネスマネジャー検定</a><span>/</span>
+        <SiteLink href="/">ホーム</SiteLink><span>/</span>
+        <SiteLink href="/bijimane/">ビジネスマネジャー検定</SiteLink><span>/</span>
         <span className="text-[color:var(--c-ink)]">本番形式テスト</span>
       </nav>
 
@@ -33,7 +34,7 @@ export default async function BijimaneMockPage() {
 
       <p className="text-xs text-[color:var(--c-text-sub)] mb-5">
         本試験と同じ90分・70点合格判定で腕試しするなら
-        <a href="/bijimane/moshi/" className="underline hover:no-underline">模擬試験 第1回（無料）</a>へ。
+        <SiteLink href="/bijimane/moshi/" className="underline hover:no-underline">模擬試験 第1回（無料）</SiteLink>へ。
       </p>
 
       <MockExam

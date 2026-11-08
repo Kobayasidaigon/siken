@@ -55,7 +55,7 @@ function save(store: Store): void {
 }
 
 /** placement の接尾辞から種類を判定(FreeLeadCTA は "_free"、協会申込は "_apply"、書籍は "_book") */
-export function kindFromPlacement(placement: string): RecentKind {
+function kindFromPlacement(placement: string): RecentKind {
   if (placement.endsWith("_free") || placement.endsWith("_lead")) return "free";
   if (placement.endsWith("_apply")) return "apply";
   if (placement.endsWith("_book")) return "book";

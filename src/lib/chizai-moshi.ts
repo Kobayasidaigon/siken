@@ -19,7 +19,7 @@ export const MOSHI_PASS_COUNT = 21;     // 合格基準70% = 30問中21問
  * 選定基準: 各分野の頻出論点を難易度A中心（A22/B6/C2）でカバー。
  * 残りの頻出論点は第2回・第3回用に温存している。
  */
-export const MOSHI_1_SLUGS: string[] = [
+const MOSHI_1_SLUGS: string[] = [
   "chizai-001", // 特許法 A 発明の定義
   "chizai-041", // 著作権法 A 著作物の定義
   "chizai-101", // 商標法 A 商標の定義

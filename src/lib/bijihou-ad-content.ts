@@ -2,7 +2,7 @@
  * ビジネス実務法務検定3級の公式講座広告（A8.net SMART合格講座）のページ別訴求文
  */
 
-export interface BijihouAdContent {
+interface BijihouAdContent {
   headline: string;
   body: string;
 }
@@ -14,7 +14,7 @@ export const BIJIHOU_TOP_AD: BijihouAdContent = {
 };
 
 // コラム記事 slug → 訴求文 のマッピング
-export const BIJIHOU_AD_BY_SLUG: Record<string, BijihouAdContent> = {
+const BIJIHOU_AD_BY_SLUG: Record<string, BijihouAdContent> = {
   "bijihou-toha": {
     headline: "取得を決めた方へ",
     body: "メリットを実感するには、まず合格することが必要です。SMART合格講座は民法・会社法・関連法規を講師が順番に整理してくれるので、初めての法律学習でも段階を追って進められます。",

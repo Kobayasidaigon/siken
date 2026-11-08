@@ -3,7 +3,7 @@
  * 各ページの読者心理に合わせた文言を定義
  */
 
-export interface PiiAdContent {
+interface PiiAdContent {
   headline: string;
   body: string;
   ctaContext?: string; // バナー上部の補足
@@ -16,7 +16,7 @@ export const PII_TOP_AD: PiiAdContent = {
 };
 
 // コラム記事 slug → 訴求文 のマッピング
-export const PII_AD_BY_SLUG: Record<string, PiiAdContent> = {
+const PII_AD_BY_SLUG: Record<string, PiiAdContent> = {
   "pii-goukakuritsu": {
     headline: "合格率を上げる近道は",
     body: "合格率35〜50%という数字は、準備の質次第で大きく変わります。試験を実施している協会の公式講座は、出題傾向を踏まえた構成になっているので、独学よりも合格圏に近づきやすいです。",

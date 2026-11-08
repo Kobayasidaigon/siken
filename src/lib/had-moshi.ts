@@ -15,7 +15,7 @@ import { getAllHadQuestions, type HadQuestionData } from "./had-questions";
 export const HAD_MOSHI_TIME_LIMIT_MIN = 90;
 export const HAD_MOSHI_PASS_COUNT = 42;
 
-export const HAD_MOSHI_1_SLUGS: string[] = [
+const HAD_MOSHI_1_SLUGS: string[] = [
   // 課題Ⅰ ハラスメントの理解（12問）
   "had-002", // パワーハラスメントの理解 A 6類型に含まれないもの
   "had-022", // セクハラ・マタハラなどの理解 B 拒否を理由とする不利益

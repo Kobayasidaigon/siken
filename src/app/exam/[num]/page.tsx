@@ -1,3 +1,4 @@
+import SiteLink from "@/components/SiteLink";
 import { getQuestionsByExam, getExamNumbers } from "@/lib/questions";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
@@ -25,7 +26,7 @@ const fieldOrder = ["貸金業法", "利息制限法・出資法", "民法・民
 function QuestionCard({ q, index }: { q: QuestionData; index: number }) {
   const diffColor = { A: "bg-green-100 text-green-800", B: "bg-amber-100 text-amber-800", C: "bg-red-100 text-red-800" }[q.difficulty];
   return (
-    <a
+    <SiteLink
       href={`/q/${q.slug}/`}
       className="card p-4 flex justify-between items-center no-underline group"
       style={{ borderLeft: "3px solid var(--c-kashikin)" }}
@@ -47,7 +48,7 @@ function QuestionCard({ q, index }: { q: QuestionData; index: number }) {
       <svg className="w-4 h-4 text-[color:var(--c-text-sub)] flex-shrink-0 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
       </svg>
-    </a>
+    </SiteLink>
   );
 }
 
@@ -74,9 +75,9 @@ export default async function ExamPage({ params }: { params: Promise<{ num: stri
   return (
     <div className="theme-kashikin pb-16">
       <nav className="breadcrumb text-xs text-[color:var(--c-text-sub)] mb-4 flex gap-1">
-        <a href="/">ホーム</a><span>/</span>
-        <a href="/kashikin/">貸金業務取扱主任者</a><span>/</span>
-        <a href="/exam/">問題一覧</a><span>/</span>
+        <SiteLink href="/">ホーム</SiteLink><span>/</span>
+        <SiteLink href="/kashikin/">貸金業務取扱主任者</SiteLink><span>/</span>
+        <SiteLink href="/exam/">問題一覧</SiteLink><span>/</span>
         <span className="text-[color:var(--c-ink)]">{isOriginal ? "全問一覧" : `第${examNumber}回`}</span>
       </nav>
 
@@ -88,7 +89,7 @@ export default async function ExamPage({ params }: { params: Promise<{ num: stri
 
       {isOriginal && (
         <div className="mb-8">
-          <a href="/kashikin/mock/" className="btn-accent">本番形式テストに挑戦（20問・採点あり）→</a>
+          <SiteLink href="/kashikin/mock/" className="btn-accent">本番形式テストに挑戦（20問・採点あり）→</SiteLink>
         </div>
       )}
 
@@ -130,9 +131,9 @@ export default async function ExamPage({ params }: { params: Promise<{ num: stri
       )}
 
       <nav className="mt-10 flex justify-center pt-4 border-t border-[color:var(--c-border)]">
-        <a href="/kashikin/" className="text-sm text-[color:var(--c-text-sub)] no-underline hover:text-[color:var(--c-kashikin)]">
+        <SiteLink href="/kashikin/" className="text-sm text-[color:var(--c-text-sub)] no-underline hover:text-[color:var(--c-kashikin)]">
           貸金業務取扱主任者トップへ
-        </a>
+        </SiteLink>
       </nav>
     </div>
   );

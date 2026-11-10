@@ -5,6 +5,10 @@
  *   株式会社ワールド・ヒューマン・リソーシス。一方、産業能率大学 総合研究所の「公式通信講座 ＜Web専用＞」のページ
  *   (www.hj.sanno.ac.jp/distance-learning/course/2AM0-01.html)は「東京商工会議所の公式通信講座」と書いている(受講料21,000円で一致)。
  *   このリンク先(B650-01)がその講座かは開けず確かめられなかったので、「東商公式」とは書かない。
+ * 2026-11-10(午後): 旧リンク先(/cp/distance-learning/course/B650-01.html)は /distance-learning/… に転送されて
+ *   「ページが見つかりません」になっていた(AdSense 申し込み前の Cowork の確認で判明)。開けることを確かめた
+ *   2AM0-01「＜Web専用＞ビジネスマネジャー検定試験(R)」(受講料21,000円・税込)に差し替えた。そのページは
+ *   「東京商工会議所の公式通信講座」と書いているが、東商のページには産業能率大学の名前が無いので、文言は変えていない。
  *   「公式テキストは400ページ超」も公式ページで確かめられないため外した。
  * 配置: bijimane の問題ページ・分野ページ・資格トップ・関連コラム末尾
  *
@@ -42,7 +46,7 @@ export default function BijimaneCourseAd({ headline, body }: Props = {}) {
         <FreeLeadCTA exam="bijimane" placement="course_ad" withBadge />
         <BookLeadCTA exam="bijimane" placement="course_ad" />
         <AffiliateLink
-          href="https://www.hj.sanno.ac.jp/cp/distance-learning/course/B650-01.html"
+          href="https://www.hj.sanno.ac.jp/distance-learning/course/2AM0-01.html"
           course="bijimane"
           placement="course_ad"
         >

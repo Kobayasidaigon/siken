@@ -420,12 +420,13 @@ export const EXAM_AFFILIATE: Record<ExamSlug, AffiliateTarget> = {
   },
   // TODO(bijimane): A8で産業能率大学またはTACのプログラムと提携できたら
   //   (2026-11-10: 東商の公式通信講座のページに産業能率大学の名前は無く、申込は運営委託機関の株式会社ワールド・ヒューマン・リソーシス。
-  //   産業能率大学 総合研究所の 2AM0-01「公式通信講座 ＜Web専用＞」は東商の公式通信講座と書いている。下の B650-01 がその講座かは未確認)
+  //   産業能率大学 総合研究所の 2AM0-01「公式通信講座 ＜Web専用＞」は東商の公式通信講座と書いている。
+  //   2026-11-10 午後: 旧リンク先 B650-01 は「ページが見つかりません」になっていたので、開けることを確かめた 2AM0-01 に差し替えた)
   //   a8mat付きリンクへ差し替える。提携可否はユーザー確認待ち(night-batch/INBOX.md 項目1)。
   //   それまではトラッキング無しの講座ページへの直リンクで運用する(収益ゼロだが導線は維持)。
   //   ※ SMART合格講座(情報学習振興協会)はビジネスマネジャー検定を扱っていないため流用しないこと。
   bijimane: {
-    href: "https://www.hj.sanno.ac.jp/cp/distance-learning/course/B650-01.html",
+    href: "https://www.hj.sanno.ac.jp/distance-learning/course/2AM0-01.html",
     label: "産業能率大学の通信講座を見る",
     course: "bijimane",
   },

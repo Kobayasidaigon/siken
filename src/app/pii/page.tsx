@@ -15,7 +15,7 @@ import OfficialSiteLink from "@/components/OfficialSiteLink";
 export const metadata: Metadata = pageMetadata({
   path: "/pii/",
   title: "個人情報保護士 練習問題・過去問対策【全337問・無料】",
-  description: "個人情報保護士認定試験のオリジナル練習問題337問を無料公開。個人情報保護法・マイナンバー法・情報セキュリティの3分野を、根拠条文つきの詳細解説で演習できます。",
+  description: "個人情報保護士認定試験のオリジナル練習問題337問を無料公開。個人情報保護法・マイナンバー法・情報セキュリティの3分野を、1問ずつの詳しい解説で演習できます。",
 });
 
 const fields = [

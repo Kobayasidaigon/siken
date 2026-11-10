@@ -15,7 +15,7 @@ import OfficialSiteLink from "@/components/OfficialSiteLink";
 export const metadata: Metadata = pageMetadata({
   path: "/mynumber/",
   title: "マイナンバー実務検定3級 練習問題・過去問対策【全200問・無料】",
-  description: "マイナンバー実務検定3級のオリジナル練習問題200問を無料公開。番号法・個人番号カード・特定個人情報の保護を、根拠条文つきの詳細解説で演習できます。",
+  description: "マイナンバー実務検定3級のオリジナル練習問題200問を無料公開。番号法・個人番号カード・特定個人情報の保護を、1問ずつの詳しい解説で演習できます。",
 });
 
 const fields = [

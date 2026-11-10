@@ -59,7 +59,7 @@ const SITE_FEATURES = [
   { title: "模擬試験", text: "全員が同じ問題を、制限時間つきで通して解きます。合否の目安と分野別の正答率が出ます。" },
   { title: "復習ドリル", text: "間違えた問題を中心に、20問ずつ続けて解き直せます。" },
   { title: "学習履歴", text: "正誤とブックマークを記録します。記録はお使いのブラウザにだけ保存されます。" },
-  { title: "試験カレンダー", text: "試験日と申込締切を月ごとにまとめています。締切の見落とし防止に。" },
+  { title: "試験カレンダー", text: "日程が公表されている資格の試験日と申込締切を、月ごとにまとめています。締切の見落とし防止に。" },
 ];
 
 export default function Home() {
@@ -581,7 +581,7 @@ export default function Home() {
       <section className="mb-12">
         <h2 className="text-lg font-bold text-[color:var(--c-ink)] mb-2 font-serif">このサイトでできること</h2>
         <p className="text-sm text-[color:var(--c-text-sub)] leading-relaxed mb-5">
-          登録はいりません。どの資格も、次の使い方ができます。
+          登録はいりません。次の使い方ができます。
         </p>
         <dl className="grid sm:grid-cols-2 gap-x-8 gap-y-4 text-sm">
           {SITE_FEATURES.map((f) => (
@@ -602,7 +602,7 @@ export default function Home() {
       <section id="exams" className="mb-12 scroll-mt-20">
         <h2 className="text-lg font-bold text-[color:var(--c-ink)] mb-2 font-serif">いま解ける試験</h2>
         <p className="text-sm text-[color:var(--c-text-sub)] mb-5">
-          申込締切を見落とさないように、全資格の日程を
+          申込締切を見落とさないように、試験日と申込締切を
           <SiteLink href="/calendar/" className="text-[color:var(--c-ink)] underline hover:no-underline mx-1">試験カレンダー</SiteLink>
           にまとめています。
         </p>

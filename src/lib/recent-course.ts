@@ -9,6 +9,8 @@
  * AffiliateLink のクリック時に資格と種類(無料/有料/申込/書籍)を記録し、再訪時に
  * トップ・学習履歴・その資格のトップで RecentCourseReminder が1行だけ静かに出す。
  * 60日で自然消滅。「非表示」を押した資格は30日出さない。
+ * 2026-11-10: 以前は60日を過ぎても表示しないだけで、記録は端末に残り続けていた(プライバシーポリシーは「60日で消えます」)。
+ * 読み込みのたびに、60日を過ぎて非表示の期間も終わった記録を消して書き戻す。
  */
 
 import { EXAM_LIST, type ExamSlug } from "./study-progress";
@@ -34,13 +36,32 @@ function isExamSlug(s: string): s is ExamSlug {
   return EXAM_SLUGS.has(s);
 }
 
-function load(): Store {
+/** 60日を過ぎ、非表示の期間も終わった記録(もう使わない記録) */
+function isExpired(r: RecentCourse | undefined, now: number): boolean {
+  if (!r || typeof r.ts !== "number") return true;
+  return now - r.ts >= TTL_MS && !(r.dismissedUntil && r.dismissedUntil > now);
+}
+
+function load(now: number = Date.now()): Store {
   if (typeof window === "undefined") return {};
   try {
     const raw = localStorage.getItem(KEY);
     if (!raw) return {};
     const parsed = JSON.parse(raw) as Store;
-    return parsed && typeof parsed === "object" ? parsed : {};
+    if (!parsed || typeof parsed !== "object") return {};
+    // 使わなくなった記録は、読んだときに端末から消す
+    let pruned = false;
+    for (const k of Object.keys(parsed) as ExamSlug[]) {
+      if (isExpired(parsed[k], now)) {
+        delete parsed[k];
+        pruned = true;
+      }
+    }
+    if (pruned) {
+      if (Object.keys(parsed).length === 0) localStorage.removeItem(KEY);
+      else localStorage.setItem(KEY, JSON.stringify(parsed));
+    }
+    return parsed;
   } catch {
     return {};
   }
@@ -81,7 +102,7 @@ export function recordCourseClick(course: string, placement: string): void {
 
 /** 期限内かつ非表示中でない記録を新しい順に返す */
 export function loadRecentCourses(now: number = Date.now()): RecentCourse[] {
-  const store = load();
+  const store = load(now);
   return Object.values(store)
     .filter((r): r is RecentCourse => Boolean(r) && isExamSlug(r!.exam))
     .filter((r) => now - r.ts < TTL_MS)

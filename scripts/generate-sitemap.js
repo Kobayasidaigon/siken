@@ -1,6 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 const { execSync } = require("child_process");
+const matter = require("gray-matter");
 
 // CI(Vercel)は shallow clone のため git の履歴からも正しい更新日を引けず、
 // 全URL同一の偽 lastmod を生成してしまう。CIではローカル生成してコミット済みの
@@ -613,7 +614,12 @@ const contentPages = [
 // 合格報告の一覧は、掲載済みの報告が1件でもあるときだけ sitemap に載せる。
 // 0件のうちは中身が「報告のお願い」だけなので、検索結果に出しても価値がない
 // (ページ側も 0件のときは noindex にしてある: src/app/voice/page.tsx)。
-const voices = collect(path.join(__dirname, "../src/content/voices"));
+// 必須項目(exam・examPeriod・result・publishedAt)が欠けた下書きは数えない(src/lib/voices.ts の isPublishable と同じ基準。2026-11-10)
+const voicesDir = path.join(__dirname, "../src/content/voices");
+const voices = collect(voicesDir).filter((e) => {
+  const { data } = matter(fs.readFileSync(path.join(voicesDir, `${e.slug}.md`), "utf-8"));
+  return Boolean(data.exam && data.examPeriod && data.result && data.publishedAt);
+});
 const voicePages =
   voices.length > 0
     ? [{ url: "/voice/", priority: "0.6", freq: "weekly", lastmod: maxDate(voices, todayFallback) }]
@@ -636,12 +642,17 @@ const isQuestionUrl = (url) => /^\/(?:[a-z0-9]+\/)?q\//.test(url);
 //   - 試験カレンダーの終わった月(src/app/calendar/[ym]/page.tsx)
 const fieldGuidesDir = path.join(__dirname, "../src/content/field-guides");
 const currentYmJst = new Date(Date.now() + 9 * 3600 * 1000).toISOString().slice(0, 7);
-/** 分野ページなら要点の本文があるかを返す。分野ページでなければ null */
-function fieldGuideExists(url) {
+/** 分野ページなら要点の本文のファイルのパスを返す(ファイルがあるかは問わない)。分野ページでなければ null */
+function fieldGuidePath(url) {
   const m = url.match(/^\/(?:([a-z0-9]+)\/)?field\/([a-z0-9-]+)\/$/);
   if (!m) return null;
   const exam = m[1] || "kashikin"; // 貸金の分野ページは /field/<slug>/
-  return fs.existsSync(path.join(fieldGuidesDir, exam, `${m[2]}.md`));
+  return path.join(fieldGuidesDir, exam, `${m[2]}.md`);
+}
+/** 分野ページなら要点の本文があるかを返す。分野ページでなければ null */
+function fieldGuideExists(url) {
+  const p = fieldGuidePath(url);
+  return p === null ? null : fs.existsSync(p);
 }
 const isEndedCalendarMonth = (url) => {
   const m = url.match(/^\/calendar\/(\d{4}-\d{2})\/$/);
@@ -662,7 +673,14 @@ const allPages = [
   { url: "/column/", priority: "0.8", freq: "weekly", lastmod: columnsMax },
   ...voicePages,
   ...contentPages.filter((p) => !isQuestionUrl(p.url)),
-].filter((p) => !isNoindexUrl(p.url));
+]
+  .filter((p) => !isNoindexUrl(p.url))
+  // 要点の本文がある分野ページの lastmod は、問題の更新日と要点の更新日の新しいほう。
+  // 要点を置いて index に戻ったこと・要点を直したことを、検索エンジンに伝えるため(2026-11-10)
+  .map((p) => {
+    const guide = fieldGuidePath(p.url);
+    return guide && fs.existsSync(guide) ? { ...p, lastmod: [p.lastmod, fileDate(guide)].sort().at(-1) } : p;
+  });
 
 const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">

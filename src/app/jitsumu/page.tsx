@@ -15,7 +15,7 @@ import OfficialSiteLink from "@/components/OfficialSiteLink";
 export const metadata: Metadata = pageMetadata({
   path: "/jitsumu/",
   title: "個人情報保護実務検定 練習問題・過去問対策【全200問・無料】",
-  description: "個人情報保護実務検定のオリジナル練習問題200問を無料公開。個人情報保護法の実務運用(1級・2級対応)を、根拠条文つきの詳細解説で演習できます。",
+  description: "個人情報保護実務検定のオリジナル練習問題200問を無料公開。個人情報保護法の実務運用(1級・2級対応)を、1問ずつの詳しい解説で演習できます。",
 });
 
 const fields = [

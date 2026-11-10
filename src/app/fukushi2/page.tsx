@@ -156,7 +156,7 @@ export default async function Fukushi2Page() {
             <SiteLink href="/shakai/" className="underline hover:no-underline">
               社会福祉士（共通科目）
             </SiteLink>
-            の「社会保障」「障害者福祉」とそのまま重なります。相談援助の仕事に進むなら次の一歩になる国家資格です。
+            の「社会保障」「障害者福祉」と重なる論点があります。相談援助の仕事に進むなら次の一歩になる国家資格です。
           </p>
           <p>
             当サイトでは社会福祉士の共通科目12科目から200問を公開しています。共通科目は精神保健福祉士とも共通なので、どちらを目指す場合にも使えます。

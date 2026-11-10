@@ -901,7 +901,7 @@ export default async function ColumnPage({ params }: { params: Promise<{ slug: s
           {isPiiArticle ? (
             <>
               <SiteLink href="/pii/q/pii-001/" className="text-sm text-blue-700 no-underline hover:underline">個情保 全300問を見る →</SiteLink>
-              <SiteLink href="/pii/mock/" className="text-sm text-slate-500 no-underline hover:underline">本番形式で腕試し →</SiteLink>
+              <SiteLink href="/pii/mock/" className="text-sm text-slate-500 no-underline hover:underline">腕試しテスト（ランダム20問）→</SiteLink>
               <SiteLink href="/pii/" className="text-sm text-slate-500 no-underline hover:underline">分野別に選ぶ →</SiteLink>
             </>
           ) : isMynumberArticle ? (
@@ -922,25 +922,25 @@ export default async function ColumnPage({ params }: { params: Promise<{ slug: s
           ) : isFukushi2Article ? (
             <>
               <SiteLink href="/fukushi2/" className="text-sm text-blue-700 no-underline hover:underline">福祉住環境2級 全230問を見る →</SiteLink>
-              <SiteLink href="/fukushi2/mock/" className="text-sm text-slate-500 no-underline hover:underline">本番形式で腕試し →</SiteLink>
+              <SiteLink href="/fukushi2/mock/" className="text-sm text-slate-500 no-underline hover:underline">腕試しテスト（ランダム20問）→</SiteLink>
               <SiteLink href="/fukushi2/field/kaigohoken/" className="text-sm text-slate-500 no-underline hover:underline">介護保険と住宅改修の問題から始める →</SiteLink>
             </>
           ) : isEcoArticle ? (
             <>
               <SiteLink href="/eco/" className="text-sm text-blue-700 no-underline hover:underline">eco検定 全200問を見る →</SiteLink>
-              <SiteLink href="/eco/mock/" className="text-sm text-slate-500 no-underline hover:underline">本番形式で腕試し →</SiteLink>
+              <SiteLink href="/eco/mock/" className="text-sm text-slate-500 no-underline hover:underline">腕試しテスト（ランダム20問）→</SiteLink>
               <SiteLink href="/eco/field/climate/" className="text-sm text-slate-500 no-underline hover:underline">気候変動とエネルギーの問題から始める →</SiteLink>
             </>
           ) : isBijimaneArticle ? (
             <>
               <SiteLink href="/bijimane/" className="text-sm text-blue-700 no-underline hover:underline">ビジマネ 全200問を見る →</SiteLink>
-              <SiteLink href="/bijimane/mock/" className="text-sm text-slate-500 no-underline hover:underline">本番形式で腕試し →</SiteLink>
+              <SiteLink href="/bijimane/mock/" className="text-sm text-slate-500 no-underline hover:underline">腕試しテスト（ランダム20問）→</SiteLink>
               <SiteLink href="/bijimane/field/leadership/" className="text-sm text-slate-500 no-underline hover:underline">部下のマネジメントの問題から始める →</SiteLink>
             </>
           ) : slug.startsWith("chizai2-") ? (
             <>
               <SiteLink href="/chizai2/" className="text-sm text-blue-700 no-underline hover:underline">知財2級の練習問題を見る →</SiteLink>
-              <SiteLink href="/chizai2/mock/" className="text-sm text-slate-500 no-underline hover:underline">本番形式で腕試し →</SiteLink>
+              <SiteLink href="/chizai2/mock/" className="text-sm text-slate-500 no-underline hover:underline">腕試しテスト（ランダム20問）→</SiteLink>
               <SiteLink href="/chizai/" className="text-sm text-slate-500 no-underline hover:underline">3級から始める →</SiteLink>
             </>
           ) : isSoumuArticle ? (
@@ -1073,13 +1073,13 @@ export default async function ColumnPage({ params }: { params: Promise<{ slug: s
           ) : slug.startsWith("chizai-") ? (
             <>
               <SiteLink href="/chizai/" className="text-sm text-blue-700 no-underline hover:underline">知財3級の練習問題を見る →</SiteLink>
-              <SiteLink href="/chizai/mock/" className="text-sm text-slate-500 no-underline hover:underline">本番形式で腕試し →</SiteLink>
+              <SiteLink href="/chizai/mock/" className="text-sm text-slate-500 no-underline hover:underline">腕試しテスト（ランダム20問）→</SiteLink>
               <SiteLink href="/chizai/field/patent/" className="text-sm text-slate-500 no-underline hover:underline">特許法の問題から始める →</SiteLink>
             </>
           ) : (
             <>
               <SiteLink href="/exam/0/" className="text-sm text-blue-700 no-underline hover:underline">全504問を見る →</SiteLink>
-              <SiteLink href="/kashikin/mock/" className="text-sm text-slate-500 no-underline hover:underline">本番形式で腕試し →</SiteLink>
+              <SiteLink href="/kashikin/mock/" className="text-sm text-slate-500 no-underline hover:underline">腕試しテスト（ランダム20問）→</SiteLink>
               <SiteLink href="/field/" className="text-sm text-slate-500 no-underline hover:underline">分野別に選ぶ →</SiteLink>
             </>
           )}

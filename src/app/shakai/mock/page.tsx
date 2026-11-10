@@ -5,7 +5,7 @@ import { pageMetadata } from "@/lib/page-metadata";
 import MockExam, { type MockQuestion } from "@/app/kashikin/mock/MockExam";
 
 /**
- * 社会福祉士（共通科目）の本番形式テスト。
+ * 社会福祉士（共通科目）の腕試しテスト。
  *
  * passPct の根拠: 本試験の合格基準は「総得点の約60%」(試験センター公表)。
  * ただし毎年の難易度で補正され、さらに6科目群すべてで得点があることも要件になる。
@@ -16,7 +16,7 @@ export const metadata: Metadata = pageMetadata({
   path: "/shakai/mock/",
   // 20問を出すボタンと案内だけで、そのページにしかない文章がほとんど無いため検索に出さない(2026-11-10)
   noindex: true,
-  title: "社会福祉士 共通科目 本番形式テスト｜採点・苦手分野判定つき",
+  title: "社会福祉士 共通科目 腕試しテスト（ランダム20問）｜採点・苦手分野判定つき",
   description:
     "社会福祉士国家試験の共通科目のオリジナル問題からランダム20問を出題。最後に得点と苦手分野を自動判定し、弱点を重点的に復習できます。登録不要・無料。",
 });
@@ -38,10 +38,10 @@ export default async function ShakaiMockPage() {
         <span>/</span>
         <SiteLink href="/shakai/">社会福祉士</SiteLink>
         <span>/</span>
-        <span className="text-[color:var(--c-ink)]">本番形式テスト</span>
+        <span className="text-[color:var(--c-ink)]">腕試しテスト</span>
       </nav>
 
-      <h1 className="text-xl sm:text-2xl font-bold text-[color:var(--c-ink)] mb-2 font-serif">本番形式テスト</h1>
+      <h1 className="text-xl sm:text-2xl font-bold text-[color:var(--c-ink)] mb-2 font-serif">腕試しテスト</h1>
       <div className="w-12 h-1 mb-5" style={{ background: "var(--c-eco)" }}></div>
 
       <p className="text-xs text-[color:var(--c-text-sub)] mb-5">

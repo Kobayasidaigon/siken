@@ -96,7 +96,7 @@ export default async function IsecFieldPage({ params }: { params: Promise<{ slug
           <SiteLink href="/isf/" className="underline hover:no-underline">
             情報・サイバーセキュリティ初級
           </SiteLink>
-          だけで出題されます。サイバー攻撃の仕組みを理解する土台として、問題は参考に残しています（模擬試験・本番形式テストには出題しません）。
+          だけで出題されます。サイバー攻撃の仕組みを理解する土台として、問題は参考に残しています（模擬試験・腕試しテストには出題しません）。
         </p>
       ) : (
         <p className="text-xs text-[color:var(--c-text-sub)] mb-2">本試験の{field.task}に対応する分野です。</p>

@@ -75,7 +75,7 @@ export default async function BijimaneMoshiPage() {
         また本試験には時事問題が含まれる場合がありますが、本模試には含まれません。
         問題はすべて当サイトで作成したオリジナルで、実際の試験問題の転載ではありません。合格判定はあくまで学習の目安です。
         時間を計らずに力試しをしたい方は
-        <SiteLink href="/bijimane/mock/" className="underline hover:no-underline">本番形式テスト（ランダム20問）</SiteLink>へ、
+        <SiteLink href="/bijimane/mock/" className="underline hover:no-underline">腕試しテスト（ランダム20問）</SiteLink>へ、
         1問ずつじっくり学びたい方は<SiteLink href="/bijimane/" className="underline hover:no-underline">練習問題200問</SiteLink>へ。
       </p>
     </div>

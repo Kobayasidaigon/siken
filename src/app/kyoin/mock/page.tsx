@@ -5,7 +5,7 @@ import { pageMetadata } from "@/lib/page-metadata";
 import MockExam, { type MockQuestion } from "@/app/kashikin/mock/MockExam";
 
 /**
- * 教員採用試験の本番形式テスト。
+ * 教員採用試験の腕試しテスト。
  *
  * passPct の根拠: 教員採用試験は自治体ごとに実施され、合格ラインが公表されない
  * 自治体がほとんどで、全国共通の「合格点」が存在しない。倍率も自治体・校種で大きく違う。
@@ -17,7 +17,7 @@ export const metadata: Metadata = pageMetadata({
   path: "/kyoin/mock/",
   // 20問を出すボタンと案内だけで、そのページにしかない文章がほとんど無いため検索に出さない(2026-11-10)
   noindex: true,
-  title: "教員採用試験 教職教養 本番形式テスト｜採点・苦手分野判定つき",
+  title: "教員採用試験 教職教養 腕試しテスト（ランダム20問）｜採点・苦手分野判定つき",
   description:
     "教員採用試験の教職教養・一般教養のオリジナル問題からランダム20問を出題。最後に得点と苦手分野を自動判定し、弱点を重点的に復習できます。登録不要・無料。",
 });
@@ -39,10 +39,10 @@ export default async function KyoinMockPage() {
         <span>/</span>
         <SiteLink href="/kyoin/">教員採用試験</SiteLink>
         <span>/</span>
-        <span className="text-[color:var(--c-ink)]">本番形式テスト</span>
+        <span className="text-[color:var(--c-ink)]">腕試しテスト</span>
       </nav>
 
-      <h1 className="text-xl sm:text-2xl font-bold text-[color:var(--c-ink)] mb-2 font-serif">本番形式テスト</h1>
+      <h1 className="text-xl sm:text-2xl font-bold text-[color:var(--c-ink)] mb-2 font-serif">腕試しテスト</h1>
       <div className="w-12 h-1 mb-5" style={{ background: "var(--c-fukushi)" }}></div>
 
       <p className="text-xs text-[color:var(--c-text-sub)] mb-5">

@@ -8,7 +8,7 @@ export const metadata: Metadata = pageMetadata({
   path: "/pii/mock/",
   // 20問を出すボタンと案内だけで、そのページにしかない文章がほとんど無いため検索に出さない(2026-11-10)
   noindex: true,
-  title: "個人情報保護士 本番形式テスト｜採点・苦手分野判定つき",
+  title: "個人情報保護士 腕試しテスト（ランダム20問）｜採点・苦手分野判定つき",
   description:
     "個人情報保護士認定試験のオリジナル問題からランダム20問を出題。最後に得点と苦手分野を自動判定し、弱点を重点的に復習できます。",
 });
@@ -28,14 +28,14 @@ export default async function PiiMockPage() {
       <nav className="breadcrumb text-xs text-[color:var(--c-text-sub)] mb-4 flex gap-1">
         <SiteLink href="/">ホーム</SiteLink><span>/</span>
         <SiteLink href="/pii/">個人情報保護士</SiteLink><span>/</span>
-        <span className="text-[color:var(--c-ink)]">本番形式テスト</span>
+        <span className="text-[color:var(--c-ink)]">腕試しテスト</span>
       </nav>
 
-      <h1 className="text-xl sm:text-2xl font-bold text-[color:var(--c-ink)] mb-2 font-serif">本番形式テスト</h1>
+      <h1 className="text-xl sm:text-2xl font-bold text-[color:var(--c-ink)] mb-2 font-serif">腕試しテスト</h1>
       <div className="w-12 h-1 mb-5" style={{ background: "var(--c-pii)" }}></div>
 
       <p className="text-xs text-[color:var(--c-text-sub)] mb-5">
-        本試験と同じ100問・150分・課題別判定で腕試しするなら
+        本試験と同じ100問・150分・課題別判定で解くなら
         <SiteLink href="/pii/moshi/" className="underline hover:no-underline">模擬試験 第1回（無料）</SiteLink>へ。
       </p>
 

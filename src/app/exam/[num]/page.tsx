@@ -94,7 +94,7 @@ export default async function ExamPage({ params }: { params: Promise<{ num: stri
 
       {isOriginal && (
         <div className="mb-8">
-          <SiteLink href="/kashikin/mock/" className="btn-accent">本番形式テストに挑戦（20問・採点あり）→</SiteLink>
+          <SiteLink href="/kashikin/mock/" className="btn-accent">腕試しテストに挑戦（ランダム20問・採点あり）→</SiteLink>
         </div>
       )}
 

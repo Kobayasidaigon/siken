@@ -15,7 +15,7 @@ test("sitemap が読める", () => {
   assert.ok(urls.length > 100, `URL が ${urls.length} 件しかない`);
 });
 
-test("問題ページ・本番形式テスト・論点まとめ・問題一覧・特商法ページが入っていない", () => {
+test("問題ページ・腕試しテスト・論点まとめ・問題一覧・特商法ページが入っていない", () => {
   const bad = urls.filter(
     (u) =>
       /^\/(?:[a-z0-9]+\/)?q\//.test(u) ||
@@ -75,7 +75,7 @@ test("一覧・入口のページはソースで noindex を指定している",
     const mock = path.join("src/app", dir, "mock/page.tsx");
     if (fs.existsSync(mock)) files.push(mock);
   }
-  assert.equal(files.filter((f) => f.endsWith("mock/page.tsx")).length, 33, "本番形式テストのページは33資格ぶん");
+  assert.equal(files.filter((f) => f.endsWith("mock/page.tsx")).length, 33, "腕試しテストのページは33資格ぶん");
   const missing = files.filter((f) => !/noindex:\s*true/.test(read(f)));
   assert.deepEqual(missing, []);
 });

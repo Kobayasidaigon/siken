@@ -63,7 +63,7 @@ updatedAt: "2026-11-10"
 
 ## 試験日までの学習に
 
-当サイトでは、貸金業務取扱主任者の練習問題を無料で公開しています。[練習問題のトップページ](/kashikin/)から始められるほか、[貸金業法の分野別問題](/field/kashikingyouhou/)のように分野ごとに解くこともできます。[本番形式テスト](/kashikin/mock/)では採点と苦手分野の判定ができ、本番と同じ50問・120分の[模擬試験](/kashikin/moshi/)もあります。合格率の推移は[合格率の記事](/column/goukakuritsu/)、過去問の使い方は[過去問の記事](/column/kashikin-kakomonn/)、学習の進め方は[勉強法の記事](/column/benkyouhou/)で紹介しています。
+当サイトでは、貸金業務取扱主任者の練習問題を無料で公開しています。[練習問題のトップページ](/kashikin/)から始められるほか、[貸金業法の分野別問題](/field/kashikingyouhou/)のように分野ごとに解くこともできます。[腕試しテスト](/kashikin/mock/)では採点と苦手分野の判定ができ、本番と同じ50問・120分の[模擬試験](/kashikin/moshi/)もあります。合格率の推移は[合格率の記事](/column/goukakuritsu/)、過去問の使い方は[過去問の記事](/column/kashikin-kakomonn/)、学習の進め方は[勉強法の記事](/column/benkyouhou/)で紹介しています。
 
 ## 出典
 

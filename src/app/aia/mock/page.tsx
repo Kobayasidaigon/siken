@@ -5,7 +5,7 @@ import { pageMetadata } from "@/lib/page-metadata";
 import MockExam, { type MockQuestion } from "@/app/kashikin/mock/MockExam";
 
 /**
- * AI活用アドバイザー認定試験の本番形式テスト。
+ * AI活用アドバイザー認定試験の腕試しテスト。
  * passPct の根拠: 本試験の合格基準(70%（152点満点中107点）以上)に合わせ 70% を渡す。
  * 既定値の60%のままだと、合格ラインに届いていない点数に「合格ラインは超えています」と出てしまう。
  */
@@ -14,7 +14,7 @@ export const metadata: Metadata = pageMetadata({
   path: "/aia/mock/",
   // 20問を出すボタンと案内だけで、そのページにしかない文章がほとんど無いため検索に出さない(2026-11-10)
   noindex: true,
-  title: "AI活用アドバイザー認定試験 本番形式テスト｜採点・苦手分野判定つき",
+  title: "AI活用アドバイザー認定試験 腕試しテスト（ランダム20問）｜採点・苦手分野判定つき",
   description:
     "AI活用アドバイザー認定試験のオリジナル問題からランダム20問を出題。最後に得点と苦手分野を自動判定し、弱点を重点的に復習できます。登録不要・無料。",
 });
@@ -34,14 +34,14 @@ export default async function AiaMockPage() {
       <nav className="breadcrumb text-xs text-[color:var(--c-text-sub)] mb-4 flex gap-1">
         <SiteLink href="/">ホーム</SiteLink><span>/</span>
         <SiteLink href="/aia/">AI活用アドバイザー</SiteLink><span>/</span>
-        <span className="text-[color:var(--c-ink)]">本番形式テスト</span>
+        <span className="text-[color:var(--c-ink)]">腕試しテスト</span>
       </nav>
 
-      <h1 className="text-xl sm:text-2xl font-bold text-[color:var(--c-ink)] mb-2 font-serif">本番形式テスト</h1>
+      <h1 className="text-xl sm:text-2xl font-bold text-[color:var(--c-ink)] mb-2 font-serif">腕試しテスト</h1>
       <div className="w-12 h-1 mb-5" style={{ background: "var(--c-pii)" }}></div>
 
       <p className="text-xs text-[color:var(--c-text-sub)] mb-5">
-        本試験の問題数・時間で腕試しするなら
+        本試験の問題数・時間で解くなら
         <SiteLink href="/aia/moshi/" className="underline hover:no-underline">模擬試験 第1回（無料）</SiteLink>
         へ。
       </p>

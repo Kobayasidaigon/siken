@@ -10,7 +10,7 @@
  * 2026-10-10: 本試験は 2026年2月の試験から課題Ⅰ〜Ⅲの3課題・180問・120分になった
  * (協会の /isme/・/isme/naiyou.php。課題Ⅳ「コンピュータの一般知識」は初級だけに残った)。
  * 旧課題Ⅳの2分野(network / computer)は問題とURLを残し、outOfScope で「参考」として扱う。
- * 模擬試験・本番形式テストの出題からは外している(isec-moshi.ts、isec/mock)。
+ * 模擬試験・腕試しテストの出題からは外している(isec-moshi.ts、isec/mock)。
  */
 
 interface IsecField {
@@ -86,7 +86,7 @@ export const ISEC_FIELD_SLUG_BY_NAME: Record<string, string> = Object.fromEntrie
 /** 本試験の出題範囲(課題Ⅰ〜Ⅲ)の分野だけ */
 const ISEC_SCOPE_FIELDS: IsecField[] = ISEC_FIELDS.filter((f) => !f.outOfScope);
 
-/** 出題範囲の分野名。模擬試験・本番形式テストの絞り込みに使う */
+/** 出題範囲の分野名。模擬試験・腕試しテストの絞り込みに使う */
 export const ISEC_SCOPE_FIELD_NAMES: Set<string> = new Set(ISEC_SCOPE_FIELDS.map((f) => f.name));
 
 export function isecFieldBySlug(slug: string): IsecField | undefined {

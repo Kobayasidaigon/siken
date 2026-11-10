@@ -92,7 +92,7 @@ export default async function Fukushi2MoshiPage() {
         基づく推定の構成で、実際の試験と異なる場合があります（受験者の体験談で挙がっている図面を使った問題や、公式の練習問題にある
         穴埋め問題は対象外です）。当サイトで作成したオリジナル問題で、実際の試験問題の転載ではありません。
         合格判定はあくまで学習の目安です。時間を計らずに力試しをしたい方は
-        <SiteLink href="/fukushi2/mock/" className="underline hover:no-underline">本番形式テスト（ランダム20問）</SiteLink>へ、
+        <SiteLink href="/fukushi2/mock/" className="underline hover:no-underline">腕試しテスト（ランダム20問）</SiteLink>へ、
         1問ずつじっくり学びたい方は<SiteLink href="/fukushi2/" className="underline hover:no-underline">練習問題230問</SiteLink>へ。
       </p>
     </div>

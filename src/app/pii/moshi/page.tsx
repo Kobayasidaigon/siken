@@ -70,7 +70,7 @@ export default async function PiiMoshiPage() {
         ※本模試は当サイトで作成したオリジナル問題で構成しており、実際の過去問題の転載ではありません。
         本試験では、問題の難易度により正答率70%未満でも合格となる場合があると公式に案内されています(本模試は70%固定で判定)。
         合否判定はあくまで学習の目安です。時間を計らずに力試しをしたい方は
-        <SiteLink href="/pii/mock/" className="underline hover:no-underline">本番形式テスト（ランダム20問）</SiteLink>へ、
+        <SiteLink href="/pii/mock/" className="underline hover:no-underline">腕試しテスト（ランダム20問）</SiteLink>へ、
         1問ずつじっくり学びたい方は<SiteLink href="/pii/" className="underline hover:no-underline">練習問題300問</SiteLink>へ。
       </p>
     </div>

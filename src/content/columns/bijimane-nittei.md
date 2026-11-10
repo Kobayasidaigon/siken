@@ -55,7 +55,7 @@ updatedAt: "2026-11-10"
 - **IBTで受けるなら受験環境を確かめておく**：機材と通信環境は自分で用意するため、公式サイトのIBT方式の案内で条件を早めに確認しておけます。
 - **受験上の配慮が必要なら早めに準備する**：配慮を希望する場合は、申込の前に申請が必要です。
 
-学習面では、当サイトの[練習問題](/bijimane/)で分野ごとの知識を確かめ、仕上げに[模擬試験](/bijimane/moshi/)で90分を計って解いたり、[本番形式テスト](/bijimane/mock/)で苦手分野を確かめたりできます。教材の選び方は[公式テキストと問題集の記事](/column/bijimane-text/)、学習計画は[勉強時間の記事](/column/bijimane-benkyou-jikan/)、進め方は[勉強法の記事](/column/bijimane-benkyouhou/)で紹介しています。
+学習面では、当サイトの[練習問題](/bijimane/)で分野ごとの知識を確かめ、仕上げに[模擬試験](/bijimane/moshi/)で90分を計って解いたり、[腕試しテスト](/bijimane/mock/)で苦手分野を確かめたりできます。教材の選び方は[公式テキストと問題集の記事](/column/bijimane-text/)、学習計画は[勉強時間の記事](/column/bijimane-benkyou-jikan/)、進め方は[勉強法の記事](/column/bijimane-benkyouhou/)で紹介しています。
 
 ## 出典
 

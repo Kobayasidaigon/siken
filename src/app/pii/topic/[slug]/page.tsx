@@ -154,7 +154,7 @@ export default async function PiiTopicPage({ params }: { params: Promise<{ slug:
           </SiteLink>
         )}
         <SiteLink href="/pii/mock/" className="text-blue-700 hover:underline">
-          本番形式テストで力試しする →
+          腕試しテスト（ランダム20問）を受ける →
         </SiteLink>
       </nav>
 

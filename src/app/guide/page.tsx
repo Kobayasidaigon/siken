@@ -99,7 +99,7 @@ export default async function GuidePage() {
 
       <h3>Step 3：苦手な分野を解き直す</h3>
       <p>
-        <SiteLink href="/kashikin/mock/">本番形式テスト（20問）</SiteLink>で分野別の正答率を見て、低い分野を解き直します。
+        <SiteLink href="/kashikin/mock/">腕試しテスト（20問）</SiteLink>で分野別の正答率を見て、低い分野を解き直します。
         <SiteLink href="/study/">学習履歴</SiteLink>の復習ドリルでは、間違えた問題を先に20問ずつ解けます。
       </p>
 

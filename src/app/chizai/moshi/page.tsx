@@ -65,7 +65,7 @@ export default async function ChizaiMoshiPage() {
       <p className="text-xs text-[color:var(--c-text-sub)] mt-8 max-w-2xl leading-relaxed">
         ※本模試は当サイトで作成したオリジナル問題で構成しており、実際の過去問題の転載ではありません。
         合否判定はあくまで学習の目安です。時間を計らずに力試しをしたい方は
-        <SiteLink href="/chizai/mock/" className="underline hover:no-underline">本番形式テスト（ランダム20問）</SiteLink>へ、
+        <SiteLink href="/chizai/mock/" className="underline hover:no-underline">腕試しテスト（ランダム20問）</SiteLink>へ、
         1問ずつじっくり学びたい方は<SiteLink href="/chizai/" className="underline hover:no-underline">練習問題</SiteLink>へ。
       </p>
     </div>

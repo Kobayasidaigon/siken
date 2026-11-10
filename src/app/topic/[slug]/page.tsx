@@ -156,7 +156,7 @@ export default async function KashikinTopicPage({ params }: { params: Promise<{ 
           </SiteLink>
         )}
         <SiteLink href="/kashikin/mock/" className="text-blue-700 hover:underline">
-          本番形式テストで力試しする →
+          腕試しテスト（ランダム20問）を受ける →
         </SiteLink>
       </nav>
 

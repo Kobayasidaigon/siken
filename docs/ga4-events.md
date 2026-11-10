@@ -10,7 +10,7 @@
 
 **送る値を足すときは、プライバシーポリシー（`src/app/privacy/page.tsx` の「学習進捗データ」）とそろえること。**
 ポリシーは「学習履歴そのもの（解いた問題の一覧・正誤・ブックマーク・メダル）は送らない。問題に答えたこと（資格と正誤）、
-模試・本番形式テスト・試験前の10問の得点、模試の合否とかかった時間、復習ドリルの出題数と内訳、ボタンを押したことなどの操作は GA4 に送る。ページの URL も一緒に届く。試験前の10問の点はリンクの URL に入る」と
+模試・腕試しテスト・試験前の10問の得点、模試の合否とかかった時間、復習ドリルの出題数と内訳、ボタンを押したことなどの操作は GA4 に送る。ページの URL も一緒に届く。試験前の10問の点はリンクの URL に入る」と
 書いている（2026-10-25 改訂）。これに無い種類の値（例: 学習履歴から数えた解いた数・網羅率、問題ごとのメダルの変化）を送るなら、
 先にポリシーを書き換える。
 
@@ -25,7 +25,7 @@
 | `placement` | イベント | 面ごとの比較。この台帳のいちばんの用途 |
 | `exam` | イベント | 資格別の分解。`course` と値域はほぼ同じだが別のパラメータ |
 | `result` | イベント | 正解／不正解の比 |
-| `kind` | イベント | 模試・本番形式テストなど、リンク先の種類 |
+| `kind` | イベント | 模試・腕試しテストなど、リンク先の種類 |
 | `mode` / `round` | イベント | 模試の第1回と第2回（有料）の区別 |
 
 キーイベント（旧コンバージョン）にすると良いもの：`affiliate_click` / `studio_click` / `purchase` /
@@ -50,15 +50,15 @@ GA4 の「収益」は **`purchase` イベントの `value` と `currency` か�
 |---|---|---|
 | `question_answered` | 問題ページで答え合わせ。2026-10-24 からコラム本文中の1問のカード(`InlineQuestion`)でも送る | `exam`, `result`(correct/wrong/revealed), `placement`(カードだけ: column_inline_q。問題ページは送らない) |
 | `next_q_click` | 「次の問題へ」 | `exam` |
-| `practice_link_click` | 問題ページから模試・本番形式テスト・コラムへ。コラムの1問のカードから問題ページへ | `exam`, `kind`(mock/moshi/column。カードは next_question/explanation), `placement`(question_mid/question_end/column_inline_q) |
-| `mock_start` | 本番形式テストの開始（全14資格が共有） | `exam`, `size` |
+| `practice_link_click` | 問題ページから模試・腕試しテスト・コラムへ。コラムの1問のカードから問題ページへ | `exam`, `kind`(mock/moshi/column。カードは next_question/explanation), `placement`(question_mid/question_end/column_inline_q) |
+| `mock_start` | 腕試しテストの開始（全14資格が共有） | `exam`, `size` |
 | `mock_complete` | 同 採点 | `exam`, `size`, `correct`, `score_bucket`, `passed` |
 | `moshi_start` / `moshi_complete` | 模擬試験。`round` で第1回（無料）と第2回（有料）を区別する | `exam`, `round`, `mode`, `score`, `size`, `score_bucket`, `passed`, `timeout`, `minutes` |
 | `drill_start` | 復習ドリルの開始 | `exam`, `size`, `bronze`, `silver`（出題した中の銅・銀の数。2026-10-24 まではその資格の銅・銀の総数を送っていた） |
 | `drill_next` | ドリルの次の問題へ | `exam` |
 | `drill_complete` | ドリルを解き終えた | `exam`, `size` |
 | `progress_export` / `progress_import` | 学習履歴の書き出し・読み込み | `mode`(merge/replace) |
-| `share_click` | 結果の共有（模試・本番形式テスト・試験前の10問） | `exam`, `channel`(x/line/share/copy), `place`(模試だけ。過去との連続のため), `placement`(moshi_result/mock_result/shikenmae_result), `with_score`・`shared`(試験前の10問だけ。1/0) |
+| `share_click` | 結果の共有（模試・腕試しテスト・試験前の10問） | `exam`, `channel`(x/line/share/copy), `place`(模試だけ。過去との連続のため), `placement`(moshi_result/mock_result/shikenmae_result), `with_score`・`shared`(試験前の10問だけ。1/0) |
 | `shikenmae_entry_click` | 「試験前の10問」への入口（2026-10-25〜。`lib/shikenmae.ts`） | `exam`, `placement`(cert_top/column/question_mid/question_end) |
 | `shikenmae_view` | 試験前の10問のページを開いた | `exam`, `placement`(event/shared/archive。URL と日付で決まる) |
 | `shikenmae_start` | 1問目に答えた（窓の間の2回目は送らない） | `exam` |

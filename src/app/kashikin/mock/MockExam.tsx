@@ -2,7 +2,7 @@
 
 import SiteLink from "@/components/SiteLink";
 /**
- * 本番形式テスト（採点・苦手分野判定つき）。
+ * 腕試しテスト（採点・苦手分野判定つき）。
  *
  * 監査で「複数問を解いた後のスコア結果＝最強の購入intent面」がサイトに無い、と判明したため新設。
  * フロー: intro → 出題プールからランダムN問 → 1問ずつ解答（解答中は正解非表示）→ 採点 →
@@ -53,7 +53,7 @@ function shuffle<T>(arr: T[]): T[] {
 }
 
 /**
- * 本番形式テストの計測。2026-09-07 追加。
+ * 腕試しテストの計測。2026-09-07 追加。
  *
  * このコンポーネントは7資格の /mock/ が共有しているのに、GA のイベントを
  * 1つも送っていなかった(import すら無かった)。開始も完了も測れていないので、
@@ -142,7 +142,7 @@ export default function MockExam({
     return (
       <div className="card p-6">
         <h2 className="text-lg font-bold font-serif mb-3" style={{ color: "var(--c-accent-ink)" }}>
-          本番形式・腕試し
+          ランダム出題・採点つき
         </h2>
         <p className="text-sm text-[color:var(--c-text)] leading-relaxed mb-2">
           {examLabel}のオリジナル全{questions.length}問から<strong>{count}問</strong>をランダム出題します。
@@ -271,7 +271,7 @@ export default function MockExam({
           <a
             href={`https://x.com/intent/post?text=${encodeURIComponent(
               [
-                `${examLabel} 本番形式テスト（シカクモン）`,
+                `${examLabel} 腕試しテスト（シカクモン）`,
                 `${pool.length}問中${correctCount}問正解（${pct}%）`,
                 ...(SHARE_HASHTAGS[exam] ? [SHARE_HASHTAGS[exam]] : []),
               ].join("\n"),

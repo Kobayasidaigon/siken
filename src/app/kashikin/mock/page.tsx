@@ -8,7 +8,7 @@ export const metadata: Metadata = pageMetadata({
   path: "/kashikin/mock/",
   // 20問を出すボタンと案内だけで、そのページにしかない文章がほとんど無いため検索に出さない(2026-11-10)
   noindex: true,
-  title: "貸金業務取扱主任者 本番形式テスト｜採点・苦手分野判定つき",
+  title: "貸金業務取扱主任者 腕試しテスト（ランダム20問）｜採点・苦手分野判定つき",
   description:
     "貸金業務取扱主任者のオリジナル504問からランダム20問を出題。最後に得点と苦手分野を自動判定し、弱点を重点的に復習できます。",
 });
@@ -29,10 +29,10 @@ export default async function KashikinMockPage() {
       <nav className="breadcrumb text-xs text-[color:var(--c-text-sub)] mb-4 flex gap-1">
         <SiteLink href="/">ホーム</SiteLink><span>/</span>
         <SiteLink href="/kashikin/">貸金業務取扱主任者</SiteLink><span>/</span>
-        <span className="text-[color:var(--c-ink)]">本番形式テスト</span>
+        <span className="text-[color:var(--c-ink)]">腕試しテスト</span>
       </nav>
 
-      <h1 className="text-xl sm:text-2xl font-bold text-[color:var(--c-ink)] mb-2 font-serif">本番形式テスト</h1>
+      <h1 className="text-xl sm:text-2xl font-bold text-[color:var(--c-ink)] mb-2 font-serif">腕試しテスト</h1>
       <div className="w-12 h-1 mb-5" style={{ background: "var(--c-kashikin)" }}></div>
 
       <MockExam

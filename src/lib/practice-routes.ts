@@ -3,7 +3,7 @@ import type { ExamSlug } from "./study-progress";
 /**
  * 資格ごとに用意してある「通しで解く面」の一覧。2026-09-07 追加。
  *
- * 背景: 問題ページ(追加当時は全14資格で2,866枚)から模試・本番形式テストへのリンクが1本も無かった。
+ * 背景: 問題ページ(追加当時は全14資格で2,866枚)から模試・腕試しテストへのリンクが1本も無かった。
  * 「次の問題へ」は同じ分野の次の1問に進むだけで、分野の最終問(109分野ぶん)は行き止まり。
  * 着地の8割を占める面から、実測でいちばん転換する面(模試の完了者)へ行く道が無い状態だった。
  *
@@ -120,7 +120,7 @@ export function practiceRoutesFor(exam: ExamSlug | undefined): PracticeRoute[] {
   if (HAS_MOCK.includes(exam)) {
     routes.push({
       href: `/${exam}/mock/`,
-      label: "本番形式テスト",
+      label: "腕試しテスト",
       note: "20問をまとめて解いて採点。分野別の正答率が出ます",
       kind: "mock",
     });

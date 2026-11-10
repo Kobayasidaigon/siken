@@ -65,7 +65,7 @@ export default async function KashikinMoshiPage() {
         </p>
         <p>
           <span className="font-bold text-[color:var(--c-ink)]">合格基準</span>
-          {KASHIKIN_MOSHI_PASS_COUNT}問以上（本試験の合格ラインは回により変動し、概ね30点前後）
+          {KASHIKIN_MOSHI_PASS_COUNT}問以上（当サイトの目安。本試験の合格基準点は回ごとに決まり、第18回・第20回は31問、第19回は30問）
         </p>
         <p>
           <span className="font-bold text-[color:var(--c-ink)]">受験料</span>　無料・登録不要
@@ -92,11 +92,11 @@ export default async function KashikinMoshiPage() {
         その分は含まれません。また、協会の区分では利息制限法・出資法は「法及び関係法令」に入るため、
         この模試の配分は協会の区分ごとの問題数と同じではありません。
         <br />
-        本試験の合格基準は回ごとに決まり、30点で固定されているわけではありません。ここでの判定は学習の目安です。
+        本試験の合格基準点は回ごとに決まり、30問で固定されているわけではありません。ここでの判定は学習の目安です。
         当サイトで作成したオリジナル問題で構成しており、実際の過去問題の転載ではありません。
         1問ずつじっくり学びたい方は
         <SiteLink href="/kashikin/" className="underline hover:no-underline">
-          練習問題504問
+          練習問題
         </SiteLink>
         へ。
       </p>

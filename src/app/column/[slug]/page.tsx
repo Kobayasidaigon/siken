@@ -677,7 +677,7 @@ export default async function ColumnPage({ params }: { params: Promise<{ slug: s
           headline="独学より講義で時短したい方へ"
           course="agaroot-osusume"
           placement="column_osusume"
-          body="市販テキストだけでは不安が残る方は、通信講座も選択肢です。アガルートアカデミーの貸金業務取扱主任者講座は、頻出論点と法改正対応をスマホ講義で体系的に押さえられます。テキストと講義のサンプルは資料請求(無料)で確認できます。"
+          body="市販テキストだけでは不安が残る方は、通信講座も選択肢です。アガルートアカデミーは貸金業務取扱主任者講座を提供しており、講義で出題範囲と法改正への対応を体系的に押さえられます。講座の内容は、リンク先の公式サイトで確かめてください。"
           linkHref="https://px.a8.net/svt/ejp?a8mat=4B3N6P+AWY41E+44M0+BW8O2&a8ejpredirect=https%3A%2F%2Fwww.agaroot.jp%2Fkashikin%2F"
           linkText="アガルートの貸金業務取扱主任者講座を見る"
           pixelSrc="https://www14.a8.net/0.gif?a8mat=4B3N6P+AWY41E+44M0+BW8O2"

@@ -104,7 +104,7 @@ updatedAt: "2026-11-10"
 
 ## 関連記事
 
-- [貸金業務取扱主任者とは｜仕事内容と将来性](/column/kashikingyou-toha/)
+- [貸金業務取扱主任者とは｜営業所ごとに置く必要がある国家資格の役割・なり方・試験の概要](/column/kashikingyou-toha/)
 - [貸金業務取扱主任者と宅建の違い・ダブルライセンス](/column/takken-hikaku/)
 - [貸金業務取扱主任者の合格率・難易度](/column/goukakuritsu/)
 

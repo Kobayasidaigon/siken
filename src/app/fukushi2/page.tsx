@@ -10,6 +10,7 @@ import ExamCountdown from "@/components/ExamCountdown";
 import Moshi2TopLink from "@/components/Moshi2TopLink";
 import ExamVoicesSection from "@/components/ExamVoicesSection";
 import OfficialSiteLink from "@/components/OfficialSiteLink";
+import ExamIntro from "@/components/ExamIntro";
 
 export const metadata: Metadata = pageMetadata({
   path: "/fukushi2/",
@@ -113,6 +114,9 @@ export default async function Fukushi2Page() {
           <p>だからこそ、出題範囲に沿ったオリジナル問題での演習量が合否を分けます。当サイトの問題はすべて解説付き・無料です。</p>
         </div>
       </section>
+
+      {/* 勉強の進め方(src/content/exam-intros/fukushi2.md。2026-11-10 追加。分野へのリンクと概要の表だけだったトップに、範囲と分野の対応・勉強の順番を足す) */}
+      <ExamIntro exam="fukushi2" />
 
       {/* 試験概要 */}
       <section className="mb-12">

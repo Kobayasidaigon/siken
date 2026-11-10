@@ -10,6 +10,7 @@ import ExamCountdown from "@/components/ExamCountdown";
 import Moshi2TopLink from "@/components/Moshi2TopLink";
 import ExamVoicesSection from "@/components/ExamVoicesSection";
 import OfficialSiteLink from "@/components/OfficialSiteLink";
+import ExamIntro from "@/components/ExamIntro";
 
 export const metadata: Metadata = pageMetadata({
   path: "/eco/",
@@ -151,6 +152,9 @@ export default async function EcoPage() {
           <p>なお東京商工会議所は、合格者の71.4%が2か月以内に受験対策を終えていると公表しています（同「受験者データ」より）。長期戦というより、範囲を一巡させる集中力が問われる試験です。</p>
         </div>
       </section>
+
+      {/* 勉強の進め方(src/content/exam-intros/eco.md。2026-11-10 追加。分野へのリンクと概要の表だけだったトップに、範囲と分野の対応・勉強の順番を足す) */}
+      <ExamIntro exam="eco" />
 
       {/* 試験概要 */}
       <section className="mb-12">

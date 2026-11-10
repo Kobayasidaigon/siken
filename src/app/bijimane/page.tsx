@@ -10,6 +10,7 @@ import ExamCountdown from "@/components/ExamCountdown";
 import Moshi2TopLink from "@/components/Moshi2TopLink";
 import ExamVoicesSection from "@/components/ExamVoicesSection";
 import OfficialSiteLink from "@/components/OfficialSiteLink";
+import ExamIntro from "@/components/ExamIntro";
 
 export const metadata: Metadata = pageMetadata({
   path: "/bijimane/",
@@ -141,6 +142,9 @@ export default async function BijimanePage() {
           <p className="text-xs">出典：東京商工会議所「ビジネスマネジャー検定試験 受験者データ」（2026年8月確認）</p>
         </div>
       </section>
+
+      {/* 勉強の進め方(src/content/exam-intros/bijimane.md。2026-11-10 追加。分野へのリンクと概要の表だけだったトップに、範囲と分野の対応・勉強の順番を足す) */}
+      <ExamIntro exam="bijimane" />
 
       {/* 試験概要 */}
       <section className="mb-12">

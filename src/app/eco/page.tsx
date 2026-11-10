@@ -15,7 +15,7 @@ import ExamIntro from "@/components/ExamIntro";
 export const metadata: Metadata = pageMetadata({
   path: "/eco/",
   title: "eco検定(環境社会検定試験) 練習問題・過去問対策【全236問・無料】",
-  description: "eco検定(環境社会検定試験)のオリジナル練習問題236問を無料公開。地球環境・気候変動・生物多様性・循環型社会・環境法を根拠つき解説で演習できます。過去問が公開されない試験の対策に。",
+  description: "eco検定(環境社会検定試験)のオリジナル練習問題236問を無料公開。地球環境・気候変動・生物多様性・循環型社会・環境法を根拠つき解説で演習でき、分野別の練習から本番形式のテスト、90分の模擬試験まで使えます。",
 });
 
 const fields = [
@@ -107,18 +107,19 @@ export default async function EcoPage() {
         </div>
       </section>
 
-      {/* 過去問が手に入らない試験 */}
+      {/* 公式問題集と当サイトの問題(2026-11-10 書き直し。以前の「試験問題は非公開・持ち帰り不可」
+          「演習量が合否を分ける」は、公式の資料で確かめられなかった) */}
       <section className="mb-12">
-        <h2 className="text-base font-bold text-[color:var(--c-ink)] mb-4 font-serif">「過去問」が手に入らない試験です</h2>
+        <h2 className="text-base font-bold text-[color:var(--c-ink)] mb-4 font-serif">公式問題集と、当サイトの練習問題</h2>
         <div className="card p-5 text-sm text-[color:var(--c-text-sub)] leading-relaxed space-y-2">
-          <p>eco検定はIBT（自宅等のパソコン受験）・CBT（テストセンター受験）で実施され、<span className="font-bold text-[color:var(--c-ink)]">試験問題は非公開・持ち帰り不可</span>です。市販の「過去問題集」で本試験そのものの問題を確認することはできません。</p>
-          <p>だからこそ、出題範囲に沿ったオリジナル問題での演習量が合否を分けます。当サイトの問題はすべて解説付き・無料です。</p>
+          <p>東京商工会議所の公式サイトによると、eco検定の公式問題集（2026年版）は、受験ガイド、出題傾向・学習ガイド、模擬問題1〜5と解答解説で構成されています。</p>
+          <p>当サイトの練習問題は、公式テキストの範囲に沿って当サイトが作ったオリジナル問題で、本試験の問題ではありません。すべて解説つき・無料で、分野ごとに解けるので、テキストを読んだあとの確認や、公式問題集の模擬問題と合わせた演習に使えます。</p>
         </div>
       </section>
 
       {/* 合格率 */}
       <section className="mb-12">
-        <h2 className="text-base font-bold text-[color:var(--c-ink)] mb-4 font-serif">合格率は5割台で安定しています</h2>
+        <h2 className="text-base font-bold text-[color:var(--c-ink)] mb-4 font-serif">合格率は5割台で推移しています</h2>
         <div className="card p-5 text-sm text-[color:var(--c-text-sub)] leading-relaxed space-y-3">
           <p>東京商工会議所が公表している合格率（全国分）です。</p>
           <div className="overflow-x-auto">
@@ -131,25 +132,24 @@ export default async function EcoPage() {
                 </tr>
               </thead>
               <tbody>
-                <tr><td className="border border-[color:var(--c-border)] px-2 py-1.5">第36回（2024年度 第1シーズン）</td><td className="border border-[color:var(--c-border)] px-2 py-1.5">16,487人</td><td className="border border-[color:var(--c-border)] px-2 py-1.5">58.3%</td></tr>
-                <tr><td className="border border-[color:var(--c-border)] px-2 py-1.5">第37回（2024年度 第2シーズン）</td><td className="border border-[color:var(--c-border)] px-2 py-1.5">17,553人</td><td className="border border-[color:var(--c-border)] px-2 py-1.5">58.5%</td></tr>
                 <tr><td className="border border-[color:var(--c-border)] px-2 py-1.5">第38回（2025年度 第1シーズン）</td><td className="border border-[color:var(--c-border)] px-2 py-1.5">16,184人</td><td className="border border-[color:var(--c-border)] px-2 py-1.5">55.9%</td></tr>
                 <tr><td className="border border-[color:var(--c-border)] px-2 py-1.5">第39回（2025年度 第2シーズン）</td><td className="border border-[color:var(--c-border)] px-2 py-1.5">16,509人</td><td className="border border-[color:var(--c-border)] px-2 py-1.5">53.6%</td></tr>
+                <tr><td className="border border-[color:var(--c-border)] px-2 py-1.5">第40回（2026年度 第1シーズン）</td><td className="border border-[color:var(--c-border)] px-2 py-1.5">13,547人</td><td className="border border-[color:var(--c-border)] px-2 py-1.5">56.7%</td></tr>
               </tbody>
             </table>
           </div>
-          <p>1回あたり1万6千人以上が受け、合格率は5割台で落ち着いています。同じ東商検定でも回ごとの振れが大きい試験があるなかで、<span className="font-bold text-[color:var(--c-ink)]">eco検定は「運の要素が小さく、やった分だけ返ってきやすい」試験</span>だと言えます。裏を返せば、半数近くは落ちる試験でもあります。</p>
-          <p className="text-xs">出典：東京商工会議所「eco検定 受験者データ」（2026年8月確認）</p>
+          <p>直近3回の実受験者数は1万3千〜1万6千人台で、合格率は5割台で推移しています。<span className="font-bold text-[color:var(--c-ink)]">半数近くが不合格になる試験</span>でもあるので、当サイトでは、範囲を一巡したうえで本番形式の問題に慣れておくことをおすすめします。</p>
+          <p className="text-xs">出典：東京商工会議所「eco検定 受験者データ」（2026年11月確認）</p>
         </div>
       </section>
 
       {/* 難しさの正体 */}
       <section className="mb-12">
-        <h2 className="text-base font-bold text-[color:var(--c-ink)] mb-4 font-serif">難しいのは中身ではなく「範囲の広さ」です</h2>
+        <h2 className="text-base font-bold text-[color:var(--c-ink)] mb-4 font-serif">気をつけたいのは「範囲の広さ」です</h2>
         <div className="card p-5 text-sm text-[color:var(--c-text-sub)] leading-relaxed space-y-2">
-          <p>eco検定の一問一問は、深い専門知識を要求するものではありません。難しさは、公害の歴史・地球のしくみ・気候変動・生物多様性・リサイクル・化学物質・環境法・国際条約・企業の環境経営までを<span className="font-bold text-[color:var(--c-ink)]">1回の試験で横断する</span>という、範囲の広さの方にあります。</p>
+          <p>eco検定は、公害の歴史・地球のしくみ・気候変動・生物多様性・リサイクル・化学物質・環境法・国際条約・企業の環境経営までを<span className="font-bold text-[color:var(--c-ink)]">1回の試験で横断します</span>。当サイトでは、一問ごとの深さよりも、この範囲の広さに気をつけて準備することをおすすめします。</p>
           <p>条約名や制度名は似たものが多く、読んで分かったつもりでも選択肢に並ぶと区別がつかなくなります。当サイトが分野ごとに問題を分けているのは、この「似たものの取り違え」を潰す順序で回せるようにするためです。</p>
-          <p>なお東京商工会議所は、合格者の71.4%が2か月以内に受験対策を終えていると公表しています（同「受験者データ」より）。長期戦というより、範囲を一巡させる集中力が問われる試験です。</p>
+          <p>なお東京商工会議所の「受験者データ」のページでは、eco検定合格者へのアンケートで、学習時間が「２ヶ月以内」という回答が71.4%だったと紹介されています（公式も、あくまで目安としての参考情報としています）。</p>
         </div>
       </section>
 
@@ -165,7 +165,7 @@ export default async function EcoPage() {
           <p><span className="font-bold text-[color:var(--c-ink)]">合格基準</span>　100点満点中70点以上</p>
           <p><span className="font-bold text-[color:var(--c-ink)]">受験料</span>　5,500円（税込）。CBT方式は別途テストセンター利用料2,200円（税込）</p>
           <p><span className="font-bold text-[color:var(--c-ink)]">受験資格</span>　制限なし（学歴・年齢・性別・国籍を問いません）</p>
-          <p><span className="font-bold text-[color:var(--c-ink)]">出題範囲</span>　公式テキスト（最新版）の知識とその応用力。最近の時事問題から出題される場合もあります</p>
+          <p><span className="font-bold text-[color:var(--c-ink)]">出題範囲</span>　公式テキスト（改訂10版）の知識とその応用力。最近の時事問題も出題されます</p>
           <p><span className="font-bold text-[color:var(--c-ink)]">実施機関</span>　東京商工会議所</p>
           <p className="text-xs pt-1">出題数は公式に公表されていません。当サイトの演習問題数は本試験の出題数を示すものではありません。受験料・申込期間などの最新の詳細は、必ず公式サイトでご確認ください。</p>
         </div>
@@ -183,8 +183,8 @@ export default async function EcoPage() {
         <h2 className="text-base font-bold text-[color:var(--c-ink)] mb-4 font-serif">同じ東商検定を併願する方へ</h2>
         <div className="card p-5 text-sm text-[color:var(--c-text-sub)] leading-relaxed space-y-2">
           {/* 日付は exam-dates.ts から組み立てる(以前は 2026年度第2シーズンの日付を直書きしており、締切後に腐っていた) */}
-          <p>eco検定と<SiteLink href="/fukushi2/" className="underline hover:no-underline">福祉住環境コーディネーター2級</SiteLink>は、どちらも東京商工会議所がIBT・CBTで実施する検定で、試験期間も申込期間も同じ枠です{seasonLabel(ECO_EXAMS) ? `（${seasonLabel(ECO_EXAMS)}）` : ""}。1回の申込で2つ受けるという組み方ができます。</p>
-          <p>同じ東商検定でも、<SiteLink href="/bijihou/" className="underline hover:no-underline">ビジネス実務法務検定3級</SiteLink>と<SiteLink href="/bijimane/" className="underline hover:no-underline">ビジネスマネジャー検定</SiteLink>は1つ前のシーズン{seasonLabel(BIJIHOU_EXAMS) ? `（${seasonLabel(BIJIHOU_EXAMS)}）` : ""}です。締切が別なので、まとめて受けるつもりなら申込期間を取り違えないよう注意してください。</p>
+          <p>eco検定と<SiteLink href="/fukushi2/" className="underline hover:no-underline">福祉住環境コーディネーター2級</SiteLink>は、どちらも東京商工会議所がIBT・CBTで実施する検定で、試験期間も申込期間も同じ枠です{seasonLabel(ECO_EXAMS) ? `（${seasonLabel(ECO_EXAMS)}）` : ""}。申込はそれぞれの検定で行いますが、同じ試験期間の中で両方を受ける予定を組めます。</p>
+          <p>同じ東商検定でも、<SiteLink href="/bijihou/" className="underline hover:no-underline">ビジネス実務法務検定3級</SiteLink>と<SiteLink href="/bijimane/" className="underline hover:no-underline">ビジネスマネジャー検定</SiteLink>は、同じシーズンでも申込期間・試験期間ともeco検定より早い枠です{seasonLabel(BIJIHOU_EXAMS) ? `（${seasonLabel(BIJIHOU_EXAMS)}）` : ""}。締切が別なので、まとめて受けるつもりなら申込期間を取り違えないよう注意してください。</p>
         </div>
       </section>
 

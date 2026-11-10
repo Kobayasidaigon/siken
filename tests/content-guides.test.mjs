@@ -2,6 +2,7 @@
 // (src/content/exam-intros/<資格>.md)の書式の検査。2026-11-10 追加。
 // どちらも AdSense の再審査に向けて足した、そのページにしかない本文。公式資料で確かめた事実だけを書き、
 // 最後に出典と確認日を添える約束なので、出典の欄が欠けたり、更新日が日付型に化けたりしたものをここで止める。
+// 2026-11-10 以降に更新したコラム(src/content/columns/)にも同じ約束を当てはめる。コラムへのリンク切れは全コラムで見る。
 import test from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs";
@@ -43,7 +44,21 @@ function bodyChars(body) {
     .replace(/\s/g, "").length;
 }
 
-const files = [...listGuides(), ...listIntros()];
+const COLUMNS = "src/content/columns";
+
+function listColumns() {
+  return fs.readdirSync(COLUMNS).filter((f) => f.endsWith(".md")).map((f) => path.join(COLUMNS, f));
+}
+
+/** 2026-11-10 以降に書き直したコラム。出典と確認日を添える約束を、ここから先のコラムにも当てはめる */
+function listCheckedColumns() {
+  return listColumns().filter((f) => {
+    const m = split(f).fm.match(/^updatedAt: "(\d{4}-\d{2}-\d{2})"$/m);
+    return m && m[1] >= "2026-11-10";
+  });
+}
+
+const files = [...listGuides(), ...listIntros(), ...listCheckedColumns()];
 
 test("updatedAt を引用符つきの YYYY-MM-DD で書いている", () => {
   const bad = files.filter((f) => !/^updatedAt: "\d{4}-\d{2}-\d{2}"$/m.test(split(f).fm));
@@ -89,7 +104,7 @@ test("「編集部」や、試験について言い切る宣伝の言葉を使�
 
 test("本文のコラムへのリンク先がある", () => {
   const bad = [];
-  for (const f of files) {
+  for (const f of new Set([...files, ...listColumns()])) {
     for (const m of split(f).body.matchAll(/\]\(\/column\/([a-z0-9-]+)\/\)/g)) {
       if (!fs.existsSync(path.join("src/content/columns", `${m[1]}.md`))) bad.push(`${f}: /column/${m[1]}/`);
     }

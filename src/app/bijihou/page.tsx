@@ -16,7 +16,7 @@ import ExamIntro from "@/components/ExamIntro";
 export const metadata: Metadata = pageMetadata({
   path: "/bijihou/",
   title: "ビジネス実務法務検定3級 練習問題・過去問対策【全200問・無料】",
-  description: "ビジネス実務法務検定3級のオリジナル練習問題200問を無料公開。民法・商法・会社法・関連法規を根拠つき解説で演習できます。IBT・CBT化で過去問が公開されない試験の演習量確保に。",
+  description: "ビジネス実務法務検定3級のオリジナル練習問題200問を無料公開。民法・商法・会社法・関連法規を根拠つき解説で演習でき、分野別の練習から本番形式のテスト、90分の模擬試験まで使えます。",
 });
 
 const fields = [
@@ -100,7 +100,7 @@ export default async function BijihouPage() {
         <div className="card p-5 text-sm text-[color:var(--c-text-sub)] space-y-2">
           <p><span className="font-bold text-[color:var(--c-ink)]">試験形式</span>　多肢選択式・90分・100点満点</p>
           <p><span className="font-bold text-[color:var(--c-ink)]">合格基準</span>　70点以上</p>
-          <p><span className="font-bold text-[color:var(--c-ink)]">受験料</span>　IBT方式 5,500円／CBT方式 7,700円（いずれも税込）</p>
+          <p><span className="font-bold text-[color:var(--c-ink)]">受験料</span>　5,500円（税込）。CBT方式は別途CBT利用料2,200円（税込）</p>
           <p><span className="font-bold text-[color:var(--c-ink)]">試験日</span>　年2回（6〜7月、10〜11月）　<SiteLink href="/column/bijihou-nittei/" className="underline hover:no-underline">詳しい日程・申込方法 →</SiteLink></p>
           <p><span className="font-bold text-[color:var(--c-ink)]">実施機関</span>　東京商工会議所</p>
         </div>

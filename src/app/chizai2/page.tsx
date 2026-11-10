@@ -121,7 +121,7 @@ export default async function Chizai2Page() {
       <section className="mb-12">
         <h2 className="text-base font-bold text-[color:var(--c-ink)] mb-4 font-serif">試験の概要</h2>
         <div className="card p-5 text-sm text-[color:var(--c-text-sub)] space-y-2">
-          <p><span className="font-bold text-[color:var(--c-ink)]">試験日</span>　年3回（3月・7月・11月）　3級と同日　<SiteLink href="/column/chizai2-nittei/" className="underline hover:no-underline">詳しい日程・受検資格 →</SiteLink></p>
+          <p><span className="font-bold text-[color:var(--c-ink)]">試験日</span>　原則として年3回（近年は3月・7月・11月）　3級と同日　<SiteLink href="/column/chizai2-nittei/" className="underline hover:no-underline">詳しい日程・受検資格 →</SiteLink></p>
           <p><span className="font-bold text-[color:var(--c-ink)]">試験区分</span>　学科試験と実技試験（それぞれに合格すると2級技能士に認定）</p>
           <p><span className="font-bold text-[color:var(--c-ink)]">受験資格</span>　3級技能検定の合格者、知的財産に関する業務に2年以上従事した方 など（＝誰でも受けられる3級と異なり、受験資格が必要）</p>
           <p><span className="font-bold text-[color:var(--c-ink)]">実施機関</span>　知的財産教育協会</p>

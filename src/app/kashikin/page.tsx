@@ -95,7 +95,7 @@ export default async function KashikinPage() {
       <section className="mb-12">
         <h2 className="text-base font-bold text-[color:var(--c-ink)] mb-4 font-serif">試験の概要</h2>
         <div className="card p-5 text-sm text-[color:var(--c-text-sub)] space-y-2">
-          <p><span className="font-bold text-[color:var(--c-ink)]">試験日</span>　毎年11月第3日曜日（年1回）　<SiteLink href="/column/shiken-nittei/" className="underline hover:no-underline">詳しい日程・申込方法 →</SiteLink></p>
+          <p><span className="font-bold text-[color:var(--c-ink)]">試験日</span>　年1回・11月（第5回からはいずれも11月の第3日曜日に実施）　<SiteLink href="/column/shiken-nittei/" className="underline hover:no-underline">詳しい日程・申込方法 →</SiteLink></p>
           <p><span className="font-bold text-[color:var(--c-ink)]">試験形式</span>　四肢択一 50問・2時間</p>
           <p><span className="font-bold text-[color:var(--c-ink)]">合格基準</span>　試験ごとに決まる（第18回〜第20回は50問中30〜31問）</p>
           <p><span className="font-bold text-[color:var(--c-ink)]">受験料</span>　8,500円</p>

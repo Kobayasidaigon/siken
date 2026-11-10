@@ -1,5 +1,9 @@
 /**
- * ビジネスマネジャー検定 対策講座（産業能率大学＝東商の公式通信講座）の広告
+ * ビジネスマネジャー検定 対策講座（産業能率大学の通信講座）の広告
+ * 2026-11-10: 以前は「東商の公式通信講座（産業能率大学）」と書いていたが、東京商工会議所の公式通信講座は
+ *   別の講座だった(申込は運営委託機関の株式会社ワールド・ヒューマン・リソーシス。
+ *   kentei.tokyo-cci.or.jp/bijimane/support/online-course.html)。「東商公式」とは書かない。
+ *   「公式テキストは400ページ超」も公式ページで確かめられないため外した。
  * 配置: bijimane の問題ページ・分野ページ・資格トップ・関連コラム末尾
  *
  * TODO(A8提携後): AffiliateLink の href を A8 の a8mat 付きリンクへ差し替え、
@@ -21,7 +25,7 @@ export default function BijimaneCourseAd({ headline, body }: Props = {}) {
   const finalHeadline = headline ?? "独学に不安があれば";
   const finalBody =
     body ??
-    "ビジネスマネジャー検定には、東京商工会議所の公式通信講座（産業能率大学）があります。公式テキストは400ページ超と範囲が広いため、体系的に整理しながら学びたい方は検討してみてください。";
+    "ビジネスマネジャー検定は、マネジャーの役割から人と組織、業務、リスクのマネジメントまで範囲が広い試験です。体系的に整理しながら学びたい方は、産業能率大学の通信講座も検討してみてください。";
 
   return (
     <aside className="theme-bijimane my-10 p-5 rounded-lg border border-[color:var(--c-border)] bg-[color:var(--c-bg-alt)]">
@@ -40,7 +44,7 @@ export default function BijimaneCourseAd({ headline, body }: Props = {}) {
           course="bijimane"
           placement="course_ad"
         >
-          東商公式通信講座（産業能率大学）を見る →
+          産業能率大学の通信講座を見る →
         </AffiliateLink>
       </div>
     </aside>

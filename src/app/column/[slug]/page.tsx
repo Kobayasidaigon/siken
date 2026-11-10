@@ -707,7 +707,7 @@ export default async function ColumnPage({ params }: { params: Promise<{ slug: s
           exam="kashikin"
           headline="独学に不安があれば"
           course="kashikin"
-          body="貸金業務取扱主任者は市販の問題集が少なく、独学で進めにくい試験です。通信講座のアガルートアカデミーは貸金業務取扱主任者講座を提供しており、頻出論点と法改正への対応を体系的に押さえられます。"
+          body="貸金業務取扱主任者試験は、貸金業法などの法令、民法などの取引に関する法令と実務、資金需要者等の保護、財務・会計の4科目から出題されます。通信講座のアガルートアカデミーは貸金業務取扱主任者講座を提供しており、講義で範囲と法改正への対応を体系的に押さえられます。"
           linkHref="https://px.a8.net/svt/ejp?a8mat=4B3N6P+AWY41E+44M0+BW8O2&a8ejpredirect=https%3A%2F%2Fwww.agaroot.jp%2Fkashikin%2F"
           linkText="アガルートの貸金業務取扱主任者講座を見る"
           pixelSrc="https://www14.a8.net/0.gif?a8mat=4B3N6P+AWY41E+44M0+BW8O2"

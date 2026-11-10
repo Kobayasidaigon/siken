@@ -43,7 +43,7 @@ export default async function KashikinPage() {
         </h1>
         <div className="w-16 h-1 mb-4" style={{ background: "var(--c-kashikin)" }}></div>
         <p className="text-sm sm:text-base leading-relaxed max-w-lg" style={{ color: "var(--c-kashikin-ink)" }}>
-          {totalQuestions}問、4分野。年1回の本試験まで逆算して解く、オリジナル練習問題集です。
+          {totalQuestions}問、4分野。本試験の日まで逆算して解く、オリジナル練習問題集です。
         </p>
         <div className="mt-6 flex flex-wrap gap-3">
           <SiteLink href="/exam/0/" className="btn-accent">問題を解き始める →</SiteLink>
@@ -95,7 +95,7 @@ export default async function KashikinPage() {
       <section className="mb-12">
         <h2 className="text-base font-bold text-[color:var(--c-ink)] mb-4 font-serif">試験の概要</h2>
         <div className="card p-5 text-sm text-[color:var(--c-text-sub)] space-y-2">
-          <p><span className="font-bold text-[color:var(--c-ink)]">試験日</span>　年1回・11月（第5回からはいずれも11月の第3日曜日に実施）　<SiteLink href="/column/shiken-nittei/" className="underline hover:no-underline">詳しい日程・申込方法 →</SiteLink></p>
+          <p><span className="font-bold text-[color:var(--c-ink)]">試験日</span>　令和8年度は2026年11月15日（日）。第5回から令和7年度の第20回まで、いずれも11月の第3日曜日に実施　<SiteLink href="/column/shiken-nittei/" className="underline hover:no-underline">詳しい日程・申込方法 →</SiteLink></p>
           <p><span className="font-bold text-[color:var(--c-ink)]">試験形式</span>　四肢択一 50問・2時間</p>
           <p><span className="font-bold text-[color:var(--c-ink)]">合格基準</span>　試験ごとに決まる（第18回〜第20回は50問中30〜31問）</p>
           <p><span className="font-bold text-[color:var(--c-ink)]">受験料</span>　8,500円</p>
@@ -111,7 +111,7 @@ export default async function KashikinPage() {
 
       <KashikinCourseAd
         headline="本試験まで逆算で対策するなら"
-        body="貸金業務取扱主任者は市販の問題集が少なく、独学で進めにくい試験です。通信講座のアガルートアカデミーは貸金業務取扱主任者講座を提供しており、頻出論点と法改正への対応を体系的に押さえられます。"
+        body="貸金業務取扱主任者試験は、貸金業法などの法令、民法などの取引に関する法令と実務、資金需要者等の保護、財務・会計の4科目から出題されます。通信講座のアガルートアカデミーは貸金業務取扱主任者講座を提供しており、講義で範囲と法改正への対応を体系的に押さえられます。"
       />
 
       {/* 協会の関連試験(2026-10-31 追加) */}

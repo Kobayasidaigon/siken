@@ -19,7 +19,7 @@ export default function KashikinCourseAd({ headline, body }: Props = {}) {
   const finalHeadline = headline ?? "独学に不安があれば";
   const finalBody =
     body ??
-    "貸金業務取扱主任者は市販の問題集が少なく、独学で進めにくい試験です。通信講座のアガルートアカデミーは貸金業務取扱主任者講座を提供しており、頻出論点と法改正への対応を体系的に押さえられます。";
+    "貸金業務取扱主任者試験は、貸金業法などの法令、民法などの取引に関する法令と実務、資金需要者等の保護、財務・会計の4科目から出題されます。通信講座のアガルートアカデミーは貸金業務取扱主任者講座を提供しており、講義で範囲と法改正への対応を体系的に押さえられます。";
 
   return (
     <aside className="theme-kashikin my-10 p-5 rounded-lg border border-[color:var(--c-border)] bg-[color:var(--c-bg-alt)]">

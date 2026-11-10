@@ -43,9 +43,9 @@ export default async function ChizaiMoshiPage() {
 
       {/* 試験仕様 */}
       <div className="card p-5 mb-6 text-sm text-[color:var(--c-text-sub)] space-y-2 max-w-2xl">
-        <p><span className="font-bold text-[color:var(--c-ink)]">出題数</span>　30問（3肢択一）　本試験の分野構成に準拠</p>
+        <p><span className="font-bold text-[color:var(--c-ink)]">出題数</span>　30問（3肢択一）</p>
         <p><span className="font-bold text-[color:var(--c-ink)]">制限時間</span>　{MOSHI_TIME_LIMIT_MIN}分（自動採点）</p>
-        <p><span className="font-bold text-[color:var(--c-ink)]">合格基準</span>　70%以上（{MOSHI_PASS_COUNT}問/30問）＝本試験と同じ</p>
+        <p><span className="font-bold text-[color:var(--c-ink)]">合格基準</span>　{MOSHI_PASS_COUNT}問/30問（70%）以上。本試験の合格基準は満点の70%以上ですが、配点は公表されていないため、正解した問題数の割合とは一致しない場合があります</p>
         <p><span className="font-bold text-[color:var(--c-ink)]">受験料</span>　無料・登録不要</p>
       </div>
 
@@ -66,7 +66,7 @@ export default async function ChizaiMoshiPage() {
         ※本模試は当サイトで作成したオリジナル問題で構成しており、実際の過去問題の転載ではありません。
         合否判定はあくまで学習の目安です。時間を計らずに力試しをしたい方は
         <SiteLink href="/chizai/mock/" className="underline hover:no-underline">本番形式テスト（ランダム20問）</SiteLink>へ、
-        1問ずつじっくり学びたい方は<SiteLink href="/chizai/" className="underline hover:no-underline">練習問題200問</SiteLink>へ。
+        1問ずつじっくり学びたい方は<SiteLink href="/chizai/" className="underline hover:no-underline">練習問題</SiteLink>へ。
       </p>
     </div>
   );

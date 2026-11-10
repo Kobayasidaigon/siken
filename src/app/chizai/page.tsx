@@ -126,21 +126,21 @@ export default async function ChizaiPage() {
           <div className="card p-5">
             <p className="text-sm font-bold text-[color:var(--c-ink)] mb-2 font-serif">学科試験</p>
             <p className="text-xs text-[color:var(--c-text-sub)] leading-relaxed">
-              30問・45分・マークシート方式（3肢択一式）。条文や制度の知識を問う基礎問題です。合格基準は満点の70%以上。
+              30問・45分・マークシート方式（3肢択一式）。試験範囲は保護（ブランド・技術・コンテンツ・デザイン）、活用（契約・エンフォースメント）、関係法規です。合格基準は満点の70%以上。
             </p>
           </div>
           <div className="card p-5">
             <p className="text-sm font-bold text-[color:var(--c-ink)] mb-2 font-serif">実技試験</p>
             <p className="text-xs text-[color:var(--c-text-sub)] leading-relaxed">
-              30問・45分・記述方式とマークシート方式の併用。事例を読んで答える、実務寄りの問題です。合格基準は満点の70%以上。
+              30問・45分・記述方式とマークシート方式の併用。試験範囲は保護（ブランド・技術・コンテンツ・デザイン）と活用（契約・エンフォースメント）です。合格基準は満点の70%以上。
             </p>
           </div>
         </div>
         <p className="text-xs text-[color:var(--c-text-sub)] mt-3">
-          学科と実技はそれぞれ独立しています。両方に合格すると3級の資格が認定されます。
+          学科と実技の両方に合格すると3級知的財産管理技能士になれます。片方だけ合格した場合は、受検申請と同時に免除申請をすると、合格日の翌々年度までに行われる検定でその試験が免除されます。合格基準は配点（非公表）にもとづく得点率で、正解した問題数の割合とは異なる場合があります。
         </p>
         <p className="text-xs text-[color:var(--c-text-sub)] mt-2">
-          第47回検定からCBT方式（コンピュータ受験）が導入され、申込時に従来の紙試験かCBT方式かを選択できます。
+          試験会場には紙試験方式の会場とCBT方式（コンピュータで受ける方式）の会場があり、実施地区ごとにどちらの方式かが決まっています。実施地区は住所に関係なく選べます。
         </p>
       </section>
 
@@ -148,10 +148,10 @@ export default async function ChizaiPage() {
       <section className="mb-12">
         <h2 className="text-base font-bold text-[color:var(--c-ink)] mb-4 font-serif">試験の概要</h2>
         <div className="card p-5 text-sm text-[color:var(--c-text-sub)] space-y-2">
-          <p><span className="font-bold text-[color:var(--c-ink)]">試験日</span>　原則として年3回（近年は3月・7月・11月）　<SiteLink href="/column/chizai-nittei/" className="underline hover:no-underline">詳しい日程・申込方法 →</SiteLink></p>
-          <p><span className="font-bold text-[color:var(--c-ink)]">試験形式</span>　学科30問（マークシート方式・3肢択一式）+ 実技30問（記述方式・マークシート方式併用）、各45分。紙試験／CBT方式を選択可（第47回検定から）</p>
-          <p><span className="font-bold text-[color:var(--c-ink)]">合格基準</span>　学科・実技ともに70%以上</p>
-          <p><span className="font-bold text-[color:var(--c-ink)]">受験料</span>　学科6,100円 + 実技6,100円</p>
+          <p><span className="font-bold text-[color:var(--c-ink)]">試験日</span>　原則として年3回　<SiteLink href="/column/chizai-nittei/" className="underline hover:no-underline">詳しい日程・申込方法 →</SiteLink></p>
+          <p><span className="font-bold text-[color:var(--c-ink)]">試験形式</span>　学科30問（マークシート方式・3肢択一式）+ 実技30問（記述方式・マークシート方式併用）、各45分。紙試験方式とCBT方式の会場がある</p>
+          <p><span className="font-bold text-[color:var(--c-ink)]">合格基準</span>　学科・実技ともに満点の70%以上（配点は非公表）</p>
+          <p><span className="font-bold text-[color:var(--c-ink)]">受験料</span>　学科6,100円 + 実技6,100円（受検手数料は非課税）</p>
           <p><span className="font-bold text-[color:var(--c-ink)]">実施機関</span>　知的財産教育協会</p>
         </div>
         <OfficialSiteLink exam="chizai" />
@@ -162,8 +162,8 @@ export default async function ChizaiPage() {
       <ExamVoicesSection exam="chizai" />
 
       <ChizaiCourseAd
-        headline="9分野を効率よく対策するなら"
-        body="知的財産管理技能検定は出題範囲が9分野と広く、市販教材も限られる試験です。月額制のオンライン講座オンスク.JPは知財検定3級講座を提供しており、スキマ時間で全分野を体系的に押さえられます。"
+        headline="出題範囲を一通り押さえるなら"
+        body="知的財産管理技能検定3級の出題範囲は、知的財産の保護・活用と関係法規にわたります。月額制のオンライン講座オンスク.JPは知財検定3級講座を提供しており、スキマ時間で範囲を順に押さえられます。"
       />
 
       {/* コラム */}

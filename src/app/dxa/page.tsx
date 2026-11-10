@@ -11,6 +11,7 @@ import { DXA_FIELDS } from "@/lib/dxa-fields";
 import ExamCountdown from "@/components/ExamCountdown";
 import { DXA_EXAMS } from "@/lib/exam-dates";
 import { EXAM_AFFILIATE } from "@/lib/affiliate-links";
+import OfficialSiteLink from "@/components/OfficialSiteLink";
 
 export const metadata: Metadata = pageMetadata({
   path: "/dxa/",
@@ -141,6 +142,7 @@ export default async function DxaPage() {
             ※出典: 全日本情報学習振興協会のDX推進アドバイザー認定試験ページ・DX検定一覧（2026年10月19日確認）。SMART講座ページには「90分」の旧記載がありますが、試験案内の第22回は10:00〜11:45です。同じ協会の「DXパスポート」「DXオフィサー」とは別の試験です。最新の日程・受験料は公式サイトで必ず確認してください。
           </p>
         </div>
+        <OfficialSiteLink exam="dxa" />
       </section>
 
       {/* 合格報告(掲載済みがあれば)と、受験直後の方への報告のお願い。

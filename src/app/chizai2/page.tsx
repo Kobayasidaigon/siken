@@ -9,6 +9,7 @@ import { CHIZAI_EXAMS } from "@/lib/exam-dates";
 import ExamCountdown from "@/components/ExamCountdown";
 import Moshi2TopLink from "@/components/Moshi2TopLink";
 import ExamVoicesSection from "@/components/ExamVoicesSection";
+import OfficialSiteLink from "@/components/OfficialSiteLink";
 
 export const metadata: Metadata = pageMetadata({
   path: "/chizai2/",
@@ -126,6 +127,7 @@ export default async function Chizai2Page() {
           <p><span className="font-bold text-[color:var(--c-ink)]">実施機関</span>　知的財産教育協会</p>
           <p className="text-xs pt-1">受験料・出題数・合格基準などの最新の詳細は、必ず公式サイトでご確認ください。</p>
         </div>
+        <OfficialSiteLink exam="chizai2" />
       </section>
 
       {/* 合格報告(掲載済みがあれば)と、受験直後の方への報告のお願い。

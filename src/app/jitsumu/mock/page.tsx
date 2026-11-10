@@ -18,6 +18,8 @@ import MockExam, { type MockQuestion } from "@/app/kashikin/mock/MockExam";
 
 export const metadata: Metadata = pageMetadata({
   path: "/jitsumu/mock/",
+  // 20問を出すボタンと案内だけで、そのページにしかない文章がほとんど無いため検索に出さない(2026-11-10)
+  noindex: true,
   title: "個人情報保護実務検定 本番形式テスト｜採点・苦手分野判定つき",
   description:
     "個人情報保護実務検定のオリジナル問題からランダム20問を出題。最後に得点と苦手分野を自動判定し、弱点を重点的に復習できます。登録不要・無料。",

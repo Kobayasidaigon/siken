@@ -7,6 +7,7 @@ import KyoinCourseAd from "@/components/KyoinCourseAd";
 import { pageMetadata } from "@/lib/page-metadata";
 import ExamVoicesSection from "@/components/ExamVoicesSection";
 import { KYOIN_FIELDS } from "@/lib/kyoin-fields";
+import OfficialSiteLink from "@/components/OfficialSiteLink";
 
 export const metadata: Metadata = pageMetadata({
   path: "/kyoin/",
@@ -128,6 +129,7 @@ export default async function KyoinPage() {
             ※日程・出願方法・出題科目・配点は必ず志望自治体の教育委員会が公表する実施要項でご確認ください。本サイトは自治体固有の制度は扱わず、全国共通の論点に絞っています。
           </p>
         </div>
+        <OfficialSiteLink exam="kyoin" />
       </section>
 
       {/* 合格報告(掲載済みがあれば)と、受験直後の方への報告のお願い。

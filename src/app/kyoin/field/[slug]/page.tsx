@@ -4,7 +4,8 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import type { KyoinQuestionData } from "@/lib/kyoin-questions";
 import { pageMetadata } from "@/lib/page-metadata";
-import KyoinCourseAd from "@/components/KyoinCourseAd";
+import FieldGuide from "@/components/FieldGuide";
+import { hasFieldGuide } from "@/lib/field-guides";
 import { KYOIN_FIELDS, kyoinFieldBySlug } from "@/lib/kyoin-fields";
 import MedalMark, { MedalLegend } from "@/components/MedalMark";
 
@@ -16,10 +17,13 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const field = kyoinFieldBySlug(slug);
   if (!field) return { title: "Not Found" };
+  const guide = hasFieldGuide("kyoin", slug);
   return pageMetadata({
     path: `/kyoin/field/${slug}/`,
     title: `教員採用試験｜${field.name} 練習問題`,
-    description: `教員採用試験の${field.task}対策。「${field.name}」のオリジナル練習問題と詳細解説。自治体をまたいで共通する論点だけを扱っており、志望自治体を問わず使えます。`,
+    description: `教員採用試験の${field.task}対策。「${field.name}」の${guide ? "要点のまとめと、" : ""}オリジナル練習問題の一覧。自治体をまたいで共通する論点だけを扱っており、志望自治体を問わず使えます。`,
+    // 要点の本文(src/content/field-guides/)が無い分野ページは、問題へのリンク一覧だけなので検索に出さない(2026-11-10)
+    noindex: !guide,
   });
 }
 
@@ -86,6 +90,7 @@ export default async function KyoinFieldPage({ params }: { params: Promise<{ slu
       <div className="w-12 h-1 mb-3" style={{ background: "var(--c-fukushi)" }}></div>
       <p className="text-xs text-[color:var(--c-text-sub)] mb-2">本試験の{field.task}に含まれる分野です。</p>
       <p className="text-sm text-[color:var(--c-text-sub)] mb-6 leading-relaxed">{field.desc}</p>
+      <FieldGuide exam="kyoin" slug={slug} />
 
       <div className="grid grid-cols-4 gap-2 mb-8">
         <div className="card p-3 text-center">
@@ -114,8 +119,6 @@ export default async function KyoinFieldPage({ params }: { params: Promise<{ slu
           <QuestionCard key={q.slug} q={q} index={i + 1} />
         ))}
       </div>
-
-      <KyoinCourseAd headline={`「${field.name}」でつまずくなら`} />
     </div>
   );
 }

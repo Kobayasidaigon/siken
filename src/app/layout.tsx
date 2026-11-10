@@ -8,6 +8,7 @@ import StudioLink from "@/components/StudioLink";
 import MobileNav from "@/components/MobileNav";
 import { ADSENSE_CLIENT } from "@/lib/adsense";
 import { SISTER_SITES } from "@/lib/sister-sites";
+import { hasVoices } from "@/lib/voices";
 
 const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
 
@@ -43,7 +44,7 @@ export const metadata: Metadata = {
   // 資格を増やしたらここの資格名と問題数も更新すること(自動集計はしていない)。
   // 正しい数は src/app/page.tsx の exams の件数と count の合計(src/content/<資格>/*.md の数と一致。貸金業務取扱主任者だけは
   // src/content/kashikin/ ではなく src/content/questions/ の504件)。2026-11-01時点=33資格6,632問
-  description: "シカクモンは資格試験のオリジナル練習問題を無料で提供するサイトです。貸金業務取扱主任者・賃貸不動産経営管理士・管理業務主任者・個人情報保護士・知的財産管理技能検定・ビジネス実務法務検定・ITパスポート・登録販売者・保育士・エックス線作業主任者など33資格、合計6,632問。全問に根拠法令を含む詳細解説付き。",
+  description: "シカクモンは資格試験のオリジナル練習問題を無料で提供するサイトです。貸金業務取扱主任者・賃貸不動産経営管理士・管理業務主任者・個人情報保護士・知的財産管理技能検定・ビジネス実務法務検定・ITパスポート・登録販売者・保育士・エックス線作業主任者など33資格、合計6,632問。全問に解説付き。",
   icons: {
     icon: "/favicon.svg",
   },
@@ -65,6 +66,7 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
+  const showVoiceLink = hasVoices();
   return (
     <html lang="ja" className={`${notoSans.variable} ${notoSerif.variable}`}>
       <body style={{ fontFamily: "var(--font-sans), 'Noto Sans JP', 'Hiragino Sans', sans-serif" }}>
@@ -76,150 +78,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <span className="hidden sm:inline text-xs text-[color:var(--c-text-sub)] font-medium">資格試験の練習問題</span>
             </SiteLink>
             <nav className="hidden sm:flex gap-7 text-sm items-center">
-              <div className="relative group">
-                <button type="button" className="flex items-center gap-1 text-[color:var(--c-text-sub)] hover:text-[color:var(--c-ink)] transition-colors py-2 cursor-pointer">
-                  資格
-                  <svg className="w-3 h-3 transition-transform group-hover:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
-                  </svg>
-                </button>
-                <div className="absolute right-0 top-full pt-2 hidden group-hover:block">
-                  <div className="bg-[color:var(--c-surface)] border border-[color:var(--c-border)] rounded-lg shadow-lg py-2 min-w-[220px]">
-                    <SiteLink href="/kashikin/" className="flex items-center px-4 py-2 text-[color:var(--c-text)] hover:bg-[color:var(--c-bg-alt)] hover:text-[color:var(--c-kashikin)] no-underline transition-colors">
-                      <span className="w-1 h-4 mr-3 rounded-full" style={{ background: "var(--c-kashikin)" }}></span>
-                      貸金業務取扱主任者
-                    </SiteLink>
-                    <SiteLink href="/chintai/" className="flex items-center px-4 py-2 text-[color:var(--c-text)] hover:bg-[color:var(--c-bg-alt)] hover:text-[color:var(--c-kashikin)] no-underline transition-colors">
-                      <span className="w-1 h-4 mr-3 rounded-full" style={{ background: "var(--c-kashikin)" }}></span>
-                      賃貸不動産経営管理士
-                    </SiteLink>
-                    <SiteLink href="/kangyo/" className="flex items-center px-4 py-2 text-[color:var(--c-text)] hover:bg-[color:var(--c-bg-alt)] hover:text-[color:var(--c-kashikin)] no-underline transition-colors">
-                      <span className="w-1 h-4 mr-3 rounded-full" style={{ background: "var(--c-kashikin)" }}></span>
-                      管理業務主任者
-                    </SiteLink>
-                    <SiteLink href="/pii/" className="flex items-center px-4 py-2 text-[color:var(--c-text)] hover:bg-[color:var(--c-bg-alt)] hover:text-[color:var(--c-pii)] no-underline transition-colors">
-                      <span className="w-1 h-4 mr-3 rounded-full" style={{ background: "var(--c-pii)" }}></span>
-                      個人情報保護士
-                    </SiteLink>
-                    <SiteLink href="/chizai/" className="flex items-center px-4 py-2 text-[color:var(--c-text)] hover:bg-[color:var(--c-bg-alt)] hover:text-[color:var(--c-chizai)] no-underline transition-colors">
-                      <span className="w-1 h-4 mr-3 rounded-full" style={{ background: "var(--c-chizai)" }}></span>
-                      知的財産管理技能検定3級
-                    </SiteLink>
-                    <SiteLink href="/chizai2/" className="flex items-center px-4 py-2 text-[color:var(--c-text)] hover:bg-[color:var(--c-bg-alt)] hover:text-[color:var(--c-chizai)] no-underline transition-colors">
-                      <span className="w-1 h-4 mr-3 rounded-full" style={{ background: "var(--c-chizai)" }}></span>
-                      知的財産管理技能検定2級
-                    </SiteLink>
-                    <SiteLink href="/mynumber/" className="flex items-center px-4 py-2 text-[color:var(--c-text)] hover:bg-[color:var(--c-bg-alt)] hover:text-[color:var(--c-pii)] no-underline transition-colors">
-                      <span className="w-1 h-4 mr-3 rounded-full" style={{ background: "var(--c-pii)" }}></span>
-                      マイナンバー実務検定3級
-                    </SiteLink>
-                    <SiteLink href="/jitsumu/" className="flex items-center px-4 py-2 text-[color:var(--c-text)] hover:bg-[color:var(--c-bg-alt)] hover:text-[color:var(--c-pii)] no-underline transition-colors">
-                      <span className="w-1 h-4 mr-3 rounded-full" style={{ background: "var(--c-pii)" }}></span>
-                      個人情報保護実務検定
-                    </SiteLink>
-                    <SiteLink href="/itpass/" className="flex items-center px-4 py-2 text-[color:var(--c-text)] hover:bg-[color:var(--c-bg-alt)] hover:text-[color:var(--c-pii)] no-underline transition-colors">
-                      <span className="w-1 h-4 mr-3 rounded-full" style={{ background: "var(--c-pii)" }}></span>
-                      ITパスポート試験
-                    </SiteLink>
-                    <SiteLink href="/isec/" className="flex items-center px-4 py-2 text-[color:var(--c-text)] hover:bg-[color:var(--c-bg-alt)] hover:text-[color:var(--c-pii)] no-underline transition-colors">
-                      <span className="w-1 h-4 mr-3 rounded-full" style={{ background: "var(--c-pii)" }}></span>
-                      情報・サイバーセキュリティ管理士
-                    </SiteLink>
-                    <SiteLink href="/isf/" className="flex items-center px-4 py-2 text-[color:var(--c-text)] hover:bg-[color:var(--c-bg-alt)] hover:text-[color:var(--c-pii)] no-underline transition-colors">
-                      <span className="w-1 h-4 mr-3 rounded-full" style={{ background: "var(--c-pii)" }}></span>
-                      情報・サイバーセキュリティ初級
-                    </SiteLink>
-                    <SiteLink href="/dxp/" className="flex items-center px-4 py-2 text-[color:var(--c-text)] hover:bg-[color:var(--c-bg-alt)] hover:text-[color:var(--c-pii)] no-underline transition-colors">
-                      <span className="w-1 h-4 mr-3 rounded-full" style={{ background: "var(--c-pii)" }}></span>
-                      DXパスポート試験
-                    </SiteLink>
-                    <SiteLink href="/had/" className="flex items-center px-4 py-2 text-[color:var(--c-text)] hover:bg-[color:var(--c-bg-alt)] hover:text-[color:var(--c-pii)] no-underline transition-colors">
-                      <span className="w-1 h-4 mr-3 rounded-full" style={{ background: "var(--c-pii)" }}></span>
-                      ハラスメントアドバイザー
-                    </SiteLink>
-                    <SiteLink href="/ccm/" className="flex items-center px-4 py-2 text-[color:var(--c-text)] hover:bg-[color:var(--c-bg-alt)] hover:text-[color:var(--c-pii)] no-underline transition-colors">
-                      <span className="w-1 h-4 mr-3 rounded-full" style={{ background: "var(--c-pii)" }}></span>
-                      企業危機・コンプライアンス管理士
-                    </SiteLink>
-                    <SiteLink href="/touhan/" className="flex items-center px-4 py-2 text-[color:var(--c-text)] hover:bg-[color:var(--c-bg-alt)] hover:text-[color:var(--c-pii)] no-underline transition-colors">
-                      <span className="w-1 h-4 mr-3 rounded-full" style={{ background: "var(--c-pii)" }}></span>
-                      登録販売者
-                    </SiteLink>
-                    <SiteLink href="/hoikushi/" className="flex items-center px-4 py-2 text-[color:var(--c-text)] hover:bg-[color:var(--c-bg-alt)] hover:text-[color:var(--c-pii)] no-underline transition-colors">
-                      <span className="w-1 h-4 mr-3 rounded-full" style={{ background: "var(--c-pii)" }}></span>
-                      保育士試験（筆記）
-                    </SiteLink>
-                    <SiteLink href="/gaia/" className="flex items-center px-4 py-2 text-[color:var(--c-text)] hover:bg-[color:var(--c-bg-alt)] hover:text-[color:var(--c-pii)] no-underline transition-colors">
-                      <span className="w-1 h-4 mr-3 rounded-full" style={{ background: "var(--c-pii)" }}></span>
-                      生成AIアドバイザー
-                    </SiteLink>
-                    <SiteLink href="/dxa/" className="flex items-center px-4 py-2 text-[color:var(--c-text)] hover:bg-[color:var(--c-bg-alt)] hover:text-[color:var(--c-pii)] no-underline transition-colors">
-                      <span className="w-1 h-4 mr-3 rounded-full" style={{ background: "var(--c-pii)" }}></span>
-                      DX推進アドバイザー
-                    </SiteLink>
-                    <SiteLink href="/aia/" className="flex items-center px-4 py-2 text-[color:var(--c-text)] hover:bg-[color:var(--c-bg-alt)] hover:text-[color:var(--c-pii)] no-underline transition-colors">
-                      <span className="w-1 h-4 mr-3 rounded-full" style={{ background: "var(--c-pii)" }}></span>
-                      AI活用アドバイザー
-                    </SiteLink>
-                    <SiteLink href="/ccc/" className="flex items-center px-4 py-2 text-[color:var(--c-text)] hover:bg-[color:var(--c-bg-alt)] hover:text-[color:var(--c-pii)] no-underline transition-colors">
-                      <span className="w-1 h-4 mr-3 rounded-full" style={{ background: "var(--c-pii)" }}></span>
-                      民法法務士
-                    </SiteLink>
-                    <SiteLink href="/llc/" className="flex items-center px-4 py-2 text-[color:var(--c-text)] hover:bg-[color:var(--c-bg-alt)] hover:text-[color:var(--c-pii)] no-underline transition-colors">
-                      <span className="w-1 h-4 mr-3 rounded-full" style={{ background: "var(--c-pii)" }}></span>
-                      労働法務士
-                    </SiteLink>
-                    <SiteLink href="/cac/" className="flex items-center px-4 py-2 text-[color:var(--c-text)] hover:bg-[color:var(--c-bg-alt)] hover:text-[color:var(--c-pii)] no-underline transition-colors">
-                      <span className="w-1 h-4 mr-3 rounded-full" style={{ background: "var(--c-pii)" }}></span>
-                      会社法法務士
-                    </SiteLink>
-                    <SiteLink href="/ibd/" className="flex items-center px-4 py-2 text-[color:var(--c-text)] hover:bg-[color:var(--c-bg-alt)] hover:text-[color:var(--c-pii)] no-underline transition-colors">
-                      <span className="w-1 h-4 mr-3 rounded-full" style={{ background: "var(--c-pii)" }}></span>
-                      インバウンド実務主任者
-                    </SiteLink>
-                    <SiteLink href="/dxo/" className="flex items-center px-4 py-2 text-[color:var(--c-text)] hover:bg-[color:var(--c-bg-alt)] hover:text-[color:var(--c-pii)] no-underline transition-colors">
-                      <span className="w-1 h-4 mr-3 rounded-full" style={{ background: "var(--c-pii)" }}></span>
-                      DXオフィサー
-                    </SiteLink>
-                    <SiteLink href="/wlc/" className="flex items-center px-4 py-2 text-[color:var(--c-text)] hover:bg-[color:var(--c-bg-alt)] hover:text-[color:var(--c-pii)] no-underline transition-colors">
-                      <span className="w-1 h-4 mr-3 rounded-full" style={{ background: "var(--c-pii)" }}></span>
-                      ワークライフ・コーディネーター
-                    </SiteLink>
-                    <SiteLink href="/xray/" className="flex items-center px-4 py-2 text-[color:var(--c-text)] hover:bg-[color:var(--c-bg-alt)] hover:text-[color:var(--c-pii)] no-underline transition-colors">
-                      <span className="w-1 h-4 mr-3 rounded-full" style={{ background: "var(--c-pii)" }}></span>
-                      エックス線作業主任者
-                    </SiteLink>
-                    <SiteLink href="/kyoin/" className="flex items-center px-4 py-2 text-[color:var(--c-text)] hover:bg-[color:var(--c-bg-alt)] hover:text-[color:var(--c-fukushi)] no-underline transition-colors">
-                      <span className="w-1 h-4 mr-3 rounded-full" style={{ background: "var(--c-fukushi)" }}></span>
-                      教員採用試験（教職教養）
-                    </SiteLink>
-                    <SiteLink href="/shakai/" className="flex items-center px-4 py-2 text-[color:var(--c-text)] hover:bg-[color:var(--c-bg-alt)] hover:text-[color:var(--c-eco)] no-underline transition-colors">
-                      <span className="w-1 h-4 mr-3 rounded-full" style={{ background: "var(--c-eco)" }}></span>
-                      社会福祉士（共通科目）
-                    </SiteLink>
-                    <SiteLink href="/bijihou/" className="flex items-center px-4 py-2 text-[color:var(--c-text)] hover:bg-[color:var(--c-bg-alt)] hover:text-[color:var(--c-kashikin)] no-underline transition-colors">
-                      <span className="w-1 h-4 mr-3 rounded-full" style={{ background: "var(--c-kashikin)" }}></span>
-                      ビジネス実務法務検定3級
-                    </SiteLink>
-                    <SiteLink href="/bijihou2/" className="flex items-center px-4 py-2 text-[color:var(--c-text)] hover:bg-[color:var(--c-bg-alt)] hover:text-[color:var(--c-kashikin)] no-underline transition-colors">
-                      <span className="w-1 h-4 mr-3 rounded-full" style={{ background: "var(--c-kashikin)" }}></span>
-                      ビジネス実務法務検定2級
-                    </SiteLink>
-                    <SiteLink href="/fukushi2/" className="flex items-center px-4 py-2 text-[color:var(--c-text)] hover:bg-[color:var(--c-bg-alt)] hover:text-[color:var(--c-fukushi)] no-underline transition-colors">
-                      <span className="w-1 h-4 mr-3 rounded-full" style={{ background: "var(--c-fukushi)" }}></span>
-                      福祉住環境コーディネーター2級
-                    </SiteLink>
-                    <SiteLink href="/bijimane/" className="flex items-center px-4 py-2 text-[color:var(--c-text)] hover:bg-[color:var(--c-bg-alt)] hover:text-[color:var(--c-bijimane)] no-underline transition-colors">
-                      <span className="w-1 h-4 mr-3 rounded-full" style={{ background: "var(--c-bijimane)" }}></span>
-                      ビジネスマネジャー検定
-                    </SiteLink>
-                    <SiteLink href="/eco/" className="flex items-center px-4 py-2 text-[color:var(--c-text)] hover:bg-[color:var(--c-bg-alt)] hover:text-[color:var(--c-eco)] no-underline transition-colors">
-                      <span className="w-1 h-4 mr-3 rounded-full" style={{ background: "var(--c-eco)" }}></span>
-                      eco検定（環境社会検定試験）
-                    </SiteLink>
-                  </div>
-                </div>
-              </div>
+              {/* 以前はマウスを乗せたときだけ開く33資格の縦1列のメニューだった。タッチ操作やキーボードでは開かず、
+                  ノートPCでは下の資格が画面の外に出ていた。トップの区分ごとの資格一覧へのリンクにした(2026-11-10) */}
+              <SiteLink href="/#exams" className="text-[color:var(--c-text-sub)] hover:text-[color:var(--c-ink)] no-underline transition-colors">資格一覧</SiteLink>
               <SiteLink href="/column/" className="text-[color:var(--c-text-sub)] hover:text-[color:var(--c-ink)] no-underline transition-colors">コラム</SiteLink>
               <SiteLink href="/calendar/" className="text-[color:var(--c-text-sub)] hover:text-[color:var(--c-ink)] no-underline transition-colors">試験日程</SiteLink>
               <SiteLink href="/study/" className="text-[color:var(--c-text-sub)] hover:text-[color:var(--c-ink)] no-underline transition-colors">学習履歴</SiteLink>
@@ -292,9 +153,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <div>
                 <h4 className="text-[color:var(--c-ink)] font-bold mb-3 text-xs font-serif">読みもの</h4>
                 <ul className="space-y-2">
+                  <li><SiteLink href="/hajimete/" className="text-[color:var(--c-text-sub)] hover:text-[color:var(--c-ink)] no-underline">はじめての方へ</SiteLink></li>
                   <li><SiteLink href="/column/" className="text-[color:var(--c-text-sub)] hover:text-[color:var(--c-ink)] no-underline">コラム</SiteLink></li>
-                  <li><SiteLink href="/guide/" className="text-[color:var(--c-text-sub)] hover:text-[color:var(--c-ink)] no-underline">学習ガイド</SiteLink></li>
-                  <li><SiteLink href="/voice/" className="text-[color:var(--c-text-sub)] hover:text-[color:var(--c-ink)] no-underline">合格報告</SiteLink></li>
+                  <li><SiteLink href="/calendar/" className="text-[color:var(--c-text-sub)] hover:text-[color:var(--c-ink)] no-underline">試験日程</SiteLink></li>
+                  {/* 合格報告は、掲載できる報告が届くまで出さない(0件の /voice/ は空のページのため。2026-11-10) */}
+                  {showVoiceLink && (
+                    <li><SiteLink href="/voice/" className="text-[color:var(--c-text-sub)] hover:text-[color:var(--c-ink)] no-underline">合格報告</SiteLink></li>
+                  )}
                 </ul>
                 <h4 className="text-[color:var(--c-ink)] font-bold mt-6 mb-3 text-xs font-serif">関連サービス</h4>
                 <ul className="space-y-2">
@@ -337,6 +202,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 <h4 className="text-[color:var(--c-ink)] font-bold mb-3 text-xs font-serif">サイト情報</h4>
                 <ul className="space-y-2">
                   <li><SiteLink href="/about/" className="text-[color:var(--c-text-sub)] hover:text-[color:var(--c-ink)] no-underline">このサイトについて</SiteLink></li>
+                  <li><SiteLink href="/about/#disclaimer" className="text-[color:var(--c-text-sub)] hover:text-[color:var(--c-ink)] no-underline">免責事項</SiteLink></li>
                   <li><SiteLink href="/privacy/" className="text-[color:var(--c-text-sub)] hover:text-[color:var(--c-ink)] no-underline">プライバシー</SiteLink></li>
                   <li><SiteLink href="/contact/" className="text-[color:var(--c-text-sub)] hover:text-[color:var(--c-ink)] no-underline">お問い合わせ</SiteLink></li>
                 </ul>

@@ -7,6 +7,7 @@ import ShakaiCourseAd from "@/components/ShakaiCourseAd";
 import { pageMetadata } from "@/lib/page-metadata";
 import ExamVoicesSection from "@/components/ExamVoicesSection";
 import { SHAKAI_FIELDS } from "@/lib/shakai-fields";
+import OfficialSiteLink from "@/components/OfficialSiteLink";
 
 export const metadata: Metadata = pageMetadata({
   path: "/shakai/",
@@ -129,6 +130,7 @@ export default async function ShakaiPage() {
             ※本サイトが扱うのは共通科目12科目です。専門科目7科目（高齢者福祉・児童家庭福祉・貧困に対する支援・保健医療と福祉・ソーシャルワーク（専門）・福祉サービスの組織と経営）は収録していません。試験日程・受験申込期間・受験資格は必ず試験センターの公式発表でご確認ください。
           </p>
         </div>
+        <OfficialSiteLink exam="shakai" />
       </section>
 
       {/* 合格報告(掲載済みがあれば)と、受験直後の方への報告のお願い。

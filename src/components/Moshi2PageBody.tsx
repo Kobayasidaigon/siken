@@ -81,7 +81,7 @@ export default function Moshi2PageBody({ certId }: { certId: ExamSlug }) {
       <section className="mb-6 max-w-2xl">
         <h2 className="text-base font-bold text-[color:var(--c-ink)] mb-2 font-serif">作問方針</h2>
         <p className="text-sm text-[color:var(--c-text)] leading-relaxed">
-          本試験の出題範囲・形式に合わせて編集部がオリジナルで作成しています。公式問題の転載ではありません。
+          本試験の出題範囲・形式に合わせて当サイトでオリジナルに作成しています。公式問題の転載ではありません。
           法改正・最新テキストに合わせて随時更新します。
           <SiteLink href="/about/" className="underline underline-offset-2 ml-1">運営者情報</SiteLink>
         </p>

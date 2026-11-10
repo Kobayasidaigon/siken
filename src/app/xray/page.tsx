@@ -11,6 +11,7 @@ import { XRAY_FIELDS } from "@/lib/xray-fields";
 import ExamCountdown from "@/components/ExamCountdown";
 import { XRAY_EXAMS } from "@/lib/exam-dates";
 import { sisterSite } from "@/lib/sister-sites";
+import OfficialSiteLink from "@/components/OfficialSiteLink";
 
 export const metadata: Metadata = pageMetadata({
   path: "/xray/",
@@ -144,6 +145,7 @@ export default async function XrayPage() {
             ※出典: 安全衛生技術試験協会（exam.or.jp）の試験案内・日程・手数料・合格率の各ページ、電離放射線障害防止規則（2026年10月19日確認）。電卓は使えますが関数電卓・スマホは不可です。令和7年の電離則等の改正で作業主任者の職務が段階的に変わります（2026年4月1日と2027年10月1日施行）。最新の日程・手数料は協会の公式サイトで必ず確認してください。
           </p>
         </div>
+        <OfficialSiteLink exam="xray" />
       </section>
 
       {/* 合格報告(掲載済みがあれば)と、受験直後の方への報告のお願い。

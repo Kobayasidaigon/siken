@@ -69,7 +69,7 @@ export default async function Bijihou2MoshiPage() {
       <p className="text-xs text-[color:var(--c-text-sub)] mt-8 max-w-2xl leading-relaxed">
         ※本試験（IBT/CBT）の問題数・出題形式の内訳・配点は公式には公開されていないため、本模試は時間（90分）と
         採点基準（100点満点・70点合格）に準拠しつつ、50問構成（均等2点）としています。
-        当サイト編集部が作成したオリジナル問題で、実際の過去問題の転載ではありません。
+        当サイトで作成したオリジナル問題で、実際の過去問題の転載ではありません。
         合格判定はあくまで学習の目安です。1問ずつじっくり学びたい方は
         <SiteLink href="/bijihou2/" className="underline hover:no-underline">練習問題200問</SiteLink>へ、
         3級から固めたい方は<SiteLink href="/bijihou/moshi/" className="underline hover:no-underline">3級の模擬試験</SiteLink>へ。

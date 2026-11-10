@@ -28,10 +28,15 @@ export async function generateMetadata({ params }: { params: Promise<{ ym: strin
   const { ym } = await params;
   const ev = eventsInMonth(ym);
   const names = [...new Set(ev.map((e) => e.exam.name))].slice(0, 4).join("・");
+  // 終わった月は、もう申し込めない日程の一覧になるので検索に出さない(2026-11-10)。
+  // ページは ISR で1時間ごとに作り直すので、月が変わると自動で noindex に切り替わる。
+  // sitemap も同じ基準で外している(scripts/generate-sitemap.js)。
+  const ended = ym < todayJst().slice(0, 7);
   return pageMetadata({
     path: `/calendar/${ym}/`,
     title: `${formatYmJa(ym)}の資格試験日・申込締切一覧`,
     description: `${formatYmJa(ym)}に試験日・申込締切・申込受付開始を迎える資格試験の一覧。${names}など、日付順に確認できます。`,
+    noindex: ended,
   });
 }
 

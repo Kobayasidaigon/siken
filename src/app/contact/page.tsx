@@ -18,8 +18,13 @@ export default function ContactPage() {
 
       <div className="card p-6 not-prose">
         <p className="text-sm text-slate-600 mb-2">メールアドレス</p>
-        <p className="text-base font-bold text-blue-700">
-          dawuzhangguchuan131@gmail.com
+        <p className="text-base font-bold">
+          <a href="mailto:dawuzhangguchuan131@gmail.com" className="text-blue-700 hover:underline">
+            dawuzhangguchuan131@gmail.com
+          </a>
+        </p>
+        <p className="text-xs text-slate-500 mt-3">
+          問題や解説の誤りをお知らせいただくときは、そのページの URL か問題番号を添えていただけると、早く確認できます。
         </p>
       </div>
 

@@ -9,6 +9,7 @@ import { CHINTAI_EXAMS } from "@/lib/exam-dates";
 import ExamCountdown from "@/components/ExamCountdown";
 import ShikenmaeEntry from "@/components/ShikenmaeEntry";
 import ExamVoicesSection from "@/components/ExamVoicesSection";
+import OfficialSiteLink from "@/components/OfficialSiteLink";
 
 export const metadata: Metadata = pageMetadata({
   path: "/chintai/",
@@ -105,6 +106,7 @@ export default async function ChintaiPage() {
           <p><span className="font-bold text-[color:var(--c-ink)]">試験日</span>　年1回・11月（令和8年度は11月15日、申込は8月3日〜9月30日）</p>
           <p><span className="font-bold text-[color:var(--c-ink)]">実施機関</span>　一般社団法人賃貸不動産経営管理士協議会</p>
         </div>
+        <OfficialSiteLink exam="chintai" />
       </section>
 
       {/* 合格報告(掲載済みがあれば)と、受験直後の方への報告のお願い。

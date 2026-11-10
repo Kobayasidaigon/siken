@@ -63,7 +63,7 @@ export default async function GaiaMoshi2kyuPage() {
       />
 
       <p className="text-xs text-[color:var(--c-text-sub)] mt-8 max-w-2xl leading-relaxed">
-        ※本模試は当サイト編集部が作成したオリジナル問題で、公式のサンプル問題の転載ではありません。○×は1つ目の選択肢が「○ 正しい」、2つ目が「× 誤り」です。1級形式（100問・120分）は<SiteLink href="/gaia/moshi/" className="underline hover:no-underline">こちら</SiteLink>。
+        ※本模試は当サイトで作成したオリジナル問題で、公式のサンプル問題の転載ではありません。○×は1つ目の選択肢が「○ 正しい」、2つ目が「× 誤り」です。1級形式（100問・120分）は<SiteLink href="/gaia/moshi/" className="underline hover:no-underline">こちら</SiteLink>。
         1問ずつじっくり学びたい方は<SiteLink href="/gaia/" className="underline hover:no-underline">練習問題</SiteLink>へ。
       </p>
     </div>

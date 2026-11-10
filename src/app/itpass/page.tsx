@@ -6,6 +6,7 @@ import type { Metadata } from "next";
 import ItpassCourseAd from "@/components/ItpassCourseAd";
 import { pageMetadata } from "@/lib/page-metadata";
 import ExamVoicesSection from "@/components/ExamVoicesSection";
+import OfficialSiteLink from "@/components/OfficialSiteLink";
 
 export const metadata: Metadata = pageMetadata({
   path: "/itpass/",
@@ -99,6 +100,7 @@ export default async function ItpassPage() {
           <p><span className="font-bold text-[color:var(--c-ink)]">試験日</span>　CBT方式で通年実施（全国47都道府県の会場で随時受験可能）</p>
           <p><span className="font-bold text-[color:var(--c-ink)]">実施機関</span>　独立行政法人情報処理推進機構（IPA）</p>
         </div>
+        <OfficialSiteLink exam="itpass" />
       </section>
 
       {/* 合格報告(掲載済みがあれば)と、受験直後の方への報告のお願い。

@@ -4,7 +4,8 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import type { ShakaiQuestionData } from "@/lib/shakai-questions";
 import { pageMetadata } from "@/lib/page-metadata";
-import ShakaiCourseAd from "@/components/ShakaiCourseAd";
+import FieldGuide from "@/components/FieldGuide";
+import { hasFieldGuide } from "@/lib/field-guides";
 import { SHAKAI_FIELDS, shakaiFieldBySlug } from "@/lib/shakai-fields";
 import MedalMark, { MedalLegend } from "@/components/MedalMark";
 
@@ -16,10 +17,13 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const field = shakaiFieldBySlug(slug);
   if (!field) return { title: "Not Found" };
+  const guide = hasFieldGuide("shakai", slug);
   return pageMetadata({
     path: `/shakai/field/${slug}/`,
     title: `社会福祉士｜${field.name} 練習問題`,
-    description: `社会福祉士国家試験の${field.task}対策。「${field.name}」のオリジナル練習問題と詳細解説。精神保健福祉士と共通の科目なので、どちらの受験にも使えます。`,
+    description: `社会福祉士国家試験の${field.task}対策。「${field.name}」の${guide ? "要点のまとめと、" : ""}オリジナル練習問題の一覧。精神保健福祉士と共通の科目なので、どちらの受験にも使えます。`,
+    // 要点の本文(src/content/field-guides/)が無い分野ページは、問題へのリンク一覧だけなので検索に出さない(2026-11-10)
+    noindex: !guide,
   });
 }
 
@@ -86,6 +90,7 @@ export default async function ShakaiFieldPage({ params }: { params: Promise<{ sl
       <div className="w-12 h-1 mb-3" style={{ background: "var(--c-eco)" }}></div>
       <p className="text-xs text-[color:var(--c-text-sub)] mb-2">本試験の{field.task}に含まれる分野です。精神保健福祉士と共通の出題範囲です。</p>
       <p className="text-sm text-[color:var(--c-text-sub)] mb-6 leading-relaxed">{field.desc}</p>
+      <FieldGuide exam="shakai" slug={slug} />
 
       <div className="grid grid-cols-4 gap-2 mb-8">
         <div className="card p-3 text-center">
@@ -114,8 +119,6 @@ export default async function ShakaiFieldPage({ params }: { params: Promise<{ sl
           <QuestionCard key={q.slug} q={q} index={i + 1} />
         ))}
       </div>
-
-      <ShakaiCourseAd headline={`「${field.name}」でつまずくなら`} />
     </div>
   );
 }

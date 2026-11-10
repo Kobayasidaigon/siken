@@ -66,7 +66,7 @@ export default async function ChintaiMoshiPage() {
       />
 
       <p className="text-xs text-[color:var(--c-text-sub)] mt-8 max-w-2xl leading-relaxed">
-        ※本模試は当サイト編集部が作成したオリジナル問題で構成しており、実際の過去問題の転載ではありません。
+        ※本模試は当サイトで作成したオリジナル問題で構成しており、実際の過去問題の転載ではありません。
         本試験の合格基準点は年度ごとに決定され（令和7年度38点・令和6年度以前は35〜36点前後）、5問免除者は45問・110分での受験になります。
         合否判定はあくまで学習の目安です。1問ずつじっくり学びたい方は
         <SiteLink href="/chintai/" className="underline hover:no-underline">練習問題200問</SiteLink>へ、

@@ -4,7 +4,8 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import type { KangyoQuestionData } from "@/lib/kangyo-questions";
 import { pageMetadata } from "@/lib/page-metadata";
-import KangyoCourseAd from "@/components/KangyoCourseAd";
+import FieldGuide from "@/components/FieldGuide";
+import { hasFieldGuide } from "@/lib/field-guides";
 import MedalMark, { MedalLegend } from "@/components/MedalMark";
 
 const fieldMap: Record<string, { name: string; desc: string }> = {
@@ -28,10 +29,13 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const field = fieldMap[slug];
   if (!field) return { title: "Not Found" };
+  const guide = hasFieldGuide("kangyo", slug);
   return pageMetadata({
     path: `/kangyo/field/${slug}/`,
     title: `管理業務主任者｜${field.name} 練習問題`,
-    description: `管理業務主任者対策。${field.name}分野のオリジナル練習問題と詳細解説。各問に根拠条文を含む解説付きで効率的に学習できます。`,
+    description: `管理業務主任者対策。${field.name}分野の${guide ? "要点のまとめと、" : ""}オリジナル練習問題の一覧。1問ずつ解いて、答えと解説を確認できます。`,
+    // 要点の本文(src/content/field-guides/)が無い分野ページは、問題へのリンク一覧だけなので検索に出さない(2026-11-10)
+    noindex: !guide,
   });
 }
 
@@ -77,6 +81,7 @@ export default async function KangyoFieldPage({ params }: { params: Promise<{ sl
       <h1 className="text-xl sm:text-2xl font-bold text-[color:var(--c-ink)] mb-2 font-serif">{field.name}</h1>
       <div className="w-12 h-1 mb-3" style={{ background: "var(--c-kashikin)" }}></div>
       <p className="text-sm text-[color:var(--c-text-sub)] mb-6 leading-relaxed">{field.desc}</p>
+      <FieldGuide exam="kangyo" slug={slug} />
 
       <div className="grid grid-cols-4 gap-2 mb-8">
         <div className="card p-3 text-center">
@@ -101,8 +106,6 @@ export default async function KangyoFieldPage({ params }: { params: Promise<{ sl
       <div className="space-y-2">
         {questions.map((q, i) => <QuestionCard key={q.slug} q={q} index={i + 1} />)}
       </div>
-
-      <KangyoCourseAd headline={`「${field.name}」でつまずくなら`} />
     </div>
   );
 }

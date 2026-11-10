@@ -7,6 +7,8 @@ export const metadata: Metadata = pageMetadata({
   path: "/field/",
   title: "分野別 練習問題一覧",
   description: "貸金業務取扱主任者試験のオリジナル練習問題を分野別に整理。貸金業法・利息制限法・民法・資金需要者保護。",
+  // 4分野へのリンクだけで、内容は /kashikin/ と重なるため検索に出さない(2026-11-10)
+  noindex: true,
 });
 
 const fields = [

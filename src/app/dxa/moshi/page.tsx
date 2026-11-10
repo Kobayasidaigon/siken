@@ -67,7 +67,7 @@ export default async function DxaMoshiPage() {
       />
 
       <p className="text-xs text-[color:var(--c-text-sub)] mt-8 max-w-2xl leading-relaxed">
-        ※本模試は当サイト編集部が作成したオリジナル問題で構成しており、公式問題・サンプル問題の転載ではありません。協会は問題の難易度により合格基準を調整する場合があると案内しています。合否判定は学習の目安です。
+        ※本模試は当サイトで作成したオリジナル問題で構成しており、公式問題・サンプル問題の転載ではありません。協会は問題の難易度により合格基準を調整する場合があると案内しています。合否判定は学習の目安です。
         1問ずつじっくり学びたい方は<SiteLink href="/dxa/" className="underline hover:no-underline">練習問題</SiteLink>へ。
       </p>
     </div>

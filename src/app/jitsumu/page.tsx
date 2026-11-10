@@ -10,6 +10,7 @@ import { JITSUMU_EXAMS } from "@/lib/exam-dates";
 import ExamCountdown from "@/components/ExamCountdown";
 import Moshi2TopLink from "@/components/Moshi2TopLink";
 import ExamVoicesSection from "@/components/ExamVoicesSection";
+import OfficialSiteLink from "@/components/OfficialSiteLink";
 
 export const metadata: Metadata = pageMetadata({
   path: "/jitsumu/",
@@ -108,6 +109,7 @@ export default async function JitsumuPage() {
         <p className="text-xs text-[color:var(--c-text-sub)] mt-3 leading-relaxed">
           ※当サイトの練習問題は、個人情報保護法の基礎を中心に2級・1級の両方に通じる内容で構成しています。最新の試験範囲・日程は公式サイトで必ずご確認ください。
         </p>
+        <OfficialSiteLink exam="jitsumu" />
       </section>
 
       {/* 合格報告(掲載済みがあれば)と、受験直後の方への報告のお願い。

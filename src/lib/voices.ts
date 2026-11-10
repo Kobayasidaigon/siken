@@ -79,6 +79,14 @@ async function readVoice(slug: string): Promise<Voice | null> {
   };
 }
 
+/**
+ * 掲載済みの合格報告が1件でもあるか。フッターの「合格報告」リンクを出すかどうかに使う(2026-11-10 追加)。
+ * 0件の /voice/ は「最初の報告をお待ちしています」だけの空のページなので、全ページのフッターから案内しない。
+ */
+export function hasVoices(): boolean {
+  return getAllSlugs().length > 0;
+}
+
 /** 掲載済みの合格報告を新しい順に返す。1件も無ければ空配列 */
 export async function getAllVoices(): Promise<Voice[]> {
   const voices = await Promise.all(getAllSlugs().map(readVoice));

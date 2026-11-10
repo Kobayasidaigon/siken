@@ -4,7 +4,8 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import type { CccQuestionData } from "@/lib/ccc-questions";
 import { pageMetadata } from "@/lib/page-metadata";
-import CccCourseAd from "@/components/CccCourseAd";
+import FieldGuide from "@/components/FieldGuide";
+import { hasFieldGuide } from "@/lib/field-guides";
 import { CCC_FIELDS, cccFieldBySlug } from "@/lib/ccc-fields";
 import MedalMark, { MedalLegend } from "@/components/MedalMark";
 
@@ -16,10 +17,13 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const field = cccFieldBySlug(slug);
   if (!field) return { title: "Not Found" };
+  const guide = hasFieldGuide("ccc", slug);
   return pageMetadata({
     path: `/ccc/field/${slug}/`,
     title: `民法法務士｜${field.name} 練習問題`,
-    description: `民法法務士認定試験対策。${field.task}「${field.name}」のオリジナル練習問題と詳細解説。各問に根拠つきの解説があり、弱点分野だけを集中して演習できます。`,
+    description: `民法法務士認定試験対策。${field.task}「${field.name}」の${guide ? "要点のまとめと、" : ""}オリジナル練習問題の一覧。1問ずつ解いて、答えと解説を確認できます。`,
+    // 要点の本文(src/content/field-guides/)が無い分野ページは、問題へのリンク一覧だけなので検索に出さない(2026-11-10)
+    noindex: !guide,
   });
 }
 
@@ -86,6 +90,7 @@ export default async function CccFieldPage({ params }: { params: Promise<{ slug:
       <div className="w-12 h-1 mb-3" style={{ background: "var(--c-pii)" }}></div>
       <p className="text-xs text-[color:var(--c-text-sub)] mb-2">本試験の{field.task}に対応する分野です。</p>
       <p className="text-sm text-[color:var(--c-text-sub)] mb-6 leading-relaxed">{field.desc}</p>
+      <FieldGuide exam="ccc" slug={slug} />
 
       <div className="grid grid-cols-4 gap-2 mb-8">
         <div className="card p-3 text-center">
@@ -114,8 +119,6 @@ export default async function CccFieldPage({ params }: { params: Promise<{ slug:
           <QuestionCard key={q.slug} q={q} index={i + 1} />
         ))}
       </div>
-
-      <CccCourseAd headline={`「${field.name}」でつまずくなら`} />
     </div>
   );
 }

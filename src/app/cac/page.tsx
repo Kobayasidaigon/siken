@@ -10,6 +10,7 @@ import { CAC_FIELDS } from "@/lib/cac-fields";
 import ExamCountdown from "@/components/ExamCountdown";
 import { CAC_EXAMS } from "@/lib/exam-dates";
 import { EXAM_AFFILIATE } from "@/lib/affiliate-links";
+import OfficialSiteLink from "@/components/OfficialSiteLink";
 
 export const metadata: Metadata = pageMetadata({
   path: "/cac/",
@@ -168,6 +169,7 @@ export default async function CacPage() {
           </p>
           <p className="text-xs pt-2">※最新の日程・受験料・出題範囲は必ず公式サイトでご確認ください。</p>
         </div>
+        <OfficialSiteLink exam="cac" />
       </section>
 
       {/* 合格報告(掲載済みがあれば)と、受験直後の方への報告のお願い。どちらも条件を満たさなければ何も出ない */}

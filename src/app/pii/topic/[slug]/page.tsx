@@ -6,7 +6,6 @@ import { pageMetadata } from "@/lib/page-metadata";
 import { PII_TOPIC_HUBS, topicOfTitle } from "@/lib/topic-hubs";
 import { breadcrumbJsonLd } from "@/lib/quiz-jsonld";
 import JsonLd from "@/components/JsonLd";
-import PiiCourseAd from "@/components/PiiCourseAd";
 import ExamVoicesSection from "@/components/ExamVoicesSection";
 
 /**
@@ -45,7 +44,9 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   return pageMetadata({
     path: `/pii/topic/${slug}/`,
     title: `${hub.topic}｜個人情報保護士 練習問題${questions.length}問`,
-    description: `個人情報保護士試験の「${hub.topic}」に関するオリジナル練習問題${questions.length}問をまとめました。${hub.field}分野の論点で、1問ごとに根拠法令を含む解説がついています。登録不要・無料。`,
+    description: `個人情報保護士試験の「${hub.topic}」に関するオリジナル練習問題${questions.length}問をまとめました。${hub.field}分野の論点で、1問ごとに解説がついています。登録不要・無料。`,
+    // 問題文の書き出しを並べて自動で作るページで、そのページにしかない文章が無いため検索に出さない(2026-11-10。AdSense の再審査に向けた見直し)
+    noindex: true,
   });
 }
 
@@ -89,7 +90,7 @@ export default async function PiiTopicPage({ params }: { params: Promise<{ slug:
 
       <p className="text-sm text-[color:var(--c-text-sub)] mb-6 leading-relaxed">
         個人情報保護士試験の{hub.field}分野のうち、「{hub.topic}」に関する
-        オリジナル練習問題{questions.length}問です。1問ごとに根拠法令を含む解説がついています。
+        オリジナル練習問題{questions.length}問です。1問ごとに解説がついています。
         登録は不要で、解いた記録はブラウザに残ります。
       </p>
 
@@ -158,8 +159,6 @@ export default async function PiiTopicPage({ params }: { params: Promise<{ slug:
       </nav>
 
       <ExamVoicesSection exam="pii" />
-
-      <PiiCourseAd headline={`「${hub.topic}」でつまずくなら`} />
     </div>
   );
 }

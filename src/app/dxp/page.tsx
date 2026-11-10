@@ -10,6 +10,7 @@ import { DXP_FIELDS } from "@/lib/dxp-fields";
 import ExamCountdown from "@/components/ExamCountdown";
 import { DXP_EXAMS } from "@/lib/exam-dates";
 import { EXAM_AFFILIATE } from "@/lib/affiliate-links";
+import OfficialSiteLink from "@/components/OfficialSiteLink";
 
 export const metadata: Metadata = pageMetadata({
   path: "/dxp/",
@@ -148,6 +149,7 @@ export default async function DxpPage() {
             ※IPA などが発行する「DX推進パスポート」（ITパスポート試験などの合格で取得できるデジタルバッジ）や、他団体の「DX検定」とは別の試験です。最新の日程・受験料・出題範囲は必ず協会の公式サイトでご確認ください。
           </p>
         </div>
+        <OfficialSiteLink exam="dxp" />
       </section>
 
       {/* 合格報告(掲載済みがあれば)と、受験直後の方への報告のお願い。

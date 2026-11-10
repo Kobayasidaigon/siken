@@ -93,7 +93,7 @@ export default async function KashikinMoshiPage() {
         その分は含まれません。
         <br />
         本試験の合格基準は回ごとに決まり、30点で固定されているわけではありません。ここでの判定は学習の目安です。
-        当サイト編集部が作成したオリジナル問題で構成しており、実際の過去問題の転載ではありません。
+        当サイトで作成したオリジナル問題で構成しており、実際の過去問題の転載ではありません。
         1問ずつじっくり学びたい方は
         <SiteLink href="/kashikin/" className="underline hover:no-underline">
           練習問題504問

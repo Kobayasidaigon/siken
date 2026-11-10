@@ -565,6 +565,8 @@ const staticPages = [
   { url: "/calendar/", priority: "0.8", freq: "weekly", lastmod: fileDate(examDatesPath) },
   ...calendarMonths.map((ym) => ({ url: `/calendar/${ym}/`, priority: "0.6", freq: "monthly", lastmod: fileDate(examDatesPath) })),
   // その他 (/study/ は localStorage 依存の個人ページで noindex のため sitemap から除外)
+  // はじめての方へ(サイト全体の使い方・作り方。2026-11-10 追加)
+  { url: "/hajimete/", priority: "0.6", freq: "monthly", lastmod: fileDate(path.join(appDir, "hajimete/page.tsx")) },
   { url: "/guide/", priority: "0.6", freq: "monthly", lastmod: fileDate(path.join(appDir, "guide/page.tsx")) },
   { url: "/goukaku-houkoku/", priority: "0.4", freq: "monthly", lastmod: fileDate(path.join(appDir, "goukaku-houkoku/page.tsx")) },
   { url: "/about/", priority: "0.3", freq: "yearly", lastmod: fileDate(path.join(appDir, "about/page.tsx")) },
@@ -624,12 +626,43 @@ const voicePages =
 // 警告するので、ここで外す。資格を増やして contentPages に足しても /q/ は自動で除かれる。
 const isQuestionUrl = (url) => /^\/(?:[a-z0-9]+\/)?q\//.test(url);
 
+// 2026-11-10: AdSense の再審査(「有用性の低いコンテンツ」で不承認)に向けて、そのページにしかない文章が
+// ほとんど無い一覧・入口のページを noindex にした。ページ側の noindex と同じ基準で、ここでも外す。
+//   - /tokushoho/(もともと noindex。いま販売している商品は無い)
+//   - /exam/・/exam/0/(貸金の問題一覧)と /field/(貸金の分野一覧)
+//   - 論点まとめ /topic/*・/pii/topic/*(問題文の書き出しを並べて自動で作るページ)
+//   - 本番形式テスト /<資格>/mock/(出題ボタンと案内だけ)
+//   - 分野ページのうち、要点の本文 src/content/field-guides/<資格>/<分野slug>.md が無いもの(src/lib/field-guides.ts)
+//   - 試験カレンダーの終わった月(src/app/calendar/[ym]/page.tsx)
+const fieldGuidesDir = path.join(__dirname, "../src/content/field-guides");
+const currentYmJst = new Date(Date.now() + 9 * 3600 * 1000).toISOString().slice(0, 7);
+/** 分野ページなら要点の本文があるかを返す。分野ページでなければ null */
+function fieldGuideExists(url) {
+  const m = url.match(/^\/(?:([a-z0-9]+)\/)?field\/([a-z0-9-]+)\/$/);
+  if (!m) return null;
+  const exam = m[1] || "kashikin"; // 貸金の分野ページは /field/<slug>/
+  return fs.existsSync(path.join(fieldGuidesDir, exam, `${m[2]}.md`));
+}
+const isEndedCalendarMonth = (url) => {
+  const m = url.match(/^\/calendar\/(\d{4}-\d{2})\/$/);
+  return !!m && m[1] < currentYmJst;
+};
+const isNoindexUrl = (url) =>
+  url === "/tokushoho/" ||
+  url === "/exam/" ||
+  /^\/exam\/\d+\/$/.test(url) ||
+  url === "/field/" ||
+  /^\/(?:pii\/)?topic\//.test(url) ||
+  /^\/(?:[a-z0-9]+\/)?mock\/$/.test(url) ||
+  fieldGuideExists(url) === false ||
+  isEndedCalendarMonth(url);
+
 const allPages = [
   ...staticPages,
   { url: "/column/", priority: "0.8", freq: "weekly", lastmod: columnsMax },
   ...voicePages,
   ...contentPages.filter((p) => !isQuestionUrl(p.url)),
-];
+].filter((p) => !isNoindexUrl(p.url));
 
 const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
@@ -653,7 +686,9 @@ if (IS_CI) {
   const committed = new Set([...committedXml.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]));
   const expected = new Set(allPages.map((p) => `${BASE_URL}${p.url}`));
   const missing = [...expected].filter((u) => !committed.has(u));
-  const extra = [...committed].filter((u) => !expected.has(u));
+  // 月が替わると、生成した時点ではこれからだった月が「終わった月」になって expected から抜ける。
+  // その月がコミット済みの sitemap に残っているのは古いだけで害はないので、ビルドは止めない(次にローカルで生成すれば消える)
+  const extra = [...committed].filter((u) => !expected.has(u) && !isEndedCalendarMonth(u.slice(BASE_URL.length)));
   if (missing.length || extra.length) {
     console.error(
       "public/sitemap.xml が古いです。ローカルで npm run build を実行し、再生成された public/sitemap.xml を同じコミットに含めてください。"

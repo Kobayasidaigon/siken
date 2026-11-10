@@ -11,6 +11,7 @@ import { GAIA_FIELDS } from "@/lib/gaia-fields";
 import ExamCountdown from "@/components/ExamCountdown";
 import { GAIA_EXAMS } from "@/lib/exam-dates";
 import { EXAM_AFFILIATE } from "@/lib/affiliate-links";
+import OfficialSiteLink from "@/components/OfficialSiteLink";
 
 export const metadata: Metadata = pageMetadata({
   path: "/gaia/",
@@ -151,6 +152,7 @@ export default async function GaiaPage() {
             ※出典: 全日本情報学習振興協会の生成AIアドバイザー認定試験ページ・サンプル問題・学習資料（2026年10月19日確認）。2級の○×と4択の内訳は協会が公表していません。当サイトの2級形式模試は○×30問＋4択20問の想定です。AI事業者ガイドラインは協会の学習資料の第1.1版（2025年3月28日）を基準にしています。最新の日程・受験料は公式サイトで必ず確認してください。
           </p>
         </div>
+        <OfficialSiteLink exam="gaia" />
       </section>
 
       {/* 合格報告(掲載済みがあれば)と、受験直後の方への報告のお願い。

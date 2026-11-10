@@ -87,7 +87,7 @@ export default async function IsfMoshiPage() {
 
       <p className="text-xs text-[color:var(--c-text-sub)] mt-8 max-w-2xl leading-relaxed">
         ※本試験では、問題の難易度により正答率70%未満でも合格となる場合があると案内されています。本模試は調整を行わない素点判定なので、
-        判定は学習の目安としてお使いください。当サイト編集部が作成したオリジナル問題で構成しており、実際の過去問題の転載ではありません。
+        判定は学習の目安としてお使いください。当サイトで作成したオリジナル問題で構成しており、実際の過去問題の転載ではありません。
         1問ずつじっくり学びたい方は
         <SiteLink href="/isf/" className="underline hover:no-underline">
           練習問題160問

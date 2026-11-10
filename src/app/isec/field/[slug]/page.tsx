@@ -4,7 +4,8 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import type { IsecQuestionData } from "@/lib/isec-questions";
 import { pageMetadata } from "@/lib/page-metadata";
-import IsecCourseAd from "@/components/IsecCourseAd";
+import FieldGuide from "@/components/FieldGuide";
+import { hasFieldGuide } from "@/lib/field-guides";
 import { ISEC_FIELDS, isecFieldBySlug } from "@/lib/isec-fields";
 import MedalMark, { MedalLegend } from "@/components/MedalMark";
 
@@ -16,12 +17,15 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const field = isecFieldBySlug(slug);
   if (!field) return { title: "Not Found" };
+  const guide = hasFieldGuide("isec", slug);
   return pageMetadata({
     path: `/isec/field/${slug}/`,
     title: `情報・サイバーセキュリティ管理士｜${field.name} 練習問題`,
     description: field.outOfScope
       ? `情報・サイバーセキュリティ管理士の参考問題「${field.name}」。2026年2月の試験から管理士の出題範囲外になった旧課題Ⅳの分野で、サイバー攻撃の仕組みを理解する土台として残しているオリジナル問題と解説です。`
-      : `情報・サイバーセキュリティ管理士認定試験対策。${field.task}「${field.name}」のオリジナル練習問題と詳細解説。各問に根拠つきの解説があり、弱点分野だけを集中して演習できます。`,
+      : `情報・サイバーセキュリティ管理士認定試験対策。${field.task}「${field.name}」の${guide ? "要点のまとめと、" : ""}オリジナル練習問題の一覧。1問ずつ解いて、答えと解説を確認できます。`,
+    // 要点の本文(src/content/field-guides/)が無い分野ページは、問題へのリンク一覧だけなので検索に出さない(2026-11-10)
+    noindex: !guide,
   });
 }
 
@@ -98,6 +102,7 @@ export default async function IsecFieldPage({ params }: { params: Promise<{ slug
         <p className="text-xs text-[color:var(--c-text-sub)] mb-2">本試験の{field.task}に対応する分野です。</p>
       )}
       <p className="text-sm text-[color:var(--c-text-sub)] mb-6 leading-relaxed">{field.desc}</p>
+      <FieldGuide exam="isec" slug={slug} />
 
       <div className="grid grid-cols-4 gap-2 mb-8">
         <div className="card p-3 text-center">
@@ -126,8 +131,6 @@ export default async function IsecFieldPage({ params }: { params: Promise<{ slug
           <QuestionCard key={q.slug} q={q} index={i + 1} />
         ))}
       </div>
-
-      <IsecCourseAd headline={`「${field.name}」でつまずくなら`} />
     </div>
   );
 }

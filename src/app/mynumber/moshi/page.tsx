@@ -82,7 +82,7 @@ export default async function MynumberMoshiPage() {
       <p className="text-xs text-[color:var(--c-text-sub)] mt-8 max-w-2xl leading-relaxed">
         ※本試験の○×と4択の出題比率は非公表のため、公式サンプル問題の構成を参考にした比率(○×15問+4択35問)としています。
         また本試験では、問題の難易度により正答率70%未満でも合格となる場合があると公式に案内されています。
-        本模試は当サイト編集部が作成したオリジナル問題で構成しており、実際の過去問題の転載ではありません。
+        本模試は当サイトで作成したオリジナル問題で構成しており、実際の過去問題の転載ではありません。
         合否判定はあくまで学習の目安です。1問ずつじっくり学びたい方は
         <SiteLink href="/mynumber/" className="underline hover:no-underline">練習問題200問</SiteLink>へ。
       </p>

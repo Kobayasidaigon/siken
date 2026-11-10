@@ -11,11 +11,13 @@ import Moshi2TopLink from "@/components/Moshi2TopLink";
 import ExamVoicesSection from "@/components/ExamVoicesSection";
 import OfficialSiteLink from "@/components/OfficialSiteLink";
 import ExamIntro from "@/components/ExamIntro";
+import { getExamIntro } from "@/lib/exam-intros";
+import { canShowUcanAd } from "@/lib/ucan-policy";
 
 export const metadata: Metadata = pageMetadata({
   path: "/fukushi2/",
   title: "福祉住環境コーディネーター2級 練習問題・過去問対策【全230問・無料】",
-  description: "福祉住環境コーディネーター2級のオリジナル練習問題230問を無料公開。疾患・障害の特性、住環境整備の技術、介護保険と住宅改修まで根拠つき解説で演習でき、分野別の練習から本番形式のテスト、90分の模擬試験まで使えます。",
+  description: "福祉住環境コーディネーター2級のオリジナル練習問題230問を無料公開。疾患・障害の特性、住環境整備の技術、介護保険と住宅改修まで根拠つき解説で演習でき、分野別の練習からランダム出題のテスト、90分の模擬試験まで使えます。",
 });
 
 const fields = [
@@ -34,6 +36,10 @@ export default async function Fukushi2Page() {
   const allQuestions = await getAllFukushi2Questions();
   const allColumns = await getAllColumns();
   const fukushi2Columns = allColumns.filter((c) => c.slug.startsWith("fukushi2-"));
+  // ユーキャンの講座広告は、数値を伴う合格率・合格者数を書いた面には出さない(広告主の掲載ルール。lib/ucan-policy.ts)。
+  // コラムと同じ基準で、このトップに出す「勉強の進め方」の本文も見る。
+  const intro = await getExamIntro("fukushi2");
+  const showUcanAd = canShowUcanAd({ content: intro?.html ?? "" });
 
   const fieldCounts = await Promise.all(
     fields.map(async (f) => {
@@ -137,10 +143,10 @@ export default async function Fukushi2Page() {
           どちらも条件を満たさなければ何も出ない */}
       <ExamVoicesSection exam="fukushi2" />
 
-      <Fukushi2CourseAd
+      {showUcanAd && <Fukushi2CourseAd
         headline="広い出題範囲を体系的に押さえるなら"
         body="福祉住環境コーディネーター2級は、医療・福祉・建築にまたがる幅広い知識が問われます。独学に不安がある方は、通信講座も選択肢になります。"
-      />
+      />}
 
       {/* 次に取る資格への導線。2026-09-09 追加。
           この資格は230問あるのに、解き終えた読者の行き先がサイト内に無かった。

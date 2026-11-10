@@ -44,7 +44,7 @@ export default async function CcmMoshiPage() {
       <p className="text-sm text-[color:var(--c-text)] leading-relaxed mb-5 max-w-2xl">
         本試験と同じ<strong>80問・120分・4肢択一</strong>で受験できる無料の模擬試験です。出題は本試験の課題に合わせ、
         <strong>第1〜第6課題</strong>から出題します。合否は本試験と同じ<strong>正答率70%（56問）以上</strong>で判定します。
-        全員が同じ問題を同じ順序で解く固定問題なので、本番前の実力測定にそのまま使えます。
+        全員が同じ問題を同じ順序で解く固定問題なので、本番前の力試しに使えます。
       </p>
 
       {/* 試験仕様 */}

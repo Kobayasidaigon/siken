@@ -7,6 +7,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs";
 import path from "node:path";
+import { loadTs } from "./load-ts.mjs";
 
 const GUIDES = "src/content/field-guides";
 const INTROS = "src/content/exam-intros";
@@ -131,4 +132,13 @@ test("勉強の進め方の本文がある資格は、トップでその本文�
     if (!fs.existsSync(page) || !fs.readFileSync(page, "utf-8").includes(`<ExamIntro exam="${exam}" />`)) bad.push(exam);
   }
   assert.deepEqual(bad, []);
+});
+
+test("ユーキャンの講座広告を出す福祉住環境2級のトップの「勉強の進め方」に、数値を伴う合格率を書かない", () => {
+  // 広告主の掲載ルールで、数値を伴う合格率・合格者数を書いた面には講座広告を出せない(src/lib/ucan-policy.ts)。
+  // トップはこの本文に数値が入ると広告を出さなくなるので、数字は合格率のコラムに書き、ここでは止める。
+  const p = path.join(INTROS, "fukushi2.md");
+  if (!fs.existsSync(p)) return;
+  const { canShowUcanAd } = loadTs("src/lib/ucan-policy.ts");
+  assert.ok(canShowUcanAd({ content: split(p).body }), `${p}: 数値を伴う合格率・合格者数がある`);
 });

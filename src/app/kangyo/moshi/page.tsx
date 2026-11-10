@@ -40,7 +40,7 @@ export default async function KangyoMoshiPage() {
       <p className="text-sm text-[color:var(--c-text)] leading-relaxed mb-5 max-w-2xl">
         本試験と同じ<strong>50問・120分・4肢択一</strong>で受験できる無料の模擬試験です。
         分野の配分は標準管理規約と区分所有法が最頻出という出題傾向に寄せ、合否は<strong>令和7年度の合格基準点（50問中36点）</strong>で判定します。
-        全員が同じ問題を同じ順序で解く固定問題なので、本番前の実力測定にそのまま使えます。
+        全員が同じ問題を同じ順序で解く固定問題なので、本番前の力試しに使えます。
         終了後は合否判定・分野別の弱点分析・全問の詳しい解説つき。
       </p>
 

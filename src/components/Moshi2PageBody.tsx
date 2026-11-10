@@ -65,7 +65,7 @@ export default function Moshi2PageBody({ certId }: { certId: ExamSlug }) {
         <ul className="text-sm text-[color:var(--c-text)] leading-relaxed space-y-1.5 list-disc pl-5">
           <li>
             <strong>第1回と1問も重複しない新作{total}問</strong>
-            （本試験と同じ形式・配点・時間: {p.choiceLabel}・{p.timeLimitMin}分・{p.passLabel}）
+            （{p.choiceLabel}・{p.timeLimitMin}分・{p.passLabel}）
           </li>
           <li>全{total}問の解説。正解の根拠だけでなく、誤りの選択肢がなぜ誤りかまで</li>
           <li>分野別正答率と弱点診断。間違えた問題は練習問題の復習に自動で反映</li>

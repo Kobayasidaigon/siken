@@ -40,7 +40,7 @@ export default async function XrayMoshiPage() {
       <div className="w-12 h-1 mb-5" style={{ background: "var(--c-accent)" }}></div>
 
       <p className="text-sm text-[color:var(--c-text)] leading-relaxed mb-5 max-w-2xl">
-        本試験と同じ<strong>40問（4科目×10問）・240分・五肢択一</strong>で受験できる無料の模擬試験です。全員が同じ問題を同じ順序で解く固定問題なので、本番前の実力測定にそのまま使えます。
+        本試験と同じ<strong>40問（4科目×10問）・240分・五肢択一</strong>で受験できる無料の模擬試験です。全員が同じ問題を同じ順序で解く固定問題なので、本番前の力試しに使えます。
       </p>
 
       {/* 試験仕様 */}

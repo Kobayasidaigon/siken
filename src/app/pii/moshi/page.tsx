@@ -38,7 +38,7 @@ export default async function PiiMoshiPage() {
       <p className="text-sm text-[color:var(--c-text)] leading-relaxed mb-5 max-w-2xl">
         本試験と同じ<strong>100問（課題Ⅰ50問＋課題Ⅱ50問）・150分・4肢択一</strong>で受験できる無料の模擬試験です。
         合否判定も本試験と同じ<strong>「各課題70%以上」</strong>で課題ごとに行います。
-        全員が同じ問題を同じ順序で解く固定問題なので、本番前の実力測定にそのまま使えます。
+        全員が同じ問題を同じ順序で解く固定問題なので、本番前の力試しに使えます。
       </p>
 
       {/* 試験仕様 */}

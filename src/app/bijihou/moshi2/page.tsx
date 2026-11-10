@@ -4,7 +4,7 @@ import Moshi2PageBody from "@/components/Moshi2PageBody";
 
 export const metadata: Metadata = pageMetadata({
   path: "/bijihou/moshi2/",
-  title: "ビジネス実務法務検定3級 第2回模擬試験（本番形式・全問解説・弱点診断）",
+  title: "ビジネス実務法務検定3級 第2回模擬試験（全問解説・弱点診断）",
   description:
     "ビジネス実務法務検定3級の第2回模擬試験。第1回とは1問も重複しない初見の50問で、本試験と同じ90分の条件をもう一度通す本番前の最終確認用。全問解説・分野別の弱点診断・A4印刷用紙面つき。無料・登録不要。",
 });

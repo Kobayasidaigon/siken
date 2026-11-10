@@ -8,7 +8,7 @@ export const metadata: Metadata = pageMetadata({
   path: "/chizai/moshi/",
   title: "知的財産管理技能検定3級 模擬試験 第1回（無料）｜本番形式30問・45分・合否判定つき",
   description:
-    "知的財産管理技能検定3級（学科）の無料模擬試験。本試験と同じ30問・45分・3肢択一・合格基準70%で受験でき、終了後に合否判定・分野別の弱点分析・全問の詳しい解説を確認できます。",
+    "知的財産管理技能検定3級（学科）の無料模擬試験。本試験の学科と同じ30問・45分・3肢択一で受験でき（正解率70%以上で合格と判定）、終了後に合否判定・分野別の弱点分析・全問の詳しい解説を確認できます。",
 });
 
 export default async function ChizaiMoshiPage() {
@@ -36,8 +36,8 @@ export default async function ChizaiMoshiPage() {
       <div className="w-12 h-1 mb-5" style={{ background: "var(--c-chizai)" }}></div>
 
       <p className="text-sm text-[color:var(--c-text)] leading-relaxed mb-5 max-w-2xl">
-        本試験（学科）と同じ<strong>30問・45分・3肢択一・合格基準70%</strong>で受験できる無料の模擬試験です。
-        全員が同じ問題を同じ順序で解く固定問題なので、本番前の実力測定にそのまま使えます。
+        本試験の学科と同じ<strong>30問・45分・3肢択一</strong>で受験できる無料の模擬試験です。<strong>正解率70%以上</strong>で合格と判定します。
+        全員が同じ問題を同じ順序で解く固定問題なので、本番前の力試しに使えます。
         終了後は合否判定・分野別の弱点分析・全問の詳しい解説つき。
       </p>
 

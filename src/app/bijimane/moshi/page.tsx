@@ -43,7 +43,7 @@ export default async function BijimaneMoshiPage() {
 
       <p className="text-sm text-[color:var(--c-text)] leading-relaxed mb-5 max-w-2xl">
         本試験（IBT/CBT）と同じ<strong>90分・100点満点・70点以上で合格</strong>の基準で受験できる無料の模擬試験です。
-        全員が同じ問題を同じ順序で解く固定問題なので、本番前の実力測定にそのまま使えます。
+        全員が同じ問題を同じ順序で解く固定問題なので、本番前の力試しに使えます。
         出題は公式テキストの4部構成に沿って10分野からまんべんなく選んでいます。
       </p>
 

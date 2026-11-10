@@ -16,7 +16,7 @@ import ExamIntro from "@/components/ExamIntro";
 export const metadata: Metadata = pageMetadata({
   path: "/bijihou/",
   title: "ビジネス実務法務検定3級 練習問題・過去問対策【全200問・無料】",
-  description: "ビジネス実務法務検定3級のオリジナル練習問題200問を無料公開。民法・商法・会社法・関連法規を根拠つき解説で演習でき、分野別の練習から本番形式のテスト、90分の模擬試験まで使えます。",
+  description: "ビジネス実務法務検定3級のオリジナル練習問題200問を無料公開。民法・商法・会社法・関連法規を根拠つき解説で演習でき、分野別の練習からランダム出題のテスト、90分の模擬試験まで使えます。",
 });
 
 const fields = [

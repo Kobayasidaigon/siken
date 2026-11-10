@@ -61,7 +61,7 @@ export default async function Fukushi2MoshiPage() {
       <p className="text-sm text-[color:var(--c-text)] leading-relaxed mb-5 max-w-2xl">
         本試験（IBT/CBT）と同じ<strong>90分・100点満点・70点以上で合格</strong>の基準で受験できる無料の模擬試験です。
         本試験の問題数と配点は公表されていないため、出題構成は受験者の体験談をもとに当サイトが推定した<strong>○×30問＋四肢択一28問（配点1〜3点）</strong>にしています。
-        全員が同じ問題を同じ順序で解く固定問題なので、本番前の実力測定にそのまま使えます。
+        全員が同じ問題を同じ順序で解く固定問題なので、本番前の力試しに使えます。
       </p>
 
       {/* 試験仕様 */}
@@ -89,7 +89,7 @@ export default async function Fukushi2MoshiPage() {
       <p className="text-xs text-[color:var(--c-text-sub)] mt-8 max-w-2xl leading-relaxed">
         ※本試験（IBT/CBT）の問題数・出題形式の内訳・配点は公式には公開されていません。本模試の構成
         （○×30問＋四肢択一28問・配点1〜3点）は、複数の受験者の体験談と公式練習問題の形式（4肢選択・○×選択・穴埋め）に
-        基づく推定の構成で、実際の試験と異なる場合があります（本試験に含まれることがある図面を使った問題・
+        基づく推定の構成で、実際の試験と異なる場合があります（受験者の体験談で挙がっている図面を使った問題や、公式の練習問題にある
         穴埋め問題は対象外です）。当サイトで作成したオリジナル問題で、実際の試験問題の転載ではありません。
         合格判定はあくまで学習の目安です。時間を計らずに力試しをしたい方は
         <SiteLink href="/fukushi2/mock/" className="underline hover:no-underline">本番形式テスト（ランダム20問）</SiteLink>へ、

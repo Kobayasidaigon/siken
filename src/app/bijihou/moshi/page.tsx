@@ -47,14 +47,14 @@ export default async function BijihouMoshiPage() {
       </nav>
 
       <h1 className="text-xl sm:text-2xl font-bold text-[color:var(--c-ink)] mb-2 font-serif">
-        模擬試験 第1回（本番形式）
+        模擬試験 第1回
       </h1>
       <div className="w-12 h-1 mb-5" style={{ background: "var(--c-accent)" }}></div>
 
       <p className="text-sm text-[color:var(--c-text)] leading-relaxed mb-5 max-w-2xl">
         本試験（IBT/CBT）と同じ<strong>90分・100点満点・70点以上で合格</strong>の基準で受験できる無料の模擬試験です。
         <strong>○×(二肢択一)と4肢択一の混合形式</strong>で構成しています(50問×2点で採点。問題数と配点は当サイト独自の構成です)。
-        全員が同じ問題を同じ順序で解く固定問題なので、本番前の実力測定にそのまま使えます。
+        全員が同じ問題を同じ順序で解く固定問題なので、本番前の力試しに使えます。
         終了後は合格判定・分野別の弱点分析・全問の詳しい解説つき。
       </p>
 

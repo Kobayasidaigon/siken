@@ -15,7 +15,7 @@ import ExamIntro from "@/components/ExamIntro";
 export const metadata: Metadata = pageMetadata({
   path: "/eco/",
   title: "eco検定(環境社会検定試験) 練習問題・過去問対策【全236問・無料】",
-  description: "eco検定(環境社会検定試験)のオリジナル練習問題236問を無料公開。地球環境・気候変動・生物多様性・循環型社会・環境法を根拠つき解説で演習でき、分野別の練習から本番形式のテスト、90分の模擬試験まで使えます。",
+  description: "eco検定(環境社会検定試験)のオリジナル練習問題236問を無料公開。地球環境・気候変動・生物多様性・循環型社会・環境法を根拠つき解説で演習でき、分野別の練習からランダム出題のテスト、90分の模擬試験まで使えます。",
 });
 
 const fields = [
@@ -138,7 +138,7 @@ export default async function EcoPage() {
               </tbody>
             </table>
           </div>
-          <p>直近3回の実受験者数は1万3千〜1万6千人台で、合格率は5割台で推移しています。<span className="font-bold text-[color:var(--c-ink)]">半数近くが不合格になる試験</span>でもあるので、当サイトでは、範囲を一巡したうえで本番形式の問題に慣れておくことをおすすめします。</p>
+          <p>第38回から第40回までの実受験者数は1万3千〜1万6千人台で、合格率はいずれも5割台でした。<span className="font-bold text-[color:var(--c-ink)]">半数近くが不合格になる試験</span>でもあるので、当サイトでは、範囲を一巡したうえで、公式問題集の模擬問題にも取り組んでおくことをおすすめします。</p>
           <p className="text-xs">出典：東京商工会議所「eco検定 受験者データ」（2026年11月確認）</p>
         </div>
       </section>

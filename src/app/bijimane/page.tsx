@@ -15,7 +15,7 @@ import ExamIntro from "@/components/ExamIntro";
 export const metadata: Metadata = pageMetadata({
   path: "/bijimane/",
   title: "ビジネスマネジャー検定 練習問題・過去問対策【全200問・無料】",
-  description: "ビジネスマネジャー検定のオリジナル練習問題200問を無料公開。マネジャーの役割・人材育成・経営計画・リスクマネジメントを根拠つき解説で演習でき、分野別の練習から本番形式のテスト、90分の模擬試験まで使えます。",
+  description: "ビジネスマネジャー検定のオリジナル練習問題200問を無料公開。マネジャーの役割・人材育成・経営計画・リスクマネジメントを根拠つき解説で演習でき、分野別の練習からランダム出題のテスト、90分の模擬試験まで使えます。",
 });
 
 const fields = [
@@ -121,7 +121,7 @@ export default async function BijimanePage() {
       <section className="mb-12">
         <h2 className="text-base font-bold text-[color:var(--c-ink)] mb-4 font-serif">合格率は「回によって別の試験」くらい違います</h2>
         <div className="card p-5 text-sm text-[color:var(--c-text-sub)] leading-relaxed space-y-3">
-          <p>東京商工会議所が公表している合格率（全国分）を並べると、直近3回でこれだけ動いています。</p>
+          <p>東京商工会議所が公表している合格率（全国分）を並べると、第21回から第23回までの3回でこれだけ動いています。</p>
           <div className="overflow-x-auto">
             <table className="w-full text-xs border-collapse">
               <thead>
@@ -177,7 +177,7 @@ export default async function BijimanePage() {
         <div className="card p-5 text-sm text-[color:var(--c-text-sub)] leading-relaxed space-y-2">
           {/* 日付は exam-dates.ts から組み立てる(以前は 2026年度第2シーズンの日付を直書きしており、締切後に腐っていた) */}
           <p>ビジネスマネジャー検定と<SiteLink href="/bijihou/" className="underline hover:no-underline">ビジネス実務法務検定3級</SiteLink>は、どちらも東京商工会議所がIBT・CBTで実施する検定で、試験期間も申込期間も同じ枠です{seasonLabel(BIJIMANE_EXAMS) ? `（${seasonLabel(BIJIMANE_EXAMS)}）` : ""}。</p>
-          <p>出題範囲も一部重なります。ビジマネ公式テキストの第4部「リスクのマネジメント」は、職場・業務・組織・事故や災害にかかわるリスクを扱い、コンプライアンスやハラスメントへの対応はビジ法の企業法務と地続きの論点です。当サイトでは、片方の学習がもう片方の下地になるので、同じ回での併願も現実的な選択肢だと考えています。</p>
+          <p>出題範囲も一部重なります。ビジマネ公式テキストの第4部「リスクのマネジメント」は、職場・業務・組織・事故や災害にかかわるリスクを扱い、コンプライアンスやハラスメントへの対応はビジ法の企業法務と地続きの論点です。当サイトでは、片方の学習がもう片方の下地になるので、同じ試験期間での併願も現実的な選択肢だと考えています。</p>
         </div>
       </section>
 

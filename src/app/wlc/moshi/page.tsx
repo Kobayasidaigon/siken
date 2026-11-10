@@ -43,7 +43,7 @@ export default async function WlcMoshiPage() {
 
       <p className="text-sm text-[color:var(--c-text)] leading-relaxed mb-5 max-w-2xl">
         本試験と同じ<strong>60問・105分（10:00〜11:45）・4肢択一</strong>で受験できる無料の模擬試験です。本試験の5課題に沿った<strong>8分野から7〜8問ずつ</strong>出題します。本試験の合格基準は公表されていないため、協会のほかの認定試験と同じ<strong>正答率70%（42問）</strong>を目安に判定します。
-        全員が同じ問題を同じ順序で解く固定問題なので、本番前の実力測定にそのまま使えます。
+        全員が同じ問題を同じ順序で解く固定問題なので、本番前の力試しに使えます。
       </p>
 
       <div className="card p-5 mb-6 text-sm text-[color:var(--c-text-sub)] space-y-2 max-w-2xl">

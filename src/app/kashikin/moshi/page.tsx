@@ -50,7 +50,7 @@ export default async function KashikinMoshiPage() {
 
       <p className="text-sm text-[color:var(--c-text)] leading-relaxed mb-5 max-w-2xl">
         本試験と同じ<strong>四肢択一50問・120分</strong>で受験できる無料の模擬試験です。出題は当サイトの4分野から選び、
-        合否は直近の合格基準点（第18〜20回は30〜31問）に近い<strong>50問中30問</strong>を目安に判定します。全員が同じ問題を同じ順序で解く固定問題なので、本番前の実力測定にそのまま使えます。
+        合否は直近の合格基準点（第18〜20回は30〜31問）に近い<strong>50問中30問</strong>を目安に判定します。全員が同じ問題を同じ順序で解く固定問題なので、本番前の力試しに使えます。
       </p>
 
       {/* 試験仕様 */}

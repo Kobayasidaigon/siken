@@ -54,7 +54,7 @@ export default async function MynumberMoshiPage() {
       <p className="text-sm text-[color:var(--c-text)] leading-relaxed mb-5 max-w-2xl">
         本試験と同じ<strong>50問・75分・合格基準70%</strong>で受験できる無料の模擬試験です。
         公式サンプル問題にならい、<strong>○×(二肢択一)と4肢択一の混合形式</strong>で構成しています。
-        全員が同じ問題を同じ順序で解く固定問題なので、本番前の実力測定にそのまま使えます。
+        全員が同じ問題を同じ順序で解く固定問題なので、本番前の力試しに使えます。
         終了後は合否判定・分野別の弱点分析・全問の詳しい解説つき。
       </p>
 

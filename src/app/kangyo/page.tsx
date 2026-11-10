@@ -9,6 +9,7 @@ import { KANGYO_EXAMS } from "@/lib/exam-dates";
 import ExamCountdown from "@/components/ExamCountdown";
 import ShikenmaeEntry from "@/components/ShikenmaeEntry";
 import ExamVoicesSection from "@/components/ExamVoicesSection";
+import OfficialSiteLink from "@/components/OfficialSiteLink";
 
 export const metadata: Metadata = pageMetadata({
   path: "/kangyo/",
@@ -105,6 +106,7 @@ export default async function KangyoPage() {
           <p><span className="font-bold text-[color:var(--c-ink)]">試験日</span>　年1回・12月第1日曜（令和8年度は12月6日、申込は8月3日〜9月30日）</p>
           <p><span className="font-bold text-[color:var(--c-ink)]">実施機関</span>　一般社団法人マンション管理業協会</p>
         </div>
+        <OfficialSiteLink exam="kangyo" />
       </section>
 
       {/* 合格報告(掲載済みがあれば)と、受験直後の方への報告のお願い。

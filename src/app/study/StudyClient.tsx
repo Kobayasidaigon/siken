@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
+import SiteLink from "@/components/SiteLink";
 import { loadProgress, medalCounts, EXAM_LIST, type AllProgress, type ExamSlug } from "@/lib/study-progress";
 import { clearLearningData } from "@/lib/clear-learning-data";
 import AffiliateLink from "@/components/AffiliateLink";
@@ -82,9 +83,21 @@ export default function StudyClient({
     };
   }, []);
 
+  // 学習履歴はブラウザの localStorage にあるので、サーバーで作る HTML には中身が入らない。
+  // 読み込む前も見出しと説明は出しておく(以前は「読み込み中...」の8字だけだった。2026-11-10)
   if (!progress) {
     return (
-      <p className="text-sm text-[color:var(--c-text-sub)]">読み込み中...</p>
+      <div className="pb-16">
+        <section className="-mx-4 px-4 py-10 sm:py-12 mb-6 border-b border-[color:var(--c-border)] bg-[color:var(--c-bg-alt)]">
+          <h1 className="text-2xl sm:text-3xl font-bold text-[color:var(--c-ink)] mb-3 font-serif leading-tight">
+            学習履歴
+          </h1>
+          <p className="text-sm text-[color:var(--c-text-sub)] leading-relaxed max-w-lg">
+            ブックマークした問題と、解答時の正誤履歴を表示します。すべてブラウザ内に保存されており、サーバには送信されません。
+          </p>
+        </section>
+        <p className="text-sm text-[color:var(--c-text-sub)]">読み込み中...</p>
+      </div>
     );
   }
 
@@ -342,6 +355,11 @@ export default function StudyClient({
         <section className="card p-6 mb-8">
           <p className="text-sm text-[color:var(--c-text-sub)] mb-4">
             まだ学習履歴がありません。問題を解くと、自動的にここに記録されます。
+          </p>
+          <p className="text-sm text-[color:var(--c-text-sub)] leading-relaxed mb-4">
+            記録されるのは、解いた問題の正誤とブックマーク、メダル（正解で🥈銀、もう一度正解で🥇金、間違えると🥉銅）です。
+            解いた問題がたまると、間違えた問題から20問ずつ解き直す「復習ドリル」がここから始められます。
+            使い方の順番は「<SiteLink href="/hajimete/" className="underline hover:no-underline">はじめての方へ</SiteLink>」にまとめています。
           </p>
           <p className="text-sm text-[color:var(--c-text-sub)]">
             まずは練習問題から始めてみてください：

@@ -6,7 +6,9 @@ import { pageMetadata } from "@/lib/page-metadata";
 export const metadata: Metadata = pageMetadata({
   path: "/exam/",
   title: "貸金業務取扱主任者 練習問題一覧｜全504問",
-  description: "貸金業務取扱主任者試験のオリジナル練習問題一覧。全504問を分野・難易度別に掲載。1問ごとに根拠条文を含む解説付きで効率的に学習できます。",
+  description: "貸金業務取扱主任者試験のオリジナル練習問題の一覧。全504問を分野別に掲載しています。",
+  // /exam/0/ への入口の1枚だけで、そのページにしかない文章が無いため検索に出さない(2026-11-10)
+  noindex: true,
 });
 
 export default async function ExamIndexPage() {

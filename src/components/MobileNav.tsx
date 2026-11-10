@@ -10,7 +10,7 @@ import SiteLink from "@/components/SiteLink";
  * モバイルからは一度もたどり着けなかった。
  *
  * 変更後も枠は4つのまま。2つめだけを「その人が実際に解いている資格」に差し替える。
- *   履歴が無い     → 学習ガイド(はじめての人が次に行くべき面)
+ *   履歴が無い     → はじめての方へ(/hajimete/。はじめての人が次に行くべき面)
  *   履歴がある     → いちばん解いている資格のトップ
  * どちらも「次に行くところ」を出すという意味では同じ枠。
  *
@@ -66,8 +66,9 @@ const LINK =
 
 export default function MobileNav() {
   // 初期値はサーバでの描画と同じにする。マウント後にだけ差し替える
+  // 2026-11-10: 行き先を /guide/(貸金業務取扱主任者だけの学習ガイド)から、サイト全体の「はじめての方へ」に変えた
   const [current, setCurrent] = useState<{ href: string; label: string }>({
-    href: "/guide/",
+    href: "/hajimete/",
     label: "はじめに",
   });
 

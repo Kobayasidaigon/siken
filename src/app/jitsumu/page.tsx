@@ -10,11 +10,12 @@ import { JITSUMU_EXAMS } from "@/lib/exam-dates";
 import ExamCountdown from "@/components/ExamCountdown";
 import Moshi2TopLink from "@/components/Moshi2TopLink";
 import ExamVoicesSection from "@/components/ExamVoicesSection";
+import OfficialSiteLink from "@/components/OfficialSiteLink";
 
 export const metadata: Metadata = pageMetadata({
   path: "/jitsumu/",
   title: "個人情報保護実務検定 練習問題・過去問対策【全200問・無料】",
-  description: "個人情報保護実務検定のオリジナル練習問題200問を無料公開。個人情報保護法の実務運用(1級・2級対応)を、根拠条文つきの詳細解説で演習できます。",
+  description: "個人情報保護実務検定のオリジナル練習問題200問を無料公開。個人情報保護法の実務運用(1級・2級対応)を、1問ずつの詳しい解説で演習できます。",
 });
 
 const fields = [
@@ -108,6 +109,7 @@ export default async function JitsumuPage() {
         <p className="text-xs text-[color:var(--c-text-sub)] mt-3 leading-relaxed">
           ※当サイトの練習問題は、個人情報保護法の基礎を中心に2級・1級の両方に通じる内容で構成しています。最新の試験範囲・日程は公式サイトで必ずご確認ください。
         </p>
+        <OfficialSiteLink exam="jitsumu" />
       </section>
 
       {/* 合格報告(掲載済みがあれば)と、受験直後の方への報告のお願い。

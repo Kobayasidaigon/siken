@@ -8,6 +8,7 @@ import { pageMetadata } from "@/lib/page-metadata";
 import { KASHIKIN_EXAMS } from "@/lib/exam-dates";
 import ExamCountdown from "@/components/ExamCountdown";
 import ExamVoicesSection from "@/components/ExamVoicesSection";
+import OfficialSiteLink from "@/components/OfficialSiteLink";
 
 export const metadata: Metadata = pageMetadata({
   path: "/kashikin/",
@@ -96,10 +97,12 @@ export default async function KashikinPage() {
         <div className="card p-5 text-sm text-[color:var(--c-text-sub)] space-y-2">
           <p><span className="font-bold text-[color:var(--c-ink)]">試験日</span>　毎年11月第3日曜日（年1回）　<SiteLink href="/column/shiken-nittei/" className="underline hover:no-underline">詳しい日程・申込方法 →</SiteLink></p>
           <p><span className="font-bold text-[color:var(--c-ink)]">試験形式</span>　四肢択一 50問・2時間</p>
-          <p><span className="font-bold text-[color:var(--c-ink)]">合格基準</span>　概ね30/50点以上</p>
+          <p><span className="font-bold text-[color:var(--c-ink)]">合格基準</span>　試験ごとに決まる（第18回〜第20回は50問中30〜31問）</p>
           <p><span className="font-bold text-[color:var(--c-ink)]">受験料</span>　8,500円</p>
           <p><span className="font-bold text-[color:var(--c-ink)]">実施機関</span>　日本貸金業協会</p>
+          <p><SiteLink href="/guide/" className="underline hover:no-underline">試験科目・出題数の目安・勉強の進め方（学習ガイド）→</SiteLink></p>
         </div>
+        <OfficialSiteLink exam="kashikin" />
       </section>
 
       {/* 合格報告(掲載済みがあれば)と、受験直後の方への報告のお願い。

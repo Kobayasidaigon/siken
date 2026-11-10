@@ -10,11 +10,12 @@ import { MYNUMBER_EXAMS } from "@/lib/exam-dates";
 import ExamCountdown from "@/components/ExamCountdown";
 import Moshi2TopLink from "@/components/Moshi2TopLink";
 import ExamVoicesSection from "@/components/ExamVoicesSection";
+import OfficialSiteLink from "@/components/OfficialSiteLink";
 
 export const metadata: Metadata = pageMetadata({
   path: "/mynumber/",
   title: "マイナンバー実務検定3級 練習問題・過去問対策【全200問・無料】",
-  description: "マイナンバー実務検定3級のオリジナル練習問題200問を無料公開。番号法・個人番号カード・特定個人情報の保護を、根拠条文つきの詳細解説で演習できます。",
+  description: "マイナンバー実務検定3級のオリジナル練習問題200問を無料公開。番号法・個人番号カード・特定個人情報の保護を、1問ずつの詳しい解説で演習できます。",
 });
 
 const fields = [
@@ -114,6 +115,7 @@ export default async function MynumberPage() {
           <p><span className="font-bold text-[color:var(--c-ink)]">試験日</span>　年4回（6月・9月・12月・3月頃）　<SiteLink href="/column/mynumber-nittei/" className="underline hover:no-underline">詳しい日程・申込方法 →</SiteLink></p>
           <p><span className="font-bold text-[color:var(--c-ink)]">実施機関</span>　全日本情報学習振興協会</p>
         </div>
+        <OfficialSiteLink exam="mynumber" />
       </section>
 
       {/* 合格報告(掲載済みがあれば)と、受験直後の方への報告のお願い。

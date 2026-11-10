@@ -10,6 +10,7 @@ import { ISF_FIELDS } from "@/lib/isf-fields";
 import ExamCountdown from "@/components/ExamCountdown";
 import { ISF_EXAMS } from "@/lib/exam-dates";
 import { EXAM_AFFILIATE } from "@/lib/affiliate-links";
+import OfficialSiteLink from "@/components/OfficialSiteLink";
 
 export const metadata: Metadata = pageMetadata({
   path: "/isf/",
@@ -150,6 +151,7 @@ export default async function IsfPage() {
             ※旧称は「情報セキュリティ初級認定試験」です。最新の日程・受験料・出題範囲は必ず協会の公式サイトでご確認ください。
           </p>
         </div>
+        <OfficialSiteLink exam="isf" />
       </section>
 
       {/* 合格報告(掲載済みがあれば)と、受験直後の方への報告のお願い。

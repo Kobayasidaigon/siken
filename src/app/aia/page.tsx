@@ -11,6 +11,7 @@ import { AIA_FIELDS } from "@/lib/aia-fields";
 import ExamCountdown from "@/components/ExamCountdown";
 import { AIA_EXAMS } from "@/lib/exam-dates";
 import { EXAM_AFFILIATE } from "@/lib/affiliate-links";
+import OfficialSiteLink from "@/components/OfficialSiteLink";
 
 export const metadata: Metadata = pageMetadata({
   path: "/aia/",
@@ -144,6 +145,7 @@ export default async function AiaPage() {
             ※出典: 全日本情報学習振興協会のAI活用アドバイザー認定試験ページ（2026年10月19日確認）。協会のSMART講座ページには「5課題・90分」の旧記載が残っていますが、現行の試験は7課題・105分です。最新の日程・受験料は公式サイトで必ず確認してください。
           </p>
         </div>
+        <OfficialSiteLink exam="aia" />
       </section>
 
       {/* 合格報告(掲載済みがあれば)と、受験直後の方への報告のお願い。

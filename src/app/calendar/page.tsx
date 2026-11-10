@@ -4,6 +4,7 @@ import { pageMetadata } from "@/lib/page-metadata";
 import JsonLd from "@/components/JsonLd";
 import CalendarEventList from "@/components/CalendarEventList";
 import { formatYmdJa, nextApplyDeadline, nextExam } from "@/lib/exam-dates";
+import { EXAM_LIST } from "@/lib/study-progress";
 import {
   ALL_EVENTS,
   CALENDAR_EXAMS,
@@ -19,10 +20,13 @@ import {
  * 資格試験カレンダー(年度一覧)。2026-11-01 追加。
  * 中身はすべて exam-dates.ts から組み立てる。日付を足すと自動でここと月別ページに出る。
  */
+/** 日付が1つ以上入っている資格の数(会社法法務士のように、日程を確かめている間は空の資格を数えない) */
+const datedCount = CALENDAR_EXAMS.filter((e) => e.exams.length > 0).length;
+
 export const metadata: Metadata = pageMetadata({
   path: "/calendar/",
   title: "資格試験カレンダー｜試験日と申込締切の一覧",
-  description: `シカクモンで扱う${CALENDAR_EXAMS.length}資格の試験日・申込受付開始日・申込締切日を月別にまとめたカレンダー。個人情報保護士・知的財産管理技能検定・ビジネス実務法務検定・貸金業務取扱主任者などの次回日程を一覧で確認できます。`,
+  description: `シカクモンで扱う資格のうち${datedCount}資格の試験日・申込受付開始日・申込締切日を月別にまとめたカレンダー。個人情報保護士・知的財産管理技能検定・ビジネス実務法務検定・貸金業務取扱主任者などの次回日程を一覧で確認できます。`,
 });
 
 /** これからの申込締切を何日先まで出すか */
@@ -65,13 +69,15 @@ export default function CalendarPage() {
         資格試験カレンダー
       </h1>
       <p className="text-sm text-[color:var(--c-text-sub)] leading-relaxed mb-2">
-        シカクモンで扱う{CALENDAR_EXAMS.length}資格の、試験日・申込受付開始日・申込締切日をまとめました。
+        シカクモンで扱う{EXAM_LIST.length}資格のうち、{datedCount}資格の試験日・申込受付開始日・申込締切日をまとめました。
         申込締切は試験日の1〜3か月前に来るものが多く、気づいたときには締め切っていることがよくあります。
         受けたい試験の締切を先に確認しておいてください。
       </p>
       <p className="text-xs text-[color:var(--c-text-sub)] leading-relaxed mb-10">
         日程は各実施団体の発表をもとにしています。変更されることがあるため、申込の前に必ず公式サイトで確認してください。
         東京商工会議所の検定（ビジネス実務法務・ビジネスマネジャー・福祉住環境・eco検定）は試験期間の中から日時を選ぶ方式のため、期間の初日を載せています。
+        ITパスポート試験（全国の会場で随時受けられる CBT 方式）、教員採用試験（自治体ごとに日程が違う）、社会福祉士（年1回2月。日程を確認中）は載せていません。
+        会社法法務士は、実施団体のページによって次回の日程の書き方が違うため、確かめられるまで日付を載せていません。
       </p>
 
       <section className="mb-12">
@@ -152,7 +158,7 @@ export default function CalendarPage() {
                           <span className="block text-xs text-[color:var(--c-text-sub)]">{round.label}</span>
                         </>
                       ) : (
-                        <span className="text-[color:var(--c-text-sub)]">未発表</span>
+                        <span className="text-[color:var(--c-text-sub)]">{exam.exams.length === 0 ? "確認中" : "未発表"}</span>
                       )}
                     </td>
                     <td className="py-3 whitespace-nowrap">
@@ -164,7 +170,7 @@ export default function CalendarPage() {
                           )}
                         </>
                       ) : (
-                        <span className="text-[color:var(--c-text-sub)]">未発表</span>
+                        <span className="text-[color:var(--c-text-sub)]">{exam.exams.length === 0 ? "確認中" : "未発表"}</span>
                       )}
                     </td>
                   </tr>

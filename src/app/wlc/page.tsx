@@ -10,6 +10,7 @@ import { WLC_FIELDS } from "@/lib/wlc-fields";
 import ExamCountdown from "@/components/ExamCountdown";
 import { WLC_EXAMS } from "@/lib/exam-dates";
 import { EXAM_AFFILIATE } from "@/lib/affiliate-links";
+import OfficialSiteLink from "@/components/OfficialSiteLink";
 
 export const metadata: Metadata = pageMetadata({
   path: "/wlc/",
@@ -168,6 +169,7 @@ export default async function WlcPage() {
           </p>
           <p className="text-xs pt-2">※最新の日程・受験料・出題範囲は必ず公式サイトでご確認ください。</p>
         </div>
+        <OfficialSiteLink exam="wlc" />
       </section>
 
       {/* 合格報告(掲載済みがあれば)と、受験直後の方への報告のお願い。どちらも条件を満たさなければ何も出ない */}

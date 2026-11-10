@@ -28,8 +28,8 @@ export default function Page() {
       </p>
       <p className="text-sm text-[color:var(--c-text)] leading-relaxed">
         以前に第2回模擬試験をご購入いただいた方で、ご不明な点がある場合は
-        <SiteLink href="/contact/" className="underline hover:no-underline">お問い合わせフォーム</SiteLink>
-        よりご連絡ください。
+        <SiteLink href="/contact/" className="underline hover:no-underline">お問い合わせ</SiteLink>
+        に記載のメールアドレスあてにご連絡ください。
       </p>
     </div>
   );

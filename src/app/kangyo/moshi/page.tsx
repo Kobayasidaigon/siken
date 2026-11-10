@@ -66,7 +66,7 @@ export default async function KangyoMoshiPage() {
       />
 
       <p className="text-xs text-[color:var(--c-text-sub)] mt-8 max-w-2xl leading-relaxed">
-        ※本模試は当サイト編集部が作成したオリジナル問題で構成しており、実際の過去問題の転載ではありません。
+        ※本模試は当サイトで作成したオリジナル問題で構成しており、実際の過去問題の転載ではありません。
         本試験の合格基準点は年度ごとに決定され（令和7年度36点・令和6年度38点）、マンション管理士試験の合格者は45問・110分での受験になります。
         合否判定はあくまで学習の目安です。1問ずつじっくり学びたい方は
         <SiteLink href="/kangyo/" className="underline hover:no-underline">練習問題200問</SiteLink>へ、

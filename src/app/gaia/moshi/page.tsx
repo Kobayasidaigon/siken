@@ -61,7 +61,7 @@ export default async function GaiaMoshiPage() {
       />
 
       <p className="text-xs text-[color:var(--c-text-sub)] mt-8 max-w-2xl leading-relaxed">
-        ※本模試は当サイト編集部が作成したオリジナル問題で構成しており、公式問題・サンプル問題の転載ではありません。課題ごとの問題数・配点は協会が公表していないため、均等配点・総合70%で判定します。協会は難易度により合格基準を調整する場合があると案内しています。2級の形式を試したい方は<SiteLink href="/gaia/moshi-2kyu/" className="underline hover:no-underline">2級形式の模擬試験（50問・60分）</SiteLink>へ。
+        ※本模試は当サイトで作成したオリジナル問題で構成しており、公式問題・サンプル問題の転載ではありません。課題ごとの問題数・配点は協会が公表していないため、均等配点・総合70%で判定します。協会は難易度により合格基準を調整する場合があると案内しています。2級の形式を試したい方は<SiteLink href="/gaia/moshi-2kyu/" className="underline hover:no-underline">2級形式の模擬試験（50問・60分）</SiteLink>へ。
         1問ずつじっくり学びたい方は<SiteLink href="/gaia/" className="underline hover:no-underline">練習問題</SiteLink>へ。
       </p>
     </div>

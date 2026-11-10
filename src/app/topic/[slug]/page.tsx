@@ -7,7 +7,6 @@ import { pageMetadata } from "@/lib/page-metadata";
 import { KASHIKIN_TOPIC_HUBS, topicOfTitle } from "@/lib/topic-hubs";
 import { breadcrumbJsonLd } from "@/lib/quiz-jsonld";
 import JsonLd from "@/components/JsonLd";
-import KashikinCourseAd from "@/components/KashikinCourseAd";
 import ExamVoicesSection from "@/components/ExamVoicesSection";
 
 /**
@@ -47,7 +46,9 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   return pageMetadata({
     path: `/topic/${slug}/`,
     title: `${hub.topic}｜貸金業務取扱主任者 練習問題${questions.length}問`,
-    description: `貸金業務取扱主任者試験の「${hub.topic}」に関するオリジナル練習問題${questions.length}問をまとめました。${hub.field}分野の論点で、1問ごとに根拠条文を含む解説がついています。登録不要・無料。`,
+    description: `貸金業務取扱主任者試験の「${hub.topic}」に関するオリジナル練習問題${questions.length}問をまとめました。${hub.field}分野の論点で、1問ごとに解説がついています。登録不要・無料。`,
+    // 問題文の書き出しを並べて自動で作るページで、そのページにしかない文章が無いため検索に出さない(2026-11-10。AdSense の再審査に向けた見直し)
+    noindex: true,
   });
 }
 
@@ -91,7 +92,7 @@ export default async function KashikinTopicPage({ params }: { params: Promise<{ 
 
       <p className="text-sm text-[color:var(--c-text-sub)] mb-6 leading-relaxed">
         貸金業務取扱主任者試験の{hub.field}分野のうち、「{hub.topic}」に関する
-        オリジナル練習問題{questions.length}問です。1問ごとに根拠条文を含む解説がついています。
+        オリジナル練習問題{questions.length}問です。1問ごとに解説がついています。
         登録は不要で、解いた記録はブラウザに残ります。
       </p>
 
@@ -160,8 +161,6 @@ export default async function KashikinTopicPage({ params }: { params: Promise<{ 
       </nav>
 
       <ExamVoicesSection exam="kashikin" />
-
-      <KashikinCourseAd headline={`「${hub.topic}」でつまずくなら`} />
     </div>
   );
 }

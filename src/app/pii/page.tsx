@@ -10,11 +10,12 @@ import { PII_EXAMS } from "@/lib/exam-dates";
 import ExamCountdown from "@/components/ExamCountdown";
 import Moshi2TopLink from "@/components/Moshi2TopLink";
 import ExamVoicesSection from "@/components/ExamVoicesSection";
+import OfficialSiteLink from "@/components/OfficialSiteLink";
 
 export const metadata: Metadata = pageMetadata({
   path: "/pii/",
   title: "個人情報保護士 練習問題・過去問対策【全337問・無料】",
-  description: "個人情報保護士認定試験のオリジナル練習問題337問を無料公開。個人情報保護法・マイナンバー法・情報セキュリティの3分野を、根拠条文つきの詳細解説で演習できます。",
+  description: "個人情報保護士認定試験のオリジナル練習問題337問を無料公開。個人情報保護法・マイナンバー法・情報セキュリティの3分野を、1問ずつの詳しい解説で演習できます。",
 });
 
 const fields = [
@@ -149,6 +150,7 @@ export default async function PiiPage() {
           <p><span className="font-bold text-[color:var(--c-ink)]">受験料</span>　11,000円（公開会場・税込）／CBT会場 +1,500円／オンラインIBT +3,000円</p>
           <p><span className="font-bold text-[color:var(--c-ink)]">実施機関</span>　一般財団法人全日本情報学習振興協会</p>
         </div>
+        <OfficialSiteLink exam="pii" />
       </section>
 
       {/* 合格報告(掲載済みがあれば)と、受験直後の方への報告のお願い。

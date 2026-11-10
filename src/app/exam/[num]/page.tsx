@@ -4,7 +4,10 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import type { QuestionData } from "@/lib/types";
 import { pageMetadata } from "@/lib/page-metadata";
-import KashikinCourseAd from "@/components/KashikinCourseAd";
+
+// 問題があるのは 0(オリジナル問題)だけ。以前は /exam/1/〜/exam/19/ を開くと「この回の問題は準備中です」「0問」の
+// 空のページが出ていたので、generateStaticParams に無い番号は 404 にする(2026-11-10)
+export const dynamicParams = false;
 
 export async function generateStaticParams() {
   const exams = getExamNumbers();
@@ -17,7 +20,9 @@ export async function generateMetadata({ params }: { params: Promise<{ num: stri
   return pageMetadata({
     path: `/exam/${num}/`,
     title,
-    description: `貸金業務取扱主任者試験 ${title}。問題ごとに詳しい解説付き。`,
+    description: `貸金業務取扱主任者試験 ${title}。1問ずつ解いて、答えと解説を確認できます。`,
+    // 問題へのリンクの一覧だけで、そのページにしかない文章が無いため検索に出さない(2026-11-10)
+    noindex: true,
   });
 }
 
@@ -124,11 +129,8 @@ export default async function ExamPage({ params }: { params: Promise<{ num: stri
         </div>
       )}
 
-      {/* 2026-09-05: 貸金トップ「問題を解き始める」の着地であるこの一覧面だけ講座広告が無かった
-          (他資格の分野一覧と貸金の /field/ には CourseAd がある)。一覧の末尾に同じ枠を置く */}
-      {questions.length > 0 && (
-        <KashikinCourseAd headline={isOriginal ? "全問を通して弱点が見えたら" : `第${examNumber}回の過去問でつまずくなら`} />
-      )}
+      {/* 講座広告(KashikinCourseAd)は 2026-11-10 に外した。分野ページと同じく、問題へのリンク一覧と広告だけの
+          ページは AdSense の審査で「有用性の低いコンテンツ」に見えやすいため(分野ページの広告も同じ日に外した) */}
 
       <nav className="mt-10 flex justify-center pt-4 border-t border-[color:var(--c-border)]">
         <SiteLink href="/kashikin/" className="text-sm text-[color:var(--c-text-sub)] no-underline hover:text-[color:var(--c-kashikin)]">

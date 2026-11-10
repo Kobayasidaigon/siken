@@ -10,6 +10,7 @@ import { ISEC_FIELDS } from "@/lib/isec-fields";
 import ExamCountdown from "@/components/ExamCountdown";
 import { ISEC_EXAMS } from "@/lib/exam-dates";
 import { EXAM_AFFILIATE } from "@/lib/affiliate-links";
+import OfficialSiteLink from "@/components/OfficialSiteLink";
 
 export const metadata: Metadata = pageMetadata({
   path: "/isec/",
@@ -169,6 +170,7 @@ export default async function IsecPage() {
             ※2026年2月の試験で「情報セキュリティ管理士認定試験」から名称が変わり、出題範囲も課題Ⅰ〜Ⅲに見直されました（課題Ⅳ「コンピュータの一般知識」は初級だけに残りました）。最新の日程・受験料は必ず協会の公式サイトでご確認ください。
           </p>
         </div>
+        <OfficialSiteLink exam="isec" />
       </section>
 
       {/* 合格報告(掲載済みがあれば)と、受験直後の方への報告のお願い。

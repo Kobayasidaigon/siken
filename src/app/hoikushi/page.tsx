@@ -10,6 +10,7 @@ import Moshi2TopLink from "@/components/Moshi2TopLink";
 import { HOIKUSHI_FIELDS } from "@/lib/hoikushi-fields";
 import ExamCountdown from "@/components/ExamCountdown";
 import { HOIKUSHI_EXAMS } from "@/lib/exam-dates";
+import OfficialSiteLink from "@/components/OfficialSiteLink";
 
 export const metadata: Metadata = pageMetadata({
   path: "/hoikushi/",
@@ -141,6 +142,7 @@ export default async function HoikushiPage() {
             ※出典: 全国保育士養成協議会（hoyokyo.or.jp）の受験案内・科目別時間割・公開問題（令和8年前期）・受験手数料のページ（2026年10月19日確認）。出題の基準日は、令和8年度後期が令和8年4月1日以前に施行された法令・指針です。保育所保育指針等の改定は令和9年3月公布予定とされていますが未施行のため、当サイトは現行（平成29年告示）に従っています。受験者数・合格率は公式の結果ページに掲載がないため載せていません。
           </p>
         </div>
+        <OfficialSiteLink exam="hoikushi" />
       </section>
 
       {/* 合格報告(掲載済みがあれば)と、受験直後の方への報告のお願い。

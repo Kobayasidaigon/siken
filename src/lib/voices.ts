@@ -55,13 +55,20 @@ function getAllSlugs(): string[] {
     .map((f) => f.replace(/\.md$/, ""));
 }
 
+/**
+ * 掲載できる報告か(必須項目がそろっているか)。必須項目が欠けている下書きは読み飛ばす(中途半端な状態で公開されないように)。
+ * フッターのリンク(hasVoices)・一覧(getAllVoices)・sitemap(scripts/generate-sitemap.js の voices)で同じ基準を使う。
+ */
+function isPublishable(data: Record<string, unknown>): boolean {
+  return Boolean(data.exam && data.examPeriod && data.result && data.publishedAt);
+}
+
 async function readVoice(slug: string): Promise<Voice | null> {
   const filePath = path.join(VOICES_DIR, `${slug}.md`);
   if (!fs.existsSync(filePath)) return null;
 
   const { data, content } = matter(fs.readFileSync(filePath, "utf-8"));
-  // 必須項目が欠けている下書きは読み飛ばす(中途半端な状態で公開されないように)
-  if (!data.exam || !data.examPeriod || !data.result || !data.publishedAt) return null;
+  if (!isPublishable(data)) return null;
 
   const processed = await remark().use(remarkGfm).use(html, { sanitize: false }).process(content);
 
@@ -77,6 +84,17 @@ async function readVoice(slug: string): Promise<Voice | null> {
     verified: data.verified === true,
     content: processed.toString(),
   };
+}
+
+/**
+ * 掲載済みの合格報告が1件でもあるか。フッターの「合格報告」リンクを出すかどうかに使う(2026-11-10 追加)。
+ * 0件の /voice/ は「最初の報告をお待ちしています」だけの空のページなので、全ページのフッターから案内しない。
+ */
+export function hasVoices(): boolean {
+  // 下書き(必須項目が欠けたファイル)は数えない。docs/pass-report-ops.md は下書きを置いておくことを認めている
+  return getAllSlugs().some((slug) =>
+    isPublishable(matter(fs.readFileSync(path.join(VOICES_DIR, `${slug}.md`), "utf-8")).data)
+  );
 }
 
 /** 掲載済みの合格報告を新しい順に返す。1件も無ければ空配列 */

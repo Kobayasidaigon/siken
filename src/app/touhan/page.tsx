@@ -10,6 +10,7 @@ import Moshi2TopLink from "@/components/Moshi2TopLink";
 import { TOUHAN_FIELDS } from "@/lib/touhan-fields";
 import ExamCountdown from "@/components/ExamCountdown";
 import { TOUHAN_EXAMS } from "@/lib/exam-dates";
+import OfficialSiteLink from "@/components/OfficialSiteLink";
 
 export const metadata: Metadata = pageMetadata({
   path: "/touhan/",
@@ -141,6 +142,7 @@ export default async function TouhanPage() {
             ※出典: 厚生労働省「試験問題作成に関する手引き」（令和8年4月一部改訂）、同省の登録販売者試験実施状況、東京都・福岡県・鹿児島県・愛知県・関西広域連合などの令和8年度試験案内（2026年10月19日確認）。章の名称は手引きの現行表記に合わせています（旧称は第4章「薬事関係法規・制度」、第5章「医薬品の適正使用・安全対策」）。受験料・合格基準・午前午後の章割りは都道府県ごとに違うため、受験する県の案内で必ず確認してください。令和9年度の日程は2026年10月19日時点で公表を確認できていません。
           </p>
         </div>
+        <OfficialSiteLink exam="touhan" />
       </section>
 
       {/* 合格報告(掲載済みがあれば)と、受験直後の方への報告のお願い。

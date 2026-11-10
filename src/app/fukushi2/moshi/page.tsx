@@ -90,7 +90,7 @@ export default async function Fukushi2MoshiPage() {
         ※本試験（IBT/CBT）の問題数・出題形式の内訳・配点は公式には公開されていません。本模試の構成
         （○×30問＋四肢択一28問・配点1〜3点）は、複数の受験者の体験談と公式練習問題の形式（4肢選択・○×選択・穴埋め）に
         基づく本試験型の推定構成で、実際の試験と異なる場合があります（本試験に含まれることがある図面を使った問題・
-        穴埋め問題は対象外です）。当サイト編集部が作成したオリジナル問題で、実際の試験問題の転載ではありません。
+        穴埋め問題は対象外です）。当サイトで作成したオリジナル問題で、実際の試験問題の転載ではありません。
         合格判定はあくまで学習の目安です。時間を計らずに力試しをしたい方は
         <SiteLink href="/fukushi2/mock/" className="underline hover:no-underline">本番形式テスト（ランダム20問）</SiteLink>へ、
         1問ずつじっくり学びたい方は<SiteLink href="/fukushi2/" className="underline hover:no-underline">練習問題230問</SiteLink>へ。

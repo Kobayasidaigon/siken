@@ -74,7 +74,7 @@ export default async function ItpassMoshiPage() {
       <p className="text-xs text-[color:var(--c-text-sub)] mt-8 max-w-2xl leading-relaxed">
         ※本試験の評価点はIRT（項目応答理論）で算出され、100問のうち採点対象は92問（8問は今後の出題のための評価用）です。
         本模試は正答数による近似判定で、総合600点を60問、分野別300点を各分野の30%として扱っています。
-        当サイト編集部が作成したオリジナル問題で構成しており、実際の過去問題の転載ではありません。
+        当サイトで作成したオリジナル問題で構成しており、実際の過去問題の転載ではありません。
         合否判定はあくまで学習の目安です。1問ずつじっくり学びたい方は
         <SiteLink href="/itpass/" className="underline hover:no-underline">練習問題200問</SiteLink>へ。
       </p>

@@ -30,13 +30,14 @@ import {
 } from "@/lib/exam-dates";
 import StudioLink from "@/components/StudioLink";
 import { SISTER_SITES, sisterSite } from "@/lib/sister-sites";
+import { getAllColumnSlugs, getLatestColumnDate } from "@/lib/columns";
 
 // description の資格数・問題数は、下の exams の件数と count の合計(自動集計はしていない)。
 // 資格や問題を増やしたら、ここと layout.tsx・about/page.tsx・public/llms.txt を一緒に直す。2026-11-01 時点=33資格6,632問
 // コラムを足したときは public/llms.txt の「コラム記事(…時点で165本)」の本数と日付も直す(src/content/columns/*.md の数。2026-10-31 時点=165本)
 export const metadata: Metadata = {
   title: { absolute: "シカクモン｜資格試験のオリジナル練習問題を無料で提供" },
-  description: "シカクモンは資格試験のオリジナル練習問題を無料で提供するサイトです。貸金業務取扱主任者・賃貸不動産経営管理士・管理業務主任者・個人情報保護士・知的財産管理技能検定・ビジネス実務法務検定・ITパスポート・登録販売者・保育士・エックス線作業主任者など33資格、合計6,632問。全問に根拠を含む詳細解説付き。",
+  description: "シカクモンは資格試験のオリジナル練習問題を無料で提供するサイトです。貸金業務取扱主任者・賃貸不動産経営管理士・管理業務主任者・個人情報保護士・知的財産管理技能検定・ビジネス実務法務検定・ITパスポート・登録販売者・保育士・エックス線作業主任者など33資格、合計6,632問。全問に解説付き。",
   alternates: { canonical: "/" },
   // openGraphはトップレベルの浅いマージのため、部分指定するとlayout側の
   // siteName/locale/type/imagesが丸ごと消える(page-metadata.tsと同じ理由でフル指定)
@@ -50,6 +51,16 @@ export const metadata: Metadata = {
     images: [{ url: "/og-default.png", width: 1200, height: 630, alt: "シカクモン - 資格試験の練習問題" }],
   },
 };
+
+/** 「このサイトでできること」。/hajimete/ と同じ内容を短くしたもの(機能を足したら両方を直す) */
+const SITE_FEATURES = [
+  { title: "分野別の練習問題", text: "資格ごとに分野で分けた問題を1問ずつ解けます。答えを選ぶと、正誤と解説が出ます。" },
+  { title: "本番形式テスト", text: "20問をまとめて解いて採点します。分野別の正答率で、苦手な分野が分かります。" },
+  { title: "模擬試験", text: "全員が同じ問題を、制限時間つきで通して解きます。合否の目安と分野別の正答率が出ます。" },
+  { title: "復習ドリル", text: "間違えた問題を中心に、20問ずつ続けて解き直せます。" },
+  { title: "学習履歴", text: "正誤とブックマークを記録します。記録はお使いのブラウザにだけ保存されます。" },
+  { title: "試験カレンダー", text: "日程が公表されている資格の試験日と申込締切を、月ごとにまとめています。締切の見落とし防止に。" },
+];
 
 export default function Home() {
   const exams = [
@@ -498,7 +509,13 @@ export default function Home() {
   const totalCount = exams.reduce((sum, e) => sum + e.count, 0);
   const totalFieldCount = exams.reduce((sum, e) => sum + e.fieldCount, 0);
   const examCount = exams.length;
-  const updateDate = new Date().toLocaleDateString("ja-JP", { year: "numeric", month: "long" });
+  // 「記事の最終更新」は、コラムの更新日・公開日でいちばん新しいもの(実際に中身を直した日)。2026-11-10 に変更。
+  // 以前は new Date() の月を「最終更新」と出していて、1時間ごとの作り直しのたびに今月になっていた。
+  const latestColumnDate = getLatestColumnDate();
+  const updateDate = latestColumnDate
+    ? new Date(`${latestColumnDate}T00:00:00+09:00`).toLocaleDateString("ja-JP", { timeZone: "Asia/Tokyo", year: "numeric", month: "long", day: "numeric" })
+    : "";
+  const columnCount = getAllColumnSlugs().length;
 
   return (
     <div className="pb-16">
@@ -514,11 +531,11 @@ export default function Home() {
             資格試験の練習問題を、<br />ひとつずつ。
           </h1>
           <p className="text-[color:var(--c-text-sub)] text-sm sm:text-base leading-relaxed max-w-lg">
-            市販の問題集が少ない資格を、個人で作って公開しています。
-            どの問題にも、なぜその答えになるのかを条文とセットで書きました。
+            市販の問題集が少ない資格を中心に、オリジナルの練習問題を無料で公開しています。
+            どの問題にも、正解の理由と、ほかの選択肢が違う理由を説明した解説をつけています。
           </p>
           <p className="text-[color:var(--c-text-sub)] text-xs mt-5 italic">
-            熊太郎と申します。自分が受験したとき欲しかった問題集を、そのまま作りました。
+            熊太郎と申します。貸金業務取扱主任者の受験勉強で、市販の問題集が見つからずに困ったのがきっかけで作りはじめました。
           </p>
         </div>
       </section>
@@ -545,18 +562,47 @@ export default function Home() {
             <p className="text-2xl font-bold text-[color:var(--c-ink)] font-serif">{examCount}</p>
             <p className="text-xs text-[color:var(--c-text-sub)] mt-1">対応資格</p>
           </div>
-          <div>
-            <p className="text-sm font-bold text-[color:var(--c-ink)] font-serif pt-1.5">{updateDate}</p>
-            <p className="text-xs text-[color:var(--c-text-sub)] mt-1">最終更新</p>
-          </div>
+          {updateDate ? (
+            <div>
+              <p className="text-sm font-bold text-[color:var(--c-ink)] font-serif pt-1.5">{updateDate}</p>
+              <p className="text-xs text-[color:var(--c-text-sub)] mt-1">記事の最終更新</p>
+            </div>
+          ) : (
+            <div>
+              <p className="text-2xl font-bold text-[color:var(--c-ink)] font-serif">{columnCount}</p>
+              <p className="text-xs text-[color:var(--c-text-sub)] mt-1">コラム</p>
+            </div>
+          )}
         </div>
       </section>
 
-      {/* Exams */}
+      {/* このサイトでできること(2026-11-10 追加)。問題を解く以外の機能(採点・模試・復習・履歴・日程)が
+          トップから見えず、初めての人にも審査にも「リンク集」に見えていたため。詳しい使い方は /hajimete/ */}
       <section className="mb-12">
+        <h2 className="text-lg font-bold text-[color:var(--c-ink)] mb-2 font-serif">このサイトでできること</h2>
+        <p className="text-sm text-[color:var(--c-text-sub)] leading-relaxed mb-5">
+          登録はいりません。次の使い方ができます。
+        </p>
+        <dl className="grid sm:grid-cols-2 gap-x-8 gap-y-4 text-sm">
+          {SITE_FEATURES.map((f) => (
+            <div key={f.title} className="border-l-2 border-[color:var(--c-border)] pl-3">
+              <dt className="font-bold text-[color:var(--c-ink)]">{f.title}</dt>
+              <dd className="text-[color:var(--c-text-sub)] leading-relaxed mt-0.5">{f.text}</dd>
+            </div>
+          ))}
+        </dl>
+        <p className="text-sm mt-5">
+          <SiteLink href="/hajimete/" className="text-[color:var(--c-ink)] underline hover:no-underline">
+            はじめての方へ（使う順番と、問題の作り方）→
+          </SiteLink>
+        </p>
+      </section>
+
+      {/* Exams */}
+      <section id="exams" className="mb-12 scroll-mt-20">
         <h2 className="text-lg font-bold text-[color:var(--c-ink)] mb-2 font-serif">いま解ける試験</h2>
         <p className="text-sm text-[color:var(--c-text-sub)] mb-5">
-          申込締切を見落とさないように、全資格の日程を
+          申込締切を見落とさないように、試験日と申込締切を
           <SiteLink href="/calendar/" className="text-[color:var(--c-ink)] underline hover:no-underline mx-1">試験カレンダー</SiteLink>
           にまとめています。
         </p>
@@ -652,8 +698,9 @@ export default function Home() {
         <h2 className="text-base font-bold text-[color:var(--c-ink)] mb-3 font-serif">このサイトについて</h2>
         <p className="text-sm text-[color:var(--c-text-sub)] leading-relaxed">
           受験勉強をしていて、市販の問題集が見つからない資格に何度もぶつかりました。
-          それならと、自分で問題と解説を書いて公開したのがこのサイトです。
-          すべて無料で使えます。誤りに気づかれたら、お問い合わせから教えてください。すぐ直します。
+          それならと、問題と解説を作って公開することにしたのがこのサイトです。
+          下書きには AI を使い、別の工程で確かめてから載せています。
+          すべて無料で使えます。誤りに気づかれたら、お問い合わせから教えてください。確認して直します。
         </p>
         <SiteLink href="/about/" className="text-sm text-[color:var(--c-ink)] mt-3 inline-block no-underline hover:underline">
           運営者について →

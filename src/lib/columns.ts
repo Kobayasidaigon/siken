@@ -48,6 +48,21 @@ function decorateAffiliateLinks(htmlStr: string): string {
   );
 }
 
+/**
+ * コラムの中でいちばん新しい更新日(なければ公開日)。YYYY-MM-DD。トップの「記事の最終更新」に出す。2026-11-10 追加。
+ * 以前のトップは new Date() の月を「最終更新」と出していて、1時間ごとの作り直し(ISR)のたびに今月になっていた。
+ * 中身を実際に直した日だけを出すため、front matter の日付だけを読む(本文の変換はしない)。
+ */
+export function getLatestColumnDate(): string {
+  let latest = "";
+  for (const slug of getAllColumnSlugs()) {
+    const { data } = matter(fs.readFileSync(path.join(COLUMNS_DIR, `${slug}.md`), "utf-8"));
+    const d = String(data.updatedAt || data.publishedAt || "");
+    if (/^\d{4}-\d{2}-\d{2}$/.test(d) && d > latest) latest = d;
+  }
+  return latest;
+}
+
 export async function getAllColumns(): Promise<ColumnData[]> {
   const slugs = getAllColumnSlugs();
   const columns = await Promise.all(slugs.map(getColumn));

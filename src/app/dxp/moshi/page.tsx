@@ -85,7 +85,7 @@ export default async function DxpMoshiPage() {
 
       <p className="text-xs text-[color:var(--c-text-sub)] mt-8 max-w-2xl leading-relaxed">
         ※本模試は問題数で判定しています。本試験の配点（2択と4択の点数の違いなど）や、難易度による合格基準の調整は反映していないので、
-        判定は学習の目安としてお使いください。当サイト編集部が作成したオリジナル問題で構成しており、実際の過去問題の転載ではありません。
+        判定は学習の目安としてお使いください。当サイトで作成したオリジナル問題で構成しており、実際の過去問題の転載ではありません。
         1問ずつじっくり学びたい方は
         <SiteLink href="/dxp/" className="underline hover:no-underline">
           練習問題160問

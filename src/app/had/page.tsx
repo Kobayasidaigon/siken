@@ -11,6 +11,7 @@ import ExamCountdown from "@/components/ExamCountdown";
 import { HAD_EXAMS } from "@/lib/exam-dates";
 import { EXAM_AFFILIATE } from "@/lib/affiliate-links";
 import { sisterSite } from "@/lib/sister-sites";
+import OfficialSiteLink from "@/components/OfficialSiteLink";
 
 export const metadata: Metadata = pageMetadata({
   path: "/had/",
@@ -148,6 +149,7 @@ export default async function HadPage() {
             ※2026年10月1日から、カスタマーハラスメントと求職者等へのセクシュアルハラスメントの防止措置も事業主の義務になりました。最新の日程・受験料・出題範囲は必ず公式サイトでご確認ください。
           </p>
         </div>
+        <OfficialSiteLink exam="had" />
       </section>
 
       {/* 合格報告(掲載済みがあれば)と、受験直後の方への報告のお願い。

@@ -4,7 +4,8 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import type { HoikushiQuestionData } from "@/lib/hoikushi-questions";
 import { pageMetadata } from "@/lib/page-metadata";
-import HoikushiCourseAd from "@/components/HoikushiCourseAd";
+import FieldGuide from "@/components/FieldGuide";
+import { hasFieldGuide } from "@/lib/field-guides";
 import { HOIKUSHI_FIELDS, hoikushiFieldBySlug } from "@/lib/hoikushi-fields";
 import MedalMark, { MedalLegend } from "@/components/MedalMark";
 
@@ -16,10 +17,13 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const field = hoikushiFieldBySlug(slug);
   if (!field) return { title: "Not Found" };
+  const guide = hasFieldGuide("hoikushi", slug);
   return pageMetadata({
     path: `/hoikushi/field/${slug}/`,
     title: `保育士試験（筆記）｜${field.name} 練習問題`,
-    description: `保育士試験（筆記）対策。「${field.name}」のオリジナル練習問題と詳細解説。各問に根拠つきの解説があり、弱点分野だけを集中して演習できます。`,
+    description: `保育士試験（筆記）対策。「${field.name}」の${guide ? "要点のまとめと、" : ""}オリジナル練習問題の一覧。1問ずつ解いて、答えと解説を確認できます。`,
+    // 要点の本文(src/content/field-guides/)が無い分野ページは、問題へのリンク一覧だけなので検索に出さない(2026-11-10)
+    noindex: !guide,
   });
 }
 
@@ -86,6 +90,7 @@ export default async function HoikushiFieldPage({ params }: { params: Promise<{ 
       <div className="w-12 h-1 mb-3" style={{ background: "var(--c-pii)" }}></div>
       <p className="text-xs text-[color:var(--c-text-sub)] mb-2">本試験の{field.task}に対応する分野です。</p>
       <p className="text-sm text-[color:var(--c-text-sub)] mb-6 leading-relaxed">{field.desc}</p>
+      <FieldGuide exam="hoikushi" slug={slug} />
 
       <div className="grid grid-cols-4 gap-2 mb-8">
         <div className="card p-3 text-center">
@@ -114,8 +119,6 @@ export default async function HoikushiFieldPage({ params }: { params: Promise<{ 
           <QuestionCard key={q.slug} q={q} index={i + 1} />
         ))}
       </div>
-
-      <HoikushiCourseAd headline={`「${field.name}」でつまずくなら`} />
     </div>
   );
 }

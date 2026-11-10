@@ -7,12 +7,13 @@ import KyoinCourseAd from "@/components/KyoinCourseAd";
 import { pageMetadata } from "@/lib/page-metadata";
 import ExamVoicesSection from "@/components/ExamVoicesSection";
 import { KYOIN_FIELDS } from "@/lib/kyoin-fields";
+import OfficialSiteLink from "@/components/OfficialSiteLink";
 
 export const metadata: Metadata = pageMetadata({
   path: "/kyoin/",
   title: "教員採用試験 教職教養 練習問題【全200問・無料】",
   description:
-    "教員採用試験の教職教養・一般教養のオリジナル練習問題200問を無料公開。教育法規・教育原理・教育心理・教育史・教育時事を、自治体をまたいで共通する論点に絞り、根拠条文つきの解説で演習できます。志望自治体を問わず使えます。",
+    "教員採用試験の教職教養・一般教養のオリジナル練習問題200問を無料公開。教育法規・教育原理・教育心理・教育史・教育時事を、自治体をまたいで共通する論点に絞り、1問ずつの解説で演習できます。志望自治体を問わず使えます。",
 });
 
 export default async function KyoinPage() {
@@ -128,6 +129,7 @@ export default async function KyoinPage() {
             ※日程・出願方法・出題科目・配点は必ず志望自治体の教育委員会が公表する実施要項でご確認ください。本サイトは自治体固有の制度は扱わず、全国共通の論点に絞っています。
           </p>
         </div>
+        <OfficialSiteLink exam="kyoin" />
       </section>
 
       {/* 合格報告(掲載済みがあれば)と、受験直後の方への報告のお願い。

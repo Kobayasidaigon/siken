@@ -11,9 +11,9 @@ import MoshiExam, { type MoshiQuestion } from "@/components/MoshiExam";
 
 export const metadata: Metadata = pageMetadata({
   path: "/fukushi2/moshi/",
-  title: "福祉住環境コーディネーター2級 模擬試験 第1回（無料）｜本試験型○×+択一58問・90分・70点判定",
+  title: "福祉住環境コーディネーター2級 模擬試験 第1回（無料）｜○×+択一58問・90分・70点判定",
   description:
-    "福祉住環境コーディネーター2級の無料模擬試験。受験者の体験談に基づく本試験型構成（○×30問＋四肢択一28問＝58問・100点満点）を、本試験と同じ90分・70点合格の基準で受験でき、終了後に合格判定・分野別の弱点分析・全問の詳しい解説を確認できます。",
+    "福祉住環境コーディネーター2級の無料模擬試験。本試験の問題数と配点は公表されていないため、受験者の体験談をもとに当サイトが推定した構成（○×30問＋四肢択一28問＝58問・100点満点）を、本試験と同じ90分・70点合格の基準で解けます。終了後に合格判定・分野別の弱点分析・全問の解説を確認できます。",
 });
 
 const escapeHtml = (s: string) =>
@@ -21,7 +21,8 @@ const escapeHtml = (s: string) =>
 
 export default async function Fukushi2MoshiPage() {
   const takuitsu = await getFukushi2Moshi1Takuitsu();
-  // 本試験型: ○×30問(各1点)→ 四肢択一28問(2点×14・3点×14)=58問・100点満点
+  // 推定構成(受験者の体験談をもとにした当サイトの推定。公式は問題数・配点を公表していない):
+  // ○×30問(各1点)→ 四肢択一28問(2点×14・3点×14)=58問・100点満点
   const questions: MoshiQuestion[] = [
     ...FUKUSHI2_OX.map((o) => ({
       slug: o.id,
@@ -53,14 +54,13 @@ export default async function Fukushi2MoshiPage() {
       </nav>
 
       <h1 className="text-xl sm:text-2xl font-bold text-[color:var(--c-ink)] mb-2 font-serif">
-        模擬試験 第1回（本試験型）
+        模擬試験 第1回
       </h1>
       <div className="w-12 h-1 mb-5" style={{ background: "var(--c-accent)" }}></div>
 
       <p className="text-sm text-[color:var(--c-text)] leading-relaxed mb-5 max-w-2xl">
         本試験（IBT/CBT）と同じ<strong>90分・100点満点・70点以上で合格</strong>の基準で受験できる無料の模擬試験です。
-        出題構成は受験者の体験談で一致している<strong>○×30問＋四肢択一28問(配点1〜3点)の本試験型</strong>に合わせました。
-        IBT移行後は過去問が公開されないため、本番と同じ形式・時間で解ける場は貴重です。
+        本試験の問題数と配点は公表されていないため、出題構成は受験者の体験談をもとに当サイトが推定した<strong>○×30問＋四肢択一28問（配点1〜3点）</strong>にしています。
         全員が同じ問題を同じ順序で解く固定問題なので、本番前の実力測定にそのまま使えます。
       </p>
 
@@ -89,7 +89,7 @@ export default async function Fukushi2MoshiPage() {
       <p className="text-xs text-[color:var(--c-text-sub)] mt-8 max-w-2xl leading-relaxed">
         ※本試験（IBT/CBT）の問題数・出題形式の内訳・配点は公式には公開されていません。本模試の構成
         （○×30問＋四肢択一28問・配点1〜3点）は、複数の受験者の体験談と公式練習問題の形式（4肢選択・○×選択・穴埋め）に
-        基づく本試験型の推定構成で、実際の試験と異なる場合があります（本試験に含まれることがある図面を使った問題・
+        基づく推定の構成で、実際の試験と異なる場合があります（本試験に含まれることがある図面を使った問題・
         穴埋め問題は対象外です）。当サイトで作成したオリジナル問題で、実際の試験問題の転載ではありません。
         合格判定はあくまで学習の目安です。時間を計らずに力試しをしたい方は
         <SiteLink href="/fukushi2/mock/" className="underline hover:no-underline">本番形式テスト（ランダム20問）</SiteLink>へ、

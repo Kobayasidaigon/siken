@@ -7,7 +7,7 @@ import MoshiExam, { type MoshiQuestion } from "@/components/MoshiExam";
 
 export const metadata: Metadata = pageMetadata({
   path: "/bijihou/moshi/",
-  title: "ビジネス実務法務検定3級 模擬試験 第1回（無料）｜本試験型○×+4択・90分・70点合格判定",
+  title: "ビジネス実務法務検定3級 模擬試験 第1回（無料）｜○×+4択・90分・70点合格判定",
   description:
     "ビジネス実務法務検定3級の無料模擬試験。公式サンプル問題と同じ○×(二肢択一)を含む混合形式・90分・100点満点・70点合格の基準で受験でき、終了後に合格判定・分野別の弱点分析・全問の詳しい解説を確認できます。",
 });

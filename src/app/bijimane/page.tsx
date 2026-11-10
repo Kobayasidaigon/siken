@@ -15,7 +15,7 @@ import ExamIntro from "@/components/ExamIntro";
 export const metadata: Metadata = pageMetadata({
   path: "/bijimane/",
   title: "ビジネスマネジャー検定 練習問題・過去問対策【全200問・無料】",
-  description: "ビジネスマネジャー検定のオリジナル練習問題200問を無料公開。マネジャーの役割・人材育成・経営計画・リスクマネジメントを根拠つき解説で演習でき、分野別の練習からランダム出題のテスト、90分の模擬試験まで使えます。",
+  description: "ビジネスマネジャー検定のオリジナル練習問題200問を無料公開。マネジャーの役割・人材育成・経営計画・リスクマネジメントを1問ずつの解説で演習でき、分野別の練習からランダム出題のテスト、90分の模擬試験まで使えます。",
 });
 
 const fields = [

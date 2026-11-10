@@ -11,7 +11,7 @@ import OfficialSiteLink from "@/components/OfficialSiteLink";
 export const metadata: Metadata = pageMetadata({
   path: "/itpass/",
   title: "ITパスポート 練習問題・過去問対策【全200問・無料】",
-  description: "ITパスポート試験のオリジナル練習問題200問を無料公開。経営戦略・法務からセキュリティ・ネットワークまで、シラバスVer.6.5準拠の10分野を根拠つき解説で演習できます。公開過去問の補完に。",
+  description: "ITパスポート試験のオリジナル練習問題200問を無料公開。経営戦略・法務からセキュリティ・ネットワークまで、シラバスVer.6.5準拠の10分野を1問ずつの解説で演習できます。公開過去問の補完に。",
 });
 
 const fields = [

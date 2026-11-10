@@ -45,7 +45,7 @@ export default async function IsecMoshiPage() {
       <p className="text-sm text-[color:var(--c-text)] leading-relaxed mb-5 max-w-2xl">
         本試験（180問・120分）と同じ<strong>1問40秒のペース</strong>で、半分の<strong>90問・60分</strong>を解く無料の模擬試験です。
         出題は2026年2月からの出題範囲に合わせ、<strong>課題Ⅰ〜Ⅲから30問ずつ</strong>。合否は本試験と同じ<strong>正答率70%</strong>で判定します。
-        全員が同じ問題を同じ順序で解く固定問題なので、本番前の実力測定に使えます。
+        全員が同じ問題を同じ順序で解く固定問題なので、本番前の力試しに使えます。
       </p>
 
       {/* 試験仕様 */}

@@ -37,7 +37,7 @@ export default async function JitsumuMoshiPage() {
 
       <p className="text-sm text-[color:var(--c-text)] leading-relaxed mb-5 max-w-2xl">
         2級の本試験と同じ<strong>80問・90分・4肢択一・合格基準70%</strong>で受験できる無料の模擬試験です。
-        全員が同じ問題を同じ順序で解く固定問題なので、本番前の実力測定にそのまま使えます。
+        全員が同じ問題を同じ順序で解く固定問題なので、本番前の力試しに使えます。
         出題内容は2級・1級の両方に通じる論点で構成しているため、1級対策の腕試しにも使えます（1級は100問・120分）。
       </p>
 

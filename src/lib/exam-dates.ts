@@ -17,46 +17,63 @@ export interface UpcomingExam {
   applyEnd?: string; // 申込締切日。公式未発表の回は省略 (締切カウントダウン非表示)
 }
 
-// 出典: 日本貸金業協会 j-fsa.or.jp/chief/qualifying_exam/ (2026-08-06確認)
+// 出典: 日本貸金業協会 j-fsa.or.jp/chief/qualifying_exam/ (2026-08-06確認・2026-11-10再確認)
+// 2026-11-10: 協会のページは「令和8年度」とだけ書き、回数(第21回)を出していないため、ラベルを年度にした
+// (試験結果のページは「令和7年度（第20回）」まで)。令和9年度の日程は 2026-11-10 時点で未発表。
 export const KASHIKIN_EXAMS: UpcomingExam[] = [
-  { date: "2026-11-15", label: "2026年度(第21回)", applyStart: "2026-07-01", applyEnd: "2026-09-10" },
+  { date: "2026-11-15", label: "2026年度(令和8年度)", applyStart: "2026-07-01", applyEnd: "2026-09-10" },
 ];
 
-// 出典: 知的財産教育協会 kentei-info-ip-edu.org/exam/schedule/ (2026-08-06確認)
+// 出典: 知的財産教育協会 kentei-info-ip-edu.org/exam/schedule/ (2026-08-06確認・2026-11-10再確認)
 // 申込締切は紙/CBT共通。applyStartは早い方=紙方式(CBTのみの申込開始は第55回8/1・第56回12/1)
+// 第57回(2027-07-11)は試験要綱(kentei-info-ip-edu.org/exam/)の法令基準日の表にだけ載っており、
+// 申込期間は 2026-11-10 時点で未発表のため日付だけ入れる(申込のカウントダウンは出ない)。
 export const CHIZAI_EXAMS: UpcomingExam[] = [
   { date: "2026-11-15", label: "第55回", applyStart: "2026-06-19", applyEnd: "2026-10-06" },
   { date: "2027-03-07", label: "第56回", applyStart: "2026-10-21", applyEnd: "2027-01-25" },
+  { date: "2027-07-11", label: "第57回" },
 ];
 
 // 出典: 東京商工会議所検定サイト kentei.tokyo-cci.or.jp/fukushi/ (2026-08-06確認)
 // 第57回2・3級はIBT/CBT期間制(11/12〜12/3)のため試験期間初日を採用。
 // ※旧データ「2026-10-22開始」はビジ法の試験期間との取り違えで誤りだったため修正済み。
+// 2026-11-10: 2027年度の2回(第58回・第59回)を追加(同 fukushi/exam-info/ と schedule.html で確認)。
 export const FUKUSHI2_EXAMS: UpcomingExam[] = [
   { date: "2026-11-12", label: "第57回(2・3級)", applyStart: "2026-10-09", applyEnd: "2026-10-20" },
+  { date: "2027-07-08", label: "第58回(2・3級)", applyStart: "2027-06-04", applyEnd: "2027-06-15" },
+  { date: "2027-11-11", label: "第59回(2・3級)", applyStart: "2027-10-08", applyEnd: "2027-10-19" },
 ];
 
 // 出典: 東京商工会議所検定サイト kentei.tokyo-cci.or.jp/houmu/ (2026-08-06確認)
 // 第60回2・3級はIBT/CBT期間制(10/22〜11/9)のため試験期間初日を採用。
 // 1級(12/6統一試験)は本サイトの対象外(3級ドリル)のため非掲載。
+// 2026-11-10: 2027年度の2回(第61回・第62回)を追加(同 houmu/exam-info/ で確認)。
 export const BIJIHOU_EXAMS: UpcomingExam[] = [
   { date: "2026-10-22", label: "第60回(2・3級)", applyStart: "2026-09-16", applyEnd: "2026-09-29" },
+  { date: "2027-06-17", label: "第61回(2・3級)", applyStart: "2027-05-14", applyEnd: "2027-05-25" },
+  { date: "2027-10-21", label: "第62回(2・3級)", applyStart: "2027-09-15", applyEnd: "2027-09-28" },
 ];
 
 // 出典: 東京商工会議所検定サイト kentei.tokyo-cci.or.jp/bijimane/ および
 // 同 exam-info/entry.html (2026-08-06確認・2ページで一致)。
 // 第24回(2026年度 第2シーズン)はIBT/CBT期間制(10/22〜11/9)のため試験期間初日を採用。
 // ※ビジ法第60回と全く同じ期間だが取り違えではない(東商のIBT/CBT検定は同一ウィンドウで実施)。
+// 2026-11-10: 2027年度の2回(第25回・第26回)を追加(同 bijimane/exam-info/ と schedule.html で確認)。
 export const BIJIMANE_EXAMS: UpcomingExam[] = [
   { date: "2026-10-22", label: "第24回", applyStart: "2026-09-16", applyEnd: "2026-09-29" },
+  { date: "2027-06-17", label: "第25回", applyStart: "2027-05-14", applyEnd: "2027-05-25" },
+  { date: "2027-10-21", label: "第26回", applyStart: "2027-09-15", applyEnd: "2027-09-28" },
 ];
 
 // 出典: 東京商工会議所検定サイト kentei.tokyo-cci.or.jp/eco/ (2026-08-06確認)
 // 第41回(2026年度 第2シーズン)はIBT/CBT期間制(11/12〜12/3)のため試験期間初日を採用。
 // ※eco検定は福祉住環境コーディネーター第57回と同じ第2ウィンドウ。
 //   ビジ法・ビジマネの第1ウィンドウ(10/22〜11/9)とは別なので取り違えないこと。
+// 2026-11-10: 2027年度の2回(第42回・第43回)を追加(同 eco/exam-info/ と schedule.html で確認)。
 export const ECO_EXAMS: UpcomingExam[] = [
   { date: "2026-11-12", label: "第41回", applyStart: "2026-10-09", applyEnd: "2026-10-20" },
+  { date: "2027-07-08", label: "第42回", applyStart: "2027-06-04", applyEnd: "2027-06-15" },
+  { date: "2027-11-11", label: "第43回", applyStart: "2027-10-08", applyEnd: "2027-10-19" },
 ];
 
 // 出典: 全日本情報学習振興協会 令和8年度試験日程 joho-gakushu.or.jp/schedule/2026.php

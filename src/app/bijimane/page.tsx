@@ -10,11 +10,12 @@ import ExamCountdown from "@/components/ExamCountdown";
 import Moshi2TopLink from "@/components/Moshi2TopLink";
 import ExamVoicesSection from "@/components/ExamVoicesSection";
 import OfficialSiteLink from "@/components/OfficialSiteLink";
+import ExamIntro from "@/components/ExamIntro";
 
 export const metadata: Metadata = pageMetadata({
   path: "/bijimane/",
   title: "ビジネスマネジャー検定 練習問題・過去問対策【全200問・無料】",
-  description: "ビジネスマネジャー検定のオリジナル練習問題200問を無料公開。マネジャーの役割・人材育成・経営計画・リスクマネジメントを根拠つき解説で演習できます。過去問が公開されない試験の対策に。",
+  description: "ビジネスマネジャー検定のオリジナル練習問題200問を無料公開。マネジャーの役割・人材育成・経営計画・リスクマネジメントを根拠つき解説で演習でき、分野別の練習からランダム出題のテスト、90分の模擬試験まで使えます。",
 });
 
 const fields = [
@@ -106,12 +107,13 @@ export default async function BijimanePage() {
         </div>
       </section>
 
-      {/* 過去問が手に入らない試験 */}
+      {/* 公式問題集と当サイトの問題(2026-11-10 書き直し。以前は「過去問が手に入らない試験」としていたが、
+          公式問題集2026年版の Part1 は「過去問題＆模擬問題（IBT・CBT対策）」で、事実と違っていた) */}
       <section className="mb-12">
-        <h2 className="text-base font-bold text-[color:var(--c-ink)] mb-4 font-serif">「過去問」が手に入らない試験です</h2>
+        <h2 className="text-base font-bold text-[color:var(--c-ink)] mb-4 font-serif">公式問題集と、当サイトの練習問題</h2>
         <div className="card p-5 text-sm text-[color:var(--c-text-sub)] leading-relaxed space-y-2">
-          <p>ビジネスマネジャー検定はIBT（自宅等のパソコン受験）・CBT（テストセンター受験）で実施され、<span className="font-bold text-[color:var(--c-ink)]">試験問題は非公開・持ち帰り不可</span>です。市販の「過去問題集」で本試験そのものの問題を確認することはできません。</p>
-          <p>だからこそ、出題範囲に沿ったオリジナル問題での演習量が合否を分けます。当サイトの問題はすべて解説付き・無料です。</p>
+          <p>東京商工会議所の公式サイトによると、公式問題集（2026年版）は、Part1「過去問題＆模擬問題（IBT・CBT対策）」とPart2「模擬問題（分野別形式）」で構成されています。本試験の形式に近い問題は、まず公式問題集で確かめられます。</p>
+          <p>当サイトの練習問題は、公式テキストの範囲に沿って当サイトが作ったオリジナル問題で、本試験の問題ではありません。すべて解説つき・無料で、分野ごとに解けるので、テキストを読んだあとの確認や、公式問題集と合わせて演習を増やしたいときに使えます。</p>
         </div>
       </section>
 
@@ -119,7 +121,7 @@ export default async function BijimanePage() {
       <section className="mb-12">
         <h2 className="text-base font-bold text-[color:var(--c-ink)] mb-4 font-serif">合格率は「回によって別の試験」くらい違います</h2>
         <div className="card p-5 text-sm text-[color:var(--c-text-sub)] leading-relaxed space-y-3">
-          <p>東京商工会議所が公表している合格率（全国分）を並べると、直近2年でこれだけ動いています。</p>
+          <p>東京商工会議所が公表している合格率（全国分）を並べると、第21回から第23回までの3回でこれだけ動いています。</p>
           <div className="overflow-x-auto">
             <table className="w-full text-xs border-collapse">
               <thead>
@@ -130,23 +132,25 @@ export default async function BijimanePage() {
                 </tr>
               </thead>
               <tbody>
-                <tr><td className="border border-[color:var(--c-border)] px-2 py-1.5">第19回（2024年度 第1シーズン）</td><td className="border border-[color:var(--c-border)] px-2 py-1.5">5,723人</td><td className="border border-[color:var(--c-border)] px-2 py-1.5">41.7%</td></tr>
-                <tr><td className="border border-[color:var(--c-border)] px-2 py-1.5">第20回（2024年度 第2シーズン）</td><td className="border border-[color:var(--c-border)] px-2 py-1.5">5,991人</td><td className="border border-[color:var(--c-border)] px-2 py-1.5">23.3%</td></tr>
                 <tr><td className="border border-[color:var(--c-border)] px-2 py-1.5">第21回（2025年度 第1シーズン）</td><td className="border border-[color:var(--c-border)] px-2 py-1.5">5,863人</td><td className="border border-[color:var(--c-border)] px-2 py-1.5">74.8%</td></tr>
                 <tr><td className="border border-[color:var(--c-border)] px-2 py-1.5">第22回（2025年度 第2シーズン）</td><td className="border border-[color:var(--c-border)] px-2 py-1.5">5,959人</td><td className="border border-[color:var(--c-border)] px-2 py-1.5">67.9%</td></tr>
+                <tr><td className="border border-[color:var(--c-border)] px-2 py-1.5">第23回（2026年度 第1シーズン）</td><td className="border border-[color:var(--c-border)] px-2 py-1.5">5,785人</td><td className="border border-[color:var(--c-border)] px-2 py-1.5">47.9%</td></tr>
               </tbody>
             </table>
           </div>
-          <p>2024年度は年度計32.3%、2025年度は年度計71.3%。<span className="font-bold text-[color:var(--c-ink)]">「合格率◯%の試験」と一つの数字で語れる試験ではありません。</span>次の回がどちらに寄るかは事前には分からないので、易しい回を前提にした準備は避けるのが無難です。</p>
-          <p className="text-xs">出典：東京商工会議所「ビジネスマネジャー検定試験 受験者データ」（2026年8月確認）</p>
+          <p>2025年度は年度計71.3%でしたが、2026年度の第23回は47.9%でした。<span className="font-bold text-[color:var(--c-ink)]">「合格率◯%の試験」と一つの数字で語れる試験ではありません。</span>次の回がどちらに寄るかは事前には分からないので、易しい回を前提にした準備は避けるのが無難です。</p>
+          <p className="text-xs">出典：東京商工会議所「ビジネスマネジャー検定試験 受験者データ」（2026年11月確認。実受験者数）</p>
         </div>
       </section>
+
+      {/* 勉強の進め方(src/content/exam-intros/bijimane.md。2026-11-10 追加。分野へのリンクと概要の表だけだったトップに、範囲と分野の対応・勉強の順番を足す) */}
+      <ExamIntro exam="bijimane" />
 
       {/* 試験概要 */}
       <section className="mb-12">
         <h2 className="text-base font-bold text-[color:var(--c-ink)] mb-4 font-serif">試験の概要</h2>
         <div className="card p-5 text-sm text-[color:var(--c-text-sub)] space-y-2">
-          <p><span className="font-bold text-[color:var(--c-ink)]">試験日</span>　年2シーズン（例年6〜7月、10〜11月の各期間中に希望日を選んで受験）　<SiteLink href="/column/bijimane-nittei/" className="underline hover:no-underline">詳しい日程・申込方法 →</SiteLink></p>
+          <p><span className="font-bold text-[color:var(--c-ink)]">試験日</span>　年2回（2026年度・2027年度とも、6〜7月と10〜11月の試験期間中に希望の日時を選んで受験）　<SiteLink href="/column/bijimane-nittei/" className="underline hover:no-underline">詳しい日程・申込方法 →</SiteLink></p>
           <p><span className="font-bold text-[color:var(--c-ink)]">試験方式</span>　IBT（自宅等のパソコンで受験）または CBT（各地テストセンターで受験）の多肢選択式・90分</p>
           <p><span className="font-bold text-[color:var(--c-ink)]">合格基準</span>　100点満点中70点以上</p>
           <p><span className="font-bold text-[color:var(--c-ink)]">受験料</span>　7,700円（税込）。CBT方式は別途テストセンター利用料2,200円（税込）</p>
@@ -163,8 +167,8 @@ export default async function BijimanePage() {
       <ExamVoicesSection exam="bijimane" />
 
       <BijimaneCourseAd
-        headline="400ページ超のテキストを体系的に押さえるなら"
-        body="ビジネスマネジャー検定の公式テキストは400ページを超え、マネジメント理論から労務・リスク対応まで範囲が広い試験です。東京商工会議所の公式通信講座（産業能率大学）は試験に準拠した構成で、独学の順序づけに不安がある方の選択肢になります。"
+        headline="広い出題範囲を体系的に押さえるなら"
+        body="ビジネスマネジャー検定は、マネジャーの役割から人と組織、業務、リスクのマネジメントまで範囲が広い試験です。通信講座は、独学の順序づけに不安がある方の選択肢になります。"
       />
 
       {/* 姉妹検定 */}
@@ -173,7 +177,7 @@ export default async function BijimanePage() {
         <div className="card p-5 text-sm text-[color:var(--c-text-sub)] leading-relaxed space-y-2">
           {/* 日付は exam-dates.ts から組み立てる(以前は 2026年度第2シーズンの日付を直書きしており、締切後に腐っていた) */}
           <p>ビジネスマネジャー検定と<SiteLink href="/bijihou/" className="underline hover:no-underline">ビジネス実務法務検定3級</SiteLink>は、どちらも東京商工会議所がIBT・CBTで実施する検定で、試験期間も申込期間も同じ枠です{seasonLabel(BIJIMANE_EXAMS) ? `（${seasonLabel(BIJIMANE_EXAMS)}）` : ""}。</p>
-          <p>出題範囲も一部重なります。ビジマネ第4部の「リスクのマネジメント」で扱うコンプライアンス・ハラスメント・情報漏えい・製品事故といった論点は、ビジ法の企業法務と地続きです。片方の学習がもう片方の下地になるため、同一シーズンでの併願は現実的な選択肢です。</p>
+          <p>出題範囲も一部重なります。ビジマネ公式テキストの第4部「リスクのマネジメント」は、職場・業務・組織・事故や災害にかかわるリスクを扱い、コンプライアンスやハラスメントへの対応はビジ法の企業法務と地続きの論点です。当サイトでは、片方の学習がもう片方の下地になるので、同じ試験期間での併願も現実的な選択肢だと考えています。</p>
         </div>
       </section>
 

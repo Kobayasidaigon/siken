@@ -21,7 +21,7 @@ export default function Chizai2CourseAd({ headline, body }: Props = {}) {
   const finalHeadline = headline ?? "知財検定2級の対策講座をお探しの方へ";
   const finalBody =
     body ??
-    "知的財産管理技能検定2級は実務寄りの応用まで問われ、市販教材だけでは網羅しにくい試験です。資格スクールLEC東京リーガルマインドは2級の対策講座を提供しており、頻出論点を講義で体系的に押さえられます。";
+    "知的財産管理技能検定2級は、学科・実技とも満点の80%以上が合格基準です。資格スクールLEC東京リーガルマインドは2級の対策講座を提供しており、講義で論点を体系的に押さえられます。";
 
   return (
     <aside className="theme-chizai my-10 p-5 rounded-lg border border-[color:var(--c-border)] bg-[color:var(--c-bg-alt)]">

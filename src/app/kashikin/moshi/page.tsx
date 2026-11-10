@@ -50,7 +50,7 @@ export default async function KashikinMoshiPage() {
 
       <p className="text-sm text-[color:var(--c-text)] leading-relaxed mb-5 max-w-2xl">
         本試験と同じ<strong>四肢択一50問・120分</strong>で受験できる無料の模擬試験です。出題は当サイトの4分野から選び、
-        合否は直近の合格基準点（第18〜20回は30〜31問）に近い<strong>50問中30問</strong>を目安に判定します。全員が同じ問題を同じ順序で解く固定問題なので、本番前の実力測定にそのまま使えます。
+        合否は直近の合格基準点（第18〜20回は30〜31問）に近い<strong>50問中30問</strong>を目安に判定します。全員が同じ問題を同じ順序で解く固定問題なので、本番前の力試しに使えます。
       </p>
 
       {/* 試験仕様 */}
@@ -65,7 +65,7 @@ export default async function KashikinMoshiPage() {
         </p>
         <p>
           <span className="font-bold text-[color:var(--c-ink)]">合格基準</span>
-          {KASHIKIN_MOSHI_PASS_COUNT}問以上（本試験の合格ラインは回により変動し、概ね30点前後）
+          {KASHIKIN_MOSHI_PASS_COUNT}問以上（当サイトの目安。本試験の合格基準点は回ごとに決まり、第18回・第20回は31問、第19回は30問）
         </p>
         <p>
           <span className="font-bold text-[color:var(--c-ink)]">受験料</span>　無料・登録不要
@@ -92,11 +92,11 @@ export default async function KashikinMoshiPage() {
         その分は含まれません。また、協会の区分では利息制限法・出資法は「法及び関係法令」に入るため、
         この模試の配分は協会の区分ごとの問題数と同じではありません。
         <br />
-        本試験の合格基準は回ごとに決まり、30点で固定されているわけではありません。ここでの判定は学習の目安です。
+        本試験の合格基準点は回ごとに決まり、30問で固定されているわけではありません。ここでの判定は学習の目安です。
         当サイトで作成したオリジナル問題で構成しており、実際の過去問題の転載ではありません。
         1問ずつじっくり学びたい方は
         <SiteLink href="/kashikin/" className="underline hover:no-underline">
-          練習問題504問
+          練習問題
         </SiteLink>
         へ。
       </p>

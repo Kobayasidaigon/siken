@@ -43,7 +43,7 @@ export default async function CccMoshiPage() {
 
       <p className="text-sm text-[color:var(--c-text)] leading-relaxed mb-5 max-w-2xl">
         本試験と同じ<strong>70問・150分・4肢択一</strong>で受験できる無料の模擬試験です。民法総則・物権・債権総論・債権各論・親族・相続の<strong>8分野から8〜9問ずつ</strong>出題し、合否は本試験と同じ<strong>正答率70%（49問）以上</strong>で判定します。
-        全員が同じ問題を同じ順序で解く固定問題なので、本番前の実力測定にそのまま使えます。
+        全員が同じ問題を同じ順序で解く固定問題なので、本番前の力試しに使えます。
       </p>
 
       <div className="card p-5 mb-6 text-sm text-[color:var(--c-text-sub)] space-y-2 max-w-2xl">

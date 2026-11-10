@@ -8,7 +8,7 @@ import MoshiExam, { type MoshiQuestion } from "@/components/MoshiExam";
 // 模試の結果画面は全CTA設置面で最も転換率が高い(moshi_result)ため、受け皿を用意する。
 export const metadata: Metadata = pageMetadata({
   path: "/bijihou2/moshi/",
-  title: "ビジネス実務法務検定2級 模擬試験 第1回（無料）｜本番形式50問・90分・70点合格判定",
+  title: "ビジネス実務法務検定2級 模擬試験 第1回（無料）｜4肢択一・90分・70点合格判定",
   description:
     "ビジネス実務法務検定2級の無料模擬試験。本試験(IBT/CBT)と同じ90分・100点満点・70点合格の基準で受験でき、終了後に合格判定・分野別の弱点分析・全問の詳しい解説を確認できます。",
 });
@@ -33,14 +33,14 @@ export default async function Bijihou2MoshiPage() {
       </nav>
 
       <h1 className="text-xl sm:text-2xl font-bold text-[color:var(--c-ink)] mb-2 font-serif">
-        模擬試験 第1回（本番形式）
+        模擬試験 第1回
       </h1>
       <div className="w-12 h-1 mb-5" style={{ background: "var(--c-accent)" }}></div>
 
       <p className="text-sm text-[color:var(--c-text)] leading-relaxed mb-5 max-w-2xl">
         本試験（IBT/CBT）と同じ<strong>90分・100点満点・70点以上で合格</strong>の基準で受験できる無料の模擬試験です。
-        公式テキストの全10章から均等に出題した<strong>4肢択一50問（各2点）</strong>で構成しています。
-        全員が同じ問題を同じ順序で解く固定問題なので、本番前の実力測定にそのまま使えます。
+        当サイトの10分野から均等に出題した<strong>4肢択一50問（各2点）</strong>で構成しています。
+        全員が同じ問題を同じ順序で解く固定問題なので、本番前の力試しに使えます。
         終了後は合格判定・分野別の弱点分析・全問の詳しい解説つき。
       </p>
 

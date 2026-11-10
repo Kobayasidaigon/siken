@@ -43,7 +43,7 @@ export default async function CacMoshiPage() {
 
       <p className="text-sm text-[color:var(--c-text)] leading-relaxed mb-5 max-w-2xl">
         本試験と同じ<strong>60問・150分（10:00〜12:45）・4肢択一</strong>で受験できる無料の模擬試験です。会社法の条文構成に沿った<strong>8分野から6〜8問ずつ</strong>出題し、合否は本試験と同じ<strong>正答率70%（42問）以上</strong>で判定します。
-        全員が同じ問題を同じ順序で解く固定問題なので、本番前の実力測定にそのまま使えます。
+        全員が同じ問題を同じ順序で解く固定問題なので、本番前の力試しに使えます。
       </p>
 
       <div className="card p-5 mb-6 text-sm text-[color:var(--c-text-sub)] space-y-2 max-w-2xl">

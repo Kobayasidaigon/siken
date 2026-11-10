@@ -654,6 +654,12 @@ function fieldGuideExists(url) {
   const p = fieldGuidePath(url);
   return p === null ? null : fs.existsSync(p);
 }
+const examIntrosDir = path.join(__dirname, "../src/content/exam-intros");
+/** 資格トップ(/<資格>/)なら「勉強の進め方」の本文のファイルのパスを返す(ファイルがあるかは問わない)。資格トップでなければ null */
+function examIntroPath(url) {
+  const m = url.match(/^\/([a-z0-9]+)\/$/);
+  return m ? path.join(examIntrosDir, `${m[1]}.md`) : null;
+}
 const isEndedCalendarMonth = (url) => {
   const m = url.match(/^\/calendar\/(\d{4}-\d{2})\/$/);
   return !!m && m[1] < currentYmJst;
@@ -677,9 +683,10 @@ const allPages = [
   .filter((p) => !isNoindexUrl(p.url))
   // 要点の本文がある分野ページの lastmod は、問題の更新日と要点の更新日の新しいほう。
   // 要点を置いて index に戻ったこと・要点を直したことを、検索エンジンに伝えるため(2026-11-10)
+  // 資格トップも同じく、「勉強の進め方」の本文(src/content/exam-intros/<資格>.md。src/lib/exam-intros.ts)があれば、その更新日も見る
   .map((p) => {
-    const guide = fieldGuidePath(p.url);
-    return guide && fs.existsSync(guide) ? { ...p, lastmod: [p.lastmod, fileDate(guide)].sort().at(-1) } : p;
+    const extra = fieldGuidePath(p.url) ?? examIntroPath(p.url);
+    return extra && fs.existsSync(extra) ? { ...p, lastmod: [p.lastmod, fileDate(extra)].sort().at(-1) } : p;
   });
 
 const xml = `<?xml version="1.0" encoding="UTF-8"?>

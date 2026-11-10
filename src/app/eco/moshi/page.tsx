@@ -43,8 +43,7 @@ export default async function EcoMoshiPage() {
 
       <p className="text-sm text-[color:var(--c-text)] leading-relaxed mb-5 max-w-2xl">
         本試験（IBT/CBT）と同じ<strong>90分・100点満点・70点以上で合格</strong>の基準で受験できる無料の模擬試験です。
-        eco検定はIBT・CBT方式のため過去問が公開されず、本番と同じ時間・同じ合否基準で通しで解ける場がありません。
-        全員が同じ問題を同じ順序で解く固定問題なので、本番前の実力測定にそのまま使えます。
+        全員が同じ問題を同じ順序で解く固定問題なので、本番前の力試しに使えます。
         出題は10分野からその問題数比に応じて選び、分野が連続しない順に並べています。
         eco検定は範囲の広さそのものが難所なので、頭を切り替えながら解く感覚をここで掴んでください。
       </p>
@@ -78,7 +77,7 @@ export default async function EcoMoshiPage() {
         問題はすべて当サイトで作成したオリジナルで、実際の試験問題の転載ではありません。合格判定はあくまで学習の目安です。
         時間を計らずに力試しをしたい方は
         <SiteLink href="/eco/mock/" className="underline hover:no-underline">本番形式テスト（ランダム20問）</SiteLink>へ、
-        1問ずつじっくり学びたい方は<SiteLink href="/eco/" className="underline hover:no-underline">練習問題200問</SiteLink>へ。
+        1問ずつじっくり学びたい方は<SiteLink href="/eco/" className="underline hover:no-underline">練習問題</SiteLink>へ。
       </p>
     </div>
   );

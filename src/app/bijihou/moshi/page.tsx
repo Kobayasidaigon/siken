@@ -7,9 +7,9 @@ import MoshiExam, { type MoshiQuestion } from "@/components/MoshiExam";
 
 export const metadata: Metadata = pageMetadata({
   path: "/bijihou/moshi/",
-  title: "ビジネス実務法務検定3級 模擬試験 第1回（無料）｜本試験型○×+4択・90分・70点合格判定",
+  title: "ビジネス実務法務検定3級 模擬試験 第1回（無料）｜○×+4択・90分・70点合格判定",
   description:
-    "ビジネス実務法務検定3級の無料模擬試験。公式サンプル問題と同じ○×(二肢択一)を含む混合形式・90分・100点満点・70点合格の基準で受験でき、終了後に合格判定・分野別の弱点分析・全問の詳しい解説を確認できます。",
+    "ビジネス実務法務検定3級の無料模擬試験。○×(二肢択一)と4肢択一の混合形式で、本試験と同じ90分・100点満点・70点合格の基準で受験でき、終了後に合格判定・分野別の弱点分析・全問の詳しい解説を確認できます。",
 });
 
 const escapeHtml = (s: string) =>
@@ -47,14 +47,14 @@ export default async function BijihouMoshiPage() {
       </nav>
 
       <h1 className="text-xl sm:text-2xl font-bold text-[color:var(--c-ink)] mb-2 font-serif">
-        模擬試験 第1回（本番形式）
+        模擬試験 第1回
       </h1>
       <div className="w-12 h-1 mb-5" style={{ background: "var(--c-accent)" }}></div>
 
       <p className="text-sm text-[color:var(--c-text)] leading-relaxed mb-5 max-w-2xl">
         本試験（IBT/CBT）と同じ<strong>90分・100点満点・70点以上で合格</strong>の基準で受験できる無料の模擬試験です。
-        東商の公式サンプル問題にならい、<strong>○×(二肢択一)と4肢択一の混合形式</strong>で構成しています(50問×2点で採点)。
-        全員が同じ問題を同じ順序で解く固定問題なので、本番前の実力測定にそのまま使えます。
+        <strong>○×(二肢択一)と4肢択一の混合形式</strong>で構成しています(50問×2点で採点。問題数と配点は当サイト独自の構成です)。
+        全員が同じ問題を同じ順序で解く固定問題なので、本番前の力試しに使えます。
         終了後は合格判定・分野別の弱点分析・全問の詳しい解説つき。
       </p>
 
@@ -82,7 +82,7 @@ export default async function BijihouMoshiPage() {
 
       <p className="text-xs text-[color:var(--c-text-sub)] mt-8 max-w-2xl leading-relaxed">
         ※本試験（IBT/CBT）の問題数・出題形式の内訳・配点は公式には公開されていないため、本模試は時間（90分）と
-        採点基準（100点満点・70点合格）に準拠しつつ、公式サンプル問題(○×形式)を参考にした50問構成(均等2点)としています。
+        採点基準（100点満点・70点合格）に合わせた、当サイト独自の50問構成(均等2点)としています。
         当サイトで作成したオリジナル問題で、実際の過去問題の転載ではありません。
         合格判定はあくまで学習の目安です。1問ずつじっくり学びたい方は
         <SiteLink href="/bijihou/" className="underline hover:no-underline">練習問題200問</SiteLink>へ。

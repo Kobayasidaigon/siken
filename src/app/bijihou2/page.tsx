@@ -9,11 +9,12 @@ import { BIJIHOU_EXAMS } from "@/lib/exam-dates";
 import ExamCountdown from "@/components/ExamCountdown";
 import ExamVoicesSection from "@/components/ExamVoicesSection";
 import OfficialSiteLink from "@/components/OfficialSiteLink";
+import ExamIntro from "@/components/ExamIntro";
 
 export const metadata: Metadata = pageMetadata({
   path: "/bijihou2/",
   title: "ビジネス実務法務検定2級 練習問題・過去問対策【全200問・無料】",
-  description: "ビジネス実務法務検定2級のオリジナル練習問題200問を無料公開。契約・債権回収・倒産処理・会社法・労働法・国際法務まで企業法務の実務範囲を、根拠つき解説で演習できます。過去問が公開されない試験の対策に。",
+  description: "ビジネス実務法務検定2級のオリジナル練習問題200問を無料公開。契約・債権回収・倒産処理・会社法・労働法・国際法務まで企業法務の実務範囲を根拠つき解説で演習でき、分野別の練習からランダム出題のテスト、90分の模擬試験まで使えます。",
 });
 
 const fields = [
@@ -92,6 +93,9 @@ export default async function Bijihou2Page() {
           ))}
         </div>
       </section>
+
+      {/* 勉強の進め方(src/content/exam-intros/bijihou2.md。2026-11-10 追加。分野へのリンクと概要の表だけだったトップに、範囲と分野の対応・勉強の順番を足す) */}
+      <ExamIntro exam="bijihou2" />
 
       <section className="mb-12">
         <h2 className="text-base font-bold text-[color:var(--c-ink)] mb-4 font-serif">試験の概要</h2>

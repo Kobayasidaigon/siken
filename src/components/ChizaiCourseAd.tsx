@@ -28,7 +28,7 @@ export default function ChizaiCourseAd({ headline, body }: Props = {}) {
   const finalHeadline = headline ?? "知財検定の対策講座をお探しの方へ";
   const finalBody =
     body ??
-    "知的財産管理技能検定は市販教材が限られる試験です。月額制のオンライン講座オンスク.JPは知財検定3級講座を提供しており、スキマ時間で出題範囲を体系的に押さえられます。";
+    "知的財産管理技能検定3級の出題範囲は、知的財産の保護・活用と関係法規にわたります。月額制のオンライン講座オンスク.JPは知財検定3級講座を提供しており、スキマ時間で出題範囲を体系的に押さえられます。";
 
   return (
     <aside className="theme-chizai my-10 p-5 rounded-lg border border-[color:var(--c-border)] bg-[color:var(--c-bg-alt)]">

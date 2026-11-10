@@ -10,11 +10,14 @@ import ExamCountdown from "@/components/ExamCountdown";
 import Moshi2TopLink from "@/components/Moshi2TopLink";
 import ExamVoicesSection from "@/components/ExamVoicesSection";
 import OfficialSiteLink from "@/components/OfficialSiteLink";
+import ExamIntro from "@/components/ExamIntro";
+import { getExamIntro } from "@/lib/exam-intros";
+import { canShowUcanAd } from "@/lib/ucan-policy";
 
 export const metadata: Metadata = pageMetadata({
   path: "/fukushi2/",
   title: "福祉住環境コーディネーター2級 練習問題・過去問対策【全230問・無料】",
-  description: "福祉住環境コーディネーター2級のオリジナル練習問題230問を無料公開。疾患・障害の特性、住環境整備の技術、介護保険と住宅改修まで根拠つき解説で演習できます。過去問が公開されない試験の対策に。",
+  description: "福祉住環境コーディネーター2級のオリジナル練習問題230問を無料公開。疾患・障害の特性、住環境整備の技術、介護保険と住宅改修まで根拠つき解説で演習でき、分野別の練習からランダム出題のテスト、90分の模擬試験まで使えます。",
 });
 
 const fields = [
@@ -33,6 +36,10 @@ export default async function Fukushi2Page() {
   const allQuestions = await getAllFukushi2Questions();
   const allColumns = await getAllColumns();
   const fukushi2Columns = allColumns.filter((c) => c.slug.startsWith("fukushi2-"));
+  // ユーキャンの講座広告は、数値を伴う合格率・合格者数を書いた面には出さない(広告主の掲載ルール。lib/ucan-policy.ts)。
+  // コラムと同じ基準で、このトップに出す「勉強の進め方」の本文も見る。
+  const intro = await getExamIntro("fukushi2");
+  const showUcanAd = canShowUcanAd({ content: intro?.html ?? "" });
 
   const fieldCounts = await Promise.all(
     fields.map(async (f) => {
@@ -105,20 +112,24 @@ export default async function Fukushi2Page() {
         </div>
       </section>
 
-      {/* 過去問が手に入らない試験 */}
+      {/* 公式テキストと当サイトの問題(2026-11-10 書き直し。以前の「2021年度からIBT・CBTに移行」
+          「試験問題は非公開・持ち帰り不可」「演習量が合否を分ける」は、公式の資料で確かめられなかった) */}
       <section className="mb-12">
-        <h2 className="text-base font-bold text-[color:var(--c-ink)] mb-4 font-serif">「過去問」が手に入らない試験です</h2>
+        <h2 className="text-base font-bold text-[color:var(--c-ink)] mb-4 font-serif">公式テキストと、当サイトの練習問題</h2>
         <div className="card p-5 text-sm text-[color:var(--c-text-sub)] leading-relaxed space-y-2">
-          <p>福祉住環境コーディネーター検定は2021年度からIBT・CBT方式（パソコン受験）に移行し、<span className="font-bold text-[color:var(--c-ink)]">試験問題は非公開・持ち帰り不可</span>になりました。市販の「過去問題集」で本試験の問題を確認することはできません。</p>
-          <p>だからこそ、出題範囲に沿ったオリジナル問題での演習量が合否を分けます。当サイトの問題はすべて解説付き・無料です。</p>
+          <p>2級の出題範囲は、3級の範囲と2級公式テキスト（改訂7版）の内容です。2・3級の試験は、IBT（自宅などのパソコンで受験）とCBT（テストセンターで受験）で行われます。</p>
+          <p>当サイトの練習問題は、公式テキストの範囲に沿って当サイトが作ったオリジナル問題で、本試験の問題ではありません。9分野すべて解説つき・無料で解けるので、テキストを読んだあとの確認や、演習を増やしたいときに使えます。</p>
         </div>
       </section>
+
+      {/* 勉強の進め方(src/content/exam-intros/fukushi2.md。2026-11-10 追加。分野へのリンクと概要の表だけだったトップに、範囲と分野の対応・勉強の順番を足す) */}
+      <ExamIntro exam="fukushi2" />
 
       {/* 試験概要 */}
       <section className="mb-12">
         <h2 className="text-base font-bold text-[color:var(--c-ink)] mb-4 font-serif">試験の概要</h2>
         <div className="card p-5 text-sm text-[color:var(--c-text-sub)] space-y-2">
-          <p><span className="font-bold text-[color:var(--c-ink)]">試験日</span>　年2シーズン（例年6〜7月、11〜12月の各期間中に受験）　<SiteLink href="/column/fukushi2-nittei/" className="underline hover:no-underline">詳しい日程・申込方法 →</SiteLink></p>
+          <p><span className="font-bold text-[color:var(--c-ink)]">試験日</span>　年2回（2026年度・2027年度とも、7月と11〜12月の試験期間中に希望の日時を選んで受験）　<SiteLink href="/column/fukushi2-nittei/" className="underline hover:no-underline">詳しい日程・申込方法 →</SiteLink></p>
           <p><span className="font-bold text-[color:var(--c-ink)]">試験方式</span>　IBT（自宅等のパソコンで受験）または CBT（各地テストセンターで受験）の多肢選択式・90分</p>
           <p><span className="font-bold text-[color:var(--c-ink)]">合格基準</span>　100点満点中70点以上</p>
           <p><span className="font-bold text-[color:var(--c-ink)]">受験資格</span>　制限なし（3級を飛ばしていきなり2級から受験できます）</p>
@@ -132,10 +143,10 @@ export default async function Fukushi2Page() {
           どちらも条件を満たさなければ何も出ない */}
       <ExamVoicesSection exam="fukushi2" />
 
-      <Fukushi2CourseAd
+      {showUcanAd && <Fukushi2CourseAd
         headline="広い出題範囲を体系的に押さえるなら"
-        body="福祉住環境コーディネーター2級は、医療・福祉・建築にまたがる幅広い知識が問われます。ユーキャンの通信講座は開講20年以上の定番講座で、公式テキストの改訂にも対応しています。独学に不安がある方は検討してみてください。"
-      />
+        body="福祉住環境コーディネーター2級は、医療・福祉・建築にまたがる幅広い知識が問われます。独学に不安がある方は、通信講座も選択肢になります。"
+      />}
 
       {/* 次に取る資格への導線。2026-09-09 追加。
           この資格は230問あるのに、解き終えた読者の行き先がサイト内に無かった。
@@ -151,7 +162,7 @@ export default async function Fukushi2Page() {
             <SiteLink href="/shakai/" className="underline hover:no-underline">
               社会福祉士（共通科目）
             </SiteLink>
-            の「社会保障」「障害者福祉」とそのまま重なります。相談援助の仕事に進むなら次の一歩になる国家資格です。
+            の「社会保障」「障害者福祉」と重なる論点があります。相談援助の仕事に進むなら次の一歩になる国家資格です。
           </p>
           <p>
             当サイトでは社会福祉士の共通科目12科目から200問を公開しています。共通科目は精神保健福祉士とも共通なので、どちらを目指す場合にも使えます。

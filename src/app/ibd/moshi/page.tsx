@@ -43,7 +43,7 @@ export default async function IbdMoshiPage() {
 
       <p className="text-sm text-[color:var(--c-text)] leading-relaxed mb-5 max-w-2xl">
         本試験と同じ<strong>87問・120分・4肢択一</strong>で受験できる無料の模擬試験です。本試験の13課題をまとめた<strong>8分野から10〜11問ずつ</strong>出題し、本試験の合格基準（80%）に合わせて<strong>87問中70問以上</strong>を合格の目安として判定します。
-        全員が同じ問題を同じ順序で解く固定問題なので、本番前の実力測定にそのまま使えます。
+        全員が同じ問題を同じ順序で解く固定問題なので、本番前の力試しに使えます。
       </p>
 
       <div className="card p-5 mb-6 text-sm text-[color:var(--c-text-sub)] space-y-2 max-w-2xl">

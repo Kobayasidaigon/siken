@@ -14,7 +14,7 @@ import OfficialSiteLink from "@/components/OfficialSiteLink";
 export const metadata: Metadata = pageMetadata({
   path: "/chizai2/",
   title: "知的財産管理技能検定2級 練習問題・過去問対策【全231問・無料】",
-  description: "知的財産管理技能検定2級のオリジナル練習問題231問を無料公開。3級の一歩先、実務レベルの事例判断まで問われる範囲を、根拠つきの詳細解説で演習できます。",
+  description: "知的財産管理技能検定2級のオリジナル練習問題231問を無料公開。戦略・管理から保護・活用・関係法規まで、3級より広い2級の試験範囲を、詳しい解説つきで演習できます。",
 });
 
 const fields = [
@@ -112,8 +112,8 @@ export default async function Chizai2Page() {
       <section className="mb-12">
         <h2 className="text-base font-bold text-[color:var(--c-ink)] mb-4 font-serif">3級との違い</h2>
         <div className="card p-5 text-sm text-[color:var(--c-text-sub)] leading-relaxed space-y-2">
-          <p>3級が知識の基礎を問うのに対し、<span className="font-bold text-[color:var(--c-ink)]">2級は事例（実技）を通じて、実務での判断力</span>まで問われます。合格基準も3級より高く設定されています。</p>
-          <p>いきなり2級から受けることもできますが、多くの方は3級で全体像をつかんでから2級に進みます。</p>
+          <p>2級は学科40問・実技40問（各60分）で、3級（各30問・45分）より問題数と時間が多く、<span className="font-bold text-[color:var(--c-ink)]">合格基準も満点の80%以上</span>と3級（70%以上）より高く設定されています。学科は4肢択一式（一部に3肢択一を含む）、実技は3級と同じく記述方式とマークシート方式の併用です。試験範囲には、3級の保護・活用・関係法規に加えて、戦略・管理（法務・リスクマネジメント）・調査なども入ります。</p>
+          <p>2級の受検資格は3級とは別に定められています。3級の合格（合格日が試験の年度・前年度・前々年度のもの）、知的財産に関する業務での2年以上の実務経験、大学または大学院で検定職種に関する科目を10単位以上修得（郵送申込のみ）、などのいずれかに当てはまる方が受けられます。</p>
         </div>
       </section>
 
@@ -121,11 +121,12 @@ export default async function Chizai2Page() {
       <section className="mb-12">
         <h2 className="text-base font-bold text-[color:var(--c-ink)] mb-4 font-serif">試験の概要</h2>
         <div className="card p-5 text-sm text-[color:var(--c-text-sub)] space-y-2">
-          <p><span className="font-bold text-[color:var(--c-ink)]">試験日</span>　年3回（3月・7月・11月）　3級と同日　<SiteLink href="/column/chizai2-nittei/" className="underline hover:no-underline">詳しい日程・受検資格 →</SiteLink></p>
-          <p><span className="font-bold text-[color:var(--c-ink)]">試験区分</span>　学科試験と実技試験（それぞれに合格すると2級技能士に認定）</p>
-          <p><span className="font-bold text-[color:var(--c-ink)]">受験資格</span>　3級技能検定の合格者、知的財産に関する業務に2年以上従事した方 など（＝誰でも受けられる3級と異なり、受験資格が必要）</p>
+          <p><span className="font-bold text-[color:var(--c-ink)]">試験日</span>　原則として年3回（3級と同じ試験日）　<SiteLink href="/column/chizai2-nittei/" className="underline hover:no-underline">詳しい日程・受検資格 →</SiteLink></p>
+          <p><span className="font-bold text-[color:var(--c-ink)]">試験区分</span>　学科試験と実技試験（両方に合格すると2級知的財産管理技能士）</p>
+          <p><span className="font-bold text-[color:var(--c-ink)]">受験資格</span>　3級技能検定の合格者（合格日の期限あり）、知的財産に関する業務について2年以上の実務経験がある方 など（3級にも受検資格がありますが、3級は実務経験が不要です）</p>
           <p><span className="font-bold text-[color:var(--c-ink)]">実施機関</span>　知的財産教育協会</p>
-          <p className="text-xs pt-1">受験料・出題数・合格基準などの最新の詳細は、必ず公式サイトでご確認ください。</p>
+          <p><span className="font-bold text-[color:var(--c-ink)]">受験料</span>　学科8,200円 + 実技8,200円（受検手数料は非課税）</p>
+          <p className="text-xs pt-1">受検資格の細かな条件や最新の詳細は、公式サイトの試験要綱で確かめてください。</p>
         </div>
         <OfficialSiteLink exam="chizai2" />
       </section>
@@ -136,7 +137,7 @@ export default async function Chizai2Page() {
 
       <Chizai2CourseAd
         headline="2級レンジの論点を体系的に押さえるなら"
-        body="知的財産管理技能検定2級は出題範囲が広く、実務寄りの応用まで問われます。資格スクールLEC東京リーガルマインドは2級の対策講座を提供しており、頻出論点を講義で体系的に押さえられます。"
+        body="知的財産管理技能検定2級は、学科・実技とも満点の80%以上が合格基準です。資格スクールLEC東京リーガルマインドは2級の対策講座を提供しており、講義で論点を体系的に押さえられます。"
       />
 
       {/* コラム */}

@@ -36,7 +36,7 @@ export default async function TouhanMoshiPage() {
       <div className="w-12 h-1 mb-5" style={{ background: "var(--c-accent)" }}></div>
 
       <p className="text-sm text-[color:var(--c-text)] leading-relaxed mb-5 max-w-2xl">
-        本試験と同じ<strong>120問（20・20・40・20・20問）・240分・5肢択一</strong>の無料模擬試験です。全員が同じ問題を同じ順序で解く固定問題なので、本番前の実力測定にそのまま使えます。
+        本試験と同じ<strong>120問（20・20・40・20・20問）・240分・5肢択一</strong>の無料模擬試験です。全員が同じ問題を同じ順序で解く固定問題なので、本番前の力試しに使えます。
       </p>
 
       {/* 試験仕様 */}

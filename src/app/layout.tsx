@@ -146,6 +146,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                   <li><SiteLink href="/bijihou/" className="text-[color:var(--c-text-sub)] hover:text-[color:var(--c-kashikin)] no-underline">ビジネス実務法務検定3級</SiteLink></li>
                   <li><SiteLink href="/bijihou2/" className="text-[color:var(--c-text-sub)] hover:text-[color:var(--c-kashikin)] no-underline">ビジネス実務法務検定2級</SiteLink></li>
                   <li><SiteLink href="/fukushi2/" className="text-[color:var(--c-text-sub)] hover:text-[color:var(--c-fukushi)] no-underline">福祉住環境コーディネーター2級</SiteLink></li>
+                  <li><SiteLink href="/fukushi3/" className="text-[color:var(--c-text-sub)] hover:text-[color:var(--c-fukushi)] no-underline">福祉住環境コーディネーター3級</SiteLink></li>
                   <li><SiteLink href="/bijimane/" className="text-[color:var(--c-text-sub)] hover:text-[color:var(--c-bijimane)] no-underline">ビジネスマネジャー検定</SiteLink></li>
                   <li><SiteLink href="/eco/" className="text-[color:var(--c-text-sub)] hover:text-[color:var(--c-eco)] no-underline">eco検定（環境社会検定試験）</SiteLink></li>
                 </ul>

@@ -38,6 +38,7 @@ export const OFFICIAL_SITES: Record<ExamSlug, OfficialSite> = {
   jitsumu: site("全日本情報学習振興協会「個人情報保護実務検定」", "https://www.joho-gakushu.or.jp/pipl/"),
   bijihou: site("東京商工会議所「ビジネス実務法務検定試験®」", "https://kentei.tokyo-cci.or.jp/houmu/"),
   fukushi2: site("東京商工会議所「福祉住環境コーディネーター検定試験®」", "https://kentei.tokyo-cci.or.jp/fukushi/"),
+  fukushi3: site("東京商工会議所「福祉住環境コーディネーター検定試験®」", "https://kentei.tokyo-cci.or.jp/fukushi/"),
   bijimane: site("東京商工会議所「ビジネスマネジャー検定試験®」", "https://kentei.tokyo-cci.or.jp/bijimane/"),
   eco: site("東京商工会議所「eco検定（環境社会検定試験）®」", "https://kentei.tokyo-cci.or.jp/eco/"),
   bijihou2: site("東京商工会議所「ビジネス実務法務検定試験®」", "https://kentei.tokyo-cci.or.jp/houmu/"),

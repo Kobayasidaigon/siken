@@ -32,10 +32,13 @@ const LIMITS = {
   ANSWER_POS_PCT: 45,
   // 設問文の重複件数の上限
   DUP_MAX: 0,
-  // 正解が最長の選択肢である割合の上限(%)。4択の理論値は25%。
-  // 2026-11-08 時点で37.3%。いきなり下げられないので、これ以上悪化させない歯止めとして置き、
-  // 問題を直すたびに下げていく(ラチェット)。
-  LONGEST_PCT: 37.5,
+  // 正解が「ただ1つの」最長の選択肢である割合の上限(%)。4択の理論値は25%前後。
+  // 同じ長さの肢が並ぶ場合(「a 正 b 誤 …」の組合せ問題など)は長さが手がかりにならないので数えない。
+  // 2026-11-11 に協会6資格を直して全体25.2%。悪化させない歯止めで、問題を直すたびに下げていく(ラチェット)。
+  LONGEST_PCT: 26,
+  // 資格ごとの上限(%)。1資格だけ偏っていても全体の割合には表れにくいので別に見る。
+  // 2026-11-11 時点の最大は bijihou の37.5%。
+  LONGEST_EXAM_PCT: 37.5,
 };
 
 function readMarkdownQuestions(root) {
@@ -92,10 +95,10 @@ for (const it of items) {
   const lens = ch.map((c) => String(c).length);
   const ex = (byExam[it.exam] ??= { n: 0, longest: 0 });
   ex.n++;
-  if (lens[a] === Math.max(...lens)) {
+  const gap = lens[a] - Math.max(...lens.filter((_, i) => i !== a));
+  if (gap > 0) {
     longest++;
     ex.longest++;
-    const gap = lens[a] - Math.max(...lens.filter((_, i) => i !== a));
     if (gap >= LIMITS.GAP_CHARS) overGap.push({ id: it.id, gap });
   }
   // 資格が違えば同じ設問文でも問題ない(同一利用者が両方を見ることはない)。
@@ -107,12 +110,13 @@ for (const it of items) {
 
 const n = items.length;
 const pct = (x) => Math.round((x / n) * 1000) / 10;
+const examRate = (v) => Math.round((v.longest / v.n) * 1000) / 10;
 const maxPos = Math.max(...pos);
 const maxPosPct = pct(maxPos);
 const gapPct = pct(overGap.length);
 
 console.log(`\n[問題監査] ${n}問`);
-console.log(`  最長肢=正解        : ${longest}問 (${pct(longest)}%)  ※4択の理論値25%`);
+console.log(`  最長肢=正解        : ${longest}問 (${pct(longest)}%)  [上限 ${LIMITS.LONGEST_PCT}%] ※4択の理論値25%前後、同じ長さの肢がある問題は数えない`);
 console.log(`  正解肢が${LIMITS.GAP_CHARS}字以上長い: ${overGap.length}問 (${gapPct}%)  [上限 ${LIMITS.GAP_RATIO_PCT}%]`);
 console.log(`  正解位置の最大偏り : ${maxPosPct}%  [上限 ${LIMITS.ANSWER_POS_PCT}%]`);
 console.log(`  設問文の重複(同資格内): ${dups.length}件  [上限 ${LIMITS.DUP_MAX}件]`);
@@ -120,7 +124,7 @@ if (shape) console.log(`  形式不正           : ${shape}件`);
 if (process.argv.includes("--by-exam")) {
   console.log("\n  資格別の 最長肢=正解 の割合(高い順):");
   Object.entries(byExam)
-    .map(([k, v]) => [k, v.n, Math.round((v.longest / v.n) * 1000) / 10])
+    .map(([k, v]) => [k, v.n, examRate(v)])
     .sort((a, b) => b[2] - a[2])
     .forEach(([k, n, r]) => console.log(`    ${String(k).padEnd(12)} ${String(r).padStart(5)}%  (${n}問)`));
 }
@@ -132,6 +136,10 @@ if (maxPosPct > LIMITS.ANSWER_POS_PCT)
   violations.push(`正解位置が${maxPosPct}%に偏っている — 上限${LIMITS.ANSWER_POS_PCT}%`);
 if (pct(longest) > LIMITS.LONGEST_PCT)
   violations.push(`正解=最長肢が${pct(longest)}% — 上限${LIMITS.LONGEST_PCT}%(長さで当たる問題を増やさないこと)`);
+for (const [k, v] of Object.entries(byExam)) {
+  if (v.n >= 50 && examRate(v) > LIMITS.LONGEST_EXAM_PCT)
+    violations.push(`${k} の正解=最長肢が${examRate(v)}% — 資格ごとの上限${LIMITS.LONGEST_EXAM_PCT}%`);
+}
 if (dups.length > LIMITS.DUP_MAX)
   violations.push(`設問文の重複が${dups.length}件 — 上限${LIMITS.DUP_MAX}件`);
 

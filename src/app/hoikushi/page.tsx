@@ -15,7 +15,7 @@ import OfficialSiteLink from "@/components/OfficialSiteLink";
 export const metadata: Metadata = pageMetadata({
   path: "/hoikushi/",
   title: "保育士試験（筆記）練習問題【全%N%問・無料】".replace("%N%", String(210)),
-  description: "保育士試験（筆記）のオリジナル練習問題%N%問を無料公開。保育原理・子ども家庭福祉・社会福祉・保育の心理学・教育原理・社会的養護・子どもの保健・子どもの食と栄養・保育実習理論の9科目を、根拠つきの解説で演習できます。".replace("%N%", String(210)),
+  description: "保育士試験（筆記）のオリジナル練習問題%N%問を無料公開。保育原理・子ども家庭福祉・社会福祉・保育の心理学・教育原理・社会的養護・子どもの保健・子どもの食と栄養・保育実習理論の9科目を、1問ずつの解説で演習できます。".replace("%N%", String(210)),
 });
 
 export default async function HoikushiPage() {

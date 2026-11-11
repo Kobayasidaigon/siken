@@ -15,7 +15,7 @@ import ExamIntro from "@/components/ExamIntro";
 export const metadata: Metadata = pageMetadata({
   path: "/eco/",
   title: "eco検定(環境社会検定試験) 練習問題・過去問対策【全236問・無料】",
-  description: "eco検定(環境社会検定試験)のオリジナル練習問題236問を無料公開。地球環境・気候変動・生物多様性・循環型社会・環境法を根拠つき解説で演習でき、分野別の練習からランダム出題のテスト、90分の模擬試験まで使えます。",
+  description: "eco検定(環境社会検定試験)のオリジナル練習問題236問を無料公開。地球環境・気候変動・生物多様性・循環型社会・環境法を1問ずつの解説で演習でき、分野別の練習からランダム出題のテスト、90分の模擬試験まで使えます。",
 });
 
 const fields = [

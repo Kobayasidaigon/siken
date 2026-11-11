@@ -15,7 +15,7 @@ import OfficialSiteLink from "@/components/OfficialSiteLink";
 export const metadata: Metadata = pageMetadata({
   path: "/touhan/",
   title: "登録販売者試験 練習問題【全%N%問・無料】".replace("%N%", String(240)),
-  description: "登録販売者試験のオリジナル練習問題%N%問を無料公開。第1章〜第5章の全分野を、手引き（令和8年4月改訂）に沿った根拠つきの解説で演習できます。本試験と同じ120問・240分の模擬試験つき。".replace("%N%", String(240)),
+  description: "登録販売者試験のオリジナル練習問題%N%問を無料公開。第1章〜第5章の全分野を、手引き（令和8年4月改訂）に沿った1問ずつの解説で演習できます。本試験と同じ120問・240分の模擬試験つき。".replace("%N%", String(240)),
 });
 
 export default async function TouhanPage() {

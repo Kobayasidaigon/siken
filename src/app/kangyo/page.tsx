@@ -14,7 +14,7 @@ import OfficialSiteLink from "@/components/OfficialSiteLink";
 export const metadata: Metadata = pageMetadata({
   path: "/kangyo/",
   title: "管理業務主任者 練習問題・過去問対策【全200問・無料】",
-  description: "管理業務主任者のオリジナル練習問題200問を無料公開。区分所有法(2026年4月施行の改正法対応)・標準管理規約・管理委託契約・管理組合の会計仕訳・建築設備まで10分野を根拠つき解説で演習できます。",
+  description: "管理業務主任者のオリジナル練習問題200問を無料公開。区分所有法(2026年4月施行の改正法対応)・標準管理規約・管理委託契約・管理組合の会計仕訳・建築設備まで10分野を1問ずつの解説で演習できます。",
 });
 
 const fields = [

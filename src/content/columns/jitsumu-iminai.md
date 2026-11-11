@@ -78,7 +78,7 @@ updatedAt: "2026-06-03"
 
 「個人情報保護実務検定は意味ない」という言葉は、その人がどの立場で話しているかで意味が変わります。コンプラ専門家から見れば物足りないが、人事・総務の現場担当者から見れば過不足ない設計です。
 
-学習を始めるなら、まず[合格率と難易度](/column/jitsumu-goukakuritsu/)、[勉強時間の目安](/column/jitsumu-benkyou-jikan/)、[勉強法](/column/jitsumu-benkyouhou/)で具体像を掴んでください。当サイトでは[実務検定の練習問題200問](/jitsumu/)を無料公開しており、[第1問](/jitsumu/q/jitsumu-001/)から条文付き解説で取り組めます。
+学習を始めるなら、まず[合格率と難易度](/column/jitsumu-goukakuritsu/)、[勉強時間の目安](/column/jitsumu-benkyou-jikan/)、[勉強法](/column/jitsumu-benkyouhou/)で具体像を掴んでください。当サイトでは[実務検定の練習問題](/jitsumu/)を解説つきで無料公開しており、[第1問](/jitsumu/q/jitsumu-001/)から取り組めます。
 
 実務検定は使う場面を選べば確実に役立つ資格です。「意味ない」という言葉を真に受ける前に、自分がこの検定で得たい結果を一度言語化してみてください。
 

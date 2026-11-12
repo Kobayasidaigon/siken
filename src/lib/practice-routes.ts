@@ -106,6 +106,7 @@ const HAS_MOSHI: ExamSlug[] = [
   "ibd",
   "dxo",
   "wlc",
+  "fukushi3",
 ];
 
 /**

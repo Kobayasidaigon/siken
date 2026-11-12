@@ -350,6 +350,7 @@ const staticPages = [
   { url: "/fukushi2/field/law/", priority: "0.8", freq: "monthly", lastmod: fukushi2Max },
   // 福祉住環境コーディネーター3級(2026-11-12 追加)。分野ページは要点の本文(src/content/field-guides/fukushi3/)が無いので noindex で、ここには載せない
   { url: "/fukushi3/", priority: "0.9", freq: "weekly", lastmod: fukushi3Max },
+  { url: "/fukushi3/moshi/", priority: "0.7", freq: "monthly", lastmod: fileDate(path.join(appDir, "fukushi3/moshi/page.tsx")) },
   { url: "/fukushi3/mock/", priority: "0.6", freq: "monthly", lastmod: fileDate(path.join(appDir, "fukushi3/mock/page.tsx")) },
   // ビジネスマネジャー検定
   { url: "/bijimane/", priority: "0.9", freq: "weekly", lastmod: bijimaneMax },

@@ -35,10 +35,8 @@ export default async function Fukushi3Page() {
   const fieldCounts = await Promise.all(
     FUKUSHI3_FIELDS.map(async (f) => (await getFukushi3QuestionsByField(f.name)).length)
   );
-  // 問題は分野ごとに順次公開する。0問のあいだは問題・腕試しテストへの導線を出さない(wlc と同じ形)。
+  // 問題が0問のあいだは、問題・模擬試験・腕試しテストへの導線を出さない(wlc のトップと同じ形)。
   const ready = allQuestions.length > 0;
-  // 腕試しテストは20問を出すので、20問そろってから案内する
-  const mockReady = allQuestions.length >= 20;
 
   return (
     <div className="theme-fukushi pb-16">
@@ -69,15 +67,20 @@ export default async function Fukushi3Page() {
               <SiteLink href={`/fukushi3/q/${allQuestions[0].slug}/`} className="btn-accent">
                 問題を解き始める →
               </SiteLink>
-              {mockReady ? (
-                <SiteLink
-                  href="/fukushi3/mock/"
-                  className="inline-flex items-center px-4 py-2 rounded-lg border text-sm font-medium no-underline transition-colors hover:bg-[color:var(--c-fukushi-soft)]"
-                  style={{ borderColor: "var(--c-fukushi)", color: "var(--c-fukushi-ink)" }}
-                >
-                  腕試しテスト（ランダム20問・採点）→
-                </SiteLink>
-              ) : null}
+              <SiteLink
+                href="/fukushi3/moshi/"
+                className="inline-flex items-center px-4 py-2 rounded-lg border text-sm font-medium no-underline transition-colors hover:bg-[color:var(--c-fukushi-soft)]"
+                style={{ borderColor: "var(--c-fukushi)", color: "var(--c-fukushi-ink)" }}
+              >
+                模擬試験を受ける（90分・70点合格判定）→
+              </SiteLink>
+              <SiteLink
+                href="/fukushi3/mock/"
+                className="inline-flex items-center px-4 py-2 rounded-lg border text-sm font-medium no-underline transition-colors hover:bg-[color:var(--c-fukushi-soft)]"
+                style={{ borderColor: "var(--c-fukushi)", color: "var(--c-fukushi-ink)" }}
+              >
+                腕試しテスト（ランダム20問・採点）→
+              </SiteLink>
             </>
           ) : (
             <SiteLink href="/column/fukushi2-nittei/" className="btn-accent">

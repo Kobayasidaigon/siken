@@ -2,7 +2,7 @@
 examType: "fukushi3"
 questionNumber: 31
 title: "【問31】福祉住環境コーディネーター3級 練習問題｜ADLとIADL"
-description: "福祉住環境コーディネーター3級試験対策。ADLとIADLに関するオリジナル練習問題と詳細解説（4肢択一・根拠つき）。"
+description: "福祉住環境コーディネーター3級試験対策。ADLとIADLに関するオリジナル練習問題と解説（4肢択一）。"
 field: "健康と障害のとらえ方"
 questionText: "日常生活動作（ADL）と手段的日常生活動作（IADL）に関する次の記述のうち、最も適切なものはどれか。"
 choices:

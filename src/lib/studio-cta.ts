@@ -201,6 +201,7 @@ const EXAM_FULL_NAMES: Record<ExamSlug, string> = {
   jitsumu: "個人情報保護実務検定",
   bijihou: "ビジネス実務法務検定",
   fukushi2: "福祉住環境コーディネーター2級",
+  fukushi3: "福祉住環境コーディネーター3級",
   bijimane: "ビジネスマネジャー検定",
   eco: "eco検定",
   bijihou2: "ビジネス実務法務検定2級",

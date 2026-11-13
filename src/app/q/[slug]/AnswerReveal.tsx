@@ -35,6 +35,8 @@ const RESULT_CTA_EXAMS: ExamSlug[] = [
   "kangyo",
   "itpass",
   "fukushi2",
+  // 2026-11-12 追加。fukushi3 は fukushi2 と同じユーキャンの講座(2・3級講座)への直リンク。
+  "fukushi3",
   // 2026-09-08 追加。isec は SMART合格講座(4B1TI0系)の無料登録を主導線にしている。
   "isec",
   // 2026-09-08 追加。kyoin はアガルート(4B3N6P系)の承認済み提携。

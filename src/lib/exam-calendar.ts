@@ -57,7 +57,7 @@ export interface CalendarExam {
 
 /**
  * 掲載する資格。並びは月別ページで同じ日に複数あるときの順になる。
- * 知財2級は3級と、ビジ法2級は3級と同じ日程リストを使う(exam-dates.ts の EXAMS_BY_SLUG と同じ)。
+ * 知財2級は3級と、ビジ法2級は3級と、福祉住環境3級は2級と同じ日程リストを使う(exam-dates.ts の EXAMS_BY_SLUG と同じ)。
  * exam-dates.ts に *_EXAMS を足したら、ここにも足すこと。足し忘れると generate-sitemap.js がエラーで止まる
  * (sitemap の月はファイル中の全日付から拾うため、ここに無い資格の月が sitemap にだけ載ってしまう)。
  * 日程が空の資格(会社法法務士など)は載せても何も出ない。
@@ -92,6 +92,7 @@ export const CALENDAR_EXAMS: CalendarExam[] = [
   { slug: "bijihou2", name: "ビジネス実務法務検定2級", topPath: "/bijihou2/", nitteiPath: "/column/bijihou-nittei/", period: true, exams: BIJIHOU_EXAMS },
   { slug: "bijimane", name: "ビジネスマネジャー検定", topPath: "/bijimane/", nitteiPath: "/column/bijimane-nittei/", period: true, exams: BIJIMANE_EXAMS },
   { slug: "fukushi2", name: "福祉住環境コーディネーター2級", topPath: "/fukushi2/", nitteiPath: "/column/fukushi2-nittei/", period: true, exams: FUKUSHI2_EXAMS },
+  { slug: "fukushi3", name: "福祉住環境コーディネーター3級", topPath: "/fukushi3/", nitteiPath: "/column/fukushi2-nittei/", period: true, exams: FUKUSHI2_EXAMS },
   { slug: "eco", name: "eco検定（環境社会検定試験）", topPath: "/eco/", nitteiPath: "/column/eco-nittei/", period: true, exams: ECO_EXAMS },
 ];
 

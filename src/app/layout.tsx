@@ -44,7 +44,7 @@ export const metadata: Metadata = {
   // 資格を増やしたらここの資格名と問題数も更新すること(自動集計はしていない)。
   // 正しい数は src/app/page.tsx の exams の件数と count の合計(src/content/<資格>/*.md の数と一致。貸金業務取扱主任者だけは
   // src/content/kashikin/ ではなく src/content/questions/ の504件)。2026-11-01時点=33資格6,632問
-  description: "シカクモンは資格試験のオリジナル練習問題を無料で提供するサイトです。貸金業務取扱主任者・賃貸不動産経営管理士・管理業務主任者・個人情報保護士・知的財産管理技能検定・ビジネス実務法務検定・ITパスポート・登録販売者・保育士・エックス線作業主任者など33資格、合計6,632問。全問に解説付き。",
+  description: "シカクモンは資格試験のオリジナル練習問題を無料で提供するサイトです。貸金業務取扱主任者・賃貸不動産経営管理士・管理業務主任者・個人情報保護士・知的財産管理技能検定・ビジネス実務法務検定・ITパスポート・登録販売者・保育士・エックス線作業主任者など34資格、合計6,749問。全問に解説付き。",
   icons: {
     icon: "/favicon.svg",
   },
@@ -146,6 +146,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                   <li><SiteLink href="/bijihou/" className="text-[color:var(--c-text-sub)] hover:text-[color:var(--c-kashikin)] no-underline">ビジネス実務法務検定3級</SiteLink></li>
                   <li><SiteLink href="/bijihou2/" className="text-[color:var(--c-text-sub)] hover:text-[color:var(--c-kashikin)] no-underline">ビジネス実務法務検定2級</SiteLink></li>
                   <li><SiteLink href="/fukushi2/" className="text-[color:var(--c-text-sub)] hover:text-[color:var(--c-fukushi)] no-underline">福祉住環境コーディネーター2級</SiteLink></li>
+                  <li><SiteLink href="/fukushi3/" className="text-[color:var(--c-text-sub)] hover:text-[color:var(--c-fukushi)] no-underline">福祉住環境コーディネーター3級</SiteLink></li>
                   <li><SiteLink href="/bijimane/" className="text-[color:var(--c-text-sub)] hover:text-[color:var(--c-bijimane)] no-underline">ビジネスマネジャー検定</SiteLink></li>
                   <li><SiteLink href="/eco/" className="text-[color:var(--c-text-sub)] hover:text-[color:var(--c-eco)] no-underline">eco検定（環境社会検定試験）</SiteLink></li>
                 </ul>

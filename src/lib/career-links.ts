@@ -111,6 +111,7 @@ export const EXAM_CAREER: Record<ExamSlug, CareerTrack> = {
   kangyo: "fudosan",
   shakai: "fukushi",
   fukushi2: "fukushi",
+  fukushi3: "fukushi",
   itpass: "it",
   isec: "it",
   isf: "it",

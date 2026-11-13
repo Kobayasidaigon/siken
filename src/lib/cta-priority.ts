@@ -62,6 +62,7 @@ export const EXAM_SCHEDULES: Record<ExamSlug, UpcomingExam[]> = {
   chizai: CHIZAI_EXAMS,
   chizai2: CHIZAI_EXAMS,
   fukushi2: FUKUSHI2_EXAMS,
+  fukushi3: FUKUSHI2_EXAMS,
   bijihou: BIJIHOU_EXAMS,
   bijimane: BIJIMANE_EXAMS,
   eco: ECO_EXAMS,

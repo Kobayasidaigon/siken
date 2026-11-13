@@ -41,6 +41,7 @@ export default function StudyClient({
     jitsumu: null,
     bijihou: null,
     fukushi2: null,
+    fukushi3: null,
     bijimane: null,
     eco: null,
     bijihou2: null,

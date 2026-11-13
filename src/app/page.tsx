@@ -33,11 +33,11 @@ import { SISTER_SITES, sisterSite } from "@/lib/sister-sites";
 import { getAllColumnSlugs, getLatestColumnDate } from "@/lib/columns";
 
 // description の資格数・問題数は、下の exams の件数と count の合計(自動集計はしていない)。
-// 資格や問題を増やしたら、ここと layout.tsx・about/page.tsx・public/llms.txt を一緒に直す。2026-11-01 時点=33資格6,632問
+// 資格や問題を増やしたら、ここと layout.tsx・about/page.tsx・public/llms.txt を一緒に直す。2026-11-13 時点=34資格6,749問
 // コラムを足したときは public/llms.txt の「コラム記事(…時点で165本)」の本数と日付も直す(src/content/columns/*.md の数。2026-10-31 時点=165本)
 export const metadata: Metadata = {
   title: { absolute: "シカクモン｜資格試験のオリジナル練習問題を無料で提供" },
-  description: "シカクモンは資格試験のオリジナル練習問題を無料で提供するサイトです。貸金業務取扱主任者・賃貸不動産経営管理士・管理業務主任者・個人情報保護士・知的財産管理技能検定・ビジネス実務法務検定・ITパスポート・登録販売者・保育士・エックス線作業主任者など33資格、合計6,632問。全問に解説付き。",
+  description: "シカクモンは資格試験のオリジナル練習問題を無料で提供するサイトです。貸金業務取扱主任者・賃貸不動産経営管理士・管理業務主任者・個人情報保護士・知的財産管理技能検定・ビジネス実務法務検定・ITパスポート・登録販売者・保育士・エックス線作業主任者など34資格、合計6,749問。全問に解説付き。",
   alternates: { canonical: "/" },
   // openGraphはトップレベルの浅いマージのため、部分指定するとlayout側の
   // siteName/locale/type/imagesが丸ごと消える(page-metadata.tsと同じ理由でフル指定)
@@ -47,7 +47,7 @@ export const metadata: Metadata = {
     siteName: "シカクモン",
     url: "/",
     title: "シカクモン｜資格試験のオリジナル練習問題を無料で提供",
-    description: "貸金業務取扱主任者・賃管士・管業・個人情報保護士・知財3級/2級・ビジ法3級/2級・ITパスポート・登録販売者・保育士・エックス線作業主任者など33資格、合計6,632問のオリジナル練習問題を無料公開。",
+    description: "貸金業務取扱主任者・賃管士・管業・個人情報保護士・知財3級/2級・ビジ法3級/2級・ITパスポート・登録販売者・保育士・エックス線作業主任者など34資格、合計6,749問のオリジナル練習問題を無料公開。",
     images: [{ url: "/og-default.png", width: 1200, height: 630, alt: "シカクモン - 資格試験の練習問題" }],
   },
 };
@@ -375,6 +375,16 @@ export default function Home() {
       softVar: "var(--c-fukushi-soft)",
     },
     {
+      name: "福祉住環境コーディネーター3級",
+      slug: "fukushi3",
+      count: 120,
+      fieldCount: 6,
+      desc: "高齢者や障害のある人が暮らしやすい住まいを考える検定の入門の級。少子高齢社会と介護保険、福祉用具、手すりや段差の整備、まちづくりまで、公式テキストの章に沿って問われます。",
+      date: nextExamDateLabel(FUKUSHI2_EXAMS, { period: true, fallback: "年2回（7月、11〜12月）" }),
+      themeVar: "var(--c-fukushi)",
+      softVar: "var(--c-fukushi-soft)",
+    },
+    {
       name: "ビジネスマネジャー検定",
       slug: "bijimane",
       count: 200,
@@ -483,7 +493,7 @@ export default function Home() {
       key: "tokyo-cci",
       title: "東京商工会議所の検定",
       lead: "同じ団体が実施する検定で、試験期間が共通のため併願する人が多い組み合わせです。",
-      slugs: ["bijihou", "bijihou2", "bijimane", "eco", "fukushi2"],
+      slugs: ["bijihou", "bijihou2", "bijimane", "eco", "fukushi2", "fukushi3"],
     },
     {
       key: "it",
@@ -501,7 +511,7 @@ export default function Home() {
       key: "fukushi",
       title: "福祉",
       lead: "住まいの視点から入る検定と、相談援助の国家資格。介護保険・障害者福祉・バリアフリーの論点が重なります。",
-      slugs: ["fukushi2", "shakai"],
+      slugs: ["fukushi3", "fukushi2", "shakai"],
     },
   ];
   const bySlug = Object.fromEntries(exams.map((e) => [e.slug, e]));

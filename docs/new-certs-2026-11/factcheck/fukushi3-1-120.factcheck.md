@@ -315,3 +315,11 @@
 - 判定: 一致
 - 出典: 静岡県（建築基準法の条文を掲載）https://www.pref.shizuoka.jp/kurashikankyo/kenchiku/taishinka/1044596/1002530/1047471/1016007.html …第53条「建築物の建築面積…の敷地面積に対する割合（建ぺい率）」、第52条「建築物の延べ面積の敷地面積に対する割合（容積率）」、数値は「当該地域に関する都市計画において定められたもの」
 - 補足: 解説の計算例（200㎡×50%＝100㎡）は正しい。
+
+## 2026-11-13 朝の追加（別セッション）
+
+- 問90 広島県 https://www.pref.hiroshima.lg.jp/soshiki/108/aged-point-2.html （「縦手すりは便器先端から200～300mm」）。3級テキストの値は未確認なので、解説から数値を消した。
+- 問92 広島県 https://www.pref.hiroshima.lg.jp/soshiki/108/aged-point-4.html （浴槽高さ400～450mm）。2級の問題にそろえて肢を400mm程度にした。
+- 問102 衆議院 https://www.shugiin.go.jp/internet/itdb_housei.nsf/html/houritsu/05119660630100.htm （住宅建設計画法 昭和41年法律第100号）。廃止の条文は未取得なので、解説から「廃止」を消した。
+- 問118 横浜市 https://vi.city.yokohama.lg.jp/kurashi/machizukuri-kankyo/toshiseibi/suishin/minnade/enact/agree/unei-tebiki.files/0625_20220720.pdf 、問119 大田区 https://www.city.ota.tokyo.jp/seikatsu/sumaimachinami/kenchiku/tatemono_tyuuikisei/kenpeiyoseki.html 。記述は合っていたが、3級の範囲か確かめられないので問117とともに削除した。
+

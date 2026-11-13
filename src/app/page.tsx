@@ -33,11 +33,11 @@ import { SISTER_SITES, sisterSite } from "@/lib/sister-sites";
 import { getAllColumnSlugs, getLatestColumnDate } from "@/lib/columns";
 
 // description の資格数・問題数は、下の exams の件数と count の合計(自動集計はしていない)。
-// 資格や問題を増やしたら、ここと layout.tsx・about/page.tsx・public/llms.txt を一緒に直す。2026-11-12 時点=34資格6,752問
+// 資格や問題を増やしたら、ここと layout.tsx・about/page.tsx・public/llms.txt を一緒に直す。2026-11-13 時点=34資格6,749問
 // コラムを足したときは public/llms.txt の「コラム記事(…時点で165本)」の本数と日付も直す(src/content/columns/*.md の数。2026-10-31 時点=165本)
 export const metadata: Metadata = {
   title: { absolute: "シカクモン｜資格試験のオリジナル練習問題を無料で提供" },
-  description: "シカクモンは資格試験のオリジナル練習問題を無料で提供するサイトです。貸金業務取扱主任者・賃貸不動産経営管理士・管理業務主任者・個人情報保護士・知的財産管理技能検定・ビジネス実務法務検定・ITパスポート・登録販売者・保育士・エックス線作業主任者など34資格、合計6,752問。全問に解説付き。",
+  description: "シカクモンは資格試験のオリジナル練習問題を無料で提供するサイトです。貸金業務取扱主任者・賃貸不動産経営管理士・管理業務主任者・個人情報保護士・知的財産管理技能検定・ビジネス実務法務検定・ITパスポート・登録販売者・保育士・エックス線作業主任者など34資格、合計6,749問。全問に解説付き。",
   alternates: { canonical: "/" },
   // openGraphはトップレベルの浅いマージのため、部分指定するとlayout側の
   // siteName/locale/type/imagesが丸ごと消える(page-metadata.tsと同じ理由でフル指定)
@@ -47,7 +47,7 @@ export const metadata: Metadata = {
     siteName: "シカクモン",
     url: "/",
     title: "シカクモン｜資格試験のオリジナル練習問題を無料で提供",
-    description: "貸金業務取扱主任者・賃管士・管業・個人情報保護士・知財3級/2級・ビジ法3級/2級・ITパスポート・登録販売者・保育士・エックス線作業主任者など34資格、合計6,752問のオリジナル練習問題を無料公開。",
+    description: "貸金業務取扱主任者・賃管士・管業・個人情報保護士・知財3級/2級・ビジ法3級/2級・ITパスポート・登録販売者・保育士・エックス線作業主任者など34資格、合計6,749問のオリジナル練習問題を無料公開。",
     images: [{ url: "/og-default.png", width: 1200, height: 630, alt: "シカクモン - 資格試験の練習問題" }],
   },
 };

@@ -47,6 +47,7 @@ export const EXAM_THEME: Record<ExamSlug, ExamTheme> = {
   chizai2: { accent: "var(--c-chizai)", soft: "var(--c-chizai-soft)", period: false },
   fukushi2: { accent: "var(--c-fukushi)", soft: "var(--c-fukushi-soft)", period: true },
   fukushi3: { accent: "var(--c-fukushi)", soft: "var(--c-fukushi-soft)", period: true },
+  mynumber2: { accent: "var(--c-pii)", soft: "var(--c-pii-soft)", period: false },
   // 教員採用試験は自治体ごとに日程が違うため period の概念が無い(日程データも持たない)
   kyoin: { accent: "var(--c-fukushi)", soft: "var(--c-fukushi-soft)", period: false },
   bijimane: { accent: "var(--c-bijimane)", soft: "var(--c-bijimane-soft)", period: true },

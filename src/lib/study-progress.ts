@@ -9,7 +9,7 @@
 
 const STORAGE_KEY = "shikakumon-study-v1";
 
-export type ExamSlug = "kashikin" | "pii" | "chizai" | "chizai2" | "mynumber" | "jitsumu" | "bijihou" | "fukushi2" | "bijimane" | "eco" | "bijihou2" | "itpass" | "chintai" | "kangyo" | "isec" | "kyoin" | "shakai" | "isf" | "dxp" | "had" | "ccm" | "xray" | "aia" | "dxa" | "gaia" | "hoikushi" | "touhan" | "ccc" | "llc" | "cac" | "ibd" | "dxo" | "wlc" | "fukushi3";
+export type ExamSlug = "kashikin" | "pii" | "chizai" | "chizai2" | "mynumber" | "jitsumu" | "bijihou" | "fukushi2" | "bijimane" | "eco" | "bijihou2" | "itpass" | "chintai" | "kangyo" | "isec" | "kyoin" | "shakai" | "isf" | "dxp" | "had" | "ccm" | "xray" | "aia" | "dxa" | "gaia" | "hoikushi" | "touhan" | "ccc" | "llc" | "cac" | "ibd" | "dxo" | "wlc" | "fukushi3" | "mynumber2" | "mynumber1";
 
 export const EXAM_LIST: { slug: ExamSlug; name: string; topPath: string; questionPathPrefix: string }[] = [
   { slug: "kashikin", name: "貸金業務取扱主任者", topPath: "/kashikin/", questionPathPrefix: "/q/" },
@@ -21,6 +21,8 @@ export const EXAM_LIST: { slug: ExamSlug; name: string; topPath: string; questio
   { slug: "bijihou", name: "ビジネス実務法務検定3級", topPath: "/bijihou/", questionPathPrefix: "/bijihou/q/" },
   { slug: "fukushi2", name: "福祉住環境コーディネーター2級", topPath: "/fukushi2/", questionPathPrefix: "/fukushi2/q/" },
   { slug: "fukushi3", name: "福祉住環境コーディネーター3級", topPath: "/fukushi3/", questionPathPrefix: "/fukushi3/q/" },
+  { slug: "mynumber2", name: "マイナンバー実務検定2級", topPath: "/mynumber2/", questionPathPrefix: "/mynumber2/q/" },
+  { slug: "mynumber1", name: "マイナンバー実務検定1級", topPath: "/mynumber1/", questionPathPrefix: "/mynumber1/q/" },
   { slug: "bijimane", name: "ビジネスマネジャー検定", topPath: "/bijimane/", questionPathPrefix: "/bijimane/q/" },
   { slug: "eco", name: "eco検定(環境社会検定試験)", topPath: "/eco/", questionPathPrefix: "/eco/q/" },
   { slug: "bijihou2", name: "ビジネス実務法務検定2級", topPath: "/bijihou2/", questionPathPrefix: "/bijihou2/q/" },
@@ -72,6 +74,8 @@ function defaultProgress(): AllProgress {
     bijihou: { bookmarks: [], wrong: [], correct: [], medals: {} },
     fukushi2: { bookmarks: [], wrong: [], correct: [], medals: {} },
     fukushi3: { bookmarks: [], wrong: [], correct: [], medals: {} },
+    mynumber2: { bookmarks: [], wrong: [], correct: [], medals: {} },
+    mynumber1: { bookmarks: [], wrong: [], correct: [], medals: {} },
     bijimane: { bookmarks: [], wrong: [], correct: [], medals: {} },
     eco: { bookmarks: [], wrong: [], correct: [], medals: {} },
     bijihou2: { bookmarks: [], wrong: [], correct: [], medals: {} },

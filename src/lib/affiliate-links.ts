@@ -115,6 +115,33 @@ export const EXAM_AFFILIATE: Record<ExamSlug, AffiliateTarget> = {
     applyLabel: "協会公式サイトで申し込む",
     applyPixel: SMART_APPLY_PIXEL,
   },
+  // マイナンバー実務検定2級。2026-11-14 追加。講座・申込先は3級と同じ(SMART合格講座のマイナンバー実務検定のページ、協会の試験ページ)。
+  //   a8mat も3級と同じ承認済みの提携(4B1TI0系)。course だけ "mynumber2" にして、2級のページからのクリックを分けて数える。
+  mynumber2: {
+    href: "https://px.a8.net/svt/ejp?a8mat=4B1TI0+9T22IA+4LOQ+BW8O2&a8ejpredirect=https%3A%2F%2Fwww.joho-gakushu.jp%2Fsmartinfo%2Fk_nns%2F",
+    label: "マイナンバー実務検定のSMART合格講座を見る",
+    course: "mynumber2",
+    freeHref:
+      "https://px.a8.net/svt/ejp?a8mat=4B1TI0+9T22IA+4LOQ+BW8O2&a8ejpredirect=https%3A%2F%2Fwww.joho-gakushu.jp%2Fsmart%2Fregistfree.php",
+    freeLabel: "無料登録してSMART講座を試し見る",
+    applyHref:
+      "https://px.a8.net/svt/ejp?a8mat=4B1TI0+9T22IA+4LOQ+BW8O2&a8ejpredirect=https%3A%2F%2Fwww.joho-gakushu.or.jp%2Fnns%2F",
+    applyLabel: "協会公式サイトで申し込む",
+    applyPixel: SMART_APPLY_PIXEL,
+  },  // マイナンバー実務検定1級。2026-11-14 追加。講座・申込先は3級と同じ(SMART合格講座のマイナンバー実務検定のページ、協会の試験ページ)。
+  //   a8mat も3級と同じ承認済みの提携(4B1TI0系)。course だけ "mynumber1" にして、1級のページからのクリックを分けて数える。
+  mynumber1: {
+    href: "https://px.a8.net/svt/ejp?a8mat=4B1TI0+9T22IA+4LOQ+BW8O2&a8ejpredirect=https%3A%2F%2Fwww.joho-gakushu.jp%2Fsmartinfo%2Fk_nns%2F",
+    label: "マイナンバー実務検定のSMART合格講座を見る",
+    course: "mynumber1",
+    freeHref:
+      "https://px.a8.net/svt/ejp?a8mat=4B1TI0+9T22IA+4LOQ+BW8O2&a8ejpredirect=https%3A%2F%2Fwww.joho-gakushu.jp%2Fsmart%2Fregistfree.php",
+    freeLabel: "無料登録してSMART講座を試し見る",
+    applyHref:
+      "https://px.a8.net/svt/ejp?a8mat=4B1TI0+9T22IA+4LOQ+BW8O2&a8ejpredirect=https%3A%2F%2Fwww.joho-gakushu.or.jp%2Fnns%2F",
+    applyLabel: "協会公式サイトで申し込む",
+    applyPixel: SMART_APPLY_PIXEL,
+  },
   jitsumu: {
     href: "https://px.a8.net/svt/ejp?a8mat=4B1TI0+9T22IA+4LOQ+BW8O2&a8ejpredirect=https%3A%2F%2Fwww.joho-gakushu.jp%2Fsmartinfo%2Fk_pipl%2F",
     label: "個人情報保護実務検定のSMART合格講座を見る",
@@ -540,6 +567,8 @@ export const RESULT_CTA_HEADLINE: Record<ExamSlug, string> = {
   bijihou: "間違えた論点を体系的に整理するなら",
   fukushi2: "間違えた論点を体系的に整理するなら",
   fukushi3: "間違えた論点を体系的に整理するなら",
+  mynumber2: "間違えた論点を体系的に整理するなら",
+  mynumber1: "間違えた論点を体系的に整理するなら",
   bijimane: "間違えた論点を体系的に整理するなら",
   eco: "間違えた論点を体系的に整理するなら",
   bijihou2: "間違えた論点を体系的に整理するなら",

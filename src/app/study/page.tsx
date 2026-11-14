@@ -33,6 +33,8 @@ import { getAllIbdQuestions } from "@/lib/ibd-questions";
 import { getAllDxoQuestions } from "@/lib/dxo-questions";
 import { getAllWlcQuestions } from "@/lib/wlc-questions";
 import { getAllFukushi3Questions } from "@/lib/fukushi3-questions";
+import { getAllMynumber2Questions } from "@/lib/mynumber2-questions";
+import { getAllMynumber1Questions } from "@/lib/mynumber1-questions";
 import { getAllAiaQuestions } from "@/lib/aia-questions";
 import { getAllXrayQuestions } from "@/lib/xray-questions";
 import type { ExamSlug } from "@/lib/study-progress";
@@ -54,7 +56,7 @@ function extractTopic(title: string): string {
 }
 
 export default async function StudyPage() {
-  const [kashikin, pii, chizai, chizai2, mynumber, jitsumu, bijihou, fukushi2, bijimane, eco, bijihou2, itpass, chintai, kangyo, isec, kyoin, shakai, isf, dxp, had, ccm, xray, aia, dxa, gaia, hoikushi, touhan, ccc, llc, cac, ibd, dxo, wlc, fukushi3] = await Promise.all([
+  const [kashikin, pii, chizai, chizai2, mynumber, jitsumu, bijihou, fukushi2, bijimane, eco, bijihou2, itpass, chintai, kangyo, isec, kyoin, shakai, isf, dxp, had, ccm, xray, aia, dxa, gaia, hoikushi, touhan, ccc, llc, cac, ibd, dxo, wlc, fukushi3, mynumber2, mynumber1] = await Promise.all([
     getAllQuestions(),
     getAllPiiQuestions(),
     getAllChizaiQuestions(),
@@ -89,6 +91,8 @@ export default async function StudyPage() {
     getAllDxoQuestions(),
     getAllWlcQuestions(),
     getAllFukushi3Questions(),
+    getAllMynumber2Questions(),
+    getAllMynumber1Questions(),
   ]);
 
   const buildMap = (questions: { slug: string; questionNumber: number; field: string; title: string }[]): Record<string, QuestionMeta> => {
@@ -138,6 +142,8 @@ export default async function StudyPage() {
     dxo: buildMap(dxo),
     wlc: buildMap(wlc),
     fukushi3: buildMap(fukushi3),
+    mynumber2: buildMap(mynumber2),
+    mynumber1: buildMap(mynumber1),
   };
 
   return <StudyClient questionMeta={questionMeta} />;

@@ -317,6 +317,7 @@ const staticPages = [
   // 個人情報保護実務検定3級
   { url: "/jitsumu/", priority: "0.9", freq: "weekly", lastmod: jitsumuMax },
   { url: "/jitsumu/moshi/", priority: "0.7", freq: "monthly", lastmod: fileDate(path.join(appDir, "jitsumu/moshi/page.tsx")) },
+  { url: "/jitsumu/moshi-1kyu/", priority: "0.7", freq: "monthly", lastmod: fileDate(path.join(appDir, "jitsumu/moshi-1kyu/page.tsx")) },
   { url: "/jitsumu/mock/", priority: "0.6", freq: "monthly", lastmod: fileDate(path.join(appDir, "jitsumu/mock/page.tsx")) },
   { url: "/jitsumu/moshi2/", priority: "0.6", freq: "monthly", lastmod: fileDate(path.join(appDir, "jitsumu/moshi2/page.tsx")) },
   { url: "/jitsumu/field/basic/", priority: "0.8", freq: "monthly", lastmod: jitsumuMax },

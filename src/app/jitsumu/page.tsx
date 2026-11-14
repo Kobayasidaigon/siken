@@ -54,6 +54,13 @@ export default async function JitsumuPage() {
           >
             模擬試験を受ける（2級形式80問・90分）→
           </SiteLink>
+          <SiteLink
+            href="/jitsumu/moshi-1kyu/"
+            className="inline-flex items-center px-4 py-2 rounded-lg border text-sm font-medium no-underline transition-colors hover:bg-[color:var(--c-pii-soft)]"
+            style={{ borderColor: "var(--c-pii)", color: "var(--c-pii-ink)" }}
+          >
+            1級形式の模擬試験（100問・120分）→
+          </SiteLink>
           <Moshi2TopLink certId="jitsumu" />
           <SiteLink
             href="/jitsumu/mock/"

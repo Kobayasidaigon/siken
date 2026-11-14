@@ -559,6 +559,7 @@ const staticPages = [
   { url: "/chintai/", priority: "0.9", freq: "weekly", lastmod: chintaiMax },
   { url: "/chintai/moshi/", priority: "0.7", freq: "monthly", lastmod: fileDate(path.join(appDir, "chintai/moshi/page.tsx")) },
   { url: "/chintai/mock/", priority: "0.6", freq: "monthly", lastmod: fileDate(path.join(appDir, "chintai/mock/page.tsx")) },
+  { url: "/chintai/tenshoku/", priority: "0.6", freq: "monthly", lastmod: fileDate(path.join(__dirname, "../src/data/tenshoku/chintai.json")) },
   { url: "/chintai/field/gyouhou/", priority: "0.8", freq: "monthly", lastmod: chintaiMax },
   { url: "/chintai/field/jutaku/", priority: "0.8", freq: "monthly", lastmod: chintaiMax },
   { url: "/chintai/field/sublease/", priority: "0.8", freq: "monthly", lastmod: chintaiMax },

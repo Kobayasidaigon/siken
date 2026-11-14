@@ -23,6 +23,7 @@ import { sendGAEvent } from "@next/third-parties/google";
 import AffiliateLink from "@/components/AffiliateLink";
 import FreeLeadCTA from "@/components/FreeLeadCTA";
 import CareerCTA from "@/components/CareerCTA";
+import { tenshokuPath } from "@/lib/tenshoku-paths";
 import { EXAM_AFFILIATE } from "@/lib/affiliate-links";
 import { decideCtaPriority } from "@/lib/cta-priority";
 import { studioMoshiHref } from "@/lib/studio-cta";
@@ -699,6 +700,14 @@ export default function MoshiExam({
           lead="本番でも合格したら"
           className="mb-6 px-1 text-xs text-[color:var(--c-text-sub)]"
         />
+      )}
+      {/* 比較ページがある資格だけ(2026-11-14 追加。lib/tenshoku-paths.ts)。CareerCTA と同じく合格圏のときだけ */}
+      {passed && tenshokuPath(exam) && (
+        <p className="-mt-4 mb-6 px-1 text-xs">
+          <SiteLink href={tenshokuPath(exam)!} className="text-blue-700 hover:underline">
+            資格を活かせる仕事と転職エージェントの比較を見る →
+          </SiteLink>
+        </p>
       )}
 
       {/* Studio 送客。弱点分野が出ていれば、その分野を引き継いで送る

@@ -22,7 +22,7 @@ import type { ExamSlug } from "./study-progress";
 
 export type CareerTrack = "kanri" | "fudosan" | "kinyu" | "fukushi" | "it" | "kyoin" | "general";
 
-interface CareerOffer {
+export interface CareerOffer {
   href: string;   // ASP 発行の計測付きリンク
   label: string;  // アンカーテキスト(サービス名を入れる。例「MS Agentで管理部門の求人を見る」)。
                   // 対象の条件(正社員経験など)はここに書く。1行表示(variant="line")でも必ず見えるため
@@ -37,6 +37,30 @@ interface CareerTrackInfo {
   offer?: CareerOffer;
 }
 
+/**
+ * 提携済みの転職サービスのリンク。キーは affiliate-program.ts の GA4 program 名と同じ。
+ * 2026-11-14: 資格別の転職エージェント比較ページ(lib/tenshoku.ts)からも同じリンクを引けるように、
+ * track の中から外に出した(リンクの中身は変えていない)。
+ */
+export const CAREER_OFFERS = {
+  // A8 2026-10-17 承認(株式会社ヘイフィールド)。「No.1」等の表現は使わない。年齢等の成果条件は書かない
+  takkenjob: {
+    href: "https://px.a8.net/svt/ejp?a8mat=4BEIPB+CONHRM+4I3U+BWVTE",
+    label: "宅建Jobエージェントで不動産業界の求人を見る（正社員での転職を考えている方向け）",
+    pixel: "https://www19.a8.net/0.gif?a8mat=4BEIPB+CONHRM+4I3U+BWVTE",
+    note: "宅建Jobエージェントは不動産業界専門の転職エージェントです。宅建や賃貸管理の資格を活かせる求人を担当者に相談でき、業界未経験からの転職にも対応しています。登録は無料です。",
+  },
+  // A8 2026-10-19 承認(株式会社ワンキャリア)。正社員での勤務経験がない人の登録は否認されるので label に条件を書く
+  onecareer: {
+    href: "https://px.a8.net/svt/ejp?a8mat=4BEIPB+D5X2B6+5O7E+BX3J6",
+    label: "ワンキャリア転職で求人と企業のクチコミを見る（正社員経験のある方向け）",
+    pixel: "https://www16.a8.net/0.gif?a8mat=4BEIPB+D5X2B6+5O7E+BX3J6",
+    note: "ワンキャリア転職は、企業ごとの年収やクチコミ、選考対策の情報を見ながら転職活動を進められるサービスです。会員登録は無料です。",
+  },
+} satisfies Record<string, CareerOffer>;
+
+export type CareerOfferId = keyof typeof CAREER_OFFERS;
+
 const CAREER_TRACKS: Record<CareerTrack, CareerTrackInfo> = {
   kanri: {
     name: "管理部門(総務・人事・法務・コンプライアンス・知財)",
@@ -47,13 +71,7 @@ const CAREER_TRACKS: Record<CareerTrack, CareerTrackInfo> = {
     name: "不動産(賃貸管理・マンション管理)",
     headline: "不動産管理の仕事で資格を活かすなら",
     body: "管理会社には事務所ごとに業務管理者・管理業務主任者を置く義務があり、資格を持つ人の求人が出ています。不動産業界に特化した転職サービスなら、資格が応募条件や手当になる求人を探せます。",
-    // A8 2026-10-17 承認(株式会社ヘイフィールド)。「No.1」等の表現は使わない。年齢等の成果条件は書かない
-    offer: {
-      href: "https://px.a8.net/svt/ejp?a8mat=4BEIPB+CONHRM+4I3U+BWVTE",
-      label: "宅建Jobエージェントで不動産業界の求人を見る（正社員での転職を考えている方向け）",
-      pixel: "https://www19.a8.net/0.gif?a8mat=4BEIPB+CONHRM+4I3U+BWVTE",
-      note: "宅建Jobエージェントは不動産業界専門の転職エージェントです。宅建や賃貸管理の資格を活かせる求人を担当者に相談でき、業界未経験からの転職にも対応しています。登録は無料です。",
-    },
+    offer: CAREER_OFFERS.takkenjob,
   },
   kinyu: {
     name: "金融(消費者金融・クレジット・信販)",
@@ -80,13 +98,7 @@ const CAREER_TRACKS: Record<CareerTrack, CareerTrackInfo> = {
     headline: "資格を次の仕事につなげるなら",
     // 担当者が付くエージェント型とは限らない(ワンキャリア転職は情報を見ながら自分で進める型)ので、相談を前提にしない
     body: "資格は、取ったあとにどう使うかで価値が変わります。転職サービスに登録すると、資格を評価する求人を探したり、今の経験と組み合わせた仕事の選び方を考えたりできます。",
-    // A8 2026-10-19 承認(株式会社ワンキャリア)。正社員での勤務経験がない人の登録は否認されるので label に条件を書く
-    offer: {
-      href: "https://px.a8.net/svt/ejp?a8mat=4BEIPB+D5X2B6+5O7E+BX3J6",
-      label: "ワンキャリア転職で求人と企業のクチコミを見る（正社員経験のある方向け）",
-      pixel: "https://www16.a8.net/0.gif?a8mat=4BEIPB+D5X2B6+5O7E+BX3J6",
-      note: "ワンキャリア転職は、企業ごとの年収やクチコミ、選考対策の情報を見ながら転職活動を進められるサービスです。会員登録は無料です。",
-    },
+    offer: CAREER_OFFERS.onecareer,
   },
 };
 

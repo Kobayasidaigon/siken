@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { sendGAEvent } from "@next/third-parties/google";
 import { EXAM_LIST, type ExamSlug } from "@/lib/study-progress";
 import CareerCTA from "@/components/CareerCTA";
+import { tenshokuPath } from "@/lib/tenshoku-paths";
 
 /**
  * 合格報告の投稿フォーム。2026-09-05 追加。
@@ -98,6 +99,14 @@ export default function PassReportForm() {
             lead="合格おめでとうございます。資格を仕事に活かすなら"
             className="mt-4 pt-4 border-t border-[color:var(--c-border)] text-xs text-[color:var(--c-text-sub)]"
           />
+        )}
+        {/* 比較ページがある資格だけ(2026-11-14 追加。lib/tenshoku-paths.ts)。CareerCTA と同じく「合格」の報告のときだけ */}
+        {sent?.result === "pass" && tenshokuPath(sent.exam) && (
+          <p className="mt-2 text-xs">
+            <SiteLink href={tenshokuPath(sent.exam)!} className="text-blue-700 hover:underline">
+              資格を活かせる仕事と転職エージェントの比較を見る →
+            </SiteLink>
+          </p>
         )}
       </div>
     );

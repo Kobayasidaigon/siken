@@ -1,5 +1,17 @@
 # 変更履歴
 
+## 2026-11-14 賃貸不動産経営管理士の転職エージェント比較ページを足す
+
+`/chintai/tenshoku/` に「賃貸不動産経営管理士を活かせる仕事と転職エージェント比較」を足した。資格別の比較ページの型の1本め。
+
+- 依頼は宅建だったが、シカクモンには宅建の問題集・模試が無いので、宅建Jobエージェントを出している不動産の資格のうち賃管士に置いた（ユーザーが選択）。
+- 中身は `src/data/tenshoku/chintai.json` だけから作る（`lib/tenshoku.ts` → `components/TenshokuPage.tsx`）。資格を足すときは JSON と3行の `page.tsx` を作り、`lib/tenshoku-paths.ts` と `lib/tenshoku.ts` に1行ずつ足す。
+- エージェントのリンクは `career-links.ts` に `CAREER_OFFERS` として外に出し（リンクの中身は変えていない）、JSON の `offerId` で引く。A8 で提携していない案件はリンクが無いので表示されない。今は宅建Jobエージェントの1本だけ。
+- 比較表の印は「公式サイトに記載あり=○」「確認できない=—」の2つだけ。説明は宅建Jobエージェントの公式サイト（2026-11-14 確認）に書いてある範囲（不動産業界特化・取扱い地域は国内全域・希望職種・派遣やパートも扱う・資格なし未経験も登録可・利用無料・書類と面接の支援）にした。公式サイトの「トップランナー」や求人数（ページ内で表記が2通り）は使っていない。
+- 冒頭の業務管理者の説明は国土交通省「賃貸住宅管理業登録制度のポイント」で確認し、出典を載せた。
+- クリックは既存の `AffiliateLink`（affiliate_click・cta_impression）。course は `career-chintai`、placement は `tenshoku_table_career`（表）と `tenshoku_card_career`（紹介カード）。
+- 導線: `/chintai/` の「合格したあとに」欄、模試の結果面（合格圏のとき、CareerCTA の下）、合格報告の送信後（「合格」のとき、CareerCTA の下）。模試と合格報告は比較ページがある資格だけに出る。
+- sitemap に `/chintai/tenshoku/` を足した。Search Console の登録は `docs/cowork-gsc-tenshoku.md` を Cowork で実行する。
 ## 2026-11-14 実務検定のコラムの合格率を外す、マイナンバーの新しい問題を解き直す
 
 - 個人情報保護実務検定の合格率は、協会の試験ページ・出題項目のページ・案内パンフレットで確かめられなかった。出典の無い合格率（60〜70%・35〜50%、2級51.6%・1級35.3%）を、jitsumu-toha・jitsumu-iminai・jitsumu-benkyou-jikan から外した。jitsumu-goukakuritsu は題名と本文が合格率の数字を前提にしていたので、「合格率は公表されていない」ことと、公式の試験形式・出題範囲から言える難易度の違いに書き直した（出典の欄つき）。

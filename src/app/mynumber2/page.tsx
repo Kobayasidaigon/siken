@@ -195,7 +195,11 @@ export default async function Mynumber2Page() {
             <SiteLink href="/mynumber/" className="underline hover:no-underline">
               マイナンバー実務検定3級の練習問題
             </SiteLink>
-            もあわせて使えます。1級（80問）は、2級の範囲に行政機関等編と金融業務のガイドラインが加わります。
+            もあわせて使えます。1級（80問）は、2級の範囲に行政機関等編と金融業務のガイドラインが加わります。1級だけの範囲は
+            <SiteLink href="/mynumber1/" className="underline hover:no-underline">
+              マイナンバー実務検定1級の練習問題
+            </SiteLink>
+            で演習できます。
           </p>
         </div>
       </section>

@@ -39,6 +39,7 @@ const RESULT_CTA_EXAMS: ExamSlug[] = [
   "fukushi3",
   // 2026-11-14 追加。mynumber2 は3級と同じ SMART合格講座(4B1TI0系)の承認済み提携。
   "mynumber2",
+  "mynumber1",
   // 2026-09-08 追加。isec は SMART合格講座(4B1TI0系)の無料登録を主導線にしている。
   "isec",
   // 2026-09-08 追加。kyoin はアガルート(4B3N6P系)の承認済み提携。

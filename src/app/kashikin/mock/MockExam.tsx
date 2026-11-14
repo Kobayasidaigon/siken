@@ -27,6 +27,8 @@ export interface MockQuestion {
   choices: string[];
   correctAnswer: number; // 1始まり
   field: string;
+  path?: string; // 問題ページのパス。ほかの級の問題を混ぜるとき(マイナンバー1級)に使う。未指定は questionPathPrefix + slug
+  progressExam?: ExamSlug; // 学習履歴に残す資格。未指定は exam
 }
 
 interface Props {
@@ -122,7 +124,7 @@ export default function MockExam({
     // 採点後の正誤を学習履歴に反映（/study に弱点・正解が積み上がる）
     pool.forEach((q, i) => {
       const sel = answers[i];
-      if (sel != null) recordResult(exam, q.slug, sel === q.correctAnswer);
+      if (sel != null) recordResult(q.progressExam ?? exam, q.slug, sel === q.correctAnswer);
     });
     const correct = pool.filter((q, i) => answers[i] === q.correctAnswer).length;
     track("mock_complete", {
@@ -385,7 +387,7 @@ export default function MockExam({
               answers[i] !== q.correctAnswer ? (
                 <a
                   key={q.slug}
-                  href={`${questionPathPrefix}${q.slug}/`}
+                  href={q.path ?? `${questionPathPrefix}${q.slug}/`}
                   className="block py-2 text-sm text-[color:var(--c-text)] no-underline hover:text-[color:var(--c-accent)] border-b border-[color:var(--c-border)] last:border-b-0"
                 >
                   <span className="text-xs text-[color:var(--c-text-sub)] mr-2">{q.field}</span>

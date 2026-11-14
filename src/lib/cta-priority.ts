@@ -65,6 +65,7 @@ export const EXAM_SCHEDULES: Record<ExamSlug, UpcomingExam[]> = {
   fukushi3: FUKUSHI2_EXAMS,
   // 2級は3級と同じ日に実施(1〜3級同日)
   mynumber2: MYNUMBER_EXAMS,
+  mynumber1: MYNUMBER_EXAMS,
   bijihou: BIJIHOU_EXAMS,
   bijimane: BIJIMANE_EXAMS,
   eco: ECO_EXAMS,

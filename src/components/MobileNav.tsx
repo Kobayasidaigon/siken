@@ -36,6 +36,7 @@ const SHORT_NAME: Record<ExamSlug, string> = {
   fukushi2: "福祉住環境",
   fukushi3: "福祉住環境3級",
   mynumber2: "マイナ2級",
+  mynumber1: "マイナ1級",
   bijimane: "ビジマネ",
   eco: "eco検定",
   itpass: "ITパス",

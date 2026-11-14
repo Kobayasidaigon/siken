@@ -93,6 +93,7 @@ export const CALENDAR_EXAMS: CalendarExam[] = [
   { slug: "bijimane", name: "ビジネスマネジャー検定", topPath: "/bijimane/", nitteiPath: "/column/bijimane-nittei/", period: true, exams: BIJIMANE_EXAMS },
   { slug: "fukushi2", name: "福祉住環境コーディネーター2級", topPath: "/fukushi2/", nitteiPath: "/column/fukushi2-nittei/", period: true, exams: FUKUSHI2_EXAMS },
   { slug: "mynumber2", name: "マイナンバー実務検定2級", topPath: "/mynumber2/", nitteiPath: "/column/mynumber-nittei/", exams: MYNUMBER_EXAMS },
+  { slug: "mynumber1", name: "マイナンバー実務検定1級", topPath: "/mynumber1/", nitteiPath: "/column/mynumber-nittei/", exams: MYNUMBER_EXAMS },
   { slug: "fukushi3", name: "福祉住環境コーディネーター3級", topPath: "/fukushi3/", nitteiPath: "/column/fukushi2-nittei/", period: true, exams: FUKUSHI2_EXAMS },
   { slug: "eco", name: "eco検定（環境社会検定試験）", topPath: "/eco/", nitteiPath: "/column/eco-nittei/", period: true, exams: ECO_EXAMS },
 ];

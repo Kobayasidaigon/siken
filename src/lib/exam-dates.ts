@@ -314,6 +314,7 @@ export const EXAMS_BY_SLUG: Readonly<Record<string, UpcomingExam[]>> = {
   fukushi3: FUKUSHI2_EXAMS,
   // 1〜3級は同じ日に実施(協会ページ 2026-11-14 確認)
   mynumber2: MYNUMBER_EXAMS,
+  mynumber1: MYNUMBER_EXAMS,
   bijihou: BIJIHOU_EXAMS,
   bijimane: BIJIMANE_EXAMS,
   eco: ECO_EXAMS,

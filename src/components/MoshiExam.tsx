@@ -43,6 +43,8 @@ export interface MoshiQuestion {
   correctAnswer: number; // 1始まり
   points?: number;  // 問別配点(東商IBT型の○×1点/択一2〜3点など)。未指定は pointsPerQuestion
   noLink?: boolean; // 模試専用問題(○×等)は個別問題ページが無いためリンクを出さない
+  path?: string; // 問題ページのパス。ほかの級の問題を混ぜる模試(マイナンバー1級)で使う。未指定は questionPathPrefix + slug
+  progressExam?: ExamSlug; // 学習履歴に残す資格。未指定は exam
   field: string;
   explanationHtml?: string;
 }
@@ -229,7 +231,7 @@ export default function MoshiExam({
       questions.forEach((q, i) => {
         const sel = answers[i];
         // 模試専用問題(noLink)は問題ページが無いため学習履歴には積まない
-        if (sel != null && !q.noLink) recordResult(exam, q.slug, sel === q.correctAnswer);
+        if (sel != null && !q.noLink) recordResult(q.progressExam ?? exam, q.slug, sel === q.correctAnswer);
       });
       const score = questions.reduce(
         (s, q, i) => s + (answers[i] === q.correctAnswer ? 1 : 0),
@@ -756,7 +758,7 @@ export default function MoshiExam({
                       <div className="prose max-w-none" dangerouslySetInnerHTML={{ __html: q.explanationHtml }} />
                       {!q.noLink && (
                         <a
-                          href={`${questionPathPrefix}${q.slug}/`}
+                          href={q.path ?? `${questionPathPrefix}${q.slug}/`}
                           className="inline-block mt-2 text-xs text-[color:var(--c-text-sub)] underline hover:no-underline"
                         >
                           この問題のページで復習する →
@@ -765,7 +767,7 @@ export default function MoshiExam({
                     </>
                   ) : !q.noLink ? (
                     <a
-                      href={`${questionPathPrefix}${q.slug}/`}
+                      href={q.path ?? `${questionPathPrefix}${q.slug}/`}
                       className="inline-block text-xs text-blue-700 underline hover:no-underline"
                     >
                       詳しい解説を読む(問題ページへ)→

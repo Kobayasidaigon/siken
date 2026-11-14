@@ -38,7 +38,7 @@ export default async function JitsumuMoshiPage() {
       <p className="text-sm text-[color:var(--c-text)] leading-relaxed mb-5 max-w-2xl">
         2級の本試験と同じ<strong>80問・90分・4肢択一・合格基準70%</strong>で受験できる無料の模擬試験です。
         全員が同じ問題を同じ順序で解く固定問題なので、本番前の力試しに使えます。
-        出題内容は2級・1級の両方に通じる論点で構成しているため、1級対策の腕試しにも使えます（1級は100問・120分）。
+        1級（100問・120分）の形式で解きたい方は、情報システムセキュリティを加えた<SiteLink href="/jitsumu/moshi-1kyu/" className="underline hover:no-underline">1級形式の模擬試験</SiteLink>をどうぞ。
       </p>
 
       {/* 試験仕様 */}
@@ -64,7 +64,7 @@ export default async function JitsumuMoshiPage() {
 
       <p className="text-xs text-[color:var(--c-text-sub)] mt-8 max-w-2xl leading-relaxed">
         ※本模試は当サイトで作成したオリジナル問題で構成しており、実際の過去問題の転載ではありません。
-        本試験(2級)は課題Ⅰ60問:課題Ⅱ20問の配分で、70%以上の得点で合格です(課題ごとの基準はありません。配点は非公表のため本模試は均等配点・総合70%で判定)。
+        本試験(2級)は80問で、70%以上の得点で合格です(協会のページでは課題ごとの問題数と配点は公表されていないため、本模試は均等配点・総合70%で判定)。
         また、問題の難易度により正答率70%未満でも合格となる場合があると公式に案内されています。
         合否判定はあくまで学習の目安です。1問ずつじっくり学びたい方は
         <SiteLink href="/jitsumu/" className="underline hover:no-underline">練習問題200問</SiteLink>へ。

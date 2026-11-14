@@ -103,6 +103,12 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://shikakumon.com/jitsumu/moshi-1kyu/</loc>
+    <lastmod>2026-11-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://shikakumon.com/jitsumu/moshi2/</loc>
     <lastmod>2026-11-08</lastmod>
     <changefreq>monthly</changefreq>

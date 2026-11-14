@@ -78,6 +78,7 @@ const ibdDir = path.join(__dirname, "../src/content/ibd");
 const dxoDir = path.join(__dirname, "../src/content/dxo");
 const wlcDir = path.join(__dirname, "../src/content/wlc");
 const fukushi3Dir = path.join(__dirname, "../src/content/fukushi3");
+const mynumber2Dir = path.join(__dirname, "../src/content/mynumber2");
 const columnsDir = path.join(__dirname, "../src/content/columns");
 const appDir = path.join(__dirname, "../src/app");
 const outputPath = path.join(__dirname, "../public/sitemap.xml");
@@ -153,6 +154,7 @@ const ibd = collect(ibdDir);
 const dxo = collect(dxoDir);
 const wlc = collect(wlcDir);
 const fukushi3 = collect(fukushi3Dir);
+const mynumber2 = collect(mynumber2Dir);
 const columns = collect(columnsDir);
 
 const todayFallback = toDate(Date.now());
@@ -190,8 +192,9 @@ const ibdMax = maxDate(ibd, todayFallback);
 const dxoMax = maxDate(dxo, todayFallback);
 const wlcMax = maxDate(wlc, todayFallback);
 const fukushi3Max = maxDate(fukushi3, todayFallback);
+const mynumber2Max = maxDate(mynumber2, todayFallback);
 const columnsMax = maxDate(columns, todayFallback);
-const siteMax = [kashikinMax, piiMax, chizaiMax, chizai2Max, mynumberMax, jitsumuMax, bijihouMax, fukushi2Max, bijimaneMax, ecoMax, bijihou2Max, itpassMax, chintaiMax, kangyoMax, isecMax, kyoinMax, shakaiMax, isfMax, dxpMax, hadMax, ccmMax, touhanMax, hoikushiMax, gaiaMax, dxaMax, aiaMax, xrayMax, cccMax, llcMax, cacMax, ibdMax, dxoMax, wlcMax, fukushi3Max, columnsMax].sort().at(-1);
+const siteMax = [kashikinMax, piiMax, chizaiMax, chizai2Max, mynumberMax, jitsumuMax, bijihouMax, fukushi2Max, bijimaneMax, ecoMax, bijihou2Max, itpassMax, chintaiMax, kangyoMax, isecMax, kyoinMax, shakaiMax, isfMax, dxpMax, hadMax, ccmMax, touhanMax, hoikushiMax, gaiaMax, dxaMax, aiaMax, xrayMax, cccMax, llcMax, cacMax, ibdMax, dxoMax, wlcMax, fukushi3Max, mynumber2Max, columnsMax].sort().at(-1);
 
 // 試験カレンダーの月。exam-dates.ts の date / applyStart / applyEnd に出てくる年月を拾う。
 // TS を読み込めないので文字列から拾う(exam-calendar.ts の calendarMonths() と同じ集合になる)。
@@ -352,6 +355,10 @@ const staticPages = [
   { url: "/fukushi3/", priority: "0.9", freq: "weekly", lastmod: fukushi3Max },
   { url: "/fukushi3/moshi/", priority: "0.7", freq: "monthly", lastmod: fileDate(path.join(appDir, "fukushi3/moshi/page.tsx")) },
   { url: "/fukushi3/mock/", priority: "0.6", freq: "monthly", lastmod: fileDate(path.join(appDir, "fukushi3/mock/page.tsx")) },
+  // マイナンバー実務検定2級(2026-11-14 追加)。分野ページは要点の本文が無いので noindex で、ここには載せない
+  { url: "/mynumber2/", priority: "0.9", freq: "weekly", lastmod: mynumber2Max },
+  { url: "/mynumber2/moshi/", priority: "0.7", freq: "monthly", lastmod: fileDate(path.join(appDir, "mynumber2/moshi/page.tsx")) },
+  { url: "/mynumber2/mock/", priority: "0.6", freq: "monthly", lastmod: fileDate(path.join(appDir, "mynumber2/mock/page.tsx")) },
   // ビジネスマネジャー検定
   { url: "/bijimane/", priority: "0.9", freq: "weekly", lastmod: bijimaneMax },
   { url: "/bijimane/moshi/", priority: "0.7", freq: "monthly", lastmod: fileDate(path.join(appDir, "bijimane/moshi/page.tsx")) },
@@ -593,6 +600,7 @@ const contentPages = [
   { entries: bijihou, prefix: "/bijihou/q/" },
   { entries: fukushi2, prefix: "/fukushi2/q/" },
   { entries: fukushi3, prefix: "/fukushi3/q/" },
+  { entries: mynumber2, prefix: "/mynumber2/q/" },
   { entries: bijimane, prefix: "/bijimane/q/" },
   { entries: eco, prefix: "/eco/q/" },
   { entries: bijihou2, prefix: "/bijihou2/q/" },

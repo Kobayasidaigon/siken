@@ -75,18 +75,18 @@ test("一覧・入口のページはソースで noindex を指定している",
     const mock = path.join("src/app", dir, "mock/page.tsx");
     if (fs.existsSync(mock)) files.push(mock);
   }
-  assert.equal(files.filter((f) => f.endsWith("mock/page.tsx")).length, 34, "腕試しテストのページは34資格ぶん");
+  assert.equal(files.filter((f) => f.endsWith("mock/page.tsx")).length, 35, "腕試しテストのページは35資格ぶん");
   const missing = files.filter((f) => !/noindex:\s*true/.test(read(f)));
   assert.deepEqual(missing, []);
 });
 
-test("分野ページは、要点の本文が無いあいだ noindex(34資格すべて)", () => {
+test("分野ページは、要点の本文が無いあいだ noindex(35資格すべて)", () => {
   const templates = [["kashikin", "src/app/field/[slug]/page.tsx"]];
   for (const dir of fs.readdirSync("src/app")) {
     const t = path.join("src/app", dir, "field/[slug]/page.tsx");
     if (fs.existsSync(t)) templates.push([dir, t]);
   }
-  assert.equal(templates.length, 34);
+  assert.equal(templates.length, 35);
   const bad = templates
     .filter(([exam, f]) => {
       const src = read(f);

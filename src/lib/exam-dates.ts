@@ -312,6 +312,8 @@ export const EXAMS_BY_SLUG: Readonly<Record<string, UpcomingExam[]>> = {
   fukushi2: FUKUSHI2_EXAMS,
   // 3級は2級と同じ回・同じ試験期間(FUKUSHI2_EXAMS のラベルも「2・3級」)
   fukushi3: FUKUSHI2_EXAMS,
+  // 1〜3級は同じ日に実施(協会ページ 2026-11-14 確認)
+  mynumber2: MYNUMBER_EXAMS,
   bijihou: BIJIHOU_EXAMS,
   bijimane: BIJIMANE_EXAMS,
   eco: ECO_EXAMS,

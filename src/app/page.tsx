@@ -33,11 +33,11 @@ import { SISTER_SITES, sisterSite } from "@/lib/sister-sites";
 import { getAllColumnSlugs, getLatestColumnDate } from "@/lib/columns";
 
 // description の資格数・問題数は、下の exams の件数と count の合計(自動集計はしていない)。
-// 資格や問題を増やしたら、ここと layout.tsx・about/page.tsx・public/llms.txt を一緒に直す。2026-11-13 時点=34資格6,749問
+// 資格や問題を増やしたら、ここと layout.tsx・about/page.tsx・public/llms.txt を一緒に直す。2026-11-14 時点=35資格6,899問
 // コラムを足したときは public/llms.txt の「コラム記事(…時点で165本)」の本数と日付も直す(src/content/columns/*.md の数。2026-10-31 時点=165本)
 export const metadata: Metadata = {
   title: { absolute: "シカクモン｜資格試験のオリジナル練習問題を無料で提供" },
-  description: "シカクモンは資格試験のオリジナル練習問題を無料で提供するサイトです。貸金業務取扱主任者・賃貸不動産経営管理士・管理業務主任者・個人情報保護士・知的財産管理技能検定・ビジネス実務法務検定・ITパスポート・登録販売者・保育士・エックス線作業主任者など34資格、合計6,749問。全問に解説付き。",
+  description: "シカクモンは資格試験のオリジナル練習問題を無料で提供するサイトです。貸金業務取扱主任者・賃貸不動産経営管理士・管理業務主任者・個人情報保護士・知的財産管理技能検定・ビジネス実務法務検定・ITパスポート・登録販売者・保育士・エックス線作業主任者など35資格、合計6,899問。全問に解説付き。",
   alternates: { canonical: "/" },
   // openGraphはトップレベルの浅いマージのため、部分指定するとlayout側の
   // siteName/locale/type/imagesが丸ごと消える(page-metadata.tsと同じ理由でフル指定)
@@ -47,7 +47,7 @@ export const metadata: Metadata = {
     siteName: "シカクモン",
     url: "/",
     title: "シカクモン｜資格試験のオリジナル練習問題を無料で提供",
-    description: "貸金業務取扱主任者・賃管士・管業・個人情報保護士・知財3級/2級・ビジ法3級/2級・ITパスポート・登録販売者・保育士・エックス線作業主任者など34資格、合計6,749問のオリジナル練習問題を無料公開。",
+    description: "貸金業務取扱主任者・賃管士・管業・個人情報保護士・知財3級/2級・ビジ法3級/2級・ITパスポート・登録販売者・保育士・エックス線作業主任者など35資格、合計6,899問のオリジナル練習問題を無料公開。",
     images: [{ url: "/og-default.png", width: 1200, height: 630, alt: "シカクモン - 資格試験の練習問題" }],
   },
 };
@@ -130,6 +130,16 @@ export default function Home() {
       count: 200,
       fieldCount: 5,
       desc: "番号法・個人番号カード・特定個人情報保護を扱う民間資格。実務でマイナンバーを取り扱う方の基礎知識として。",
+      date: nextExamDateLabel(MYNUMBER_EXAMS, { fallback: "年複数回実施" }),
+      themeVar: "var(--c-pii)",
+      softVar: "var(--c-pii-soft)",
+    },
+    {
+      name: "マイナンバー実務検定2級",
+      slug: "mynumber2",
+      count: 150,
+      fieldCount: 6,
+      desc: "3級と同じ出題項目を、実務での利用と制限まで深く問う級。番号法の条文と事業者編ガイドラインに沿って、提供の制限・本人確認・委託・罰則まで問われます。",
       date: nextExamDateLabel(MYNUMBER_EXAMS, { fallback: "年複数回実施" }),
       themeVar: "var(--c-pii)",
       softVar: "var(--c-pii-soft)",
@@ -446,7 +456,7 @@ export default function Home() {
       key: "joho",
       title: "情報とセキュリティ",
       lead: "個人情報とマイナンバーの取扱いを問う検定群。いずれも全日本情報学習振興協会が実施しており、出題範囲が重なります。",
-      slugs: ["pii", "jitsumu", "mynumber"],
+      slugs: ["pii", "jitsumu", "mynumber", "mynumber2"],
     },
     {
       key: "jinji",

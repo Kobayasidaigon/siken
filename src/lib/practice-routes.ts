@@ -67,6 +67,7 @@ const HAS_MOCK: ExamSlug[] = [
   "dxo",
   "wlc",
   "fukushi3",
+  "mynumber2",
 ];
 
 /** /<資格>/moshi/ がある資格。本試験と同じ問数・時間の第1回模試(無料) */
@@ -107,6 +108,7 @@ const HAS_MOSHI: ExamSlug[] = [
   "dxo",
   "wlc",
   "fukushi3",
+  "mynumber2",
 ];
 
 /**

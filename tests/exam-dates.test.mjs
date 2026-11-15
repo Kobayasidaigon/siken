@@ -42,3 +42,35 @@ test("EXAMS_BY_SLUG は実在する資格だけを指す", () => {
   const slugs = new Set(EXAM_LIST.map((e) => e.slug));
   for (const slug of Object.keys(dates.EXAMS_BY_SLUG)) assert.ok(slugs.has(slug), `未知の資格: ${slug}`);
 });
+
+test("試験期間の最終日は実在する日付で、開始日より後・次の回より前", () => {
+  for (const [name, list] of lists) {
+    list.forEach((e, i) => {
+      if (!e.periodEnd) return;
+      assert.ok(isYmd(e.periodEnd), `${name} ${e.label}: periodEnd=${e.periodEnd}`);
+      assert.ok(e.date < e.periodEnd, `${name} ${e.label}: 最終日が開始日以前`);
+      const next = list[i + 1];
+      if (next) assert.ok(e.periodEnd < next.date, `${name} ${e.label}: 最終日が次の回の開始日以降`);
+    });
+  }
+});
+
+test("ongoingPeriodExam は試験期間中の回だけを返す", () => {
+  const realNow = Date.now;
+  const at = (iso) => { Date.now = () => new Date(`${iso}T12:00:00+09:00`).getTime(); };
+  try {
+    at("2026-11-11");
+    assert.equal(dates.ongoingPeriodExam(dates.ECO_EXAMS), null);
+    at("2026-11-12");
+    assert.equal(dates.ongoingPeriodExam(dates.ECO_EXAMS)?.label, "第41回");
+    at("2026-12-03");
+    assert.equal(dates.ongoingPeriodExam(dates.ECO_EXAMS)?.label, "第41回");
+    at("2026-12-04");
+    assert.equal(dates.ongoingPeriodExam(dates.ECO_EXAMS), null);
+    // periodEnd の無い資格(個人情報保護士)は対象外
+    at("2026-12-13");
+    assert.equal(dates.ongoingPeriodExam(dates.PII_EXAMS), null);
+  } finally {
+    Date.now = realNow;
+  }
+});

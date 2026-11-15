@@ -18,6 +18,7 @@ const A8_PROGRAM: Record<string, string> = {
   GE0P4Q: "nousen", // 能セン
   G998AI: "denkouseka", // 電光石火(電工技能セット)
   CONHRM: "takkenjob", // 株式会社ヘイフィールド 宅建Jobエージェント(転職。lib/career-links.ts)
+  CV79F6: "kaigojj", // 株式会社ハートフルケア 介護JJ(転職。lib/career-links.ts)
   D5X2B6: "onecareer", // 株式会社ワンキャリア ワンキャリア転職(転職。lib/career-links.ts)
 };
 

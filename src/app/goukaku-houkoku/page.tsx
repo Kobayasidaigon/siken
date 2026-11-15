@@ -2,6 +2,7 @@ import SiteLink from "@/components/SiteLink";
 import type { Metadata } from "next";
 import { pageMetadata } from "@/lib/page-metadata";
 import PassReportForm from "./PassReportForm";
+import PrNotice from "@/components/PrNotice";
 
 export const metadata: Metadata = pageMetadata({
   path: "/goukaku-houkoku/",
@@ -17,6 +18,9 @@ export default function PassReportPage() {
         <SiteLink href="/">ホーム</SiteLink><span>/</span>
         <span className="text-[color:var(--c-ink)]">合格報告</span>
       </nav>
+
+      {/* 送信後に出る転職リンク(資格によっては介護JJ)が PR 表記を必須にしているため(2026-11-15) */}
+      <PrNotice />
 
       <h1 className="text-xl sm:text-2xl font-bold text-[color:var(--c-ink)] mb-3 font-serif leading-tight">
         受験の結果を教えてください

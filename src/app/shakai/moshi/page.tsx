@@ -6,6 +6,8 @@ import {
   SHAKAI_MOSHI_PASS_COUNT,
   SHAKAI_MOSHI_TIME_LIMIT_MIN,
 } from "@/lib/shakai-moshi";
+import PrNotice from "@/components/PrNotice";
+import { careerNeedsPr } from "@/lib/career-links";
 import MoshiExam, { type MoshiQuestion } from "@/components/MoshiExam";
 
 export const metadata: Metadata = pageMetadata({
@@ -35,6 +37,8 @@ export default async function ShakaiMoshiPage() {
         <span>/</span>
         <span className="text-[color:var(--c-ink)]">模擬試験 第1回</span>
       </nav>
+      {/* 合格圏の結果面に出る転職リンク(介護JJ)が PR 表記を必須にしているため(2026-11-15) */}
+      {careerNeedsPr("shakai") && <PrNotice />}
 
       <h1 className="text-xl sm:text-2xl font-bold text-[color:var(--c-ink)] mb-2 font-serif">
         模擬試験 第1回（共通科目・60問）

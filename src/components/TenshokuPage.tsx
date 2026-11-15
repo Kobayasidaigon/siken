@@ -8,6 +8,7 @@
  */
 import SiteLink from "@/components/SiteLink";
 import AffiliateLink from "@/components/AffiliateLink";
+import PrNotice from "@/components/PrNotice";
 import { getTenshoku, linkedAgents } from "@/lib/tenshoku";
 import type { ExamSlug } from "@/lib/study-progress";
 
@@ -28,10 +29,7 @@ export default function TenshokuPage({ exam }: { exam: ExamSlug }) {
     <div className="theme-kashikin pb-16">
       <section className="-mx-4 px-4 py-10 sm:py-14 border-y mb-10" style={{ background: "var(--c-accent-soft)", borderColor: "var(--c-border)" }}>
         {/* 広告であることを最初の画面で分かるようにする(景品表示法のステマ規制・A8 の広告主の掲載ルール) */}
-        <p className="text-xs text-[color:var(--c-text-sub)] mb-3">
-          <span className="tracking-wider border border-[color:var(--c-border)] px-1.5 py-0.5 rounded text-[10px] mr-1.5">PR</span>
-          このページには広告（アフィリエイトリンク）が含まれます。
-        </p>
+        <PrNotice />
         <nav className="text-xs text-[color:var(--c-text-sub)] mb-4">
           <SiteLink href="/" className="no-underline hover:underline">ホーム</SiteLink>
           {" / "}

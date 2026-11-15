@@ -2,6 +2,8 @@ import SiteLink from "@/components/SiteLink";
 import type { Metadata } from "next";
 import { pageMetadata } from "@/lib/page-metadata";
 import { getHoikushiMoshi1Questions, HOIKUSHI_MOSHI_PASS_COUNT, HOIKUSHI_MOSHI_TIME_LIMIT_MIN, HOIKUSHI_MOSHI_SECTIONS } from "@/lib/hoikushi-moshi";
+import PrNotice from "@/components/PrNotice";
+import { careerNeedsPr } from "@/lib/career-links";
 import MoshiExam, { type MoshiQuestion } from "@/components/MoshiExam";
 
 export const metadata: Metadata = pageMetadata({
@@ -29,6 +31,8 @@ export default async function HoikushiMoshiPage() {
         <SiteLink href="/hoikushi/">保育士試験（筆記）</SiteLink><span>/</span>
         <span className="text-[color:var(--c-ink)]">模擬試験 第1回</span>
       </nav>
+      {/* 合格圏の結果面に出る転職リンク(介護JJ)が PR 表記を必須にしているため(2026-11-15) */}
+      {careerNeedsPr("hoikushi") && <PrNotice />}
 
       <h1 className="text-xl sm:text-2xl font-bold text-[color:var(--c-ink)] mb-2 font-serif">
         模擬試験 第1回

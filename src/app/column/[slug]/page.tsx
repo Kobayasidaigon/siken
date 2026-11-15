@@ -43,6 +43,8 @@ import IsfCourseAd from "@/components/IsfCourseAd";
 import DxpCourseAd from "@/components/DxpCourseAd";
 import TextAffiliateAd from "@/components/TextAffiliateAd";
 import CareerCTA from "@/components/CareerCTA";
+import PrNotice from "@/components/PrNotice";
+import { careerNeedsPr } from "@/lib/career-links";
 import type { ExamSlug } from "@/lib/study-progress";
 import { EXAM_SCHEDULES, decideCtaPriority } from "@/lib/cta-priority";
 import { EXAM_AFFILIATE } from "@/lib/affiliate-links";
@@ -542,6 +544,9 @@ export default async function ColumnPage({ params }: { params: Promise<{ slug: s
         <SiteLink href="/column/">コラム</SiteLink><span>/</span>
         <span className="text-slate-600">{col.title}</span>
       </nav>
+
+      {/* 末尾の転職リンクが PR 表記を必須にしている広告主(介護JJ)のときだけ、最初の画面に PR 表記(2026-11-15) */}
+      {isCareerArticle && careerNeedsPr(examFromColumnSlug(slug) ?? undefined, isSoumuArticle ? "kanri" : undefined) && <PrNotice />}
 
       <h1 className="text-xl sm:text-2xl font-bold text-slate-900 mb-3 leading-tight">
         {col.title}

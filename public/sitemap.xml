@@ -793,6 +793,12 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://shikakumon.com/chintai/tenshoku/</loc>
+    <lastmod>2026-11-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://shikakumon.com/kangyo/</loc>
     <lastmod>2026-10-25</lastmod>
     <changefreq>weekly</changefreq>

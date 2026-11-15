@@ -10,6 +10,7 @@ import ExamCountdown from "@/components/ExamCountdown";
 import ShikenmaeEntry from "@/components/ShikenmaeEntry";
 import ExamVoicesSection from "@/components/ExamVoicesSection";
 import OfficialSiteLink from "@/components/OfficialSiteLink";
+import { tenshokuPath } from "@/lib/tenshoku-paths";
 
 export const metadata: Metadata = pageMetadata({
   path: "/chintai/",
@@ -112,6 +113,15 @@ export default async function ChintaiPage() {
       {/* 合格報告(掲載済みがあれば)と、受験直後の方への報告のお願い。
           どちらも条件を満たさなければ何も出ない */}
       <ExamVoicesSection exam="chintai" />
+
+      {/* 合格後の仕事と転職エージェントの比較ページへ(2026-11-14 追加。lib/tenshoku.ts) */}
+      <section className="mb-12">
+        <h2 className="text-base font-bold text-[color:var(--c-ink)] mb-4 font-serif">合格したあとに</h2>
+        <SiteLink href={tenshokuPath("chintai")!} className="card p-5 no-underline block" style={{ borderLeft: "3px solid var(--c-kashikin)" }}>
+          <p className="text-sm font-bold text-[color:var(--c-ink)] mb-1">賃貸不動産経営管理士を活かせる仕事と転職エージェント比較 →</p>
+          <p className="text-xs text-[color:var(--c-text-sub)] leading-relaxed">業務管理者として働く賃貸管理会社などの仕事と、不動産業界の転職エージェントの得意分野・対応地域を一覧にしています。</p>
+        </SiteLink>
+      </section>
 
       <ChintaiCourseAd />
 

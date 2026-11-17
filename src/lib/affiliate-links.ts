@@ -297,11 +297,13 @@ export const EXAM_AFFILIATE: Record<ExamSlug, AffiliateTarget> = {
   },
 
   // 保育士試験（筆記）(hoikushi)。2026-10-19 追加。
-  //   リンクは 2026-10-19 の依頼仕様に従い、既存の SMART 提携(a8mat=4B1TI0 系)の a8mat と飛び先URLから組み立てた。
-  //   A8 の「商品リンク作成」で発行したリンクではないので、A8 側で計測・承認されるかを要確認(広告掲載URL管理への登録時)。
+  //   2026-11-17: 講座のリンクを SMART からヒューマンアカデミー通信講座『保育士完全合格』に替えた。
+  //   A8 で 2026-11-17 に提携承認(プログラムID s00000011309001、資料請求 900円・講座受講 5%)。
+  //   リンクは A8 管理画面の素材ID 001(テキスト)を改変せずに貼った。保育士専門の講座で、資料請求だけで成果になる。
+  //   freeHref は SMART の無料登録(4B1TI0 系)のまま残す。
   hoikushi: {
-    href: "https://px.a8.net/svt/ejp?a8mat=4B1TI0+9T22IA+4LOQ+BW8O2&a8ejpredirect=https%3A%2F%2Fwww.joho-gakushu.jp%2Fsmartinfo%2Fk_hoikushi%2F",
-    label: "保育士のSMART合格講座を見る",
+    href: "https://px.a8.net/svt/ejp?a8mat=4BEPPQ+4620I+2F9E+5YJRM",
+    label: "ヒューマンアカデミー通信講座『保育士完全合格』を見る",
     course: "hoikushi",
     freeHref:
       "https://px.a8.net/svt/ejp?a8mat=4B1TI0+9T22IA+4LOQ+BW8O2&a8ejpredirect=https%3A%2F%2Fwww.joho-gakushu.jp%2Fsmart%2Fregistfree.php",

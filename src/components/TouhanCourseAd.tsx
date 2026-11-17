@@ -7,7 +7,7 @@
 
 import AffiliateLink from "@/components/AffiliateLink";
 import FreeLeadCTA from "@/components/FreeLeadCTA";
-import { EXAM_AFFILIATE } from "@/lib/affiliate-links";
+import { EXAM_AFFILIATE, HUMAN_ACADEMY_BANNER } from "@/lib/affiliate-links";
 
 interface Props {
   headline?: string;
@@ -18,7 +18,7 @@ export default function TouhanCourseAd({ headline, body }: Props = {}) {
   const finalHeadline = headline ?? "独学に不安があれば";
   const finalBody =
     body ??
-    "登録販売者の対策講座は、全日本情報学習振興協会のSMART合格講座に用意されています。第3章（成分・作用）の暗記量が多く、章ごとの足切りもあるため、体系的に整理しながら進めたい方は検討してみてください。試験そのものは都道府県が実施しており、受験申込は各県の案内に従います。";
+    "登録販売者の対策講座は、全日本情報学習振興協会のSMART合格講座と、ヒューマンアカデミー通信講座（たのまな）にあります。第3章（成分・作用）の暗記量が多く、章ごとの足切りもあるため、体系的に整理しながら進めたい方は検討してみてください。試験そのものは都道府県が実施しており、受験申込は各県の案内に従います。";
 
   return (
     <aside className="theme-pii my-10 p-5 rounded-lg border border-[color:var(--c-border)] bg-[color:var(--c-bg-alt)]">
@@ -34,6 +34,20 @@ export default function TouhanCourseAd({ headline, body }: Props = {}) {
         <AffiliateLink href={EXAM_AFFILIATE["touhan"].href} course="touhan" placement="course_ad">
           {EXAM_AFFILIATE["touhan"].label} →
         </AffiliateLink>
+        <AffiliateLink
+          href={HUMAN_ACADEMY_BANNER.href}
+          course="touhan"
+          placement="course_ad_banner"
+          className="inline-block"
+        >
+          <img
+            width={HUMAN_ACADEMY_BANNER.width}
+            height={HUMAN_ACADEMY_BANNER.height}
+            src={HUMAN_ACADEMY_BANNER.img}
+            alt="ヒューマンアカデミー通信講座"
+            style={{ border: 0 }}
+          />
+        </AffiliateLink>
       </div>
       <img
         width={1}
@@ -42,6 +56,7 @@ export default function TouhanCourseAd({ headline, body }: Props = {}) {
         alt=""
         style={{ position: "absolute", border: 0 }}
       />
+      <img width={1} height={1} src={HUMAN_ACADEMY_BANNER.pixel} alt="" style={{ position: "absolute", border: 0 }} />
     </aside>
   );
 }

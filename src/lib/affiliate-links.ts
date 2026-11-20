@@ -50,6 +50,20 @@ interface AffiliateTarget {
   bookLabel?: string;
 }
 
+/**
+ * ヒューマンアカデミー通信講座の共通バナー(120×60)。2026-11-17 追加。
+ * A8 で 2026-11-17 に提携承認(プログラムID s00000011309001、資料請求 900円・講座受講 5%)。
+ * 講座ごとの素材が無い資格のうち、ヒューマンアカデミーに講座がある資格(登録販売者)の講座広告に出す。
+ * リンク先は講座ページではなく通信講座のトップ。コードは A8 管理画面の表示どおり(改変しない)。
+ */
+export const HUMAN_ACADEMY_BANNER = {
+  href: "https://px.a8.net/svt/ejp?a8mat=4BEPPQ+4620I+2F9E+5YRHD",
+  img: "https://www22.a8.net/svt/bgt?aid=261026990007&wid=001&eno=01&mid=s00000011309001002000&mc=1",
+  pixel: "https://www17.a8.net/0.gif?a8mat=4BEPPQ+4620I+2F9E+5YRHD",
+  width: 120,
+  height: 60,
+};
+
 /** SMART系3資格(全日本情報学習振興協会)の協会申込リンク。同一提携 4B1TI0 系。 */
 const SMART_APPLY_PIXEL = "https://www11.a8.net/0.gif?a8mat=4B1TI0+9T22IA+4LOQ+BW8O2";
 
@@ -297,11 +311,13 @@ export const EXAM_AFFILIATE: Record<ExamSlug, AffiliateTarget> = {
   },
 
   // 保育士試験（筆記）(hoikushi)。2026-10-19 追加。
-  //   リンクは 2026-10-19 の依頼仕様に従い、既存の SMART 提携(a8mat=4B1TI0 系)の a8mat と飛び先URLから組み立てた。
-  //   A8 の「商品リンク作成」で発行したリンクではないので、A8 側で計測・承認されるかを要確認(広告掲載URL管理への登録時)。
+  //   2026-11-17: 講座のリンクを SMART からヒューマンアカデミー通信講座『保育士完全合格』に替えた。
+  //   A8 で 2026-11-17 に提携承認(プログラムID s00000011309001、資料請求 900円・講座受講 5%)。
+  //   リンクは A8 管理画面の素材ID 001(テキスト)を改変せずに貼った。保育士専門の講座で、資料請求だけで成果になる。
+  //   freeHref は SMART の無料登録(4B1TI0 系)のまま残す。
   hoikushi: {
-    href: "https://px.a8.net/svt/ejp?a8mat=4B1TI0+9T22IA+4LOQ+BW8O2&a8ejpredirect=https%3A%2F%2Fwww.joho-gakushu.jp%2Fsmartinfo%2Fk_hoikushi%2F",
-    label: "保育士のSMART合格講座を見る",
+    href: "https://px.a8.net/svt/ejp?a8mat=4BEPPQ+4620I+2F9E+5YJRM",
+    label: "ヒューマンアカデミー通信講座『保育士完全合格』を見る",
     course: "hoikushi",
     freeHref:
       "https://px.a8.net/svt/ejp?a8mat=4B1TI0+9T22IA+4LOQ+BW8O2&a8ejpredirect=https%3A%2F%2Fwww.joho-gakushu.jp%2Fsmart%2Fregistfree.php",

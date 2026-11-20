@@ -18,7 +18,7 @@ export default function HoikushiCourseAd({ headline, body }: Props = {}) {
   const finalHeadline = headline ?? "独学に不安があれば";
   const finalBody =
     body ??
-    "保育士試験の対策講座は、全日本情報学習振興協会のSMART合格講座に用意されています。9科目を同じ回で受ける場合は科目ごとの出題範囲の差が大きいので、体系的に整理しながら進めたい方は検討してみてください。試験そのものは全国保育士養成協議会が実施しており、受験申請は協議会のサイトで行います。";
+    "保育士試験の通信講座には、ヒューマンアカデミー通信講座の『保育士完全合格』があります。資料は無料で取り寄せられます。全日本情報学習振興協会のSMART合格講座も、無料登録で講座を試し見できます。9科目を同じ回で受ける場合は科目ごとの出題範囲の差が大きいので、体系的に整理しながら進めたい方は検討してみてください。試験そのものは全国保育士養成協議会が実施しており、受験申請は協議会のサイトで行います。";
 
   return (
     <aside className="theme-pii my-10 p-5 rounded-lg border border-[color:var(--c-border)] bg-[color:var(--c-bg-alt)]">

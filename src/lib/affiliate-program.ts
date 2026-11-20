@@ -19,6 +19,7 @@ const A8_PROGRAM: Record<string, string> = {
   G998AI: "denkouseka", // 電光石火(電工技能セット)
   CONHRM: "takkenjob", // 株式会社ヘイフィールド 宅建Jobエージェント(転職。lib/career-links.ts)
   D5X2B6: "onecareer", // 株式会社ワンキャリア ワンキャリア転職(転職。lib/career-links.ts)
+  "4620I": "humanacademy", // ヒューマンアカデミー通信講座(保育士。2026-11-17 承認)
 };
 
 export function programOf(href: string | undefined): string {

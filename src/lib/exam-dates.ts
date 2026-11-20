@@ -15,6 +15,13 @@ export interface UpcomingExam {
   label: string; // "第55回" など表示用
   applyStart?: string; // 申込受付の開始日。省略時は「既に受付中」として扱う
   applyEnd?: string; // 申込締切日。公式未発表の回は省略 (締切カウントダウン非表示)
+  /**
+   * 東商IBT/CBT(期間制)の試験期間の最終日。2026-11-15 追加。
+   * これがある回は、date〜periodEnd の間、カウントダウンが「試験期間中(◯月◯日まで)」に変わる
+   * (無いと、期間の初日を過ぎた時点で次の回の「開始まであと235日」に切り替わっていた)。
+   * 値は各資格の日程コラム(*-nittei.md)の表=東商の公式日程と同じ。
+   */
+  periodEnd?: string;
 }
 
 // 出典: 日本貸金業協会 j-fsa.or.jp/chief/qualifying_exam/ (2026-08-06確認・2026-11-10再確認)
@@ -39,9 +46,9 @@ export const CHIZAI_EXAMS: UpcomingExam[] = [
 // ※旧データ「2026-10-22開始」はビジ法の試験期間との取り違えで誤りだったため修正済み。
 // 2026-11-10: 2027年度の2回(第58回・第59回)を追加(同 fukushi/exam-info/ と schedule.html で確認)。
 export const FUKUSHI2_EXAMS: UpcomingExam[] = [
-  { date: "2026-11-12", label: "第57回(2・3級)", applyStart: "2026-10-09", applyEnd: "2026-10-20" },
-  { date: "2027-07-08", label: "第58回(2・3級)", applyStart: "2027-06-04", applyEnd: "2027-06-15" },
-  { date: "2027-11-11", label: "第59回(2・3級)", applyStart: "2027-10-08", applyEnd: "2027-10-19" },
+  { date: "2026-11-12", label: "第57回(2・3級)", applyStart: "2026-10-09", applyEnd: "2026-10-20", periodEnd: "2026-12-03" },
+  { date: "2027-07-08", label: "第58回(2・3級)", applyStart: "2027-06-04", applyEnd: "2027-06-15", periodEnd: "2027-07-29" },
+  { date: "2027-11-11", label: "第59回(2・3級)", applyStart: "2027-10-08", applyEnd: "2027-10-19", periodEnd: "2027-12-02" },
 ];
 
 // 出典: 東京商工会議所検定サイト kentei.tokyo-cci.or.jp/houmu/ (2026-08-06確認)
@@ -49,9 +56,9 @@ export const FUKUSHI2_EXAMS: UpcomingExam[] = [
 // 1級(12/6統一試験)は本サイトの対象外(3級ドリル)のため非掲載。
 // 2026-11-10: 2027年度の2回(第61回・第62回)を追加(同 houmu/exam-info/ で確認)。
 export const BIJIHOU_EXAMS: UpcomingExam[] = [
-  { date: "2026-10-22", label: "第60回(2・3級)", applyStart: "2026-09-16", applyEnd: "2026-09-29" },
-  { date: "2027-06-17", label: "第61回(2・3級)", applyStart: "2027-05-14", applyEnd: "2027-05-25" },
-  { date: "2027-10-21", label: "第62回(2・3級)", applyStart: "2027-09-15", applyEnd: "2027-09-28" },
+  { date: "2026-10-22", label: "第60回(2・3級)", applyStart: "2026-09-16", applyEnd: "2026-09-29", periodEnd: "2026-11-09" },
+  { date: "2027-06-17", label: "第61回(2・3級)", applyStart: "2027-05-14", applyEnd: "2027-05-25", periodEnd: "2027-07-05" },
+  { date: "2027-10-21", label: "第62回(2・3級)", applyStart: "2027-09-15", applyEnd: "2027-09-28", periodEnd: "2027-11-08" },
 ];
 
 // 出典: 東京商工会議所検定サイト kentei.tokyo-cci.or.jp/bijimane/ および
@@ -60,9 +67,9 @@ export const BIJIHOU_EXAMS: UpcomingExam[] = [
 // ※ビジ法第60回と全く同じ期間だが取り違えではない(東商のIBT/CBT検定は同一ウィンドウで実施)。
 // 2026-11-10: 2027年度の2回(第25回・第26回)を追加(同 bijimane/exam-info/ と schedule.html で確認)。
 export const BIJIMANE_EXAMS: UpcomingExam[] = [
-  { date: "2026-10-22", label: "第24回", applyStart: "2026-09-16", applyEnd: "2026-09-29" },
-  { date: "2027-06-17", label: "第25回", applyStart: "2027-05-14", applyEnd: "2027-05-25" },
-  { date: "2027-10-21", label: "第26回", applyStart: "2027-09-15", applyEnd: "2027-09-28" },
+  { date: "2026-10-22", label: "第24回", applyStart: "2026-09-16", applyEnd: "2026-09-29", periodEnd: "2026-11-09" },
+  { date: "2027-06-17", label: "第25回", applyStart: "2027-05-14", applyEnd: "2027-05-25", periodEnd: "2027-07-05" },
+  { date: "2027-10-21", label: "第26回", applyStart: "2027-09-15", applyEnd: "2027-09-28", periodEnd: "2027-11-08" },
 ];
 
 // 出典: 東京商工会議所検定サイト kentei.tokyo-cci.or.jp/eco/ (2026-08-06確認)
@@ -71,9 +78,9 @@ export const BIJIMANE_EXAMS: UpcomingExam[] = [
 //   ビジ法・ビジマネの第1ウィンドウ(10/22〜11/9)とは別なので取り違えないこと。
 // 2026-11-10: 2027年度の2回(第42回・第43回)を追加(同 eco/exam-info/ と schedule.html で確認)。
 export const ECO_EXAMS: UpcomingExam[] = [
-  { date: "2026-11-12", label: "第41回", applyStart: "2026-10-09", applyEnd: "2026-10-20" },
-  { date: "2027-07-08", label: "第42回", applyStart: "2027-06-04", applyEnd: "2027-06-15" },
-  { date: "2027-11-11", label: "第43回", applyStart: "2027-10-08", applyEnd: "2027-10-19" },
+  { date: "2026-11-12", label: "第41回", applyStart: "2026-10-09", applyEnd: "2026-10-20", periodEnd: "2026-12-03" },
+  { date: "2027-07-08", label: "第42回", applyStart: "2027-06-04", applyEnd: "2027-06-15", periodEnd: "2027-07-29" },
+  { date: "2027-11-11", label: "第43回", applyStart: "2027-10-08", applyEnd: "2027-10-19", periodEnd: "2027-12-02" },
 ];
 
 // 出典: 全日本情報学習振興協会 令和8年度試験日程 joho-gakushu.or.jp/schedule/2026.php
@@ -375,6 +382,25 @@ export function nextExam(exams: UpcomingExam[]): UpcomingExam | null {
     if (ymdDate(e.date).getTime() >= today) return e;
   }
   return null;
+}
+
+/**
+ * 試験期間(date〜periodEnd)の最中の回を返す。期間制(periodEnd あり)の回だけが対象。
+ * なければ null。2026-11-15 追加(ExamCountdown の「試験期間中」表示に使う)。
+ */
+export function ongoingPeriodExam(exams: UpcomingExam[]): UpcomingExam | null {
+  const today = todayStart();
+  for (const e of exams) {
+    if (!e.periodEnd) continue;
+    if (ymdDate(e.date).getTime() <= today && today <= ymdDate(e.periodEnd).getTime()) return e;
+  }
+  return null;
+}
+
+/** "6月4日" 形式(年・曜日なし)。カウントダウンの補足行など、短く書きたい所用。 */
+export function formatMdJa(ymd: string): string {
+  const [, m, d] = ymd.split("-").map(Number);
+  return `${m}月${d}日`;
 }
 
 /**

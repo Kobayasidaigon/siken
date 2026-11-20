@@ -1,6 +1,6 @@
 import SiteLink from "@/components/SiteLink";
 import type { UpcomingExam } from "@/lib/exam-dates";
-import { nextExam, nextApplyDeadline, daysUntilYmd, formatYmdJa } from "@/lib/exam-dates";
+import { nextExam, nextApplyDeadline, ongoingPeriodExam, daysUntilYmd, formatYmdJa, formatMdJa } from "@/lib/exam-dates";
 import AffiliateLink from "@/components/AffiliateLink";
 import FreeLeadCTA from "@/components/FreeLeadCTA";
 import CountdownPing from "@/components/CountdownPing";
@@ -27,6 +27,13 @@ import { EXAM_AFFILIATE } from "@/lib/affiliate-links";
  *
  * 資格トップだけでなく日程コラム(/column/*-nittei/)・直前対策コラムにも設置している。
  * applyPlacement / leadPlacement は設置面ごとの CTR を分けて計測するために置いている。
+ *
+ * 試験期間中: 2026-11-15 追加。東商IBT/CBT(期間制)は、期間の初日を過ぎると次の回の
+ * 「試験期間の開始まであと235日」に切り替わっていた。いま来ている人の大半はその期間に
+ * 受ける人なので、periodEnd がある回の date〜periodEnd の間は「第41回 試験期間中
+ * (12月3日まで)」と出し、下に次の回の開始日と申込期間を小さく添える。
+ * 計測は countdown_view の mode="period"、days_left は期間の終わりまでの日数
+ * (mode="exam" の「次の回まで235日」に混ざらないようにするため)。
  */
 
 interface Props {
@@ -109,6 +116,36 @@ export default function ExamCountdown({
             path={calendar.path}
             placement="top_countdown_apply"
           />
+        )}
+        {calendar && <CalendarHubLink />}
+      </section>
+    );
+  }
+
+  const ongoing = periodExam ? ongoingPeriodExam(exams) : null;
+  if (ongoing && ongoing.periodEnd) {
+    const after = exams.find((e) => e.date > ongoing.periodEnd!);
+    return (
+      <section className="mb-10 card p-5">
+        <CountdownPing mode="period" ymd={ongoing.periodEnd} />
+        <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between sm:gap-4">
+          <div>
+            <p className="text-xs text-[color:var(--c-text-sub)] mb-1">いま受験できる回</p>
+            <p className="text-lg font-bold font-serif" style={{ color: accent }}>
+              {ongoing.label} 試験期間中（{formatMdJa(ongoing.periodEnd)}まで）
+            </p>
+          </div>
+          <p className="text-sm text-[color:var(--c-text-sub)] sm:text-right">
+            {formatYmdJa(ongoing.date)}〜{formatYmdJa(ongoing.periodEnd)}
+          </p>
+        </div>
+        {after && (
+          <p className="mt-3 text-xs text-[color:var(--c-text-sub)]">
+            次の{after.label}は {formatYmdJa(after.date)}から
+            {after.applyStart && after.applyEnd
+              ? `（申込 ${formatMdJa(after.applyStart)}〜${formatMdJa(after.applyEnd)}）`
+              : ""}
+          </p>
         )}
         {calendar && <CalendarHubLink />}
       </section>

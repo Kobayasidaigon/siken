@@ -75,7 +75,7 @@ GA4 の「収益」は **`purchase` イベントの `value` と `currency` か�
 | `affiliate_click` | A8 の広告リンクのクリック | `course`, `placement` |
 | `studio_click` | シカクモン Studio への送客（全9箇所） | `placement`, `exam` |
 | `studio_cta_impression` | Studio への送客リンクが画面に半分入ったとき（2026-10-03 追加。`StudioLink` の全設置箇所） | `placement`, `exam` |
-| `countdown_view` | 試験日・申込締切のカウントダウンの表示 | `mode`(apply/exam), `days_left`, `path` |
+| `countdown_view` | 試験日・申込締切のカウントダウンの表示 | `mode`(apply/exam/period。period は東商の試験期間中で、`days_left` は期間の終わりまでの日数), `days_left`, `path` |
 | `calendar_add` | 試験日・締切をカレンダーに追加 | `kind`(apply/exam), `target`(google/ics), `placement` |
 | `column_scroll_75` | コラムを 75% まで読んだ | `article` |
 

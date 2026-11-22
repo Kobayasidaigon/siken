@@ -143,10 +143,8 @@ export default async function Fukushi2Page() {
           どちらも条件を満たさなければ何も出ない */}
       <ExamVoicesSection exam="fukushi2" />
 
-      {showUcanAd && <Fukushi2CourseAd
-        headline="広い出題範囲を体系的に押さえるなら"
-        body="福祉住環境コーディネーター2級は、医療・福祉・建築にまたがる幅広い知識が問われます。独学に不安がある方は、通信講座も選択肢になります。"
-      />}
+      {/* 講座枠は Studio のカードが主役(2026-11-22)。ユーキャンの直リンクだけ掲載ルールで出し分ける */}
+      <Fukushi2CourseAd showCourseLink={showUcanAd} />
 
       {/* 次に取る資格への導線。2026-09-09 追加。
           この資格は230問あるのに、解き終えた読者の行き先がサイト内に無かった。

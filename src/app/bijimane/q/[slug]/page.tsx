@@ -97,7 +97,7 @@ export default async function BijimaneQuestionPage({ params }: { params: Promise
         <p className="text-sm text-[color:var(--c-text)] leading-relaxed whitespace-pre-wrap">{q.questionText}</p>
       </section>
 
-      <AnswerReveal nextHref={nextQ ? `/bijimane/q/${nextQ.slug}/` : undefined} nextLabel={nextQ ? `次の問題（問${idx + 2}）へ` : undefined} choices={q.choices} correctAnswer={q.correctAnswer} explanationHtml={q.content} exam="bijimane" questionSlug={slug} courseAd={<BijimaneCourseAd />} />
+      <AnswerReveal nextHref={nextQ ? `/bijimane/q/${nextQ.slug}/` : undefined} nextLabel={nextQ ? `次の問題（問${idx + 2}）へ` : undefined} choices={q.choices} correctAnswer={q.correctAnswer} explanationHtml={q.content} exam="bijimane" questionSlug={slug} courseAd={<BijimaneCourseAd placement="question_result" />} />
 
       <nav className="mt-8 flex justify-between items-center pt-4 border-t border-[color:var(--c-border)]">
         {prevQ ? (

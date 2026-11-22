@@ -741,8 +741,9 @@ export default async function ColumnPage({ params }: { params: Promise<{ slug: s
         <Chizai2CourseAd headline="2級レンジの論点を体系的に押さえるなら" />
       )}
 
-      {showFukushi2CourseAd && (
-        <Fukushi2CourseAd headline="広い出題範囲を体系的に押さえるなら" />
+      {/* 2026-11-22: 講座枠は Studio のカードが主役。ユーキャンの直リンクだけ掲載ルールで出し分ける */}
+      {isFukushi2Article && (
+        <Fukushi2CourseAd showCourseLink={showFukushi2CourseAd} />
       )}
 
       {isEcoArticle && (

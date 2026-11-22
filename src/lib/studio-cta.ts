@@ -266,3 +266,32 @@ export function studioMoshiHref(
   if (field) params.set("theme", field.slice(0, 40));
   return `${STUDIO_ORIGIN}${path}?${params.toString()}`;
 }
+
+/**
+ * A8 などのアフィリ提携が無く、講座枠のリンクが計測なしの直リンク(=売上ゼロ)になっている資格。
+ * 2026-11-22 ユーザー方針「アフィリエイトリンクがない所は、シカクモン Studio へのアピールを強める」。
+ *
+ * この資格では:
+ *   - 講座広告の枠(*CourseAd)を Studio のカード(StudioPromoCard)に差し替え、講座の直リンクは下に小さく残す
+ *   - 答え合わせ直後の最上段(講座のテキストリンクの位置)に Studio へのリンクを出す
+ *   - 答え合わせ後の Studio 枠(控えめな aside)は、カードと重なるので出さない
+ * 提携が取れて a8mat 付きリンクに差し替えたら、その資格をここから外すこと。
+ */
+export const STUDIO_FIRST_EXAMS: readonly ExamSlug[] = ["fukushi2", "fukushi3", "bijimane", "eco"];
+
+export function isStudioFirst(exam: ExamSlug | null | undefined): boolean {
+  return !!exam && STUDIO_FIRST_EXAMS.includes(exam);
+}
+
+/** 資格の短い表示名(カードの見出し用)。 */
+export const STUDIO_FIRST_SHORT_NAMES: Partial<Record<ExamSlug, string>> = {
+  fukushi2: "福祉住環境コーディネーター2級",
+  fukushi3: "福祉住環境コーディネーター3級",
+  bijimane: "ビジネスマネジャー検定",
+  eco: "eco検定",
+};
+
+/** Studio 側に資格別 LP があるか(「登録なしで1問解ける」と書いてよいか)。 */
+export function hasStudioLp(exam: ExamSlug): boolean {
+  return !!CERT_CTA[exam];
+}

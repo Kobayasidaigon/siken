@@ -78,6 +78,13 @@ export default async function EcoPage() {
           >
             腕試しテスト（ランダム20問・採点）→
           </SiteLink>
+          <SiteLink
+            href="/eco/ichimon/"
+            className="inline-flex items-center px-4 py-2 rounded-lg border text-sm font-medium no-underline transition-colors hover:bg-[color:var(--c-eco-soft)]"
+            style={{ borderColor: "var(--c-eco)", color: "var(--c-eco-ink)" }}
+          >
+            一問一答（○×）→
+          </SiteLink>
         </div>
       </section>
 

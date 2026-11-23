@@ -12,9 +12,9 @@ import { getIchimonData } from "@/lib/ichimon";
 export const metadata: Metadata = pageMetadata({
   path: "/eco/ichimon/",
   noindex: true,
-  title: "eco検定 一問一答（○×）｜1問ずつ答え合わせ",
+  title: "eco検定 一問一答（○×・記入式）｜1問ずつ答え合わせ",
   description:
-    "eco検定の練習問題の選択肢を、1つずつ○×で答える一問一答。答えるとすぐに正誤と解説が出ます。登録不要・無料。",
+    "eco検定の練習問題の選択肢を、1つずつ○×で答える一問一答と、用語を打ち込んで答える記入式。答えるとすぐに正誤と解説が出ます。登録不要・無料。",
 });
 
 export default function EcoIchimonPage() {

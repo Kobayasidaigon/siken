@@ -47,6 +47,8 @@ export interface MoshiQuestion {
   progressExam?: ExamSlug; // 学習履歴に残す資格。未指定は exam
   field: string;
   explanationHtml?: string;
+  /** "ox" なら、2つの選択肢(正しい/誤っている)を大きな○×ボタンで出す。2026-11-23 追加 */
+  format?: "ox";
 }
 
 export interface MoshiSection {
@@ -423,6 +425,34 @@ export default function MoshiExam({
           <p className="text-sm text-[color:var(--c-text)] leading-relaxed whitespace-pre-wrap">{q.questionText}</p>
         </section>
 
+        {q.format === "ox" && q.choices.length === 2 ? (
+          <div className="grid grid-cols-2 gap-3 mb-6">
+            {q.choices.map((choice, i) => {
+              const num = i + 1;
+              const isSelected = selected === num;
+              const color = num === 1 ? "#2563eb" : "#dc2626";
+              return (
+                <button
+                  key={i}
+                  type="button"
+                  onClick={() => select(num)}
+                  aria-pressed={isSelected}
+                  aria-label={choice}
+                  className="rounded-xl border-2 py-4 text-center transition-colors"
+                  style={{
+                    borderColor: isSelected ? color : "#cbd5e1",
+                    background: isSelected ? (num === 1 ? "#dbeafe" : "#fee2e2") : "#fff",
+                  }}
+                >
+                  <span className="block text-4xl font-bold leading-none" style={{ color }}>
+                    {num === 1 ? "○" : "×"}
+                  </span>
+                  <span className="block text-xs mt-1 text-[color:var(--c-text-sub)]">{choice}</span>
+                </button>
+              );
+            })}
+          </div>
+        ) : (
         <ol className="space-y-2 mb-6">
           {q.choices.map((choice, i) => {
             const num = i + 1;
@@ -442,6 +472,7 @@ export default function MoshiExam({
             );
           })}
         </ol>
+        )}
 
         <div className="flex items-center justify-between gap-3">
           <button

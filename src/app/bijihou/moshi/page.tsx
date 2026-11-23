@@ -23,6 +23,7 @@ export default async function BijihouMoshiPage() {
       slug: o.id,
       questionText: `次の記述の内容は正しいか、誤っているか。\n\n${o.statement}`,
       choices: ["正しい", "誤っている"],
+      format: "ox" as const,
       correctAnswer: o.answer ? 1 : 2,
       field: o.field,
       explanationHtml: `<p>${escapeHtml(o.explain)}</p>`,

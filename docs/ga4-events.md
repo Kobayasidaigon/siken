@@ -54,6 +54,7 @@ GA4 の「収益」は **`purchase` イベントの `value` と `currency` か�
 | `mock_start` | 腕試しテストの開始（全14資格が共有） | `exam`, `size` |
 | `mock_complete` | 同 採点 | `exam`, `size`, `correct`, `score_bucket`, `passed` |
 | `moshi_start` / `moshi_complete` | 模擬試験。`round` で第1回（無料）と第2回（有料）を区別する | `exam`, `round`, `mode`, `score`, `size`, `score_bucket`, `passed`, `timeout`, `minutes` |
+| `ichimon_start` / `ichimon_complete` | 一問一答(○×・記入式。/<資格>/ichimon/)の開始と10問を解き終えたとき。2026-11-23 追加。打った文字は送らない | `exam`, `mode`(ox/input), `size`, `filtered`(開始だけ。分野で絞ったら1), `correct`・`self_marked`(終了だけ。self_marked は「自分の答えも正しい」を押した数) |
 | `drill_start` | 復習ドリルの開始 | `exam`, `size`, `bronze`, `silver`（出題した中の銅・銀の数。2026-10-24 まではその資格の銅・銀の総数を送っていた） |
 | `drill_next` | ドリルの次の問題へ | `exam` |
 | `drill_complete` | ドリルを解き終えた | `exam`, `size` |

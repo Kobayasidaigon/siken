@@ -83,7 +83,7 @@ export default async function EcoPage() {
             className="inline-flex items-center px-4 py-2 rounded-lg border text-sm font-medium no-underline transition-colors hover:bg-[color:var(--c-eco-soft)]"
             style={{ borderColor: "var(--c-eco)", color: "var(--c-eco-ink)" }}
           >
-            一問一答（○×）→
+            一問一答（○×・記入式）→
           </SiteLink>
         </div>
       </section>

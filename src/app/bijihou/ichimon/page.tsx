@@ -14,7 +14,7 @@ export const metadata: Metadata = pageMetadata({
   noindex: true,
   title: "ビジネス実務法務検定3級 一問一答（○×・記入式）｜1問ずつ答え合わせ",
   description:
-    "ビジネス実務法務検定3級の練習問題の選択肢を、1つずつ○×で答える一問一答。答えるとすぐに正誤と解説が出ます。登録不要・無料。",
+    "ビジネス実務法務検定3級の練習問題の選択肢を、1つずつ○×で答える一問一答と、用語を打ち込んで答える記入式。答えるとすぐに正誤と解説が出ます。登録不要・無料。",
 });
 
 export default function BijihouIchimonPage() {

@@ -7,7 +7,12 @@ import { loadTs } from "./load-ts.mjs";
 
 const { normalizeAnswer, isCorrectInput } = loadTs("src/lib/answer-normalize.ts");
 const { buildOxItems } = loadTs("src/lib/ox-from-choices.ts");
-const { BIJIHOU_KINYU } = loadTs("src/lib/kinyu/bijihou.ts");
+const KINYU = {
+  bijihou: loadTs("src/lib/kinyu/bijihou.ts").BIJIHOU_KINYU,
+  fukushi2: loadTs("src/lib/kinyu/fukushi2.ts").FUKUSHI2_KINYU,
+  eco: loadTs("src/lib/kinyu/eco.ts").ECO_KINYU,
+  mynumber: loadTs("src/lib/kinyu/mynumber.ts").MYNUMBER_KINYU,
+};
 
 test("全角/半角・カナ・空白・漢数字の違いは正解にする", () => {
   assert.ok(isCorrectInput("ゼンイ", ["ぜんい"]));
@@ -33,13 +38,13 @@ test("部分一致や空の答えは不正解にする", () => {
 
 test("記入式の問題データの約束", () => {
   const ids = new Set();
-  for (const q of BIJIHOU_KINYU) {
+  for (const [exam, list] of Object.entries(KINYU)) for (const q of list) {
     assert.ok(!ids.has(q.id), `id の重複: ${q.id}`);
     ids.add(q.id);
     assert.equal((q.prompt.match(/＿＿/g) ?? []).length, 1, `${q.id}: 空欄「＿＿」はちょうど1つ`);
     assert.ok(q.answers.length > 0 && q.answers.every((a) => normalizeAnswer(a) !== ""), `${q.id}: 答えが空`);
     assert.ok(q.explain.length > 0, `${q.id}: 解説が空`);
-    if (q.sourceSlug) assert.ok(fs.existsSync(`src/content/bijihou/${q.sourceSlug}.md`), `${q.id}: 根拠の問題 ${q.sourceSlug} が無い`);
+    if (q.sourceSlug) assert.ok(fs.existsSync(`src/content/${exam}/${q.sourceSlug}.md`), `${q.id}: 根拠の問題 ${q.sourceSlug} が無い`);
   }
 });
 

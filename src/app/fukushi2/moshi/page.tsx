@@ -28,6 +28,7 @@ export default async function Fukushi2MoshiPage() {
       slug: o.id,
       questionText: `次の記述は正しいか、誤っているか。\n\n${o.statement}`,
       choices: ["正しい", "誤っている"],
+      format: "ox" as const,
       correctAnswer: o.answer ? 1 : 2,
       field: o.field,
       explanationHtml: `<p>${escapeHtml(o.explain)}</p>`,

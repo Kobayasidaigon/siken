@@ -16,43 +16,33 @@
  * インプレッション計測用の 1x1 gif も追加する（BijihouCourseAd.tsx 参照）。
  * 差し替え時は src/lib/affiliate-links.ts の bijimane エントリも同時に更新すること。
  * 提携可否の確認はユーザー宿題（night-batch/INBOX.md 項目1）。
+
+ *
+ * 2026-11-22: アフィリ提携が無い(直リンクで売上ゼロ)ため、枠の主役をシカクモン Studio のカードに替えた
+ * (StudioFirstCourseAd.tsx / lib/studio-cta.ts の STUDIO_FIRST_EXAMS)。講座・公式サイトのリンクは下に小さく残す。
+ * headline / body は旧レイアウトの名残で、今は使っていない(呼び出し側を変えずに済むよう受け取りだけ残す)。
  */
 
-import AffiliateLink from "@/components/AffiliateLink";
-import FreeLeadCTA from "@/components/FreeLeadCTA";
-import BookLeadCTA from "@/components/BookLeadCTA";
+import StudioFirstCourseAd from "@/components/StudioFirstCourseAd";
 
 interface Props {
   headline?: string;
   body?: string;
+  /** 設置面(AffiliateLink と同じ語彙)。問題ページの答え合わせ後は question_result */
+  placement?: string;
+  /** 講座の直リンクを出すか */
+  showCourseLink?: boolean;
 }
 
-export default function BijimaneCourseAd({ headline, body }: Props = {}) {
-  const finalHeadline = headline ?? "独学に不安があれば";
-  const finalBody =
-    body ??
-    "ビジネスマネジャー検定は、マネジャーの役割から人と組織、業務、リスクのマネジメントまで範囲が広い試験です。体系的に整理しながら学びたい方は、産業能率大学の通信講座も検討してみてください。";
-
+export default function BijimaneCourseAd({ placement = "course_ad", showCourseLink = true }: Props = {}) {
   return (
-    <aside className="theme-bijimane my-10 p-5 rounded-lg border border-[color:var(--c-border)] bg-[color:var(--c-bg-alt)]">
-      <p className="mb-3">
-        <span className="text-[10px] tracking-wider text-[color:var(--c-text-sub)] border border-[color:var(--c-border)] px-1.5 py-0.5 rounded">
-          広告
-        </span>
-      </p>
-      <p className="text-xs text-[color:var(--c-text-sub)] mb-3">{finalHeadline}</p>
-      <p className="text-sm text-[color:var(--c-text)] leading-relaxed mb-4">{finalBody}</p>
-      <div className="flex flex-col items-start gap-3">
-        <FreeLeadCTA exam="bijimane" placement="course_ad" withBadge />
-        <BookLeadCTA exam="bijimane" placement="course_ad" />
-        <AffiliateLink
-          href="https://www.hj.sanno.ac.jp/distance-learning/course/2AM0-01.html"
-          course="bijimane"
-          placement="course_ad"
-        >
-          産業能率大学の通信講座を見る →
-        </AffiliateLink>
-      </div>
-    </aside>
+    <StudioFirstCourseAd
+      exam="bijimane"
+      placement={placement}
+      showCourseLink={showCourseLink}
+      courseHref={"https://www.hj.sanno.ac.jp/distance-learning/course/2AM0-01.html"}
+      courseLabel={"産業能率大学の通信講座を見る"}
+      courseLead="通信講座で体系的に学びたい方は"
+    />
   );
 }

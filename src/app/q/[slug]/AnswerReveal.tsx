@@ -6,7 +6,7 @@ import { sendGAEvent } from "@next/third-parties/google";
 import { recordResult, loadProgress, type ExamSlug, type Medal } from "@/lib/study-progress";
 import AffiliateLink from "@/components/AffiliateLink";
 import StudioLink from "@/components/StudioLink";
-import { studioCtaFor } from "@/lib/studio-cta";
+import { isStudioFirst, studioCtaFor } from "@/lib/studio-cta";
 import { decideCtaPriority } from "@/lib/cta-priority";
 import { practiceRoutesFor } from "@/lib/practice-routes";
 import { openShikenmaeFor, mdJa, mdSlash, shikenmaePath } from "@/lib/shikenmae";
@@ -34,9 +34,8 @@ const RESULT_CTA_EXAMS: ExamSlug[] = [
   "chintai",
   "kangyo",
   "itpass",
-  "fukushi2",
-  // 2026-11-12 追加。fukushi3 は fukushi2 と同じユーキャンの講座(2・3級講座)への直リンク。
-  "fukushi3",
+  // fukushi2 / fukushi3(ユーキャンの直リンク)は 2026-11-22 に外した。アフィリ提携が無い資格は
+  // この位置に Studio へのリンクを出す(下の studioFirst。lib/studio-cta.ts の STUDIO_FIRST_EXAMS)。
   // 2026-11-14 追加。mynumber2 は3級と同じ SMART合格講座(4B1TI0系)の承認済み提携。
   "mynumber2",
   "mynumber1",
@@ -117,6 +116,10 @@ export default function AnswerReveal({
   // static export のビルド時評価だと、デプロイ間隔次第で締切後も「締切間近」の
   // 並びのまま出しかねないので、クライアント側 (このコンポーネント) で毎回評価する。
   const applyFirst = decideCtaPriority(exam).primary === "apply";
+
+  // アフィリ提携が無い資格(売上ゼロの直リンクしか無い)は Studio を主役にする。2026-11-22。
+  // courseAd が Studio のカード(StudioFirstCourseAd)になるので、控えめな studioAside は重ねて出さない。
+  const studioFirst = isStudioFirst(exam);
 
   const studioAside = (
     <aside className="mt-8 p-4 rounded-lg border border-indigo-200 bg-indigo-50">
@@ -267,6 +270,21 @@ export default function AnswerReveal({
                 正解: {correctAnswer}
               </p>
             </div>
+          )}
+
+          {/* アフィリ提携が無い資格は、答え合わせ直後の最上段を Studio へのリンクにする(2026-11-22) */}
+          {exam && studioFirst && (
+            <p className="mb-6 text-xs text-[color:var(--c-text-sub)] flex flex-wrap items-baseline gap-x-2 gap-y-1">
+              <span>同じ資格の問題をもっと解くなら</span>
+              <StudioLink
+                href={studioCta.href}
+                placement="question_result_top"
+                exam={exam}
+                className="text-indigo-700 hover:underline font-bold"
+              >
+                シカクモン Studio で AI の問題を解く(登録無料) →
+              </StudioLink>
+            </p>
           )}
 
           {/* 答え合わせ直後CTA（最高関心点。結果カードの外・控えめなテキストリンク） */}
@@ -474,7 +492,9 @@ export default function AnswerReveal({
               (lib/cta-priority.ts)。A8 の成果は申込締切の直前に集中し、
               締切を過ぎるとその回は受験できなくなるため、その窓だけ講座広告を上に置く。
               それ以外の期間は学習期間が長く、Studio の方が価値を訴求しやすい。 */}
-          {applyFirst ? (
+          {studioFirst ? (
+            courseAd ?? studioAside
+          ) : applyFirst ? (
             <>
               {courseAd}
               {studioAside}

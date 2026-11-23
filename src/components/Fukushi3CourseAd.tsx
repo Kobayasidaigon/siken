@@ -6,40 +6,34 @@
  *
  * 掲載面の制限は2級と同じ（lib/ucan-policy.ts）: 数値を伴う合格率・合格者数を書いた面には出さない。
  * ユーキャンは A8 提携の申請中で、いまは計測なしの直リンク（Fukushi2CourseAd.tsx の TODO と同じ）。
+
+ *
+ * 2026-11-22: アフィリ提携が無い(直リンクで売上ゼロ)ため、枠の主役をシカクモン Studio のカードに替えた
+ * (StudioFirstCourseAd.tsx / lib/studio-cta.ts の STUDIO_FIRST_EXAMS)。講座・公式サイトのリンクは下に小さく残す。
+ * headline / body は旧レイアウトの名残で、今は使っていない(呼び出し側を変えずに済むよう受け取りだけ残す)。
  */
 
-import AffiliateLink from "@/components/AffiliateLink";
-import FreeLeadCTA from "@/components/FreeLeadCTA";
-import BookLeadCTA from "@/components/BookLeadCTA";
+import StudioFirstCourseAd from "@/components/StudioFirstCourseAd";
 import { EXAM_AFFILIATE } from "@/lib/affiliate-links";
 
 interface Props {
   headline?: string;
   body?: string;
+  /** 設置面(AffiliateLink と同じ語彙)。問題ページの答え合わせ後は question_result */
+  placement?: string;
+  /** 講座の直リンクを出すか */
+  showCourseLink?: boolean;
 }
 
-export default function Fukushi3CourseAd({ headline, body }: Props = {}) {
-  const finalHeadline = headline ?? "独学に不安があれば";
-  const finalBody =
-    body ??
-    "福祉住環境コーディネーターの対策講座として、ユーキャンの通信講座（2・3級講座）があります。3級から始めて2級まで続けて学びたい方は検討してみてください。";
-
+export default function Fukushi3CourseAd({ placement = "course_ad", showCourseLink = true }: Props = {}) {
   return (
-    <aside className="theme-fukushi my-10 p-5 rounded-lg border border-[color:var(--c-border)] bg-[color:var(--c-bg-alt)]">
-      <p className="mb-3">
-        <span className="text-[10px] tracking-wider text-[color:var(--c-text-sub)] border border-[color:var(--c-border)] px-1.5 py-0.5 rounded">
-          広告
-        </span>
-      </p>
-      <p className="text-xs text-[color:var(--c-text-sub)] mb-3">{finalHeadline}</p>
-      <p className="text-sm text-[color:var(--c-text)] leading-relaxed mb-4">{finalBody}</p>
-      <div className="flex flex-col items-start gap-3">
-        <FreeLeadCTA exam="fukushi3" placement="course_ad" withBadge />
-        <BookLeadCTA exam="fukushi3" placement="course_ad" />
-        <AffiliateLink href={EXAM_AFFILIATE["fukushi3"].href} course="fukushi3" placement="course_ad">
-          {EXAM_AFFILIATE["fukushi3"].label} →
-        </AffiliateLink>
-      </div>
-    </aside>
+    <StudioFirstCourseAd
+      exam="fukushi3"
+      placement={placement}
+      showCourseLink={showCourseLink}
+      courseHref={EXAM_AFFILIATE["fukushi3"].href}
+      courseLabel={EXAM_AFFILIATE["fukushi3"].label}
+      courseLead="2級まで続けて通信講座で学びたい方は"
+    />
   );
 }

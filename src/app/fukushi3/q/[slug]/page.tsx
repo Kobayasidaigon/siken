@@ -108,7 +108,7 @@ export default async function Fukushi3QuestionPage({ params }: { params: Promise
         explanationHtml={q.content}
         exam="fukushi3"
         questionSlug={slug}
-        courseAd={<Fukushi3CourseAd />}
+        courseAd={<Fukushi3CourseAd placement="question_result" />}
       />
 
       <nav className="mt-8 flex justify-between items-center pt-4 border-t border-[color:var(--c-border)]">

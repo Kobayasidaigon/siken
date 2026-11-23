@@ -11,38 +11,33 @@
  *   収益はゼロだが、受験者が最初に見るべき一次情報へ導く導線としては正しいので出しておく。
  * ※そのため他資格の CourseAd と違い「広告」バッジを出していない（アフィリではないため）。
  *   A8リンクへ差し替える際は、他の CourseAd と同じ「広告」バッジを必ず復活させること。
+
+ *
+ * 2026-11-22: アフィリ提携が無い(直リンクで売上ゼロ)ため、枠の主役をシカクモン Studio のカードに替えた
+ * (StudioFirstCourseAd.tsx / lib/studio-cta.ts の STUDIO_FIRST_EXAMS)。講座・公式サイトのリンクは下に小さく残す。
+ * headline / body は旧レイアウトの名残で、今は使っていない(呼び出し側を変えずに済むよう受け取りだけ残す)。
  */
 
-import AffiliateLink from "@/components/AffiliateLink";
-import FreeLeadCTA from "@/components/FreeLeadCTA";
-import BookLeadCTA from "@/components/BookLeadCTA";
+import StudioFirstCourseAd from "@/components/StudioFirstCourseAd";
 
 interface Props {
   headline?: string;
   body?: string;
+  /** 設置面(AffiliateLink と同じ語彙)。問題ページの答え合わせ後は question_result */
+  placement?: string;
+  /** 講座の直リンクを出すか */
+  showCourseLink?: boolean;
 }
 
-export default function EcoCourseAd({ headline, body }: Props = {}) {
-  const finalHeadline = headline ?? "公式テキストから押さえたい方へ";
-  const finalBody =
-    body ??
-    "eco検定は公式テキストの内容から出題される試験です。出題範囲は気候変動・生物多様性・循環型社会・環境法と広く、用語の量も多いため、まず公式テキストの最新版で範囲の全体像をつかむのが近道です。";
-
+export default function EcoCourseAd({ placement = "course_ad", showCourseLink = true }: Props = {}) {
   return (
-    <aside className="theme-eco my-10 p-5 rounded-lg border border-[color:var(--c-border)] bg-[color:var(--c-bg-alt)]">
-      <p className="text-xs text-[color:var(--c-text-sub)] mb-3">{finalHeadline}</p>
-      <p className="text-sm text-[color:var(--c-text)] leading-relaxed mb-4">{finalBody}</p>
-      <div className="flex flex-col items-start gap-3">
-        <FreeLeadCTA exam="eco" placement="course_ad" withBadge />
-        <BookLeadCTA exam="eco" placement="course_ad" />
-        <AffiliateLink
-          href="https://kentei.tokyo-cci.or.jp/eco/"
-          course="eco"
-          placement="course_ad"
-        >
-          東商の公式サイトで公式テキスト・学習方法を見る →
-        </AffiliateLink>
-      </div>
-    </aside>
+    <StudioFirstCourseAd
+      exam="eco"
+      placement={placement}
+      showCourseLink={showCourseLink}
+      courseHref={"https://kentei.tokyo-cci.or.jp/eco/"}
+      courseLabel={"東商の公式サイトで公式テキスト・学習方法を見る"}
+      courseLead="公式テキストから押さえたい方は"
+    />
   );
 }

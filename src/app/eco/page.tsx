@@ -14,8 +14,8 @@ import ExamIntro from "@/components/ExamIntro";
 
 export const metadata: Metadata = pageMetadata({
   path: "/eco/",
-  title: "eco検定(環境社会検定試験) 練習問題・過去問対策【全236問・無料】",
-  description: "eco検定(環境社会検定試験)のオリジナル練習問題236問を無料公開。地球環境・気候変動・生物多様性・循環型社会・環境法を1問ずつの解説で演習でき、分野別の練習からランダム出題のテスト、90分の模擬試験まで使えます。",
+  title: "eco検定(環境社会検定試験) 練習問題・過去問対策【全276問・無料】",
+  description: "eco検定(環境社会検定試験)のオリジナル練習問題276問を無料公開。地球環境・気候変動・生物多様性・循環型社会・環境法を1問ずつの解説で演習でき、分野別の練習からランダム出題のテスト、90分の模擬試験まで使えます。",
 });
 
 const fields = [
@@ -69,6 +69,13 @@ export default async function EcoPage() {
             style={{ borderColor: "var(--c-eco)", color: "var(--c-eco-ink)" }}
           >
             模擬試験を受ける（90分・70点合格判定）→
+          </SiteLink>
+          <SiteLink
+            href="/eco/moshi3/"
+            className="inline-flex items-center px-4 py-2 rounded-lg border text-sm font-medium no-underline transition-colors hover:bg-[color:var(--c-eco-soft)]"
+            style={{ borderColor: "var(--c-eco)", color: "var(--c-eco-ink)" }}
+          >
+            模擬試験 第3回（○×・語群の穴埋めつき）→
           </SiteLink>
           <Moshi2TopLink certId="eco" />
           <SiteLink

@@ -367,6 +367,12 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://shikakumon.com/eco/moshi3/</loc>
+    <lastmod>2026-11-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://shikakumon.com/eco/field/history/</loc>
     <lastmod>2026-11-10</lastmod>
     <changefreq>monthly</changefreq>

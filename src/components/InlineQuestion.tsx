@@ -11,6 +11,7 @@ import { useRef, useState } from "react";
 import { sendGAEvent } from "@next/third-parties/google";
 import { recordResult } from "@/lib/study-progress";
 import type { InlineQuestionData } from "@/lib/inline-questions";
+import ChoiceOption from "@/components/ChoiceOption";
 
 export default function InlineQuestion({
   q,
@@ -76,20 +77,22 @@ export default function InlineQuestion({
           }
 
           return (
-            <li
+            <ChoiceOption
               key={i}
-              onClick={() => !revealed && setSelected(num)}
-              className={`text-sm px-3 py-2.5 rounded-lg transition-colors flex items-start gap-2 ${style}`}
+              num={num}
+              label={choice}
+              selected={isSelected}
+              disabled={revealed}
+              onSelect={() => setSelected(num)}
+              className={style}
             >
-              <span className="font-bold shrink-0">{num}.</span>
-              <span className="flex-1">{choice}</span>
               {revealed && isCorrect && (
                 <span className="shrink-0 text-xs bg-green-600 text-white px-1.5 py-0.5 rounded whitespace-nowrap">正解</span>
               )}
               {revealed && isSelected && !isCorrect && (
                 <span className="shrink-0 text-xs bg-red-500 text-white px-1.5 py-0.5 rounded whitespace-nowrap">不正解</span>
               )}
-            </li>
+            </ChoiceOption>
           );
         })}
       </ol>
@@ -104,6 +107,7 @@ export default function InlineQuestion({
       ) : (
         <>
           <p
+            role="status"
             className={`text-sm font-bold mb-2 ${
               selected === null ? "text-green-700" : correct ? "text-green-700" : "text-red-700"
             }`}

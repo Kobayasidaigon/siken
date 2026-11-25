@@ -12,7 +12,7 @@ import SiteLink from "@/components/SiteLink";
  * startedAt 起点の実時間で進む(リロードしても止まらない＝本番と同じ)。
  *
  * - sections: 個人情報保護士のような「課題ごとに70%」の試験用。指定時は
- *   全セクションの基準クリアで合格判定になる。
+ *   全セクションの基準クリアに加えて、総合基準(passCount / passPoints)も満たすと合格判定になる。
  * - pointsPerQuestion: ビジ法/福祉住環境のような100点満点試験用の換算点表示。
  * - explanationHtml: 未指定の問題は結果画面で問題ページへのリンクのみ表示
  *   (80問超の試験はページ重量対策で詳解を同梱しない)。
@@ -33,7 +33,9 @@ import Moshi2Offer from "@/components/Moshi2Offer";
 import MoshiReminderForm from "@/components/MoshiReminderForm";
 import { nextExamYmd } from "@/lib/exam-dates";
 import { moshi2ProductOf } from "@/lib/moshi2-products";
+import { isMoshiPassed } from "@/lib/moshi-pass";
 import StudioLink from "@/components/StudioLink";
+import ChoiceOption from "@/components/ChoiceOption";
 import { SHARE_HASHTAGS } from "@/lib/share-hashtags";
 
 export interface MoshiQuestion {
@@ -198,30 +200,10 @@ export default function MoshiExam({
     };
   }, [phase, sessionKey, detectResumable]);
 
+  // セクション基準を満たしても総合基準(passCount / passPoints)は必ず確かめる(lib/moshi-pass.ts)
   const isPassed = useCallback(
-    (ans: (number | null)[]) => {
-      if (sections && sections.length > 0) {
-        const sectionsOk = sections.every((sec) => {
-          let c = 0;
-          for (let i = sec.start; i < sec.start + sec.count; i++) {
-            if (ans[i] === questions[i].correctAnswer) c++;
-          }
-          return c >= sec.passCount;
-        });
-        if (!sectionsOk) return false;
-        if (passPoints == null) return true;
-      }
-      // 問別配点がある試験(東商IBT型)は合計点で判定
-      if (passPoints != null) {
-        const pts = questions.reduce(
-          (s, q, i) => s + (ans[i] === q.correctAnswer ? (q.points ?? pointsPerQuestion ?? 1) : 0),
-          0,
-        );
-        return pts >= passPoints;
-      }
-      const score = questions.reduce((s, q, i) => s + (ans[i] === q.correctAnswer ? 1 : 0), 0);
-      return score >= passCount;
-    },
+    (ans: (number | null)[]) =>
+      isMoshiPassed(questions, ans, { passCount, sections, passPoints, pointsPerQuestion }),
     [questions, sections, passCount, passPoints, pointsPerQuestion],
   );
 
@@ -461,14 +443,14 @@ export default function MoshiExam({
               ? "bg-blue-50 border border-blue-300 text-blue-800 font-medium"
               : "bg-slate-50 text-slate-600 border border-transparent cursor-pointer hover:bg-slate-100";
             return (
-              <li
+              <ChoiceOption
                 key={i}
-                onClick={() => select(num)}
-                className={`text-sm px-3 py-2.5 rounded-lg transition-colors flex items-start gap-2 ${style}`}
-              >
-                <span className="font-bold shrink-0">{num}.</span>
-                <span className="flex-1">{choice}</span>
-              </li>
+                num={num}
+                label={choice}
+                selected={isSelected}
+                onSelect={() => select(num)}
+                className={style}
+              />
             );
           })}
         </ol>

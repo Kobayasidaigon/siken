@@ -6,6 +6,7 @@ import { sendGAEvent } from "@next/third-parties/google";
 import { recordResult, loadProgress, type ExamSlug, type Medal } from "@/lib/study-progress";
 import AffiliateLink from "@/components/AffiliateLink";
 import StudioLink from "@/components/StudioLink";
+import ChoiceOption from "@/components/ChoiceOption";
 import { isStudioFirst, studioCtaFor } from "@/lib/studio-cta";
 import { decideCtaPriority } from "@/lib/cta-priority";
 import { practiceRoutesFor } from "@/lib/practice-routes";
@@ -215,20 +216,22 @@ export default function AnswerReveal({
           }
 
           return (
-            <li
+            <ChoiceOption
               key={i}
-              onClick={() => !revealed && setSelected(num)}
-              className={`text-sm px-3 py-2.5 rounded-lg transition-colors flex items-start gap-2 ${style}`}
+              num={num}
+              label={choice}
+              selected={isSelected}
+              disabled={revealed}
+              onSelect={() => setSelected(num)}
+              className={style}
             >
-              <span className="font-bold shrink-0">{num}.</span>
-              <span className="flex-1">{choice}</span>
               {revealed && isCorrect && (
                 <span className="shrink-0 text-xs bg-green-600 text-white px-1.5 py-0.5 rounded whitespace-nowrap">正解</span>
               )}
               {revealed && isSelected && !isCorrect && (
                 <span className="shrink-0 text-xs bg-red-500 text-white px-1.5 py-0.5 rounded whitespace-nowrap">不正解</span>
               )}
-            </li>
+            </ChoiceOption>
           );
         })}
       </ol>
@@ -243,35 +246,39 @@ export default function AnswerReveal({
         </button>
       )}
 
-      {/* Result */}
+      {/* Result
+          答え合わせの結果をスクリーンリーダーにも読み上げさせる。結果を出す瞬間に枠ごと足すと
+          読み上げられない環境があるため、role="status" の枠は答える前から置いておき、中身だけ入れる。 */}
+      <div role="status">
+        {revealed && selected && (
+          <div className={`card p-4 mb-6 text-center ${selected === correctAnswer ? "bg-green-50 border-green-200" : "bg-red-50 border-red-200"}`}>
+            <p className={`text-base font-bold ${selected === correctAnswer ? "text-green-700" : "text-red-700"}`}>
+              {selected === correctAnswer ? "正解!" : `不正解 — 正解は ${correctAnswer} です`}
+            </p>
+            {exam && questionSlug && medal && (
+              <>
+                <p className="text-sm font-bold mt-2">
+                  この問題：{MEDAL_LABEL[medal]}
+                </p>
+                <p className="text-xs text-[color:var(--c-text-sub)] mt-1">
+                  {MEDAL_NEXT[medal]}（<SiteLink href="/study/" className="underline">学習履歴を見る</SiteLink>）
+                </p>
+              </>
+            )}
+          </div>
+        )}
+
+        {revealed && !selected && (
+          <div className="card p-4 mb-6 text-center bg-green-50 border-green-200">
+            <p className="text-base font-bold text-green-700">
+              正解: {correctAnswer}
+            </p>
+          </div>
+        )}
+      </div>
+
       {revealed && (
         <>
-          {selected && (
-            <div className={`card p-4 mb-6 text-center ${selected === correctAnswer ? "bg-green-50 border-green-200" : "bg-red-50 border-red-200"}`}>
-              <p className={`text-base font-bold ${selected === correctAnswer ? "text-green-700" : "text-red-700"}`}>
-                {selected === correctAnswer ? "正解!" : `不正解 — 正解は ${correctAnswer} です`}
-              </p>
-              {exam && questionSlug && medal && (
-                <>
-                  <p className="text-sm font-bold mt-2">
-                    この問題：{MEDAL_LABEL[medal]}
-                  </p>
-                  <p className="text-xs text-[color:var(--c-text-sub)] mt-1">
-                    {MEDAL_NEXT[medal]}（<SiteLink href="/study/" className="underline">学習履歴を見る</SiteLink>）
-                  </p>
-                </>
-              )}
-            </div>
-          )}
-
-          {!selected && (
-            <div className="card p-4 mb-6 text-center bg-green-50 border-green-200">
-              <p className="text-base font-bold text-green-700">
-                正解: {correctAnswer}
-              </p>
-            </div>
-          )}
-
           {/* アフィリ提携が無い資格は、答え合わせ直後の最上段を Studio へのリンクにする(2026-11-22) */}
           {exam && studioFirst && (
             <p className="mb-6 text-xs text-[color:var(--c-text-sub)] flex flex-wrap items-baseline gap-x-2 gap-y-1">

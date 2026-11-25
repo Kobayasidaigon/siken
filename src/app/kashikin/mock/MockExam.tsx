@@ -19,6 +19,7 @@ import { decideCtaPriority } from "@/lib/cta-priority";
 import { recordResult, type ExamSlug } from "@/lib/study-progress";
 import { studioMoshiHref } from "@/lib/studio-cta";
 import StudioLink from "@/components/StudioLink";
+import ChoiceOption from "@/components/ChoiceOption";
 import { SHARE_HASHTAGS } from "@/lib/share-hashtags";
 
 export interface MockQuestion {
@@ -190,14 +191,14 @@ export default function MockExam({
               ? "bg-blue-50 border border-blue-300 text-blue-800 font-medium"
               : "bg-slate-50 text-slate-600 border border-transparent cursor-pointer hover:bg-slate-100";
             return (
-              <li
+              <ChoiceOption
                 key={i}
-                onClick={() => select(num)}
-                className={`text-sm px-3 py-2.5 rounded-lg transition-colors flex items-start gap-2 ${style}`}
-              >
-                <span className="font-bold shrink-0">{num}.</span>
-                <span className="flex-1">{choice}</span>
-              </li>
+                num={num}
+                label={choice}
+                selected={isSelected}
+                onSelect={() => select(num)}
+                className={style}
+              />
             );
           })}
         </ol>

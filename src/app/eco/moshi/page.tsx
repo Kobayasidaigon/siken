@@ -77,6 +77,8 @@ export default async function EcoMoshiPage() {
         問題はすべて当サイトで作成したオリジナルで、実際の試験問題の転載ではありません。合格判定はあくまで学習の目安です。
         時間を計らずに力試しをしたい方は
         <SiteLink href="/eco/mock/" className="underline hover:no-underline">腕試しテスト（ランダム20問）</SiteLink>へ、
+        ○×・語群の穴埋めも混ぜて解きたい方は
+        <SiteLink href="/eco/moshi3/" className="underline hover:no-underline">模擬試験 第3回</SiteLink>へ、
         1問ずつじっくり学びたい方は<SiteLink href="/eco/" className="underline hover:no-underline">練習問題</SiteLink>へ。
       </p>
     </div>

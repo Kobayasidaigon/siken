@@ -241,7 +241,7 @@ export default function IchimonDrill({ exam, examLabel, questionPathPrefix, ox, 
       <section className="card p-5 mb-5" style={{ borderLeft: "4px solid var(--c-accent)" }}>
         {isOx ? (
           <>
-            <p className="text-xs text-[color:var(--c-text-sub)] mb-2">{q.topic}に関する次の記述は、正しいか誤りか。</p>
+            <p className="text-xs text-[color:var(--c-text-sub)] mb-2">{/の(説明|特徴|記述)$/.test(q.topic) ? `${q.topic}として、次の記述は正しいか誤りか。` : `${q.topic}に関する次の記述は、正しいか誤りか。`}</p>
             <p className="text-base text-[color:var(--c-text)] leading-relaxed">{q.statement}</p>
           </>
         ) : (

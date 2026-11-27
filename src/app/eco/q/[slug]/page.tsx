@@ -2,7 +2,7 @@ import SiteLink from "@/components/SiteLink";
 import { getAllEcoSlugs, getEcoQuestion, getEcoQuestionsByField } from "@/lib/eco-questions";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import AnswerReveal from "@/app/q/[slug]/AnswerReveal";
+import AnswerReveal from "@/components/QuestionAnswer";
 import BookmarkButton from "@/app/q/[slug]/BookmarkButton";
 import EcoCourseAd from "@/components/EcoCourseAd";
 import { pageMetadata } from "@/lib/page-metadata";

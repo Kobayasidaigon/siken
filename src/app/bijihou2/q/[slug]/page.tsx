@@ -2,7 +2,7 @@ import SiteLink from "@/components/SiteLink";
 import { getAllBijihou2Slugs, getBijihou2Question, getBijihou2QuestionsByField } from "@/lib/bijihou2-questions";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import AnswerReveal from "@/app/q/[slug]/AnswerReveal";
+import AnswerReveal from "@/components/QuestionAnswer";
 import BookmarkButton from "@/app/q/[slug]/BookmarkButton";
 import Bijihou2CourseAd from "@/components/Bijihou2CourseAd";
 import JsonLd from "@/components/JsonLd";

@@ -48,7 +48,7 @@ GA4 の「収益」は **`purchase` イベントの `value` と `currency` か�
 
 | イベント | 発火する場所 | パラメータ |
 |---|---|---|
-| `question_answered` | 問題ページで答え合わせ。2026-10-24 からコラム本文中の1問のカード(`InlineQuestion`)でも送る | `exam`, `result`(correct/wrong/revealed), `placement`(カードだけ: column_inline_q。問題ページは送らない) |
+| `question_answered` | 問題ページで答え合わせ。2026-10-24 からコラム本文中の1問のカード(`InlineQuestion`)でも送る | `exam`, `result`(correct/wrong/revealed), `placement`(カードだけ: column_inline_q。問題ページは送らない), `mode`(問題ページだけ。choice=4択 / ox=○×で解いた。2026-11-27〜) |
 | `next_q_click` | 「次の問題へ」 | `exam` |
 | `practice_link_click` | 問題ページから模試・腕試しテスト・コラムへ。コラムの1問のカードから問題ページへ | `exam`, `kind`(mock/moshi/column。カードは next_question/explanation), `placement`(question_mid/question_end/column_inline_q) |
 | `mock_start` | 腕試しテストの開始（全14資格が共有） | `exam`, `size` |

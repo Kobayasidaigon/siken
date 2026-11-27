@@ -12,7 +12,17 @@ import { MYNUMBER_KINYU } from "./kinyu/mynumber";
  * eco検定・マイナンバー3級)から始めた。記入式は問題を手で書く(2026-11-23 に4資格ぶん用意)。
  */
 export const ICHIMON_EXAMS = ["bijihou", "fukushi2", "eco", "mynumber"] as const;
-export type IchimonExam = (typeof ICHIMON_EXAMS)[number];
+/**
+ * 2026-11-27 に本体の全資格へ広げた。○×が20問に満たない資格(cac・mynumber1)は作らない。
+ * ページは components/IchimonPage.tsx を使う。
+ */
+export const ICHIMON_EXAMS_ALL = [
+  ...ICHIMON_EXAMS,
+  "kashikin", "pii", "chizai", "chizai2", "jitsumu", "bijimane", "bijihou2", "itpass", "chintai", "kangyo",
+  "isec", "kyoin", "shakai", "isf", "dxp", "had", "ccm", "xray", "aia", "dxa", "gaia", "hoikushi", "touhan",
+  "ccc", "llc", "ibd", "dxo", "wlc", "fukushi3", "mynumber2",
+] as const;
+export type IchimonExam = (typeof ICHIMON_EXAMS_ALL)[number];
 
 const KINYU: Partial<Record<IchimonExam, InputItem[]>> = {
   bijihou: BIJIHOU_KINYU,

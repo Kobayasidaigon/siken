@@ -2,7 +2,7 @@ import SiteLink from "@/components/SiteLink";
 import { getAllIbdSlugs, getIbdQuestion, getIbdQuestionsByField } from "@/lib/ibd-questions";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import AnswerReveal from "@/app/q/[slug]/AnswerReveal";
+import AnswerReveal from "@/components/QuestionAnswer";
 import BookmarkButton from "@/app/q/[slug]/BookmarkButton";
 import IbdCourseAd from "@/components/IbdCourseAd";
 import JsonLd from "@/components/JsonLd";

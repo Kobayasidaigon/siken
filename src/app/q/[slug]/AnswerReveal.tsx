@@ -14,6 +14,11 @@ import ShikenmaeEntryLink from "@/components/ShikenmaeEntryLink";
 import { drillPositionOf, endDrill, loadDrill, type DrillState } from "@/lib/review-drill";
 import FreeLeadCTA from "@/components/FreeLeadCTA";
 import { EXAM_AFFILIATE, RESULT_CTA_HEADLINE } from "@/lib/affiliate-links";
+import type { QuestionOx } from "@/lib/ox-from-choices";
+
+// 「4択 / ○×」のどちらで解くか。見る人ごとの好みなので localStorage に置く(無くても4択で動く)。
+const MODE_KEY = "shikakumon:answer-mode";
+type AnswerMode = "choice" | "ox";
 
 // 答え合わせ直後CTAを出す資格。bijihou/piiで検証→SMART系の発生確認→2026-08-05に
 // ユーザー指示で全資格へ展開(発生実績: SMART CVR7.5%・試験申込型あり)。
@@ -88,6 +93,7 @@ export default function AnswerReveal({
   courseAd,
   nextHref,
   nextLabel,
+  ox,
 }: {
   choices: string[];
   correctAnswer: number;
@@ -102,9 +108,42 @@ export default function AnswerReveal({
   // 大きなボタンとして出す。未指定(分野の最終問など)は非表示。
   nextHref?: string;
   nextLabel?: string;
+  // 肢ごとの○×に分けたデータ(components/QuestionAnswer.tsx が渡す)。無い問題は4択だけ。2026-11-27
+  ox?: QuestionOx;
 }) {
   const [revealed, setRevealed] = useState(false);
   const [selected, setSelected] = useState<number | null>(null);
+  const [mode, setMode] = useState<AnswerMode>("choice");
+  const [judged, setJudged] = useState<(boolean | null)[]>(() => (ox ? ox.items.map(() => null) : []));
+  // 前に選んだ解き方を引き継ぐ。初期HTMLは必ず4択(サーバの描画と食い違わないように)
+  useEffect(() => {
+    if (!ox) return;
+    try {
+      if (localStorage.getItem(MODE_KEY) === "ox") setMode("ox");
+    } catch {
+      /* 保存できない環境でも4択で解ける */
+    }
+  }, [ox]);
+  function switchMode(next: AnswerMode) {
+    if (revealed || next === mode) return;
+    setMode(next);
+    try {
+      localStorage.setItem(MODE_KEY, next);
+    } catch {
+      /* 同上 */
+    }
+  }
+  const oxMode = mode === "ox" && !!ox;
+  const allJudged = oxMode && judged.every((j) => j !== null);
+  const anyJudged = oxMode && judged.some((j) => j !== null);
+  // 正誤。○×で解いたときは全部の肢が合っていれば正解。答えずに「答えを見る」なら null
+  const answeredRight: boolean | null = oxMode
+    ? allJudged
+      ? ox!.items.every((it, i) => judged[i] === it.answer)
+      : null
+    : selected === null
+      ? null
+      : selected === correctAnswer;
   const [medal, setMedal] = useState<Medal | null>(null);
 
   // 答え合わせ直後の Studio 送客。資格別 LP がある資格はその LP へ資格ごとの
@@ -162,12 +201,12 @@ export default function AnswerReveal({
   }
 
   useEffect(() => {
-    if (revealed && selected !== null && exam && questionSlug) {
-      recordResult(exam, questionSlug, selected === correctAnswer);
+    if (revealed && answeredRight !== null && exam && questionSlug) {
+      recordResult(exam, questionSlug, answeredRight);
       // 更新後のメダルを取得して表示
       setMedal(loadProgress()[exam].medals?.[questionSlug] ?? null);
     }
-  }, [revealed, selected, correctAnswer, exam, questionSlug]);
+  }, [revealed, answeredRight, exam, questionSlug]);
 
   // 「問題を解いた」の計測。2026-09-07 追加。
   // このサイトの中核行動なのに、これまで一度も GA に送っていなかった。
@@ -185,16 +224,105 @@ export default function AnswerReveal({
     try {
       sendGAEvent("event", "question_answered", {
         exam: exam ?? "unknown",
-        result: selected === null ? "revealed" : selected === correctAnswer ? "correct" : "wrong",
+        result: answeredRight === null ? "revealed" : answeredRight ? "correct" : "wrong",
+        mode: oxMode ? "ox" : "choice",
       });
     } catch {
       /* GA未ロードでも学習は妨げない */
     }
-  }, [revealed, selected, correctAnswer, exam]);
+  }, [revealed, answeredRight, oxMode, exam]);
 
   return (
     <>
+      {/* 解き方の切り替え(○×に分けられる問題だけ) */}
+      {ox && (
+        <div className="flex gap-2 mb-3" role="tablist" aria-label="解き方">
+          {(["choice", "ox"] as const).map((m) => (
+            <button
+              key={m}
+              type="button"
+              role="tab"
+              aria-selected={mode === m}
+              disabled={revealed && mode !== m}
+              onClick={() => switchMode(m)}
+              className={`text-xs px-3 py-1.5 rounded-full border transition-colors ${
+                mode === m
+                  ? "bg-slate-800 text-white border-slate-800 font-bold"
+                  : "bg-white text-slate-600 border-slate-300 hover:bg-slate-50 disabled:opacity-40"
+              }`}
+            >
+              {m === "choice" ? `${choices.length}択で解く` : "○×で解く"}
+            </button>
+          ))}
+        </div>
+      )}
+
+      {/* ○×で解く: 肢ごとに正しいか誤りかを答える */}
+      {oxMode && (
+        <div className="mb-6">
+          <p className="text-xs text-[color:var(--c-text-sub)] mb-2">
+            {ox!.topic}について、それぞれの記述が正しければ○、誤りなら×を選んでください。
+          </p>
+          <ol className="space-y-2">
+            {ox!.items.map((it, i) => {
+              const mine = judged[i];
+              const ok = revealed && mine !== null && mine === it.answer;
+              const ng = revealed && mine !== null && mine !== it.answer;
+              return (
+                <li
+                  key={i}
+                  className={`text-sm px-3 py-2.5 rounded-lg border ${
+                    ok ? "bg-green-50 border-green-300" : ng ? "bg-red-50 border-red-300" : "bg-slate-50 border-transparent"
+                  }`}
+                >
+                  <div className="flex items-start gap-2 mb-2">
+                    <span className="font-bold shrink-0">{i + 1}.</span>
+                    <span className="flex-1 text-slate-700">{it.statement}</span>
+                  </div>
+                  <div className="flex items-center gap-2 pl-5">
+                    {([true, false] as const).map((v) => {
+                      const on = mine === v;
+                      return (
+                        <button
+                          key={String(v)}
+                          type="button"
+                          aria-pressed={on}
+                          aria-label={v ? "正しい(○)" : "誤り(×)"}
+                          disabled={revealed}
+                          onClick={() => setJudged((prev) => prev.map((x, j) => (j === i ? v : x)))}
+                          className={`w-12 h-9 rounded-lg border-2 text-lg font-bold leading-none transition-colors ${
+                            on
+                              ? v
+                                ? "bg-blue-600 border-blue-600 text-white"
+                                : "bg-red-600 border-red-600 text-white"
+                              : v
+                                ? "bg-white border-blue-300 text-blue-600 hover:bg-blue-50"
+                                : "bg-white border-red-300 text-red-600 hover:bg-red-50"
+                          }`}
+                        >
+                          {v ? "○" : "×"}
+                        </button>
+                      );
+                    })}
+                    {revealed && (
+                      <span
+                        className={`ml-auto shrink-0 text-xs px-1.5 py-0.5 rounded whitespace-nowrap text-white ${
+                          it.answer ? "bg-blue-600" : "bg-red-500"
+                        }`}
+                      >
+                        正解は{it.answer ? "○" : "×"}
+                      </span>
+                    )}
+                  </div>
+                </li>
+              );
+            })}
+          </ol>
+        </div>
+      )}
+
       {/* Choices */}
+      {!oxMode && (
       <ol className="space-y-2 mb-6">
         {choices.map((choice, i) => {
           const num = i + 1;
@@ -232,6 +360,7 @@ export default function AnswerReveal({
           );
         })}
       </ol>
+      )}
 
       {/* Reveal Button */}
       {!revealed && (
@@ -239,17 +368,23 @@ export default function AnswerReveal({
           onClick={() => setRevealed(true)}
           className="w-full py-3 rounded-lg font-bold text-sm transition-colors mb-6 bg-blue-700 text-white hover:bg-blue-600"
         >
-          {selected ? "答え合わせする" : "答えを見る"}
+          {oxMode ? (allJudged ? "答え合わせする" : anyJudged ? "答えを見る(残りは未回答)" : "答えを見る") : selected ? "答え合わせする" : "答えを見る"}
         </button>
       )}
 
       {/* Result */}
       {revealed && (
         <>
-          {selected && (
-            <div className={`card p-4 mb-6 text-center ${selected === correctAnswer ? "bg-green-50 border-green-200" : "bg-red-50 border-red-200"}`}>
-              <p className={`text-base font-bold ${selected === correctAnswer ? "text-green-700" : "text-red-700"}`}>
-                {selected === correctAnswer ? "正解!" : `不正解 — 正解は ${correctAnswer} です`}
+          {answeredRight !== null && (
+            <div className={`card p-4 mb-6 text-center ${answeredRight ? "bg-green-50 border-green-200" : "bg-red-50 border-red-200"}`}>
+              <p className={`text-base font-bold ${answeredRight ? "text-green-700" : "text-red-700"}`}>
+                {answeredRight
+                  ? oxMode
+                    ? "全問正解!"
+                    : "正解!"
+                  : oxMode
+                    ? `不正解 — ${ox!.items.filter((it, i) => judged[i] === it.answer).length} / ${ox!.items.length} 肢正解`
+                    : `不正解 — 正解は ${correctAnswer} です`}
               </p>
               {exam && questionSlug && medal && (
                 <>
@@ -264,10 +399,10 @@ export default function AnswerReveal({
             </div>
           )}
 
-          {!selected && (
+          {answeredRight === null && (
             <div className="card p-4 mb-6 text-center bg-green-50 border-green-200">
               <p className="text-base font-bold text-green-700">
-                正解: {correctAnswer}
+                {oxMode ? "正解は各記述の右に出ています" : `正解: ${correctAnswer}`}
               </p>
             </div>
           )}

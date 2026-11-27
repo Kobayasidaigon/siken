@@ -2,7 +2,7 @@ import SiteLink from "@/components/SiteLink";
 import { getAllBijimaneSlugs, getBijimaneQuestion, getBijimaneQuestionsByField } from "@/lib/bijimane-questions";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import AnswerReveal from "@/app/q/[slug]/AnswerReveal";
+import AnswerReveal from "@/components/QuestionAnswer";
 import BookmarkButton from "@/app/q/[slug]/BookmarkButton";
 import BijimaneCourseAd from "@/components/BijimaneCourseAd";
 import { pageMetadata } from "@/lib/page-metadata";

@@ -2,7 +2,7 @@ import SiteLink from "@/components/SiteLink";
 import { getAllChintaiSlugs, getChintaiQuestion, getChintaiQuestionsByField } from "@/lib/chintai-questions";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import AnswerReveal from "@/app/q/[slug]/AnswerReveal";
+import AnswerReveal from "@/components/QuestionAnswer";
 import BookmarkButton from "@/app/q/[slug]/BookmarkButton";
 import ChintaiCourseAd from "@/components/ChintaiCourseAd";
 import JsonLd from "@/components/JsonLd";

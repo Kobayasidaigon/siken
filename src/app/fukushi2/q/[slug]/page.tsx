@@ -2,7 +2,7 @@ import SiteLink from "@/components/SiteLink";
 import { getAllFukushi2Slugs, getFukushi2Question, getFukushi2QuestionsByField } from "@/lib/fukushi2-questions";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import AnswerReveal from "@/app/q/[slug]/AnswerReveal";
+import AnswerReveal from "@/components/QuestionAnswer";
 import BookmarkButton from "@/app/q/[slug]/BookmarkButton";
 import Fukushi2CourseAd from "@/components/Fukushi2CourseAd";
 import { pageMetadata } from "@/lib/page-metadata";

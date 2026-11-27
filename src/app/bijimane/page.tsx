@@ -78,6 +78,13 @@ export default async function BijimanePage() {
           >
             腕試しテスト（ランダム20問・採点）→
           </SiteLink>
+          <SiteLink
+            href="/bijimane/ichimon/"
+            className="inline-flex items-center px-4 py-2 rounded-lg border text-sm font-medium no-underline transition-colors hover:bg-[color:var(--c-bijimane-soft)]"
+            style={{ borderColor: "var(--c-bijimane)", color: "var(--c-bijimane-ink)" }}
+          >
+            一問一答（○×）→
+          </SiteLink>
         </div>
       </section>
 

@@ -76,6 +76,13 @@ export default async function ChizaiPage() {
           >
             腕試しテスト（ランダム20問・採点）→
           </SiteLink>
+          <SiteLink
+            href="/chizai/ichimon/"
+            className="inline-flex items-center px-4 py-2 rounded-lg border text-sm font-medium no-underline transition-colors hover:bg-[color:var(--c-chizai-soft)]"
+            style={{ borderColor: "var(--c-chizai)", color: "var(--c-chizai-ink)" }}
+          >
+            一問一答（○×）→
+          </SiteLink>
         </div>
         <p className="mt-4 text-xs text-[color:var(--c-text-sub)]">
           3級に慣れたら <SiteLink href="/chizai2/" className="underline hover:no-underline" style={{ color: "var(--c-chizai-ink)" }}>知的財産管理技能検定2級</SiteLink> へ。

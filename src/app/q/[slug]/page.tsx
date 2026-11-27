@@ -2,7 +2,7 @@ import SiteLink from "@/components/SiteLink";
 import { getAllQuestionSlugs, getQuestion, getQuestionsByField } from "@/lib/questions";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import AnswerReveal from "./AnswerReveal";
+import AnswerReveal from "@/components/QuestionAnswer";
 import BookmarkButton from "./BookmarkButton";
 import KashikinCourseAd from "@/components/KashikinCourseAd";
 import JsonLd from "@/components/JsonLd";

@@ -2,7 +2,7 @@ import SiteLink from "@/components/SiteLink";
 import { getAllKyoinSlugs, getKyoinQuestion, getKyoinQuestionsByField } from "@/lib/kyoin-questions";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import AnswerReveal from "@/app/q/[slug]/AnswerReveal";
+import AnswerReveal from "@/components/QuestionAnswer";
 import BookmarkButton from "@/app/q/[slug]/BookmarkButton";
 import KyoinCourseAd from "@/components/KyoinCourseAd";
 import JsonLd from "@/components/JsonLd";

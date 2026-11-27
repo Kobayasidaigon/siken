@@ -2,7 +2,7 @@ import SiteLink from "@/components/SiteLink";
 import { getAllPiiSlugs, getPiiQuestion, getPiiQuestionsByField } from "@/lib/pii-questions";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import AnswerReveal from "@/app/q/[slug]/AnswerReveal";
+import AnswerReveal from "@/components/QuestionAnswer";
 import BookmarkButton from "@/app/q/[slug]/BookmarkButton";
 import PiiCourseAd from "@/components/PiiCourseAd";
 import JsonLd from "@/components/JsonLd";

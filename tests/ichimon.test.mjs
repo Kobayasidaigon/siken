@@ -70,3 +70,45 @@ test("○×は4択の正解の向き(適切/不適切)どおりに作られる",
     }
   }
 });
+
+// 2026-11-27: 全資格の問題ページに「4択 / ○×」の切り替えを付けた。その元になる○×の作り方を確かめる。
+const { ICHIMON_EXAMS_ALL } = loadTs("src/lib/ichimon.ts");
+const { getQuestionOx } = loadTs("src/lib/ox-from-choices.ts");
+const dirOf = (exam) => (exam === "kashikin" ? "questions" : exam);
+
+test("全資格で、○×の向きが4択の正解と食い違わない", () => {
+  const exams = fs.readdirSync("src/content").filter((d) =>
+    !["columns", "exam-intros", "field-guides", "voices"].includes(d)).map((d) => (d === "questions" ? "kashikin" : d));
+  for (const exam of exams) {
+    const bySource = new Map();
+    for (const it of buildOxItems(exam)) bySource.set(it.sourceSlug, [...(bySource.get(it.sourceSlug) ?? []), it]);
+    for (const [slug, its] of bySource) {
+      const text = fs.readFileSync(`src/content/${dirOf(exam)}/${slug}.md`, "utf-8");
+      const correct = Number(text.match(/^correctAnswer:\s*(\d)/m)[1]);
+      const negative = /(不適切な|適切でない|誤っている)もの/.test(text.match(/^questionText:.*$/m)[0]);
+      for (const it of its) assert.equal(it.answer, negative ? it.choiceNo !== correct : it.choiceNo === correct, it.id);
+      assert.equal(its.filter((it) => it.answer).length, negative ? its.length - 1 : 1, `${exam}/${slug}`);
+      assert.ok(its.every((it) => it.topic.length > 0), `${exam}/${slug}: topic が空`);
+    }
+  }
+});
+
+test("組合せ・個数・計算の問題は○×にしない", () => {
+  for (const exam of ["kashikin", "hoikushi", "touhan", "pii"]) {
+    for (const it of buildOxItems(exam)) {
+      const text = fs.readFileSync(`src/content/${dirOf(exam)}/${it.sourceSlug}.md`, "utf-8");
+      const qt = text.match(/^questionText:.*$/m)[0];
+      assert.ok(!/組み?合わ?せ|個数|いくつあるか/.test(qt), `${exam}/${it.sourceSlug}`);
+    }
+  }
+});
+
+test("問題ページ用の○×と、一問一答の対象資格", () => {
+  const ox = getQuestionOx("kashikin", buildOxItems("kashikin")[0].sourceSlug);
+  assert.ok(ox && ox.items.length === 4 && ox.items.filter((i) => i.answer).length >= 1);
+  assert.equal(getQuestionOx("kashikin", "no-such-question"), null);
+  for (const exam of ICHIMON_EXAMS_ALL) {
+    assert.ok(buildOxItems(exam).length >= 20, `${exam}: ○×が20問未満なら一問一答ページを作らない`);
+    assert.ok(fs.existsSync(`src/app/${exam}/ichimon/page.tsx`), `${exam}: 一問一答ページが無い`);
+  }
+});

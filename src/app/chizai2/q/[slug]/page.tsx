@@ -2,7 +2,7 @@ import SiteLink from "@/components/SiteLink";
 import { getAllChizai2Slugs, getChizai2Question, getChizai2QuestionsByField } from "@/lib/chizai2-questions";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import AnswerReveal from "@/app/q/[slug]/AnswerReveal";
+import AnswerReveal from "@/components/QuestionAnswer";
 import BookmarkButton from "@/app/q/[slug]/BookmarkButton";
 // 2026-09-05: 3級用(オンスク3級講座)の ChizaiCourseAd が残っていた。2級は 08-26 に
 // LECオンラインの2級対策講座へ差し替え済み(affiliate-links.ts chizai2)なので、

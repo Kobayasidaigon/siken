@@ -2,7 +2,7 @@ import SiteLink from "@/components/SiteLink";
 import { getAllFukushi3Slugs, getFukushi3Question, getFukushi3QuestionsByField } from "@/lib/fukushi3-questions";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import AnswerReveal from "@/app/q/[slug]/AnswerReveal";
+import AnswerReveal from "@/components/QuestionAnswer";
 import BookmarkButton from "@/app/q/[slug]/BookmarkButton";
 import Fukushi3CourseAd from "@/components/Fukushi3CourseAd";
 import JsonLd from "@/components/JsonLd";

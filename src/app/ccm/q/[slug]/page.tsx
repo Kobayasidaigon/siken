@@ -2,7 +2,7 @@ import SiteLink from "@/components/SiteLink";
 import { getAllCcmSlugs, getCcmQuestion, getCcmQuestionsByField } from "@/lib/ccm-questions";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import AnswerReveal from "@/app/q/[slug]/AnswerReveal";
+import AnswerReveal from "@/components/QuestionAnswer";
 import BookmarkButton from "@/app/q/[slug]/BookmarkButton";
 import CcmCourseAd from "@/components/CcmCourseAd";
 import JsonLd from "@/components/JsonLd";

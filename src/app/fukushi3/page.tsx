@@ -81,6 +81,13 @@ export default async function Fukushi3Page() {
               >
                 腕試しテスト（ランダム20問・採点）→
               </SiteLink>
+              <SiteLink
+                href="/fukushi3/ichimon/"
+                className="inline-flex items-center px-4 py-2 rounded-lg border text-sm font-medium no-underline transition-colors hover:bg-[color:var(--c-fukushi-soft)]"
+                style={{ borderColor: "var(--c-fukushi)", color: "var(--c-fukushi-ink)" }}
+              >
+                一問一答（○×）→
+              </SiteLink>
             </>
           ) : (
             <SiteLink href="/column/fukushi2-nittei/" className="btn-accent">

@@ -2,7 +2,7 @@ import SiteLink from "@/components/SiteLink";
 import { getAllMynumber2Slugs, getMynumber2Question, getMynumber2QuestionsByField } from "@/lib/mynumber2-questions";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import AnswerReveal from "@/app/q/[slug]/AnswerReveal";
+import AnswerReveal from "@/components/QuestionAnswer";
 import BookmarkButton from "@/app/q/[slug]/BookmarkButton";
 import Mynumber2CourseAd from "@/components/Mynumber2CourseAd";
 import JsonLd from "@/components/JsonLd";

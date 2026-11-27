@@ -2,7 +2,7 @@ import SiteLink from "@/components/SiteLink";
 import { getAllJitsumuSlugs, getJitsumuQuestion, getJitsumuQuestionsByField } from "@/lib/jitsumu-questions";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import AnswerReveal from "@/app/q/[slug]/AnswerReveal";
+import AnswerReveal from "@/components/QuestionAnswer";
 import BookmarkButton from "@/app/q/[slug]/BookmarkButton";
 import JitsumuCourseAd from "@/components/JitsumuCourseAd";
 import JsonLd from "@/components/JsonLd";

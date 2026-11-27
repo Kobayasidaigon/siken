@@ -19,7 +19,10 @@ import type { OxItem } from "./question-format";
  */
 
 const STEM =
-  /^(.+?)(?:に関する|についての)(?:次の)?記述(?:のうち|として)、?(?:最も)?(適切な|不適切な|適切でない|正しい|誤っている)ものはどれか/;
+  /^(.+?)(?:に関する|についての)(?:次の)?記述(?:のうち|として)、?(?:その内容が)?(?:最も)?(適切な|不適切な|適切でない|正しい|誤っている)もの(?:はどれか|を1つ選びなさい)/;
+/** 「Xの説明として、最も適切なものはどれか」の形。2026-11-27 追加。topic は「Xの説明」にする */
+const STEM_DESC =
+  /^([^。\n]{2,40}?)の(説明|特徴|記述)として、?(?:最も)?(適切な|不適切な|適切でない|正しい|誤っている)ものはどれか/;
 const NEGATIVE = new Set(["不適切な", "適切でない", "誤っている"]);
 const DEPENDENT_CHOICE = /上記|いずれも|すべて正し|全て正し/;
 
@@ -36,7 +39,7 @@ function plain(md: string): string {
 
 /** 肢ごとの解説を取り出す。肢ごとの見出しが無い問題は null */
 function perChoiceExplain(body: string): Map<number, { mark: string; text: string }> | null {
-  const re = /^#### 選択肢(\d)\s*→\s*(✅|❌)[^\n]*\n([\s\S]*?)(?=^#{2,4} |(?![\s\S]))/gm;
+  const re = /^#### 選択肢(\d)[^\n→]*→\s*(✅|❌)[^\n]*\n([\s\S]*?)(?=^#{2,4} |(?![\s\S]))/gm;
   const out = new Map<number, { mark: string; text: string }>();
   for (const m of body.matchAll(re)) out.set(Number(m[1]), { mark: m[2], text: plain(m[3]) });
   return out.size ? out : null;
@@ -53,14 +56,19 @@ const cache = new Map<string, OxItem[]>();
 export function buildOxItems(exam: string): OxItem[] {
   const hit = cache.get(exam);
   if (hit) return hit;
-  const dir = path.join(process.cwd(), "src/content", exam);
+  // 貸金業務取扱主任者だけ、問題の置き場所が src/content/questions(歴史的な名前)
+  const dir = path.join(process.cwd(), "src/content", exam === "kashikin" ? "questions" : exam);
   const files = fs.existsSync(dir) ? fs.readdirSync(dir).filter((f) => f.endsWith(".md")).sort() : [];
   const items: OxItem[] = [];
   for (const file of files) {
     const slug = file.replace(/\.md$/, "");
     const { data, content } = matter(fs.readFileSync(path.join(dir, file), "utf-8"));
-    const m = STEM.exec(String(data.questionText ?? ""));
-    if (!m) continue;
+    const qt = String(data.questionText ?? "");
+    const m1 = STEM.exec(qt);
+    const m2 = m1 ? null : STEM_DESC.exec(qt);
+    if (!m1 && !m2) continue;
+    const topic = m1 ? m1[1].trim() : `${m2![1].trim()}の${m2![2]}`;
+    const polarity = m1 ? m1[2] : m2![3];
     const choices: string[] = Array.isArray(data.choices) ? data.choices.map(String) : [];
     const correct = Number(data.correctAnswer);
     if (choices.length < 2 || !(correct >= 1 && correct <= choices.length)) continue;
@@ -73,14 +81,14 @@ export function buildOxItems(exam: string): OxItem[] {
     }
     const lead = per ? "" : leadExplain(content);
     if (!per && !lead) continue;
-    const negative = NEGATIVE.has(m[2]);
+    const negative = NEGATIVE.has(polarity);
     choices.forEach((statement, i) => {
       const num = i + 1;
       const isAnswer = num === correct;
       items.push({
         id: `${slug}-${num}`,
         field: String(data.field ?? ""),
-        topic: m[1].trim(),
+        topic,
         statement: statement.trim(),
         answer: negative ? !isAnswer : isAnswer,
         explain: per ? per.get(num)!.text : lead,
@@ -92,4 +100,13 @@ export function buildOxItems(exam: string): OxItem[] {
   }
   cache.set(exam, items);
   return items;
+}
+
+/** 問題ページの「○×で解く」に渡す形。○×にできない問題は null */
+export type QuestionOx = { topic: string; items: { statement: string; answer: boolean }[] };
+
+export function getQuestionOx(exam: string, slug: string): QuestionOx | null {
+  const items = buildOxItems(exam).filter((i) => i.sourceSlug === slug).sort((a, b) => a.choiceNo - b.choiceNo);
+  if (!items.length) return null;
+  return { topic: items[0].topic, items: items.map((i) => ({ statement: i.statement, answer: i.answer })) };
 }

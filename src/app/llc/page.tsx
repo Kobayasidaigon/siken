@@ -73,6 +73,13 @@ export default async function LlcPage() {
               >
                 腕試しテスト（ランダム20問・採点）→
               </SiteLink>
+              <SiteLink
+                href="/llc/ichimon/"
+                className="inline-flex items-center px-4 py-2 rounded-lg border text-sm font-medium no-underline transition-colors hover:bg-[color:var(--c-pii-soft)]"
+                style={{ borderColor: "var(--c-pii)", color: "var(--c-pii-ink)" }}
+              >
+                一問一答（○×）→
+              </SiteLink>
             </>
           ) : (
             <SiteLink href="/column/llc-nittei/" className="btn-accent">

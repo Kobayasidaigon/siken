@@ -51,6 +51,30 @@ function leadExplain(body: string): string {
   return m ? plain(m[1]) : "";
 }
 
+/**
+ * 肢ごとの見出しが無い問題で、「## 解説」の本文が全部の肢の正誤を番号つきで言っているか。2026-11-27 追加。
+ * 例「正解は2。…1は誤り。…3は誤り。…4は誤り。」。正解の肢は「正解はN」で足りる。
+ * 言っていない肢が1つでもある問題は○×にしない(「最も適切」の問題で、ほかの肢が本当に誤りかを
+ * 解説で確かめられないため。分からないものは出さない)。
+ */
+const V_FALSE = "誤り|誤っている|誤る|不適切|適切でない|妥当でない|正しくない|該当しない";
+const V_TRUE = "正しい|適切である|適切|妥当|該当する";
+function leadVerifies(body: string, choiceCount: number, correct: number, negative: boolean): boolean {
+  for (let n = 1; n <= choiceCount; n++) {
+    const d = `[${n}${String.fromCharCode(0xff10 + n)}]`;
+    const re = new RegExp(`(?:^|[。\\s（(「、]|選択肢|肢)${d}(?:は|が|も|の記述は|について(?:は)?)[、]?[^。]{0,30}?(${V_FALSE}|${V_TRUE})`, "g");
+    const verdicts = [...body.matchAll(re)].map((m) => !new RegExp(`^(?:${V_FALSE})$`).test(m[1]));
+    const expected = negative ? n !== correct : n === correct;
+    if (verdicts.length === 0) {
+      // 正解の肢は「正解はN」と書いてあればよい
+      if (n === correct && new RegExp(`正解は(?:選択肢)?\\**${d}`).test(body)) continue;
+      return false;
+    }
+    if (verdicts.some((v) => v !== expected)) return false;
+  }
+  return true;
+}
+
 const cache = new Map<string, OxItem[]>();
 
 export function buildOxItems(exam: string): OxItem[] {
@@ -82,6 +106,7 @@ export function buildOxItems(exam: string): OxItem[] {
     const lead = per ? "" : leadExplain(content);
     if (!per && !lead) continue;
     const negative = NEGATIVE.has(polarity);
+    if (!per && !leadVerifies(content, choices.length, correct, negative)) continue;
     choices.forEach((statement, i) => {
       const num = i + 1;
       const isAnswer = num === correct;

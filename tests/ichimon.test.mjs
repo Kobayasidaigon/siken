@@ -112,3 +112,10 @@ test("問題ページ用の○×と、一問一答の対象資格", () => {
     assert.ok(fs.existsSync(`src/app/${exam}/ichimon/page.tsx`), `${exam}: 一問一答ページが無い`);
   }
 });
+
+test("解説で全部の肢の正誤を確かめられない問題は○×にしない(2026-11-27)", () => {
+  // fukushi2-100 の解説は肢の番号を言わずに文章で説明しているので、肢ごとの正誤を機械で確かめられない
+  assert.equal(buildOxItems("fukushi2").some((it) => it.sourceSlug === "fukushi2-100"), false);
+  // 「正解は4。…1は誤り。2は誤り。3は誤り。」と全部の肢を言っている問題は使う
+  assert.ok(buildOxItems("dxp").some((it) => it.sourceSlug === "dxp-005"));
+});

@@ -9,7 +9,7 @@ import type { InputItem } from "../question-format";
  */
 
 export const MYNUMBER_KINYU: InputItem[] = [
-  {"id": "mynumber-k01", "field": "番号法の概要", "sourceSlug": "mynumber-001", "prompt": "個人番号を利用できる事務は、社会保障・税・＿＿の3分野に限られる。", "answers": ["災害対策"], "hint": "漢字4文字", "explain": "番号法の利用範囲は社会保障・税・災害対策の3分野。本人の同意があっても、範囲外の利用はできない。"},
+  {"id": "mynumber-k01", "field": "番号法の概要", "sourceSlug": "mynumber-001", "prompt": "番号法の制度発足時、個人番号を利用できる事務は、社会保障・税・＿＿の3分野とされた。", "answers": ["災害対策"], "hint": "漢字4文字", "explain": "制度発足時の利用範囲は社会保障・税・災害対策の3分野。令和5年改正(2024年5月27日施行)で国家資格・自動車登録・在留資格などの事務にも広がった。本人の同意があっても、法令で定める範囲外の利用はできない。"},
   {"id": "mynumber-k02", "field": "番号法の概要", "sourceSlug": "mynumber-013", "prompt": "個人番号をその内容に含む個人情報を＿＿という(番号法2条8項)。", "answers": ["特定個人情報"], "explain": "特定個人情報は、通常の個人情報より厳格な保護の対象になる。"},
   {"id": "mynumber-k03", "field": "番号法の概要", "sourceSlug": "mynumber-019", "prompt": "個人番号は＿＿桁の数字である。", "answers": ["12"], "hint": "数字", "explain": "住民票コードを変換した11桁に、検査用数字1桁を加えた12桁。数字だけで、個人を特定する情報は含まない。"},
   {"id": "mynumber-k04", "field": "番号法の概要", "sourceSlug": "mynumber-025", "prompt": "行政機関等の間の情報連携では、個人番号そのものではなく＿＿を用いてやり取りする。", "answers": ["機関別符号"], "hint": "漢字5文字", "explain": "情報連携は機関別符号を使い、個人番号を直接やり取りしない。"},

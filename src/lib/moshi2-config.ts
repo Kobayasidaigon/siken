@@ -21,5 +21,5 @@ export const MOSHI2_CONFIG = {
    * お問い合わせページ(/contact/)に載せている宛先と揃えてある。
    * kintore@ / setsubi@ のようなドメインのアドレスに変えたい場合はここだけ直す。
    */
-  contactEmail: "dawuzhangguchuan131@gmail.com",
+  contactEmail: "hello@shikakumon.com",
 } as const;

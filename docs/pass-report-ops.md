@@ -13,7 +13,7 @@
 ```
 利用者が /goukaku-houkoku/ で投稿
   → POST /api/pass-report（保存はしない）
-  → Resend で運営宛メール（dawuzhangguchuan131@gmail.com）
+  → Resend で運営宛メール（hello@shikakumon.com）
   → 運営が内容を読む
   → 掲載可なら src/content/voices/<slug>.md を作る
   → デプロイ → /voice/ と資格トップに出る

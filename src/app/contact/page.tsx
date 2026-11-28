@@ -19,8 +19,8 @@ export default function ContactPage() {
       <div className="card p-6 not-prose">
         <p className="text-sm text-slate-600 mb-2">メールアドレス</p>
         <p className="text-base font-bold">
-          <a href="mailto:dawuzhangguchuan131@gmail.com" className="text-blue-700 hover:underline">
-            dawuzhangguchuan131@gmail.com
+          <a href="mailto:hello@shikakumon.com" className="text-blue-700 hover:underline">
+            hello@shikakumon.com
           </a>
         </p>
         <p className="text-xs text-slate-500 mt-3">
